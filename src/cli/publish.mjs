@@ -129,11 +129,15 @@ export async function runPublication({
   });
   await saveStateFile(queuePath, result.queueState, validateQueueState);
   await saveStateFile(publicationsPath, result.publicationsState, validatePublicationsState);
-  const selected = parsed.jobId ?? result.queueState.items.find((item) => item.bluesky.status === 'published' || item.mastodon.status === 'published')?.jobId ?? null;
+  const selectedItem = result.queueState.items.find((item) => item.jobId === result.selectedJobId) ?? null;
   const summary = {
     outcome: result.outcome,
-    selected,
-    queueDepth: result.queueState.items.filter((item) => item.bluesky.status !== 'published' || item.mastodon.status !== 'published').length,
+    selected: result.selectedJobId,
+    bridge: selectedItem?.bridge.status ?? null,
+    bluesky: selectedItem?.bluesky.status ?? null,
+    mastodon: selectedItem?.mastodon.status ?? null,
+    queueDepth: result.queueState.items.filter((item) => [item.bridge, item.bluesky, item.mastodon]
+      .some((stage) => stage.status === 'pending' || stage.status === 'retryable')).length,
   };
   log(JSON.stringify(summary));
   return result;

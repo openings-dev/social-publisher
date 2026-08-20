@@ -80,7 +80,8 @@ export async function runIntake({
   log(JSON.stringify({
     snapshot: result.intakeState.processedSnapshot?.commit ?? null,
     ...result.summary,
-    queueDepth: result.queueState.items.filter((item) => item.bluesky.status !== 'published' || item.mastodon.status !== 'published').length,
+    queueDepth: result.queueState.items.filter((item) => [item.bridge, item.bluesky, item.mastodon]
+      .some((stage) => stage.status === 'pending' || stage.status === 'retryable')).length,
   }));
   return result;
 }

@@ -35,6 +35,28 @@ npm run dry-run -- --fixture assets/fixtures/job.json --output .tmp/dry-run
 
 Dry run generates the final copy, bridge HTML, and Open Graph image without FTP, provider authentication, tracked-state changes, or external writes.
 
+To exercise the current public data checkout instead of the fixture:
+
+```sh
+npm run dry-run -- \
+  --data ../data \
+  --state state \
+  --wordmark ../openings/public/openings-wordmark-light.svg
+```
+
+## GitHub Actions
+
+`Validate` runs on pull requests and source pushes with read-only repository access. It installs the lockfile, runs all deterministic contracts, and renders the review artifact without reading production secrets.
+
+`Publish social jobs` runs every two hours at minute 17 and can also be started manually:
+
+- `dry-run` renders a downloadable review artifact and performs no external write.
+- `controlled` publishes one explicit queued job only when the confirmation is exactly `PUBLISH_ONE_JOB`.
+- `retry-stage` resets one failed bridge or provider stage only when the confirmation is exactly `RESET_FAILED_STAGE`; it never publishes in the same operation.
+- `scheduled` processes new data and publishes at most one queued job when `SOCIAL_AUTO_PUBLISH` is exactly `true`.
+
+The workflow commits intake/queue state before any provider call, then stores Bluesky and Mastodon outcomes in a second state commit. A repository-wide concurrency lock prevents overlapping publication runs. If a state push races, the workflow rebases once, reruns validation, and otherwise fails closed.
+
 ## Configuration
 
 Repository variables:

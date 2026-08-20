@@ -1,0 +1,48 @@
+name: Validate
+
+on:
+  pull_request:
+  push:
+    paths-ignore:
+      - state/**
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    name: Validate source and dry run
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out openings-social
+        # actions/checkout v4.3.1
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Check out the canonical openings.dev wordmark
+        # actions/checkout v4.3.1
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          repository: openings-dev/openings
+          path: dependencies/openings
+          persist-credentials: false
+
+      - name: Use Node.js 20
+        # actions/setup-node v4.4.0
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install exact dependencies
+        run: npm ci
+
+      - name: Validate deterministic contracts
+        run: npm run validate
+
+      - name: Render the fixture without external writes
+        run: >-
+          npm run dry-run --
+          --fixture assets/fixtures/job.json
+          --wordmark dependencies/openings/public/openings-wordmark-light.svg
+          --output .tmp/validation-dry-run

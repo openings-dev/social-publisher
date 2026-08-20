@@ -254,12 +254,13 @@ export async function processOnePublication({
 
   let selected = jobId ? findQueueItem(nextQueue, jobId) : selectNextQueueItem(nextQueue, now);
   if (!selected) {
-    return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'idle' };
+    return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'idle', selectedJobId: null };
   }
+  const selectedJobId = selected.jobId;
   const job = currentSnapshot.jobsById.get(selected.jobId);
   if (!job) {
     nextQueue = markJobClosed(nextQueue, selected.jobId, now);
-    return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'skipped_closed' };
+    return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'skipped_closed', selectedJobId };
   }
 
   const revisionChanged = selected.contentHash !== job.contentHash
@@ -281,13 +282,13 @@ export async function processOnePublication({
         at: now,
         errorCode: safeErrorCode(error, 'bridge'),
       });
-      return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'bridge_retryable' };
+      return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'bridge_retryable', selectedJobId };
     }
   }
 
   selected = findQueueItem(nextQueue, selected.jobId);
   if (selected.bridge.status !== 'published') {
-    return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'bridge_unavailable' };
+    return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'bridge_unavailable', selectedJobId };
   }
 
   const post = formatSocialPost(job);
@@ -308,7 +309,7 @@ export async function processOnePublication({
   selected = findQueueItem(nextQueue, selected.jobId);
   if (selected.bluesky.status === 'published' && selected.mastodon.status === 'published') {
     nextPublications = completePublication(nextPublications, selected, now);
-    return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'completed' };
+    return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'completed', selectedJobId };
   }
-  return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'partial' };
+  return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'partial', selectedJobId };
 }

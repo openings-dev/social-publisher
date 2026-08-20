@@ -1,0 +1,236 @@
+name: Publish social jobs
+
+on:
+  schedule:
+    - cron: '17 */2 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Operation to run
+        required: true
+        default: dry-run
+        type: choice
+        options:
+          - dry-run
+          - controlled
+          - retry-stage
+          - scheduled
+      job_id:
+        description: Explicit gh_ job ID for controlled publication or reset
+        required: false
+        type: string
+      stage:
+        description: Failed stage to reset
+        required: false
+        default: mastodon
+        type: choice
+        options:
+          - bridge
+          - bluesky
+          - mastodon
+      confirmation:
+        description: Enter PUBLISH_ONE_JOB to publish, or RESET_FAILED_STAGE to reset
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: openings-social-publication
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    name: Intake and publish one job
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      RUN_MODE: ${{ github.event_name == 'schedule' && 'scheduled' || inputs.mode }}
+      DATA_PATH: dependencies/data
+      OPENINGS_PATH: dependencies/openings
+      PUBLIC_SITE_ORIGIN: ${{ vars.PUBLIC_SITE_ORIGIN || 'https://openings.dev' }}
+      FTP_JOB_ROOT: ${{ vars.FTP_JOB_ROOT || '/public_html/jobs' }}
+      BLUESKY_SERVICE_URL: ${{ vars.BLUESKY_SERVICE_URL || 'https://bsky.social' }}
+      MASTODON_BASE_URL: ${{ vars.MASTODON_BASE_URL || 'https://mastodon.social' }}
+      SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
+    steps:
+      - name: Check out openings-social state and source
+        # actions/checkout v4.3.1
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          fetch-depth: 0
+
+      - name: Check out immutable data history
+        # actions/checkout v4.3.1
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          repository: openings-dev/data
+          path: dependencies/data
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Check out the canonical openings.dev wordmark
+        # actions/checkout v4.3.1
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          repository: openings-dev/openings
+          path: dependencies/openings
+          persist-credentials: false
+
+      - name: Use Node.js 20
+        # actions/setup-node v4.4.0
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install exact dependencies
+        run: npm ci
+
+      - name: Validate the manual gate before any write
+        if: github.event_name == 'workflow_dispatch' && env.RUN_MODE != 'dry-run'
+        env:
+          REQUEST_JOB_ID: ${{ inputs.job_id }}
+          REQUEST_STAGE: ${{ inputs.stage }}
+          REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          node --input-type=module - <<'NODE'
+          import { parsePublicationRequest } from './src/cli/publish.mjs';
+          parsePublicationRequest({
+            mode: process.env.RUN_MODE,
+            jobId: process.env.REQUEST_JOB_ID || undefined,
+            stage: process.env.REQUEST_STAGE || undefined,
+            confirmation: process.env.REQUEST_CONFIRMATION || undefined,
+          });
+          NODE
+
+      - name: Render a review artifact without external writes
+        if: github.event_name == 'workflow_dispatch' && (env.RUN_MODE == 'dry-run' || env.RUN_MODE == 'controlled')
+        env:
+          REQUEST_JOB_ID: ${{ inputs.job_id }}
+        run: |
+          arguments=(
+            --data "$DATA_PATH"
+            --state state
+            --wordmark "$OPENINGS_PATH/public/openings-wordmark-light.svg"
+            --output .tmp/workflow-dry-run
+          )
+          if [[ -n "$REQUEST_JOB_ID" ]]; then
+            arguments+=(--job "$REQUEST_JOB_ID")
+          fi
+          npm run dry-run -- "${arguments[@]}"
+
+      - name: Upload the manual review artifact
+        if: github.event_name == 'workflow_dispatch' && (env.RUN_MODE == 'dry-run' || env.RUN_MODE == 'controlled')
+        # actions/upload-artifact v4.6.2
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: social-review-${{ github.run_id }}
+          path: .tmp/workflow-dry-run/jobs/**
+          if-no-files-found: error
+          retention-days: 3
+
+      - name: Install LFTP for real bridge publication
+        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
+        run: sudo apt-get update && sudo apt-get install --yes lftp
+
+      - name: Process snapshot intake and verified bridges
+        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+        run: |
+          mkdir -p .tmp
+          npm run intake -- \
+            --data "$DATA_PATH" \
+            --state state \
+            --wordmark "$OPENINGS_PATH/public/openings-wordmark-light.svg" \
+            --output .tmp/intake | tee .tmp/intake-summary.txt
+          {
+            echo '### Intake'
+            echo '```json'
+            tail -n 1 .tmp/intake-summary.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit and push intake state before provider calls
+        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
+        run: |
+          git config user.name openings-social[bot]
+          git config user.email 249994453+openings-social[bot]@users.noreply.github.com
+          git add -- state/intake.json state/queue.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'chore(state): record social intake [skip ci]'
+          if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+            exit 0
+          fi
+          git fetch origin "$GITHUB_REF_NAME"
+          git rebase "origin/$GITHUB_REF_NAME"
+          npm run validate
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Reset one failed stage without publishing
+        if: env.RUN_MODE == 'retry-stage'
+        env:
+          REQUEST_JOB_ID: ${{ inputs.job_id }}
+          REQUEST_STAGE: ${{ inputs.stage }}
+          REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
+        run: >-
+          npm run publish --
+          --mode retry-stage
+          --job "$REQUEST_JOB_ID"
+          --stage "$REQUEST_STAGE"
+          --confirmation "$REQUEST_CONFIRMATION"
+          --state state
+
+      - name: Publish at most one queued job
+        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
+        env:
+          FTP_SERVER: ${{ secrets.FTP_SERVER }}
+          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
+          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
+          BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
+          MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          REQUEST_JOB_ID: ${{ inputs.job_id }}
+          REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          arguments=(
+            --mode "$RUN_MODE"
+            --data "$DATA_PATH"
+            --state state
+            --wordmark "$OPENINGS_PATH/public/openings-wordmark-light.svg"
+            --output .tmp/publish
+          )
+          if [[ "$RUN_MODE" == 'controlled' ]]; then
+            arguments+=(--job "$REQUEST_JOB_ID" --confirmation "$REQUEST_CONFIRMATION")
+          fi
+          npm run publish -- "${arguments[@]}" | tee .tmp/publication-summary.txt
+          {
+            echo '### Publication'
+            echo '```json'
+            tail -n 1 .tmp/publication-summary.txt
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Commit and push publication or reset state
+        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled' || env.RUN_MODE == 'retry-stage'
+        run: |
+          git config user.name openings-social[bot]
+          git config user.email 249994453+openings-social[bot]@users.noreply.github.com
+          git add -- state/queue.json state/publications.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'chore(state): record social publication [skip ci]'
+          if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+            exit 0
+          fi
+          git fetch origin "$GITHUB_REF_NAME"
+          git rebase "origin/$GITHUB_REF_NAME"
+          npm run validate
+          git push origin "HEAD:${GITHUB_REF_NAME}"

@@ -1236,6 +1236,32 @@ validation('publishes at most one job and never bypasses a failed bridge', async
   assert.equal(result.queueState.items[1].bridge.status, 'pending');
 });
 
+validation('keeps validation read-only and production publishing explicitly gated', async () => {
+  const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
+  const validationWorkflow = await readFile(join(repositoryRoot, '.github/workflows/validate.yml'), 'utf8');
+  const productionWorkflow = await readFile(join(repositoryRoot, '.github/workflows/publish-social.yml'), 'utf8');
+  assert.match(validationWorkflow, /pull_request:/u);
+  assert.match(validationWorkflow, /push:/u);
+  assert.match(validationWorkflow, /contents:\s*read/u);
+  assert.match(validationWorkflow, /npm ci/u);
+  assert.match(validationWorkflow, /npm run validate/u);
+  assert.match(validationWorkflow, /npm run dry-run/u);
+  assert.doesNotMatch(validationWorkflow, /secrets\./u);
+  assert.doesNotMatch(validationWorkflow, /npm run (?:intake|publish)/u);
+  assert.match(productionWorkflow, /cron:\s*['"]17 \*\/2 \* \* \*['"]/u);
+  assert.match(productionWorkflow, /workflow_dispatch:/u);
+  assert.doesNotMatch(productionWorkflow, /^\s{2}(?:push|pull_request):/mu);
+  assert.match(productionWorkflow, /contents:\s*write/u);
+  assert.match(productionWorkflow, /cancel-in-progress:\s*false/u);
+  assert.match(productionWorkflow, /PUBLISH_ONE_JOB/u);
+  assert.match(productionWorkflow, /RESET_FAILED_STAGE/u);
+  assert.match(productionWorkflow, /chore\(state\): record social intake/u);
+  assert.match(productionWorkflow, /chore\(state\): record social publication/u);
+  const actionUses = [...`${validationWorkflow}\n${productionWorkflow}`.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/gu)];
+  assert.ok(actionUses.length >= 5);
+  assert.equal(actionUses.every((match) => /^[0-9a-f]{40}$/u.test(match[1])), true);
+});
+
 let passed = 0;
 
 for (const { name, run } of validations) {
