@@ -20,6 +20,13 @@ function assertIsoDate(value, label) {
   }
 }
 
+function assertArtifactIsNotNewer(value, label, manifestGeneratedAt) {
+  assertIsoDate(value, label);
+  if (Date.parse(value) > Date.parse(manifestGeneratedAt)) {
+    throw new Error(`${label} belongs to a newer snapshot generation`);
+  }
+}
+
 function assertRelativeApiPath(value, label) {
   if (typeof value !== 'string' || !value.startsWith('api/') || path.posix.normalize(value) !== value) {
     throw new Error(`${label} must be a safe API path`);
@@ -79,9 +86,11 @@ export async function loadSnapshot(repositoryPath, commit, {
 
   const jobIdsPath = path.posix.join(snapshotRoot, assertRelativeApiPath(manifest.files?.jobIds, 'manifest.files.jobIds'));
   const jobIdsPayload = assertObject(await readJson(repositoryPath, commit, jobIdsPath), 'job IDs');
-  if (jobIdsPayload.generatedAt !== manifest.generatedAt) {
-    throw new Error('job IDs belong to a different snapshot generation');
-  }
+  assertArtifactIsNotNewer(
+    jobIdsPayload.generatedAt,
+    'job IDs',
+    manifest.generatedAt,
+  );
   if (!Array.isArray(jobIdsPayload.ids)) {
     throw new Error('job IDs payload must contain ids');
   }
@@ -98,9 +107,11 @@ export async function loadSnapshot(repositoryPath, commit, {
     pageNumbers.add(descriptor.page);
     const pagePath = path.posix.join(snapshotRoot, assertRelativeApiPath(descriptor.file, 'manifest page file'));
     const payload = assertObject(await readJson(repositoryPath, commit, pagePath), `page ${expectedPage}`);
-    if (payload.generatedAt !== manifest.generatedAt) {
-      throw new Error(`page ${expectedPage} belongs to a different snapshot generation`);
-    }
+    assertArtifactIsNotNewer(
+      payload.generatedAt,
+      `page ${expectedPage}`,
+      manifest.generatedAt,
+    );
     if (payload.page !== expectedPage || payload.pageSize !== manifest.pageSize) {
       throw new Error(`page ${expectedPage} metadata is inconsistent`);
     }
