@@ -25,6 +25,10 @@ import { loadSnapshot } from '../data/load-snapshot.mjs';
 import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
 import { isEligibleNewJob } from '../intake/eligibility.mjs';
 import {
+  blueskyRecordKey,
+  publishToBluesky,
+} from '../networks/bluesky-client.mjs';
+import {
   buildLftpUploadScript,
   deployAndVerifyBridge,
 } from '../deploy/lftp-client.mjs';
@@ -645,6 +649,143 @@ validation('skips matching bridges and deploys stale bridges exactly once', asyn
       runLftp: async () => { throw new Error('super-secret leaked upstream'); },
     }),
     (error) => /FTP upload failed/.test(error.message) && !error.message.includes('super-secret'),
+  );
+});
+
+function createFakeBlueskyAgent({ existing = null, uploadError = null, putError = null } = {}) {
+  const calls = { login: [], get: [], upload: [], put: [] };
+  const agent = {
+    session: null,
+    async login(credentials) {
+      calls.login.push(credentials);
+      this.session = { did: 'did:plc:openingsfixture', handle: 'openingshq.bsky.social' };
+    },
+    async uploadBlob(bytes, options) {
+      calls.upload.push({ bytes, options });
+      if (uploadError) throw uploadError;
+      return { data: { blob: { $type: 'blob', ref: { $link: 'bafkfixture' }, mimeType: 'image/png', size: bytes.byteLength } } };
+    },
+    com: {
+      atproto: {
+        repo: {
+          async getRecord(input) {
+            calls.get.push(input);
+            if (!existing) {
+              const error = new Error('not found');
+              error.error = 'RecordNotFound';
+              throw error;
+            }
+            return { data: existing };
+          },
+          async putRecord(input) {
+            calls.put.push(input);
+            if (putError) throw putError;
+            return {
+              data: {
+                uri: `at://did:plc:openingsfixture/app.bsky.feed.post/${input.rkey}`,
+                cid: 'bafyreipublished',
+              },
+            };
+          },
+        },
+      },
+    },
+  };
+  return { agent, calls };
+}
+
+validation('publishes one deterministic Bluesky external-card record', async () => {
+  const job = makeJob({ community: { name: 'Openings Fixtures' }, tags: ['typescript'] });
+  const post = formatSocialPost(job);
+  const png = Buffer.from([137, 80, 78, 71]);
+  const { agent, calls } = createFakeBlueskyAgent();
+  const result = await publishToBluesky({
+    job,
+    post,
+    png,
+    publicationCreatedAt: '2026-08-20T13:01:00.000Z',
+    credentials: { identifier: 'openingshq.bsky.social', appPassword: 'fixture-secret' },
+    agentFactory: () => agent,
+  });
+  const rkey = blueskyRecordKey(job.id);
+  assert.equal(result.status, 'published');
+  assert.equal(result.url, `https://bsky.app/profile/openingshq.bsky.social/post/${rkey}`);
+  assert.equal(calls.put.length, 1);
+  assert.equal(calls.put[0].rkey, rkey);
+  assert.equal(calls.put[0].record.createdAt, '2026-08-20T13:01:00.000Z');
+  assert.equal(calls.put[0].record.embed.external.uri, post.canonicalUrl);
+  assert.equal(calls.put[0].record.embed.external.thumb.mimeType, 'image/png');
+  assert.ok(calls.put[0].record.facets.some((facet) => facet.features.some((feature) => feature.$type === 'app.bsky.richtext.facet#link')));
+  assert.ok(calls.put[0].record.facets.some((facet) => facet.features.some((feature) => feature.$type === 'app.bsky.richtext.facet#tag')));
+});
+
+validation('reconciles an existing matching Bluesky record without uploading', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const rkey = blueskyRecordKey(job.id);
+  const { agent, calls } = createFakeBlueskyAgent({
+    existing: {
+      uri: `at://did:plc:openingsfixture/app.bsky.feed.post/${rkey}`,
+      cid: 'bafyreiexisting',
+      value: { embed: { external: { uri: post.canonicalUrl } } },
+    },
+  });
+  const result = await publishToBluesky({
+    job,
+    post,
+    png: Buffer.from([1]),
+    publicationCreatedAt: '2026-08-20T13:01:00.000Z',
+    credentials: { identifier: 'openingshq.bsky.social', appPassword: 'fixture-secret' },
+    agentFactory: () => agent,
+  });
+  assert.equal(result.status, 'reconciled');
+  assert.equal(calls.upload.length, 0);
+  assert.equal(calls.put.length, 0);
+});
+
+validation('rejects conflicting or failed Bluesky writes without leaking credentials', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const conflict = createFakeBlueskyAgent({
+    existing: {
+      uri: 'at://did:plc:openingsfixture/app.bsky.feed.post/conflict',
+      cid: 'conflict',
+      value: { embed: { external: { uri: 'https://openings.dev/jobs/gh_ffffffffffffffffffffffff' } } },
+    },
+  });
+  await assert.rejects(publishToBluesky({
+    job,
+    post,
+    png: Buffer.from([1]),
+    publicationCreatedAt: '2026-08-20T13:01:00.000Z',
+    credentials: { identifier: 'openingshq.bsky.social', appPassword: 'fixture-secret' },
+    agentFactory: () => conflict.agent,
+  }), /conflicting deterministic record/i);
+
+  const failed = createFakeBlueskyAgent({ uploadError: new Error('fixture-secret provider detail') });
+  await assert.rejects(
+    publishToBluesky({
+      job,
+      post,
+      png: Buffer.from([1]),
+      publicationCreatedAt: '2026-08-20T13:01:00.000Z',
+      credentials: { identifier: 'openingshq.bsky.social', appPassword: 'fixture-secret' },
+      agentFactory: () => failed.agent,
+    }),
+    (error) => /thumbnail upload failed/i.test(error.message) && !error.message.includes('fixture-secret'),
+  );
+
+  const putFailed = createFakeBlueskyAgent({ putError: new Error('fixture-secret ambiguous write') });
+  await assert.rejects(
+    publishToBluesky({
+      job,
+      post,
+      png: Buffer.from([1]),
+      publicationCreatedAt: '2026-08-20T13:01:00.000Z',
+      credentials: { identifier: 'openingshq.bsky.social', appPassword: 'fixture-secret' },
+      agentFactory: () => putFailed.agent,
+    }),
+    (error) => /record publication failed/i.test(error.message) && !error.message.includes('fixture-secret'),
   );
 });
 
