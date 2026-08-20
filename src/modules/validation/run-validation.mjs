@@ -29,6 +29,10 @@ import {
   publishToBluesky,
 } from '../networks/bluesky-client.mjs';
 import {
+  mastodonIdempotencyKey,
+  publishToMastodon,
+} from '../networks/mastodon-client.mjs';
+import {
   buildLftpUploadScript,
   deployAndVerifyBridge,
 } from '../deploy/lftp-client.mjs';
@@ -787,6 +791,159 @@ validation('rejects conflicting or failed Bluesky writes without leaking credent
     }),
     (error) => /record publication failed/i.test(error.message) && !error.message.includes('fixture-secret'),
   );
+});
+
+function jsonResponse(value, status = 200) {
+  return new Response(JSON.stringify(value), {
+    status,
+    headers: { 'content-type': 'application/json; charset=utf-8' },
+  });
+}
+
+function createFakeMastodonFetch({ statuses = [], postError = null, cards = [] } = {}) {
+  const calls = [];
+  let cardIndex = 0;
+  const created = {
+    id: '109876543210',
+    url: 'https://mastodon.social/@openingshq/109876543210',
+    content: '<p>New job</p>',
+    card: null,
+  };
+  return {
+    calls,
+    async fetch(url, options = {}) {
+      calls.push({ url: String(url), options });
+      const parsed = new URL(url);
+      if (parsed.pathname === '/api/v1/accounts/verify_credentials') {
+        return jsonResponse({ id: '12345', username: 'openingshq' });
+      }
+      if (parsed.pathname === '/api/v1/accounts/12345/statuses') {
+        return jsonResponse(statuses);
+      }
+      if (parsed.pathname === '/api/v1/statuses' && options.method === 'POST') {
+        if (postError) throw postError;
+        return jsonResponse(created);
+      }
+      if (parsed.pathname === `/api/v1/statuses/${created.id}`) {
+        const card = cards[Math.min(cardIndex, Math.max(0, cards.length - 1))] ?? null;
+        cardIndex += 1;
+        return jsonResponse({ ...created, card });
+      }
+      return jsonResponse({ error: 'missing' }, 404);
+    },
+  };
+}
+
+validation('publishes a link-only Mastodon status with deterministic idempotency', async () => {
+  const job = makeJob({ community: { name: 'Openings Fixtures' } });
+  const post = formatSocialPost(job);
+  const fake = createFakeMastodonFetch({
+    cards: [null, { url: post.canonicalUrl, title: job.title }],
+  });
+  const result = await publishToMastodon({
+    job,
+    post,
+    accessToken: 'fixture-token',
+    fetchImpl: fake.fetch,
+    sleep: async () => {},
+    cardPollAttempts: 2,
+  });
+  assert.equal(result.status, 'published');
+  assert.equal(result.cardStatus, 'resolved');
+  const publication = fake.calls.find((call) => new URL(call.url).pathname === '/api/v1/statuses' && call.options.method === 'POST');
+  assert.equal(publication.options.headers['Idempotency-Key'], mastodonIdempotencyKey(job.id));
+  assert.equal(publication.options.headers.Authorization, 'Bearer fixture-token');
+  const body = new URLSearchParams(publication.options.body);
+  assert.equal(body.get('status'), post.text);
+  assert.equal(body.get('visibility'), 'public');
+  assert.equal(body.has('media_ids[]'), false);
+});
+
+validation('reconciles a recent Mastodon status by exact canonical URL', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const fake = createFakeMastodonFetch({
+    statuses: [{
+      id: 'existing',
+      url: 'https://mastodon.social/@openingshq/existing',
+      content: `<p>View: <a href="${post.canonicalUrl}">${post.canonicalUrl}</a></p>`,
+      card: { url: post.canonicalUrl },
+    }],
+  });
+  const result = await publishToMastodon({
+    job,
+    post,
+    accessToken: 'fixture-token',
+    fetchImpl: fake.fetch,
+    sleep: async () => {},
+  });
+  assert.equal(result.status, 'reconciled');
+  assert.equal(result.id, 'existing');
+  assert.equal(result.cardStatus, 'resolved');
+  assert.equal(fake.calls.some((call) => call.options.method === 'POST'), false);
+});
+
+validation('does not duplicate Mastodon posts after an ambiguous response', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const failed = createFakeMastodonFetch({ postError: new Error('fixture-token connection reset') });
+  await assert.rejects(
+    publishToMastodon({
+      job,
+      post,
+      accessToken: 'fixture-token',
+      fetchImpl: failed.fetch,
+      sleep: async () => {},
+    }),
+    (error) => /publication failed/i.test(error.message) && !error.message.includes('fixture-token'),
+  );
+
+  const retry = createFakeMastodonFetch({
+    statuses: [{
+      id: 'created-during-timeout',
+      url: 'https://mastodon.social/@openingshq/created-during-timeout',
+      content: `<p><a href="${post.canonicalUrl}">${post.canonicalUrl}</a></p>`,
+      card: null,
+    }],
+  });
+  const result = await publishToMastodon({
+    job,
+    post,
+    accessToken: 'fixture-token',
+    fetchImpl: retry.fetch,
+    sleep: async () => {},
+  });
+  assert.equal(result.status, 'reconciled');
+  assert.equal(result.cardStatus, 'pending');
+  assert.equal(retry.calls.some((call) => call.options.method === 'POST'), false);
+});
+
+validation('records a delayed Mastodon PreviewCard without retrying the status', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const fake = createFakeMastodonFetch({ cards: [null, null] });
+  const result = await publishToMastodon({
+    job,
+    post,
+    accessToken: 'fixture-token',
+    fetchImpl: fake.fetch,
+    sleep: async () => {},
+    cardPollAttempts: 2,
+  });
+  assert.equal(result.status, 'published');
+  assert.equal(result.cardStatus, 'pending');
+  assert.equal(fake.calls.filter((call) => call.options.method === 'POST').length, 1);
+
+  const unrelated = createFakeMastodonFetch({ cards: [{ url: 'https://example.test/not-the-job' }] });
+  const unrelatedResult = await publishToMastodon({
+    job,
+    post,
+    accessToken: 'fixture-token',
+    fetchImpl: unrelated.fetch,
+    sleep: async () => {},
+    cardPollAttempts: 1,
+  });
+  assert.equal(unrelatedResult.cardStatus, 'pending');
 });
 
 let passed = 0;
