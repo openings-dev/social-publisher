@@ -717,6 +717,58 @@ validation('verifies public HTML metadata and exact PNG bytes', async () => {
   assert.equal(mismatch.reason, 'content_hash_mismatch');
 });
 
+validation('accepts the canonical Hostinger trailing-slash redirect only', async () => {
+  const job = makeJob();
+  const html = createBridgeHtml(job);
+  const png = await renderSocialCardPng(job, {
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+  });
+  const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
+  const redirectedUrl = `${canonicalUrl}/`;
+  const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const calls = [];
+  const fetchImpl = async (url) => {
+    calls.push(url);
+    if (url === canonicalUrl) {
+      return new Response(null, { status: 301, headers: { location: redirectedUrl } });
+    }
+    if (url === redirectedUrl) {
+      return new Response(html, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
+    }
+    if (url === imageUrl) {
+      return new Response(png, { status: 200, headers: { 'content-type': 'image/png' } });
+    }
+    return new Response('missing', { status: 404 });
+  };
+
+  const result = await verifyPublicBridge({
+    jobId: job.id,
+    contentHash: job.contentHash,
+    expectedPngHash: sha256(png),
+    fetchImpl,
+  });
+
+  assert.equal(result.matches, true);
+  assert.deepEqual(calls, [canonicalUrl, redirectedUrl, imageUrl]);
+});
+
+validation('rejects public bridge redirects outside the canonical job directory', async () => {
+  const job = makeJob();
+  const mismatch = await verifyPublicBridge({
+    jobId: job.id,
+    contentHash: job.contentHash,
+    expectedPngHash: 'a'.repeat(64),
+    fetchImpl: async () => new Response(null, {
+      status: 301,
+      headers: { location: 'https://example.test/untrusted' },
+    }),
+    allowMismatch: true,
+  });
+
+  assert.equal(mismatch.matches, false);
+  assert.equal(mismatch.reason, 'html_redirect_mismatch');
+});
+
 validation('skips current bridges and dispatches stale bridges exactly once', async () => {
   const calls = [];
   const html = Buffer.from('<!doctype html><html></html>');

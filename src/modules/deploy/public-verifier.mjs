@@ -20,11 +20,11 @@ function findContent(tags, attribute, value, target) {
   return tags.find((tag) => tag[attribute] === value)?.[target] ?? null;
 }
 
-async function fetchResponse(url, fetchImpl, timeoutMs) {
+async function fetchResponse(url, fetchImpl, timeoutMs, redirect = 'error') {
   const controller = new AbortController();
   const timeout = setTimeout(() => controller.abort(new Error('Verification timed out')), timeoutMs);
   try {
-    return await fetchImpl(url, { signal: controller.signal, redirect: 'error' });
+    return await fetchImpl(url, { signal: controller.signal, redirect });
   } finally {
     clearTimeout(timeout);
   }
@@ -50,9 +50,20 @@ export async function verifyPublicBridge({
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
   let htmlResponse;
   try {
-    htmlResponse = await fetchResponse(canonicalUrl, fetchImpl, timeoutMs);
+    htmlResponse = await fetchResponse(canonicalUrl, fetchImpl, timeoutMs, 'manual');
   } catch {
     return mismatch('html_request_failed', allowMismatch);
+  }
+  if (htmlResponse.status === 301 || htmlResponse.status === 308) {
+    const redirectedUrl = `${canonicalUrl}/`;
+    if (htmlResponse.headers.get('location') !== redirectedUrl) {
+      return mismatch('html_redirect_mismatch', allowMismatch);
+    }
+    try {
+      htmlResponse = await fetchResponse(redirectedUrl, fetchImpl, timeoutMs);
+    } catch {
+      return mismatch('html_request_failed', allowMismatch);
+    }
   }
   if (!htmlResponse.ok) {
     return mismatch(htmlResponse.status === 404 ? 'not_found' : 'html_http_error', allowMismatch);
