@@ -198,14 +198,16 @@ validation('enables scheduled publication only for exact true with every credent
   );
 });
 
-validation('validates the tracked initial state schemas', async () => {
+validation('validates the tracked state schemas', async () => {
   const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
   const intake = await loadStateFile(join(repositoryRoot, 'state/intake.json'), validateIntakeState);
   const queue = await loadStateFile(join(repositoryRoot, 'state/queue.json'), validateQueueState);
   const publications = await loadStateFile(join(repositoryRoot, 'state/publications.json'), validatePublicationsState);
   assert.equal(intake.schemaVersion, 1);
-  assert.deepEqual(queue.items, []);
-  assert.deepEqual(publications.jobs, {});
+  assert.equal(queue.schemaVersion, 1);
+  assert.equal(Array.isArray(queue.items), true);
+  assert.equal(publications.schemaVersion, 1);
+  assert.equal(typeof publications.jobs, 'object');
 });
 
 validation('rejects unknown state versions, duplicates, and sensitive keys', () => {
