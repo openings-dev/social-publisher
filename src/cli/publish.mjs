@@ -103,14 +103,24 @@ export async function runPublication({
   });
   const publishBluesky = dependencies.publishBluesky ?? (async ({ job, post, queueItem }) => {
     const png = await renderSocialCardPng(job, { wordmarkSvg });
-    return publishToBluesky({
-      job,
-      post,
-      png,
-      publicationCreatedAt: queueItem.publicationCreatedAt,
-      credentials: config.bluesky,
-      service: config.blueskyServiceUrl,
-    });
+    try {
+      return await publishToBluesky({
+        job,
+        post,
+        png,
+        publicationCreatedAt: queueItem.publicationCreatedAt,
+        credentials: config.bluesky,
+        service: config.blueskyServiceUrl,
+      });
+    } catch (error) {
+      log(JSON.stringify({
+        event: 'provider_failure',
+        provider: 'bluesky',
+        code: typeof error?.code === 'string' ? error.code : 'provider',
+        diagnostic: error?.diagnostic ?? null,
+      }));
+      throw error;
+    }
   });
   const publishMastodon = dependencies.publishMastodon ?? (({ job, post }) => publishToMastodon({
     job,

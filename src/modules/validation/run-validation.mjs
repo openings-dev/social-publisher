@@ -963,7 +963,10 @@ validation('rejects conflicting or failed Bluesky writes without leaking credent
       && !error.message.includes('fixture-secret'),
   );
 
-  const putFailed = createFakeBlueskyAgent({ putError: new Error('fixture-secret ambiguous write') });
+  const putError = new Error('Invalid record from fixture-secret for openingshq.bsky.social');
+  putError.error = 'InvalidRequest';
+  putError.status = 400;
+  const putFailed = createFakeBlueskyAgent({ putError });
   await assert.rejects(
     publishToBluesky({
       job,
@@ -975,7 +978,11 @@ validation('rejects conflicting or failed Bluesky writes without leaking credent
     }),
     (error) => error.code === 'bluesky_publication'
       && /record publication failed/i.test(error.message)
-      && !error.message.includes('fixture-secret'),
+      && error.diagnostic?.status === 400
+      && error.diagnostic?.providerCode === 'InvalidRequest'
+      && /\[redacted\]/u.test(error.diagnostic?.message ?? '')
+      && !JSON.stringify(error.diagnostic).includes('fixture-secret')
+      && !JSON.stringify(error.diagnostic).includes('openingshq.bsky.social'),
   );
 });
 
