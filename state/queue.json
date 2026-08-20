@@ -1,4 +1,42 @@
 {
   "schemaVersion": 1,
-  "items": []
+  "items": [
+    {
+      "jobId": "gh_5b692624be9237f8879e728a",
+      "sourceId": "awesome-jobs/jobs#5024",
+      "dataCommit": "c99542f9f9e84e68c78a00d9265817763caa09ad",
+      "dataHash": "b4bdcaa9ba35a786331eed29a707684c9e464b2fd95693368e850dad1d590926",
+      "contentHash": "c1165a228f5b776e8c0b0ccf72d9c1a20b428d3261052d300018ff9f1f13add9",
+      "discoveredAt": "2026-08-20T17:31:18.528Z",
+      "createdAt": "2026-08-20T12:47:52Z",
+      "publicationCreatedAt": "2026-08-20T17:31:18.528Z",
+      "bridge": {
+        "status": "retryable",
+        "attempts": 1,
+        "updatedAt": "2026-08-20T17:31:18.528Z",
+        "lastError": {
+          "code": "authentication",
+          "at": "2026-08-20T17:31:18.528Z"
+        },
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    }
+  ]
 }
