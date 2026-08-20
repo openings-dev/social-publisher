@@ -1,0 +1,13 @@
+node_modules/
+.tmp/
+dist/
+coverage/
+*.log
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+secrets*.json
+.DS_Store

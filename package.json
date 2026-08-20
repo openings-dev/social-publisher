@@ -1,0 +1,21 @@
+{
+  "name": "@openings-dev/openings-social",
+  "version": "0.1.0",
+  "description": "Publishes genuinely new openings.dev jobs to Bluesky and Mastodon.",
+  "private": false,
+  "type": "module",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "validate": "node src/modules/validation/run-validation.mjs",
+    "dry-run": "node src/cli/dry-run.mjs",
+    "intake": "node src/cli/intake.mjs",
+    "publish": "node src/cli/publish.mjs"
+  },
+  "dependencies": {
+    "@atproto/api": "^0.17.0",
+    "sharp": "^0.35.3"
+  }
+}
