@@ -1,8 +1,11 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, rm } from 'node:fs/promises';
+import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import sharp from 'sharp';
+
+import { runDryRun } from '../../cli/dry-run.mjs';
 
 import {
   IMAGE_HEIGHT,
@@ -26,6 +29,8 @@ import {
   formatSalary,
   formatSocialPost,
 } from '../render/format-job.mjs';
+import { createBridgeHtml } from '../render/html-page.mjs';
+import { createSocialCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
 import {
   enqueueBridgeWork,
   enqueueJob,
@@ -429,6 +434,88 @@ validation('keeps long Unicode posts within the Bluesky grapheme limit', () => {
   assert.equal((post.text.match(/https:\/\/openings\.dev\/jobs\//g) ?? []).length, 1);
   assert.match(post.text, /View the listing:/);
   assert.match(post.text, /#TechJobs #TypeScript$/);
+});
+
+validation('renders a complete escaped canonical job bridge', () => {
+  const job = makeJob({
+    title: '<script>publish()</script> Senior Engineer',
+    excerpt: 'Build tools & keep users safe. <img src=x onerror=publish()>',
+    community: { name: 'Openings & Friends' },
+  });
+  const html = createBridgeHtml(job);
+  const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
+  assert.match(html, /<!doctype html>/i);
+  assert.match(html, new RegExp(`<link rel="canonical" href="${canonicalUrl}"`));
+  assert.match(html, new RegExp(`<meta property="og:url" content="${canonicalUrl}"`));
+  assert.match(html, new RegExp(`<meta property="og:image" content="${canonicalUrl}/opengraph-image.png"`));
+  assert.match(html, /<meta property="og:image:width" content="1200">/);
+  assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
+  assert.match(html, new RegExp(`<meta name="openings:data-hash" content="${job.contentHash}"`));
+  assert.match(html, /&lt;script&gt;publish\(\)&lt;\/script&gt;/);
+  assert.doesNotMatch(html, /<img src=x|onerror=/);
+  assert.match(html, new RegExp(`location\\.replace\\("https://openings\\.dev/\\?job=${job.id}"\\)`));
+});
+
+validation('renders the production social-card system to a bounded PNG', async () => {
+  const job = makeJob({
+    title: 'Senior TypeScript Engineer building reliable community tools',
+    excerpt: 'Build reliable developer tools with a distributed open source team.',
+    community: { name: 'Openings Fixtures' },
+    country: 'Remote',
+    region: 'Worldwide',
+    tags: ['typescript', 'remote', 'senior'],
+    salary: { currency: 'USD', min: 9000, max: 12000, period: 'month' },
+  });
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302e"/></svg>';
+  const svg = createSocialCardSvg(job, { wordmarkSvg });
+  assert.match(svg, /width="1200" height="630"/);
+  for (const color of ['#f5f3ef', '#fffefa', '#21302e', '#5e6663', '#d8d8d1', '#eeefeb', '#b0ec9c', '#315d35']) {
+    assert.match(svg, new RegExp(color));
+  }
+  assert.match(svg, /data:image\/svg\+xml;base64,/);
+  assert.match(svg, /Senior TypeScript Engineer/);
+  assert.match(svg, /View job/);
+
+  const png = await renderSocialCardPng(job, { wordmarkSvg });
+  const metadata = await sharp(png).metadata();
+  assert.equal(metadata.format, 'png');
+  assert.equal(metadata.width, 1200);
+  assert.equal(metadata.height, 630);
+  assert.ok(png.byteLength < 2 * 1024 * 1024);
+  assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+});
+
+validation('bounds long Unicode card titles to three lines', () => {
+  const job = makeJob({ title: '高性能ソフトウェアエンジニア🚀'.repeat(20) });
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const svg = createSocialCardSvg(job, { wordmarkSvg });
+  const titleLines = svg.match(/data-title-line="true"/g) ?? [];
+  assert.ok(titleLines.length >= 1 && titleLines.length <= 3);
+  assert.match(svg, /…/);
+});
+
+validation('dry run emits exactly the two deployable job files without state mutation', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-social-dry-run-'));
+  const fixturePath = join(directory, 'job.json');
+  const wordmarkPath = join(directory, 'wordmark.svg');
+  const outputPath = join(directory, 'output');
+  const beforeState = await readFile(fileURLToPath(new URL('../../../state/queue.json', import.meta.url)), 'utf8');
+  try {
+    await writeFile(fixturePath, `${JSON.stringify(makeJob({ community: { name: 'Openings Fixtures' } }), null, 2)}\n`);
+    await writeFile(wordmarkPath, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302e"/></svg>');
+    const result = await runDryRun({ fixturePath, wordmarkPath, outputPath, log: () => {} });
+    const files = (await readdir(outputPath, { recursive: true, withFileTypes: true }))
+      .filter((entry) => entry.isFile())
+      .map((entry) => join(entry.parentPath ?? entry.path, entry.name).slice(outputPath.length + 1))
+      .sort();
+    assert.deepEqual(files, [
+      `jobs/${result.jobId}/index.html`,
+      `jobs/${result.jobId}/opengraph-image.png`,
+    ]);
+    assert.equal(await readFile(fileURLToPath(new URL('../../../state/queue.json', import.meta.url)), 'utf8'), beforeState);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 let passed = 0;
