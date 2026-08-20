@@ -21,6 +21,14 @@ import { readJsonAtCommit } from '../data/git-json.mjs';
 import { loadSnapshot } from '../data/load-snapshot.mjs';
 import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
 import { isEligibleNewJob } from '../intake/eligibility.mjs';
+import {
+  enqueueBridgeWork,
+  enqueueJob,
+  markJobClosed,
+  resetFailedStage,
+  selectNextQueueItem,
+  transitionQueueStage,
+} from '../state/queue-operations.mjs';
 import { loadStateFile } from '../state/load-state.mjs';
 import { saveStateFile } from '../state/save-state.mjs';
 import {
@@ -269,6 +277,98 @@ validation('enqueues only genuinely new open GitHub issues', () => {
     schemaVersion: 1,
     jobs: { [eligible.id]: { completedAt: '2026-08-20T11:00:00.000Z' } },
   }), false);
+});
+
+function snapshotReference(overrides = {}) {
+  return {
+    commit: 'f'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: 'a'.repeat(64),
+    ...overrides,
+  };
+}
+
+validation('enqueues jobs and bridge refreshes idempotently', () => {
+  const job = makeJob();
+  const snapshot = snapshotReference();
+  const initialQueue = { schemaVersion: 1, items: [] };
+  const first = enqueueJob(initialQueue, { job, snapshot, discoveredAt: '2026-08-20T13:01:00.000Z' });
+  const second = enqueueJob(first, { job, snapshot, discoveredAt: '2026-08-20T13:05:00.000Z' });
+  assert.equal(second.items.length, 1);
+  assert.equal(second.items[0].discoveredAt, '2026-08-20T13:01:00.000Z');
+  assert.equal(second.items[0].bluesky.status, 'pending');
+  assert.equal(second.items[0].mastodon.status, 'pending');
+
+  const intake = { schemaVersion: 1, processedSnapshot: null, pendingBridges: [], removedJobs: [] };
+  const withBridge = enqueueBridgeWork(intake, { job, snapshot, reason: 'new' });
+  const refreshed = enqueueBridgeWork(withBridge, {
+    job: { ...job, contentHash: 'b'.repeat(64) },
+    snapshot: { ...snapshot, dataHash: 'c'.repeat(64) },
+    reason: 'changed',
+  });
+  assert.equal(refreshed.pendingBridges.length, 1);
+  assert.equal(refreshed.pendingBridges[0].reason, 'changed');
+  assert.equal(refreshed.pendingBridges[0].contentHash, 'b'.repeat(64));
+});
+
+validation('keeps network transitions independent and caps attempts', () => {
+  const job = makeJob();
+  let queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+    job,
+    snapshot: snapshotReference(),
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+  });
+  queue = transitionQueueStage(queue, job.id, 'bluesky', 'publishing', { at: '2026-08-20T13:02:00.000Z' });
+  queue = transitionQueueStage(queue, job.id, 'bluesky', 'published', {
+    at: '2026-08-20T13:02:10.000Z',
+    result: { uri: 'at://did:plc:fixture/app.bsky.feed.post/opening-fixture' },
+  });
+  assert.equal(queue.items[0].bluesky.status, 'published');
+  assert.equal(queue.items[0].mastodon.status, 'pending');
+  assert.throws(() => transitionQueueStage(queue, job.id, 'bluesky', 'pending'), /transition/i);
+
+  for (let attempt = 0; attempt < 3; attempt += 1) {
+    queue = transitionQueueStage(queue, job.id, 'mastodon', 'publishing', { at: `2026-08-20T13:0${attempt + 3}:00.000Z` });
+    queue = transitionQueueStage(queue, job.id, 'mastodon', 'retryable', {
+      at: `2026-08-20T13:0${attempt + 3}:10.000Z`,
+      errorCode: 'provider_timeout',
+    });
+  }
+  assert.equal(queue.items[0].mastodon.status, 'failed');
+  assert.equal(queue.items[0].mastodon.attempts, 3);
+  assert.deepEqual(Object.keys(queue.items[0].mastodon.lastError).sort(), ['at', 'code']);
+  queue = resetFailedStage(queue, job.id, 'mastodon', {
+    at: '2026-08-20T14:00:00.000Z',
+    reason: 'credential_rotated',
+  });
+  assert.equal(queue.items[0].mastodon.status, 'pending');
+  assert.equal(queue.items[0].mastodon.attempts, 0);
+});
+
+validation('selects newest work unless an older item is starving', () => {
+  const oldJob = makeJob({ id: 'gh_111111111111111111111111', createdAt: '2026-08-18T10:00:00.000Z' });
+  const newJob = makeJob({ id: 'gh_222222222222222222222222', createdAt: '2026-08-20T12:00:00.000Z' });
+  let queue = { schemaVersion: 1, items: [] };
+  queue = enqueueJob(queue, { job: oldJob, snapshot: snapshotReference(), discoveredAt: '2026-08-20T10:00:00.000Z' });
+  queue = enqueueJob(queue, { job: newJob, snapshot: snapshotReference(), discoveredAt: '2026-08-20T12:30:00.000Z' });
+  assert.equal(selectNextQueueItem(queue, '2026-08-20T14:00:00.000Z').jobId, newJob.id);
+  assert.equal(selectNextQueueItem(queue, '2026-08-21T11:00:00.000Z').jobId, oldJob.id);
+  const restarted = structuredClone(queue);
+  assert.equal(selectNextQueueItem(restarted, '2026-08-21T11:00:00.000Z').jobId, oldJob.id);
+});
+
+validation('marks a closed queued job without publishing either channel', () => {
+  const job = makeJob();
+  let queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+    job,
+    snapshot: snapshotReference(),
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+  });
+  queue = markJobClosed(queue, job.id, '2026-08-20T13:30:00.000Z');
+  assert.equal(queue.items[0].bridge.status, 'skipped_closed');
+  assert.equal(queue.items[0].bluesky.status, 'skipped_closed');
+  assert.equal(queue.items[0].mastodon.status, 'skipped_closed');
+  assert.equal(selectNextQueueItem(queue, '2026-08-20T14:00:00.000Z'), null);
 });
 
 let passed = 0;

@@ -1,7 +1,9 @@
-import { STATE_SCHEMA_VERSION } from '../../config/constants.mjs';
+import { MAX_CHANNEL_ATTEMPTS, STATE_SCHEMA_VERSION } from '../../config/constants.mjs';
 import { isValidJobId } from '../../shared/job-id.mjs';
 
 const SENSITIVE_KEY_PATTERN = /(?:authorization|credential|password|private.?key|secret|token)/i;
+const STAGE_STATUSES = new Set(['pending', 'publishing', 'published', 'retryable', 'failed', 'skipped_closed']);
+const BRIDGE_REASONS = new Set(['new', 'changed']);
 
 function assertObject(value, label) {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
@@ -26,6 +28,43 @@ function assertHash(value, label) {
   if (typeof value !== 'string' || !/^[0-9a-f]{64}$/.test(value)) {
     throw new Error(`${label} must be a SHA-256 hash`);
   }
+}
+
+function assertString(value, label) {
+  if (typeof value !== 'string' || value.trim() === '') {
+    throw new Error(`${label} must be a non-empty string`);
+  }
+}
+
+export function validateStageState(value, label = 'stage') {
+  const stage = assertObject(value, label);
+  if (!STAGE_STATUSES.has(stage.status)) {
+    throw new Error(`${label}.status is invalid`);
+  }
+  if (!Number.isInteger(stage.attempts) || stage.attempts < 0 || stage.attempts > MAX_CHANNEL_ATTEMPTS) {
+    throw new Error(`${label}.attempts is invalid`);
+  }
+  if (stage.updatedAt !== null) {
+    assertIsoDate(stage.updatedAt, `${label}.updatedAt`);
+  }
+  if (stage.lastError !== null) {
+    const error = assertObject(stage.lastError, `${label}.lastError`);
+    if (typeof error.code !== 'string' || !/^[a-z0-9_-]{1,64}$/.test(error.code)) {
+      throw new Error(`${label}.lastError.code is invalid`);
+    }
+    assertIsoDate(error.at, `${label}.lastError.at`);
+  }
+  if (stage.lastReset !== null) {
+    const reset = assertObject(stage.lastReset, `${label}.lastReset`);
+    assertIsoDate(reset.at, `${label}.lastReset.at`);
+    if (typeof reset.reason !== 'string' || !/^[a-z0-9_-]{1,64}$/.test(reset.reason)) {
+      throw new Error(`${label}.lastReset.reason is invalid`);
+    }
+  }
+  if (stage.result !== null) {
+    assertObject(stage.result, `${label}.result`);
+  }
+  return stage;
 }
 
 function assertUniqueJobIds(items, label) {
@@ -80,6 +119,14 @@ export function validateIntakeState(value) {
       throw new Error('pending bridge jobId is invalid');
     }
     assertHash(bridge.contentHash, 'pending bridge contentHash');
+    assertHash(bridge.dataHash, 'pending bridge dataHash');
+    if (typeof bridge.dataCommit !== 'string' || !/^[0-9a-f]{7,64}$/i.test(bridge.dataCommit)) {
+      throw new Error('pending bridge dataCommit is invalid');
+    }
+    if (!BRIDGE_REASONS.has(bridge.reason)) {
+      throw new Error('pending bridge reason is invalid');
+    }
+    validateStageState(bridge.stage, 'pending bridge stage');
   }
   for (const jobId of state.removedJobs) {
     if (!isValidJobId(jobId)) {
@@ -101,6 +148,17 @@ export function validateQueueState(value) {
     if (!isValidJobId(item.jobId)) {
       throw new Error('queue jobId is invalid');
     }
+    for (const key of ['sourceId', 'dataCommit']) {
+      assertString(item[key], `queue ${key}`);
+    }
+    assertHash(item.dataHash, 'queue dataHash');
+    assertHash(item.contentHash, 'queue contentHash');
+    assertIsoDate(item.discoveredAt, 'queue discoveredAt');
+    assertIsoDate(item.createdAt, 'queue createdAt');
+    assertIsoDate(item.publicationCreatedAt, 'queue publicationCreatedAt');
+    validateStageState(item.bridge, 'queue bridge');
+    validateStageState(item.bluesky, 'queue bluesky');
+    validateStageState(item.mastodon, 'queue mastodon');
   }
   assertNoSensitiveKeys(state);
   return state;
