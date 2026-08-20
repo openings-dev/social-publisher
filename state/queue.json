@@ -27,14 +27,14 @@
         }
       },
       "bluesky": {
-        "status": "failed",
-        "attempts": 3,
-        "updatedAt": "2026-08-20T18:47:03.109Z",
-        "lastError": {
-          "code": "bluesky_publication",
-          "at": "2026-08-20T18:47:03.109Z"
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": "2026-08-20T18:50:24.607Z",
+        "lastError": null,
+        "lastReset": {
+          "at": "2026-08-20T18:50:24.607Z",
+          "reason": "manual_reset"
         },
-        "lastReset": null,
         "result": null
       },
       "mastodon": {
