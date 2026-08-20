@@ -1,4 +1,5 @@
 import { AtpAgent, RichText } from '@atproto/api';
+import { TID } from '@atproto/common-web';
 
 import { BLUESKY_SERVICE_URL } from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
@@ -44,8 +45,15 @@ function blueskyError(code, message, providerError, sensitiveValues = []) {
   return error;
 }
 
-export function blueskyRecordKey(jobId) {
-  return `opening-${sha256(jobId).slice(0, 24)}`;
+export function blueskyRecordKey(jobId, publicationCreatedAt) {
+  const publicationTime = Date.parse(publicationCreatedAt);
+  if (!Number.isFinite(publicationTime)) {
+    throw new Error('Bluesky publication time must be an ISO date');
+  }
+  const digest = sha256(`${jobId}\0${publicationCreatedAt}`);
+  const microsecondOffset = Number(BigInt(`0x${digest.slice(0, 16)}`) % 60_000_000n);
+  const clockId = Number.parseInt(digest.slice(16, 18), 16) % 32;
+  return TID.fromTime((publicationTime * 1000) + microsecondOffset, clockId).toString();
 }
 
 function isRecordNotFound(error) {
@@ -112,7 +120,7 @@ export async function publishToBluesky({
     throw blueskyError('bluesky_session', 'Bluesky authentication returned an invalid session');
   }
 
-  const rkey = blueskyRecordKey(job.id);
+  const rkey = blueskyRecordKey(job.id, publicationCreatedAt);
   const existing = await findExistingRecord(agent, {
     repo,
     rkey,

@@ -3,6 +3,7 @@ import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { TID } from '@atproto/common-web';
 import sharp from 'sharp';
 
 import { runDryRun } from '../../cli/dry-run.mjs';
@@ -893,7 +894,7 @@ validation('publishes one deterministic Bluesky external-card record', async () 
     credentials: { identifier: 'openingshq.bsky.social', appPassword: 'fixture-secret' },
     agentFactory: () => agent,
   });
-  const rkey = blueskyRecordKey(job.id);
+  const rkey = blueskyRecordKey(job.id, '2026-08-20T13:01:00.000Z');
   assert.equal(result.status, 'published');
   assert.equal(result.url, `https://bsky.app/profile/openingshq.bsky.social/post/${rkey}`);
   assert.equal(calls.put.length, 1);
@@ -908,7 +909,7 @@ validation('publishes one deterministic Bluesky external-card record', async () 
 validation('reconciles an existing matching Bluesky record without uploading', async () => {
   const job = makeJob();
   const post = formatSocialPost(job);
-  const rkey = blueskyRecordKey(job.id);
+  const rkey = blueskyRecordKey(job.id, '2026-08-20T13:01:00.000Z');
   const { agent, calls } = createFakeBlueskyAgent({
     existing: {
       uri: `at://did:plc:openingsfixture/app.bsky.feed.post/${rkey}`,
@@ -927,6 +928,20 @@ validation('reconciles an existing matching Bluesky record without uploading', a
   assert.equal(result.status, 'reconciled');
   assert.equal(calls.upload.length, 0);
   assert.equal(calls.put.length, 0);
+});
+
+validation('derives deterministic Bluesky TIDs from the job and publication time', () => {
+  const time = '2026-08-20T13:01:00.000Z';
+  const first = blueskyRecordKey('gh_0123456789abcdef01234567', time);
+  const same = blueskyRecordKey('gh_0123456789abcdef01234567', time);
+  const otherJob = blueskyRecordKey('gh_1123456789abcdef01234567', time);
+  const otherTime = blueskyRecordKey('gh_0123456789abcdef01234567', '2026-08-20T13:01:01.000Z');
+
+  assert.equal(TID.is(first), true);
+  assert.equal(first.length, 13);
+  assert.equal(first, same);
+  assert.notEqual(first, otherJob);
+  assert.notEqual(first, otherTime);
 });
 
 validation('rejects conflicting or failed Bluesky writes without leaking credentials', async () => {
