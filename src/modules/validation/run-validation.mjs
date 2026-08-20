@@ -38,9 +38,9 @@ import {
   publishToMastodon,
 } from '../networks/mastodon-client.mjs';
 import {
-  buildLftpUploadScript,
-  deployAndVerifyBridge,
-} from '../deploy/lftp-client.mjs';
+  buildRepositoryDispatchRequest,
+  requestIncrementalBridgeDeployment,
+} from '../deploy/web-deploy-client.mjs';
 import { verifyPublicBridge } from '../deploy/public-verifier.mjs';
 import {
   countGraphemes,
@@ -49,6 +49,7 @@ import {
 } from '../render/format-job.mjs';
 import { createBridgeHtml } from '../render/html-page.mjs';
 import { createSocialCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
+import { createBridgePublisher } from '../publishing/bridge-publisher.mjs';
 import {
   processIntakeSnapshots,
   processOnePublication,
@@ -184,9 +185,7 @@ validation('accepts bounded JSON responses and rejects unsafe response types', a
 validation('enables scheduled publication only for exact true with every credential', () => {
   const env = {
     SOCIAL_AUTO_PUBLISH: 'true',
-    FTP_SERVER: 'ftp.example.test',
-    FTP_USERNAME: 'publisher',
-    FTP_PASSWORD: 'super-secret',
+    WEB_DEPLOY_TOKEN: 'github-fine-grained-token',
     BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
     BLUESKY_APP_PASSWORD: 'app-secret',
     MASTODON_ACCESS_TOKEN: 'mastodon-secret',
@@ -194,8 +193,8 @@ validation('enables scheduled publication only for exact true with every credent
   assert.equal(readEnvironment({ env, mode: 'scheduled' }).publishEnabled, true);
   assert.equal(readEnvironment({ env: { ...env, SOCIAL_AUTO_PUBLISH: 'TRUE' }, mode: 'scheduled' }).publishEnabled, false);
   assert.throws(
-    () => readEnvironment({ env: { ...env, FTP_PASSWORD: '' }, mode: 'controlled' }),
-    (error) => error.message.includes('FTP_PASSWORD') && !error.message.includes('super-secret'),
+    () => readEnvironment({ env: { ...env, WEB_DEPLOY_TOKEN: '' }, mode: 'controlled' }),
+    (error) => error.message.includes('WEB_DEPLOY_TOKEN') && !error.message.includes('github-fine-grained-token'),
   );
 });
 
@@ -558,6 +557,14 @@ validation('renders the production social-card system to a bounded PNG', async (
   assert.equal(metadata.height, 630);
   assert.ok(png.byteLength < 2 * 1024 * 1024);
   assert.deepEqual([...png.subarray(0, 8)], [137, 80, 78, 71, 13, 10, 26, 10]);
+  const dispatch = buildRepositoryDispatchRequest({
+    jobId: job.id,
+    contentHash: job.contentHash,
+    html: Buffer.from(createBridgeHtml(job)),
+    image: png,
+    repository: 'openings-dev/web-deploy',
+  });
+  assert.ok(dispatch.body.length < 60_000);
 });
 
 validation('bounds long Unicode card titles to three lines', () => {
@@ -593,44 +600,84 @@ validation('dry run emits exactly the two deployable job files without state mut
   }
 });
 
-validation('builds a restricted atomic LFTP upload without recursive deletion', () => {
-  const script = buildLftpUploadScript({
+validation('publishes rendered bridge artifacts through web-deploy without FTP', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-social-publisher-bridge-'));
+  const job = makeJob();
+  const calls = [];
+  try {
+    const publishBridge = createBridgePublisher({
+      config: {
+        publicSiteOrigin: OPENINGS_ORIGIN,
+        webDeploy: {
+          repository: 'openings-dev/web-deploy',
+          token: 'github-secret',
+        },
+      },
+      wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+      outputRoot: directory,
+      requestDeployment: async (input) => {
+        calls.push(input);
+        return {
+          status: 'deployed',
+          verification: {
+            canonicalUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}`,
+            imageUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/opengraph-image.png`,
+          },
+        };
+      },
+    });
+    const result = await publishBridge({ job });
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].repository, 'openings-dev/web-deploy');
+    assert.equal(calls[0].token, 'github-secret');
+    assert.match(calls[0].html.toString('utf8'), new RegExp(job.id));
+    assert.equal(sha256(calls[0].image), calls[0].expectedPngHash);
+    assert.equal(result.status, 'deployed');
+    assert.equal(result.canonicalUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}`);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+validation('builds a bounded repository dispatch without credentials in its body', () => {
+  const html = Buffer.from('<!doctype html><html></html>');
+  const image = Buffer.from('fixture-image');
+  const request = buildRepositoryDispatchRequest({
     jobId: 'gh_0123456789abcdef01234567',
     contentHash: 'a'.repeat(64),
-    htmlPath: '/tmp/job/index.html',
-    imagePath: '/tmp/job/opengraph-image.png',
-    ftp: {
-      server: 'ftp.example.test',
-      username: 'publisher',
-      password: 'fixture-password',
-      jobRoot: '/public_html/jobs',
-    },
+    html,
+    image,
+    repository: 'openings-dev/web-deploy',
   });
-  assert.doesNotMatch(script, /\bmirror\b|--delete|mrm|rm -r/);
-  assert.match(script, /mkdir -p "\/public_html\/jobs\/gh_0123456789abcdef01234567"/);
-  assert.ok(script.indexOf('put "/tmp/job/opengraph-image.png"') < script.indexOf('put "/tmp/job/index.html"'));
-  assert.ok(script.indexOf('mv -f "/public_html/jobs/gh_0123456789abcdef01234567/.opengraph-image.') < script.indexOf('mv -f "/public_html/jobs/gh_0123456789abcdef01234567/.index.'));
-  assert.throws(() => buildLftpUploadScript({
+  assert.equal(request.url, 'https://api.github.com/repos/openings-dev/web-deploy/dispatches');
+  assert.ok(request.body.length < 60_000);
+  const body = JSON.parse(request.body);
+  assert.equal(body.event_type, 'publish_job_bridge');
+  assert.deepEqual(Object.keys(body.client_payload).sort(), [
+    'content_hash',
+    'html_base64',
+    'html_sha256',
+    'image_base64',
+    'image_sha256',
+    'job_id',
+  ]);
+  assert.equal(body.client_payload.html_sha256, sha256(html));
+  assert.equal(body.client_payload.image_sha256, sha256(image));
+  assert.doesNotMatch(request.body, /token|password|ftp/iu);
+  assert.throws(() => buildRepositoryDispatchRequest({
     jobId: '../escape',
     contentHash: 'a'.repeat(64),
-    htmlPath: '/tmp/index.html',
-    imagePath: '/tmp/image.png',
-    ftp: { server: 'host', username: 'user', password: 'pass', jobRoot: '/public_html/jobs' },
+    html,
+    image,
+    repository: 'openings-dev/web-deploy',
   }), /Invalid job ID/);
-  assert.throws(() => buildLftpUploadScript({
+  assert.throws(() => buildRepositoryDispatchRequest({
     jobId: 'gh_0123456789abcdef01234567',
     contentHash: 'a'.repeat(64),
-    htmlPath: '/tmp/index.html',
-    imagePath: '/tmp/image.png',
-    ftp: { server: 'host', username: 'user', password: 'pass', jobRoot: '/public_html/../secrets' },
-  }), /job root/i);
-  assert.throws(() => buildLftpUploadScript({
-    jobId: 'gh_0123456789abcdef01234567',
-    contentHash: 'a'.repeat(64),
-    htmlPath: '/tmp/index.html',
-    imagePath: '/tmp/image.png',
-    ftp: { server: 'host\nput /etc/passwd', username: 'user', password: 'pass', jobRoot: '/public_html/jobs' },
-  }), /unsupported control/i);
+    html,
+    image: Buffer.alloc(60_000),
+    repository: 'openings-dev/web-deploy',
+  }), /payload.*large/i);
 });
 
 validation('verifies public HTML metadata and exact PNG bytes', async () => {
@@ -670,51 +717,70 @@ validation('verifies public HTML metadata and exact PNG bytes', async () => {
   assert.equal(mismatch.reason, 'content_hash_mismatch');
 });
 
-validation('skips matching bridges and deploys stale bridges exactly once', async () => {
+validation('skips current bridges and dispatches stale bridges exactly once', async () => {
   const calls = [];
-  const matching = await deployAndVerifyBridge({
+  const html = Buffer.from('<!doctype html><html></html>');
+  const image = Buffer.from('fixture-image');
+  const currentVerification = {
+    matches: true,
+    canonicalUrl: 'https://openings.dev/jobs/gh_0123456789abcdef01234567',
+    imageUrl: 'https://openings.dev/jobs/gh_0123456789abcdef01234567/opengraph-image.png',
+  };
+  const matching = await requestIncrementalBridgeDeployment({
     jobId: 'gh_0123456789abcdef01234567',
     contentHash: 'a'.repeat(64),
-    expectedPngHash: 'b'.repeat(64),
-    htmlPath: '/tmp/index.html',
-    imagePath: '/tmp/image.png',
-    ftp: { server: 'host', username: 'user', password: 'pass', jobRoot: '/public_html/jobs' },
-    verifyPublic: async () => ({ matches: true }),
-    runLftp: async () => calls.push('upload'),
+    expectedPngHash: sha256(image),
+    html,
+    image,
+    repository: 'openings-dev/web-deploy',
+    token: 'github-secret',
+    verifyPublic: async () => currentVerification,
+    fetchImpl: async () => { calls.push('dispatch'); return new Response(null, { status: 204 }); },
   });
   assert.equal(matching.status, 'already_current');
   assert.deepEqual(calls, []);
 
   let verification = 0;
-  const deployed = await deployAndVerifyBridge({
+  const deployed = await requestIncrementalBridgeDeployment({
     jobId: 'gh_0123456789abcdef01234567',
     contentHash: 'a'.repeat(64),
-    expectedPngHash: 'b'.repeat(64),
-    htmlPath: '/tmp/index.html',
-    imagePath: '/tmp/image.png',
-    ftp: { server: 'host', username: 'user', password: 'pass', jobRoot: '/public_html/jobs' },
+    expectedPngHash: sha256(image),
+    html,
+    image,
+    repository: 'openings-dev/web-deploy',
+    token: 'github-secret',
     verifyPublic: async () => {
       verification += 1;
-      return verification === 1 ? { matches: false, reason: 'not_found' } : { matches: true };
+      return verification === 1 ? { matches: false, reason: 'not_found' } : currentVerification;
     },
-    runLftp: async (script) => calls.push(script),
+    fetchImpl: async (url, options) => {
+      calls.push({ url, options });
+      return new Response(null, { status: 204 });
+    },
+    sleep: async () => {},
   });
   assert.equal(deployed.status, 'deployed');
   assert.equal(calls.length, 1);
-  assert.match(calls[0], /put/);
+  assert.equal(calls[0].options.method, 'POST');
+  assert.equal(calls[0].options.headers.authorization, 'Bearer github-secret');
+  assert.equal(calls[0].options.headers['x-github-api-version'], '2026-03-10');
+  assert.doesNotMatch(calls[0].options.body, /github-secret/u);
 
   await assert.rejects(
-    deployAndVerifyBridge({
+    requestIncrementalBridgeDeployment({
       jobId: 'gh_0123456789abcdef01234567',
       contentHash: 'a'.repeat(64),
-      expectedPngHash: 'b'.repeat(64),
-      htmlPath: '/tmp/index.html',
-      imagePath: '/tmp/image.png',
-      ftp: { server: 'host', username: 'user', password: 'super-secret', jobRoot: '/public_html/jobs' },
+      expectedPngHash: sha256(image),
+      html,
+      image,
+      repository: 'openings-dev/web-deploy',
+      token: 'github-secret',
       verifyPublic: async () => ({ matches: false, reason: 'not_found' }),
-      runLftp: async () => { throw new Error('super-secret leaked upstream'); },
+      fetchImpl: async () => new Response('forbidden', { status: 403 }),
+      sleep: async () => {},
+      pollAttempts: 2,
     }),
-    (error) => /FTP upload failed/.test(error.message) && !error.message.includes('super-secret'),
+    (error) => /dispatch failed/i.test(error.message) && !error.message.includes('github-secret'),
   );
 });
 
@@ -1140,6 +1206,75 @@ validation('deploys before providers and preserves partial success for a retry',
   assert.equal(second.publicationsState.jobs[job.id].status, 'completed');
 });
 
+validation('controlled publication can enqueue one explicit current job', async () => {
+  const job = makeJob({
+    id: 'gh_cccccccccccccccccccccccc',
+    createdAt: '2026-08-20T12:47:52.000Z',
+  });
+  const snapshot = makeLoadedSnapshot({
+    commit: 'c'.repeat(40),
+    generatedAt: '2026-08-20T15:27:19.163Z',
+    dataHash: 'c'.repeat(64),
+    jobs: [job],
+  });
+  const calls = [];
+  const result = await processOnePublication({
+    queueState: { schemaVersion: 1, items: [] },
+    publicationsState: { schemaVersion: 1, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async () => { calls.push('bridge'); return { status: 'deployed' }; },
+    publishBluesky: async () => { calls.push('bluesky'); return { status: 'published' }; },
+    publishMastodon: async () => { calls.push('mastodon'); return { status: 'published' }; },
+    now: '2026-08-20T15:30:00.000Z',
+    jobId: job.id,
+  });
+
+  assert.equal(result.outcome, 'completed');
+  assert.equal(result.selectedJobId, job.id);
+  assert.deepEqual(calls, ['bridge', 'bluesky', 'mastodon']);
+  assert.equal(result.queueState.items[0].jobId, job.id);
+});
+
+validation('controlled publication never republishes a completed job', async () => {
+  const job = makeJob({ id: 'gh_dddddddddddddddddddddddd' });
+  const snapshot = makeLoadedSnapshot({
+    commit: 'd'.repeat(40),
+    generatedAt: '2026-08-20T15:27:19.163Z',
+    dataHash: 'd'.repeat(64),
+    jobs: [job],
+  });
+  const publications = {
+    schemaVersion: 1,
+    jobs: {
+      [job.id]: {
+        status: 'completed',
+        contentHash: job.contentHash,
+        dataCommit: snapshot.commit,
+        dataHash: snapshot.dataHash,
+        completedAt: '2026-08-20T15:00:00.000Z',
+        bluesky: { status: 'published' },
+        mastodon: { status: 'published' },
+      },
+    },
+  };
+  const calls = [];
+  const result = await processOnePublication({
+    queueState: { schemaVersion: 1, items: [] },
+    publicationsState: publications,
+    currentSnapshot: snapshot,
+    publishBridge: async () => { calls.push('bridge'); },
+    publishBluesky: async () => { calls.push('bluesky'); },
+    publishMastodon: async () => { calls.push('mastodon'); },
+    now: '2026-08-20T15:30:00.000Z',
+    jobId: job.id,
+  });
+
+  assert.equal(result.outcome, 'already_published');
+  assert.equal(result.selectedJobId, job.id);
+  assert.deepEqual(result.queueState.items, []);
+  assert.deepEqual(calls, []);
+});
+
 validation('rerenders changed queued work and skips jobs no longer open', async () => {
   const before = makeJob({ contentHash: '1'.repeat(64) });
   const after = { ...before, contentHash: '2'.repeat(64), title: 'Updated title' };
@@ -1257,6 +1392,8 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(productionWorkflow, /RESET_FAILED_STAGE/u);
   assert.match(productionWorkflow, /chore\(state\): record social intake/u);
   assert.match(productionWorkflow, /chore\(state\): record social publication/u);
+  assert.match(productionWorkflow, /WEB_DEPLOY_TOKEN/u);
+  assert.doesNotMatch(productionWorkflow, /FTP_(?:SERVER|USERNAME|PASSWORD|JOB_ROOT)|Install LFTP/u);
   const actionUses = [...`${validationWorkflow}\n${productionWorkflow}`.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/gu)];
   assert.ok(actionUses.length >= 5);
   assert.equal(actionUses.every((match) => /^[0-9a-f]{40}$/u.test(match[1])), true);

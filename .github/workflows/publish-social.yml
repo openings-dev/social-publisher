@@ -50,7 +50,7 @@ jobs:
       DATA_PATH: dependencies/data-pipeline
       WEB_PATH: dependencies/web
       PUBLIC_SITE_ORIGIN: ${{ vars.PUBLIC_SITE_ORIGIN || 'https://openings.dev' }}
-      FTP_JOB_ROOT: ${{ vars.FTP_JOB_ROOT || '/public_html/jobs' }}
+      WEB_DEPLOY_REPOSITORY: ${{ vars.WEB_DEPLOY_REPOSITORY || 'openings-dev/web-deploy' }}
       BLUESKY_SERVICE_URL: ${{ vars.BLUESKY_SERVICE_URL || 'https://bsky.social' }}
       MASTODON_BASE_URL: ${{ vars.MASTODON_BASE_URL || 'https://mastodon.social' }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
@@ -131,16 +131,10 @@ jobs:
           if-no-files-found: error
           retention-days: 3
 
-      - name: Install LFTP for real bridge publication
-        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
-        run: sudo apt-get update && sudo apt-get install --yes lftp
-
       - name: Process snapshot intake and verified bridges
         if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
         run: |
           mkdir -p .tmp
           npm run intake -- \
@@ -190,9 +184,7 @@ jobs:
       - name: Publish at most one queued job
         if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
         env:
-          FTP_SERVER: ${{ secrets.FTP_SERVER }}
-          FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
-          FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
           BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}

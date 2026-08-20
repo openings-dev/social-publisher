@@ -252,6 +252,26 @@ export async function processOnePublication({
     }
   }
 
+  if (jobId && !findQueueItem(nextQueue, jobId)) {
+    if (nextPublications.jobs[jobId]?.status === 'completed') {
+      return {
+        queueState: nextQueue,
+        publicationsState: nextPublications,
+        outcome: 'already_published',
+        selectedJobId: jobId,
+      };
+    }
+    const controlledJob = currentSnapshot.jobsById.get(jobId);
+    if (!controlledJob) {
+      throw new Error(`Controlled job is not open in the current snapshot: ${jobId}`);
+    }
+    nextQueue = enqueueJob(nextQueue, {
+      job: controlledJob,
+      snapshot: currentSnapshot,
+      discoveredAt: now,
+    });
+  }
+
   let selected = jobId ? findQueueItem(nextQueue, jobId) : selectNextQueueItem(nextQueue, now);
   if (!selected) {
     return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'idle', selectedJobId: null };

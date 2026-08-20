@@ -196,7 +196,12 @@ export function createSocialCardSvg(job, { wordmarkSvg }) {
 
 export async function renderSocialCardPng(job, { wordmarkSvg }) {
   const svg = createSocialCardSvg(job, { wordmarkSvg });
-  const png = await sharp(Buffer.from(svg)).png({ compressionLevel: 9 }).toBuffer();
+  const png = await sharp(Buffer.from(svg)).png({
+    compressionLevel: 9,
+    palette: true,
+    colors: 128,
+    quality: 90,
+  }).toBuffer();
   const metadata = await sharp(png).metadata();
   if (metadata.format !== 'png' || metadata.width !== IMAGE_WIDTH || metadata.height !== IMAGE_HEIGHT) {
     throw new Error('Rendered social card has invalid PNG dimensions');

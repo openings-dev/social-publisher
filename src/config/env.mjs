@@ -1,11 +1,11 @@
 import {
   BLUESKY_SERVICE_URL,
-  DEFAULT_FTP_JOB_ROOT,
   MASTODON_BASE_URL,
   OPENINGS_ORIGIN,
+  WEB_DEPLOY_REPOSITORY,
 } from './constants.mjs';
 
-const FTP_KEYS = ['FTP_SERVER', 'FTP_USERNAME', 'FTP_PASSWORD'];
+const DEPLOY_KEYS = ['WEB_DEPLOY_TOKEN'];
 const SOCIAL_KEYS = ['BLUESKY_IDENTIFIER', 'BLUESKY_APP_PASSWORD', 'MASTODON_ACCESS_TOKEN'];
 
 function requireKeys(env, keys) {
@@ -31,11 +31,11 @@ function normalizeOrigin(value, fallback, key) {
 
 export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
   const automatic = env.SOCIAL_AUTO_PUBLISH === 'true';
-  const requiresFtp = mode === 'intake' || mode === 'scheduled' || mode === 'controlled';
+  const requiresDeploy = mode === 'intake' || mode === 'scheduled' || mode === 'controlled';
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
 
-  if (requiresFtp) {
-    requireKeys(env, FTP_KEYS);
+  if (requiresDeploy) {
+    requireKeys(env, DEPLOY_KEYS);
   }
   if (requiresSocial) {
     requireKeys(env, SOCIAL_KEYS);
@@ -47,11 +47,9 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
     publicSiteOrigin: normalizeOrigin(env.PUBLIC_SITE_ORIGIN, OPENINGS_ORIGIN, 'PUBLIC_SITE_ORIGIN'),
     mastodonBaseUrl: normalizeOrigin(env.MASTODON_BASE_URL, MASTODON_BASE_URL, 'MASTODON_BASE_URL'),
     blueskyServiceUrl: normalizeOrigin(env.BLUESKY_SERVICE_URL, BLUESKY_SERVICE_URL, 'BLUESKY_SERVICE_URL'),
-    ftpJobRoot: env.FTP_JOB_ROOT?.trim() || DEFAULT_FTP_JOB_ROOT,
-    ftp: requiresFtp ? Object.freeze({
-      server: env.FTP_SERVER,
-      username: env.FTP_USERNAME,
-      password: env.FTP_PASSWORD,
+    webDeploy: requiresDeploy ? Object.freeze({
+      repository: env.WEB_DEPLOY_REPOSITORY?.trim() || WEB_DEPLOY_REPOSITORY,
+      token: env.WEB_DEPLOY_TOKEN,
     }) : null,
     bluesky: requiresSocial ? Object.freeze({
       identifier: env.BLUESKY_IDENTIFIER,
