@@ -12,11 +12,11 @@
       "publicationCreatedAt": "2026-08-20T17:31:18.528Z",
       "bridge": {
         "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-08-20T17:31:18.528Z",
+        "attempts": 2,
+        "updatedAt": "2026-08-20T18:18:45.698Z",
         "lastError": {
-          "code": "authentication",
-          "at": "2026-08-20T17:31:18.528Z"
+          "code": "deployment",
+          "at": "2026-08-20T18:18:45.698Z"
         },
         "lastReset": null,
         "result": null
