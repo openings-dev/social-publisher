@@ -5,6 +5,17 @@ import { pathToFileURL } from 'node:url';
 import { formatSocialPost } from '../modules/render/format-job.mjs';
 import { createBridgeHtml } from '../modules/render/html-page.mjs';
 import { renderSocialCardPng } from '../modules/render/social-card.mjs';
+import { resolveGitCommit } from '../modules/data/git-json.mjs';
+import { loadSnapshot } from '../modules/data/load-snapshot.mjs';
+import { collectDelta } from '../modules/intake/collect-delta.mjs';
+import { isEligibleNewJob } from '../modules/intake/eligibility.mjs';
+import { loadStateFile } from '../modules/state/load-state.mjs';
+import { selectNextQueueItem } from '../modules/state/queue-operations.mjs';
+import {
+  validateIntakeState,
+  validatePublicationsState,
+  validateQueueState,
+} from '../modules/state/state-model.mjs';
 import { assertValidJobId } from '../shared/job-id.mjs';
 
 function parseArguments(argumentsList) {
@@ -65,15 +76,69 @@ export async function runDryRun({ fixturePath, wordmarkPath, outputPath, log = c
   });
 }
 
+export async function runSnapshotDryRun({
+  dataRepositoryPath,
+  stateDirectory,
+  wordmarkPath,
+  outputPath,
+  dataReference = 'HEAD',
+  jobId,
+  log = console.log,
+}) {
+  const [currentCommit, intakeState, queueState, publicationsState] = await Promise.all([
+    resolveGitCommit(dataRepositoryPath, dataReference),
+    loadStateFile(resolve(stateDirectory, 'intake.json'), validateIntakeState),
+    loadStateFile(resolve(stateDirectory, 'queue.json'), validateQueueState),
+    loadStateFile(resolve(stateDirectory, 'publications.json'), validatePublicationsState),
+  ]);
+  const current = await loadSnapshot(dataRepositoryPath, currentCommit);
+  const previous = intakeState.processedSnapshot === null
+    ? null
+    : await loadSnapshot(dataRepositoryPath, intakeState.processedSnapshot.commit);
+  const delta = collectDelta(previous, current);
+  const eligible = previous === null
+    ? []
+    : delta.new.filter((job) => isEligibleNewJob(job, previous.generatedAt, publicationsState));
+  const queued = selectNextQueueItem(queueState);
+  const selectedId = jobId ?? queued?.jobId ?? eligible[0]?.id ?? current.jobsById.keys().next().value;
+  const selected = current.jobsById.get(assertValidJobId(selectedId));
+  if (!selected) {
+    throw new Error(`Dry-run job is not open in the current snapshot: ${selectedId}`);
+  }
+  const temporaryFixturePath = resolve(outputPath, '.selected-job.json');
+  await mkdir(dirname(temporaryFixturePath), { recursive: true });
+  await writeFile(temporaryFixturePath, `${JSON.stringify(selected, null, 2)}\n`, 'utf8');
+  const result = await runDryRun({ fixturePath: temporaryFixturePath, wordmarkPath, outputPath, log });
+  log(JSON.stringify({
+    snapshot: current.commit,
+    baseline: previous === null,
+    delta: { new: delta.new.length, changed: delta.changed.length, removed: delta.removed.length },
+    eligible: eligible.length,
+    queueSelection: queued?.jobId ?? null,
+  }));
+  return { ...result, snapshot: current, delta, eligible, queueSelection: queued?.jobId ?? null };
+}
+
 async function main() {
   const args = parseArguments(process.argv.slice(2));
-  const fixturePath = resolve(args.fixture ?? 'assets/fixtures/job.json');
   const outputPath = resolve(args.output ?? '.tmp/dry-run');
   const wordmarkPath = resolve(
     args.wordmark
       ?? process.env.OPENINGS_WORDMARK_PATH
       ?? '../openings/public/openings-wordmark-light.svg',
   );
+  if (args.data) {
+    await runSnapshotDryRun({
+      dataRepositoryPath: resolve(args.data),
+      stateDirectory: resolve(args.state ?? 'state'),
+      wordmarkPath,
+      outputPath,
+      dataReference: args.ref ?? 'HEAD',
+      jobId: args.job,
+    });
+    return;
+  }
+  const fixturePath = resolve(args.fixture ?? 'assets/fixtures/job.json');
   await runDryRun({ fixturePath, wordmarkPath, outputPath });
 }
 

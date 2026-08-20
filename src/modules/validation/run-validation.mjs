@@ -6,6 +6,7 @@ import { fileURLToPath } from 'node:url';
 import sharp from 'sharp';
 
 import { runDryRun } from '../../cli/dry-run.mjs';
+import { parsePublicationRequest } from '../../cli/publish.mjs';
 
 import {
   IMAGE_HEIGHT,
@@ -20,7 +21,11 @@ import { escapeAttribute, escapeHtml } from '../../shared/escape.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 import { fetchJson } from '../../shared/http.mjs';
 import { assertValidJobId, buildCanonicalJobUrl, isValidJobId } from '../../shared/job-id.mjs';
-import { readJsonAtCommit } from '../data/git-json.mjs';
+import {
+  listSnapshotCommits,
+  readJsonAtCommit,
+  resolveGitCommit,
+} from '../data/git-json.mjs';
 import { loadSnapshot } from '../data/load-snapshot.mjs';
 import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
 import { isEligibleNewJob } from '../intake/eligibility.mjs';
@@ -44,6 +49,10 @@ import {
 } from '../render/format-job.mjs';
 import { createBridgeHtml } from '../render/html-page.mjs';
 import { createSocialCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
+import {
+  processIntakeSnapshots,
+  processOnePublication,
+} from '../publishing/orchestrator.mjs';
 import {
   enqueueBridgeWork,
   enqueueJob,
@@ -84,6 +93,33 @@ validation('creates deterministic SHA-256 hashes', () => {
   assert.equal(sha256('openings'), 'add875e192edf555f22898d640b2e2acd69cd7b84008318423a8d13ee1202464');
 });
 
+validation('resolves safe Git refs and lists every immutable snapshot boundary', async () => {
+  const previous = '1'.repeat(40);
+  const manifestCommit = '2'.repeat(40);
+  const current = '3'.repeat(40);
+  const calls = [];
+  const execFileImpl = async (_command, argumentsList) => {
+    calls.push(argumentsList);
+    if (argumentsList.includes('rev-parse')) return { stdout: `${current}\n` };
+    if (argumentsList.includes('merge-base')) return { stdout: '' };
+    if (argumentsList.includes('rev-list')) return { stdout: `${manifestCommit}\n` };
+    throw new Error('Unexpected fake Git call');
+  };
+  assert.equal(await resolveGitCommit('/data', 'main', { execFileImpl }), current);
+  assert.deepEqual(
+    await listSnapshotCommits('/data', previous, current, { execFileImpl }),
+    [previous, manifestCommit, current],
+  );
+  assert.equal(calls.some((call) => call.includes('--reverse')), true);
+  await assert.rejects(resolveGitCommit('/data', '--upload-pack=evil', { execFileImpl }), /reference/i);
+  await assert.rejects(listSnapshotCommits('/data', previous, current, {
+    execFileImpl: async (_command, argumentsList) => {
+      if (argumentsList.includes('merge-base')) throw new Error('not ancestor');
+      return { stdout: '' };
+    },
+  }), /ancestor/i);
+});
+
 validation('accepts only canonical job identifiers', () => {
   const id = 'gh_0123456789abcdef01234567';
   assert.equal(isValidJobId(id), true);
@@ -98,6 +134,32 @@ validation('keeps dry runs operational without secrets', () => {
   const config = readEnvironment({ env: {}, mode: 'dry-run' });
   assert.equal(config.publishEnabled, false);
   assert.equal(config.publicSiteOrigin, OPENINGS_ORIGIN);
+});
+
+validation('requires exact manual publication and reset gates', () => {
+  const jobId = 'gh_0123456789abcdef01234567';
+  assert.deepEqual(parsePublicationRequest({
+    mode: 'controlled',
+    jobId,
+    confirmation: 'PUBLISH_ONE_JOB',
+  }), { mode: 'controlled', jobId, stage: null });
+  assert.throws(() => parsePublicationRequest({
+    mode: 'controlled',
+    jobId,
+    confirmation: 'publish one job',
+  }), /exact confirmation/i);
+  assert.deepEqual(parsePublicationRequest({
+    mode: 'retry-stage',
+    jobId,
+    stage: 'mastodon',
+    confirmation: 'RESET_FAILED_STAGE',
+  }), { mode: 'retry-stage', jobId, stage: 'mastodon' });
+  assert.throws(() => parsePublicationRequest({
+    mode: 'retry-stage',
+    jobId,
+    stage: 'all',
+    confirmation: 'RESET_FAILED_STAGE',
+  }), /retry stage/i);
 });
 
 validation('accepts bounded JSON responses and rejects unsafe response types', async () => {
@@ -944,6 +1006,234 @@ validation('records a delayed Mastodon PreviewCard without retrying the status',
     cardPollAttempts: 1,
   });
   assert.equal(unrelatedResult.cardStatus, 'pending');
+});
+
+function makeLoadedSnapshot({ commit, generatedAt, dataHash, jobs }) {
+  return {
+    commit,
+    generatedAt,
+    dataHash,
+    schemaVersion: 4,
+    jobsById: new Map(jobs.map((job) => [job.id, job])),
+  };
+}
+
+validation('baselines the current snapshot without bridge work or social backfill', async () => {
+  const current = makeLoadedSnapshot({
+    commit: '1'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: '1'.repeat(64),
+    jobs: [makeJob()],
+  });
+  const bridgeCalls = [];
+  const result = await processIntakeSnapshots({
+    intakeState: { schemaVersion: 1, processedSnapshot: null, pendingBridges: [], removedJobs: [] },
+    queueState: { schemaVersion: 1, items: [] },
+    publicationsState: { schemaVersion: 1, jobs: {} },
+    snapshots: [current],
+    publishBridge: async (input) => bridgeCalls.push(input),
+    now: '2026-08-20T13:01:00.000Z',
+  });
+  assert.equal(result.summary.baseline, true);
+  assert.equal(result.intakeState.processedSnapshot.commit, current.commit);
+  assert.deepEqual(result.queueState.items, []);
+  assert.deepEqual(bridgeCalls, []);
+});
+
+validation('deploys every new or changed bridge but queues only genuinely new issues', async () => {
+  const unchanged = makeJob();
+  const changedBefore = makeJob({ id: 'gh_111111111111111111111111', contentHash: '1'.repeat(64) });
+  const changedAfter = { ...changedBefore, contentHash: '2'.repeat(64), updatedAt: '2026-08-20T11:30:00.000Z' };
+  const eligible = makeJob({
+    id: 'gh_222222222222222222222222',
+    contentHash: '3'.repeat(64),
+    createdAt: '2026-08-20T10:00:01.000Z',
+  });
+  const historical = makeJob({
+    id: 'gh_333333333333333333333333',
+    contentHash: '4'.repeat(64),
+    createdAt: '2026-08-19T10:00:00.000Z',
+  });
+  const removed = makeJob({ id: 'gh_444444444444444444444444', contentHash: '5'.repeat(64) });
+  const previous = makeLoadedSnapshot({
+    commit: '1'.repeat(40),
+    generatedAt: '2026-08-20T10:00:00.000Z',
+    dataHash: '1'.repeat(64),
+    jobs: [unchanged, changedBefore, removed],
+  });
+  const current = makeLoadedSnapshot({
+    commit: '2'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: '2'.repeat(64),
+    jobs: [unchanged, changedAfter, eligible, historical],
+  });
+  const bridgeCalls = [];
+  const result = await processIntakeSnapshots({
+    intakeState: {
+      schemaVersion: 1,
+      processedSnapshot: snapshotReference({ commit: previous.commit, generatedAt: previous.generatedAt, dataHash: previous.dataHash }),
+      pendingBridges: [],
+      removedJobs: [],
+    },
+    queueState: { schemaVersion: 1, items: [] },
+    publicationsState: { schemaVersion: 1, jobs: {} },
+    snapshots: [previous, current],
+    publishBridge: async ({ job, reason }) => {
+      bridgeCalls.push(`${job.id}:${reason}`);
+      return { status: 'deployed', canonicalUrl: `https://openings.dev/jobs/${job.id}` };
+    },
+    now: '2026-08-20T13:01:00.000Z',
+  });
+  assert.deepEqual(bridgeCalls, [
+    `${eligible.id}:new`,
+    `${historical.id}:new`,
+    `${changedAfter.id}:changed`,
+  ]);
+  assert.deepEqual(result.queueState.items.map((item) => item.jobId), [eligible.id]);
+  assert.equal(result.queueState.items[0].bridge.status, 'published');
+  assert.deepEqual(result.intakeState.pendingBridges, []);
+  assert.deepEqual(result.intakeState.removedJobs, [removed.id]);
+  assert.equal(result.intakeState.processedSnapshot.commit, current.commit);
+});
+
+validation('deploys before providers and preserves partial success for a retry', async () => {
+  const job = makeJob({ community: { name: 'Openings Fixtures' }, tags: ['typescript'] });
+  const snapshot = makeLoadedSnapshot({
+    commit: '3'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: '3'.repeat(64),
+    jobs: [job],
+  });
+  const queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+  });
+  const order = [];
+  const first = await processOnePublication({
+    queueState: queue,
+    publicationsState: { schemaVersion: 1, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async () => { order.push('bridge'); return { status: 'deployed' }; },
+    publishBluesky: async ({ post }) => { order.push('bluesky'); return { status: 'published', uri: 'at://fixture', cid: 'cid', url: post.canonicalUrl }; },
+    publishMastodon: async () => { order.push('mastodon'); throw new Error('Mastodon publication failed'); },
+    now: '2026-08-20T13:02:00.000Z',
+  });
+  assert.deepEqual(order, ['bridge', 'bluesky', 'mastodon']);
+  assert.equal(first.queueState.items[0].bridge.status, 'published');
+  assert.equal(first.queueState.items[0].bluesky.status, 'published');
+  assert.equal(first.queueState.items[0].mastodon.status, 'retryable');
+  assert.deepEqual(first.publicationsState.jobs, {});
+
+  order.length = 0;
+  const second = await processOnePublication({
+    queueState: first.queueState,
+    publicationsState: first.publicationsState,
+    currentSnapshot: snapshot,
+    publishBridge: async () => { order.push('bridge'); return { status: 'deployed' }; },
+    publishBluesky: async () => { order.push('bluesky'); return { status: 'published' }; },
+    publishMastodon: async ({ post }) => { order.push('mastodon'); return { status: 'reconciled', id: 'status', url: post.canonicalUrl, cardStatus: 'resolved' }; },
+    now: '2026-08-20T15:02:00.000Z',
+  });
+  assert.deepEqual(order, ['mastodon']);
+  assert.equal(second.queueState.items[0].mastodon.status, 'published');
+  assert.equal(second.publicationsState.jobs[job.id].status, 'completed');
+});
+
+validation('rerenders changed queued work and skips jobs no longer open', async () => {
+  const before = makeJob({ contentHash: '1'.repeat(64) });
+  const after = { ...before, contentHash: '2'.repeat(64), title: 'Updated title' };
+  const previousSnapshot = makeLoadedSnapshot({
+    commit: '4'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: '4'.repeat(64),
+    jobs: [before],
+  });
+  let queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+    job: before,
+    snapshot: previousSnapshot,
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+  });
+  const currentSnapshot = makeLoadedSnapshot({
+    commit: '5'.repeat(40),
+    generatedAt: '2026-08-20T14:00:00.000Z',
+    dataHash: '5'.repeat(64),
+    jobs: [after],
+  });
+  const rendered = [];
+  const changed = await processOnePublication({
+    queueState: queue,
+    publicationsState: { schemaVersion: 1, jobs: {} },
+    currentSnapshot,
+    publishBridge: async ({ job }) => { rendered.push(job.contentHash); return { status: 'deployed' }; },
+    publishBluesky: async () => ({ status: 'published', uri: 'at://fixture', cid: 'cid', url: 'https://bsky.app/post' }),
+    publishMastodon: async () => ({ status: 'published', id: 'status', url: 'https://mastodon.social/status', cardStatus: 'pending' }),
+    now: '2026-08-20T14:01:00.000Z',
+  });
+  assert.deepEqual(rendered, [after.contentHash]);
+  assert.equal(changed.queueState.items[0].contentHash, after.contentHash);
+
+  queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+    job: before,
+    snapshot: previousSnapshot,
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+  });
+  const closed = await processOnePublication({
+    queueState: queue,
+    publicationsState: { schemaVersion: 1, jobs: {} },
+    currentSnapshot: { ...currentSnapshot, jobsById: new Map() },
+    publishBridge: async () => { throw new Error('must not deploy'); },
+    publishBluesky: async () => { throw new Error('must not post'); },
+    publishMastodon: async () => { throw new Error('must not post'); },
+    now: '2026-08-20T14:01:00.000Z',
+  });
+  assert.equal(closed.outcome, 'skipped_closed');
+  assert.equal(closed.queueState.items[0].bluesky.status, 'skipped_closed');
+});
+
+validation('publishes at most one job and never bypasses a failed bridge', async () => {
+  const firstJob = makeJob({
+    id: 'gh_aaaaaaaaaaaaaaaaaaaaaaaa',
+    contentHash: 'a'.repeat(64),
+    createdAt: '2026-08-20T12:00:00.000Z',
+  });
+  const secondJob = makeJob({
+    id: 'gh_bbbbbbbbbbbbbbbbbbbbbbbb',
+    contentHash: 'b'.repeat(64),
+    createdAt: '2026-08-20T11:00:00.000Z',
+  });
+  const snapshot = makeLoadedSnapshot({
+    commit: '6'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: '6'.repeat(64),
+    jobs: [firstJob, secondJob],
+  });
+  let queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+    job: firstJob,
+    snapshot,
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+  });
+  queue = enqueueJob(queue, {
+    job: secondJob,
+    snapshot,
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+  });
+  const providerJobs = [];
+  const result = await processOnePublication({
+    queueState: queue,
+    publicationsState: { schemaVersion: 1, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async ({ job }) => {
+      if (job.id === firstJob.id) throw new Error('FTP deployment failed');
+      return { status: 'deployed' };
+    },
+    publishBluesky: async ({ job }) => { providerJobs.push(job.id); return { status: 'published' }; },
+    publishMastodon: async ({ job }) => { providerJobs.push(job.id); return { status: 'published' }; },
+    now: '2026-08-20T13:02:00.000Z',
+  });
+  assert.equal(result.outcome, 'bridge_retryable');
+  assert.deepEqual(providerJobs, []);
+  assert.equal(result.queueState.items[1].bridge.status, 'pending');
 });
 
 let passed = 0;

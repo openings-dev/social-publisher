@@ -31,7 +31,7 @@ function normalizeOrigin(value, fallback, key) {
 
 export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
   const automatic = env.SOCIAL_AUTO_PUBLISH === 'true';
-  const requiresFtp = mode === 'scheduled' || mode === 'controlled';
+  const requiresFtp = mode === 'intake' || mode === 'scheduled' || mode === 'controlled';
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
 
   if (requiresFtp) {
