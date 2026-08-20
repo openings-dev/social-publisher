@@ -11,14 +11,14 @@
       "createdAt": "2026-08-20T12:47:52Z",
       "publicationCreatedAt": "2026-08-20T17:31:18.528Z",
       "bridge": {
-        "status": "failed",
-        "attempts": 3,
-        "updatedAt": "2026-08-20T18:22:57.544Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-08-20T18:22:57.544Z"
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": "2026-08-20T18:31:40.669Z",
+        "lastError": null,
+        "lastReset": {
+          "at": "2026-08-20T18:31:40.669Z",
+          "reason": "manual_reset"
         },
-        "lastReset": null,
         "result": null
       },
       "bluesky": {
