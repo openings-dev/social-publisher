@@ -8,7 +8,7 @@ The service is intentionally small and cautious. It publishes at most one queued
 
 1. Read immutable public snapshots from [`openings-dev/data-pipeline`](https://github.com/openings-dev/data-pipeline).
 2. Detect genuinely new open issues and content changes to known jobs.
-3. Render and upload only `jobs/<id>/index.html` and `jobs/<id>/opengraph-image.png`.
+3. Render `jobs/<id>/index.html` and `jobs/<id>/opengraph-image.png`, then request an incremental deployment from [`openings-dev/web-deploy`](https://github.com/openings-dev/web-deploy).
 4. Publish the canonical link to Bluesky and Mastodon with provider-specific duplicate protection.
 5. Commit sanitized queue and publication state so interrupted runs can resume safely.
 
@@ -19,7 +19,8 @@ Bluesky receives an explicit external card with the generated thumbnail. Mastodo
 - The first production intake records a baseline and queues nothing.
 - Scheduled publication stays disabled unless `SOCIAL_AUTO_PUBLISH` is exactly `true`.
 - Pull requests receive no production credentials and cannot publish.
-- FTP updates are restricted to one validated job directory at a time.
+- Hostinger credentials remain exclusively in `web-deploy`; this repository can request only one validated job bridge at a time.
+- Social publication starts only after the public HTML and image match the locally generated hashes.
 - Per-network state prevents a successful channel from being posted twice when the other fails.
 - Errors stored in Git are categorized and sanitized; credentials and raw provider payloads are never tracked.
 
@@ -33,7 +34,7 @@ npm run validate
 npm run dry-run -- --fixture assets/fixtures/job.json --output .tmp/dry-run
 ```
 
-Dry run generates the final copy, bridge HTML, and Open Graph image without FTP, provider authentication, tracked-state changes, or external writes.
+Dry run generates the final copy, bridge HTML, and Open Graph image without deployment requests, provider authentication, tracked-state changes, or external writes.
 
 To exercise the current public data checkout instead of the fixture:
 
@@ -51,7 +52,7 @@ npm run dry-run -- \
 `Publish social jobs` runs every two hours at minute 17 and can also be started manually:
 
 - `dry-run` renders a downloadable review artifact and performs no external write.
-- `controlled` publishes one explicit queued job only when the confirmation is exactly `PUBLISH_ONE_JOB`.
+- `controlled` publishes one explicit open job only when the confirmation is exactly `PUBLISH_ONE_JOB`. It can safely enqueue that job after the initial baseline and refuses to republish a completed job.
 - `retry-stage` resets one failed bridge or provider stage only when the confirmation is exactly `RESET_FAILED_STAGE`; it never publishes in the same operation.
 - `scheduled` processes new data and publishes at most one queued job when `SOCIAL_AUTO_PUBLISH` is exactly `true`.
 
@@ -63,19 +64,17 @@ Repository variables:
 
 - `PUBLIC_SITE_ORIGIN=https://openings.dev`
 - `MASTODON_BASE_URL=https://mastodon.social`
-- `FTP_JOB_ROOT=/public_html/jobs`
+- `WEB_DEPLOY_REPOSITORY=openings-dev/web-deploy`
 - `SOCIAL_AUTO_PUBLISH=false` until controlled rollout passes
 
 Repository secrets:
 
-- `FTP_SERVER`
-- `FTP_USERNAME`
-- `FTP_PASSWORD`
+- `WEB_DEPLOY_TOKEN` — a fine-grained GitHub token limited to `openings-dev/web-deploy`, with repository Contents set to read and write so it can create `repository_dispatch` events
 - `BLUESKY_IDENTIFIER`
 - `BLUESKY_APP_PASSWORD`
 - `MASTODON_ACCESS_TOKEN`
 
-Prefer a Hostinger FTP account restricted to the jobs directory. Never place credentials in `.env` files committed to this repository.
+`web-deploy` owns the Hostinger FTP secrets and uploads only the requested job directory for incremental events. Never place credentials in `.env` files committed to this repository.
 
 ## Rollout
 
