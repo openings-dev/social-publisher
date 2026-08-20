@@ -28,11 +28,11 @@
       },
       "bluesky": {
         "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-08-20T18:37:44.263Z",
+        "attempts": 2,
+        "updatedAt": "2026-08-20T18:43:59.727Z",
         "lastError": {
-          "code": "provider",
-          "at": "2026-08-20T18:37:44.263Z"
+          "code": "bluesky_publication",
+          "at": "2026-08-20T18:43:59.727Z"
         },
         "lastReset": null,
         "result": null
