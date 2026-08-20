@@ -11,34 +11,44 @@
       "createdAt": "2026-08-20T12:47:52Z",
       "publicationCreatedAt": "2026-08-20T17:31:18.528Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-08-20T18:32:48.275Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-08-20T18:32:48.275Z"
-        },
+        "status": "published",
+        "attempts": 2,
+        "updatedAt": "2026-08-20T18:37:44.263Z",
+        "lastError": null,
         "lastReset": {
           "at": "2026-08-20T18:31:40.669Z",
           "reason": "manual_reset"
         },
-        "result": null
+        "result": {
+          "status": "already_current",
+          "canonicalUrl": "https://openings.dev/jobs/gh_5b692624be9237f8879e728a",
+          "imageUrl": "https://openings.dev/jobs/gh_5b692624be9237f8879e728a/opengraph-image.png",
+          "pngHash": "c044305d69822f7e9df3f89ab51ddc2d2d212e342c03877098996e7a721a71d6"
+        }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
-        "lastError": null,
+        "status": "retryable",
+        "attempts": 1,
+        "updatedAt": "2026-08-20T18:37:44.263Z",
+        "lastError": {
+          "code": "provider",
+          "at": "2026-08-20T18:37:44.263Z"
+        },
         "lastReset": null,
         "result": null
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-20T18:37:44.263Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117129285982901900",
+          "url": "https://mastodon.social/@openingshq/117129285982901900",
+          "cardStatus": "resolved"
+        }
       }
     }
   ]
