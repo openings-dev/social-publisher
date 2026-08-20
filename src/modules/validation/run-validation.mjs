@@ -25,6 +25,11 @@ import { loadSnapshot } from '../data/load-snapshot.mjs';
 import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
 import { isEligibleNewJob } from '../intake/eligibility.mjs';
 import {
+  buildLftpUploadScript,
+  deployAndVerifyBridge,
+} from '../deploy/lftp-client.mjs';
+import { verifyPublicBridge } from '../deploy/public-verifier.mjs';
+import {
   countGraphemes,
   formatSalary,
   formatSocialPost,
@@ -516,6 +521,131 @@ validation('dry run emits exactly the two deployable job files without state mut
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
+});
+
+validation('builds a restricted atomic LFTP upload without recursive deletion', () => {
+  const script = buildLftpUploadScript({
+    jobId: 'gh_0123456789abcdef01234567',
+    contentHash: 'a'.repeat(64),
+    htmlPath: '/tmp/job/index.html',
+    imagePath: '/tmp/job/opengraph-image.png',
+    ftp: {
+      server: 'ftp.example.test',
+      username: 'publisher',
+      password: 'fixture-password',
+      jobRoot: '/public_html/jobs',
+    },
+  });
+  assert.doesNotMatch(script, /\bmirror\b|--delete|mrm|rm -r/);
+  assert.match(script, /mkdir -p "\/public_html\/jobs\/gh_0123456789abcdef01234567"/);
+  assert.ok(script.indexOf('put "/tmp/job/opengraph-image.png"') < script.indexOf('put "/tmp/job/index.html"'));
+  assert.ok(script.indexOf('mv -f "/public_html/jobs/gh_0123456789abcdef01234567/.opengraph-image.') < script.indexOf('mv -f "/public_html/jobs/gh_0123456789abcdef01234567/.index.'));
+  assert.throws(() => buildLftpUploadScript({
+    jobId: '../escape',
+    contentHash: 'a'.repeat(64),
+    htmlPath: '/tmp/index.html',
+    imagePath: '/tmp/image.png',
+    ftp: { server: 'host', username: 'user', password: 'pass', jobRoot: '/public_html/jobs' },
+  }), /Invalid job ID/);
+  assert.throws(() => buildLftpUploadScript({
+    jobId: 'gh_0123456789abcdef01234567',
+    contentHash: 'a'.repeat(64),
+    htmlPath: '/tmp/index.html',
+    imagePath: '/tmp/image.png',
+    ftp: { server: 'host', username: 'user', password: 'pass', jobRoot: '/public_html/../secrets' },
+  }), /job root/i);
+  assert.throws(() => buildLftpUploadScript({
+    jobId: 'gh_0123456789abcdef01234567',
+    contentHash: 'a'.repeat(64),
+    htmlPath: '/tmp/index.html',
+    imagePath: '/tmp/image.png',
+    ftp: { server: 'host\nput /etc/passwd', username: 'user', password: 'pass', jobRoot: '/public_html/jobs' },
+  }), /unsupported control/i);
+});
+
+validation('verifies public HTML metadata and exact PNG bytes', async () => {
+  const job = makeJob();
+  const html = createBridgeHtml(job);
+  const png = await renderSocialCardPng(job, {
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+  });
+  const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
+  const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const fetchImpl = async (url) => {
+    if (url === canonicalUrl) {
+      return new Response(html, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
+    }
+    if (url === imageUrl) {
+      return new Response(png, { status: 200, headers: { 'content-type': 'image/png' } });
+    }
+    return new Response('missing', { status: 404 });
+  };
+  const result = await verifyPublicBridge({
+    jobId: job.id,
+    contentHash: job.contentHash,
+    expectedPngHash: sha256(png),
+    fetchImpl,
+  });
+  assert.equal(result.matches, true);
+  assert.equal(result.canonicalUrl, canonicalUrl);
+
+  const mismatch = await verifyPublicBridge({
+    jobId: job.id,
+    contentHash: 'b'.repeat(64),
+    expectedPngHash: sha256(png),
+    fetchImpl,
+    allowMismatch: true,
+  });
+  assert.equal(mismatch.matches, false);
+  assert.equal(mismatch.reason, 'content_hash_mismatch');
+});
+
+validation('skips matching bridges and deploys stale bridges exactly once', async () => {
+  const calls = [];
+  const matching = await deployAndVerifyBridge({
+    jobId: 'gh_0123456789abcdef01234567',
+    contentHash: 'a'.repeat(64),
+    expectedPngHash: 'b'.repeat(64),
+    htmlPath: '/tmp/index.html',
+    imagePath: '/tmp/image.png',
+    ftp: { server: 'host', username: 'user', password: 'pass', jobRoot: '/public_html/jobs' },
+    verifyPublic: async () => ({ matches: true }),
+    runLftp: async () => calls.push('upload'),
+  });
+  assert.equal(matching.status, 'already_current');
+  assert.deepEqual(calls, []);
+
+  let verification = 0;
+  const deployed = await deployAndVerifyBridge({
+    jobId: 'gh_0123456789abcdef01234567',
+    contentHash: 'a'.repeat(64),
+    expectedPngHash: 'b'.repeat(64),
+    htmlPath: '/tmp/index.html',
+    imagePath: '/tmp/image.png',
+    ftp: { server: 'host', username: 'user', password: 'pass', jobRoot: '/public_html/jobs' },
+    verifyPublic: async () => {
+      verification += 1;
+      return verification === 1 ? { matches: false, reason: 'not_found' } : { matches: true };
+    },
+    runLftp: async (script) => calls.push(script),
+  });
+  assert.equal(deployed.status, 'deployed');
+  assert.equal(calls.length, 1);
+  assert.match(calls[0], /put/);
+
+  await assert.rejects(
+    deployAndVerifyBridge({
+      jobId: 'gh_0123456789abcdef01234567',
+      contentHash: 'a'.repeat(64),
+      expectedPngHash: 'b'.repeat(64),
+      htmlPath: '/tmp/index.html',
+      imagePath: '/tmp/image.png',
+      ftp: { server: 'host', username: 'user', password: 'super-secret', jobRoot: '/public_html/jobs' },
+      verifyPublic: async () => ({ matches: false, reason: 'not_found' }),
+      runLftp: async () => { throw new Error('super-secret leaked upstream'); },
+    }),
+    (error) => /FTP upload failed/.test(error.message) && !error.message.includes('super-secret'),
+  );
 });
 
 let passed = 0;
