@@ -6,6 +6,13 @@ import { opportunityDescription } from '../render/html-page.mjs';
 
 const POST_COLLECTION = 'app.bsky.feed.post';
 
+function blueskyError(code, message) {
+  const error = new Error(message);
+  error.name = 'BlueskyPublicationError';
+  error.code = code;
+  return error;
+}
+
 export function blueskyRecordKey(jobId) {
   return `opening-${sha256(jobId).slice(0, 24)}`;
 }
@@ -32,11 +39,11 @@ async function findExistingRecord(agent, { repo, rkey, canonicalUrl, handle }) {
     if (isRecordNotFound(error)) {
       return null;
     }
-    throw new Error('Bluesky record reconciliation failed');
+    throw blueskyError('bluesky_reconciliation', 'Bluesky record reconciliation failed');
   }
   const externalUrl = response.data?.value?.embed?.external?.uri;
   if (externalUrl !== canonicalUrl) {
-    throw new Error('Bluesky has a conflicting deterministic record');
+    throw blueskyError('bluesky_conflict', 'Bluesky has a conflicting deterministic record');
   }
   return Object.freeze({
     status: 'reconciled',
@@ -63,14 +70,14 @@ export async function publishToBluesky({
       password: credentials.appPassword,
     });
   } catch {
-    throw new Error('Bluesky authentication failed');
+    throw blueskyError('bluesky_authentication', 'Bluesky authentication failed');
   }
 
   const session = agent.session ?? loginResponse?.data;
   const repo = session?.did;
   const handle = session?.handle ?? credentials.identifier;
   if (typeof repo !== 'string' || repo.length === 0 || typeof handle !== 'string' || handle.length === 0) {
-    throw new Error('Bluesky authentication returned an invalid session');
+    throw blueskyError('bluesky_session', 'Bluesky authentication returned an invalid session');
   }
 
   const rkey = blueskyRecordKey(job.id);
@@ -92,10 +99,10 @@ export async function publishToBluesky({
     const response = await agent.uploadBlob(png, { encoding: 'image/png' });
     thumbnail = response.data?.blob;
   } catch {
-    throw new Error('Bluesky thumbnail upload failed');
+    throw blueskyError('bluesky_thumbnail_upload', 'Bluesky thumbnail upload failed');
   }
   if (!thumbnail) {
-    throw new Error('Bluesky thumbnail upload returned no blob');
+    throw blueskyError('bluesky_thumbnail_missing', 'Bluesky thumbnail upload returned no blob');
   }
 
   const record = {
@@ -124,7 +131,7 @@ export async function publishToBluesky({
       record,
     });
   } catch {
-    throw new Error('Bluesky record publication failed');
+    throw blueskyError('bluesky_publication', 'Bluesky record publication failed');
   }
 
   return Object.freeze({

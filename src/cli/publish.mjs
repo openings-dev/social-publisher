@@ -135,7 +135,9 @@ export async function runPublication({
     selected: result.selectedJobId,
     bridge: selectedItem?.bridge.status ?? null,
     bluesky: selectedItem?.bluesky.status ?? null,
+    blueskyError: selectedItem?.bluesky.lastError?.code ?? null,
     mastodon: selectedItem?.mastodon.status ?? null,
+    mastodonError: selectedItem?.mastodon.lastError?.code ?? null,
     queueDepth: result.queueState.items.filter((item) => [item.bridge, item.bluesky, item.mastodon]
       .some((stage) => stage.status === 'pending' || stage.status === 'retryable')).length,
   };

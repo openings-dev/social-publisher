@@ -49,6 +49,9 @@ function sameSnapshot(left, right) {
 
 function safeErrorCode(error, stage) {
   const text = error instanceof Error ? `${error.name} ${error.message}`.toLowerCase() : '';
+  if (typeof error?.code === 'string' && /^bluesky_[a-z0-9_]{1,48}$/u.test(error.code)) {
+    return error.code;
+  }
   if (/rate.?limit|too many requests|\b429\b/.test(text)) {
     return 'rate_limit';
   }

@@ -958,7 +958,9 @@ validation('rejects conflicting or failed Bluesky writes without leaking credent
       credentials: { identifier: 'openingshq.bsky.social', appPassword: 'fixture-secret' },
       agentFactory: () => failed.agent,
     }),
-    (error) => /thumbnail upload failed/i.test(error.message) && !error.message.includes('fixture-secret'),
+    (error) => error.code === 'bluesky_thumbnail_upload'
+      && /thumbnail upload failed/i.test(error.message)
+      && !error.message.includes('fixture-secret'),
   );
 
   const putFailed = createFakeBlueskyAgent({ putError: new Error('fixture-secret ambiguous write') });
@@ -971,8 +973,39 @@ validation('rejects conflicting or failed Bluesky writes without leaking credent
       credentials: { identifier: 'openingshq.bsky.social', appPassword: 'fixture-secret' },
       agentFactory: () => putFailed.agent,
     }),
-    (error) => /record publication failed/i.test(error.message) && !error.message.includes('fixture-secret'),
+    (error) => error.code === 'bluesky_publication'
+      && /record publication failed/i.test(error.message)
+      && !error.message.includes('fixture-secret'),
   );
+});
+
+validation('persists safe provider stage codes without provider details', async () => {
+  const job = makeJob();
+  const snapshot = makeLoadedSnapshot({
+    commit: 'f'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: 'f'.repeat(64),
+    jobs: [job],
+  });
+  const queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+  });
+  const providerError = new Error('Bluesky thumbnail upload failed');
+  providerError.code = 'bluesky_thumbnail_upload';
+  const result = await processOnePublication({
+    queueState: queue,
+    publicationsState: { schemaVersion: 1, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async () => ({ status: 'deployed' }),
+    publishBluesky: async () => { throw providerError; },
+    publishMastodon: async () => ({ status: 'published' }),
+    now: '2026-08-20T13:02:00.000Z',
+  });
+
+  assert.equal(result.queueState.items[0].bluesky.lastError.code, 'bluesky_thumbnail_upload');
+  assert.doesNotMatch(JSON.stringify(result.queueState), /provider detail|fixture-secret/u);
 });
 
 function jsonResponse(value, status = 200) {
