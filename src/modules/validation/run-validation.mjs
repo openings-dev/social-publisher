@@ -219,7 +219,7 @@ validation('rejects unknown state versions, duplicates, and sensitive keys', () 
 });
 
 validation('writes state atomically with stable formatting', async () => {
-  const directory = await mkdtemp(join(tmpdir(), 'openings-social-state-'));
+  const directory = await mkdtemp(join(tmpdir(), 'openings-social-publisher-state-'));
   const file = join(directory, 'queue.json');
   const value = { schemaVersion: 1, items: [] };
   try {
@@ -570,7 +570,7 @@ validation('bounds long Unicode card titles to three lines', () => {
 });
 
 validation('dry run emits exactly the two deployable job files without state mutation', async () => {
-  const directory = await mkdtemp(join(tmpdir(), 'openings-social-dry-run-'));
+  const directory = await mkdtemp(join(tmpdir(), 'openings-social-publisher-dry-run-'));
   const fixturePath = join(directory, 'job.json');
   const wordmarkPath = join(directory, 'wordmark.svg');
   const outputPath = join(directory, 'output');

@@ -1,12 +1,12 @@
-# openings.social
+# social-publisher
 
-`openings-social` turns genuinely new jobs indexed by [openings.dev](https://openings.dev) into useful, source-grounded posts for the official [Bluesky](https://bsky.app/profile/openingshq.bsky.social) and [Mastodon](https://mastodon.social/@openingshq) accounts.
+`social-publisher` turns genuinely new jobs indexed by [openings.dev](https://openings.dev) into useful, source-grounded posts for the official [Bluesky](https://bsky.app/profile/openingshq.bsky.social) and [Mastodon](https://mastodon.social/@openingshq) accounts.
 
 The service is intentionally small and cautious. It publishes at most one queued job every two hours, never backfills older issues added through community discovery, and verifies a job-specific Open Graph page before sending either social post.
 
 ## How it works
 
-1. Read immutable public snapshots from [`openings-dev/data`](https://github.com/openings-dev/data).
+1. Read immutable public snapshots from [`openings-dev/data-pipeline`](https://github.com/openings-dev/data-pipeline).
 2. Detect genuinely new open issues and content changes to known jobs.
 3. Render and upload only `jobs/<id>/index.html` and `jobs/<id>/opengraph-image.png`.
 4. Publish the canonical link to Bluesky and Mastodon with provider-specific duplicate protection.
@@ -39,9 +39,9 @@ To exercise the current public data checkout instead of the fixture:
 
 ```sh
 npm run dry-run -- \
-  --data ../data \
+  --data ../data-pipeline \
   --state state \
-  --wordmark ../openings/public/openings-wordmark-light.svg
+  --wordmark ../web/public/openings-wordmark-light.svg
 ```
 
 ## GitHub Actions

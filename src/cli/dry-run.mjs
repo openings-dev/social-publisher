@@ -125,7 +125,7 @@ async function main() {
   const wordmarkPath = resolve(
     args.wordmark
       ?? process.env.OPENINGS_WORDMARK_PATH
-      ?? '../openings/public/openings-wordmark-light.svg',
+      ?? '../web/public/openings-wordmark-light.svg',
   );
   if (args.data) {
     await runSnapshotDryRun({

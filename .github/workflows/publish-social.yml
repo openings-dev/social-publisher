@@ -37,7 +37,7 @@ permissions:
   contents: write
 
 concurrency:
-  group: openings-social-publication
+  group: social-publisher-publication
   cancel-in-progress: false
 
 jobs:
@@ -47,15 +47,15 @@ jobs:
     timeout-minutes: 30
     env:
       RUN_MODE: ${{ github.event_name == 'schedule' && 'scheduled' || inputs.mode }}
-      DATA_PATH: dependencies/data
-      OPENINGS_PATH: dependencies/openings
+      DATA_PATH: dependencies/data-pipeline
+      WEB_PATH: dependencies/web
       PUBLIC_SITE_ORIGIN: ${{ vars.PUBLIC_SITE_ORIGIN || 'https://openings.dev' }}
       FTP_JOB_ROOT: ${{ vars.FTP_JOB_ROOT || '/public_html/jobs' }}
       BLUESKY_SERVICE_URL: ${{ vars.BLUESKY_SERVICE_URL || 'https://bsky.social' }}
       MASTODON_BASE_URL: ${{ vars.MASTODON_BASE_URL || 'https://mastodon.social' }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
     steps:
-      - name: Check out openings-social state and source
+      - name: Check out social-publisher state and source
         # actions/checkout v4.3.1
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
@@ -65,8 +65,8 @@ jobs:
         # actions/checkout v4.3.1
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
-          repository: openings-dev/data
-          path: dependencies/data
+          repository: openings-dev/data-pipeline
+          path: dependencies/data-pipeline
           fetch-depth: 0
           persist-credentials: false
 
@@ -74,8 +74,8 @@ jobs:
         # actions/checkout v4.3.1
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
-          repository: openings-dev/openings
-          path: dependencies/openings
+          repository: openings-dev/web
+          path: dependencies/web
           persist-credentials: false
 
       - name: Use Node.js 20
@@ -113,7 +113,7 @@ jobs:
           arguments=(
             --data "$DATA_PATH"
             --state state
-            --wordmark "$OPENINGS_PATH/public/openings-wordmark-light.svg"
+            --wordmark "$WEB_PATH/public/openings-wordmark-light.svg"
             --output .tmp/workflow-dry-run
           )
           if [[ -n "$REQUEST_JOB_ID" ]]; then
@@ -146,7 +146,7 @@ jobs:
           npm run intake -- \
             --data "$DATA_PATH" \
             --state state \
-            --wordmark "$OPENINGS_PATH/public/openings-wordmark-light.svg" \
+            --wordmark "$WEB_PATH/public/openings-wordmark-light.svg" \
             --output .tmp/intake | tee .tmp/intake-summary.txt
           {
             echo '### Intake'
@@ -158,8 +158,8 @@ jobs:
       - name: Commit and push intake state before provider calls
         if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
         run: |
-          git config user.name openings-social[bot]
-          git config user.email 249994453+openings-social[bot]@users.noreply.github.com
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- state/intake.json state/queue.json
           if git diff --cached --quiet; then
             exit 0
@@ -203,7 +203,7 @@ jobs:
             --mode "$RUN_MODE"
             --data "$DATA_PATH"
             --state state
-            --wordmark "$OPENINGS_PATH/public/openings-wordmark-light.svg"
+            --wordmark "$WEB_PATH/public/openings-wordmark-light.svg"
             --output .tmp/publish
           )
           if [[ "$RUN_MODE" == 'controlled' ]]; then
@@ -220,8 +220,8 @@ jobs:
       - name: Commit and push publication or reset state
         if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled' || env.RUN_MODE == 'retry-stage'
         run: |
-          git config user.name openings-social[bot]
-          git config user.email 249994453+openings-social[bot]@users.noreply.github.com
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- state/queue.json state/publications.json
           if git diff --cached --quiet; then
             exit 0

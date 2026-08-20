@@ -89,9 +89,9 @@ export async function runIntake({
 async function main() {
   const args = parseArguments(process.argv.slice(2));
   await runIntake({
-    dataRepositoryPath: resolve(args.data ?? '../data'),
+    dataRepositoryPath: resolve(args.data ?? '../data-pipeline'),
     stateDirectory: resolve(args.state ?? 'state'),
-    wordmarkPath: resolve(args.wordmark ?? '../openings/public/openings-wordmark-light.svg'),
+    wordmarkPath: resolve(args.wordmark ?? '../web/public/openings-wordmark-light.svg'),
     outputPath: resolve(args.output ?? '.tmp/intake'),
     dataReference: args.ref ?? 'HEAD',
     mode: 'intake',

@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     steps:
-      - name: Check out openings-social
+      - name: Check out social-publisher
         # actions/checkout v4.3.1
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
 
@@ -23,8 +23,8 @@ jobs:
         # actions/checkout v4.3.1
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
-          repository: openings-dev/openings
-          path: dependencies/openings
+          repository: openings-dev/web
+          path: dependencies/web
           persist-credentials: false
 
       - name: Use Node.js 20
@@ -44,5 +44,5 @@ jobs:
         run: >-
           npm run dry-run --
           --fixture assets/fixtures/job.json
-          --wordmark dependencies/openings/public/openings-wordmark-light.svg
+          --wordmark dependencies/web/public/openings-wordmark-light.svg
           --output .tmp/validation-dry-run

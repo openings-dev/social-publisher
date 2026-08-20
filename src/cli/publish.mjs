@@ -152,9 +152,9 @@ async function main() {
       stage: args.stage,
       confirmation: args.confirmation,
     },
-    dataRepositoryPath: resolve(args.data ?? '../data'),
+    dataRepositoryPath: resolve(args.data ?? '../data-pipeline'),
     stateDirectory: resolve(args.state ?? 'state'),
-    wordmarkPath: resolve(args.wordmark ?? '../openings/public/openings-wordmark-light.svg'),
+    wordmarkPath: resolve(args.wordmark ?? '../web/public/openings-wordmark-light.svg'),
     outputPath: resolve(args.output ?? '.tmp/publish'),
     dataReference: args.ref ?? 'HEAD',
   });
