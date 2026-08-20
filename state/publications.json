@@ -1,4 +1,24 @@
 {
   "schemaVersion": 1,
-  "jobs": {}
+  "jobs": {
+    "gh_5b692624be9237f8879e728a": {
+      "status": "completed",
+      "contentHash": "c1165a228f5b776e8c0b0ccf72d9c1a20b428d3261052d300018ff9f1f13add9",
+      "dataCommit": "c99542f9f9e84e68c78a00d9265817763caa09ad",
+      "dataHash": "b4bdcaa9ba35a786331eed29a707684c9e464b2fd95693368e850dad1d590926",
+      "completedAt": "2026-08-20T18:51:27.026Z",
+      "bluesky": {
+        "status": "published",
+        "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mtjrlo4gyg2h",
+        "cid": "bafyreifcq55rgnny2vpoqteucbiur5a7dgwcwbniat44jp5ylgqto52wcy",
+        "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mtjrlo4gyg2h"
+      },
+      "mastodon": {
+        "status": "published",
+        "id": "117129285982901900",
+        "url": "https://mastodon.social/@openingshq/117129285982901900",
+        "cardStatus": "resolved"
+      }
+    }
+  }
 }
