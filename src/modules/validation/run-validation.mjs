@@ -22,6 +22,11 @@ import { loadSnapshot } from '../data/load-snapshot.mjs';
 import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
 import { isEligibleNewJob } from '../intake/eligibility.mjs';
 import {
+  countGraphemes,
+  formatSalary,
+  formatSocialPost,
+} from '../render/format-job.mjs';
+import {
   enqueueBridgeWork,
   enqueueJob,
   markJobClosed,
@@ -369,6 +374,61 @@ validation('marks a closed queued job without publishing either channel', () => 
   assert.equal(queue.items[0].bluesky.status, 'skipped_closed');
   assert.equal(queue.items[0].mastodon.status, 'skipped_closed');
   assert.equal(selectNextQueueItem(queue, '2026-08-20T14:00:00.000Z'), null);
+});
+
+validation('formats salary bounds without turning a maximum into an exact salary', () => {
+  assert.equal(formatSalary({ currency: 'USD', min: 9000, period: 'month' }), 'From $9,000/month');
+  assert.equal(formatSalary({ currency: 'USD', max: 12000, period: 'month' }), 'Up to $12,000/month');
+  assert.equal(formatSalary({ currency: 'USD', min: 9000, max: 12000, period: 'month' }), '$9,000–$12,000/month');
+  assert.equal(formatSalary({ currency: 'USD', min: 12000, max: 9000, period: 'month' }), null);
+  assert.equal(formatSalary(null), null);
+});
+
+validation('writes concise English framing while preserving the original title', () => {
+  const post = formatSocialPost(makeJob({
+    title: 'Desenvolvedor(a) TypeScript Sênior',
+    community: { name: 'Openings Fixtures' },
+    country: 'Brazil',
+    region: 'South America',
+    tags: ['remote', 'senior', 'typescript'],
+    salary: { currency: 'BRL', min: 12000, max: 18000, period: 'month' },
+  }));
+  assert.equal(post.title, 'Desenvolvedor(a) TypeScript Sênior');
+  assert.match(post.text, /^New job on openings\.dev\n\nDesenvolvedor\(a\) TypeScript Sênior/);
+  assert.match(post.text, /Openings Fixtures · Brazil · South America/);
+  assert.match(post.text, /R\$12,000–R\$18,000\/month/);
+  assert.match(post.text, /View the listing:\nhttps:\/\/openings\.dev\/jobs\/gh_0123456789abcdef01234567/);
+  assert.match(post.text, /#TechJobs #TypeScript$/);
+});
+
+validation('omits unknown metadata and unsafe stack hashtags', () => {
+  const post = formatSocialPost(makeJob({
+    community: null,
+    country: 'Unknown',
+    region: '',
+    tags: ['remote', 'senior', 'c++'],
+    salary: null,
+  }));
+  assert.equal(post.metadataLine, null);
+  assert.equal(post.salaryLine, null);
+  assert.equal(post.hashtags, '#TechJobs');
+  assert.doesNotMatch(post.text, /Unknown|undefined|null|#C/);
+});
+
+validation('keeps long Unicode posts within the Bluesky grapheme limit', () => {
+  const title = `${'高性能ソフトウェアエンジニア🚀'.repeat(24)} final`;
+  const post = formatSocialPost(makeJob({
+    title,
+    community: { name: 'A very long international community name that may be omitted' },
+    country: 'Worldwide',
+    region: 'Global',
+    tags: ['typescript'],
+  }));
+  assert.ok(countGraphemes(post.text) <= 300);
+  assert.ok(post.title.endsWith('…'));
+  assert.equal((post.text.match(/https:\/\/openings\.dev\/jobs\//g) ?? []).length, 1);
+  assert.match(post.text, /View the listing:/);
+  assert.match(post.text, /#TechJobs #TypeScript$/);
 });
 
 let passed = 0;
