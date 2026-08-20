@@ -11,10 +11,13 @@
       "createdAt": "2026-08-20T12:47:52Z",
       "publicationCreatedAt": "2026-08-20T17:31:18.528Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": "2026-08-20T18:31:40.669Z",
-        "lastError": null,
+        "status": "retryable",
+        "attempts": 1,
+        "updatedAt": "2026-08-20T18:32:48.275Z",
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-08-20T18:32:48.275Z"
+        },
         "lastReset": {
           "at": "2026-08-20T18:31:40.669Z",
           "reason": "manual_reset"
