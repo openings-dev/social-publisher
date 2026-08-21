@@ -328,6 +328,84 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_3d0179fc12fad7d01281b2eb",
+      "sourceId": "frontendbr/vagas#8545",
+      "dataCommit": "ccb271e9bb554ce107ed573e7c8695637d6f0dff",
+      "dataHash": "f1aeaa1823626168b7c0ad02d892b763bf227c72fde2e34e11d6db54cf6981b0",
+      "contentHash": "80d42f74249231591a8a584a626672f21e61f5179d70189ceff72bd44bb5675b",
+      "discoveredAt": "2026-08-21T13:09:58.181Z",
+      "createdAt": "2026-08-21T12:00:14Z",
+      "publicationCreatedAt": "2026-08-21T13:09:58.181Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-21T13:09:58.181Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_3d0179fc12fad7d01281b2eb",
+          "imageUrl": "https://openings.dev/jobs/gh_3d0179fc12fad7d01281b2eb/opengraph-image.png",
+          "pngHash": "6da8b3010f53bcb5e95c12f2bb1cb56b3fa9d2ca18a6c6e13f3d2f3e87b30094"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_adb4b2bec3c9af31804b8609",
+      "sourceId": "negarprh/Canadian-Tech-Internships-2026#303",
+      "dataCommit": "ccb271e9bb554ce107ed573e7c8695637d6f0dff",
+      "dataHash": "f1aeaa1823626168b7c0ad02d892b763bf227c72fde2e34e11d6db54cf6981b0",
+      "contentHash": "95745c21c7d56a942eaac47b8cd208bfa2f0adda17a25a0fee510c0ac171dc62",
+      "discoveredAt": "2026-08-21T13:09:58.181Z",
+      "createdAt": "2026-08-21T10:20:43Z",
+      "publicationCreatedAt": "2026-08-21T13:09:58.181Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-21T13:09:58.181Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_adb4b2bec3c9af31804b8609",
+          "imageUrl": "https://openings.dev/jobs/gh_adb4b2bec3c9af31804b8609/opengraph-image.png",
+          "pngHash": "9999c6e81b7dd410924b041c18ec45dbd90325a77d2aa65225558a6633a84865"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
