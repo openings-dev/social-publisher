@@ -211,6 +211,45 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_7be4999098912b2c53a47287",
+      "sourceId": "datascience-br/vagas#203",
+      "dataCommit": "a152d4e6de3f5fcb038f0feeb1ed80d67eb4e0ea",
+      "dataHash": "887e134ff4749f8a07964ab4b5c04b34b4e20559d9f9c3697d2773affd506cf7",
+      "contentHash": "49aef9ad6c00c17d6359f848dd8cb13e476a06aa1b90d9cf835783ba0fdb1aaa",
+      "discoveredAt": "2026-08-21T01:56:51.850Z",
+      "createdAt": "2026-08-20T22:53:42Z",
+      "publicationCreatedAt": "2026-08-21T01:56:51.850Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-21T01:56:51.850Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_7be4999098912b2c53a47287",
+          "imageUrl": "https://openings.dev/jobs/gh_7be4999098912b2c53a47287/opengraph-image.png",
+          "pngHash": "1bdac444593c070372c019e5401868b6c61702781f84c3594286621b7b266f4d"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
