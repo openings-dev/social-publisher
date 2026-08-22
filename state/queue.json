@@ -757,6 +757,45 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_c6bbf6170a4b8e7e5ede5250",
+      "sourceId": "Blazorise/Blazorise.Jobs#3",
+      "dataCommit": "5c9103eee677a8d4ceca2c76ab72c360aa2fb142",
+      "dataHash": "ba328e9c51d85cacdf9db3987b6f82713c0e2b8c4b82bc215dcd909201b3ff8b",
+      "contentHash": "d8203178e84d01cff6cdcd75b9d7d70240c4919d2d9097580ee4b13ca0755dd8",
+      "discoveredAt": "2026-08-22T06:58:27.968Z",
+      "createdAt": "2026-08-22T04:43:04Z",
+      "publicationCreatedAt": "2026-08-22T06:58:27.968Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-22T06:58:27.968Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_c6bbf6170a4b8e7e5ede5250",
+          "imageUrl": "https://openings.dev/jobs/gh_c6bbf6170a4b8e7e5ede5250/opengraph-image.png",
+          "pngHash": "3798f9f3f2292561d876b6370f775fe8c498e5b000e71af7002af58bc0eb5666"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
