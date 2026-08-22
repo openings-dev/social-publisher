@@ -874,6 +874,45 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_6b086e71dc4401438488d072",
+      "sourceId": "soujava/vagas-java#1942",
+      "dataCommit": "b76cd75b44bf4ab32be22d66f3b1c9ba0b047546",
+      "dataHash": "e3d7432f4c11985695d045773e80644c09f60e023df6f3e086d173e1afb51490",
+      "contentHash": "fcd1c7534dbe34a44e81769f7a7de41a9ad7de952f7dbe80300a8386651ce065",
+      "discoveredAt": "2026-08-22T14:37:14.790Z",
+      "createdAt": "2026-08-22T12:00:08Z",
+      "publicationCreatedAt": "2026-08-22T14:37:14.790Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-22T14:37:14.790Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_6b086e71dc4401438488d072",
+          "imageUrl": "https://openings.dev/jobs/gh_6b086e71dc4401438488d072/opengraph-image.png",
+          "pngHash": "7ef3350e1a764c03ae017de2c3bfd4a051e9ac6e3b3d565657d35aa593e89def"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
