@@ -562,6 +562,123 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_0e73df4967bffbe01c3fbb1e",
+      "sourceId": "datascience-br/vagas#205",
+      "dataCommit": "a6c4c0fa857e1dae07fc0165bb013845e166717f",
+      "dataHash": "617848a979a73bd76ea57fe53953dc1f0a83a509a4f95d297f69c3a078fa62c2",
+      "contentHash": "35ecc1d9ce9d5c227f1f57fe3f82fc53a31c6aede1b41869d6f08ceb179f6c3d",
+      "discoveredAt": "2026-08-22T01:49:19.073Z",
+      "createdAt": "2026-08-21T21:01:26Z",
+      "publicationCreatedAt": "2026-08-22T01:49:19.073Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-22T01:49:19.073Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "already_current",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0e73df4967bffbe01c3fbb1e",
+          "imageUrl": "https://openings.dev/jobs/gh_0e73df4967bffbe01c3fbb1e/opengraph-image.png",
+          "pngHash": "0fab858c97e5038c853144296a815ac2a4dd77c9e6cc64add108837b6207751f"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_9208a81e3c611e2fd2ef477e",
+      "sourceId": "qa-brasil/vagas#1281",
+      "dataCommit": "a6c4c0fa857e1dae07fc0165bb013845e166717f",
+      "dataHash": "617848a979a73bd76ea57fe53953dc1f0a83a509a4f95d297f69c3a078fa62c2",
+      "contentHash": "a5ddd01313cbbb61b39de74bc79b62749c382ec032130ed183b8ceae0455487a",
+      "discoveredAt": "2026-08-22T01:49:19.073Z",
+      "createdAt": "2026-08-21T19:40:20Z",
+      "publicationCreatedAt": "2026-08-22T01:49:19.073Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-22T01:49:19.073Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9208a81e3c611e2fd2ef477e",
+          "imageUrl": "https://openings.dev/jobs/gh_9208a81e3c611e2fd2ef477e/opengraph-image.png",
+          "pngHash": "c3a666ed78a30072bd285be159a4a4f5d94f43cceff993095461b85ae65f6385"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_2c63fdcb06250e6d7646bdbd",
+      "sourceId": "negarprh/Canadian-Tech-Internships-2026#306",
+      "dataCommit": "38603738cbf8fee1d882374248a2300d931a6369",
+      "dataHash": "9dd7be2b9b72c08c91cd310ab279ffb3d5b4f2d4d511078f6f19139bbbf919d4",
+      "contentHash": "0a8f8a82ed77f1c11dfaf7d3146f491b2423c8cbfdff8b9a23fa10e304ae6295",
+      "discoveredAt": "2026-08-22T01:49:19.073Z",
+      "createdAt": "2026-08-21T23:14:42Z",
+      "publicationCreatedAt": "2026-08-22T01:49:19.073Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-22T01:49:19.073Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2c63fdcb06250e6d7646bdbd",
+          "imageUrl": "https://openings.dev/jobs/gh_2c63fdcb06250e6d7646bdbd/opengraph-image.png",
+          "pngHash": "9999c6e81b7dd410924b041c18ec45dbd90325a77d2aa65225558a6633a84865"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
