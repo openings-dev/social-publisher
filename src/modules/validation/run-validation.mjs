@@ -7,6 +7,7 @@ import { TID } from '@atproto/common-web';
 import sharp from 'sharp';
 
 import { runDryRun } from '../../cli/dry-run.mjs';
+import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest } from '../../cli/publish.mjs';
 
 import {
@@ -55,6 +56,7 @@ import {
   processIntakeSnapshots,
   processOnePublication,
 } from '../publishing/orchestrator.mjs';
+import { decideScheduledWork } from '../publishing/scheduled-work.mjs';
 import {
   enqueueBridgeWork,
   enqueueJob,
@@ -197,6 +199,133 @@ validation('enables scheduled publication only for exact true with every credent
     () => readEnvironment({ env: { ...env, WEB_DEPLOY_TOKEN: '' }, mode: 'controlled' }),
     (error) => error.message.includes('WEB_DEPLOY_TOKEN') && !error.message.includes('github-fine-grained-token'),
   );
+});
+
+validation('skips disabled and up-to-date schedules before expensive setup', () => {
+  const dataHash = 'a'.repeat(64);
+  const intakeState = {
+    schemaVersion: 1,
+    processedSnapshot: {
+      commit: '1'.repeat(40),
+      generatedAt: '2026-08-23T12:00:00.000Z',
+      dataHash,
+    },
+    pendingBridges: [],
+    removedJobs: [],
+  };
+  const queueState = { schemaVersion: 1, items: [] };
+
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: false,
+    intakeState,
+    queueState,
+    currentDataHash: 'b'.repeat(64),
+  }), { shouldRun: false, reason: 'disabled', queueDepth: 0 });
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: true,
+    intakeState,
+    queueState,
+    currentDataHash: dataHash,
+  }), { shouldRun: false, reason: 'up_to_date', queueDepth: 0 });
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: true,
+    intakeState,
+    queueState,
+    currentDataHash: 'b'.repeat(64),
+  }), { shouldRun: true, reason: 'snapshot_changed', queueDepth: 0 });
+});
+
+validation('runs schedules while social or bridge work is ready', () => {
+  const dataHash = 'a'.repeat(64);
+  const intakeState = {
+    schemaVersion: 1,
+    processedSnapshot: {
+      commit: '1'.repeat(40),
+      generatedAt: '2026-08-23T12:00:00.000Z',
+      dataHash,
+    },
+    pendingBridges: [],
+    removedJobs: [],
+  };
+  const job = makeJob();
+  const snapshot = makeLoadedSnapshot({
+    commit: '1'.repeat(40),
+    generatedAt: '2026-08-23T12:00:00.000Z',
+    dataHash,
+    jobs: [job],
+  });
+  const queueState = enqueueJob({ schemaVersion: 1, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-23T12:01:00.000Z',
+  });
+
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: true,
+    intakeState,
+    queueState,
+    currentDataHash: dataHash,
+  }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
+
+  const bridgeState = enqueueBridgeWork(intakeState, { job, snapshot, reason: 'changed' });
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: true,
+    intakeState: bridgeState,
+    queueState: { schemaVersion: 1, items: [] },
+    currentDataHash: dataHash,
+  }), { shouldRun: true, reason: 'bridge_queued', queueDepth: 0 });
+});
+
+validation('preflight avoids remote reads for queued work and fails open on manifest errors', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-social-preflight-'));
+  const job = makeJob();
+  const snapshot = makeLoadedSnapshot({
+    commit: '1'.repeat(40),
+    generatedAt: '2026-08-23T12:00:00.000Z',
+    dataHash: 'a'.repeat(64),
+    jobs: [job],
+  });
+  const intakeState = {
+    schemaVersion: 1,
+    processedSnapshot: {
+      commit: snapshot.commit,
+      generatedAt: snapshot.generatedAt,
+      dataHash: snapshot.dataHash,
+    },
+    pendingBridges: [],
+    removedJobs: [],
+  };
+  const queueState = enqueueJob({ schemaVersion: 1, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-23T12:01:00.000Z',
+  });
+  try {
+    await saveStateFile(join(directory, 'intake.json'), intakeState, validateIntakeState);
+    await saveStateFile(join(directory, 'queue.json'), queueState, validateQueueState);
+    let fetchCalls = 0;
+    const queued = await runPreflight({
+      eventName: 'schedule',
+      publishEnabled: true,
+      stateDirectory: directory,
+      fetchManifest: async () => { fetchCalls += 1; return { dataHash: snapshot.dataHash }; },
+      log: () => {},
+    });
+    assert.deepEqual(queued, { shouldRun: true, reason: 'queued', queueDepth: 1 });
+    assert.equal(fetchCalls, 0);
+
+    await saveStateFile(join(directory, 'queue.json'), { schemaVersion: 1, items: [] }, validateQueueState);
+    const unavailable = await runPreflight({
+      eventName: 'schedule',
+      publishEnabled: true,
+      stateDirectory: directory,
+      fetchManifest: async () => { throw new Error('temporary network error'); },
+      log: () => {},
+    });
+    assert.deepEqual(unavailable, { shouldRun: true, reason: 'preflight_unavailable', queueDepth: 0 });
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 validation('validates the tracked state schemas', async () => {
@@ -1502,6 +1631,9 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(productionWorkflow, /chore\(state\): record social intake/u);
   assert.match(productionWorkflow, /chore\(state\): record social publication/u);
   assert.match(productionWorkflow, /WEB_DEPLOY_TOKEN/u);
+  assert.match(productionWorkflow, /id:\s*preflight/u);
+  assert.match(productionWorkflow, /src\/cli\/preflight\.mjs/u);
+  assert.match(productionWorkflow, /steps\.preflight\.outputs\.should_run == 'true'/u);
   assert.doesNotMatch(productionWorkflow, /FTP_(?:SERVER|USERNAME|PASSWORD|JOB_ROOT)|Install LFTP/u);
   const actionUses = [...`${validationWorkflow}\n${productionWorkflow}`.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/gu)];
   assert.ok(actionUses.length >= 5);

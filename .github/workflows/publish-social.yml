@@ -61,7 +61,14 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Decide whether scheduled work exists
+        id: preflight
+        env:
+          DATA_MANIFEST_URL: https://raw.githubusercontent.com/openings-dev/data-pipeline/main/snapshots/opportunities/api/manifest.json
+        run: node src/cli/preflight.mjs --state state
+
       - name: Check out immutable data history
+        if: steps.preflight.outputs.should_run == 'true'
         # actions/checkout v4.3.1
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
@@ -71,6 +78,7 @@ jobs:
           persist-credentials: false
 
       - name: Check out the canonical openings.dev wordmark
+        if: steps.preflight.outputs.should_run == 'true'
         # actions/checkout v4.3.1
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
@@ -79,6 +87,7 @@ jobs:
           persist-credentials: false
 
       - name: Use Node.js 20
+        if: steps.preflight.outputs.should_run == 'true'
         # actions/setup-node v4.4.0
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
@@ -86,10 +95,11 @@ jobs:
           cache: npm
 
       - name: Install exact dependencies
+        if: steps.preflight.outputs.should_run == 'true'
         run: npm ci
 
       - name: Validate the manual gate before any write
-        if: github.event_name == 'workflow_dispatch' && env.RUN_MODE != 'dry-run'
+        if: steps.preflight.outputs.should_run == 'true' && github.event_name == 'workflow_dispatch' && env.RUN_MODE != 'dry-run'
         env:
           REQUEST_JOB_ID: ${{ inputs.job_id }}
           REQUEST_STAGE: ${{ inputs.stage }}
@@ -106,7 +116,7 @@ jobs:
           NODE
 
       - name: Render a review artifact without external writes
-        if: github.event_name == 'workflow_dispatch' && (env.RUN_MODE == 'dry-run' || env.RUN_MODE == 'controlled')
+        if: steps.preflight.outputs.should_run == 'true' && github.event_name == 'workflow_dispatch' && (env.RUN_MODE == 'dry-run' || env.RUN_MODE == 'controlled')
         env:
           REQUEST_JOB_ID: ${{ inputs.job_id }}
         run: |
@@ -122,7 +132,7 @@ jobs:
           npm run dry-run -- "${arguments[@]}"
 
       - name: Upload the manual review artifact
-        if: github.event_name == 'workflow_dispatch' && (env.RUN_MODE == 'dry-run' || env.RUN_MODE == 'controlled')
+        if: steps.preflight.outputs.should_run == 'true' && github.event_name == 'workflow_dispatch' && (env.RUN_MODE == 'dry-run' || env.RUN_MODE == 'controlled')
         # actions/upload-artifact v4.6.2
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
@@ -132,7 +142,7 @@ jobs:
           retention-days: 3
 
       - name: Process snapshot intake and verified bridges
-        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled')
         env:
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
         run: |
@@ -150,7 +160,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit and push intake state before provider calls
-        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -168,7 +178,7 @@ jobs:
           git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Reset one failed stage without publishing
-        if: env.RUN_MODE == 'retry-stage'
+        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'retry-stage'
         env:
           REQUEST_JOB_ID: ${{ inputs.job_id }}
           REQUEST_STAGE: ${{ inputs.stage }}
@@ -182,7 +192,7 @@ jobs:
           --state state
 
       - name: Publish at most one queued job
-        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled'
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled')
         env:
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
           BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
@@ -210,7 +220,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit and push publication or reset state
-        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled' || env.RUN_MODE == 'retry-stage'
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled' || env.RUN_MODE == 'retry-stage')
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
