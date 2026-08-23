@@ -1342,6 +1342,123 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_555f901f041f4dec2d8b0ebc",
+      "sourceId": "soujava/vagas-java#1943",
+      "dataCommit": "c5793df4a99f4f0e1fc9fa21bded06abb2eb5451",
+      "dataHash": "11aeb0026969298d42cca9777ff847db522fb88935a010f7d73aacb1aa7cccb9",
+      "contentHash": "2b58198d69c87a8ea9b5d9382fffd7d066b698e56ff5c8a0b1bec05205c646a0",
+      "discoveredAt": "2026-08-23T13:00:59.673Z",
+      "createdAt": "2026-08-23T12:00:36Z",
+      "publicationCreatedAt": "2026-08-23T13:00:59.673Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-23T13:00:59.673Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_555f901f041f4dec2d8b0ebc",
+          "imageUrl": "https://openings.dev/jobs/gh_555f901f041f4dec2d8b0ebc/opengraph-image.png",
+          "pngHash": "47a3afefb1e3b1c5f40de734169f2d80a494d81aaabfc171f2bfaae2be1a1f1d"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_c6c1b2e2e7fbfcfa405a9c88",
+      "sourceId": "awesome-jobs/jobs#5029",
+      "dataCommit": "c5793df4a99f4f0e1fc9fa21bded06abb2eb5451",
+      "dataHash": "11aeb0026969298d42cca9777ff847db522fb88935a010f7d73aacb1aa7cccb9",
+      "contentHash": "24f7da2230192b4a141baf8d593056b8f8433b44963a94383b03b832f5953235",
+      "discoveredAt": "2026-08-23T13:00:59.673Z",
+      "createdAt": "2026-08-23T09:49:38Z",
+      "publicationCreatedAt": "2026-08-23T13:00:59.673Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-23T13:00:59.673Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_c6c1b2e2e7fbfcfa405a9c88",
+          "imageUrl": "https://openings.dev/jobs/gh_c6c1b2e2e7fbfcfa405a9c88/opengraph-image.png",
+          "pngHash": "7d83aa1e19c3adf990e49e6696ac7d07b0f2fff6ace9974797ba016d94762a4a"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_a50de92f39a572b83ad2af68",
+      "sourceId": "awesome-jobs/vietnam#5029",
+      "dataCommit": "c5793df4a99f4f0e1fc9fa21bded06abb2eb5451",
+      "dataHash": "11aeb0026969298d42cca9777ff847db522fb88935a010f7d73aacb1aa7cccb9",
+      "contentHash": "24f7da2230192b4a141baf8d593056b8f8433b44963a94383b03b832f5953235",
+      "discoveredAt": "2026-08-23T13:00:59.673Z",
+      "createdAt": "2026-08-23T09:49:38Z",
+      "publicationCreatedAt": "2026-08-23T13:00:59.673Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-23T13:00:59.673Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_a50de92f39a572b83ad2af68",
+          "imageUrl": "https://openings.dev/jobs/gh_a50de92f39a572b83ad2af68/opengraph-image.png",
+          "pngHash": "7d83aa1e19c3adf990e49e6696ac7d07b0f2fff6ace9974797ba016d94762a4a"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
