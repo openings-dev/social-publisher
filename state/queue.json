@@ -1518,6 +1518,84 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_95d6733bc43f96bf3dc20972",
+      "sourceId": "datascience-br/vagas#209",
+      "dataCommit": "9bd5cc9b89b4d2fd3d1240da147d07f024dd5c5f",
+      "dataHash": "92f4c18f265763762a06331673c0c548bc502e7402ab4ef4e954c319fb73ffe5",
+      "contentHash": "80a73e2df734337bd8005746c24e7941f9d7929dc069286a0410ba63ebc277b6",
+      "discoveredAt": "2026-08-23T18:47:50.572Z",
+      "createdAt": "2026-08-23T18:00:19Z",
+      "publicationCreatedAt": "2026-08-23T18:47:50.572Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-23T18:47:50.572Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_95d6733bc43f96bf3dc20972",
+          "imageUrl": "https://openings.dev/jobs/gh_95d6733bc43f96bf3dc20972/opengraph-image.png",
+          "pngHash": "bd77c5c0e6b04d682f906099e96b7346a4ff60e661f6ce41e506152e35ca321d"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_dceb1f77ff2716a161057c7f",
+      "sourceId": "datascience-br/vagas#208",
+      "dataCommit": "9bd5cc9b89b4d2fd3d1240da147d07f024dd5c5f",
+      "dataHash": "92f4c18f265763762a06331673c0c548bc502e7402ab4ef4e954c319fb73ffe5",
+      "contentHash": "1ce4ee2034bcabaa2a478973be11f2b0fa6d2edaf390aa84142332ada94e4e9c",
+      "discoveredAt": "2026-08-23T18:47:50.572Z",
+      "createdAt": "2026-08-23T17:15:29Z",
+      "publicationCreatedAt": "2026-08-23T18:47:50.572Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-23T18:47:50.572Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_dceb1f77ff2716a161057c7f",
+          "imageUrl": "https://openings.dev/jobs/gh_dceb1f77ff2716a161057c7f/opengraph-image.png",
+          "pngHash": "57053b015787bcc3d1a7eae512b92950967cc6f8cb4ad433cf7d7efdfd60eb17"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
