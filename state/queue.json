@@ -755,20 +755,30 @@
         }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-24T20:47:38.770Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mtn5wn4vaj2z",
+          "cid": "bafyreieub7qbee6ew27rfn65vd5ocsbnt5wf2rueutw6crmlv27fv6mdze",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mtn5wn4vaj2z"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-24T20:47:38.770Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117152446086024762",
+          "url": "https://mastodon.social/@openingshq/117152446086024762",
+          "cardStatus": "pending"
+        }
       }
     },
     {
