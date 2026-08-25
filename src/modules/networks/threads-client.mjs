@@ -43,6 +43,20 @@ async function findRecentThread({ apiUrl, canonicalUrl, accessToken, fetchImpl }
     && thread.text.includes(canonicalUrl)) ?? null;
 }
 
+async function findThreadById({ apiUrl, id, accessToken, fetchImpl }) {
+  const url = new URL(`${apiUrl.replace(/\/$/u, '')}/${encodeURIComponent(id)}`);
+  url.searchParams.set('fields', 'id,permalink');
+  try {
+    const response = await fetchJson(url, {
+      fetchImpl,
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    return typeof response?.id === 'string' ? response : null;
+  } catch {
+    return null;
+  }
+}
+
 export async function publishToThreads({
   job,
   post,
@@ -88,5 +102,11 @@ export async function publishToThreads({
   if (typeof created?.id !== 'string' || created.id.length === 0) {
     throw publicationError('threads_publication', 'Threads publication returned invalid data');
   }
-  return normalizedResult({ id: created.id }, 'published');
+  const published = await findThreadById({
+    apiUrl,
+    id: created.id,
+    accessToken,
+    fetchImpl,
+  });
+  return normalizedResult(published ?? { id: created.id }, 'published');
 }

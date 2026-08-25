@@ -1490,6 +1490,12 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
       published = true;
       return jsonResponse({ id: 'thread-1' });
     }
+    if (parsed.pathname === '/v1.0/thread-1') {
+      return jsonResponse({
+        id: 'thread-1',
+        permalink: 'https://www.threads.net/@openingshq/post/thread-1',
+      });
+    }
     return jsonResponse({ error: 'missing' }, 404);
   };
 
@@ -1501,6 +1507,7 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
   });
   assert.equal(result.status, 'published');
   assert.equal(result.id, 'thread-1');
+  assert.equal(result.url, 'https://www.threads.net/@openingshq/post/thread-1');
   const publication = calls.find((call) => call.options.method === 'POST');
   const body = new URLSearchParams(publication.options.body);
   assert.equal(body.get('media_type'), 'TEXT');
