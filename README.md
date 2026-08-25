@@ -67,11 +67,11 @@ Repository variables:
 - `MASTODON_BASE_URL=https://mastodon.social`
 - `WEB_DEPLOY_REPOSITORY=openings-dev/web-deploy`
 - `SOCIAL_AUTO_PUBLISH=false` until controlled rollout passes
-- `THREADS_AUTO_PUBLISH=false` until the Threads token is verified
-- `INSTAGRAM_AUTO_PUBLISH=false` until the Instagram token and image flow are verified
+- `THREADS_AUTO_PUBLISH=false` until the controlled Threads rollout passes
+- `INSTAGRAM_AUTO_PUBLISH=false` until the controlled Instagram rollout passes
 - `THREADS_API_URL=https://graph.threads.net/v1.0`
 - `INSTAGRAM_API_ORIGIN=https://graph.instagram.com`
-- `META_GRAPH_VERSION` — the current supported Graph API version, such as `v23.0`
+- `META_GRAPH_VERSION` — the supported Graph API version (`v26.0`)
 - `INSTAGRAM_USER_ID` — the numeric ID returned by Instagram Login
 
 Repository secrets:
