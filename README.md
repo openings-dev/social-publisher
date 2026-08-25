@@ -2,7 +2,7 @@
 
 `social-publisher` turns genuinely new jobs indexed by [openings.dev](https://openings.dev) into useful, source-grounded posts for the official [Bluesky](https://bsky.app/profile/openingshq.bsky.social), [Mastodon](https://mastodon.social/@openingshq), [Threads](https://www.threads.com/@openingshq), and [Instagram](https://www.instagram.com/openingshq/) accounts.
 
-The service is intentionally small and cautious. It publishes at most one queued job every two hours, never backfills older issues added through community discovery, and verifies a job-specific Open Graph page before sending either social post.
+The service is intentionally small and cautious. It publishes at most one queued job every two hours, never backfills older issues added through community discovery, and verifies a job-specific Open Graph page before sending a social post.
 
 ## How it works
 
@@ -10,7 +10,7 @@ The service is intentionally small and cautious. It publishes at most one queued
 2. Detect genuinely new open issues and content changes to known jobs.
 3. Render `jobs/<id>/index.html` and `jobs/<id>/opengraph-image.png`, then request an incremental deployment from [`openings-dev/web-deploy`](https://github.com/openings-dev/web-deploy). That deploy also creates the public JPEG required by Instagram.
 4. Publish the canonical link through every enabled channel with provider-specific duplicate reconciliation.
-5. Commit sanitized queue and publication state so interrupted runs can resume safely.
+5. Record provider IDs and permanent post URLs when available, then commit sanitized queue and publication state so interrupted runs can resume safely.
 
 Bluesky receives an explicit external card. Mastodon and Threads receive the canonical link so the public Open Graph preview can resolve naturally. Instagram receives the verified JPEG plus concise job copy. X is not included because its write API is not part of the free rollout.
 
@@ -23,6 +23,8 @@ Bluesky receives an explicit external card. Mastodon and Threads receive the can
 - Social publication starts only after the public HTML and image match the locally generated hashes.
 - Per-network state prevents a successful channel from being posted twice when the other fails.
 - Instagram and Threads are independent opt-ins. Jobs already known when either channel is activated are never backfilled.
+- Enabling a channel affects only jobs enqueued afterward; terminal stages on historical queue items are never reopened.
+- A missing permalink never retries an already-created post. The provider ID remains durable and a later duplicate reconciliation can recover the URL.
 - Errors stored in Git are categorized and sanitized; credentials and raw provider payloads are never tracked.
 
 ## Local validation
@@ -67,8 +69,8 @@ Repository variables:
 - `MASTODON_BASE_URL=https://mastodon.social`
 - `WEB_DEPLOY_REPOSITORY=openings-dev/web-deploy`
 - `SOCIAL_AUTO_PUBLISH=false` until controlled rollout passes
-- `THREADS_AUTO_PUBLISH=false` until the controlled Threads rollout passes
-- `INSTAGRAM_AUTO_PUBLISH=false` until the controlled Instagram rollout passes
+- `THREADS_AUTO_PUBLISH=true` after the controlled Threads rollout passes
+- `INSTAGRAM_AUTO_PUBLISH=true` after the controlled Instagram rollout passes
 - `THREADS_API_URL=https://graph.threads.net/v1.0`
 - `INSTAGRAM_API_ORIGIN=https://graph.instagram.com`
 - `META_GRAPH_VERSION` — the supported Graph API version (`v26.0`)
