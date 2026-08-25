@@ -66,25 +66,28 @@ export async function verifyPublicBridge({
       return mismatch('html_request_failed', allowMismatch);
     }
   }
-  if (!htmlResponse.ok) {
-    return mismatch(htmlResponse.status === 404 ? 'not_found' : 'html_http_error', allowMismatch);
-  }
-  if (!/^text\/html\b/iu.test(htmlResponse.headers.get('content-type') ?? '')) {
-    return mismatch('html_content_type_mismatch', allowMismatch);
-  }
-  const html = await htmlResponse.text();
-  const tags = collectTags(html);
-  if (findContent(tags, 'rel', 'canonical', 'href') !== canonicalUrl) {
-    return mismatch('canonical_url_mismatch', allowMismatch);
-  }
-  if (findContent(tags, 'property', 'og:url', 'content') !== canonicalUrl) {
-    return mismatch('open_graph_url_mismatch', allowMismatch);
-  }
-  if (findContent(tags, 'property', 'og:image', 'content') !== imageUrl) {
-    return mismatch('open_graph_image_mismatch', allowMismatch);
-  }
-  if (findContent(tags, 'name', 'openings:data-hash', 'content') !== contentHash) {
-    return mismatch('content_hash_mismatch', allowMismatch);
+  const edgeBlocked = htmlResponse.status === 403
+    && /cloudflare/iu.test(htmlResponse.headers.get('server') ?? '');
+  if (!edgeBlocked) {
+    if (!htmlResponse.ok) {
+      return mismatch(htmlResponse.status === 404 ? 'not_found' : 'html_http_error', allowMismatch);
+    }
+    if (!/^text\/html\b/iu.test(htmlResponse.headers.get('content-type') ?? '')) {
+      return mismatch('html_content_type_mismatch', allowMismatch);
+    }
+    const tags = collectTags(await htmlResponse.text());
+    if (findContent(tags, 'rel', 'canonical', 'href') !== canonicalUrl) {
+      return mismatch('canonical_url_mismatch', allowMismatch);
+    }
+    if (findContent(tags, 'property', 'og:url', 'content') !== canonicalUrl) {
+      return mismatch('open_graph_url_mismatch', allowMismatch);
+    }
+    if (findContent(tags, 'property', 'og:image', 'content') !== imageUrl) {
+      return mismatch('open_graph_image_mismatch', allowMismatch);
+    }
+    if (findContent(tags, 'name', 'openings:data-hash', 'content') !== contentHash) {
+      return mismatch('content_hash_mismatch', allowMismatch);
+    }
   }
 
   let imageResponse;
@@ -145,5 +148,6 @@ export async function verifyPublicBridge({
     instagramImageUrl,
     contentHash,
     pngHash: expectedPngHash,
+    htmlVerification: edgeBlocked ? 'edge_blocked_assets_verified' : 'verified',
   });
 }

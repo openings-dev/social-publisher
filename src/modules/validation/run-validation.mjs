@@ -978,6 +978,46 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   assert.deepEqual(calls, [canonicalUrl, redirectedUrl, imageUrl, instagramImageUrl]);
 });
 
+validation('verifies exact public assets when Cloudflare blocks Node HTML requests', async () => {
+  const job = makeJob();
+  const png = await renderSocialCardPng(job, {
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+  });
+  const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
+  const redirectedUrl = `${canonicalUrl}/`;
+  const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
+  const instagramImage = await sharp(png).jpeg({ quality: 82 }).toBuffer();
+  const fetchImpl = async (url) => {
+    if (url === canonicalUrl) {
+      return new Response(null, { status: 301, headers: { location: redirectedUrl } });
+    }
+    if (url === redirectedUrl) {
+      return new Response('Bot Verification', {
+        status: 403,
+        headers: { 'content-type': 'text/html', server: 'cloudflare' },
+      });
+    }
+    if (url === imageUrl) {
+      return new Response(png, { status: 200, headers: { 'content-type': 'image/png' } });
+    }
+    if (url === instagramImageUrl) {
+      return new Response(instagramImage, { status: 200, headers: { 'content-type': 'image/jpeg' } });
+    }
+    return new Response('missing', { status: 404 });
+  };
+
+  const result = await verifyPublicBridge({
+    jobId: job.id,
+    contentHash: job.contentHash,
+    expectedPngHash: sha256(png),
+    fetchImpl,
+  });
+
+  assert.equal(result.matches, true);
+  assert.equal(result.htmlVerification, 'edge_blocked_assets_verified');
+});
+
 validation('rejects public bridge redirects outside the canonical job directory', async () => {
   const job = makeJob();
   const mismatch = await verifyPublicBridge({
