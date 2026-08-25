@@ -3877,6 +3877,59 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_9778e2bda5326d36dc502ed4",
+      "sourceId": "frontendbr/vagas#8544",
+      "dataCommit": "0436df2dcce9732aa90c64d0b304457380ec5397",
+      "dataHash": "e158e9122a869f3dc7b3753be6f476388aef9ed8c6d6bef540f197451a1ce8fa",
+      "contentHash": "c2c7ebef22e3c388d11b2950373d7ef7cf3b63df52a0f473e778a9fd31a83a5f",
+      "discoveredAt": "2026-08-25T17:52:52.114Z",
+      "createdAt": "2026-08-20T12:00:38Z",
+      "publicationCreatedAt": "2026-08-25T17:52:52.114Z",
+      "bridge": {
+        "status": "retryable",
+        "attempts": 1,
+        "updatedAt": "2026-08-25T17:52:52.114Z",
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-08-25T17:52:52.114Z"
+        },
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
