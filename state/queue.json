@@ -3811,6 +3811,62 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_f94a8703a9a2cacb14801ef7",
+      "sourceId": "soujava/vagas-java#1945",
+      "dataCommit": "0436df2dcce9732aa90c64d0b304457380ec5397",
+      "dataHash": "e158e9122a869f3dc7b3753be6f476388aef9ed8c6d6bef540f197451a1ce8fa",
+      "contentHash": "8ffc5f1616bf70736efe1fca9ddc628e90aa5d9094be76c0d8a94281cfadf388",
+      "discoveredAt": "2026-08-25T16:54:33.674Z",
+      "createdAt": "2026-08-25T13:14:52Z",
+      "publicationCreatedAt": "2026-08-25T16:54:33.674Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-25T16:54:33.674Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_f94a8703a9a2cacb14801ef7",
+          "imageUrl": "https://openings.dev/jobs/gh_f94a8703a9a2cacb14801ef7/opengraph-image.png",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_f94a8703a9a2cacb14801ef7/instagram-image.jpg",
+          "pngHash": "b1fc058630215d61569a08f97a7c0a49d2f0bc666eade49091205a2ebc423439"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
