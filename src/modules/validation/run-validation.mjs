@@ -1550,6 +1550,12 @@ validation('publishes and reconciles one Instagram image by canonical job URL', 
       published = true;
       return jsonResponse({ id: 'media-1' });
     }
+    if (parsed.pathname === '/v23.0/media-1') {
+      return jsonResponse({
+        id: 'media-1',
+        permalink: 'https://www.instagram.com/p/media-1/',
+      });
+    }
     return jsonResponse({ error: 'missing' }, 404);
   };
 
@@ -1565,6 +1571,7 @@ validation('publishes and reconciles one Instagram image by canonical job URL', 
   });
   assert.equal(result.status, 'published');
   assert.equal(result.id, 'media-1');
+  assert.equal(result.url, 'https://www.instagram.com/p/media-1/');
   const container = calls.find((call) => new URL(call.url).pathname.endsWith('/media') && call.options.method === 'POST');
   const body = new URLSearchParams(container.options.body);
   assert.equal(body.get('image_url'), imageUrl);

@@ -60,6 +60,20 @@ async function findRecentMedia({ base, userId, canonicalUrl, accessToken, fetchI
     && media.caption.includes(canonicalUrl)) ?? null;
 }
 
+async function findMediaById({ base, id, accessToken, fetchImpl }) {
+  const url = new URL(`${base}/${encodeURIComponent(id)}`);
+  url.searchParams.set('fields', 'id,permalink');
+  try {
+    const response = await fetchJson(url, {
+      fetchImpl,
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    return typeof response?.id === 'string' ? response : null;
+  } catch {
+    return null;
+  }
+}
+
 async function waitUntilContainerReady({
   base,
   containerId,
@@ -180,5 +194,11 @@ export async function publishToInstagram({
   if (typeof published?.id !== 'string' || published.id.length === 0) {
     throw publicationError('instagram_publication', 'Instagram publication returned invalid data');
   }
-  return normalizedResult({ id: published.id }, 'published');
+  const media = await findMediaById({
+    base,
+    id: published.id,
+    accessToken,
+    fetchImpl,
+  });
+  return normalizedResult(media ?? { id: published.id }, 'published');
 }
