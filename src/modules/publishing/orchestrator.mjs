@@ -1,4 +1,5 @@
 import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
+import { DEFAULT_SOCIAL_CHANNELS, SOCIAL_CHANNELS } from '../../config/constants.mjs';
 import { isEligibleNewJob } from '../intake/eligibility.mjs';
 import { formatSocialPost } from '../render/format-job.mjs';
 import {
@@ -15,8 +16,8 @@ import {
   validateSnapshotReference,
 } from '../state/state-model.mjs';
 
-const PUBLISHABLE_CHANNELS = Object.freeze(['bluesky', 'mastodon']);
 const READY_STATUSES = new Set(['pending', 'retryable']);
+const COMPLETED_STATUSES = new Set(['published', 'skipped_disabled', 'skipped_before_activation']);
 
 function snapshotReference(snapshot) {
   return validateSnapshotReference({
@@ -49,7 +50,8 @@ function sameSnapshot(left, right) {
 
 function safeErrorCode(error, stage) {
   const text = error instanceof Error ? `${error.name} ${error.message}`.toLowerCase() : '';
-  if (typeof error?.code === 'string' && /^bluesky_[a-z0-9_]{1,48}$/u.test(error.code)) {
+  if (typeof error?.code === 'string'
+    && new RegExp(`^${stage}_[a-z0-9_]{1,48}$`, 'u').test(error.code)) {
     return error.code;
   }
   if (/rate.?limit|too many requests|\b429\b/.test(text)) {
@@ -128,6 +130,8 @@ function completePublication(publicationsState, item, at) {
     completedAt: at,
     bluesky: item.bluesky.result,
     mastodon: item.mastodon.result,
+    threads: item.threads.result,
+    instagram: item.instagram.result,
   };
   return validatePublicationsState({
     ...publicationsState,
@@ -145,6 +149,7 @@ export async function processIntakeSnapshots({
   publicationsState,
   snapshots,
   publishBridge,
+  enabledChannels = DEFAULT_SOCIAL_CHANNELS,
   now = new Date().toISOString(),
 }) {
   let nextIntake = validateIntakeState(intakeState);
@@ -195,7 +200,12 @@ export async function processIntakeSnapshots({
 
       if (reason === 'new' && isEligibleNewJob(job, previous.generatedAt, publications)) {
         const beforeCount = nextQueue.items.length;
-        nextQueue = enqueueJob(nextQueue, { job, snapshot: current, discoveredAt: now });
+        nextQueue = enqueueJob(nextQueue, {
+          job,
+          snapshot: current,
+          discoveredAt: now,
+          enabledChannels,
+        });
         if (nextQueue.items.length > beforeCount) {
           queuedCount += 1;
         }
@@ -242,6 +252,9 @@ export async function processOnePublication({
   publishBridge,
   publishBluesky,
   publishMastodon,
+  publishThreads,
+  publishInstagram,
+  enabledChannels = DEFAULT_SOCIAL_CHANNELS,
   now = new Date().toISOString(),
   jobId,
 }) {
@@ -272,6 +285,7 @@ export async function processOnePublication({
       job: controlledJob,
       snapshot: currentSnapshot,
       discoveredAt: now,
+      enabledChannels,
     });
   }
 
@@ -315,14 +329,21 @@ export async function processOnePublication({
   }
 
   const post = formatSocialPost(job);
-  const publishers = { bluesky: publishBluesky, mastodon: publishMastodon };
-  for (const channel of PUBLISHABLE_CHANNELS) {
+  const publishers = {
+    bluesky: publishBluesky,
+    mastodon: publishMastodon,
+    threads: publishThreads,
+    instagram: publishInstagram,
+  };
+  for (const channel of SOCIAL_CHANNELS) {
     selected = findQueueItem(nextQueue, selected.jobId);
     nextQueue = await publishQueueStage({
       queueState: nextQueue,
       item: selected,
       stage: channel,
-      publish: publishers[channel],
+      publish: publishers[channel] ?? (async () => {
+        throw new Error(`${channel} publisher is unavailable`);
+      }),
       post,
       job,
       now,
@@ -330,7 +351,7 @@ export async function processOnePublication({
   }
 
   selected = findQueueItem(nextQueue, selected.jobId);
-  if (selected.bluesky.status === 'published' && selected.mastodon.status === 'published') {
+  if (SOCIAL_CHANNELS.every((channel) => COMPLETED_STATUSES.has(selected[channel].status))) {
     nextPublications = completePublication(nextPublications, selected, now);
     return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'completed', selectedJobId };
   }

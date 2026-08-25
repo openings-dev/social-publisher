@@ -1,9 +1,20 @@
-import { MAX_CHANNEL_ATTEMPTS, STARVATION_THRESHOLD_MS } from '../../config/constants.mjs';
+import {
+  DEFAULT_SOCIAL_CHANNELS,
+  MAX_CHANNEL_ATTEMPTS,
+  SOCIAL_CHANNELS,
+  STARVATION_THRESHOLD_MS,
+} from '../../config/constants.mjs';
 import { validateIntakeState, validateQueueState } from './state-model.mjs';
 
-const STAGES = new Set(['bridge', 'bluesky', 'mastodon']);
+const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS]);
 const READY_STATUSES = new Set(['pending', 'retryable']);
-const TERMINAL_STATUSES = new Set(['published', 'failed', 'skipped_closed']);
+const TERMINAL_STATUSES = new Set([
+  'published',
+  'failed',
+  'skipped_closed',
+  'skipped_disabled',
+  'skipped_before_activation',
+]);
 const ALLOWED_TRANSITIONS = Object.freeze({
   pending: new Set(['publishing', 'retryable', 'failed', 'skipped_closed']),
   publishing: new Set(['published', 'retryable', 'failed']),
@@ -11,11 +22,13 @@ const ALLOWED_TRANSITIONS = Object.freeze({
   published: new Set(),
   failed: new Set(),
   skipped_closed: new Set(),
+  skipped_disabled: new Set(),
+  skipped_before_activation: new Set(),
 });
 
-function stageState() {
+function stageState(status = 'pending') {
   return {
-    status: 'pending',
+    status,
     attempts: 0,
     updatedAt: null,
     lastError: null,
@@ -45,13 +58,19 @@ function replaceItem(queueState, jobId, update) {
   return validateQueueState({ ...queueState, items });
 }
 
-export function enqueueJob(queueState, { job, snapshot, discoveredAt }) {
+export function enqueueJob(queueState, {
+  job,
+  snapshot,
+  discoveredAt,
+  enabledChannels = DEFAULT_SOCIAL_CHANNELS,
+}) {
   validateQueueState(queueState);
   if (queueState.items.some((item) => item.jobId === job.id)) {
     return queueState;
   }
   assertIsoDate(discoveredAt, 'discoveredAt');
   assertIsoDate(job.createdAt, 'job.createdAt');
+  const enabled = new Set(enabledChannels);
   const item = {
     jobId: job.id,
     sourceId: job.sourceId,
@@ -62,8 +81,10 @@ export function enqueueJob(queueState, { job, snapshot, discoveredAt }) {
     createdAt: job.createdAt,
     publicationCreatedAt: discoveredAt,
     bridge: stageState(),
-    bluesky: stageState(),
-    mastodon: stageState(),
+    ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => [
+      channel,
+      stageState(enabled.has(channel) ? 'pending' : 'skipped_disabled'),
+    ])),
   };
   return validateQueueState({ ...queueState, items: [...queueState.items, item] });
 }
@@ -167,14 +188,14 @@ export function markJobClosed(queueState, jobId, at) {
     return {
       ...item,
       bridge: closeStage(item.bridge),
-      bluesky: closeStage(item.bluesky),
-      mastodon: closeStage(item.mastodon),
+      ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => [channel, closeStage(item[channel])])),
     };
   });
 }
 
 function isReady(item) {
-  return [item.bridge, item.bluesky, item.mastodon].some((stage) => READY_STATUSES.has(stage.status));
+  return [item.bridge, ...SOCIAL_CHANNELS.map((channel) => item[channel])]
+    .some((stage) => READY_STATUSES.has(stage.status));
 }
 
 export function selectNextQueueItem(queueState, now = new Date().toISOString()) {

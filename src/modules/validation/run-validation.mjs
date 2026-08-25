@@ -39,6 +39,8 @@ import {
   mastodonIdempotencyKey,
   publishToMastodon,
 } from '../networks/mastodon-client.mjs';
+import { publishToInstagram } from '../networks/instagram-client.mjs';
+import { publishToThreads } from '../networks/threads-client.mjs';
 import {
   buildRepositoryDispatchRequest,
   requestIncrementalBridgeDeployment,
@@ -81,7 +83,7 @@ function validation(name, run) {
 }
 
 validation('exports the approved immutable constants', () => {
-  assert.equal(STATE_SCHEMA_VERSION, 1);
+  assert.equal(STATE_SCHEMA_VERSION, 2);
   assert.equal(OPENINGS_ORIGIN, 'https://openings.dev');
   assert.equal(MAX_CHANNEL_ATTEMPTS, 3);
   assert.equal(STARVATION_THRESHOLD_MS, 24 * 60 * 60 * 1000);
@@ -201,10 +203,46 @@ validation('enables scheduled publication only for exact true with every credent
   );
 });
 
+validation('enables Meta channels independently and requires only their own credentials', () => {
+  const base = {
+    SOCIAL_AUTO_PUBLISH: 'true',
+    WEB_DEPLOY_TOKEN: 'github-fine-grained-token',
+    BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+    BLUESKY_APP_PASSWORD: 'app-secret',
+    MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+  };
+  const disabled = readEnvironment({ env: base, mode: 'scheduled' });
+  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'mastodon']);
+
+  const threads = readEnvironment({
+    env: { ...base, THREADS_AUTO_PUBLISH: 'true', THREADS_ACCESS_TOKEN: 'threads-secret' },
+    mode: 'scheduled',
+  });
+  assert.deepEqual(threads.enabledChannels, ['bluesky', 'mastodon', 'threads']);
+  assert.throws(
+    () => readEnvironment({ env: { ...base, THREADS_AUTO_PUBLISH: 'true' }, mode: 'scheduled' }),
+    /THREADS_ACCESS_TOKEN/u,
+  );
+
+  const instagram = readEnvironment({
+    env: {
+      ...base,
+      INSTAGRAM_AUTO_PUBLISH: 'true',
+      INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+      INSTAGRAM_USER_ID: '17841400000000000',
+      META_GRAPH_VERSION: 'v23.0',
+    },
+    mode: 'scheduled',
+  });
+  assert.deepEqual(instagram.enabledChannels, ['bluesky', 'mastodon', 'instagram']);
+  assert.equal(instagram.instagram.userId, '17841400000000000');
+  assert.equal(instagram.instagram.apiVersion, 'v23.0');
+});
+
 validation('skips disabled and up-to-date schedules before expensive setup', () => {
   const dataHash = 'a'.repeat(64);
   const intakeState = {
-    schemaVersion: 1,
+    schemaVersion: STATE_SCHEMA_VERSION,
     processedSnapshot: {
       commit: '1'.repeat(40),
       generatedAt: '2026-08-23T12:00:00.000Z',
@@ -213,7 +251,7 @@ validation('skips disabled and up-to-date schedules before expensive setup', () 
     pendingBridges: [],
     removedJobs: [],
   };
-  const queueState = { schemaVersion: 1, items: [] };
+  const queueState = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
 
   assert.deepEqual(decideScheduledWork({
     publishEnabled: false,
@@ -238,7 +276,7 @@ validation('skips disabled and up-to-date schedules before expensive setup', () 
 validation('runs schedules while social or bridge work is ready', () => {
   const dataHash = 'a'.repeat(64);
   const intakeState = {
-    schemaVersion: 1,
+    schemaVersion: STATE_SCHEMA_VERSION,
     processedSnapshot: {
       commit: '1'.repeat(40),
       generatedAt: '2026-08-23T12:00:00.000Z',
@@ -254,7 +292,7 @@ validation('runs schedules while social or bridge work is ready', () => {
     dataHash,
     jobs: [job],
   });
-  const queueState = enqueueJob({ schemaVersion: 1, items: [] }, {
+  const queueState = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
     job,
     snapshot,
     discoveredAt: '2026-08-23T12:01:00.000Z',
@@ -271,7 +309,7 @@ validation('runs schedules while social or bridge work is ready', () => {
   assert.deepEqual(decideScheduledWork({
     publishEnabled: true,
     intakeState: bridgeState,
-    queueState: { schemaVersion: 1, items: [] },
+    queueState: { schemaVersion: STATE_SCHEMA_VERSION, items: [] },
     currentDataHash: dataHash,
   }), { shouldRun: true, reason: 'bridge_queued', queueDepth: 0 });
 });
@@ -286,7 +324,7 @@ validation('preflight avoids remote reads for queued work and fails open on mani
     jobs: [job],
   });
   const intakeState = {
-    schemaVersion: 1,
+    schemaVersion: STATE_SCHEMA_VERSION,
     processedSnapshot: {
       commit: snapshot.commit,
       generatedAt: snapshot.generatedAt,
@@ -295,7 +333,7 @@ validation('preflight avoids remote reads for queued work and fails open on mani
     pendingBridges: [],
     removedJobs: [],
   };
-  const queueState = enqueueJob({ schemaVersion: 1, items: [] }, {
+  const queueState = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
     job,
     snapshot,
     discoveredAt: '2026-08-23T12:01:00.000Z',
@@ -314,7 +352,7 @@ validation('preflight avoids remote reads for queued work and fails open on mani
     assert.deepEqual(queued, { shouldRun: true, reason: 'queued', queueDepth: 1 });
     assert.equal(fetchCalls, 0);
 
-    await saveStateFile(join(directory, 'queue.json'), { schemaVersion: 1, items: [] }, validateQueueState);
+    await saveStateFile(join(directory, 'queue.json'), { schemaVersion: STATE_SCHEMA_VERSION, items: [] }, validateQueueState);
     const unavailable = await runPreflight({
       eventName: 'schedule',
       publishEnabled: true,
@@ -333,17 +371,17 @@ validation('validates the tracked state schemas', async () => {
   const intake = await loadStateFile(join(repositoryRoot, 'state/intake.json'), validateIntakeState);
   const queue = await loadStateFile(join(repositoryRoot, 'state/queue.json'), validateQueueState);
   const publications = await loadStateFile(join(repositoryRoot, 'state/publications.json'), validatePublicationsState);
-  assert.equal(intake.schemaVersion, 1);
-  assert.equal(queue.schemaVersion, 1);
+  assert.equal(intake.schemaVersion, STATE_SCHEMA_VERSION);
+  assert.equal(queue.schemaVersion, STATE_SCHEMA_VERSION);
   assert.equal(Array.isArray(queue.items), true);
-  assert.equal(publications.schemaVersion, 1);
+  assert.equal(publications.schemaVersion, STATE_SCHEMA_VERSION);
   assert.equal(typeof publications.jobs, 'object');
 });
 
 validation('rejects unknown state versions, duplicates, and sensitive keys', () => {
   assert.throws(() => validateIntakeState({ schemaVersion: 99, processedSnapshot: null, pendingBridges: [], removedJobs: [] }), /schemaVersion/);
   assert.throws(
-    () => validateQueueState({ schemaVersion: 1, items: [{ jobId: 'gh_0123456789abcdef01234567' }, { jobId: 'gh_0123456789abcdef01234567' }] }),
+    () => validateQueueState({ schemaVersion: STATE_SCHEMA_VERSION, items: [{ jobId: 'gh_0123456789abcdef01234567' }, { jobId: 'gh_0123456789abcdef01234567' }] }),
     /duplicate/i,
   );
   assert.throws(() => assertNoSensitiveKeys({ nested: { accessToken: 'never-track-this' } }), /sensitive/i);
@@ -352,7 +390,7 @@ validation('rejects unknown state versions, duplicates, and sensitive keys', () 
 validation('writes state atomically with stable formatting', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'openings-social-publisher-state-'));
   const file = join(directory, 'queue.json');
-  const value = { schemaVersion: 1, items: [] };
+  const value = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
   try {
     await saveStateFile(file, value, validateQueueState);
     assert.equal(await readFile(file, 'utf8'), `${JSON.stringify(value, null, 2)}\n`);
@@ -485,12 +523,12 @@ validation('classifies new, changed, removed, and bridge-only work', () => {
 validation('enqueues only genuinely new open GitHub issues', () => {
   const previousGeneratedAt = '2026-08-20T10:00:00.000Z';
   const eligible = makeJob({ createdAt: '2026-08-20T10:00:01.000Z' });
-  assert.equal(isEligibleNewJob(eligible, previousGeneratedAt, { schemaVersion: 1, jobs: {} }), true);
-  assert.equal(isEligibleNewJob({ ...eligible, createdAt: previousGeneratedAt }, previousGeneratedAt, { schemaVersion: 1, jobs: {} }), false);
-  assert.equal(isEligibleNewJob({ ...eligible, issueState: 'closed' }, previousGeneratedAt, { schemaVersion: 1, jobs: {} }), false);
-  assert.equal(isEligibleNewJob({ ...eligible, sourceType: 'github-discussion' }, previousGeneratedAt, { schemaVersion: 1, jobs: {} }), false);
+  assert.equal(isEligibleNewJob(eligible, previousGeneratedAt, { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} }), true);
+  assert.equal(isEligibleNewJob({ ...eligible, createdAt: previousGeneratedAt }, previousGeneratedAt, { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} }), false);
+  assert.equal(isEligibleNewJob({ ...eligible, issueState: 'closed' }, previousGeneratedAt, { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} }), false);
+  assert.equal(isEligibleNewJob({ ...eligible, sourceType: 'github-discussion' }, previousGeneratedAt, { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} }), false);
   assert.equal(isEligibleNewJob(eligible, previousGeneratedAt, {
-    schemaVersion: 1,
+    schemaVersion: STATE_SCHEMA_VERSION,
     jobs: { [eligible.id]: { completedAt: '2026-08-20T11:00:00.000Z' } },
   }), false);
 });
@@ -507,15 +545,26 @@ function snapshotReference(overrides = {}) {
 validation('enqueues jobs and bridge refreshes idempotently', () => {
   const job = makeJob();
   const snapshot = snapshotReference();
-  const initialQueue = { schemaVersion: 1, items: [] };
+  const initialQueue = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
   const first = enqueueJob(initialQueue, { job, snapshot, discoveredAt: '2026-08-20T13:01:00.000Z' });
   const second = enqueueJob(first, { job, snapshot, discoveredAt: '2026-08-20T13:05:00.000Z' });
   assert.equal(second.items.length, 1);
   assert.equal(second.items[0].discoveredAt, '2026-08-20T13:01:00.000Z');
   assert.equal(second.items[0].bluesky.status, 'pending');
   assert.equal(second.items[0].mastodon.status, 'pending');
+  assert.equal(second.items[0].threads.status, 'skipped_disabled');
+  assert.equal(second.items[0].instagram.status, 'skipped_disabled');
 
-  const intake = { schemaVersion: 1, processedSnapshot: null, pendingBridges: [], removedJobs: [] };
+  const withMeta = enqueueJob(initialQueue, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+    enabledChannels: ['bluesky', 'mastodon', 'threads', 'instagram'],
+  });
+  assert.equal(withMeta.items[0].threads.status, 'pending');
+  assert.equal(withMeta.items[0].instagram.status, 'pending');
+
+  const intake = { schemaVersion: STATE_SCHEMA_VERSION, processedSnapshot: null, pendingBridges: [], removedJobs: [] };
   const withBridge = enqueueBridgeWork(intake, { job, snapshot, reason: 'new' });
   const refreshed = enqueueBridgeWork(withBridge, {
     job: { ...job, contentHash: 'b'.repeat(64) },
@@ -529,7 +578,7 @@ validation('enqueues jobs and bridge refreshes idempotently', () => {
 
 validation('keeps network transitions independent and caps attempts', () => {
   const job = makeJob();
-  let queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
     job,
     snapshot: snapshotReference(),
     discoveredAt: '2026-08-20T13:01:00.000Z',
@@ -564,7 +613,7 @@ validation('keeps network transitions independent and caps attempts', () => {
 validation('selects newest work unless an older item is starving', () => {
   const oldJob = makeJob({ id: 'gh_111111111111111111111111', createdAt: '2026-08-18T10:00:00.000Z' });
   const newJob = makeJob({ id: 'gh_222222222222222222222222', createdAt: '2026-08-20T12:00:00.000Z' });
-  let queue = { schemaVersion: 1, items: [] };
+  let queue = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
   queue = enqueueJob(queue, { job: oldJob, snapshot: snapshotReference(), discoveredAt: '2026-08-20T10:00:00.000Z' });
   queue = enqueueJob(queue, { job: newJob, snapshot: snapshotReference(), discoveredAt: '2026-08-20T12:30:00.000Z' });
   assert.equal(selectNextQueueItem(queue, '2026-08-20T14:00:00.000Z').jobId, newJob.id);
@@ -575,7 +624,7 @@ validation('selects newest work unless an older item is starving', () => {
 
 validation('marks a closed queued job without publishing either channel', () => {
   const job = makeJob();
-  let queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
     job,
     snapshot: snapshotReference(),
     discoveredAt: '2026-08-20T13:01:00.000Z',
@@ -584,6 +633,8 @@ validation('marks a closed queued job without publishing either channel', () => 
   assert.equal(queue.items[0].bridge.status, 'skipped_closed');
   assert.equal(queue.items[0].bluesky.status, 'skipped_closed');
   assert.equal(queue.items[0].mastodon.status, 'skipped_closed');
+  assert.equal(queue.items[0].threads.status, 'skipped_disabled');
+  assert.equal(queue.items[0].instagram.status, 'skipped_disabled');
   assert.equal(selectNextQueueItem(queue, '2026-08-20T14:00:00.000Z'), null);
 });
 
@@ -1169,7 +1220,7 @@ validation('persists safe provider stage codes without provider details', async 
     dataHash: 'f'.repeat(64),
     jobs: [job],
   });
-  const queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+  const queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
     job,
     snapshot,
     discoveredAt: '2026-08-20T13:01:00.000Z',
@@ -1178,7 +1229,7 @@ validation('persists safe provider stage codes without provider details', async 
   providerError.code = 'bluesky_thumbnail_upload';
   const result = await processOnePublication({
     queueState: queue,
-    publicationsState: { schemaVersion: 1, jobs: {} },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
     currentSnapshot: snapshot,
     publishBridge: async () => ({ status: 'deployed' }),
     publishBluesky: async () => { throw providerError; },
@@ -1343,6 +1394,111 @@ validation('records a delayed Mastodon PreviewCard without retrying the status',
   assert.equal(unrelatedResult.cardStatus, 'pending');
 });
 
+validation('publishes and reconciles a link-preview Threads post', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const calls = [];
+  let published = false;
+  const fetchImpl = async (url, options = {}) => {
+    calls.push({ url: String(url), options });
+    const parsed = new URL(url);
+    if (parsed.pathname === '/v1.0/me/threads' && options.method !== 'POST') {
+      return jsonResponse({
+        data: published ? [{ id: 'thread-1', text: post.text, permalink: 'https://www.threads.net/@openingshq/post/thread-1' }] : [],
+      });
+    }
+    if (parsed.pathname === '/v1.0/me/threads' && options.method === 'POST') {
+      published = true;
+      return jsonResponse({ id: 'thread-1' });
+    }
+    return jsonResponse({ error: 'missing' }, 404);
+  };
+
+  const result = await publishToThreads({
+    job,
+    post,
+    accessToken: 'threads-secret',
+    fetchImpl,
+  });
+  assert.equal(result.status, 'published');
+  assert.equal(result.id, 'thread-1');
+  const publication = calls.find((call) => call.options.method === 'POST');
+  const body = new URLSearchParams(publication.options.body);
+  assert.equal(body.get('media_type'), 'TEXT');
+  assert.equal(body.get('text'), post.text);
+  assert.equal(body.get('link_attachment'), post.canonicalUrl);
+  assert.equal(body.get('auto_publish_text'), 'true');
+  assert.equal(publication.options.headers.Authorization, 'Bearer threads-secret');
+
+  const reconciled = await publishToThreads({
+    job,
+    post,
+    accessToken: 'threads-secret',
+    fetchImpl,
+  });
+  assert.equal(reconciled.status, 'reconciled');
+  assert.equal(calls.filter((call) => call.options.method === 'POST').length, 1);
+});
+
+validation('publishes and reconciles one Instagram image by canonical job URL', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const imageUrl = `${post.canonicalUrl}/instagram-image.jpg`;
+  const calls = [];
+  let published = false;
+  const fetchImpl = async (url, options = {}) => {
+    calls.push({ url: String(url), options });
+    const parsed = new URL(url);
+    if (parsed.pathname === '/v23.0/17841400000000000/media' && options.method !== 'POST') {
+      return jsonResponse({
+        data: published ? [{ id: 'media-1', caption: `New opening\n${post.canonicalUrl}`, permalink: 'https://www.instagram.com/p/media-1/' }] : [],
+      });
+    }
+    if (parsed.pathname === '/v23.0/17841400000000000/media' && options.method === 'POST') {
+      return jsonResponse({ id: 'container-1' });
+    }
+    if (parsed.pathname === '/v23.0/container-1') {
+      return jsonResponse({ id: 'container-1', status_code: 'FINISHED' });
+    }
+    if (parsed.pathname === '/v23.0/17841400000000000/media_publish') {
+      published = true;
+      return jsonResponse({ id: 'media-1' });
+    }
+    return jsonResponse({ error: 'missing' }, 404);
+  };
+
+  const result = await publishToInstagram({
+    job,
+    post,
+    imageUrl,
+    accessToken: 'instagram-secret',
+    userId: '17841400000000000',
+    apiVersion: 'v23.0',
+    fetchImpl,
+    sleep: async () => {},
+  });
+  assert.equal(result.status, 'published');
+  assert.equal(result.id, 'media-1');
+  const container = calls.find((call) => new URL(call.url).pathname.endsWith('/media') && call.options.method === 'POST');
+  const body = new URLSearchParams(container.options.body);
+  assert.equal(body.get('image_url'), imageUrl);
+  assert.match(body.get('caption'), new RegExp(post.canonicalUrl));
+  assert.equal(container.options.headers.Authorization, 'Bearer instagram-secret');
+
+  const reconciled = await publishToInstagram({
+    job,
+    post,
+    imageUrl,
+    accessToken: 'instagram-secret',
+    userId: '17841400000000000',
+    apiVersion: 'v23.0',
+    fetchImpl,
+    sleep: async () => {},
+  });
+  assert.equal(reconciled.status, 'reconciled');
+  assert.equal(calls.filter((call) => new URL(call.url).pathname.endsWith('/media_publish')).length, 1);
+});
+
 function makeLoadedSnapshot({ commit, generatedAt, dataHash, jobs }) {
   return {
     commit,
@@ -1362,9 +1518,9 @@ validation('baselines the current snapshot without bridge work or social backfil
   });
   const bridgeCalls = [];
   const result = await processIntakeSnapshots({
-    intakeState: { schemaVersion: 1, processedSnapshot: null, pendingBridges: [], removedJobs: [] },
-    queueState: { schemaVersion: 1, items: [] },
-    publicationsState: { schemaVersion: 1, jobs: {} },
+    intakeState: { schemaVersion: STATE_SCHEMA_VERSION, processedSnapshot: null, pendingBridges: [], removedJobs: [] },
+    queueState: { schemaVersion: STATE_SCHEMA_VERSION, items: [] },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
     snapshots: [current],
     publishBridge: async (input) => bridgeCalls.push(input),
     now: '2026-08-20T13:01:00.000Z',
@@ -1405,13 +1561,13 @@ validation('deploys every new or changed bridge but queues only genuinely new is
   const bridgeCalls = [];
   const result = await processIntakeSnapshots({
     intakeState: {
-      schemaVersion: 1,
+      schemaVersion: STATE_SCHEMA_VERSION,
       processedSnapshot: snapshotReference({ commit: previous.commit, generatedAt: previous.generatedAt, dataHash: previous.dataHash }),
       pendingBridges: [],
       removedJobs: [],
     },
-    queueState: { schemaVersion: 1, items: [] },
-    publicationsState: { schemaVersion: 1, jobs: {} },
+    queueState: { schemaVersion: STATE_SCHEMA_VERSION, items: [] },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
     snapshots: [previous, current],
     publishBridge: async ({ job, reason }) => {
       bridgeCalls.push(`${job.id}:${reason}`);
@@ -1439,7 +1595,7 @@ validation('deploys before providers and preserves partial success for a retry',
     dataHash: '3'.repeat(64),
     jobs: [job],
   });
-  const queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+  const queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
     job,
     snapshot,
     discoveredAt: '2026-08-20T13:01:00.000Z',
@@ -1447,7 +1603,7 @@ validation('deploys before providers and preserves partial success for a retry',
   const order = [];
   const first = await processOnePublication({
     queueState: queue,
-    publicationsState: { schemaVersion: 1, jobs: {} },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
     currentSnapshot: snapshot,
     publishBridge: async () => { order.push('bridge'); return { status: 'deployed' }; },
     publishBluesky: async ({ post }) => { order.push('bluesky'); return { status: 'published', uri: 'at://fixture', cid: 'cid', url: post.canonicalUrl }; },
@@ -1488,8 +1644,8 @@ validation('controlled publication can enqueue one explicit current job', async 
   });
   const calls = [];
   const result = await processOnePublication({
-    queueState: { schemaVersion: 1, items: [] },
-    publicationsState: { schemaVersion: 1, jobs: {} },
+    queueState: { schemaVersion: STATE_SCHEMA_VERSION, items: [] },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
     currentSnapshot: snapshot,
     publishBridge: async () => { calls.push('bridge'); return { status: 'deployed' }; },
     publishBluesky: async () => { calls.push('bluesky'); return { status: 'published' }; },
@@ -1513,7 +1669,7 @@ validation('controlled publication never republishes a completed job', async () 
     jobs: [job],
   });
   const publications = {
-    schemaVersion: 1,
+    schemaVersion: STATE_SCHEMA_VERSION,
     jobs: {
       [job.id]: {
         status: 'completed',
@@ -1528,7 +1684,7 @@ validation('controlled publication never republishes a completed job', async () 
   };
   const calls = [];
   const result = await processOnePublication({
-    queueState: { schemaVersion: 1, items: [] },
+    queueState: { schemaVersion: STATE_SCHEMA_VERSION, items: [] },
     publicationsState: publications,
     currentSnapshot: snapshot,
     publishBridge: async () => { calls.push('bridge'); },
@@ -1553,7 +1709,7 @@ validation('rerenders changed queued work and skips jobs no longer open', async 
     dataHash: '4'.repeat(64),
     jobs: [before],
   });
-  let queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
     job: before,
     snapshot: previousSnapshot,
     discoveredAt: '2026-08-20T13:01:00.000Z',
@@ -1567,7 +1723,7 @@ validation('rerenders changed queued work and skips jobs no longer open', async 
   const rendered = [];
   const changed = await processOnePublication({
     queueState: queue,
-    publicationsState: { schemaVersion: 1, jobs: {} },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
     currentSnapshot,
     publishBridge: async ({ job }) => { rendered.push(job.contentHash); return { status: 'deployed' }; },
     publishBluesky: async () => ({ status: 'published', uri: 'at://fixture', cid: 'cid', url: 'https://bsky.app/post' }),
@@ -1577,14 +1733,14 @@ validation('rerenders changed queued work and skips jobs no longer open', async 
   assert.deepEqual(rendered, [after.contentHash]);
   assert.equal(changed.queueState.items[0].contentHash, after.contentHash);
 
-  queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+  queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
     job: before,
     snapshot: previousSnapshot,
     discoveredAt: '2026-08-20T13:01:00.000Z',
   });
   const closed = await processOnePublication({
     queueState: queue,
-    publicationsState: { schemaVersion: 1, jobs: {} },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
     currentSnapshot: { ...currentSnapshot, jobsById: new Map() },
     publishBridge: async () => { throw new Error('must not deploy'); },
     publishBluesky: async () => { throw new Error('must not post'); },
@@ -1612,7 +1768,7 @@ validation('publishes at most one job and never bypasses a failed bridge', async
     dataHash: '6'.repeat(64),
     jobs: [firstJob, secondJob],
   });
-  let queue = enqueueJob({ schemaVersion: 1, items: [] }, {
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
     job: firstJob,
     snapshot,
     discoveredAt: '2026-08-20T13:01:00.000Z',
@@ -1625,7 +1781,7 @@ validation('publishes at most one job and never bypasses a failed bridge', async
   const providerJobs = [];
   const result = await processOnePublication({
     queueState: queue,
-    publicationsState: { schemaVersion: 1, jobs: {} },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
     currentSnapshot: snapshot,
     publishBridge: async ({ job }) => {
       if (job.id === firstJob.id) throw new Error('FTP deployment failed');

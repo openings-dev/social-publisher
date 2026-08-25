@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import { readEnvironment } from '../config/env.mjs';
+import { SOCIAL_CHANNELS } from '../config/constants.mjs';
 import { resolveGitCommit } from '../modules/data/git-json.mjs';
 import { loadSnapshot } from '../modules/data/load-snapshot.mjs';
 import {
@@ -11,6 +12,8 @@ import {
 import { processOnePublication } from '../modules/publishing/orchestrator.mjs';
 import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
 import { publishToMastodon } from '../modules/networks/mastodon-client.mjs';
+import { publishToInstagram } from '../modules/networks/instagram-client.mjs';
+import { publishToThreads } from '../modules/networks/threads-client.mjs';
 import { renderSocialCardPng } from '../modules/render/social-card.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import { resetFailedStage } from '../modules/state/queue-operations.mjs';
@@ -18,7 +21,7 @@ import { saveStateFile } from '../modules/state/save-state.mjs';
 import { validatePublicationsState, validateQueueState } from '../modules/state/state-model.mjs';
 import { assertValidJobId } from '../shared/job-id.mjs';
 
-const STAGES = new Set(['bridge', 'bluesky', 'mastodon']);
+const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS]);
 const MODES = new Set(['scheduled', 'controlled', 'retry-stage']);
 
 function parseArguments(argumentsList) {
@@ -47,7 +50,7 @@ export function parsePublicationRequest({ mode = 'scheduled', jobId, stage, conf
   if (mode === 'retry-stage') {
     assertValidJobId(jobId);
     if (!STAGES.has(stage)) {
-      throw new Error('Retry stage must be bridge, bluesky, or mastodon');
+      throw new Error('Retry stage must be bridge, bluesky, mastodon, threads, or instagram');
     }
     if (confirmation !== 'RESET_FAILED_STAGE') {
       throw new Error('Stage reset requires the exact confirmation phrase');
@@ -128,6 +131,21 @@ export async function runPublication({
     accessToken: config.mastodonAccessToken,
     baseUrl: config.mastodonBaseUrl,
   }));
+  const publishThreads = dependencies.publishThreads ?? (({ job, post }) => publishToThreads({
+    job,
+    post,
+    accessToken: config.threads?.accessToken,
+    apiUrl: config.threads?.apiUrl,
+  }));
+  const publishInstagram = dependencies.publishInstagram ?? (({ job, post, queueItem }) => publishToInstagram({
+    job,
+    post,
+    imageUrl: queueItem.bridge.result?.instagramImageUrl,
+    accessToken: config.instagram?.accessToken,
+    userId: config.instagram?.userId,
+    apiVersion: config.instagram?.apiVersion,
+    apiOrigin: config.instagram?.apiOrigin,
+  }));
   const result = await processOnePublication({
     queueState,
     publicationsState,
@@ -135,6 +153,9 @@ export async function runPublication({
     publishBridge,
     publishBluesky,
     publishMastodon,
+    publishThreads,
+    publishInstagram,
+    enabledChannels: config.enabledChannels,
     jobId: parsed.jobId ?? undefined,
   });
   await saveStateFile(queuePath, result.queueState, validateQueueState);
@@ -148,7 +169,14 @@ export async function runPublication({
     blueskyError: selectedItem?.bluesky.lastError?.code ?? null,
     mastodon: selectedItem?.mastodon.status ?? null,
     mastodonError: selectedItem?.mastodon.lastError?.code ?? null,
-    queueDepth: result.queueState.items.filter((item) => [item.bridge, item.bluesky, item.mastodon]
+    threads: selectedItem?.threads.status ?? null,
+    threadsError: selectedItem?.threads.lastError?.code ?? null,
+    instagram: selectedItem?.instagram.status ?? null,
+    instagramError: selectedItem?.instagram.lastError?.code ?? null,
+    queueDepth: result.queueState.items.filter((item) => [
+      item.bridge,
+      ...SOCIAL_CHANNELS.map((channel) => item[channel]),
+    ]
       .some((stage) => stage.status === 'pending' || stage.status === 'retryable')).length,
   };
   log(JSON.stringify(summary));

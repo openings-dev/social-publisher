@@ -1,4 +1,5 @@
 import { validateIntakeState, validateQueueState } from '../state/state-model.mjs';
+import { SOCIAL_CHANNELS } from '../../config/constants.mjs';
 
 const READY_STATUSES = new Set(['pending', 'retryable']);
 const SHA256_PATTERN = /^[0-9a-f]{64}$/u;
@@ -8,7 +9,7 @@ function isReadyStage(stage) {
 }
 
 function isReadyQueueItem(item) {
-  return [item.bridge, item.bluesky, item.mastodon].some(isReadyStage);
+  return [item.bridge, ...SOCIAL_CHANNELS.map((channel) => item[channel])].some(isReadyStage);
 }
 
 export function decideScheduledWork({

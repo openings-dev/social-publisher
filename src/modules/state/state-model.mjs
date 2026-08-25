@@ -1,8 +1,17 @@
-import { MAX_CHANNEL_ATTEMPTS, STATE_SCHEMA_VERSION } from '../../config/constants.mjs';
+import { MAX_CHANNEL_ATTEMPTS, SOCIAL_CHANNELS, STATE_SCHEMA_VERSION } from '../../config/constants.mjs';
 import { isValidJobId } from '../../shared/job-id.mjs';
 
 const SENSITIVE_KEY_PATTERN = /(?:authorization|credential|password|private.?key|secret|token)/i;
-const STAGE_STATUSES = new Set(['pending', 'publishing', 'published', 'retryable', 'failed', 'skipped_closed']);
+const STAGE_STATUSES = new Set([
+  'pending',
+  'publishing',
+  'published',
+  'retryable',
+  'failed',
+  'skipped_closed',
+  'skipped_disabled',
+  'skipped_before_activation',
+]);
 const BRIDGE_REASONS = new Set(['new', 'changed']);
 
 function assertObject(value, label) {
@@ -157,8 +166,9 @@ export function validateQueueState(value) {
     assertIsoDate(item.createdAt, 'queue createdAt');
     assertIsoDate(item.publicationCreatedAt, 'queue publicationCreatedAt');
     validateStageState(item.bridge, 'queue bridge');
-    validateStageState(item.bluesky, 'queue bluesky');
-    validateStageState(item.mastodon, 'queue mastodon');
+    for (const channel of SOCIAL_CHANNELS) {
+      validateStageState(item[channel], `queue ${channel}`);
+    }
   }
   assertNoSensitiveKeys(state);
   return state;

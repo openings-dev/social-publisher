@@ -2,6 +2,7 @@ import { resolve } from 'node:path';
 import { pathToFileURL } from 'node:url';
 
 import { readEnvironment } from '../config/env.mjs';
+import { SOCIAL_CHANNELS } from '../config/constants.mjs';
 import { listSnapshotCommits, resolveGitCommit } from '../modules/data/git-json.mjs';
 import { loadSnapshot } from '../modules/data/load-snapshot.mjs';
 import {
@@ -74,13 +75,17 @@ export async function runIntake({
     publicationsState,
     snapshots,
     publishBridge,
+    enabledChannels: config.enabledChannels,
   });
   await saveStateFile(intakePath, result.intakeState, validateIntakeState);
   await saveStateFile(queuePath, result.queueState, validateQueueState);
   log(JSON.stringify({
     snapshot: result.intakeState.processedSnapshot?.commit ?? null,
     ...result.summary,
-    queueDepth: result.queueState.items.filter((item) => [item.bridge, item.bluesky, item.mastodon]
+    queueDepth: result.queueState.items.filter((item) => [
+      item.bridge,
+      ...SOCIAL_CHANNELS.map((channel) => item[channel]),
+    ]
       .some((stage) => stage.status === 'pending' || stage.status === 'retryable')).length,
   }));
   return result;
