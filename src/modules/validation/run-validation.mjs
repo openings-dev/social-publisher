@@ -772,6 +772,7 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
           verification: {
             canonicalUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}`,
             imageUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/opengraph-image.png`,
+            instagramImageUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`,
           },
         };
       },
@@ -784,6 +785,7 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.equal(sha256(calls[0].image), calls[0].expectedPngHash);
     assert.equal(result.status, 'deployed');
     assert.equal(result.canonicalUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}`);
+    assert.equal(result.instagramImageUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -830,7 +832,7 @@ validation('builds a bounded repository dispatch without credentials in its body
   }), /payload.*large/i);
 });
 
-validation('verifies public HTML metadata and exact PNG bytes', async () => {
+validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG derivative', async () => {
   const job = makeJob();
   const html = createBridgeHtml(job);
   const png = await renderSocialCardPng(job, {
@@ -838,12 +840,17 @@ validation('verifies public HTML metadata and exact PNG bytes', async () => {
   });
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
+  const instagramImage = await sharp(png).jpeg({ quality: 82 }).toBuffer();
   const fetchImpl = async (url) => {
     if (url === canonicalUrl) {
       return new Response(html, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
     }
     if (url === imageUrl) {
       return new Response(png, { status: 200, headers: { 'content-type': 'image/png' } });
+    }
+    if (url === instagramImageUrl) {
+      return new Response(instagramImage, { status: 200, headers: { 'content-type': 'image/jpeg' } });
     }
     return new Response('missing', { status: 404 });
   };
@@ -855,6 +862,7 @@ validation('verifies public HTML metadata and exact PNG bytes', async () => {
   });
   assert.equal(result.matches, true);
   assert.equal(result.canonicalUrl, canonicalUrl);
+  assert.equal(result.instagramImageUrl, instagramImageUrl);
 
   const mismatch = await verifyPublicBridge({
     jobId: job.id,
@@ -876,6 +884,8 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
+  const instagramImage = await sharp(png).jpeg({ quality: 82 }).toBuffer();
   const calls = [];
   const fetchImpl = async (url) => {
     calls.push(url);
@@ -888,6 +898,9 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
     if (url === imageUrl) {
       return new Response(png, { status: 200, headers: { 'content-type': 'image/png' } });
     }
+    if (url === instagramImageUrl) {
+      return new Response(instagramImage, { status: 200, headers: { 'content-type': 'image/jpeg' } });
+    }
     return new Response('missing', { status: 404 });
   };
 
@@ -899,7 +912,7 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   });
 
   assert.equal(result.matches, true);
-  assert.deepEqual(calls, [canonicalUrl, redirectedUrl, imageUrl]);
+  assert.deepEqual(calls, [canonicalUrl, redirectedUrl, imageUrl, instagramImageUrl]);
 });
 
 validation('rejects public bridge redirects outside the canonical job directory', async () => {

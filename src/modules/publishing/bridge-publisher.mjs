@@ -62,6 +62,7 @@ export function createBridgePublisher({
       status: deployment.status,
       canonicalUrl: deployment.verification.canonicalUrl,
       imageUrl: deployment.verification.imageUrl,
+      instagramImageUrl: deployment.verification.instagramImageUrl,
       pngHash: artifacts.pngHash,
     });
   };

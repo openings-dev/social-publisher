@@ -48,6 +48,7 @@ export async function verifyPublicBridge({
 }) {
   const canonicalUrl = buildCanonicalJobUrl(jobId, origin);
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
   let htmlResponse;
   try {
     htmlResponse = await fetchResponse(canonicalUrl, fetchImpl, timeoutMs, 'manual');
@@ -111,10 +112,37 @@ export async function verifyPublicBridge({
   if (metadata.format !== 'png' || metadata.width !== IMAGE_WIDTH || metadata.height !== IMAGE_HEIGHT) {
     return mismatch('image_dimensions_mismatch', allowMismatch);
   }
+
+  let instagramImageResponse;
+  try {
+    instagramImageResponse = await fetchResponse(instagramImageUrl, fetchImpl, timeoutMs);
+  } catch {
+    return mismatch('instagram_image_request_failed', allowMismatch);
+  }
+  if (!instagramImageResponse.ok) {
+    return mismatch(instagramImageResponse.status === 404
+      ? 'instagram_image_not_found'
+      : 'instagram_image_http_error', allowMismatch);
+  }
+  if (!/^image\/jpeg\b/iu.test(instagramImageResponse.headers.get('content-type') ?? '')) {
+    return mismatch('instagram_image_content_type_mismatch', allowMismatch);
+  }
+  let instagramMetadata;
+  try {
+    instagramMetadata = await sharp(Buffer.from(await instagramImageResponse.arrayBuffer())).metadata();
+  } catch {
+    return mismatch('instagram_image_decode_failed', allowMismatch);
+  }
+  if (instagramMetadata.format !== 'jpeg'
+    || instagramMetadata.width !== IMAGE_WIDTH
+    || instagramMetadata.height !== IMAGE_HEIGHT) {
+    return mismatch('instagram_image_dimensions_mismatch', allowMismatch);
+  }
   return Object.freeze({
     matches: true,
     canonicalUrl,
     imageUrl,
+    instagramImageUrl,
     contentHash,
     pngHash: expectedPngHash,
   });
