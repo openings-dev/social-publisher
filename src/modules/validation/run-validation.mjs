@@ -239,6 +239,33 @@ validation('enables Meta channels independently and requires only their own cred
   assert.equal(instagram.instagram.apiVersion, 'v23.0');
 });
 
+validation('enables Meta only for jobs enqueued after activation', () => {
+  const snapshot = makeLoadedSnapshot({
+    commit: '8'.repeat(40),
+    generatedAt: '2026-08-25T19:00:00.000Z',
+    dataHash: '8'.repeat(64),
+    jobs: [],
+  });
+  const historical = makeJob({ id: 'gh_888888888888888888888881' });
+  const future = makeJob({ id: 'gh_888888888888888888888882' });
+  const initial = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job: historical,
+    snapshot,
+    discoveredAt: '2026-08-25T18:59:00.000Z',
+  });
+  const activated = enqueueJob(initial, {
+    job: future,
+    snapshot,
+    discoveredAt: '2026-08-25T19:01:00.000Z',
+    enabledChannels: ['bluesky', 'mastodon', 'threads', 'instagram'],
+  });
+
+  assert.equal(activated.items[0].threads.status, 'skipped_disabled');
+  assert.equal(activated.items[0].instagram.status, 'skipped_disabled');
+  assert.equal(activated.items[1].threads.status, 'pending');
+  assert.equal(activated.items[1].instagram.status, 'pending');
+});
+
 validation('skips disabled and up-to-date schedules before expensive setup', () => {
   const dataHash = 'a'.repeat(64);
   const intakeState = {
