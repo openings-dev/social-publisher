@@ -34,6 +34,11 @@ on:
         description: Enter PUBLISH_ONE_JOB to publish, or RESET_FAILED_STAGE to reset
         required: false
         type: string
+      publish_meta:
+        description: Include Instagram and Threads in this controlled publication only
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: write
@@ -60,8 +65,8 @@ jobs:
       META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION }}
       INSTAGRAM_USER_ID: ${{ vars.INSTAGRAM_USER_ID }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
-      THREADS_AUTO_PUBLISH: ${{ vars.THREADS_AUTO_PUBLISH || 'false' }}
-      INSTAGRAM_AUTO_PUBLISH: ${{ vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
+      THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.THREADS_AUTO_PUBLISH || 'false' }}
+      INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
     steps:
       - name: Check out social-publisher state and source
         # actions/checkout v4.3.1
