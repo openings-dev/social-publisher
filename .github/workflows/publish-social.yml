@@ -28,6 +28,8 @@ on:
           - bridge
           - bluesky
           - mastodon
+          - threads
+          - instagram
       confirmation:
         description: Enter PUBLISH_ONE_JOB to publish, or RESET_FAILED_STAGE to reset
         required: false
@@ -53,7 +55,13 @@ jobs:
       WEB_DEPLOY_REPOSITORY: ${{ vars.WEB_DEPLOY_REPOSITORY || 'openings-dev/web-deploy' }}
       BLUESKY_SERVICE_URL: ${{ vars.BLUESKY_SERVICE_URL || 'https://bsky.social' }}
       MASTODON_BASE_URL: ${{ vars.MASTODON_BASE_URL || 'https://mastodon.social' }}
+      THREADS_API_URL: ${{ vars.THREADS_API_URL || 'https://graph.threads.net/v1.0' }}
+      INSTAGRAM_API_ORIGIN: ${{ vars.INSTAGRAM_API_ORIGIN || 'https://graph.instagram.com' }}
+      META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION }}
+      INSTAGRAM_USER_ID: ${{ vars.INSTAGRAM_USER_ID }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
+      THREADS_AUTO_PUBLISH: ${{ vars.THREADS_AUTO_PUBLISH || 'false' }}
+      INSTAGRAM_AUTO_PUBLISH: ${{ vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
     steps:
       - name: Check out social-publisher state and source
         # actions/checkout v4.3.1
@@ -198,6 +206,8 @@ jobs:
           BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           REQUEST_JOB_ID: ${{ inputs.job_id }}
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
         run: |

@@ -1818,6 +1818,11 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(productionWorkflow, /chore\(state\): record social intake/u);
   assert.match(productionWorkflow, /chore\(state\): record social publication/u);
   assert.match(productionWorkflow, /WEB_DEPLOY_TOKEN/u);
+  assert.match(productionWorkflow, /THREADS_AUTO_PUBLISH/u);
+  assert.match(productionWorkflow, /INSTAGRAM_AUTO_PUBLISH/u);
+  assert.match(productionWorkflow, /THREADS_ACCESS_TOKEN/u);
+  assert.match(productionWorkflow, /INSTAGRAM_ACCESS_TOKEN/u);
+  assert.match(productionWorkflow, /META_GRAPH_VERSION/u);
   assert.match(productionWorkflow, /id:\s*preflight/u);
   assert.match(productionWorkflow, /src\/cli\/preflight\.mjs/u);
   assert.match(productionWorkflow, /steps\.preflight\.outputs\.should_run == 'true'/u);
