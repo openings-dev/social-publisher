@@ -3888,47 +3888,68 @@
       "createdAt": "2026-08-20T12:00:38Z",
       "publicationCreatedAt": "2026-08-25T17:52:52.114Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-08-25T17:52:52.114Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-08-25T17:52:52.114Z"
-        },
+        "status": "published",
+        "attempts": 2,
+        "updatedAt": "2026-08-25T18:07:18.678Z",
+        "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "already_current",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9778e2bda5326d36dc502ed4",
+          "imageUrl": "https://openings.dev/jobs/gh_9778e2bda5326d36dc502ed4/opengraph-image.png",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_9778e2bda5326d36dc502ed4/instagram-image.jpg",
+          "pngHash": "d0eaa8eda0f67fa6e5992ad30060499542417b0899bca8d379f6d5c50babb2d0"
+        }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-25T18:07:18.678Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mtwf6kb3wu2p",
+          "cid": "bafyreidxm35ydwqajjgpnfccbn6vywm5yuzymm22qxzc6ps6xq7iipxydu",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mtwf6kb3wu2p"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-25T18:07:18.678Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117157477907804347",
+          "url": "https://mastodon.social/@openingshq/117157477907804347",
+          "cardStatus": "resolved"
+        }
       },
       "threads": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-25T18:07:18.678Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18086557433669661",
+          "url": null
+        }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-25T18:07:18.678Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18101511437629304",
+          "url": null
+        }
       }
     }
   ]
