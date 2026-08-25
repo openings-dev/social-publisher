@@ -17,6 +17,7 @@ const COLORS = Object.freeze({
   mintDeep: '#315d35',
 });
 const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+const SOFT_BREAK = '\u200B';
 
 function titleFontSize(title) {
   const length = [...segmenter.segment(title)].length;
@@ -27,6 +28,7 @@ function titleFontSize(title) {
 }
 
 function glyphWidth(character, fontSize) {
+  if (character === SOFT_BREAK) return 0;
   if (/\s/u.test(character)) return fontSize * 0.3;
   if (/[A-Z0-9]/u.test(character)) return fontSize * 0.62;
   if (/[a-z]/u.test(character)) return fontSize * 0.54;
@@ -62,7 +64,7 @@ function wrapText(value, { fontSize, maxWidth, maxLines }) {
     }
     line += character;
     width += characterWidth;
-    if (/\s/u.test(character)) {
+    if (/\s/u.test(character) || character === SOFT_BREAK) {
       lastWhitespaceIndex = line.length - character.length;
     }
     consumed += 1;
@@ -106,8 +108,9 @@ function distinctTags(tags) {
 
 function presentation(job) {
   const community = useful(job.community?.name) || job.repository;
+  const salary = formatSalary(job.salary)?.replace('/', `${SOFT_BREAK}/`);
   const facts = [
-    ['Salary', formatSalary(job.salary)],
+    ['Salary', salary],
     ['Job location', formatLocation(job.country, job.region)],
     ['Original source', job.sourceType === 'github-issue' ? 'GitHub Issue' : 'Public listing'],
   ].filter(([, value]) => value);

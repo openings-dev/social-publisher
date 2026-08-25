@@ -750,6 +750,18 @@ validation('renders the production social-card system to a bounded PNG', async (
   assert.ok(dispatch.body.length < 60_000);
 });
 
+validation('keeps a long salary period intact in the social-card sidebar', () => {
+  const job = makeJob({
+    salary: { currency: 'BRL', min: 7000, max: 12000, period: 'month' },
+  });
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const svg = createSocialCardSvg(job, { wordmarkSvg });
+
+  assert.match(svg, />R\$7,000–R\$12,000<\/text>/u);
+  assert.match(svg, />\/month<\/text>/u);
+  assert.doesNotMatch(svg, />mon<\/text>.*>th<\/text>/su);
+});
+
 validation('bounds long Unicode card titles to three lines', () => {
   const job = makeJob({ title: '高性能ソフトウェアエンジニア🚀'.repeat(20) });
   const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
