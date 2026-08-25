@@ -708,6 +708,24 @@ validation('bounds long Unicode card titles to three lines', () => {
   assert.match(svg, /…/);
 });
 
+validation('embeds deterministic CJK font subsets in social cards', async () => {
+  const job = makeJob({
+    title: '全球远程 ソフトウェアエンジニア 소프트웨어 엔지니어',
+    community: { name: '国際開発コミュニティ' },
+  });
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const svg = createSocialCardSvg(job, { wordmarkSvg });
+
+  assert.match(svg, /data:font\/woff2;base64,/u);
+  assert.match(svg, /Noto Sans JP/u);
+  assert.match(svg, /Noto Sans KR/u);
+  assert.match(svg, /font-family="Openings CJK, Arial, sans-serif"/u);
+
+  const png = await renderSocialCardPng(job, { wordmarkSvg });
+  const metadata = await sharp(png).metadata();
+  assert.deepEqual([metadata.width, metadata.height], [1200, 630]);
+});
+
 validation('dry run emits exactly the two deployable job files without state mutation', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'openings-social-publisher-dry-run-'));
   const fixturePath = join(directory, 'job.json');

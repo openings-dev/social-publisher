@@ -2,6 +2,7 @@ import sharp from 'sharp';
 
 import { IMAGE_HEIGHT, IMAGE_WIDTH } from '../../config/constants.mjs';
 import { escapeAttribute, escapeHtml } from '../../shared/escape.mjs';
+import { createCjkFontStyle, SOCIAL_CARD_FONT_STACK } from './cjk-fonts.mjs';
 import { formatSalary } from './format-job.mjs';
 import { opportunityDescription } from './html-page.mjs';
 
@@ -132,7 +133,7 @@ function assertTrustedWordmark(wordmarkSvg) {
 }
 
 function textLines(lines, { x, y, fontSize, lineHeight, weight = 700, fill = COLORS.ink, attribute = '' }) {
-  return lines.map((line, index) => `<text x="${x}" y="${y + index * lineHeight}" fill="${fill}" font-family="Arial, sans-serif" font-size="${fontSize}" font-weight="${weight}" ${attribute}>${escapeHtml(line)}</text>`).join('');
+  return lines.map((line, index) => `<text x="${x}" y="${y + index * lineHeight}" fill="${fill}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="${fontSize}" font-weight="${weight}" ${attribute}>${escapeHtml(line)}</text>`).join('');
 }
 
 export function createSocialCardSvg(job, { wordmarkSvg }) {
@@ -150,13 +151,14 @@ export function createSocialCardSvg(job, { wordmarkSvg }) {
   const descriptionY = titleBottom + 38;
   const tagsY = descriptionY + descriptionLines.length * 27 + 21;
   const wordmarkData = Buffer.from(trustedWordmark).toString('base64');
+  const fontStyle = createCjkFontStyle(JSON.stringify(card));
 
   let tagsMarkup = '';
   let tagX = 84;
   for (const tag of card.tags) {
     const width = Math.min(190, Math.max(72, 28 + [...segmenter.segment(tag)].length * 8));
     if (tagX + width > 805) break;
-    tagsMarkup += `<rect x="${tagX}" y="${tagsY}" width="${width}" height="31" rx="15.5" fill="${COLORS.surfaceMuted}"/><text x="${tagX + 13}" y="${tagsY + 21}" fill="${COLORS.ink}" font-family="Arial, sans-serif" font-size="13" font-weight="700">${escapeHtml(tag)}</text>`;
+    tagsMarkup += `<rect x="${tagX}" y="${tagsY}" width="${width}" height="31" rx="15.5" fill="${COLORS.surfaceMuted}"/><text x="${tagX + 13}" y="${tagsY + 21}" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="13" font-weight="700">${escapeHtml(tag)}</text>`;
     tagX += width + 9;
   }
 
@@ -170,6 +172,7 @@ export function createSocialCardSvg(job, { wordmarkSvg }) {
   <title id="card-title">${escapeHtml(card.title)} — Open job on openings.dev</title>
   <desc id="card-description">${escapeHtml(card.fallbackDescription)}</desc>
   <defs>
+    ${fontStyle}
     <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="22" flood-color="${COLORS.ink}" flood-opacity="0.10"/></filter>
     <clipPath id="card-clip"><rect x="42" y="42" width="1116" height="546" rx="26"/></clipPath>
   </defs>
@@ -182,15 +185,15 @@ export function createSocialCardSvg(job, { wordmarkSvg }) {
     <line x1="847.5" y1="125" x2="847.5" y2="588" stroke="${COLORS.line}"/>
   </g>
   <image x="76" y="62" width="238" height="44" preserveAspectRatio="xMinYMid meet" href="data:image/svg+xml;base64,${wordmarkData}"/>
-  <text x="1124" y="90" text-anchor="end" fill="${COLORS.mutedInk}" font-family="Arial, sans-serif" font-size="15" font-weight="700">Tech jobs from public communities</text>
-  <text x="84" y="168" fill="${COLORS.mintDeep}" font-family="Arial, sans-serif" font-size="14" font-weight="800" letter-spacing="1.4">${escapeHtml(card.eyebrow.toUpperCase())}</text>
+  <text x="1124" y="90" text-anchor="end" fill="${COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="700">Tech jobs from public communities</text>
+  <text x="84" y="168" fill="${COLORS.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="14" font-weight="800" letter-spacing="1.4">${escapeHtml(card.eyebrow.toUpperCase())}</text>
   ${textLines(titleLines, { x: 84, y: 222, fontSize, lineHeight: titleLineHeight, weight: 800, attribute: 'letter-spacing="-1.5" data-title-line="true"' })}
   ${textLines(descriptionLines, { x: 84, y: descriptionY, fontSize: 19, lineHeight: 27, weight: 400, fill: COLORS.mutedInk })}
   ${tagsMarkup}
   ${factsMarkup}
   <rect x="878" y="512" width="250" height="50" rx="25" fill="${COLORS.mint}"/>
-  <text x="895" y="544" fill="${COLORS.ink}" font-family="Arial, sans-serif" font-size="15" font-weight="800">View job</text>
-  <text x="1104" y="544" text-anchor="end" fill="${COLORS.ink}" font-family="Arial, sans-serif" font-size="21" font-weight="700">→</text>
+  <text x="895" y="544" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="800">View job</text>
+  <text x="1104" y="544" text-anchor="end" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="21" font-weight="700">→</text>
 </svg>`;
 }
 
