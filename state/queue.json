@@ -4627,6 +4627,118 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_fb912858247d5261cc51e874",
+      "sourceId": "rebase-network/who-is-hiring#1258",
+      "dataCommit": "e23582a9320393b89e21b086e0608bf9cc9480ac",
+      "dataHash": "401d0ed32b546b7e2a490f40aa206fef8d129ea4d3c9888f24856aa7070659fe",
+      "contentHash": "6b087b10d19424f062e12995d7cd1531e5cb87e1bd6d9ca124c0bfbbcd59e633",
+      "discoveredAt": "2026-08-26T07:08:00.435Z",
+      "createdAt": "2026-08-26T01:52:39Z",
+      "publicationCreatedAt": "2026-08-26T07:08:00.435Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T07:08:00.435Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "already_current",
+          "canonicalUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874",
+          "imageUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/opengraph-image.png",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/instagram-image.jpg",
+          "pngHash": "6b109636041e1122eac572848dd1c7d50652ad5dc14b87bb2269dee1547b266c"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_c734e6f23042238380854406",
+      "sourceId": "frontendbr/vagas#8548",
+      "dataCommit": "e23582a9320393b89e21b086e0608bf9cc9480ac",
+      "dataHash": "401d0ed32b546b7e2a490f40aa206fef8d129ea4d3c9888f24856aa7070659fe",
+      "contentHash": "b033c5d7bb640916c3fab3eae383f70b779dbae693211b4c4a8b44ec14fbc71f",
+      "discoveredAt": "2026-08-26T07:08:00.435Z",
+      "createdAt": "2026-08-26T01:15:55Z",
+      "publicationCreatedAt": "2026-08-26T07:08:00.435Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T07:08:00.435Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_c734e6f23042238380854406",
+          "imageUrl": "https://openings.dev/jobs/gh_c734e6f23042238380854406/opengraph-image.png",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_c734e6f23042238380854406/instagram-image.jpg",
+          "pngHash": "52967640cd66ba554b6ef8b75687acf386c23320c73e2ce03a12a6a3e87cb33a"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
