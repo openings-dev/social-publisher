@@ -774,6 +774,15 @@ validation('formats an Instagram caption for discovery and conversation', async 
   assert.doesNotMatch(onsiteCaption, /#RemoteJobs/u);
   assert.equal(new Set(hashtags).size, hashtags.length);
   assert.ok(hashtags.length <= 4);
+
+  const onsiteCjkJob = makeJob({
+    title: '[广州 / 线下] Bitcoin 开发工程师',
+    country: 'Global',
+    region: 'Worldwide',
+    tags: ['engineering'],
+  });
+  const onsiteCjkCaption = formatInstagramCaption(onsiteCjkJob, formatSocialPost(onsiteCjkJob));
+  assert.doesNotMatch(onsiteCjkCaption, /#RemoteJobs/u);
 });
 
 validation('keeps long Unicode posts within the Bluesky grapheme limit', () => {
