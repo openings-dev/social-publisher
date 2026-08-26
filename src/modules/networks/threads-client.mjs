@@ -80,6 +80,7 @@ export async function publishToThreads({
     text: post.text,
     link_attachment: post.canonicalUrl,
     auto_publish_text: 'true',
+    reply_control: 'everyone',
   });
   let created;
   try {

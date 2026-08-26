@@ -744,6 +744,38 @@ validation('omits unknown metadata and unsafe stack hashtags', () => {
   assert.doesNotMatch(post.text, /Unknown|undefined|null|#C/);
 });
 
+validation('formats an Instagram caption for discovery and conversation', async () => {
+  const { formatInstagramCaption } = await import('../render/instagram-caption.mjs');
+  const remoteJob = makeJob({
+    title: 'Senior TypeScript Engineer',
+    community: { name: 'Openings Fixtures' },
+    country: 'Remote',
+    region: 'Worldwide',
+    tags: ['typescript', 'remote', 'senior'],
+  });
+  const remotePost = formatSocialPost(remoteJob);
+  const remoteCaption = formatInstagramCaption(remoteJob, remotePost);
+
+  assert.match(remoteCaption, /Senior TypeScript Engineer/u);
+  assert.match(remoteCaption, new RegExp(remotePost.canonicalUrl));
+  assert.match(remoteCaption, /Know someone who fits\? Tag them below\./u);
+  assert.match(remoteCaption, /Follow @openingshq for more jobs from public communities\./u);
+  assert.match(remoteCaption, /#TechJobs #TypeScript #Hiring #RemoteJobs$/u);
+  assert.equal((remoteCaption.match(/https:\/\/openings\.dev\/jobs\//gu) ?? []).length, 1);
+
+  const onsiteJob = makeJob({
+    title: 'Frontend Engineer in Tokyo',
+    country: 'Japan',
+    region: 'Tokyo',
+    tags: ['typescript', 'frontend'],
+  });
+  const onsiteCaption = formatInstagramCaption(onsiteJob, formatSocialPost(onsiteJob));
+  const hashtags = onsiteCaption.match(/#[\p{L}\p{N}]+/gu) ?? [];
+  assert.doesNotMatch(onsiteCaption, /#RemoteJobs/u);
+  assert.equal(new Set(hashtags).size, hashtags.length);
+  assert.ok(hashtags.length <= 4);
+});
+
 validation('keeps long Unicode posts within the Bluesky grapheme limit', () => {
   const title = `${'高性能ソフトウェアエンジニア🚀'.repeat(24)} final`;
   const post = formatSocialPost(makeJob({
@@ -881,8 +913,23 @@ validation('defines a dedicated portrait-safe Instagram card', () => {
   assert.match(svg, /data-instagram-title-line="true"/u);
   assert.match(svg, /工程师—国内/u);
   assert.doesNotMatch(svg, />\|<\/text>/u);
-  assert.match(svg, /Find this opening on openings\.dev/u);
+  assert.match(svg, /data-instagram-wordmark="true"[^>]*width="320"/u);
+  assert.match(svg, />@openingshq<\/text>/u);
+  assert.match(svg, /data-instagram-facts="true"[^>]*y="830"/u);
+  assert.match(svg, /font-size="25"[^>]*data-instagram-fact-value="true"/u);
+  assert.match(svg, />COMMUNITY<\/text>/u);
+  assert.match(svg, />rebase-network<\/text>/u);
+  assert.match(svg, /data-instagram-cta="true"[^>]*y="1146"[^>]*height="108"/u);
+  assert.match(svg, /View this opening on openings\.dev/u);
   assert.doesNotMatch(svg, /data:font\/woff2;base64,/u);
+
+  const shortSvg = socialCardModule.createInstagramCardSvg(
+    makeJob({ title: 'Senior Product Engineer', tags: ['typescript'] }),
+    { wordmarkSvg },
+  );
+  assert.match(shortSvg, /font-size="88"[^>]*data-instagram-title-line="true"/u);
+  assert.match(shortSvg, /font-size="27"[^>]*>Shared through/u);
+  assert.match(shortSvg, /data-instagram-tag="true"[^>]*height="48"/u);
 });
 
 validation('renders a bounded 1080 by 1350 Instagram JPEG preview', async () => {
@@ -1617,6 +1664,7 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
   assert.equal(body.get('text'), post.text);
   assert.equal(body.get('link_attachment'), post.canonicalUrl);
   assert.equal(body.get('auto_publish_text'), 'true');
+  assert.equal(body.get('reply_control'), 'everyone');
   assert.equal(publication.options.headers.Authorization, 'Bearer threads-secret');
 
   const reconciled = await publishToThreads({
@@ -1679,6 +1727,8 @@ validation('publishes and reconciles one Instagram image by canonical job URL', 
   const body = new URLSearchParams(container.options.body);
   assert.equal(body.get('image_url'), imageUrl);
   assert.match(body.get('caption'), new RegExp(post.canonicalUrl));
+  assert.match(body.get('caption'), /Follow @openingshq for more jobs from public communities\./u);
+  assert.match(body.get('caption'), /Know someone who fits\? Tag them below\./u);
   assert.equal(container.options.headers.Authorization, 'Bearer instagram-secret');
 
   const reconciled = await publishToInstagram({

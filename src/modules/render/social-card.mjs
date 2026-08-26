@@ -34,11 +34,11 @@ function titleFontSize(title) {
 
 function instagramTitleFontSize(title) {
   const length = [...segmenter.segment(title)].length;
-  if (length > 120) return 48;
-  if (length > 90) return 54;
-  if (length > 64) return 60;
-  if (length > 42) return 66;
-  return 74;
+  if (length > 120) return 54;
+  if (length > 90) return 60;
+  if (length > 64) return 68;
+  if (length > 42) return 76;
+  return 88;
 }
 
 function glyphWidth(character, fontSize) {
@@ -134,6 +134,7 @@ function presentation(job) {
   ].filter(([, value]) => value);
   const company = useful(job.companyName);
   return {
+    community,
     eyebrow: `${community} · Open job`,
     title: displayTitle(job.title),
     description: company ? `At ${company}. Shared through ${community}.` : `Shared through ${community}.`,
@@ -222,34 +223,36 @@ export function createInstagramCardSvg(job, { wordmarkSvg }) {
   const trustedWordmark = assertTrustedWordmark(wordmarkSvg);
   const card = presentation(job);
   const fontSize = instagramTitleFontSize(card.title);
-  const titleLines = wrapText(card.title, { fontSize, maxWidth: 880, maxLines: 6 });
-  const titleLineHeight = Math.round(fontSize * 1.08);
+  const titleLines = wrapText(card.title, { fontSize, maxWidth: 912, maxLines: 6 });
+  const titleLineHeight = Math.round(fontSize * 1.06);
   const titleBottom = 316 + Math.max(0, titleLines.length - 1) * titleLineHeight;
   const descriptionLines = wrapText(card.description || card.fallbackDescription, {
-    fontSize: 23,
-    maxWidth: 870,
+    fontSize: 27,
+    maxWidth: 900,
     maxLines: 2,
   });
   const descriptionY = titleBottom + 54;
-  const tagsY = Math.min(820, descriptionY + descriptionLines.length * 34 + 30);
+  const tagsY = Math.min(770, descriptionY + descriptionLines.length * 38 + 32);
   const wordmarkData = Buffer.from(trustedWordmark).toString('base64');
 
   let tagsMarkup = '';
   let tagX = 84;
   for (const tag of card.tags) {
-    const width = Math.min(220, Math.max(82, 34 + [...segmenter.segment(tag)].length * 10));
+    const width = Math.min(244, Math.max(92, 38 + [...segmenter.segment(tag)].length * 11));
     if (tagX + width > 996) break;
-    tagsMarkup += `<rect x="${tagX}" y="${tagsY}" width="${width}" height="40" rx="20" fill="${COLORS.surfaceMuted}"/><text x="${tagX + 17}" y="${tagsY + 27}" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="16" font-weight="700">${escapeHtml(tag)}</text>`;
+    tagsMarkup += `<rect data-instagram-tag="true" x="${tagX}" y="${tagsY}" width="${width}" height="48" rx="24" fill="${COLORS.surfaceMuted}"/><text x="${tagX + 19}" y="${tagsY + 32}" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="700">${escapeHtml(tag)}</text>`;
     tagX += width + 12;
   }
 
-  const facts = card.facts.slice(0, 3);
+  const facts = (card.facts.length < 3
+    ? [['Community', card.community], ...card.facts]
+    : card.facts).slice(0, 3);
   const factWidth = facts.length === 2 ? 420 : 270;
   const factGap = facts.length === 2 ? 36 : 30;
   const factsMarkup = facts.map(([label, value], index) => {
     const x = 84 + index * (factWidth + factGap);
-    const valueLines = wrapText(value, { fontSize: 21, maxWidth: factWidth - 12, maxLines: 2 });
-    return `<text x="${x}" y="957" fill="${COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="13" font-weight="700" letter-spacing="1.2">${escapeHtml(label.toUpperCase())}</text>${textLines(valueLines, { x, y: 993, fontSize: 21, lineHeight: 28, weight: 700 })}`;
+    const valueLines = wrapText(value, { fontSize: 25, maxWidth: factWidth - 12, maxLines: 2 });
+    return `<text data-instagram-fact-label="true" x="${x}" y="890" fill="${COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="700" letter-spacing="1.2">${escapeHtml(label.toUpperCase())}</text>${textLines(valueLines, { x, y: 933, fontSize: 25, lineHeight: 32, weight: 700, attribute: 'data-instagram-fact-value="true"' })}`;
   }).join('');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${INSTAGRAM_IMAGE_WIDTH}" height="${INSTAGRAM_IMAGE_HEIGHT}" viewBox="0 0 ${INSTAGRAM_IMAGE_WIDTH} ${INSTAGRAM_IMAGE_HEIGHT}" role="img" aria-labelledby="instagram-card-title instagram-card-description" data-instagram-card="true">
@@ -265,20 +268,21 @@ export function createInstagramCardSvg(job, { wordmarkSvg }) {
   <rect data-safe-area="true" x="56" y="56" width="968" height="1238" fill="none"/>
   <g clip-path="url(#portrait-card-clip)">
     <line x1="40" y1="178" x2="1040" y2="178" stroke="${COLORS.line}"/>
-    <rect x="40" y="884" width="1000" height="236" fill="#fbfaf6"/>
-    <line x1="40" y1="884" x2="1040" y2="884" stroke="${COLORS.line}"/>
-    <line x1="40" y1="1120" x2="1040" y2="1120" stroke="${COLORS.line}"/>
+    <rect data-instagram-facts="true" x="40" y="830" width="1000" height="260" fill="#fbfaf6"/>
+    <line x1="40" y1="830" x2="1040" y2="830" stroke="${COLORS.line}"/>
+    <line x1="40" y1="1090" x2="1040" y2="1090" stroke="${COLORS.line}"/>
   </g>
-  <image x="84" y="82" width="274" height="50" preserveAspectRatio="xMinYMid meet" href="data:image/svg+xml;base64,${wordmarkData}"/>
-  <text x="996" y="112" text-anchor="end" fill="${COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="16" font-weight="700">Tech jobs from public communities</text>
-  <text x="84" y="244" fill="${COLORS.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="16" font-weight="800" letter-spacing="1.5">${escapeHtml(card.eyebrow.toUpperCase())}</text>
+  <image data-instagram-wordmark="true" x="84" y="78" width="320" height="58" preserveAspectRatio="xMinYMid meet" href="data:image/svg+xml;base64,${wordmarkData}"/>
+  <text x="996" y="99" text-anchor="end" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="800">@openingshq</text>
+  <text x="996" y="127" text-anchor="end" fill="${COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="600">Tech jobs from public communities</text>
+  <text x="84" y="244" fill="${COLORS.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="800" letter-spacing="1.5">${escapeHtml(card.eyebrow.toUpperCase())}</text>
   ${textLines(titleLines, { x: 84, y: 316, fontSize, lineHeight: titleLineHeight, weight: 800, attribute: 'letter-spacing="-1.3" data-instagram-title-line="true"' })}
-  ${textLines(descriptionLines, { x: 84, y: descriptionY, fontSize: 23, lineHeight: 34, weight: 400, fill: COLORS.mutedInk })}
+  ${textLines(descriptionLines, { x: 84, y: descriptionY, fontSize: 27, lineHeight: 38, weight: 400, fill: COLORS.mutedInk })}
   ${tagsMarkup}
   ${factsMarkup}
-  <rect x="84" y="1162" width="912" height="92" rx="46" fill="${COLORS.mint}"/>
-  <text x="118" y="1219" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="23" font-weight="800">Find this opening on openings.dev</text>
-  <text x="950" y="1221" text-anchor="end" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="30" font-weight="700">→</text>
+  <rect data-instagram-cta="true" x="84" y="1146" width="912" height="108" rx="54" fill="${COLORS.mint}"/>
+  <text x="118" y="1212" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="27" font-weight="800">View this opening on openings.dev</text>
+  <text x="950" y="1215" text-anchor="end" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="36" font-weight="700">→</text>
 </svg>`;
 }
 

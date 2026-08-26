@@ -1,5 +1,6 @@
 import { INSTAGRAM_API_ORIGIN } from '../../config/constants.mjs';
 import { fetchJson } from '../../shared/http.mjs';
+import { formatInstagramCaption } from '../render/instagram-caption.mjs';
 
 function headers(accessToken) {
   return {
@@ -13,16 +14,6 @@ function publicationError(code, message) {
   error.name = 'InstagramPublicationError';
   error.code = code;
   return error;
-}
-
-function captionFor(post) {
-  return [
-    'New opening on openings.dev',
-    post.title,
-    [post.metadataLine, post.salaryLine].filter(Boolean).join('\n'),
-    `Full details:\n${post.canonicalUrl}`,
-    post.hashtags,
-  ].filter(Boolean).join('\n\n');
 }
 
 function normalizedResult(media, status) {
@@ -143,7 +134,7 @@ export async function publishToInstagram({
   });
   if (existing) return normalizedResult(existing, 'reconciled');
 
-  const caption = captionFor(post);
+  const caption = formatInstagramCaption(job, post);
   let container;
   try {
     container = await fetchJson(`${base}/${encodeURIComponent(userId)}/media`, {
