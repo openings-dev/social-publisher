@@ -4821,36 +4821,54 @@
         }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T20:02:28.360Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mtz4tfogau2n",
+          "cid": "bafyreiebuhinbivye3oocbeazca5s7pywjbb563oivklfhprm5kns5menq",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mtz4tfogau2n"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T20:02:28.360Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117163593028419769",
+          "url": "https://mastodon.social/@openingshq/117163593028419769",
+          "cardStatus": "resolved"
+        }
       },
       "threads": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T20:02:28.360Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17896314249657219",
+          "url": "https://www.threads.com/@openingshq/post/DchBmT6j0cK"
+        }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T20:02:28.360Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18065429564777846",
+          "url": "https://www.instagram.com/p/DchBnvck2MX/"
+        }
       }
     }
   ]
