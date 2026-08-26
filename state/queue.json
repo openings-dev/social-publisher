@@ -4651,16 +4651,16 @@
     {
       "jobId": "gh_fb912858247d5261cc51e874",
       "sourceId": "rebase-network/who-is-hiring#1258",
-      "dataCommit": "e23582a9320393b89e21b086e0608bf9cc9480ac",
+      "dataCommit": "1c8b78aa26abc792176cf145b2f3f2877482cf91",
       "dataHash": "401d0ed32b546b7e2a490f40aa206fef8d129ea4d3c9888f24856aa7070659fe",
-      "contentHash": "6b087b10d19424f062e12995d7cd1531e5cb87e1bd6d9ca124c0bfbbcd59e633",
+      "contentHash": "5f95038c7e98a809c0093d91613cbc8ebe35e9e1eb66ad781e85b63be72a4f31",
       "discoveredAt": "2026-08-26T07:08:00.435Z",
       "createdAt": "2026-08-26T01:52:39Z",
       "publicationCreatedAt": "2026-08-26T07:08:00.435Z",
       "bridge": {
         "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-08-26T07:08:00.435Z",
+        "updatedAt": "2026-08-26T13:35:04.679Z",
         "lastError": null,
         "lastReset": null,
         "result": {
@@ -4668,40 +4668,58 @@
           "canonicalUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874",
           "imageUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/opengraph-image.png",
           "instagramImageUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/instagram-image.jpg",
-          "pngHash": "6b109636041e1122eac572848dd1c7d50652ad5dc14b87bb2269dee1547b266c"
+          "pngHash": "ac3f3bdc0b107e496ba03c9d7f714518287b77b07da6d771e01a478c5577bd99"
         }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T13:35:04.679Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mtxrlv6kbi2d",
+          "cid": "bafyreihq6beqp4ilzfdirvzhkufagur3wj7eh7iwzm7h2j3yu2o3vv6vga",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mtxrlv6kbi2d"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T13:35:04.679Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117162069830016460",
+          "url": "https://mastodon.social/@openingshq/117162069830016460",
+          "cardStatus": "resolved"
+        }
       },
       "threads": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T13:35:04.679Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18122681141480193",
+          "url": "https://www.threads.com/@openingshq/post/DcgVRHCliMH"
+        }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-26T13:35:04.679Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18126460369773015",
+          "url": "https://www.instagram.com/p/DcgVSIllnnZ/"
+        }
       }
     },
     {
