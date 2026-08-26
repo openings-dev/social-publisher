@@ -198,6 +198,12 @@ function isReady(item) {
     .some((stage) => READY_STATUSES.has(stage.status));
 }
 
+function readySocialChannelCount(item) {
+  return SOCIAL_CHANNELS
+    .filter((channel) => READY_STATUSES.has(item[channel].status))
+    .length;
+}
+
 export function selectNextQueueItem(queueState, now = new Date().toISOString()) {
   validateQueueState(queueState);
   const nowMs = Date.parse(assertIsoDate(now, 'selection timestamp'));
@@ -205,13 +211,16 @@ export function selectNextQueueItem(queueState, now = new Date().toISOString()) 
   if (ready.length === 0) {
     return null;
   }
-  const starved = ready
+  const maximumReadyChannels = Math.max(...ready.map(readySocialChannelCount));
+  const highestCoverage = ready
+    .filter((item) => readySocialChannelCount(item) === maximumReadyChannels);
+  const starved = highestCoverage
     .filter((item) => nowMs - Date.parse(item.discoveredAt) >= STARVATION_THRESHOLD_MS)
     .sort((left, right) => Date.parse(left.discoveredAt) - Date.parse(right.discoveredAt) || left.jobId.localeCompare(right.jobId));
   if (starved.length > 0) {
     return starved[0];
   }
-  return ready.sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt)
+  return highestCoverage.sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt)
     || Date.parse(right.discoveredAt) - Date.parse(left.discoveredAt)
     || left.jobId.localeCompare(right.jobId))[0];
 }

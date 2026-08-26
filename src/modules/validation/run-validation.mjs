@@ -649,6 +649,28 @@ validation('selects newest work unless an older item is starving', () => {
   assert.equal(selectNextQueueItem(restarted, '2026-08-21T11:00:00.000Z').jobId, oldJob.id);
 });
 
+validation('prioritizes cross-channel work over a starving legacy-channel item', () => {
+  const legacyJob = makeJob({ id: 'gh_333333333333333333333333', createdAt: '2026-08-18T10:00:00.000Z' });
+  const crossChannelJob = makeJob({ id: 'gh_444444444444444444444444', createdAt: '2026-08-20T12:00:00.000Z' });
+  let queue = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
+  queue = enqueueJob(queue, {
+    job: legacyJob,
+    snapshot: snapshotReference(),
+    discoveredAt: '2026-08-20T10:00:00.000Z',
+  });
+  queue = enqueueJob(queue, {
+    job: crossChannelJob,
+    snapshot: snapshotReference(),
+    discoveredAt: '2026-08-20T12:30:00.000Z',
+    enabledChannels: ['bluesky', 'mastodon', 'threads', 'instagram'],
+  });
+
+  assert.equal(
+    selectNextQueueItem(queue, '2026-08-21T11:00:00.000Z').jobId,
+    crossChannelJob.id,
+  );
+});
+
 validation('marks a closed queued job without publishing either channel', () => {
   const job = makeJob();
   let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
