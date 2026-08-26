@@ -500,19 +500,22 @@ validation('loads one complete immutable data snapshot', async () => {
   assert.deepEqual([...snapshot.jobsById.keys()], [jobs[0].id]);
 });
 
-validation('rejects mixed, duplicate, and inconsistent snapshot artifacts', async () => {
+validation('loads incrementally written artifacts from one immutable commit', async () => {
+  const files = makeSnapshotFiles([makeJob()]);
+  files['snapshots/opportunities/api/pages/page-0001.json'].generatedAt = '2026-08-20T13:05:00.000Z';
+  const snapshot = await loadSnapshot('/data', 'c'.repeat(40), {
+    readJson: async (_repository, _commit, path) => structuredClone(files[path]),
+  });
+
+  assert.equal(snapshot.jobsById.size, 1);
+});
+
+validation('rejects duplicate and inconsistent snapshot artifacts', async () => {
   const duplicate = makeJob();
   const files = makeSnapshotFiles([duplicate, duplicate]);
   await assert.rejects(
     loadSnapshot('/data', 'c'.repeat(40), { readJson: async (_repository, _commit, path) => structuredClone(files[path]) }),
     /duplicate/i,
-  );
-
-  const mixed = makeSnapshotFiles([makeJob()]);
-  mixed['snapshots/opportunities/api/pages/page-0001.json'].generatedAt = '2026-08-20T13:05:00.000Z';
-  await assert.rejects(
-    loadSnapshot('/data', 'd'.repeat(40), { readJson: async (_repository, _commit, path) => structuredClone(mixed[path]) }),
-    /generation/i,
   );
 
   const badCount = makeSnapshotFiles([makeJob()]);
