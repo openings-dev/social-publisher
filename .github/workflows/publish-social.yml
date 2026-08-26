@@ -108,6 +108,10 @@ jobs:
           node-version: 20
           cache: npm
 
+      - name: Install CJK rendering fonts
+        if: steps.preflight.outputs.should_run == 'true'
+        run: sudo apt-get update && sudo apt-get install --yes fonts-noto-cjk
+
       - name: Install exact dependencies
         if: steps.preflight.outputs.should_run == 'true'
         run: npm ci

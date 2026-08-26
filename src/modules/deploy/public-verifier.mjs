@@ -1,6 +1,13 @@
 import sharp from 'sharp';
 
-import { IMAGE_HEIGHT, IMAGE_WIDTH, OPENINGS_ORIGIN, REQUEST_TIMEOUT_MS } from '../../config/constants.mjs';
+import {
+  IMAGE_HEIGHT,
+  IMAGE_WIDTH,
+  INSTAGRAM_IMAGE_HEIGHT,
+  INSTAGRAM_IMAGE_WIDTH,
+  OPENINGS_ORIGIN,
+  REQUEST_TIMEOUT_MS,
+} from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 import { buildCanonicalJobUrl } from '../../shared/job-id.mjs';
 
@@ -137,8 +144,8 @@ export async function verifyPublicBridge({
     return mismatch('instagram_image_decode_failed', allowMismatch);
   }
   if (instagramMetadata.format !== 'jpeg'
-    || instagramMetadata.width !== IMAGE_WIDTH
-    || instagramMetadata.height !== IMAGE_HEIGHT) {
+    || instagramMetadata.width !== INSTAGRAM_IMAGE_WIDTH
+    || instagramMetadata.height !== INSTAGRAM_IMAGE_HEIGHT) {
     return mismatch('instagram_image_dimensions_mismatch', allowMismatch);
   }
   return Object.freeze({

@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 
 import { requestIncrementalBridgeDeployment } from '../deploy/web-deploy-client.mjs';
 import { createBridgeHtml } from '../render/html-page.mjs';
-import { renderSocialCardPng } from '../render/social-card.mjs';
+import { createInstagramCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 
 export async function renderBridgeArtifacts(job, {
@@ -14,17 +14,29 @@ export async function renderBridgeArtifacts(job, {
   const directory = resolve(outputRoot, 'jobs', job.id);
   const htmlPath = resolve(directory, 'index.html');
   const imagePath = resolve(directory, 'opengraph-image.png');
+  const instagramSvgPath = resolve(directory, 'instagram-image.svg');
   const [htmlSource, png] = await Promise.all([
     Promise.resolve(createBridgeHtml(job, { origin })),
     renderSocialCardPng(job, { wordmarkSvg }),
   ]);
   const html = Buffer.from(htmlSource, 'utf8');
+  const instagramSvg = Buffer.from(createInstagramCardSvg(job, { wordmarkSvg }), 'utf8');
   await mkdir(directory, { recursive: true });
   await Promise.all([
     writeFile(htmlPath, html),
     writeFile(imagePath, png),
+    writeFile(instagramSvgPath, instagramSvg),
   ]);
-  return Object.freeze({ htmlPath, imagePath, html, png, pngHash: sha256(png) });
+  return Object.freeze({
+    htmlPath,
+    imagePath,
+    instagramSvgPath,
+    html,
+    png,
+    instagramSvg,
+    pngHash: sha256(png),
+    instagramSvgHash: sha256(instagramSvg),
+  });
 }
 
 export async function loadCanonicalWordmark(path) {
@@ -51,8 +63,10 @@ export function createBridgePublisher({
       jobId: job.id,
       contentHash: job.contentHash,
       expectedPngHash: artifacts.pngHash,
+      expectedInstagramSvgHash: artifacts.instagramSvgHash,
       html: artifacts.html,
       image: artifacts.png,
+      instagramSvg: artifacts.instagramSvg,
       repository: config.webDeploy.repository,
       token: config.webDeploy.token,
       origin: config.publicSiteOrigin,
@@ -64,6 +78,7 @@ export function createBridgePublisher({
       imageUrl: deployment.verification.imageUrl,
       instagramImageUrl: deployment.verification.instagramImageUrl,
       pngHash: artifacts.pngHash,
+      instagramSvgHash: artifacts.instagramSvgHash,
     });
   };
 }

@@ -53,6 +53,8 @@ import {
 } from '../render/format-job.mjs';
 import { createBridgeHtml } from '../render/html-page.mjs';
 import { createSocialCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
+import * as socialCardModule from '../render/social-card.mjs';
+import { createCjkFontStyle, SOCIAL_CARD_FONT_STACK } from '../render/cjk-fonts.mjs';
 import { createBridgePublisher } from '../publishing/bridge-publisher.mjs';
 import {
   processIntakeSnapshots,
@@ -88,6 +90,19 @@ validation('exports the approved immutable constants', () => {
   assert.equal(MAX_CHANNEL_ATTEMPTS, 3);
   assert.equal(STARVATION_THRESHOLD_MS, 24 * 60 * 60 * 1000);
   assert.deepEqual([IMAGE_WIDTH, IMAGE_HEIGHT], [1200, 630]);
+});
+
+validation('installs Noto CJK before every Ubuntu social-card render', async () => {
+  const [validationWorkflow, publicationWorkflow, packageSource] = await Promise.all([
+    readFile(fileURLToPath(new URL('../../../.github/workflows/validate.yml', import.meta.url)), 'utf8'),
+    readFile(fileURLToPath(new URL('../../../.github/workflows/publish-social.yml', import.meta.url)), 'utf8'),
+    readFile(fileURLToPath(new URL('../../../package.json', import.meta.url)), 'utf8'),
+  ]);
+  for (const workflow of [validationWorkflow, publicationWorkflow]) {
+    assert.match(workflow, /apt-get install --yes fonts-noto-cjk/u);
+    assert.ok(workflow.indexOf('fonts-noto-cjk') < workflow.indexOf('npm run'));
+  }
+  assert.doesNotMatch(packageSource, /@fontsource\/noto-sans-(?:jp|kr|sc)/u);
 });
 
 validation('escapes untrusted HTML and attribute values', () => {
@@ -797,6 +812,7 @@ validation('renders the production social-card system to a bounded PNG', async (
     contentHash: job.contentHash,
     html: Buffer.from(createBridgeHtml(job)),
     image: png,
+    instagramSvg: Buffer.from(socialCardModule.createInstagramCardSvg(job, { wordmarkSvg })),
     repository: 'openings-dev/web-deploy',
   });
   assert.ok(dispatch.body.length < 60_000);
@@ -823,7 +839,7 @@ validation('bounds long Unicode card titles to three lines', () => {
   assert.match(svg, /…/);
 });
 
-validation('embeds deterministic CJK font subsets in social cards', async () => {
+validation('renders multilingual CJK social cards with the system font contract', async () => {
   const job = makeJob({
     title: '全球远程 ソフトウェアエンジニア 소프트웨어 엔지니어',
     community: { name: '国際開発コミュニティ' },
@@ -831,17 +847,56 @@ validation('embeds deterministic CJK font subsets in social cards', async () => 
   const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
   const svg = createSocialCardSvg(job, { wordmarkSvg });
 
-  assert.match(svg, /data:font\/woff2;base64,/u);
-  assert.match(svg, /Noto Sans JP/u);
-  assert.match(svg, /Noto Sans KR/u);
-  assert.match(svg, /font-family="Openings CJK, Arial, sans-serif"/u);
+  assert.doesNotMatch(svg, /data:font\/woff2;base64,/u);
+  assert.match(svg, /Noto Sans CJK SC/u);
+  assert.match(svg, /Noto Sans CJK JP/u);
+  assert.match(svg, /Noto Sans CJK KR/u);
 
   const png = await renderSocialCardPng(job, { wordmarkSvg });
   const metadata = await sharp(png).metadata();
   assert.deepEqual([metadata.width, metadata.height], [1200, 630]);
 });
 
-validation('dry run emits exactly the two deployable job files without state mutation', async () => {
+validation('uses installed Noto CJK fonts instead of ignored embedded web fonts', () => {
+  assert.equal(createCjkFontStyle('全球远程 ソフトウェア 엔지니어'), '');
+  assert.equal(
+    SOCIAL_CARD_FONT_STACK,
+    'Noto Sans CJK SC, Noto Sans CJK JP, Noto Sans CJK KR, Arial, sans-serif',
+  );
+});
+
+validation('defines a dedicated portrait-safe Instagram card', () => {
+  assert.equal(typeof socialCardModule.createInstagramCardSvg, 'function');
+  const job = makeJob({
+    title: '[广州 / 线下] 招聘Bitcoin创新开发工程师 | 国内BTC底层开发团队',
+    community: { name: 'rebase-network' },
+    country: 'Global',
+  });
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const svg = socialCardModule.createInstagramCardSvg(job, { wordmarkSvg });
+
+  assert.match(svg, /width="1080" height="1350" viewBox="0 0 1080 1350"/u);
+  assert.match(svg, /data-instagram-card="true"/u);
+  assert.match(svg, /data-safe-area="true"[^>]*x="56"[^>]*width="968"/u);
+  assert.match(svg, /data-instagram-title-line="true"/u);
+  assert.match(svg, /工程师—国内/u);
+  assert.doesNotMatch(svg, />\|<\/text>/u);
+  assert.match(svg, /Find this opening on openings\.dev/u);
+  assert.doesNotMatch(svg, /data:font\/woff2;base64,/u);
+});
+
+validation('renders a bounded 1080 by 1350 Instagram JPEG preview', async () => {
+  assert.equal(typeof socialCardModule.renderInstagramCardJpeg, 'function');
+  const job = makeJob({ title: 'Senior ソフトウェア Engineer' });
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const jpeg = await socialCardModule.renderInstagramCardJpeg(job, { wordmarkSvg });
+  const metadata = await sharp(jpeg).metadata();
+
+  assert.deepEqual([metadata.format, metadata.width, metadata.height], ['jpeg', 1080, 1350]);
+  assert.ok(jpeg.byteLength < 2 * 1024 * 1024);
+});
+
+validation('dry run emits the canonical bridge and both platform image previews', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'openings-social-publisher-dry-run-'));
   const fixturePath = join(directory, 'job.json');
   const wordmarkPath = join(directory, 'wordmark.svg');
@@ -857,6 +912,7 @@ validation('dry run emits exactly the two deployable job files without state mut
       .sort();
     assert.deepEqual(files, [
       `jobs/${result.jobId}/index.html`,
+      `jobs/${result.jobId}/instagram-image.jpg`,
       `jobs/${result.jobId}/opengraph-image.png`,
     ]);
     assert.equal(await readFile(fileURLToPath(new URL('../../../state/queue.json', import.meta.url)), 'utf8'), beforeState);
@@ -898,6 +954,8 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.equal(calls[0].token, 'github-secret');
     assert.match(calls[0].html.toString('utf8'), new RegExp(job.id));
     assert.equal(sha256(calls[0].image), calls[0].expectedPngHash);
+    assert.match(calls[0].instagramSvg.toString('utf8'), /data-instagram-card="true"/u);
+    assert.equal(sha256(calls[0].instagramSvg), calls[0].expectedInstagramSvgHash);
     assert.equal(result.status, 'deployed');
     assert.equal(result.canonicalUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}`);
     assert.equal(result.instagramImageUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`);
@@ -909,11 +967,13 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
 validation('builds a bounded repository dispatch without credentials in its body', () => {
   const html = Buffer.from('<!doctype html><html></html>');
   const image = Buffer.from('fixture-image');
+  const instagramSvg = Buffer.from('<svg width="1080" height="1350"></svg>');
   const request = buildRepositoryDispatchRequest({
     jobId: 'gh_0123456789abcdef01234567',
     contentHash: 'a'.repeat(64),
     html,
     image,
+    instagramSvg,
     repository: 'openings-dev/web-deploy',
   });
   assert.equal(request.url, 'https://api.github.com/repos/openings-dev/web-deploy/dispatches');
@@ -926,16 +986,20 @@ validation('builds a bounded repository dispatch without credentials in its body
     'html_sha256',
     'image_base64',
     'image_sha256',
+    'instagram_svg_base64',
+    'instagram_svg_sha256',
     'job_id',
   ]);
   assert.equal(body.client_payload.html_sha256, sha256(html));
   assert.equal(body.client_payload.image_sha256, sha256(image));
+  assert.equal(body.client_payload.instagram_svg_sha256, sha256(instagramSvg));
   assert.doesNotMatch(request.body, /token|password|ftp/iu);
   assert.throws(() => buildRepositoryDispatchRequest({
     jobId: '../escape',
     contentHash: 'a'.repeat(64),
     html,
     image,
+    instagramSvg,
     repository: 'openings-dev/web-deploy',
   }), /Invalid job ID/);
   assert.throws(() => buildRepositoryDispatchRequest({
@@ -943,6 +1007,7 @@ validation('builds a bounded repository dispatch without credentials in its body
     contentHash: 'a'.repeat(64),
     html,
     image: Buffer.alloc(60_000),
+    instagramSvg,
     repository: 'openings-dev/web-deploy',
   }), /payload.*large/i);
 });
@@ -956,7 +1021,9 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
-  const instagramImage = await sharp(png).jpeg({ quality: 82 }).toBuffer();
+  const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+  });
   const fetchImpl = async (url) => {
     if (url === canonicalUrl) {
       return new Response(html, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
@@ -1000,7 +1067,9 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
-  const instagramImage = await sharp(png).jpeg({ quality: 82 }).toBuffer();
+  const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+  });
   const calls = [];
   const fetchImpl = async (url) => {
     calls.push(url);
@@ -1039,7 +1108,9 @@ validation('verifies exact public assets when Cloudflare blocks Node HTML reques
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
-  const instagramImage = await sharp(png).jpeg({ quality: 82 }).toBuffer();
+  const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+  });
   const fetchImpl = async (url) => {
     if (url === canonicalUrl) {
       return new Response(null, { status: 301, headers: { location: redirectedUrl } });
@@ -1091,6 +1162,7 @@ validation('skips current bridges and dispatches stale bridges exactly once', as
   const calls = [];
   const html = Buffer.from('<!doctype html><html></html>');
   const image = Buffer.from('fixture-image');
+  const instagramSvg = Buffer.from('<svg width="1080" height="1350"></svg>');
   const currentVerification = {
     matches: true,
     canonicalUrl: 'https://openings.dev/jobs/gh_0123456789abcdef01234567',
@@ -1100,8 +1172,10 @@ validation('skips current bridges and dispatches stale bridges exactly once', as
     jobId: 'gh_0123456789abcdef01234567',
     contentHash: 'a'.repeat(64),
     expectedPngHash: sha256(image),
+    expectedInstagramSvgHash: sha256(instagramSvg),
     html,
     image,
+    instagramSvg,
     repository: 'openings-dev/web-deploy',
     token: 'github-secret',
     verifyPublic: async () => currentVerification,
@@ -1115,8 +1189,10 @@ validation('skips current bridges and dispatches stale bridges exactly once', as
     jobId: 'gh_0123456789abcdef01234567',
     contentHash: 'a'.repeat(64),
     expectedPngHash: sha256(image),
+    expectedInstagramSvgHash: sha256(instagramSvg),
     html,
     image,
+    instagramSvg,
     repository: 'openings-dev/web-deploy',
     token: 'github-secret',
     verifyPublic: async () => {
@@ -1141,8 +1217,10 @@ validation('skips current bridges and dispatches stale bridges exactly once', as
       jobId: 'gh_0123456789abcdef01234567',
       contentHash: 'a'.repeat(64),
       expectedPngHash: sha256(image),
+      expectedInstagramSvgHash: sha256(instagramSvg),
       html,
       image,
+      instagramSvg,
       repository: 'openings-dev/web-deploy',
       token: 'github-secret',
       verifyPublic: async () => ({ matches: false, reason: 'not_found' }),

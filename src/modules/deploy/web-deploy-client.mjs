@@ -43,6 +43,7 @@ export function buildRepositoryDispatchRequest({
   contentHash,
   html,
   image,
+  instagramSvg,
   repository,
   apiOrigin = GITHUB_API_ORIGIN,
 }) {
@@ -51,6 +52,7 @@ export function buildRepositoryDispatchRequest({
   const safeRepository = assertRepository(repository);
   const htmlBuffer = toBuffer(html, 'HTML');
   const imageBuffer = toBuffer(image, 'Image');
+  const instagramSvgBuffer = toBuffer(instagramSvg, 'Instagram SVG');
 
   const body = JSON.stringify({
     event_type: 'publish_job_bridge',
@@ -59,8 +61,10 @@ export function buildRepositoryDispatchRequest({
       content_hash: safeContentHash,
       html_sha256: sha256(htmlBuffer),
       image_sha256: sha256(imageBuffer),
+      instagram_svg_sha256: sha256(instagramSvgBuffer),
       html_base64: htmlBuffer.toString('base64'),
       image_base64: imageBuffer.toString('base64'),
+      instagram_svg_base64: instagramSvgBuffer.toString('base64'),
     },
   });
 
@@ -82,8 +86,10 @@ export async function requestIncrementalBridgeDeployment({
   jobId,
   contentHash,
   expectedPngHash,
+  expectedInstagramSvgHash,
   html,
   image,
+  instagramSvg,
   repository,
   token,
   origin,
@@ -96,8 +102,16 @@ export async function requestIncrementalBridgeDeployment({
   const safeJobId = assertValidJobId(jobId);
   const safeExpectedPngHash = assertHash(expectedPngHash, 'Expected PNG hash');
   const imageBuffer = toBuffer(image, 'Image');
+  const instagramSvgBuffer = toBuffer(instagramSvg, 'Instagram SVG');
   if (sha256(imageBuffer) !== safeExpectedPngHash) {
     throw new Error('Expected PNG hash does not match the image artifact');
+  }
+  const safeExpectedInstagramSvgHash = assertHash(
+    expectedInstagramSvgHash,
+    'Expected Instagram SVG hash',
+  );
+  if (sha256(instagramSvgBuffer) !== safeExpectedInstagramSvgHash) {
+    throw new Error('Expected Instagram SVG hash does not match the Instagram SVG artifact');
   }
 
   const verificationInput = {
@@ -117,6 +131,7 @@ export async function requestIncrementalBridgeDeployment({
     contentHash,
     html,
     image: imageBuffer,
+    instagramSvg: instagramSvgBuffer,
     repository,
   });
   let response;
