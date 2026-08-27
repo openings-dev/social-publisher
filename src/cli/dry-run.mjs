@@ -4,7 +4,12 @@ import { pathToFileURL } from 'node:url';
 
 import { formatSocialPost } from '../modules/render/format-job.mjs';
 import { createBridgeHtml } from '../modules/render/html-page.mjs';
-import { renderInstagramCardJpeg, renderSocialCardPng } from '../modules/render/social-card.mjs';
+import {
+  createInstagramCardSvg,
+  renderInstagramCardJpeg,
+  renderSocialCardPng,
+} from '../modules/render/social-card.mjs';
+import { renderReelVideo } from '../modules/render/reel-video.mjs';
 import { resolveGitCommit } from '../modules/data/git-json.mjs';
 import { loadSnapshot } from '../modules/data/load-snapshot.mjs';
 import { collectDelta } from '../modules/intake/collect-delta.mjs';
@@ -55,6 +60,7 @@ export async function runDryRun({ fixturePath, wordmarkPath, outputPath, log = c
   const imagePath = resolve(jobDirectory, 'opengraph-image.png');
   const instagramImagePath = resolve(jobDirectory, 'instagram-image.jpg');
   const post = formatSocialPost(fixture);
+  const instagramSvg = createInstagramCardSvg(fixture, { wordmarkSvg });
   const [html, png, instagramJpeg] = await Promise.all([
     Promise.resolve(createBridgeHtml(fixture)),
     renderSocialCardPng(fixture, { wordmarkSvg }),
@@ -67,15 +73,19 @@ export async function runDryRun({ fixturePath, wordmarkPath, outputPath, log = c
     writeFile(imagePath, png),
     writeFile(instagramImagePath, instagramJpeg),
   ]);
+  const reel = await renderReelVideo({
+    instagramSvg,
+    outputDirectory: jobDirectory,
+  });
 
   log(`Dry-run job: ${fixture.id}`);
   log(`\n${post.text}\n`);
-  log(`Artifacts:\n- ${htmlPath}\n- ${imagePath}\n- ${instagramImagePath}`);
+  log(`Artifacts:\n- ${htmlPath}\n- ${imagePath}\n- ${instagramImagePath}\n- ${reel.coverPath}\n- ${reel.videoPath}`);
 
   return Object.freeze({
     jobId: fixture.id,
     post,
-    files: Object.freeze([htmlPath, imagePath, instagramImagePath]),
+    files: Object.freeze([htmlPath, imagePath, instagramImagePath, reel.coverPath, reel.videoPath]),
   });
 }
 

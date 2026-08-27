@@ -4,7 +4,7 @@ import { resolve } from 'node:path';
 import { requestIncrementalBridgeDeployment } from '../deploy/web-deploy-client.mjs';
 import { createBridgeHtml } from '../render/html-page.mjs';
 import { createInstagramCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
-import { INSTAGRAM_CARD_VERSION } from '../../config/constants.mjs';
+import { INSTAGRAM_CARD_VERSION, SOCIAL_VIDEO_VERSION } from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 
 export async function renderBridgeArtifacts(job, {
@@ -66,6 +66,7 @@ export function createBridgePublisher({
       expectedPngHash: artifacts.pngHash,
       expectedInstagramSvgHash: artifacts.instagramSvgHash,
       expectedInstagramCardVersion: INSTAGRAM_CARD_VERSION,
+      expectedSocialVideoVersion: SOCIAL_VIDEO_VERSION,
       forceDeployment: reason === 'instagram_card_upgrade',
       html: artifacts.html,
       image: artifacts.png,
@@ -80,9 +81,12 @@ export function createBridgePublisher({
       canonicalUrl: deployment.verification.canonicalUrl,
       imageUrl: deployment.verification.imageUrl,
       instagramImageUrl: deployment.verification.instagramImageUrl,
+      socialVideoUrl: deployment.verification.socialVideoUrl,
+      socialVideoCoverUrl: deployment.verification.socialVideoCoverUrl,
       pngHash: artifacts.pngHash,
       instagramSvgHash: artifacts.instagramSvgHash,
       instagramCardVersion: INSTAGRAM_CARD_VERSION,
+      socialVideoVersion: SOCIAL_VIDEO_VERSION,
     });
   };
 }

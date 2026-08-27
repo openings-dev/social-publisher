@@ -41,6 +41,13 @@ function instagramTitleFontSize(title) {
   return 88;
 }
 
+function instagramFactFontSize(value) {
+  const length = [...segmenter.segment(String(value).replaceAll(SOFT_BREAK, ''))].length;
+  if (length > 20) return 19;
+  if (length > 14) return 22;
+  return 25;
+}
+
 function glyphWidth(character, fontSize) {
   if (character === SOFT_BREAK) return 0;
   if (/\s/u.test(character)) return fontSize * 0.3;
@@ -251,8 +258,13 @@ export function createInstagramCardSvg(job, { wordmarkSvg }) {
   const factGap = facts.length === 2 ? 36 : 30;
   const factsMarkup = facts.map(([label, value], index) => {
     const x = 84 + index * (factWidth + factGap);
-    const valueLines = wrapText(value, { fontSize: 25, maxWidth: factWidth - 12, maxLines: 2 });
-    return `<text data-instagram-fact-label="true" x="${x}" y="890" fill="${COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="700" letter-spacing="1.2">${escapeHtml(label.toUpperCase())}</text>${textLines(valueLines, { x, y: 933, fontSize: 25, lineHeight: 32, weight: 700, attribute: 'data-instagram-fact-value="true"' })}`;
+    const valueFontSize = instagramFactFontSize(value);
+    const valueLines = wrapText(value, {
+      fontSize: valueFontSize,
+      maxWidth: factWidth - 12,
+      maxLines: 2,
+    });
+    return `<text data-instagram-fact-label="true" x="${x}" y="890" fill="${COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="700" letter-spacing="1.2">${escapeHtml(label.toUpperCase())}</text>${textLines(valueLines, { x, y: 933, fontSize: valueFontSize, lineHeight: Math.round(valueFontSize * 1.3), weight: 700, attribute: 'data-instagram-fact-value="true"' })}`;
   }).join('');
 
   return `<svg xmlns="http://www.w3.org/2000/svg" width="${INSTAGRAM_IMAGE_WIDTH}" height="${INSTAGRAM_IMAGE_HEIGHT}" viewBox="0 0 ${INSTAGRAM_IMAGE_WIDTH} ${INSTAGRAM_IMAGE_HEIGHT}" role="img" aria-labelledby="instagram-card-title instagram-card-description" data-instagram-card="true">

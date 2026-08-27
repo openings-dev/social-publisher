@@ -11,11 +11,17 @@ import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest } from '../../cli/publish.mjs';
 
 import {
+  DEPLOY_POLL_ATTEMPTS,
   IMAGE_HEIGHT,
   IMAGE_WIDTH,
   INSTAGRAM_CARD_VERSION,
   MAX_CHANNEL_ATTEMPTS,
   OPENINGS_ORIGIN,
+  SOCIAL_VIDEO_DURATION_SECONDS,
+  SOCIAL_VIDEO_FPS,
+  SOCIAL_VIDEO_HEIGHT,
+  SOCIAL_VIDEO_VERSION,
+  SOCIAL_VIDEO_WIDTH,
   STARVATION_THRESHOLD_MS,
   STATE_SCHEMA_VERSION,
 } from '../../config/constants.mjs';
@@ -56,6 +62,12 @@ import { createBridgeHtml } from '../render/html-page.mjs';
 import { createSocialCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
 import * as socialCardModule from '../render/social-card.mjs';
 import { createCjkFontStyle, SOCIAL_CARD_FONT_STACK } from '../render/cjk-fonts.mjs';
+import {
+  buildReelFfmpegArguments,
+  createOriginalSoundtrackWav,
+  createReelStageSvgs,
+  renderReelVideo,
+} from '../render/reel-video.mjs';
 import { createBridgePublisher } from '../publishing/bridge-publisher.mjs';
 import {
   processIntakeSnapshots,
@@ -89,8 +101,13 @@ validation('exports the approved immutable constants', () => {
   assert.equal(STATE_SCHEMA_VERSION, 2);
   assert.equal(OPENINGS_ORIGIN, 'https://openings.dev');
   assert.equal(MAX_CHANNEL_ATTEMPTS, 3);
+  assert.equal(DEPLOY_POLL_ATTEMPTS, 72);
   assert.equal(STARVATION_THRESHOLD_MS, 24 * 60 * 60 * 1000);
   assert.deepEqual([IMAGE_WIDTH, IMAGE_HEIGHT], [1200, 630]);
+  assert.deepEqual([SOCIAL_VIDEO_WIDTH, SOCIAL_VIDEO_HEIGHT], [1080, 1920]);
+  assert.equal(SOCIAL_VIDEO_FPS, 30);
+  assert.equal(SOCIAL_VIDEO_DURATION_SECONDS, 9);
+  assert.equal(SOCIAL_VIDEO_VERSION, '1');
 });
 
 validation('installs Noto CJK before every Ubuntu social-card render', async () => {
@@ -101,6 +118,7 @@ validation('installs Noto CJK before every Ubuntu social-card render', async () 
   ]);
   for (const workflow of [validationWorkflow, publicationWorkflow]) {
     assert.match(workflow, /apt-get install --yes fonts-noto-cjk/u);
+    assert.match(workflow, /apt-get install --yes[^\n]*ffmpeg/u);
     assert.ok(workflow.indexOf('fonts-noto-cjk') < workflow.indexOf('npm run'));
   }
   assert.doesNotMatch(packageSource, /@fontsource\/noto-sans-(?:jp|kr|sc)/u);
@@ -457,6 +475,24 @@ function makeJob(overrides = {}) {
     sourceType: 'github-issue',
     ...overrides,
   };
+}
+
+function makeSocialVideoBuffer() {
+  const value = Buffer.alloc(24);
+  value.writeUInt32BE(24, 0);
+  value.write('ftyp', 4, 'ascii');
+  return value;
+}
+
+async function makeSocialVideoCover() {
+  return sharp({
+    create: {
+      width: SOCIAL_VIDEO_WIDTH,
+      height: SOCIAL_VIDEO_HEIGHT,
+      channels: 3,
+      background: '#f5f3ef',
+    },
+  }).jpeg().toBuffer();
 }
 
 function makeSnapshotFiles(jobs, overrides = {}) {
@@ -818,6 +854,7 @@ validation('renders a complete escaped canonical job bridge', () => {
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
   assert.match(html, new RegExp(`<meta name="openings:data-hash" content="${job.contentHash}"`));
   assert.match(html, /<meta name="openings:instagram-card-version" content="2">/u);
+  assert.match(html, /<meta name="openings:social-video-version" content="1">/u);
   assert.match(html, /&lt;script&gt;publish\(\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<img src=x|onerror=/);
   assert.match(html, new RegExp(`location\\.replace\\("https://openings\\.dev/\\?job=${job.id}"\\)`));
@@ -941,6 +978,13 @@ validation('defines a dedicated portrait-safe Instagram card', () => {
   assert.match(shortSvg, /font-size="88"[^>]*data-instagram-title-line="true"/u);
   assert.match(shortSvg, /font-size="27"[^>]*>Shared through/u);
   assert.match(shortSvg, /data-instagram-tag="true"[^>]*height="48"/u);
+
+  const longSalarySvg = socialCardModule.createInstagramCardSvg(makeJob({
+    salary: { currency: 'JPY', min: 9000000, max: 14000000, period: 'year' },
+  }), { wordmarkSvg });
+  assert.match(longSalarySvg, /font-size="19"[^>]*data-instagram-fact-value="true"[^>]*>¥9,000,000–¥14,000,000<\/text>/u);
+  assert.match(longSalarySvg, /font-size="19"[^>]*data-instagram-fact-value="true"[^>]*>\/year<\/text>/u);
+  assert.doesNotMatch(longSalarySvg, />¥9,000,000–¥14,0<\/text>/u);
 });
 
 validation('renders a bounded 1080 by 1350 Instagram JPEG preview', async () => {
@@ -952,6 +996,99 @@ validation('renders a bounded 1080 by 1350 Instagram JPEG preview', async () => 
 
   assert.deepEqual([metadata.format, metadata.width, metadata.height], ['jpeg', 1080, 1350]);
   assert.ok(jpeg.byteLength < 2 * 1024 * 1024);
+});
+
+validation('builds four layered 9:16 Reel stages from the canonical Instagram card', () => {
+  const instagramSvg = socialCardModule.createInstagramCardSvg(makeJob({
+    title: 'Senior ソフトウェア Engineer',
+  }), {
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+  });
+  const stages = createReelStageSvgs(instagramSvg);
+
+  assert.equal(stages.length, 4);
+  assert.deepEqual(
+    stages.map((stage) => /data-reel-stage="(?<stage>[1-4])"/u.exec(stage)?.groups?.stage),
+    ['1', '2', '3', '4'],
+  );
+  for (const stage of stages) {
+    assert.match(stage, /width="1080" height="1920" viewBox="0 0 1080 1920"/u);
+    assert.match(stage, /data:image\/svg\+xml;base64,/u);
+    assert.match(stage, /@openingshq/u);
+    assert.match(stage, /New opening/u);
+  }
+  assert.match(stages[0], /height="158"[^>]*data-reel-reveal/u);
+  assert.match(stages[1], /height="729"[^>]*data-reel-reveal/u);
+  assert.match(stages[2], /height="969"[^>]*data-reel-reveal/u);
+  assert.match(stages[3], /height="1200"[^>]*data-reel-reveal/u);
+});
+
+validation('creates an original deterministic 48 kHz stereo soundtrack', () => {
+  const first = createOriginalSoundtrackWav();
+  const second = createOriginalSoundtrackWav();
+
+  assert.deepEqual(first, second);
+  assert.equal(first.subarray(0, 4).toString('ascii'), 'RIFF');
+  assert.equal(first.subarray(8, 12).toString('ascii'), 'WAVE');
+  assert.equal(first.readUInt16LE(22), 2);
+  assert.equal(first.readUInt32LE(24), 48_000);
+  assert.equal(first.readUInt16LE(34), 16);
+  assert.equal(first.byteLength, 44 + (9 * 48_000 * 2 * 2));
+});
+
+validation('builds an Instagram and Shorts compatible FFmpeg delivery contract', () => {
+  const argumentsList = buildReelFfmpegArguments({
+    stagePaths: ['/tmp/1.png', '/tmp/2.png', '/tmp/3.png', '/tmp/4.png'],
+    audioPath: '/tmp/soundtrack.wav',
+    outputPath: '/tmp/social-video.mp4',
+  });
+  const joined = argumentsList.join(' ');
+
+  assert.match(joined, /xfade=transition=fade/u);
+  assert.match(joined, /-c:v libx264/u);
+  assert.match(joined, /-pix_fmt yuv420p/u);
+  assert.match(joined, /-r 30/u);
+  assert.match(joined, /-c:a aac/u);
+  assert.match(joined, /-ar 48000/u);
+  assert.match(joined, /-b:a 128k/u);
+  assert.match(joined, /-movflags \+faststart/u);
+  assert.match(joined, /-t 9/u);
+  assert.equal(argumentsList.at(-1), '/tmp/social-video.mp4');
+});
+
+validation('renders the public Reel video and final-frame cover into one job directory', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-reel-render-'));
+  const instagramSvg = socialCardModule.createInstagramCardSvg(makeJob({
+    title: '[東京] シニアソフトウェアエンジニア',
+  }), {
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+  });
+  const calls = [];
+  try {
+    const result = await renderReelVideo({
+      instagramSvg,
+      outputDirectory: directory,
+      execFileImpl: async (command, argumentsList) => {
+        calls.push({ command, argumentsList });
+        const output = Buffer.alloc(24);
+        output.writeUInt32BE(24, 0);
+        output.write('ftyp', 4, 'ascii');
+        await writeFile(argumentsList.at(-1), output);
+        return { stdout: '', stderr: '' };
+      },
+    });
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].command, 'ffmpeg');
+    assert.equal(result.videoPath, join(directory, 'social-video.mp4'));
+    assert.equal(result.coverPath, join(directory, 'social-video-cover.jpg'));
+    assert.equal((await readFile(result.videoPath)).subarray(4, 8).toString('ascii'), 'ftyp');
+    const cover = await sharp(await readFile(result.coverPath)).metadata();
+    assert.deepEqual([cover.format, cover.width, cover.height], ['jpeg', 1080, 1920]);
+    const residue = (await readdir(directory)).filter((name) => name.startsWith('.reel-render-'));
+    assert.deepEqual(residue, []);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 validation('dry run emits the canonical bridge and both platform image previews', async () => {
@@ -972,6 +1109,8 @@ validation('dry run emits the canonical bridge and both platform image previews'
       `jobs/${result.jobId}/index.html`,
       `jobs/${result.jobId}/instagram-image.jpg`,
       `jobs/${result.jobId}/opengraph-image.png`,
+      `jobs/${result.jobId}/social-video-cover.jpg`,
+      `jobs/${result.jobId}/social-video.mp4`,
     ]);
     assert.equal(await readFile(fileURLToPath(new URL('../../../state/queue.json', import.meta.url)), 'utf8'), beforeState);
   } finally {
@@ -1002,6 +1141,8 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
             canonicalUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}`,
             imageUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/opengraph-image.png`,
             instagramImageUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`,
+            socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`,
+            socialVideoCoverUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg`,
           },
         };
       },
@@ -1015,11 +1156,15 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.match(calls[0].instagramSvg.toString('utf8'), /data-instagram-card="true"/u);
     assert.equal(sha256(calls[0].instagramSvg), calls[0].expectedInstagramSvgHash);
     assert.equal(calls[0].expectedInstagramCardVersion, '2');
+    assert.equal(calls[0].expectedSocialVideoVersion, '1');
     assert.equal(calls[0].forceDeployment, true);
     assert.equal(result.status, 'deployed');
     assert.equal(result.canonicalUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}`);
     assert.equal(result.instagramImageUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`);
+    assert.equal(result.socialVideoUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`);
+    assert.equal(result.socialVideoCoverUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg`);
     assert.equal(result.instagramCardVersion, '2');
+    assert.equal(result.socialVideoVersion, '1');
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -1082,9 +1227,13 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
+  const socialVideo = makeSocialVideoBuffer();
+  const socialVideoCover = await makeSocialVideoCover();
   const fetchImpl = async (url) => {
     if (url === canonicalUrl) {
       return new Response(html, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
@@ -1094,6 +1243,12 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
     }
     if (url === instagramImageUrl) {
       return new Response(instagramImage, { status: 200, headers: { 'content-type': 'image/jpeg' } });
+    }
+    if (url === socialVideoCoverUrl) {
+      return new Response(socialVideoCover, { status: 200, headers: { 'content-type': 'image/jpeg' } });
+    }
+    if (url === socialVideoUrl) {
+      return new Response(socialVideo, { status: 200, headers: { 'content-type': 'video/mp4' } });
     }
     return new Response('missing', { status: 404 });
   };
@@ -1107,6 +1262,9 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   assert.equal(result.canonicalUrl, canonicalUrl);
   assert.equal(result.instagramImageUrl, instagramImageUrl);
   assert.equal(result.instagramCardVersion, '2');
+  assert.equal(result.socialVideoUrl, socialVideoUrl);
+  assert.equal(result.socialVideoCoverUrl, socialVideoCoverUrl);
+  assert.equal(result.socialVideoVersion, '1');
 
   const staleHtml = html.replace(
     'name="openings:instagram-card-version" content="2"',
@@ -1126,6 +1284,25 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   });
   assert.equal(staleVersion.matches, false);
   assert.equal(staleVersion.reason, 'instagram_card_version_mismatch');
+
+  const staleSocialVideoHtml = html.replace(
+    'name="openings:social-video-version" content="1"',
+    'name="openings:social-video-version" content="0"',
+  );
+  const staleSocialVideo = await verifyPublicBridge({
+    jobId: job.id,
+    contentHash: job.contentHash,
+    expectedPngHash: sha256(png),
+    fetchImpl: async (url) => {
+      if (url === canonicalUrl) {
+        return new Response(staleSocialVideoHtml, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
+      }
+      return fetchImpl(url);
+    },
+    allowMismatch: true,
+  });
+  assert.equal(staleSocialVideo.matches, false);
+  assert.equal(staleSocialVideo.reason, 'social_video_version_mismatch');
 
   const mismatch = await verifyPublicBridge({
     jobId: job.id,
@@ -1148,9 +1325,13 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
+  const socialVideo = makeSocialVideoBuffer();
+  const socialVideoCover = await makeSocialVideoCover();
   const calls = [];
   const fetchImpl = async (url) => {
     calls.push(url);
@@ -1166,6 +1347,12 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
     if (url === instagramImageUrl) {
       return new Response(instagramImage, { status: 200, headers: { 'content-type': 'image/jpeg' } });
     }
+    if (url === socialVideoCoverUrl) {
+      return new Response(socialVideoCover, { status: 200, headers: { 'content-type': 'image/jpeg' } });
+    }
+    if (url === socialVideoUrl) {
+      return new Response(socialVideo, { status: 200, headers: { 'content-type': 'video/mp4' } });
+    }
     return new Response('missing', { status: 404 });
   };
 
@@ -1177,7 +1364,14 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   });
 
   assert.equal(result.matches, true);
-  assert.deepEqual(calls, [canonicalUrl, redirectedUrl, imageUrl, instagramImageUrl]);
+  assert.deepEqual(calls, [
+    canonicalUrl,
+    redirectedUrl,
+    imageUrl,
+    instagramImageUrl,
+    socialVideoCoverUrl,
+    socialVideoUrl,
+  ]);
 });
 
 validation('verifies exact public assets when Cloudflare blocks Node HTML requests', async () => {
@@ -1189,9 +1383,13 @@ validation('verifies exact public assets when Cloudflare blocks Node HTML reques
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
+  const socialVideo = makeSocialVideoBuffer();
+  const socialVideoCover = await makeSocialVideoCover();
   const fetchImpl = async (url) => {
     if (url === canonicalUrl) {
       return new Response(null, { status: 301, headers: { location: redirectedUrl } });
@@ -1207,6 +1405,12 @@ validation('verifies exact public assets when Cloudflare blocks Node HTML reques
     }
     if (url === instagramImageUrl) {
       return new Response(instagramImage, { status: 200, headers: { 'content-type': 'image/jpeg' } });
+    }
+    if (url === socialVideoCoverUrl) {
+      return new Response(socialVideoCover, { status: 200, headers: { 'content-type': 'image/jpeg' } });
+    }
+    if (url === socialVideoUrl) {
+      return new Response(socialVideo, { status: 200, headers: { 'content-type': 'video/mp4' } });
     }
     return new Response('missing', { status: 404 });
   };
@@ -1740,12 +1944,14 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
   assert.equal(calls.filter((call) => call.options.method === 'POST').length, 1);
 });
 
-validation('publishes and reconciles one Instagram image by canonical job URL', async () => {
+validation('publishes and reconciles one Instagram Reel by canonical job URL', async () => {
   const job = makeJob();
   const post = formatSocialPost(job);
-  const imageUrl = `${post.canonicalUrl}/instagram-image.jpg`;
+  const videoUrl = `${post.canonicalUrl}/social-video.mp4`;
+  const coverUrl = `${post.canonicalUrl}/social-video-cover.jpg`;
   const calls = [];
   let published = false;
+  let containerChecks = 0;
   const fetchImpl = async (url, options = {}) => {
     calls.push({ url: String(url), options });
     const parsed = new URL(url);
@@ -1758,7 +1964,11 @@ validation('publishes and reconciles one Instagram image by canonical job URL', 
       return jsonResponse({ id: 'container-1' });
     }
     if (parsed.pathname === '/v23.0/container-1') {
-      return jsonResponse({ id: 'container-1', status_code: 'FINISHED' });
+      containerChecks += 1;
+      return jsonResponse({
+        id: 'container-1',
+        status_code: containerChecks < 12 ? 'IN_PROGRESS' : 'FINISHED',
+      });
     }
     if (parsed.pathname === '/v23.0/17841400000000000/media_publish') {
       published = true;
@@ -1776,19 +1986,26 @@ validation('publishes and reconciles one Instagram image by canonical job URL', 
   const result = await publishToInstagram({
     job,
     post,
-    imageUrl,
+    videoUrl,
+    coverUrl,
     accessToken: 'instagram-secret',
     userId: '17841400000000000',
     apiVersion: 'v23.0',
     fetchImpl,
     sleep: async () => {},
+    containerPollAttempts: 12,
   });
   assert.equal(result.status, 'published');
   assert.equal(result.id, 'media-1');
   assert.equal(result.url, 'https://www.instagram.com/p/media-1/');
+  assert.equal(containerChecks, 12);
   const container = calls.find((call) => new URL(call.url).pathname.endsWith('/media') && call.options.method === 'POST');
   const body = new URLSearchParams(container.options.body);
-  assert.equal(body.get('image_url'), imageUrl);
+  assert.equal(body.get('media_type'), 'REELS');
+  assert.equal(body.get('video_url'), videoUrl);
+  assert.equal(body.get('cover_url'), coverUrl);
+  assert.equal(body.get('share_to_feed'), 'true');
+  assert.equal(body.has('image_url'), false);
   assert.match(body.get('caption'), new RegExp(post.canonicalUrl));
   assert.match(body.get('caption'), /Follow @openingshq for more jobs from public communities\./u);
   assert.match(body.get('caption'), /Know someone who fits\? Tag them below\./u);
@@ -1797,7 +2014,8 @@ validation('publishes and reconciles one Instagram image by canonical job URL', 
   const reconciled = await publishToInstagram({
     job,
     post,
-    imageUrl,
+    videoUrl,
+    coverUrl,
     accessToken: 'instagram-secret',
     userId: '17841400000000000',
     apiVersion: 'v23.0',
@@ -1806,6 +2024,17 @@ validation('publishes and reconciles one Instagram image by canonical job URL', 
   });
   assert.equal(reconciled.status, 'reconciled');
   assert.equal(calls.filter((call) => new URL(call.url).pathname.endsWith('/media_publish')).length, 1);
+
+  await assert.rejects(publishToInstagram({
+    job,
+    post,
+    videoUrl: 'http://openings.dev/video.mp4',
+    coverUrl,
+    accessToken: 'instagram-secret',
+    userId: '17841400000000000',
+    apiVersion: 'v23.0',
+    fetchImpl,
+  }), /public HTTPS MP4/u);
 });
 
 function makeLoadedSnapshot({ commit, generatedAt, dataHash, jobs }) {
@@ -1948,7 +2177,10 @@ validation('refreshes a stale queued Instagram card before publication', async (
     dataHash: '9'.repeat(64),
     jobs: [job],
   });
-  const makePublishedBridgeQueue = (instagramCardVersion) => {
+  const makePublishedBridgeQueue = (
+    instagramCardVersion,
+    socialVideoVersion = SOCIAL_VIDEO_VERSION,
+  ) => {
     let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
       job,
       snapshot,
@@ -1960,7 +2192,7 @@ validation('refreshes a stale queued Instagram card before publication', async (
     });
     return transitionQueueStage(queue, job.id, 'bridge', 'published', {
       at: '2026-08-20T13:01:20.000Z',
-      result: { status: 'deployed', instagramCardVersion },
+      result: { status: 'deployed', instagramCardVersion, socialVideoVersion },
     });
   };
 
@@ -1972,7 +2204,11 @@ validation('refreshes a stale queued Instagram card before publication', async (
     publishBridge: async ({ reason }) => {
       assert.equal(reason, 'instagram_card_upgrade');
       staleOrder.push('bridge');
-      return { status: 'deployed', instagramCardVersion: INSTAGRAM_CARD_VERSION };
+      return {
+        status: 'deployed',
+        instagramCardVersion: INSTAGRAM_CARD_VERSION,
+        socialVideoVersion: SOCIAL_VIDEO_VERSION,
+      };
     },
     publishBluesky: async () => { throw new Error('Bluesky is disabled'); },
     publishMastodon: async () => { throw new Error('Mastodon is disabled'); },
@@ -1985,6 +2221,7 @@ validation('refreshes a stale queued Instagram card before publication', async (
   });
   assert.deepEqual(staleOrder, ['bridge', 'instagram']);
   assert.equal(stale.queueState.items[0].bridge.result.instagramCardVersion, INSTAGRAM_CARD_VERSION);
+  assert.equal(stale.queueState.items[0].bridge.result.socialVideoVersion, SOCIAL_VIDEO_VERSION);
 
   const currentOrder = [];
   await processOnePublication({

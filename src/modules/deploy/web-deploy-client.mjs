@@ -4,6 +4,7 @@ import {
   GITHUB_API_ORIGIN,
   INSTAGRAM_CARD_VERSION,
   MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS,
+  SOCIAL_VIDEO_VERSION,
 } from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 import { assertValidJobId } from '../../shared/job-id.mjs';
@@ -96,6 +97,7 @@ export async function requestIncrementalBridgeDeployment({
   expectedPngHash,
   expectedInstagramSvgHash,
   expectedInstagramCardVersion = INSTAGRAM_CARD_VERSION,
+  expectedSocialVideoVersion = SOCIAL_VIDEO_VERSION,
   forceDeployment = false,
   html,
   image,
@@ -132,6 +134,7 @@ export async function requestIncrementalBridgeDeployment({
     contentHash: assertHash(contentHash, 'Bridge content hash'),
     expectedPngHash: safeExpectedPngHash,
     expectedInstagramCardVersion: assertInstagramCardVersion(expectedInstagramCardVersion),
+    expectedSocialVideoVersion: assertInstagramCardVersion(expectedSocialVideoVersion),
     origin,
     fetchImpl,
   };

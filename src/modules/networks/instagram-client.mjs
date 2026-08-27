@@ -98,14 +98,15 @@ async function waitUntilContainerReady({
 export async function publishToInstagram({
   job,
   post,
-  imageUrl,
+  videoUrl,
+  coverUrl,
   accessToken,
   userId,
   apiVersion,
   apiOrigin = INSTAGRAM_API_ORIGIN,
   fetchImpl = globalThis.fetch,
   sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)),
-  containerPollAttempts = 6,
+  containerPollAttempts = 24,
   containerPollDelayMs = 5_000,
 }) {
   if (typeof accessToken !== 'string' || accessToken.trim() === '') {
@@ -114,14 +115,23 @@ export async function publishToInstagram({
   if (typeof userId !== 'string' || !/^\d+$/u.test(userId)) {
     throw publicationError('instagram_configuration', 'Instagram user ID is invalid');
   }
-  let publicImage;
+  let publicVideo;
+  let publicCover;
   try {
-    publicImage = new URL(imageUrl);
+    publicVideo = new URL(videoUrl);
   } catch {
-    throw publicationError('instagram_configuration', 'Instagram image URL is invalid');
+    throw publicationError('instagram_configuration', 'Instagram video URL is invalid');
   }
-  if (publicImage.protocol !== 'https:' || !publicImage.pathname.endsWith('.jpg')) {
-    throw publicationError('instagram_configuration', 'Instagram image URL must be a public HTTPS JPEG');
+  if (publicVideo.protocol !== 'https:' || !publicVideo.pathname.endsWith('.mp4')) {
+    throw publicationError('instagram_configuration', 'Instagram video URL must be a public HTTPS MP4');
+  }
+  try {
+    publicCover = new URL(coverUrl);
+  } catch {
+    throw publicationError('instagram_configuration', 'Instagram Reel cover URL is invalid');
+  }
+  if (publicCover.protocol !== 'https:' || !publicCover.pathname.endsWith('.jpg')) {
+    throw publicationError('instagram_configuration', 'Instagram Reel cover URL must be a public HTTPS JPEG');
   }
 
   const base = apiBase(apiOrigin, apiVersion);
@@ -141,7 +151,13 @@ export async function publishToInstagram({
       fetchImpl,
       method: 'POST',
       headers: headers(accessToken),
-      body: new URLSearchParams({ image_url: publicImage.toString(), caption }).toString(),
+      body: new URLSearchParams({
+        media_type: 'REELS',
+        video_url: publicVideo.toString(),
+        cover_url: publicCover.toString(),
+        caption,
+        share_to_feed: 'true',
+      }).toString(),
     });
   } catch {
     throw publicationError('instagram_container', 'Instagram media container creation failed');
@@ -151,7 +167,7 @@ export async function publishToInstagram({
   }
 
   const attempts = Number.isInteger(containerPollAttempts) && containerPollAttempts > 0
-    ? Math.min(containerPollAttempts, 10)
+    ? Math.min(containerPollAttempts, 60)
     : 1;
   await waitUntilContainerReady({
     base,

@@ -2,6 +2,7 @@ import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
 import {
   DEFAULT_SOCIAL_CHANNELS,
   INSTAGRAM_CARD_VERSION,
+  SOCIAL_VIDEO_VERSION,
   SOCIAL_CHANNELS,
 } from '../../config/constants.mjs';
 import { isEligibleNewJob } from '../intake/eligibility.mjs';
@@ -128,7 +129,8 @@ function updateQueuedRevision(queueState, job, snapshot) {
 function needsInstagramBridgeUpgrade(item) {
   return READY_STATUSES.has(item.instagram.status)
     && item.bridge.status === 'published'
-    && item.bridge.result?.instagramCardVersion !== INSTAGRAM_CARD_VERSION;
+    && (item.bridge.result?.instagramCardVersion !== INSTAGRAM_CARD_VERSION
+      || item.bridge.result?.socialVideoVersion !== SOCIAL_VIDEO_VERSION);
 }
 
 function invalidateStaleInstagramBridge(queueState, jobId, at) {

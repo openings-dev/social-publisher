@@ -3,6 +3,7 @@ import {
   IMAGE_WIDTH,
   INSTAGRAM_CARD_VERSION,
   OPENINGS_ORIGIN,
+  SOCIAL_VIDEO_VERSION,
 } from '../../config/constants.mjs';
 import { escapeAttribute, escapeHtml } from '../../shared/escape.mjs';
 import { buildCanonicalJobUrl } from '../../shared/job-id.mjs';
@@ -72,6 +73,7 @@ export function createBridgeHtml(job, { origin = OPENINGS_ORIGIN } = {}) {
   <meta name="twitter:image:alt" content="${escapeAttribute(socialAlt)}">
   <meta name="openings:data-hash" content="${escapeAttribute(job.contentHash)}">
   <meta name="openings:instagram-card-version" content="${INSTAGRAM_CARD_VERSION}">
+  <meta name="openings:social-video-version" content="${SOCIAL_VIDEO_VERSION}">
   <style>
     :root { color-scheme: light; font-family: Arial, sans-serif; background: #f5f3ef; color: #21302e; }
     * { box-sizing: border-box; }

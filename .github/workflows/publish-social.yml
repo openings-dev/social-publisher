@@ -110,7 +110,7 @@ jobs:
 
       - name: Install CJK rendering fonts
         if: steps.preflight.outputs.should_run == 'true'
-        run: sudo apt-get update && sudo apt-get install --yes fonts-noto-cjk
+        run: sudo apt-get update && sudo apt-get install --yes fonts-noto-cjk ffmpeg
 
       - name: Install exact dependencies
         if: steps.preflight.outputs.should_run == 'true'

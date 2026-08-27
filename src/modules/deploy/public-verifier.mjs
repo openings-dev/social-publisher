@@ -8,6 +8,9 @@ import {
   INSTAGRAM_IMAGE_WIDTH,
   OPENINGS_ORIGIN,
   REQUEST_TIMEOUT_MS,
+  SOCIAL_VIDEO_HEIGHT,
+  SOCIAL_VIDEO_VERSION,
+  SOCIAL_VIDEO_WIDTH,
 } from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 import { buildCanonicalJobUrl } from '../../shared/job-id.mjs';
@@ -50,6 +53,7 @@ export async function verifyPublicBridge({
   contentHash,
   expectedPngHash,
   expectedInstagramCardVersion = INSTAGRAM_CARD_VERSION,
+  expectedSocialVideoVersion = SOCIAL_VIDEO_VERSION,
   origin = OPENINGS_ORIGIN,
   fetchImpl = globalThis.fetch,
   timeoutMs = REQUEST_TIMEOUT_MS,
@@ -58,6 +62,8 @@ export async function verifyPublicBridge({
   const canonicalUrl = buildCanonicalJobUrl(jobId, origin);
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg`;
   let htmlResponse;
   try {
     htmlResponse = await fetchResponse(canonicalUrl, fetchImpl, timeoutMs, 'manual');
@@ -100,6 +106,10 @@ export async function verifyPublicBridge({
     if (findContent(tags, 'name', 'openings:instagram-card-version', 'content')
       !== expectedInstagramCardVersion) {
       return mismatch('instagram_card_version_mismatch', allowMismatch);
+    }
+    if (findContent(tags, 'name', 'openings:social-video-version', 'content')
+      !== expectedSocialVideoVersion) {
+      return mismatch('social_video_version_mismatch', allowMismatch);
     }
   }
 
@@ -154,14 +164,64 @@ export async function verifyPublicBridge({
     || instagramMetadata.height !== INSTAGRAM_IMAGE_HEIGHT) {
     return mismatch('instagram_image_dimensions_mismatch', allowMismatch);
   }
+
+  let socialVideoCoverResponse;
+  try {
+    socialVideoCoverResponse = await fetchResponse(socialVideoCoverUrl, fetchImpl, timeoutMs);
+  } catch {
+    return mismatch('social_video_cover_request_failed', allowMismatch);
+  }
+  if (!socialVideoCoverResponse.ok) {
+    return mismatch(socialVideoCoverResponse.status === 404
+      ? 'social_video_cover_not_found'
+      : 'social_video_cover_http_error', allowMismatch);
+  }
+  if (!/^image\/jpeg\b/iu.test(socialVideoCoverResponse.headers.get('content-type') ?? '')) {
+    return mismatch('social_video_cover_content_type_mismatch', allowMismatch);
+  }
+  let socialVideoCoverMetadata;
+  try {
+    socialVideoCoverMetadata = await sharp(
+      Buffer.from(await socialVideoCoverResponse.arrayBuffer()),
+    ).metadata();
+  } catch {
+    return mismatch('social_video_cover_decode_failed', allowMismatch);
+  }
+  if (socialVideoCoverMetadata.format !== 'jpeg'
+    || socialVideoCoverMetadata.width !== SOCIAL_VIDEO_WIDTH
+    || socialVideoCoverMetadata.height !== SOCIAL_VIDEO_HEIGHT) {
+    return mismatch('social_video_cover_dimensions_mismatch', allowMismatch);
+  }
+
+  let socialVideoResponse;
+  try {
+    socialVideoResponse = await fetchResponse(socialVideoUrl, fetchImpl, timeoutMs);
+  } catch {
+    return mismatch('social_video_request_failed', allowMismatch);
+  }
+  if (!socialVideoResponse.ok) {
+    return mismatch(socialVideoResponse.status === 404
+      ? 'social_video_not_found'
+      : 'social_video_http_error', allowMismatch);
+  }
+  if (!/^video\/mp4\b/iu.test(socialVideoResponse.headers.get('content-type') ?? '')) {
+    return mismatch('social_video_content_type_mismatch', allowMismatch);
+  }
+  const socialVideo = Buffer.from(await socialVideoResponse.arrayBuffer());
+  if (socialVideo.byteLength < 12 || socialVideo.subarray(4, 8).toString('ascii') !== 'ftyp') {
+    return mismatch('social_video_container_mismatch', allowMismatch);
+  }
   return Object.freeze({
     matches: true,
     canonicalUrl,
     imageUrl,
     instagramImageUrl,
+    socialVideoUrl,
+    socialVideoCoverUrl,
     contentHash,
     pngHash: expectedPngHash,
     instagramCardVersion: expectedInstagramCardVersion,
+    socialVideoVersion: expectedSocialVideoVersion,
     htmlVerification: edgeBlocked ? 'edge_blocked_assets_verified' : 'verified',
   });
 }

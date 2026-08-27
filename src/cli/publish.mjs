@@ -140,7 +140,8 @@ export async function runPublication({
   const publishInstagram = dependencies.publishInstagram ?? (({ job, post, queueItem }) => publishToInstagram({
     job,
     post,
-    imageUrl: queueItem.bridge.result?.instagramImageUrl,
+    videoUrl: queueItem.bridge.result?.socialVideoUrl,
+    coverUrl: queueItem.bridge.result?.socialVideoCoverUrl,
     accessToken: config.instagram?.accessToken,
     userId: config.instagram?.userId,
     apiVersion: config.instagram?.apiVersion,
