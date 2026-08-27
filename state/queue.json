@@ -4922,50 +4922,76 @@
       "createdAt": "2026-08-26T21:00:09Z",
       "publicationCreatedAt": "2026-08-27T09:46:27.806Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-08-27T12:34:10.592Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-08-27T12:34:10.592Z"
-        },
+        "status": "published",
+        "attempts": 2,
+        "updatedAt": "2026-08-27T12:49:42.561Z",
+        "lastError": null,
         "lastReset": {
           "at": "2026-08-27T12:34:10.592Z",
           "reason": "instagram_card_upgrade"
         },
-        "result": null
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_964d59a68b31e3bb24c601f7",
+          "imageUrl": "https://openings.dev/jobs/gh_964d59a68b31e3bb24c601f7/opengraph-image.png",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_964d59a68b31e3bb24c601f7/instagram-image.jpg",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_964d59a68b31e3bb24c601f7/social-video.mp4",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_964d59a68b31e3bb24c601f7/social-video-cover.jpg",
+          "pngHash": "0b85df19e064974756503b4406519043bc607821fc14cd0a9aa7d29b20eff9c4",
+          "instagramSvgHash": "07c6029e7125c03ba25149c0d7dbecffe6e0307a082a0683d409c3ec2d8ac1b2",
+          "instagramCardVersion": "2",
+          "socialVideoVersion": "1"
+        }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-27T12:49:42.561Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mu2kw53nk524",
+          "cid": "bafyreiga5dpfj4t22lshzh3mhe6p23sfe7gelq3g2pyuq6k4ginjzzd5wi",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mu2kw53nk524"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-27T12:49:42.561Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117167558031834413",
+          "url": "https://mastodon.social/@openingshq/117167558031834413",
+          "cardStatus": "pending"
+        }
       },
       "threads": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-27T12:49:42.561Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18142258726605147",
+          "url": "https://www.threads.com/@openingshq/post/Dci1DPBFuon"
+        }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-08-27T12:49:42.561Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17871245979634231",
+          "url": "https://www.instagram.com/reel/Dci1EwaklwQ/"
+        }
       }
     },
     {
