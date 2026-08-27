@@ -4922,20 +4922,18 @@
       "createdAt": "2026-08-26T21:00:09Z",
       "publicationCreatedAt": "2026-08-27T09:46:27.806Z",
       "bridge": {
-        "status": "published",
+        "status": "retryable",
         "attempts": 1,
-        "updatedAt": "2026-08-27T09:46:27.806Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_964d59a68b31e3bb24c601f7",
-          "imageUrl": "https://openings.dev/jobs/gh_964d59a68b31e3bb24c601f7/opengraph-image.png",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_964d59a68b31e3bb24c601f7/instagram-image.jpg",
-          "pngHash": "0b85df19e064974756503b4406519043bc607821fc14cd0a9aa7d29b20eff9c4",
-          "instagramSvgHash": "225b06ef39b88c09655daa77b2a912485f349b065241d49ce2bc0ce882d0ff66",
-          "instagramCardVersion": "2"
-        }
+        "updatedAt": "2026-08-27T12:34:10.592Z",
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-08-27T12:34:10.592Z"
+        },
+        "lastReset": {
+          "at": "2026-08-27T12:34:10.592Z",
+          "reason": "instagram_card_upgrade"
+        },
+        "result": null
       },
       "bluesky": {
         "status": "pending",
