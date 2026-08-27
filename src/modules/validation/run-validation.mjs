@@ -13,6 +13,7 @@ import { parsePublicationRequest } from '../../cli/publish.mjs';
 import {
   IMAGE_HEIGHT,
   IMAGE_WIDTH,
+  INSTAGRAM_CARD_VERSION,
   MAX_CHANNEL_ATTEMPTS,
   OPENINGS_ORIGIN,
   STARVATION_THRESHOLD_MS,
@@ -816,6 +817,7 @@ validation('renders a complete escaped canonical job bridge', () => {
   assert.match(html, /<meta property="og:image:width" content="1200">/);
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
   assert.match(html, new RegExp(`<meta name="openings:data-hash" content="${job.contentHash}"`));
+  assert.match(html, /<meta name="openings:instagram-card-version" content="2">/u);
   assert.match(html, /&lt;script&gt;publish\(\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<img src=x|onerror=/);
   assert.match(html, new RegExp(`location\\.replace\\("https://openings\\.dev/\\?job=${job.id}"\\)`));
@@ -1004,7 +1006,7 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
         };
       },
     });
-    const result = await publishBridge({ job });
+    const result = await publishBridge({ job, reason: 'instagram_card_upgrade' });
     assert.equal(calls.length, 1);
     assert.equal(calls[0].repository, 'openings-dev/web-deploy');
     assert.equal(calls[0].token, 'github-secret');
@@ -1012,9 +1014,12 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.equal(sha256(calls[0].image), calls[0].expectedPngHash);
     assert.match(calls[0].instagramSvg.toString('utf8'), /data-instagram-card="true"/u);
     assert.equal(sha256(calls[0].instagramSvg), calls[0].expectedInstagramSvgHash);
+    assert.equal(calls[0].expectedInstagramCardVersion, '2');
+    assert.equal(calls[0].forceDeployment, true);
     assert.equal(result.status, 'deployed');
     assert.equal(result.canonicalUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}`);
     assert.equal(result.instagramImageUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`);
+    assert.equal(result.instagramCardVersion, '2');
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -1101,6 +1106,26 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   assert.equal(result.matches, true);
   assert.equal(result.canonicalUrl, canonicalUrl);
   assert.equal(result.instagramImageUrl, instagramImageUrl);
+  assert.equal(result.instagramCardVersion, '2');
+
+  const staleHtml = html.replace(
+    'name="openings:instagram-card-version" content="2"',
+    'name="openings:instagram-card-version" content="1"',
+  );
+  const staleVersion = await verifyPublicBridge({
+    jobId: job.id,
+    contentHash: job.contentHash,
+    expectedPngHash: sha256(png),
+    fetchImpl: async (url) => {
+      if (url === canonicalUrl) {
+        return new Response(staleHtml, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
+      }
+      return fetchImpl(url);
+    },
+    allowMismatch: true,
+  });
+  assert.equal(staleVersion.matches, false);
+  assert.equal(staleVersion.reason, 'instagram_card_version_mismatch');
 
   const mismatch = await verifyPublicBridge({
     jobId: job.id,
@@ -1216,6 +1241,7 @@ validation('rejects public bridge redirects outside the canonical job directory'
 
 validation('skips current bridges and dispatches stale bridges exactly once', async () => {
   const calls = [];
+  const verificationInputs = [];
   const html = Buffer.from('<!doctype html><html></html>');
   const image = Buffer.from('fixture-image');
   const instagramSvg = Buffer.from('<svg width="1080" height="1350"></svg>');
@@ -1234,11 +1260,39 @@ validation('skips current bridges and dispatches stale bridges exactly once', as
     instagramSvg,
     repository: 'openings-dev/web-deploy',
     token: 'github-secret',
-    verifyPublic: async () => currentVerification,
+    expectedInstagramCardVersion: '2',
+    verifyPublic: async (input) => {
+      verificationInputs.push(input);
+      return currentVerification;
+    },
     fetchImpl: async () => { calls.push('dispatch'); return new Response(null, { status: 204 }); },
   });
   assert.equal(matching.status, 'already_current');
   assert.deepEqual(calls, []);
+  assert.equal(verificationInputs[0].expectedInstagramCardVersion, '2');
+
+  const forcedCalls = [];
+  const forced = await requestIncrementalBridgeDeployment({
+    jobId: 'gh_0123456789abcdef01234567',
+    contentHash: 'a'.repeat(64),
+    expectedPngHash: sha256(image),
+    expectedInstagramSvgHash: sha256(instagramSvg),
+    expectedInstagramCardVersion: '2',
+    forceDeployment: true,
+    html,
+    image,
+    instagramSvg,
+    repository: 'openings-dev/web-deploy',
+    token: 'github-secret',
+    verifyPublic: async () => currentVerification,
+    fetchImpl: async (url, options) => {
+      forcedCalls.push({ url, options });
+      return new Response(null, { status: 204 });
+    },
+    sleep: async () => {},
+  });
+  assert.equal(forced.status, 'deployed');
+  assert.equal(forcedCalls.length, 1);
 
   let verification = 0;
   const deployed = await requestIncrementalBridgeDeployment({
@@ -1884,6 +1938,70 @@ validation('deploys before providers and preserves partial success for a retry',
   assert.deepEqual(order, ['mastodon']);
   assert.equal(second.queueState.items[0].mastodon.status, 'published');
   assert.equal(second.publicationsState.jobs[job.id].status, 'completed');
+});
+
+validation('refreshes a stale queued Instagram card before publication', async () => {
+  const job = makeJob();
+  const snapshot = makeLoadedSnapshot({
+    commit: '9'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: '9'.repeat(64),
+    jobs: [job],
+  });
+  const makePublishedBridgeQueue = (instagramCardVersion) => {
+    let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+      job,
+      snapshot,
+      discoveredAt: '2026-08-20T13:01:00.000Z',
+      enabledChannels: ['instagram'],
+    });
+    queue = transitionQueueStage(queue, job.id, 'bridge', 'publishing', {
+      at: '2026-08-20T13:01:10.000Z',
+    });
+    return transitionQueueStage(queue, job.id, 'bridge', 'published', {
+      at: '2026-08-20T13:01:20.000Z',
+      result: { status: 'deployed', instagramCardVersion },
+    });
+  };
+
+  const staleOrder = [];
+  const stale = await processOnePublication({
+    queueState: makePublishedBridgeQueue('1'),
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async ({ reason }) => {
+      assert.equal(reason, 'instagram_card_upgrade');
+      staleOrder.push('bridge');
+      return { status: 'deployed', instagramCardVersion: INSTAGRAM_CARD_VERSION };
+    },
+    publishBluesky: async () => { throw new Error('Bluesky is disabled'); },
+    publishMastodon: async () => { throw new Error('Mastodon is disabled'); },
+    publishInstagram: async () => {
+      staleOrder.push('instagram');
+      return { status: 'published', id: 'media-stale', url: 'https://www.instagram.com/p/media-stale/' };
+    },
+    enabledChannels: ['instagram'],
+    now: '2026-08-20T13:02:00.000Z',
+  });
+  assert.deepEqual(staleOrder, ['bridge', 'instagram']);
+  assert.equal(stale.queueState.items[0].bridge.result.instagramCardVersion, INSTAGRAM_CARD_VERSION);
+
+  const currentOrder = [];
+  await processOnePublication({
+    queueState: makePublishedBridgeQueue(INSTAGRAM_CARD_VERSION),
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async () => { currentOrder.push('bridge'); return { status: 'deployed' }; },
+    publishBluesky: async () => { throw new Error('Bluesky is disabled'); },
+    publishMastodon: async () => { throw new Error('Mastodon is disabled'); },
+    publishInstagram: async () => {
+      currentOrder.push('instagram');
+      return { status: 'published', id: 'media-current', url: 'https://www.instagram.com/p/media-current/' };
+    },
+    enabledChannels: ['instagram'],
+    now: '2026-08-20T13:02:00.000Z',
+  });
+  assert.deepEqual(currentOrder, ['instagram']);
 });
 
 validation('controlled publication can enqueue one explicit current job', async () => {

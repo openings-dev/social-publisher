@@ -2,6 +2,7 @@ import {
   DEPLOY_POLL_ATTEMPTS,
   DEPLOY_POLL_DELAY_MS,
   GITHUB_API_ORIGIN,
+  INSTAGRAM_CARD_VERSION,
   MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS,
 } from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
@@ -21,6 +22,13 @@ function assertHash(value, label) {
 function assertRepository(value) {
   if (typeof value !== 'string' || !REPOSITORY_PATTERN.test(value)) {
     throw new Error('Web deploy repository is invalid');
+  }
+  return value;
+}
+
+function assertInstagramCardVersion(value) {
+  if (typeof value !== 'string' || !/^[1-9][0-9]*$/u.test(value)) {
+    throw new Error('Instagram card version is invalid');
   }
   return value;
 }
@@ -87,6 +95,8 @@ export async function requestIncrementalBridgeDeployment({
   contentHash,
   expectedPngHash,
   expectedInstagramSvgHash,
+  expectedInstagramCardVersion = INSTAGRAM_CARD_VERSION,
+  forceDeployment = false,
   html,
   image,
   instagramSvg,
@@ -100,6 +110,9 @@ export async function requestIncrementalBridgeDeployment({
   pollDelayMs = DEPLOY_POLL_DELAY_MS,
 }) {
   const safeJobId = assertValidJobId(jobId);
+  if (typeof forceDeployment !== 'boolean') {
+    throw new Error('Force deployment flag is invalid');
+  }
   const safeExpectedPngHash = assertHash(expectedPngHash, 'Expected PNG hash');
   const imageBuffer = toBuffer(image, 'Image');
   const instagramSvgBuffer = toBuffer(instagramSvg, 'Instagram SVG');
@@ -118,11 +131,12 @@ export async function requestIncrementalBridgeDeployment({
     jobId: safeJobId,
     contentHash: assertHash(contentHash, 'Bridge content hash'),
     expectedPngHash: safeExpectedPngHash,
+    expectedInstagramCardVersion: assertInstagramCardVersion(expectedInstagramCardVersion),
     origin,
     fetchImpl,
   };
   const current = await verifyPublic({ ...verificationInput, allowMismatch: true });
-  if (current.matches) {
+  if (current.matches && !forceDeployment) {
     return Object.freeze({ status: 'already_current', verification: current });
   }
 

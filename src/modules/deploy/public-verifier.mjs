@@ -3,6 +3,7 @@ import sharp from 'sharp';
 import {
   IMAGE_HEIGHT,
   IMAGE_WIDTH,
+  INSTAGRAM_CARD_VERSION,
   INSTAGRAM_IMAGE_HEIGHT,
   INSTAGRAM_IMAGE_WIDTH,
   OPENINGS_ORIGIN,
@@ -48,6 +49,7 @@ export async function verifyPublicBridge({
   jobId,
   contentHash,
   expectedPngHash,
+  expectedInstagramCardVersion = INSTAGRAM_CARD_VERSION,
   origin = OPENINGS_ORIGIN,
   fetchImpl = globalThis.fetch,
   timeoutMs = REQUEST_TIMEOUT_MS,
@@ -94,6 +96,10 @@ export async function verifyPublicBridge({
     }
     if (findContent(tags, 'name', 'openings:data-hash', 'content') !== contentHash) {
       return mismatch('content_hash_mismatch', allowMismatch);
+    }
+    if (findContent(tags, 'name', 'openings:instagram-card-version', 'content')
+      !== expectedInstagramCardVersion) {
+      return mismatch('instagram_card_version_mismatch', allowMismatch);
     }
   }
 
@@ -155,6 +161,7 @@ export async function verifyPublicBridge({
     instagramImageUrl,
     contentHash,
     pngHash: expectedPngHash,
+    instagramCardVersion: expectedInstagramCardVersion,
     htmlVerification: edgeBlocked ? 'edge_blocked_assets_verified' : 'verified',
   });
 }

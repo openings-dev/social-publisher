@@ -1,5 +1,9 @@
 import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
-import { DEFAULT_SOCIAL_CHANNELS, SOCIAL_CHANNELS } from '../../config/constants.mjs';
+import {
+  DEFAULT_SOCIAL_CHANNELS,
+  INSTAGRAM_CARD_VERSION,
+  SOCIAL_CHANNELS,
+} from '../../config/constants.mjs';
 import { isEligibleNewJob } from '../intake/eligibility.mjs';
 import { formatSocialPost } from '../render/format-job.mjs';
 import {
@@ -115,6 +119,36 @@ function updateQueuedRevision(queueState, job, snapshot) {
       updatedAt: null,
       lastError: null,
       lastReset: null,
+      result: null,
+    },
+  };
+  return validateQueueState({ ...queueState, items });
+}
+
+function needsInstagramBridgeUpgrade(item) {
+  return READY_STATUSES.has(item.instagram.status)
+    && item.bridge.status === 'published'
+    && item.bridge.result?.instagramCardVersion !== INSTAGRAM_CARD_VERSION;
+}
+
+function invalidateStaleInstagramBridge(queueState, jobId, at) {
+  const index = queueState.items.findIndex((item) => item.jobId === jobId);
+  if (index < 0) {
+    throw new Error(`Queue item not found: ${jobId}`);
+  }
+  const current = queueState.items[index];
+  if (!needsInstagramBridgeUpgrade(current)) {
+    return queueState;
+  }
+  const items = queueState.items.slice();
+  items[index] = {
+    ...current,
+    bridge: {
+      status: 'pending',
+      attempts: 0,
+      updatedAt: at,
+      lastError: null,
+      lastReset: { at, reason: 'instagram_card_upgrade' },
       result: null,
     },
   };
@@ -305,13 +339,16 @@ export async function processOnePublication({
     || selected.dataHash !== currentSnapshot.dataHash;
   nextQueue = updateQueuedRevision(nextQueue, job, currentSnapshot);
   selected = findQueueItem(nextQueue, selected.jobId);
+  const instagramCardUpgrade = needsInstagramBridgeUpgrade(selected);
+  nextQueue = invalidateStaleInstagramBridge(nextQueue, selected.jobId, now);
+  selected = findQueueItem(nextQueue, selected.jobId);
   if (READY_STATUSES.has(selected.bridge.status)) {
     nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'publishing', { at: now });
     try {
       const result = await publishBridge({
         job,
         snapshot: currentSnapshot,
-        reason: revisionChanged ? 'changed' : 'new',
+        reason: instagramCardUpgrade ? 'instagram_card_upgrade' : (revisionChanged ? 'changed' : 'new'),
       });
       nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'published', { at: now, result });
     } catch (error) {

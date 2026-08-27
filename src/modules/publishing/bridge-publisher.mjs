@@ -4,6 +4,7 @@ import { resolve } from 'node:path';
 import { requestIncrementalBridgeDeployment } from '../deploy/web-deploy-client.mjs';
 import { createBridgeHtml } from '../render/html-page.mjs';
 import { createInstagramCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
+import { INSTAGRAM_CARD_VERSION } from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 
 export async function renderBridgeArtifacts(job, {
@@ -53,7 +54,7 @@ export function createBridgePublisher({
   if (!config?.webDeploy) {
     throw new Error('Web deploy configuration is required for bridge publication');
   }
-  return async function publishBridge({ job }) {
+  return async function publishBridge({ job, reason }) {
     const artifacts = await renderBridgeArtifacts(job, {
       wordmarkSvg,
       outputRoot,
@@ -64,6 +65,8 @@ export function createBridgePublisher({
       contentHash: job.contentHash,
       expectedPngHash: artifacts.pngHash,
       expectedInstagramSvgHash: artifacts.instagramSvgHash,
+      expectedInstagramCardVersion: INSTAGRAM_CARD_VERSION,
+      forceDeployment: reason === 'instagram_card_upgrade',
       html: artifacts.html,
       image: artifacts.png,
       instagramSvg: artifacts.instagramSvg,
@@ -79,6 +82,7 @@ export function createBridgePublisher({
       instagramImageUrl: deployment.verification.instagramImageUrl,
       pngHash: artifacts.pngHash,
       instagramSvgHash: artifacts.instagramSvgHash,
+      instagramCardVersion: INSTAGRAM_CARD_VERSION,
     });
   };
 }
