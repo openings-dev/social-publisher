@@ -1383,15 +1383,16 @@ validation('keeps the largest multilingual poster inside the incremental dispatc
 
 validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG derivative', async () => {
   const job = makeJob();
+  const instagramSvgHash = 'c'.repeat(64);
   const html = createBridgeHtml(job);
   const png = await renderSocialCardPng(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
-  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
-  const socialVideoUrl = `${canonicalUrl}/social-video.mp4`;
-  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=2.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=2.${instagramSvgHash.slice(0, 16)}`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
@@ -1419,6 +1420,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
     jobId: job.id,
     contentHash: job.contentHash,
     expectedPngHash: sha256(png),
+    expectedInstagramSvgHash: instagramSvgHash,
     fetchImpl,
   });
   assert.equal(result.matches, true);
@@ -1437,6 +1439,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
     jobId: job.id,
     contentHash: job.contentHash,
     expectedPngHash: sha256(png),
+    expectedInstagramSvgHash: instagramSvgHash,
     fetchImpl: async (url) => {
       if (url === canonicalUrl) {
         return new Response(staleHtml, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
@@ -1456,6 +1459,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
     jobId: job.id,
     contentHash: job.contentHash,
     expectedPngHash: sha256(png),
+    expectedInstagramSvgHash: instagramSvgHash,
     fetchImpl: async (url) => {
       if (url === canonicalUrl) {
         return new Response(staleSocialVideoHtml, { status: 200, headers: { 'content-type': 'text/html; charset=utf-8' } });
@@ -1471,6 +1475,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
     jobId: job.id,
     contentHash: 'b'.repeat(64),
     expectedPngHash: sha256(png),
+    expectedInstagramSvgHash: instagramSvgHash,
     fetchImpl,
     allowMismatch: true,
   });
@@ -1480,6 +1485,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
 
 validation('accepts the canonical Hostinger trailing-slash redirect only', async () => {
   const job = makeJob();
+  const instagramSvgHash = 'd'.repeat(64);
   const html = createBridgeHtml(job);
   const png = await renderSocialCardPng(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
@@ -1487,9 +1493,9 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
-  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
-  const socialVideoUrl = `${canonicalUrl}/social-video.mp4`;
-  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=2.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=2.${instagramSvgHash.slice(0, 16)}`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
@@ -1523,6 +1529,7 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
     jobId: job.id,
     contentHash: job.contentHash,
     expectedPngHash: sha256(png),
+    expectedInstagramSvgHash: instagramSvgHash,
     fetchImpl,
   });
 
@@ -1539,15 +1546,16 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
 
 validation('verifies exact public assets when Cloudflare blocks Node HTML requests', async () => {
   const job = makeJob();
+  const instagramSvgHash = 'e'.repeat(64);
   const png = await renderSocialCardPng(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
-  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
-  const socialVideoUrl = `${canonicalUrl}/social-video.mp4`;
-  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=2.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=2.${instagramSvgHash.slice(0, 16)}`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
@@ -1582,6 +1590,7 @@ validation('verifies exact public assets when Cloudflare blocks Node HTML reques
     jobId: job.id,
     contentHash: job.contentHash,
     expectedPngHash: sha256(png),
+    expectedInstagramSvgHash: instagramSvgHash,
     fetchImpl,
   });
 

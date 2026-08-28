@@ -48,10 +48,18 @@ function mismatch(reason, allowMismatch) {
   throw new Error(`Public bridge verification failed: ${reason}`);
 }
 
+function versionAssetUrl(url, hash, version) {
+  const fingerprint = typeof hash === 'string' && /^[0-9a-f]{64}$/u.test(hash)
+    ? hash.slice(0, 16)
+    : 'asset';
+  return `${url}?v=${version}.${fingerprint}`;
+}
+
 export async function verifyPublicBridge({
   jobId,
   contentHash,
   expectedPngHash,
+  expectedInstagramSvgHash,
   expectedInstagramCardVersion = INSTAGRAM_CARD_VERSION,
   expectedSocialVideoVersion = SOCIAL_VIDEO_VERSION,
   origin = OPENINGS_ORIGIN,
@@ -61,9 +69,21 @@ export async function verifyPublicBridge({
 }) {
   const canonicalUrl = buildCanonicalJobUrl(jobId, origin);
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
-  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg`;
-  const socialVideoUrl = `${canonicalUrl}/social-video.mp4`;
-  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg`;
+  const instagramImageUrl = versionAssetUrl(
+    `${canonicalUrl}/instagram-image.jpg`,
+    expectedInstagramSvgHash,
+    expectedInstagramCardVersion,
+  );
+  const socialVideoUrl = versionAssetUrl(
+    `${canonicalUrl}/social-video.mp4`,
+    expectedInstagramSvgHash,
+    expectedSocialVideoVersion,
+  );
+  const socialVideoCoverUrl = versionAssetUrl(
+    `${canonicalUrl}/social-video-cover.jpg`,
+    expectedInstagramSvgHash,
+    expectedSocialVideoVersion,
+  );
   let htmlResponse;
   try {
     htmlResponse = await fetchResponse(canonicalUrl, fetchImpl, timeoutMs, 'manual');

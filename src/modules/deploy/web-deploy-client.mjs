@@ -133,6 +133,7 @@ export async function requestIncrementalBridgeDeployment({
     jobId: safeJobId,
     contentHash: assertHash(contentHash, 'Bridge content hash'),
     expectedPngHash: safeExpectedPngHash,
+    expectedInstagramSvgHash: safeExpectedInstagramSvgHash,
     expectedInstagramCardVersion: assertInstagramCardVersion(expectedInstagramCardVersion),
     expectedSocialVideoVersion: assertInstagramCardVersion(expectedSocialVideoVersion),
     origin,
