@@ -244,7 +244,7 @@ export function createInstagramCardSvg(job, { wordmarkSvg }) {
     + Math.round(layout.titleFontSize * 0.78);
   const wordmarkData = Buffer.from(trustedWordmark).toString('base64');
   const dominantLength = [...segmenter.segment(model.dominantFact.value)].length;
-  const dominantFontSize = dominantLength > 22 ? 38 : dominantLength > 16 ? 58 : dominantLength > 11 ? 76 : 116;
+  const dominantFontSize = dominantLength > 18 ? 38 : dominantLength > 13 ? 58 : dominantLength > 11 ? 76 : 116;
   const dominantLines = wrapText(model.dominantFact.value, {
     fontSize: dominantFontSize,
     maxWidth: 650,

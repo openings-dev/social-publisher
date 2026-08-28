@@ -1095,6 +1095,10 @@ validation('defines a dense full-canvas portrait-safe Instagram poster', () => {
   }), { wordmarkSvg });
   assert.match(longSalarySvg, />SALARY<\/text>/u);
   assert.match(longSalarySvg, />¥9,000,000–¥14,000,000\/year<\/text>/u);
+  const monthlySalarySvg = socialCardModule.createInstagramCardSvg(makeJob({
+    salary: { currency: 'USD', min: 9000, max: 12000, period: 'month' },
+  }), { wordmarkSvg });
+  assert.match(monthlySalarySvg, />\$9,000–\$12,000\/month<\/text>/u);
 });
 
 validation('renders a bounded 1080 by 1350 Instagram JPEG preview', async () => {
@@ -1111,6 +1115,10 @@ validation('renders a bounded 1080 by 1350 Instagram JPEG preview', async () => 
 validation('builds four native full-canvas 9:16 Reel stages from the canonical model', () => {
   const instagramSvg = socialCardModule.createInstagramCardSvg(makeJob({
     title: 'Senior ソフトウェア Engineer',
+    country: 'Remote',
+    region: 'Worldwide',
+    tags: ['remote'],
+    salary: { currency: 'USD', min: 9000, max: 12000, period: 'month' },
   }), {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
@@ -1138,6 +1146,9 @@ validation('builds four native full-canvas 9:16 Reel stages from the canonical m
   assert.match(stages[2], /data-reel-facts="true"[^>]*opacity="1"/u);
   assert.match(stages[2], /data-reel-attribution="true"[^>]*opacity="0"/u);
   assert.match(stages[3], /data-reel-attribution="true"[^>]*opacity="1"/u);
+  assert.match(stages[2], />\$9,000–\$12,000\/month<\/text>/u);
+  assert.match(stages[2], />Worldwide<\/text>/u);
+  assert.doesNotMatch(stages[2], />World<\/text>.*>wide<\/text>/su);
 });
 
 validation('creates an original deterministic 48 kHz stereo soundtrack', () => {

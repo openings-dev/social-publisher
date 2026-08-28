@@ -66,23 +66,34 @@ function glyphWidth(character, fontSize) {
 function wrapFact(value, { fontSize, maxWidth, maxLines }) {
   const input = [...segmenter.segment(String(value))].map(({ segment }) => segment);
   const lines = [];
-  let line = '';
+  let current = [];
   let width = 0;
+  let lastBreak = -1;
   let index = 0;
   while (index < input.length && lines.length < maxLines) {
     const character = input[index];
     const characterWidth = glyphWidth(character, fontSize);
-    if (line && width + characterWidth > maxWidth) {
-      lines.push(line.trimEnd());
-      line = '';
-      width = 0;
+    if (current.length > 0 && width + characterWidth > maxWidth) {
+      if (lastBreak >= 0) {
+        const completed = current.slice(0, lastBreak).join('').trimEnd();
+        const spill = current.slice(lastBreak + 1);
+        if (completed) lines.push(completed);
+        current = spill;
+        width = spill.reduce((sum, part) => sum + glyphWidth(part, fontSize), 0);
+      } else {
+        lines.push(current.join('').trimEnd());
+        current = [];
+        width = 0;
+      }
+      lastBreak = -1;
       continue;
     }
-    line += character;
+    current.push(character);
     width += characterWidth;
+    if (/\s/u.test(character)) lastBreak = current.length - 1;
     index += 1;
   }
-  if (line && lines.length < maxLines) lines.push(line.trimEnd());
+  if (current.length > 0 && lines.length < maxLines) lines.push(current.join('').trimEnd());
   if (index < input.length && lines.length > 0) {
     lines[lines.length - 1] = `${lines.at(-1).replace(/[\s,.;:!?-]+$/u, '')}…`;
   }
@@ -101,7 +112,7 @@ function stageSvg({ model, wordmark }, stage) {
   const titleY = 350 + Math.max(0, (620 - titleBlockHeight) / 2)
     + Math.round(layout.titleFontSize * 0.78);
   const dominantLength = [...segmenter.segment(model.dominantFact.value)].length;
-  const dominantFontSize = dominantLength > 22 ? 50 : dominantLength > 16 ? 70 : dominantLength > 11 ? 94 : 152;
+  const dominantFontSize = dominantLength > 18 ? 40 : dominantLength > 13 ? 64 : dominantLength > 11 ? 88 : 152;
   const dominantLines = wrapFact(model.dominantFact.value, {
     fontSize: dominantFontSize,
     maxWidth: 650,
