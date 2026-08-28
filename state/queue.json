@@ -4782,23 +4782,23 @@
       "bridge": {
         "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-08-28T17:17:58.299Z",
+        "updatedAt": "2026-08-28T19:04:03.076Z",
         "lastError": null,
         "lastReset": {
-          "at": "2026-08-28T17:17:58.299Z",
+          "at": "2026-08-28T19:04:03.076Z",
           "reason": "instagram_card_upgrade"
         },
         "result": {
           "status": "deployed",
           "canonicalUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874",
-          "imageUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/opengraph-image.png",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/instagram-image.jpg?v=3.2671bd6e3552a571",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/social-video.mp4?v=2.2671bd6e3552a571",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/social-video-cover.jpg?v=2.2671bd6e3552a571",
-          "pngHash": "3472fa047ea58a1fbcffebafa3051aab9efe0b9d9b9480cb6925e22d7d5d4dc1",
-          "instagramSvgHash": "2671bd6e3552a5718755c1c488f6f5260cd0d9e1e78d58b5a72d43139f7df9a8",
-          "instagramCardVersion": "3",
-          "socialVideoVersion": "2"
+          "imageUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/opengraph-image.png?v=178feac6f7becbf6",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/instagram-image.jpg?v=4.94021dce09e19467",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/social-video.mp4?v=3.94021dce09e19467",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_fb912858247d5261cc51e874/social-video-cover.jpg?v=3.94021dce09e19467",
+          "pngHash": "178feac6f7becbf6a4da3d001b54b1d56c6225a1815774b30433f0daf5501ee8",
+          "instagramSvgHash": "94021dce09e194678843ba5a6c2a6bcbfa6a71166876de7b83e17610c69a00b3",
+          "instagramCardVersion": "4",
+          "socialVideoVersion": "3"
         }
       },
       "bluesky": {
@@ -4830,31 +4830,31 @@
       "threads": {
         "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-08-28T17:17:58.299Z",
+        "updatedAt": "2026-08-28T19:04:03.076Z",
         "lastError": null,
         "lastReset": {
-          "at": "2026-08-28T17:17:58.299Z",
+          "at": "2026-08-28T19:04:03.076Z",
           "reason": "meta_publication_migration"
         },
         "result": {
-          "status": "reconciled",
-          "id": "18107485946144723",
-          "url": "https://www.threads.com/@openingshq/post/Dcl3nTom093"
+          "status": "published",
+          "id": "18120039748903674",
+          "url": "https://www.threads.com/@openingshq/post/DcmEr49mIrK"
         }
       },
       "instagram": {
         "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-08-28T17:17:58.299Z",
+        "updatedAt": "2026-08-28T19:04:03.076Z",
         "lastError": null,
         "lastReset": {
-          "at": "2026-08-28T17:17:58.299Z",
+          "at": "2026-08-28T19:04:03.076Z",
           "reason": "meta_publication_migration"
         },
         "result": {
-          "status": "reconciled",
-          "id": "17934113961122273",
-          "url": "https://www.instagram.com/reel/Dcl3vUIEUgt/"
+          "status": "published",
+          "id": "18340909768270071",
+          "url": "https://www.instagram.com/reel/DcmEtHrEgzX/"
         }
       }
     },

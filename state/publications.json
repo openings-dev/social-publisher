@@ -707,7 +707,7 @@
       "contentHash": "5f95038c7e98a809c0093d91613cbc8ebe35e9e1eb66ad781e85b63be72a4f31",
       "dataCommit": "1c8b78aa26abc792176cf145b2f3f2877482cf91",
       "dataHash": "401d0ed32b546b7e2a490f40aa206fef8d129ea4d3c9888f24856aa7070659fe",
-      "completedAt": "2026-08-28T17:17:58.299Z",
+      "completedAt": "2026-08-28T19:04:03.076Z",
       "bluesky": {
         "status": "published",
         "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mtxrlv6kbi2d",
@@ -721,42 +721,75 @@
         "cardStatus": "resolved"
       },
       "threads": {
-        "status": "reconciled",
-        "id": "18107485946144723",
-        "url": "https://www.threads.com/@openingshq/post/Dcl3nTom093"
+        "status": "published",
+        "id": "18120039748903674",
+        "url": "https://www.threads.com/@openingshq/post/DcmEr49mIrK"
       },
       "instagram": {
-        "status": "reconciled",
-        "id": "17934113961122273",
-        "url": "https://www.instagram.com/reel/Dcl3vUIEUgt/"
+        "status": "published",
+        "id": "18340909768270071",
+        "url": "https://www.instagram.com/reel/DcmEtHrEgzX/"
       },
       "metaMigration": {
-        "revision": "poster_v3_social_video_v2",
-        "marker": "#OpeningsPosterV3",
-        "completedAt": "2026-08-28T17:17:58.299Z",
+        "revision": "white_band_poster_v4_social_video_v3",
+        "marker": "#OpeningsJobs",
+        "completedAt": "2026-08-28T19:04:03.076Z",
+        "history": [
+          {
+            "revision": "poster_v3_social_video_v2",
+            "marker": "#OpeningsPosterV3",
+            "completedAt": "2026-08-28T17:17:58.299Z",
+            "threads": {
+              "previous": {
+                "status": "published",
+                "id": "18122681141480193",
+                "url": "https://www.threads.com/@openingshq/post/DcgVRHCliMH"
+              },
+              "replacement": {
+                "status": "reconciled",
+                "id": "18107485946144723",
+                "url": "https://www.threads.com/@openingshq/post/Dcl3nTom093"
+              },
+              "cleanup": "manual_required"
+            },
+            "instagram": {
+              "previous": {
+                "status": "published",
+                "id": "18126460369773015",
+                "url": "https://www.instagram.com/p/DcgVSIllnnZ/"
+              },
+              "replacement": {
+                "status": "reconciled",
+                "id": "17934113961122273",
+                "url": "https://www.instagram.com/reel/Dcl3vUIEUgt/"
+              },
+              "cleanup": "manual_required"
+            }
+          }
+        ],
         "threads": {
           "previous": {
-            "status": "published",
-            "id": "18122681141480193",
-            "url": "https://www.threads.com/@openingshq/post/DcgVRHCliMH"
-          },
-          "replacement": {
             "status": "reconciled",
             "id": "18107485946144723",
             "url": "https://www.threads.com/@openingshq/post/Dcl3nTom093"
+          },
+          "replacement": {
+            "status": "published",
+            "id": "18120039748903674",
+            "url": "https://www.threads.com/@openingshq/post/DcmEr49mIrK"
           },
           "cleanup": "manual_required"
         },
         "instagram": {
           "previous": {
-            "status": "published",
-            "id": "18126460369773015",
-            "url": "https://www.instagram.com/p/DcgVSIllnnZ/"
-          },
-          "replacement": {
             "status": "reconciled",
             "id": "17934113961122273",
             "url": "https://www.instagram.com/reel/Dcl3vUIEUgt/"
+          },
+          "replacement": {
+            "status": "published",
+            "id": "18340909768270071",
+            "url": "https://www.instagram.com/reel/DcmEtHrEgzX/"
           },
           "cleanup": "manual_required"
         }
