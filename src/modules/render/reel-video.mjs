@@ -120,43 +120,42 @@ function stageSvg({ model, wordmark }, stage) {
     maxLines: 3,
   });
   const supporting = model.supportingFacts.map((fact, index) => {
-    const y = 1150 + index * 230;
+    const y = 1146 + index * 196;
     const lines = wrapFact(fact.value, { fontSize: 38, maxWidth: 290, maxLines: 2 });
-    return `<text x="730" y="${y}" fill="#a9b7b4" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="17" font-weight="850" letter-spacing="1.6">${escapeHtml(fact.label)}</text>
-    ${textLines(lines, { x: 730, y: y + 60, fontSize: 38, lineHeight: 46, fill: colors.paper, weight: 780 })}`;
+    return `<text x="730" y="${y}" fill="${colors.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="17" font-weight="850" letter-spacing="1.6">${escapeHtml(fact.label)}</text>
+    ${textLines(lines, { x: 730, y: y + 60, fontSize: 38, lineHeight: 46, fill: colors.ink, weight: 780 })}`;
   }).join('');
   const titleOpacity = stage >= 2 ? 1 : 0;
   const factsOpacity = stage >= 3 ? 1 : 0;
   const attributionOpacity = stage >= 4 ? 1 : 0;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${SOCIAL_VIDEO_WIDTH}" height="${SOCIAL_VIDEO_HEIGHT}" viewBox="0 0 ${SOCIAL_VIDEO_WIDTH} ${SOCIAL_VIDEO_HEIGHT}" data-reel-stage="${stage}" data-social-poster-version="${SOCIAL_POSTER_MODEL_VERSION}">
-  <rect width="1080" height="1920" fill="${colors.mint}"/>
-  <circle cx="1022" cy="306" r="254" fill="#c6f4b7"/>
-  <circle cx="54" cy="1550" r="238" fill="#9fdf8b" opacity="0.70"/>
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${SOCIAL_VIDEO_WIDTH}" height="${SOCIAL_VIDEO_HEIGHT}" viewBox="0 0 ${SOCIAL_VIDEO_WIDTH} ${SOCIAL_VIDEO_HEIGHT}" data-reel-stage="${stage}" data-social-poster-version="${SOCIAL_POSTER_MODEL_VERSION}" data-theme="${model.theme.id}">
+  <rect width="1080" height="1920" fill="${colors.paper}"/>
+  <rect data-editorial-band="true" x="0" y="1574" width="1080" height="346" fill="${model.theme.accent}" opacity="${attributionOpacity}"/>
   <rect data-safe-area="true" x="${geometry.safeArea.x}" y="${geometry.safeArea.y}" width="${geometry.safeArea.width}" height="${geometry.safeArea.height}" fill="none"/>
   <rect data-poster-role-region="true" x="${geometry.role.x}" y="${geometry.role.y}" width="${geometry.role.width}" height="${geometry.role.height}" fill="none"/>
-  <rect data-poster-facts-region="true" x="${geometry.facts.x}" y="${geometry.facts.y}" width="${geometry.facts.width}" height="${geometry.facts.height}" fill="${colors.ink}" opacity="${factsOpacity}"/>
+  <rect data-reel-facts-surface="true" data-poster-facts-region="true" x="${geometry.facts.x}" y="${geometry.facts.y}" width="${geometry.facts.width}" height="${geometry.facts.height}" rx="32" fill="${colors.surfaceMuted}" opacity="${factsOpacity}"/>
   <rect data-poster-attribution-region="true" x="${geometry.attribution.x}" y="${geometry.attribution.y}" width="${geometry.attribution.width}" height="${geometry.attribution.height}" fill="none"/>
   <g data-reel-brand="true" opacity="1" data-important-content="true" data-x="30" data-y="60" data-width="1020" data-height="130">
     <image x="30" y="72" width="285" height="52" preserveAspectRatio="xMinYMid meet" href="${wordmark}"/>
     <text x="1050" y="103" text-anchor="end" fill="${colors.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="24" font-weight="850">${escapeHtml(model.handle)}</text>
-    <text x="1050" y="143" text-anchor="end" fill="${colors.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="750">Tech jobs from public communities</text>
+    <text x="1050" y="143" text-anchor="end" fill="${colors.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="750">Tech jobs from public communities</text>
   </g>
   <g data-reel-title="true" opacity="${titleOpacity}" data-important-content="true" data-x="30" data-y="190" data-width="1020" data-height="866">
-    <text x="30" y="264" fill="${colors.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="20" font-weight="850" letter-spacing="1.9">${escapeHtml(model.eyebrow.toUpperCase())}</text>
+    <text x="30" y="264" fill="${colors.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="20" font-weight="850" letter-spacing="1.9">${escapeHtml(model.eyebrow.toUpperCase())}</text>
     ${textLines(layout.titleLines, { x: 30, y: Math.round(titleY), fontSize: layout.titleFontSize, lineHeight: layout.titleLineHeight, fill: colors.ink, weight: 900, attribute: 'letter-spacing="-2.8" data-reel-title-line="true"' })}
   </g>
-  <g data-reel-facts="true" opacity="${factsOpacity}" data-important-content="true" data-x="30" data-y="1056" data-width="1020" data-height="614">
-    <text x="30" y="1150" fill="#a9b7b4" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="850" letter-spacing="1.7">${escapeHtml(model.dominantFact.label)}</text>
-    ${textLines(dominantLines, { x: 30, y: 1280, fontSize: dominantFontSize, lineHeight: Math.round(dominantFontSize * 1.02), fill: colors.paper, weight: 900, attribute: 'letter-spacing="-2.2" data-reel-dominant-fact="true"' })}
-    <line x1="692" y1="1120" x2="692" y2="1600" stroke="#53615e"/>
+  <g data-reel-facts="true" opacity="${factsOpacity}" data-important-content="true" data-x="30" data-y="1056" data-width="1020" data-height="488">
+    <text x="60" y="1146" fill="${colors.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="850" letter-spacing="1.7">${escapeHtml(model.dominantFact.label)}</text>
+    ${textLines(dominantLines, { x: 60, y: 1262, fontSize: dominantFontSize, lineHeight: Math.round(dominantFontSize * 1.02), fill: colors.ink, weight: 900, attribute: 'letter-spacing="-2.2" data-reel-dominant-fact="true"' })}
+    <line x1="692" y1="1112" x2="692" y2="1488" stroke="${colors.line}"/>
     ${supporting}
   </g>
-  <g data-reel-attribution="true" opacity="${attributionOpacity}" data-important-content="true" data-x="30" data-y="1670" data-width="1020" data-height="190">
-    <text x="30" y="1735" fill="${colors.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="850" letter-spacing="1.7">${escapeHtml(model.attribution.label)}</text>
-    <text x="30" y="1790" fill="${colors.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="31" font-weight="850">${escapeHtml(model.attribution.value)}</text>
-    <rect x="600" y="1728" width="450" height="102" rx="51" fill="${colors.ink}"/>
-    <text x="630" y="1790" fill="${colors.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="21" font-weight="800">${escapeHtml(model.attribution.action)}</text>
-    <text x="1018" y="1795" text-anchor="end" fill="${colors.mint}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="34" font-weight="850">→</text>
+  <g data-reel-attribution="true" opacity="${attributionOpacity}" data-important-content="true" data-x="30" data-y="1574" data-width="1020" data-height="286">
+    <text x="30" y="1672" fill="${colors.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="850" letter-spacing="1.7">${escapeHtml(model.attribution.label)}</text>
+    <text x="30" y="1730" fill="${colors.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="31" font-weight="850">${escapeHtml(model.attribution.value)}</text>
+    <rect x="600" y="1644" width="450" height="110" rx="55" fill="${colors.ink}"/>
+    <text x="630" y="1710" fill="${colors.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="21" font-weight="800">${escapeHtml(model.attribution.action)}</text>
+    <text x="1018" y="1716" text-anchor="end" fill="${model.theme.accent}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="34" font-weight="850">→</text>
   </g>
 </svg>`;
 }
@@ -312,7 +311,7 @@ export async function renderReelVideo({
     }));
     const coverSource = stages.at(-1);
     await sharp(Buffer.from(coverSource, 'utf8'))
-      .flatten({ background: SOCIAL_CARD_COLORS.mint })
+      .flatten({ background: SOCIAL_CARD_COLORS.paper })
       .jpeg({ quality: 88, chromaSubsampling: '4:4:4' })
       .toFile(coverPath);
     const coverMetadata = await sharp(coverPath).metadata();

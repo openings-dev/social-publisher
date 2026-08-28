@@ -22,6 +22,6 @@ export const SOCIAL_VIDEO_WIDTH = 1080;
 export const SOCIAL_VIDEO_HEIGHT = 1920;
 export const SOCIAL_VIDEO_FPS = 30;
 export const SOCIAL_VIDEO_DURATION_SECONDS = 9;
-export const SOCIAL_VIDEO_VERSION = '2';
+export const SOCIAL_VIDEO_VERSION = '3';
 export const JOB_ID_PATTERN = /^gh_[0-9a-f]{24}$/;
 export const REQUEST_TIMEOUT_MS = 15_000;

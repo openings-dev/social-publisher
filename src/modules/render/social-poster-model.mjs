@@ -27,8 +27,8 @@ export const REEL_POSTER_GEOMETRY = deepFreeze({
   safeArea: { x: 30, y: 60, width: 1020, height: 1800 },
   header: { x: 30, y: 60, width: 1020, height: 130 },
   role: { x: 30, y: 190, width: 1020, height: 866 },
-  facts: { x: 0, y: 1056, width: 1080, height: 614 },
-  attribution: { x: 30, y: 1670, width: 1020, height: 190 },
+  facts: { x: 30, y: 1056, width: 1020, height: 488 },
+  attribution: { x: 30, y: 1574, width: 1020, height: 286 },
 });
 
 const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
