@@ -16,12 +16,14 @@ export async function renderBridgeArtifacts(job, {
   const htmlPath = resolve(directory, 'index.html');
   const imagePath = resolve(directory, 'opengraph-image.png');
   const instagramSvgPath = resolve(directory, 'instagram-image.svg');
-  const [htmlSource, png] = await Promise.all([
-    Promise.resolve(createBridgeHtml(job, { origin })),
+  const [png, instagramSvgSource] = await Promise.all([
     renderSocialCardPng(job, { wordmarkSvg }),
+    Promise.resolve(createInstagramCardSvg(job, { wordmarkSvg })),
   ]);
+  const pngHash = sha256(png);
+  const htmlSource = createBridgeHtml(job, { origin, imageHash: pngHash });
   const html = Buffer.from(htmlSource, 'utf8');
-  const instagramSvg = Buffer.from(createInstagramCardSvg(job, { wordmarkSvg }), 'utf8');
+  const instagramSvg = Buffer.from(instagramSvgSource, 'utf8');
   await mkdir(directory, { recursive: true });
   await Promise.all([
     writeFile(htmlPath, html),
@@ -35,7 +37,7 @@ export async function renderBridgeArtifacts(job, {
     html,
     png,
     instagramSvg,
-    pngHash: sha256(png),
+    pngHash,
     instagramSvgHash: sha256(instagramSvg),
   });
 }

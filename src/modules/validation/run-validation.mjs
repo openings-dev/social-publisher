@@ -1128,12 +1128,14 @@ validation('renders a complete escaped canonical job bridge', () => {
     excerpt: 'Build tools & keep users safe. <img src=x onerror=publish()>',
     community: { name: 'Openings & Friends' },
   });
-  const html = createBridgeHtml(job);
+  const imageHash = 'b'.repeat(64);
+  const html = createBridgeHtml(job, { imageHash });
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   assert.match(html, /<!doctype html>/i);
   assert.match(html, new RegExp(`<link rel="canonical" href="${canonicalUrl}"`));
   assert.match(html, new RegExp(`<meta property="og:url" content="${canonicalUrl}"`));
-  assert.match(html, new RegExp(`<meta property="og:image" content="${canonicalUrl}/opengraph-image.png"`));
+  assert.match(html, new RegExp(`<meta property="og:image" content="${canonicalUrl}/opengraph-image.png\\?v=${imageHash.slice(0, 16)}"`));
+  assert.match(html, new RegExp(`<meta name="twitter:image" content="${canonicalUrl}/opengraph-image.png\\?v=${imageHash.slice(0, 16)}"`));
   assert.match(html, /<meta property="og:image:width" content="1200">/);
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
   assert.match(html, new RegExp(`<meta name="openings:data-hash" content="${job.contentHash}"`));
@@ -1142,6 +1144,7 @@ validation('renders a complete escaped canonical job bridge', () => {
   assert.match(html, /&lt;script&gt;publish\(\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<img src=x|onerror=/);
   assert.match(html, new RegExp(`location\\.replace\\("https://openings\\.dev/\\?job=${job.id}"\\)`));
+  assert.throws(() => createBridgeHtml(job), /image hash/i);
 });
 
 validation('renders the production social-card system to a bounded PNG', async () => {
@@ -1176,7 +1179,7 @@ validation('renders the production social-card system to a bounded PNG', async (
   const dispatch = buildRepositoryDispatchRequest({
     jobId: job.id,
     contentHash: job.contentHash,
-    html: Buffer.from(createBridgeHtml(job)),
+    html: Buffer.from(createBridgeHtml(job, { imageHash: sha256(png) })),
     image: png,
     instagramSvg: Buffer.from(socialCardModule.createInstagramCardSvg(job, { wordmarkSvg })),
     repository: 'openings-dev/web-deploy',
@@ -1669,7 +1672,7 @@ validation('keeps the largest multilingual poster inside the incremental dispatc
   const request = buildRepositoryDispatchRequest({
     jobId: job.id,
     contentHash: job.contentHash,
-    html: Buffer.from(createBridgeHtml(job)),
+    html: Buffer.from(createBridgeHtml(job, { imageHash: sha256(image) })),
     image,
     instagramSvg,
     repository: 'openings-dev/web-deploy',
@@ -1687,12 +1690,13 @@ validation('keeps the largest multilingual poster inside the incremental dispatc
 validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG derivative', async () => {
   const job = makeJob();
   const instagramSvgHash = 'c'.repeat(64);
-  const html = createBridgeHtml(job);
   const png = await renderSocialCardPng(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
+  const pngHash = sha256(png);
+  const html = createBridgeHtml(job, { imageHash: pngHash });
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
-  const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const imageUrl = `${canonicalUrl}/opengraph-image.png?v=${pngHash.slice(0, 16)}`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=4.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=3.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
@@ -1722,7 +1726,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   const result = await verifyPublicBridge({
     jobId: job.id,
     contentHash: job.contentHash,
-    expectedPngHash: sha256(png),
+    expectedPngHash: pngHash,
     expectedInstagramSvgHash: instagramSvgHash,
     fetchImpl,
   });
@@ -1789,13 +1793,14 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
 validation('accepts the canonical Hostinger trailing-slash redirect only', async () => {
   const job = makeJob();
   const instagramSvgHash = 'd'.repeat(64);
-  const html = createBridgeHtml(job);
   const png = await renderSocialCardPng(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
+  const pngHash = sha256(png);
+  const html = createBridgeHtml(job, { imageHash: pngHash });
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const redirectedUrl = `${canonicalUrl}/`;
-  const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const imageUrl = `${canonicalUrl}/opengraph-image.png?v=${pngHash.slice(0, 16)}`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=4.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=3.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
@@ -1831,7 +1836,7 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   const result = await verifyPublicBridge({
     jobId: job.id,
     contentHash: job.contentHash,
-    expectedPngHash: sha256(png),
+    expectedPngHash: pngHash,
     expectedInstagramSvgHash: instagramSvgHash,
     fetchImpl,
   });
@@ -1853,9 +1858,10 @@ validation('verifies exact public assets when Cloudflare blocks Node HTML reques
   const png = await renderSocialCardPng(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
+  const pngHash = sha256(png);
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const redirectedUrl = `${canonicalUrl}/`;
-  const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const imageUrl = `${canonicalUrl}/opengraph-image.png?v=${pngHash.slice(0, 16)}`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=4.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=3.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
@@ -1892,7 +1898,7 @@ validation('verifies exact public assets when Cloudflare blocks Node HTML reques
   const result = await verifyPublicBridge({
     jobId: job.id,
     contentHash: job.contentHash,
-    expectedPngHash: sha256(png),
+    expectedPngHash: pngHash,
     expectedInstagramSvgHash: instagramSvgHash,
     fetchImpl,
   });

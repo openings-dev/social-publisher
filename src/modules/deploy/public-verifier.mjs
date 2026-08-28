@@ -52,7 +52,8 @@ function versionAssetUrl(url, hash, version) {
   const fingerprint = typeof hash === 'string' && /^[0-9a-f]{64}$/u.test(hash)
     ? hash.slice(0, 16)
     : 'asset';
-  return `${url}?v=${version}.${fingerprint}`;
+  const prefix = typeof version === 'string' && version.length > 0 ? `${version}.` : '';
+  return `${url}?v=${prefix}${fingerprint}`;
 }
 
 export async function verifyPublicBridge({
@@ -68,7 +69,10 @@ export async function verifyPublicBridge({
   allowMismatch = false,
 }) {
   const canonicalUrl = buildCanonicalJobUrl(jobId, origin);
-  const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const imageUrl = versionAssetUrl(
+    `${canonicalUrl}/opengraph-image.png`,
+    expectedPngHash,
+  );
   const instagramImageUrl = versionAssetUrl(
     `${canonicalUrl}/instagram-image.jpg`,
     expectedInstagramSvgHash,

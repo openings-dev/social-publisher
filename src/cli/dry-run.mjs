@@ -22,6 +22,7 @@ import {
   validateQueueState,
 } from '../modules/state/state-model.mjs';
 import { assertValidJobId } from '../shared/job-id.mjs';
+import { sha256 } from '../shared/hash.mjs';
 
 function parseArguments(argumentsList) {
   const values = {};
@@ -61,11 +62,11 @@ export async function runDryRun({ fixturePath, wordmarkPath, outputPath, log = c
   const instagramImagePath = resolve(jobDirectory, 'instagram-image.jpg');
   const post = formatSocialPost(fixture);
   const instagramSvg = createInstagramCardSvg(fixture, { wordmarkSvg });
-  const [html, png, instagramJpeg] = await Promise.all([
-    Promise.resolve(createBridgeHtml(fixture)),
+  const [png, instagramJpeg] = await Promise.all([
     renderSocialCardPng(fixture, { wordmarkSvg }),
     renderInstagramCardJpeg(fixture, { wordmarkSvg }),
   ]);
+  const html = createBridgeHtml(fixture, { imageHash: sha256(png) });
 
   await mkdir(dirname(htmlPath), { recursive: true });
   await Promise.all([

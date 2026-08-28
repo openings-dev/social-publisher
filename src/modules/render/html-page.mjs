@@ -9,6 +9,7 @@ import { escapeAttribute, escapeHtml } from '../../shared/escape.mjs';
 import { buildCanonicalJobUrl } from '../../shared/job-id.mjs';
 
 const MAX_DESCRIPTION_LENGTH = 156;
+const SHA256_PATTERN = /^[0-9a-f]{64}$/u;
 
 function plainText(value) {
   return String(value ?? '')
@@ -36,9 +37,16 @@ export function opportunityDescription(job) {
   );
 }
 
-export function createBridgeHtml(job, { origin = OPENINGS_ORIGIN } = {}) {
+function versionedOpenGraphImageUrl(canonicalUrl, imageHash) {
+  if (typeof imageHash !== 'string' || !SHA256_PATTERN.test(imageHash)) {
+    throw new Error('Open Graph image hash is invalid');
+  }
+  return `${canonicalUrl}/opengraph-image.png?v=${imageHash.slice(0, 16)}`;
+}
+
+export function createBridgeHtml(job, { origin = OPENINGS_ORIGIN, imageHash } = {}) {
   const canonicalUrl = buildCanonicalJobUrl(job.id, origin);
-  const imageUrl = `${canonicalUrl}/opengraph-image.png`;
+  const imageUrl = versionedOpenGraphImageUrl(canonicalUrl, imageHash);
   const redirectUrl = `${origin.replace(/\/$/u, '')}/?job=${job.id}`;
   const description = opportunityDescription(job);
   const socialAlt = `${job.title} — Open job on openings.dev`;
