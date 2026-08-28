@@ -24,6 +24,14 @@ function normalizedResult(media, status) {
   });
 }
 
+function normalizeReconciliationMarker(value) {
+  if (value === undefined) return null;
+  if (typeof value !== 'string' || !/^#[A-Za-z][A-Za-z0-9]{1,63}$/u.test(value)) {
+    throw publicationError('instagram_configuration', 'Instagram reconciliation marker is invalid');
+  }
+  return value;
+}
+
 function apiBase(apiOrigin, apiVersion) {
   if (!/^v\d+\.\d+$/u.test(apiVersion)) {
     throw publicationError('instagram_configuration', 'Instagram Graph API version is invalid');
@@ -31,7 +39,14 @@ function apiBase(apiOrigin, apiVersion) {
   return `${new URL(apiOrigin).origin}/${apiVersion}`;
 }
 
-async function findRecentMedia({ base, userId, canonicalUrl, accessToken, fetchImpl }) {
+async function findRecentMedia({
+  base,
+  userId,
+  canonicalUrl,
+  reconciliationMarker,
+  accessToken,
+  fetchImpl,
+}) {
   const url = new URL(`${base}/${encodeURIComponent(userId)}/media`);
   url.searchParams.set('fields', 'id,caption,permalink,timestamp');
   url.searchParams.set('limit', '50');
@@ -48,7 +63,8 @@ async function findRecentMedia({ base, userId, canonicalUrl, accessToken, fetchI
     throw publicationError('instagram_reconciliation', 'Instagram duplicate reconciliation returned invalid data');
   }
   return response.data.find((media) => typeof media?.caption === 'string'
-    && media.caption.includes(canonicalUrl)) ?? null;
+    && media.caption.includes(canonicalUrl)
+    && (reconciliationMarker === null || media.caption.includes(reconciliationMarker))) ?? null;
 }
 
 async function findMediaById({ base, id, accessToken, fetchImpl }) {
@@ -103,6 +119,7 @@ export async function publishToInstagram({
   accessToken,
   userId,
   apiVersion,
+  reconciliationMarker,
   apiOrigin = INSTAGRAM_API_ORIGIN,
   fetchImpl = globalThis.fetch,
   sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)),
@@ -115,6 +132,7 @@ export async function publishToInstagram({
   if (typeof userId !== 'string' || !/^\d+$/u.test(userId)) {
     throw publicationError('instagram_configuration', 'Instagram user ID is invalid');
   }
+  const marker = normalizeReconciliationMarker(reconciliationMarker);
   let publicVideo;
   let publicCover;
   try {
@@ -139,12 +157,14 @@ export async function publishToInstagram({
     base,
     userId,
     canonicalUrl: post.canonicalUrl,
+    reconciliationMarker: marker,
     accessToken,
     fetchImpl,
   });
   if (existing) return normalizedResult(existing, 'reconciled');
 
-  const caption = formatInstagramCaption(job, post);
+  const baseCaption = formatInstagramCaption(job, post);
+  const caption = marker === null ? baseCaption : `${baseCaption}\n\n${marker}`;
   let container;
   try {
     container = await fetchJson(`${base}/${encodeURIComponent(userId)}/media`, {
@@ -192,6 +212,7 @@ export async function publishToInstagram({
       base,
       userId,
       canonicalUrl: post.canonicalUrl,
+      reconciliationMarker: marker,
       accessToken,
       fetchImpl,
     }).catch(() => null);

@@ -12,7 +12,8 @@
     "validate": "node src/modules/validation/run-validation.mjs",
     "dry-run": "node src/cli/dry-run.mjs",
     "intake": "node src/cli/intake.mjs",
-    "publish": "node src/cli/publish.mjs"
+    "publish": "node src/cli/publish.mjs",
+    "migrate:meta": "node src/cli/migrate-meta.mjs"
   },
   "dependencies": {
     "@atproto/api": "^0.17.0",

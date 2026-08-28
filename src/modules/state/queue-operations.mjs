@@ -179,6 +179,34 @@ export function resetFailedStage(queueState, jobId, stageName, { at, reason }) {
   });
 }
 
+export function resetPublishedMetaStages(queueState, jobId, {
+  at,
+  reason = 'meta_publication_migration',
+}) {
+  assertIsoDate(at, 'reset timestamp');
+  return replaceItem(queueState, jobId, (item) => {
+    const metaStages = [item.threads, item.instagram];
+    const hasCompletePublishedResults = metaStages.every((stage) => stage.status === 'published'
+      && typeof stage.result?.id === 'string'
+      && stage.result.id.length > 0
+      && typeof stage.result?.url === 'string'
+      && stage.result.url.length > 0);
+    if (!hasCompletePublishedResults) {
+      throw new Error('Only complete published Meta stages can be reset');
+    }
+    const resetStage = {
+      ...stageState(),
+      updatedAt: at,
+      lastReset: { at, reason: sanitizeCode(reason, 'meta_publication_migration') },
+    };
+    return {
+      ...item,
+      threads: { ...resetStage },
+      instagram: { ...resetStage },
+    };
+  });
+}
+
 export function markJobClosed(queueState, jobId, at) {
   assertIsoDate(at, 'closed timestamp');
   return replaceItem(queueState, jobId, (item) => {

@@ -47,7 +47,7 @@ import {
   publishToMastodon,
 } from '../networks/mastodon-client.mjs';
 import { publishToInstagram } from '../networks/instagram-client.mjs';
-import { publishToThreads } from '../networks/threads-client.mjs';
+import { deleteThreadsPost, publishToThreads } from '../networks/threads-client.mjs';
 import {
   buildRepositoryDispatchRequest,
   requestIncrementalBridgeDeployment,
@@ -70,6 +70,12 @@ import {
 } from '../render/reel-video.mjs';
 import { createBridgePublisher } from '../publishing/bridge-publisher.mjs';
 import {
+  META_MIGRATION_REVISION,
+  META_RECONCILIATION_MARKER,
+  migrateMetaPublication,
+  parseMetaMigrationRequest,
+} from '../publishing/meta-migration.mjs';
+import {
   processIntakeSnapshots,
   processOnePublication,
 } from '../publishing/orchestrator.mjs';
@@ -79,6 +85,7 @@ import {
   enqueueJob,
   markJobClosed,
   resetFailedStage,
+  resetPublishedMetaStages,
   selectNextQueueItem,
   transitionQueueStage,
 } from '../state/queue-operations.mjs';
@@ -272,6 +279,33 @@ validation('enables Meta channels independently and requires only their own cred
   assert.deepEqual(instagram.enabledChannels, ['bluesky', 'mastodon', 'instagram']);
   assert.equal(instagram.instagram.userId, '17841400000000000');
   assert.equal(instagram.instagram.apiVersion, 'v23.0');
+});
+
+validation('loads only deploy and Meta credentials for a controlled migration', () => {
+  const config = readEnvironment({
+    env: {
+      WEB_DEPLOY_TOKEN: 'github-fine-grained-token',
+      THREADS_ACCESS_TOKEN: 'threads-secret',
+      INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+      INSTAGRAM_USER_ID: '17841400000000000',
+      META_GRAPH_VERSION: 'v23.0',
+    },
+    mode: 'meta-migration',
+  });
+  assert.equal(config.publishEnabled, true);
+  assert.equal(config.bluesky, null);
+  assert.equal(config.mastodonAccessToken, null);
+  assert.equal(config.threads.accessToken, 'threads-secret');
+  assert.equal(config.instagram.userId, '17841400000000000');
+  assert.throws(() => readEnvironment({
+    env: {
+      WEB_DEPLOY_TOKEN: 'github-fine-grained-token',
+      THREADS_ACCESS_TOKEN: 'threads-secret',
+      INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+      INSTAGRAM_USER_ID: '17841400000000000',
+    },
+    mode: 'meta-migration',
+  }), /META_GRAPH_VERSION/u);
 });
 
 validation('enables Meta only for jobs enqueued after activation', () => {
@@ -691,6 +725,173 @@ validation('keeps network transitions independent and caps attempts', () => {
   });
   assert.equal(queue.items[0].mastodon.status, 'pending');
   assert.equal(queue.items[0].mastodon.attempts, 0);
+});
+
+validation('resets only published Meta stages for a controlled visual migration', () => {
+  const job = makeJob();
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot: snapshotReference(),
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+    enabledChannels: ['bluesky', 'mastodon', 'threads', 'instagram'],
+  });
+  for (const channel of ['bluesky', 'mastodon', 'threads', 'instagram']) {
+    queue = transitionQueueStage(queue, job.id, channel, 'publishing', {
+      at: '2026-08-20T13:02:00.000Z',
+    });
+    queue = transitionQueueStage(queue, job.id, channel, 'published', {
+      at: '2026-08-20T13:02:10.000Z',
+      result: {
+        id: `${channel}-old`,
+        url: `https://example.test/${channel}-old`,
+      },
+    });
+  }
+  const previousBluesky = structuredClone(queue.items[0].bluesky);
+  const previousMastodon = structuredClone(queue.items[0].mastodon);
+  const previousBridge = structuredClone(queue.items[0].bridge);
+  const migrated = resetPublishedMetaStages(queue, job.id, {
+    at: '2026-08-28T14:00:00.000Z',
+    reason: 'meta_publication_migration',
+  });
+
+  assert.deepEqual(migrated.items[0].bluesky, previousBluesky);
+  assert.deepEqual(migrated.items[0].mastodon, previousMastodon);
+  assert.deepEqual(migrated.items[0].bridge, previousBridge);
+  for (const channel of ['threads', 'instagram']) {
+    assert.equal(migrated.items[0][channel].status, 'pending');
+    assert.equal(migrated.items[0][channel].attempts, 0);
+    assert.equal(migrated.items[0][channel].result, null);
+    assert.deepEqual(migrated.items[0][channel].lastReset, {
+      at: '2026-08-28T14:00:00.000Z',
+      reason: 'meta_publication_migration',
+    });
+  }
+  assert.throws(() => resetPublishedMetaStages(migrated, job.id, {
+    at: '2026-08-28T14:00:00.000Z',
+    reason: 'meta_publication_migration',
+  }), /published Meta stages/u);
+});
+
+validation('requires an explicit bounded request for a Meta publication migration', () => {
+  assert.deepEqual(parseMetaMigrationRequest({
+    jobIds: ['gh_111111111111111111111111', 'gh_222222222222222222222222'],
+    confirmation: 'MIGRATE_META_POSTS',
+  }), {
+    jobIds: ['gh_111111111111111111111111', 'gh_222222222222222222222222'],
+  });
+  assert.throws(() => parseMetaMigrationRequest({
+    jobIds: ['gh_111111111111111111111111'],
+    confirmation: 'yes',
+  }), /exact confirmation phrase/u);
+  assert.throws(() => parseMetaMigrationRequest({
+    jobIds: ['not-a-job'],
+    confirmation: 'MIGRATE_META_POSTS',
+  }), /job ID/u);
+});
+
+validation('replaces only Meta publications and records recoverable cleanup state', async () => {
+  const job = makeJob();
+  const snapshot = makeLoadedSnapshot({
+    commit: 'f'.repeat(40),
+    generatedAt: '2026-08-28T13:00:00.000Z',
+    dataHash: 'a'.repeat(64),
+    jobs: [job],
+  });
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-20T13:01:00.000Z',
+    enabledChannels: ['bluesky', 'mastodon', 'threads', 'instagram'],
+  });
+  for (const stage of ['bridge', 'bluesky', 'mastodon', 'threads', 'instagram']) {
+    queue = transitionQueueStage(queue, job.id, stage, 'publishing', {
+      at: '2026-08-20T13:02:00.000Z',
+    });
+    queue = transitionQueueStage(queue, job.id, stage, 'published', {
+      at: '2026-08-20T13:02:10.000Z',
+      result: stage === 'bridge'
+        ? {
+          instagramCardVersion: '1',
+          socialVideoVersion: '1',
+          socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4?v=1`,
+          socialVideoCoverUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg?v=1`,
+        }
+        : { id: `${stage}-old`, url: `https://example.test/${stage}-old` },
+    });
+  }
+  const publicationsState = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: {
+      [job.id]: {
+        status: 'completed',
+        contentHash: job.contentHash,
+        dataCommit: snapshot.commit,
+        dataHash: snapshot.dataHash,
+        completedAt: '2026-08-20T13:03:00.000Z',
+        bluesky: queue.items[0].bluesky.result,
+        mastodon: queue.items[0].mastodon.result,
+        threads: queue.items[0].threads.result,
+        instagram: queue.items[0].instagram.result,
+      },
+    },
+  };
+  const deleted = [];
+  const result = await migrateMetaPublication({
+    queueState: queue,
+    publicationsState,
+    currentSnapshot: snapshot,
+    jobId: job.id,
+    now: '2026-08-28T14:00:00.000Z',
+    publishBridge: async () => ({
+      instagramCardVersion: INSTAGRAM_CARD_VERSION,
+      socialVideoVersion: SOCIAL_VIDEO_VERSION,
+      socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4?v=2`,
+      socialVideoCoverUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg?v=2`,
+    }),
+    publishThreads: async () => ({
+      status: 'published',
+      id: 'threads-new',
+      url: 'https://example.test/threads-new',
+    }),
+    publishInstagram: async ({ queueItem }) => {
+      assert.match(queueItem.bridge.result.socialVideoUrl, /v=2$/u);
+      return {
+        status: 'published',
+        id: 'instagram-new',
+        url: 'https://example.test/instagram-new',
+      };
+    },
+    deleteThreads: async ({ id }) => {
+      deleted.push(id);
+      return { id, status: 'deleted' };
+    },
+  });
+
+  assert.equal(result.outcome, 'migrated');
+  assert.equal(result.queueState.items[0].bluesky.result.id, 'bluesky-old');
+  assert.equal(result.queueState.items[0].mastodon.result.id, 'mastodon-old');
+  assert.equal(result.queueState.items[0].threads.result.id, 'threads-new');
+  assert.equal(result.queueState.items[0].instagram.result.id, 'instagram-new');
+  assert.deepEqual(deleted, ['threads-old']);
+  assert.equal(result.publicationsState.jobs[job.id].metaMigration.revision, META_MIGRATION_REVISION);
+  assert.equal(result.publicationsState.jobs[job.id].metaMigration.marker, META_RECONCILIATION_MARKER);
+  assert.equal(result.publicationsState.jobs[job.id].metaMigration.threads.cleanup, 'deleted');
+  assert.equal(result.publicationsState.jobs[job.id].metaMigration.instagram.cleanup, 'manual_required');
+  assert.equal(result.publicationsState.jobs[job.id].metaMigration.instagram.previous.id, 'instagram-old');
+  assert.equal(result.publicationsState.jobs[job.id].metaMigration.instagram.replacement.id, 'instagram-new');
+
+  const repeated = await migrateMetaPublication({
+    ...result,
+    currentSnapshot: snapshot,
+    jobId: job.id,
+    now: '2026-08-28T14:10:00.000Z',
+    publishBridge: async () => { throw new Error('must not republish bridge'); },
+    publishThreads: async () => { throw new Error('must not republish Threads'); },
+    publishInstagram: async () => { throw new Error('must not republish Instagram'); },
+    deleteThreads: async () => { throw new Error('must not delete twice'); },
+  });
+  assert.equal(repeated.outcome, 'already_migrated');
 });
 
 validation('selects newest work unless an older item is starving', () => {
@@ -2072,7 +2273,7 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
     const parsed = new URL(url);
     if (parsed.pathname === '/v1.0/me/threads' && options.method !== 'POST') {
       return jsonResponse({
-        data: published ? [{ id: 'thread-1', text: post.text, permalink: 'https://www.threads.net/@openingshq/post/thread-1' }] : [],
+        data: published ? [{ id: 'thread-1', text: `${post.text}\n\n#OpeningsPosterV3`, permalink: 'https://www.threads.net/@openingshq/post/thread-1' }] : [],
       });
     }
     if (parsed.pathname === '/v1.0/me/threads' && options.method === 'POST') {
@@ -2092,6 +2293,7 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
     job,
     post,
     accessToken: 'threads-secret',
+    reconciliationMarker: '#OpeningsPosterV3',
     fetchImpl,
   });
   assert.equal(result.status, 'published');
@@ -2100,7 +2302,7 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
   const publication = calls.find((call) => call.options.method === 'POST');
   const body = new URLSearchParams(publication.options.body);
   assert.equal(body.get('media_type'), 'TEXT');
-  assert.equal(body.get('text'), post.text);
+  assert.equal(body.get('text'), `${post.text}\n\n#OpeningsPosterV3`);
   assert.equal(body.get('link_attachment'), post.canonicalUrl);
   assert.equal(body.get('auto_publish_text'), 'true');
   assert.equal(body.get('reply_control'), 'everyone');
@@ -2110,10 +2312,37 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
     job,
     post,
     accessToken: 'threads-secret',
+    reconciliationMarker: '#OpeningsPosterV3',
     fetchImpl,
   });
   assert.equal(reconciled.status, 'reconciled');
   assert.equal(calls.filter((call) => call.options.method === 'POST').length, 1);
+
+  const deleted = await deleteThreadsPost({
+    id: 'thread-1',
+    accessToken: 'threads-secret',
+    fetchImpl: async (url, options = {}) => {
+      calls.push({ url: String(url), options });
+      return jsonResponse({ success: true });
+    },
+  });
+  assert.deepEqual(deleted, { id: 'thread-1', status: 'deleted' });
+  const deletion = calls.at(-1);
+  assert.equal(new URL(deletion.url).pathname, '/v1.0/thread-1');
+  assert.equal(deletion.options.method, 'DELETE');
+
+  const alreadyDeleted = await deleteThreadsPost({
+    id: 'thread-1',
+    accessToken: 'threads-secret',
+    fetchImpl: async () => jsonResponse({
+      error: {
+        code: 100,
+        error_subcode: 33,
+        message: 'Unsupported get request. Object does not exist.',
+      },
+    }, 400),
+  });
+  assert.deepEqual(alreadyDeleted, { id: 'thread-1', status: 'already_deleted' });
 });
 
 validation('publishes and reconciles one Instagram Reel by canonical job URL', async () => {
@@ -2129,7 +2358,7 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
     const parsed = new URL(url);
     if (parsed.pathname === '/v23.0/17841400000000000/media' && options.method !== 'POST') {
       return jsonResponse({
-        data: published ? [{ id: 'media-1', caption: `New opening\n${post.canonicalUrl}`, permalink: 'https://www.instagram.com/p/media-1/' }] : [],
+        data: published ? [{ id: 'media-1', caption: `New opening\n${post.canonicalUrl}\n#OpeningsPosterV3`, permalink: 'https://www.instagram.com/p/media-1/' }] : [],
       });
     }
     if (parsed.pathname === '/v23.0/17841400000000000/media' && options.method === 'POST') {
@@ -2163,6 +2392,7 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
     accessToken: 'instagram-secret',
     userId: '17841400000000000',
     apiVersion: 'v23.0',
+    reconciliationMarker: '#OpeningsPosterV3',
     fetchImpl,
     sleep: async () => {},
     containerPollAttempts: 12,
@@ -2181,6 +2411,7 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
   assert.match(body.get('caption'), new RegExp(post.canonicalUrl));
   assert.match(body.get('caption'), /Follow @openingshq for more jobs from public communities\./u);
   assert.match(body.get('caption'), /Know someone who fits\? Tag them below\./u);
+  assert.match(body.get('caption'), /#OpeningsPosterV3/u);
   assert.equal(container.options.headers.Authorization, 'Bearer instagram-secret');
 
   const reconciled = await publishToInstagram({
@@ -2191,6 +2422,7 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
     accessToken: 'instagram-secret',
     userId: '17841400000000000',
     apiVersion: 'v23.0',
+    reconciliationMarker: '#OpeningsPosterV3',
     fetchImpl,
     sleep: async () => {},
   });

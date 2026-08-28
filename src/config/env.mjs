@@ -48,7 +48,8 @@ function normalizeApiBase(value, fallback, key) {
 
 export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
   const automatic = env.SOCIAL_AUTO_PUBLISH === 'true';
-  const requiresDeploy = mode === 'intake' || mode === 'scheduled' || mode === 'controlled';
+  const metaMigration = mode === 'meta-migration';
+  const requiresDeploy = mode === 'intake' || mode === 'scheduled' || mode === 'controlled' || metaMigration;
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
   const threadsEnabled = env.THREADS_AUTO_PUBLISH === 'true';
   const instagramEnabled = env.INSTAGRAM_AUTO_PUBLISH === 'true';
@@ -71,10 +72,21 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       }
     }
   }
+  if (metaMigration) {
+    requireKeys(env, [
+      'THREADS_ACCESS_TOKEN',
+      'INSTAGRAM_ACCESS_TOKEN',
+      'INSTAGRAM_USER_ID',
+      'META_GRAPH_VERSION',
+    ]);
+    if (!/^v\d+\.\d+$/u.test(env.META_GRAPH_VERSION)) {
+      throw new Error('Invalid configuration: META_GRAPH_VERSION');
+    }
+  }
 
   return Object.freeze({
     mode,
-    publishEnabled: mode === 'controlled' || (mode === 'scheduled' && automatic),
+    publishEnabled: mode === 'controlled' || metaMigration || (mode === 'scheduled' && automatic),
     enabledChannels: Object.freeze(enabledChannels),
     publicSiteOrigin: normalizeOrigin(env.PUBLIC_SITE_ORIGIN, OPENINGS_ORIGIN, 'PUBLIC_SITE_ORIGIN'),
     mastodonBaseUrl: normalizeOrigin(env.MASTODON_BASE_URL, MASTODON_BASE_URL, 'MASTODON_BASE_URL'),
@@ -88,11 +100,11 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       appPassword: env.BLUESKY_APP_PASSWORD,
     }) : null,
     mastodonAccessToken: requiresSocial ? env.MASTODON_ACCESS_TOKEN : null,
-    threads: requiresSocial && threadsEnabled ? Object.freeze({
+    threads: (metaMigration || (requiresSocial && threadsEnabled)) ? Object.freeze({
       accessToken: env.THREADS_ACCESS_TOKEN,
       apiUrl: normalizeApiBase(env.THREADS_API_URL, THREADS_API_URL, 'THREADS_API_URL'),
     }) : null,
-    instagram: requiresSocial && instagramEnabled ? Object.freeze({
+    instagram: (metaMigration || (requiresSocial && instagramEnabled)) ? Object.freeze({
       accessToken: env.INSTAGRAM_ACCESS_TOKEN,
       userId: env.INSTAGRAM_USER_ID,
       apiVersion: env.META_GRAPH_VERSION,
