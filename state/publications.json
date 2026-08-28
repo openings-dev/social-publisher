@@ -887,7 +887,7 @@
       "contentHash": "6c19f4cc1dca6b76c1b57ae76a7175431445e6bfa35ce2d0d6e3da6d8646de80",
       "dataCommit": "bbc3db5c4ca385458732e7984bd4b0dc480d8e51",
       "dataHash": "6a9c5c2a9e862ec1d233b5b9f078ca071450eaeeb5f1fe3bf20795281a36e047",
-      "completedAt": "2026-08-26T23:31:18.665Z",
+      "completedAt": "2026-08-28T17:26:14.186Z",
       "bluesky": {
         "status": "published",
         "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mtxeql6j3a2h",
@@ -902,13 +902,44 @@
       },
       "threads": {
         "status": "published",
-        "id": "18107138291584297",
-        "url": "https://www.threads.com/@openingshq/post/DchZgNuGgKr"
+        "id": "18111562187071325",
+        "url": "https://www.threads.com/@openingshq/post/Dcl5ahwIKKP"
       },
       "instagram": {
         "status": "published",
-        "id": "17960975282980669",
-        "url": "https://www.instagram.com/p/DchZhnaGo5Y/"
+        "id": "18010514279952440",
+        "url": "https://www.instagram.com/reel/Dcl5cLsAmf_/"
+      },
+      "metaMigration": {
+        "revision": "poster_v3_social_video_v2",
+        "marker": "#OpeningsPosterV3",
+        "completedAt": "2026-08-28T17:26:14.186Z",
+        "threads": {
+          "previous": {
+            "status": "published",
+            "id": "18107138291584297",
+            "url": "https://www.threads.com/@openingshq/post/DchZgNuGgKr"
+          },
+          "replacement": {
+            "status": "published",
+            "id": "18111562187071325",
+            "url": "https://www.threads.com/@openingshq/post/Dcl5ahwIKKP"
+          },
+          "cleanup": "manual_required"
+        },
+        "instagram": {
+          "previous": {
+            "status": "published",
+            "id": "17960975282980669",
+            "url": "https://www.instagram.com/p/DchZhnaGo5Y/"
+          },
+          "replacement": {
+            "status": "published",
+            "id": "18010514279952440",
+            "url": "https://www.instagram.com/reel/Dcl5cLsAmf_/"
+          },
+          "cleanup": "manual_required"
+        }
       }
     },
     "gh_00f12f8090b3e56bccda0b4f": {
