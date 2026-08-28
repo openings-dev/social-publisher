@@ -13,10 +13,15 @@ on:
         options:
           - dry-run
           - controlled
+          - migrate-meta
           - retry-stage
           - scheduled
       job_id:
         description: Explicit gh_ job ID for controlled publication or reset
+        required: false
+        type: string
+      job_ids:
+        description: Comma-separated gh_ job IDs for a Meta visual migration
         required: false
         type: string
       stage:
@@ -31,7 +36,7 @@ on:
           - threads
           - instagram
       confirmation:
-        description: Enter PUBLISH_ONE_JOB to publish, or RESET_FAILED_STAGE to reset
+        description: Enter PUBLISH_ONE_JOB, RESET_FAILED_STAGE, or MIGRATE_META_POSTS
         required: false
         type: string
       publish_meta:
@@ -51,7 +56,7 @@ jobs:
   publish:
     name: Intake and publish one job
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 120
     env:
       RUN_MODE: ${{ github.event_name == 'schedule' && 'scheduled' || inputs.mode }}
       DATA_PATH: dependencies/data-pipeline
@@ -120,17 +125,26 @@ jobs:
         if: steps.preflight.outputs.should_run == 'true' && github.event_name == 'workflow_dispatch' && env.RUN_MODE != 'dry-run'
         env:
           REQUEST_JOB_ID: ${{ inputs.job_id }}
+          REQUEST_JOB_IDS: ${{ inputs.job_ids }}
           REQUEST_STAGE: ${{ inputs.stage }}
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
         run: |
           node --input-type=module - <<'NODE'
           import { parsePublicationRequest } from './src/cli/publish.mjs';
-          parsePublicationRequest({
-            mode: process.env.RUN_MODE,
-            jobId: process.env.REQUEST_JOB_ID || undefined,
-            stage: process.env.REQUEST_STAGE || undefined,
-            confirmation: process.env.REQUEST_CONFIRMATION || undefined,
-          });
+          import { parseMetaMigrationRequest } from './src/modules/publishing/meta-migration.mjs';
+          if (process.env.RUN_MODE === 'migrate-meta') {
+            parseMetaMigrationRequest({
+              jobIds: (process.env.REQUEST_JOB_IDS || '').split(/[\s,]+/u).filter(Boolean),
+              confirmation: process.env.REQUEST_CONFIRMATION || undefined,
+            });
+          } else {
+            parsePublicationRequest({
+              mode: process.env.RUN_MODE,
+              jobId: process.env.REQUEST_JOB_ID || undefined,
+              stage: process.env.REQUEST_STAGE || undefined,
+              confirmation: process.env.REQUEST_CONFIRMATION || undefined,
+            });
+          }
           NODE
 
       - name: Render a review artifact without external writes
@@ -238,6 +252,39 @@ jobs:
             tail -n 1 .tmp/publication-summary.txt
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Replace legacy Instagram and Threads publications
+        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'migrate-meta'
+        env:
+          WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
+          THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          REQUEST_JOB_IDS: ${{ inputs.job_ids }}
+          REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          normalized_jobs="${REQUEST_JOB_IDS//,/ }"
+          for job_id in $normalized_jobs; do
+            npm run migrate:meta -- \
+              --jobs "$job_id" \
+              --confirmation "$REQUEST_CONFIRMATION" \
+              --data "$DATA_PATH" \
+              --state state \
+              --wordmark "$WEB_PATH/public/openings-wordmark-light.svg" \
+              --output ".tmp/meta-migration/$job_id" | tee ".tmp/meta-migration-$job_id.txt"
+            {
+              echo "### Meta migration: $job_id"
+              echo '```json'
+              tail -n 1 ".tmp/meta-migration-$job_id.txt"
+              echo '```'
+            } >> "$GITHUB_STEP_SUMMARY"
+            git add -- state/queue.json state/publications.json
+            if ! git diff --cached --quiet; then
+              git commit -m "chore(state): migrate Meta publication $job_id [skip ci]"
+              git push origin "HEAD:${GITHUB_REF_NAME}"
+            fi
+          done
 
       - name: Commit and push publication or reset state
         if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled' || env.RUN_MODE == 'retry-stage')
