@@ -1339,6 +1339,37 @@ validation('builds a bounded repository dispatch without credentials in its body
   }), /payload.*large/i);
 });
 
+validation('keeps the largest multilingual poster inside the incremental dispatch limit', async () => {
+  const job = makeJob({
+    title: '全球远程 シニアソフトウェアエンジニア 개발자 플랫폼 '.repeat(8).trim(),
+    description: 'International public-community opportunity. '.repeat(28),
+    community: { name: 'International Open Source Infrastructure Community' },
+    country: 'Worldwide',
+    region: 'Global',
+    tags: ['remote', 'kubernetes', 'typescript'],
+    salary: { currency: 'JPY', min: 9000000, max: 14000000, period: 'year' },
+  });
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302e"/></svg>';
+  const image = await renderSocialCardPng(job, { wordmarkSvg });
+  const instagramSvg = Buffer.from(socialCardModule.createInstagramCardSvg(job, { wordmarkSvg }));
+  const request = buildRepositoryDispatchRequest({
+    jobId: job.id,
+    contentHash: job.contentHash,
+    html: Buffer.from(createBridgeHtml(job)),
+    image,
+    instagramSvg,
+    repository: 'openings-dev/web-deploy',
+  });
+  const payload = JSON.parse(request.body).client_payload;
+  assert.ok(request.body.length < 60_000);
+  assert.equal('reel_svg_base64' in payload, false);
+  assert.equal('poster_model_base64' in payload, false);
+  assert.match(
+    Buffer.from(payload.instagram_svg_base64, 'base64').toString('utf8'),
+    /data-poster-model="[A-Za-z0-9+/]+={0,2}"/u,
+  );
+});
+
 validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG derivative', async () => {
   const job = makeJob();
   const html = createBridgeHtml(job);
