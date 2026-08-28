@@ -892,6 +892,32 @@ validation('replaces only Meta publications and records recoverable cleanup stat
     deleteThreads: async () => { throw new Error('must not delete twice'); },
   });
   assert.equal(repeated.outcome, 'already_migrated');
+
+  const manualCleanup = await migrateMetaPublication({
+    queueState: queue,
+    publicationsState,
+    currentSnapshot: snapshot,
+    jobId: job.id,
+    now: '2026-08-28T14:20:00.000Z',
+    publishBridge: async () => ({
+      instagramCardVersion: INSTAGRAM_CARD_VERSION,
+      socialVideoVersion: SOCIAL_VIDEO_VERSION,
+      socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4?v=2`,
+      socialVideoCoverUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg?v=2`,
+    }),
+    publishThreads: async () => ({
+      status: 'published',
+      id: 'threads-new',
+      url: 'https://example.test/threads-new',
+    }),
+    publishInstagram: async () => ({
+      status: 'published',
+      id: 'instagram-new',
+      url: 'https://example.test/instagram-new',
+    }),
+  });
+  assert.equal(manualCleanup.outcome, 'migrated');
+  assert.equal(manualCleanup.publicationsState.jobs[job.id].metaMigration.threads.cleanup, 'manual_required');
 });
 
 validation('selects newest work unless an older item is starving', () => {

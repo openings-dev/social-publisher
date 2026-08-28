@@ -264,6 +264,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p .tmp
           normalized_jobs="${REQUEST_JOB_IDS//,/ }"
           for job_id in $normalized_jobs; do
             npm run migrate:meta -- \

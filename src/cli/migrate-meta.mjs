@@ -5,7 +5,7 @@ import { readEnvironment } from '../config/env.mjs';
 import { resolveGitCommit } from '../modules/data/git-json.mjs';
 import { loadSnapshot } from '../modules/data/load-snapshot.mjs';
 import { publishToInstagram } from '../modules/networks/instagram-client.mjs';
-import { deleteThreadsPost, publishToThreads } from '../modules/networks/threads-client.mjs';
+import { publishToThreads } from '../modules/networks/threads-client.mjs';
 import {
   createBridgePublisher,
   loadCanonicalWordmark,
@@ -84,11 +84,7 @@ export async function runMetaMigration({
     apiOrigin: config.instagram.apiOrigin,
     reconciliationMarker: META_RECONCILIATION_MARKER,
   }));
-  const deleteThreads = dependencies.deleteThreads ?? (({ id }) => deleteThreadsPost({
-    id,
-    accessToken: config.threads.accessToken,
-    apiUrl: config.threads.apiUrl,
-  }));
+  const deleteThreads = dependencies.deleteThreads;
 
   const migrated = [];
   const skipped = [];
@@ -117,6 +113,7 @@ export async function runMetaMigration({
     migrated,
     skipped,
     instagramCleanupRequired: migrated.length,
+    threadsCleanupRequired: migrated.length,
   });
   log(JSON.stringify(summary));
   return summary;

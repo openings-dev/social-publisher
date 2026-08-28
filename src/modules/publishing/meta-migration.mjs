@@ -56,11 +56,13 @@ export async function migrateMetaPublication({
     publishBridge,
     publishThreads,
     publishInstagram,
-    deleteThreads,
   })) {
     if (typeof callback !== 'function') {
       throw new Error(`${label} must be a function`);
     }
+  }
+  if (deleteThreads !== undefined && typeof deleteThreads !== 'function') {
+    throw new Error('deleteThreads must be a function when provided');
   }
 
   const previousPublication = publications.jobs[jobId];
@@ -112,7 +114,11 @@ export async function migrateMetaPublication({
     throw new Error(`Meta replacement reconciled to a superseded publication: ${jobId}`);
   }
 
-  await deleteThreads({ id: previousThreads.id });
+  let threadsCleanup = 'manual_required';
+  if (deleteThreads) {
+    await deleteThreads({ id: previousThreads.id });
+    threadsCleanup = 'deleted';
+  }
   const migratedPublication = {
     ...replacement,
     metaMigration: {
@@ -122,7 +128,7 @@ export async function migrateMetaPublication({
       threads: {
         previous: previousThreads,
         replacement: replacementThreads,
-        cleanup: 'deleted',
+        cleanup: threadsCleanup,
       },
       instagram: {
         previous: previousInstagram,
