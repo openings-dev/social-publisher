@@ -141,6 +141,35 @@ validation('creates deterministic SHA-256 hashes', () => {
   assert.equal(sha256('openings'), 'add875e192edf555f22898d640b2e2acd69cd7b84008318423a8d13ee1202464');
 });
 
+validation('resolves one immutable social theme deterministically from a job ID', async () => {
+  const { SOCIAL_THEMES, resolveSocialTheme } = await import('../render/social-theme.mjs');
+  assert.deepEqual(SOCIAL_THEMES.map(({ id, accent, soft }) => [id, accent, soft]), [
+    ['mint', '#b0ec9c', '#ddf7d4'],
+    ['butter', '#f3dda6', '#fbf3d9'],
+    ['powder_blue', '#cadcf4', '#e8f0fa'],
+    ['soft_grape', '#d9c9ee', '#efe8f7'],
+    ['apricot', '#f2c8ae', '#fae9de'],
+    ['sage', '#cfe7dc', '#e9f4ef'],
+  ]);
+  assert.ok(Object.isFrozen(SOCIAL_THEMES));
+  SOCIAL_THEMES.forEach((theme) => assert.ok(Object.isFrozen(theme)));
+
+  const jobIds = [
+    'gh_fb912858247d5261cc51e874',
+    'gh_c734e6f23042238380854406',
+    'gh_09b7c05c87697b82d8b34e7a',
+    'gh_2d656e214b3b872d04339314',
+    'gh_00f12f8090b3e56bccda0b4f',
+    'gh_964d59a68b31e3bb24c601f7',
+    'gh_42bf102c156fbdce471069b8',
+  ];
+  const firstPass = jobIds.map(resolveSocialTheme);
+  const secondPass = jobIds.map(resolveSocialTheme);
+  assert.deepEqual(secondPass, firstPass);
+  assert.ok(new Set(firstPass.map(({ id }) => id)).size > 1);
+  assert.throws(() => resolveSocialTheme('invalid'), /job ID/u);
+});
+
 validation('resolves safe Git refs and lists every immutable snapshot boundary', async () => {
   const previous = '1'.repeat(40);
   const manifestCommit = '2'.repeat(40);
