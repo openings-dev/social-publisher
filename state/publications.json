@@ -1007,7 +1007,7 @@
       "contentHash": "f0a1db4b5e6077d307977e4f7511235f018c7b989d24f1b5fd3a44d45d40fff6",
       "dataCommit": "32b964a74c70b227c102495570b3b1a89889f300",
       "dataHash": "12d86c4acea95e60f2b1b714e83deee3e1694c01b53ac18124d73189af1480bb",
-      "completedAt": "2026-08-27T12:49:42.561Z",
+      "completedAt": "2026-08-28T17:29:58.173Z",
       "bluesky": {
         "status": "published",
         "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mu2kw53nk524",
@@ -1022,13 +1022,44 @@
       },
       "threads": {
         "status": "published",
-        "id": "18142258726605147",
-        "url": "https://www.threads.com/@openingshq/post/Dci1DPBFuon"
+        "id": "18120596899687468",
+        "url": "https://www.threads.com/@openingshq/post/Dcl531gIFfW"
       },
       "instagram": {
         "status": "published",
-        "id": "17871245979634231",
-        "url": "https://www.instagram.com/reel/Dci1EwaklwQ/"
+        "id": "17898341517575223",
+        "url": "https://www.instagram.com/reel/Dcl5_2IEZD-/"
+      },
+      "metaMigration": {
+        "revision": "poster_v3_social_video_v2",
+        "marker": "#OpeningsPosterV3",
+        "completedAt": "2026-08-28T17:29:58.173Z",
+        "threads": {
+          "previous": {
+            "status": "published",
+            "id": "18142258726605147",
+            "url": "https://www.threads.com/@openingshq/post/Dci1DPBFuon"
+          },
+          "replacement": {
+            "status": "published",
+            "id": "18120596899687468",
+            "url": "https://www.threads.com/@openingshq/post/Dcl531gIFfW"
+          },
+          "cleanup": "manual_required"
+        },
+        "instagram": {
+          "previous": {
+            "status": "published",
+            "id": "17871245979634231",
+            "url": "https://www.instagram.com/reel/Dci1EwaklwQ/"
+          },
+          "replacement": {
+            "status": "published",
+            "id": "17898341517575223",
+            "url": "https://www.instagram.com/reel/Dcl5_2IEZD-/"
+          },
+          "cleanup": "manual_required"
+        }
       }
     },
     "gh_42bf102c156fbdce471069b8": {
