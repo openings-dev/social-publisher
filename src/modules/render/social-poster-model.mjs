@@ -1,6 +1,7 @@
 import { formatSalary } from './format-job.mjs';
+import { resolveSocialTheme, SOCIAL_THEMES } from './social-theme.mjs';
 
-export const SOCIAL_POSTER_MODEL_VERSION = 1;
+export const SOCIAL_POSTER_MODEL_VERSION = 2;
 export const SOCIAL_SAFE_INSET_X = 30;
 export const SOCIAL_SAFE_INSET_Y = 60;
 
@@ -40,6 +41,7 @@ const MODEL_KEYS = Object.freeze([
   'handle',
   'layouts',
   'supportingFacts',
+  'theme',
   'title',
   'version',
 ]);
@@ -216,6 +218,14 @@ function assertLayout(value, label) {
   }
 }
 
+function assertTheme(value) {
+  assertPlainKeys(value, ['accent', 'id', 'soft'], 'Poster theme');
+  const theme = SOCIAL_THEMES.find(({ id }) => id === value.id);
+  if (!theme || theme.accent !== value.accent || theme.soft !== value.soft) {
+    throw new Error('Poster theme is invalid');
+  }
+}
+
 export function validateSocialPosterModel(value) {
   assertPlainKeys(value, MODEL_KEYS, 'Poster model');
   if (value.version !== SOCIAL_POSTER_MODEL_VERSION) throw new Error('Poster model version is invalid');
@@ -223,6 +233,7 @@ export function validateSocialPosterModel(value) {
   assertString(value.community, 'Poster community', 160);
   assertString(value.eyebrow, 'Poster eyebrow', 220);
   assertString(value.title, 'Poster title', 800);
+  assertTheme(value.theme);
   assertFact(value.dominantFact, 'Poster dominant fact');
   if (!Array.isArray(value.supportingFacts) || value.supportingFacts.length > 2) {
     throw new Error('Poster supporting facts are invalid');
@@ -265,6 +276,7 @@ export function createSocialPosterModel(job) {
     community,
     eyebrow: `${community} · New opening`,
     title,
+    theme: resolveSocialTheme(job.id),
     dominantFact,
     supportingFacts: supportingCandidates.slice(0, 2),
     attribution: {

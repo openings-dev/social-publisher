@@ -1204,6 +1204,8 @@ validation('uses installed Noto CJK fonts instead of ignored embedded web fonts'
 
 validation('builds a compact immutable full-canvas poster model', async () => {
   const posterModule = await import('../render/social-poster-model.mjs');
+  const { resolveSocialTheme } = await import('../render/social-theme.mjs');
+  assert.equal(posterModule.SOCIAL_POSTER_MODEL_VERSION, 2);
   assert.equal(posterModule.SOCIAL_SAFE_INSET_X, 30);
   assert.equal(posterModule.SOCIAL_SAFE_INSET_Y, 60);
   assert.deepEqual(posterModule.INSTAGRAM_POSTER_GEOMETRY.safeArea, {
@@ -1219,17 +1221,20 @@ validation('builds a compact immutable full-canvas poster model', async () => {
     height: 1800,
   });
 
-  const salary = posterModule.createSocialPosterModel(makeJob({
+  const salaryJob = makeJob({
     salary: { currency: 'USD', min: 9000, max: 12000, period: 'month' },
     tags: ['remote', 'typescript'],
     country: 'Brazil',
     region: 'Latin America',
     community: { name: 'Awesome Jobs' },
-  }));
+  });
+  const salary = posterModule.createSocialPosterModel(salaryJob);
   assert.equal(salary.dominantFact.label, 'SALARY');
   assert.equal(salary.dominantFact.value, '$9,000–$12,000/month');
+  assert.deepEqual(salary.theme, resolveSocialTheme(salaryJob.id));
   assert.deepEqual(salary.supportingFacts.map(({ label }) => label), ['WORK MODE', 'LOCATION']);
   assert.equal(Object.isFrozen(salary), true);
+  assert.equal(Object.isFrozen(salary.theme), true);
   assert.equal(Object.isFrozen(salary.layouts.instagram), true);
 
   const remote = posterModule.createSocialPosterModel(makeJob({
@@ -1263,6 +1268,9 @@ validation('builds a compact immutable full-canvas poster model', async () => {
   assert.match(encoded, /^[A-Za-z0-9+/]+={0,2}$/u);
   assert.ok(encoded.length < 8_192);
   assert.deepEqual(posterModule.decodeSocialPosterModel(encoded), salary);
+  const unsupportedTheme = structuredClone(salary);
+  unsupportedTheme.theme.accent = '#ffffff';
+  assert.throws(() => posterModule.validateSocialPosterModel(unsupportedTheme), /theme/u);
 });
 
 validation('fits Latin, CJK, and emoji-led poster titles deterministically', async () => {
@@ -1305,7 +1313,7 @@ validation('defines a dense full-canvas portrait-safe Instagram poster', () => {
 
   assert.match(svg, /width="1080" height="1350" viewBox="0 0 1080 1350"/u);
   assert.match(svg, /data-instagram-card="true"/u);
-  assert.match(svg, /data-social-poster-version="1"/u);
+  assert.match(svg, /data-social-poster-version="2"/u);
   assert.match(svg, /data-poster-model="[A-Za-z0-9+/]+={0,2}"/u);
   assert.match(svg, /data-safe-area="true"[^>]*x="30"[^>]*y="60"[^>]*width="1020"[^>]*height="1230"/u);
   assert.match(svg, /data-poster-role-region="true"[^>]*x="30"[^>]*y="152"[^>]*width="1020"[^>]*height="590"/u);

@@ -32,7 +32,8 @@ const execFile = promisify(execFileCallback);
 
 function assertInstagramSvg(value) {
   if (typeof value !== 'string'
-    || !/<svg\b[^>]*width="1080"[^>]*height="1350"[^>]*data-instagram-card="true"[^>]*data-social-poster-version="1"/iu.test(value)) {
+    || !/<svg\b[^>]*width="1080"[^>]*height="1350"[^>]*data-instagram-card="true"/iu.test(value)
+    || !value.includes(`data-social-poster-version="${SOCIAL_POSTER_MODEL_VERSION}"`)) {
     throw new Error('A canonical 1080×1350 Instagram SVG is required');
   }
   if (/<(?:script|foreignObject)\b|\bon[a-z]+\s*=|@import|url\(\s*["']?https?:/iu.test(value)) {
