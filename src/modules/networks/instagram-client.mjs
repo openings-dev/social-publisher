@@ -164,7 +164,9 @@ export async function publishToInstagram({
   if (existing) return normalizedResult(existing, 'reconciled');
 
   const baseCaption = formatInstagramCaption(job, post);
-  const caption = marker === null ? baseCaption : `${baseCaption}\n\n${marker}`;
+  const caption = marker === null || baseCaption.includes(marker)
+    ? baseCaption
+    : `${baseCaption}\n\n${marker}`;
   let container;
   try {
     container = await fetchJson(`${base}/${encodeURIComponent(userId)}/media`, {

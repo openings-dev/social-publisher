@@ -3,8 +3,8 @@ import { resetPublishedMetaStages } from '../state/queue-operations.mjs';
 import { validatePublicationsState, validateQueueState } from '../state/state-model.mjs';
 import { assertValidJobId } from '../../shared/job-id.mjs';
 
-export const META_MIGRATION_REVISION = 'poster_v3_social_video_v2';
-export const META_RECONCILIATION_MARKER = '#OpeningsPosterV3';
+export const META_MIGRATION_REVISION = 'white_band_poster_v4_social_video_v3';
+export const META_RECONCILIATION_MARKER = '#OpeningsJobs';
 
 function assertNow(value) {
   if (typeof value !== 'string' || !Number.isFinite(Date.parse(value))) {
@@ -20,6 +20,16 @@ function assertPublicationResult(value, label) {
     throw new Error(`${label} must include an ID and URL`);
   }
   return value;
+}
+
+function migrationHistory(metaMigration) {
+  if (!metaMigration || typeof metaMigration !== 'object' || Array.isArray(metaMigration)) return [];
+  const priorHistory = Array.isArray(metaMigration.history)
+    ? structuredClone(metaMigration.history)
+    : [];
+  const previousRevision = structuredClone(metaMigration);
+  delete previousRevision.history;
+  return [...priorHistory, previousRevision];
 }
 
 export function parseMetaMigrationRequest({ jobIds, confirmation } = {}) {
@@ -82,6 +92,7 @@ export async function migrateMetaPublication({
   }
   const previousThreads = assertPublicationResult(previousPublication.threads, 'Previous Threads publication');
   const previousInstagram = assertPublicationResult(previousPublication.instagram, 'Previous Instagram publication');
+  const history = migrationHistory(previousPublication.metaMigration);
   const resetQueue = resetPublishedMetaStages(queue, jobId, {
     at: now,
     reason: 'meta_publication_migration',
@@ -125,6 +136,7 @@ export async function migrateMetaPublication({
       revision: META_MIGRATION_REVISION,
       marker: META_RECONCILIATION_MARKER,
       completedAt: now,
+      history,
       threads: {
         previous: previousThreads,
         replacement: replacementThreads,

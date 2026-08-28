@@ -804,6 +804,8 @@ validation('resets only published Meta stages for a controlled visual migration'
 });
 
 validation('requires an explicit bounded request for a Meta publication migration', () => {
+  assert.equal(META_MIGRATION_REVISION, 'white_band_poster_v4_social_video_v3');
+  assert.equal(META_RECONCILIATION_MARKER, '#OpeningsJobs');
   assert.deepEqual(parseMetaMigrationRequest({
     jobIds: ['gh_111111111111111111111111', 'gh_222222222222222222222222'],
     confirmation: 'MIGRATE_META_POSTS',
@@ -850,6 +852,21 @@ validation('replaces only Meta publications and records recoverable cleanup stat
         : { id: `${stage}-old`, url: `https://example.test/${stage}-old` },
     });
   }
+  const priorMigration = {
+    revision: 'poster_v3_social_video_v2',
+    marker: '#OpeningsPosterV3',
+    completedAt: '2026-08-27T13:03:00.000Z',
+    threads: {
+      previous: { id: 'threads-legacy', url: 'https://example.test/threads-legacy' },
+      replacement: queue.items[0].threads.result,
+      cleanup: 'manual_required',
+    },
+    instagram: {
+      previous: { id: 'instagram-legacy', url: 'https://example.test/instagram-legacy' },
+      replacement: queue.items[0].instagram.result,
+      cleanup: 'manual_required',
+    },
+  };
   const publicationsState = {
     schemaVersion: STATE_SCHEMA_VERSION,
     jobs: {
@@ -863,9 +880,12 @@ validation('replaces only Meta publications and records recoverable cleanup stat
         mastodon: queue.items[0].mastodon.result,
         threads: queue.items[0].threads.result,
         instagram: queue.items[0].instagram.result,
+        metaMigration: priorMigration,
       },
     },
   };
+  const previousBluesky = structuredClone(publicationsState.jobs[job.id].bluesky);
+  const previousMastodon = structuredClone(publicationsState.jobs[job.id].mastodon);
   const deleted = [];
   const result = await migrateMetaPublication({
     queueState: queue,
@@ -910,6 +930,11 @@ validation('replaces only Meta publications and records recoverable cleanup stat
   assert.equal(result.publicationsState.jobs[job.id].metaMigration.instagram.cleanup, 'manual_required');
   assert.equal(result.publicationsState.jobs[job.id].metaMigration.instagram.previous.id, 'instagram-old');
   assert.equal(result.publicationsState.jobs[job.id].metaMigration.instagram.replacement.id, 'instagram-new');
+  assert.deepEqual(result.publicationsState.jobs[job.id].bluesky, previousBluesky);
+  assert.deepEqual(result.publicationsState.jobs[job.id].mastodon, previousMastodon);
+  assert.equal(result.publicationsState.jobs[job.id].metaMigration.history.length, 1);
+  assert.deepEqual(result.publicationsState.jobs[job.id].metaMigration.history[0], priorMigration);
+  assert.equal('history' in result.publicationsState.jobs[job.id].metaMigration.history[0], false);
 
   const repeated = await migrateMetaPublication({
     ...result,
@@ -1055,7 +1080,8 @@ validation('formats an Instagram caption for discovery and conversation', async 
   assert.match(remoteCaption, new RegExp(remotePost.canonicalUrl));
   assert.match(remoteCaption, /Know someone who fits\? Tag them below\./u);
   assert.match(remoteCaption, /Follow @openingshq for more jobs from public communities\./u);
-  assert.match(remoteCaption, /#TechJobs #TypeScript #Hiring #RemoteJobs$/u);
+  assert.match(remoteCaption, /#TechJobs #TypeScript #OpeningsJobs #Hiring #RemoteJobs$/u);
+  assert.doesNotMatch(remoteCaption, /#OpeningsPosterV\d+/u);
   assert.equal((remoteCaption.match(/https:\/\/openings\.dev\/jobs\//gu) ?? []).length, 1);
 
   const onsiteJob = makeJob({
@@ -1068,7 +1094,7 @@ validation('formats an Instagram caption for discovery and conversation', async 
   const hashtags = onsiteCaption.match(/#[\p{L}\p{N}]+/gu) ?? [];
   assert.doesNotMatch(onsiteCaption, /#RemoteJobs/u);
   assert.equal(new Set(hashtags).size, hashtags.length);
-  assert.ok(hashtags.length <= 4);
+  assert.ok(hashtags.length <= 5);
 
   const onsiteCjkJob = makeJob({
     title: '[广州 / 线下] Bitcoin 开发工程师',
@@ -2349,7 +2375,7 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
     const parsed = new URL(url);
     if (parsed.pathname === '/v1.0/me/threads' && options.method !== 'POST') {
       return jsonResponse({
-        data: published ? [{ id: 'thread-1', text: `${post.text}\n\n#OpeningsPosterV3`, permalink: 'https://www.threads.net/@openingshq/post/thread-1' }] : [],
+        data: published ? [{ id: 'thread-1', text: `${post.text}\n\n#OpeningsJobs`, permalink: 'https://www.threads.net/@openingshq/post/thread-1' }] : [],
       });
     }
     if (parsed.pathname === '/v1.0/me/threads' && options.method === 'POST') {
@@ -2369,7 +2395,7 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
     job,
     post,
     accessToken: 'threads-secret',
-    reconciliationMarker: '#OpeningsPosterV3',
+    reconciliationMarker: '#OpeningsJobs',
     fetchImpl,
   });
   assert.equal(result.status, 'published');
@@ -2378,7 +2404,7 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
   const publication = calls.find((call) => call.options.method === 'POST');
   const body = new URLSearchParams(publication.options.body);
   assert.equal(body.get('media_type'), 'TEXT');
-  assert.equal(body.get('text'), `${post.text}\n\n#OpeningsPosterV3`);
+  assert.equal(body.get('text'), `${post.text}\n\n#OpeningsJobs`);
   assert.equal(body.get('link_attachment'), post.canonicalUrl);
   assert.equal(body.get('auto_publish_text'), 'true');
   assert.equal(body.get('reply_control'), 'everyone');
@@ -2388,7 +2414,7 @@ validation('publishes and reconciles a link-preview Threads post', async () => {
     job,
     post,
     accessToken: 'threads-secret',
-    reconciliationMarker: '#OpeningsPosterV3',
+    reconciliationMarker: '#OpeningsJobs',
     fetchImpl,
   });
   assert.equal(reconciled.status, 'reconciled');
@@ -2434,7 +2460,7 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
     const parsed = new URL(url);
     if (parsed.pathname === '/v23.0/17841400000000000/media' && options.method !== 'POST') {
       return jsonResponse({
-        data: published ? [{ id: 'media-1', caption: `New opening\n${post.canonicalUrl}\n#OpeningsPosterV3`, permalink: 'https://www.instagram.com/p/media-1/' }] : [],
+        data: published ? [{ id: 'media-1', caption: `New opening\n${post.canonicalUrl}\n#OpeningsJobs`, permalink: 'https://www.instagram.com/p/media-1/' }] : [],
       });
     }
     if (parsed.pathname === '/v23.0/17841400000000000/media' && options.method === 'POST') {
@@ -2468,7 +2494,7 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
     accessToken: 'instagram-secret',
     userId: '17841400000000000',
     apiVersion: 'v23.0',
-    reconciliationMarker: '#OpeningsPosterV3',
+    reconciliationMarker: '#OpeningsJobs',
     fetchImpl,
     sleep: async () => {},
     containerPollAttempts: 12,
@@ -2487,7 +2513,8 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
   assert.match(body.get('caption'), new RegExp(post.canonicalUrl));
   assert.match(body.get('caption'), /Follow @openingshq for more jobs from public communities\./u);
   assert.match(body.get('caption'), /Know someone who fits\? Tag them below\./u);
-  assert.match(body.get('caption'), /#OpeningsPosterV3/u);
+  assert.equal((body.get('caption').match(/#OpeningsJobs/gu) ?? []).length, 1);
+  assert.doesNotMatch(body.get('caption'), /#OpeningsPosterV\d+/u);
   assert.equal(container.options.headers.Authorization, 'Bearer instagram-secret');
 
   const reconciled = await publishToInstagram({
@@ -2498,7 +2525,7 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
     accessToken: 'instagram-secret',
     userId: '17841400000000000',
     apiVersion: 'v23.0',
-    reconciliationMarker: '#OpeningsPosterV3',
+    reconciliationMarker: '#OpeningsJobs',
     fetchImpl,
     sleep: async () => {},
   });

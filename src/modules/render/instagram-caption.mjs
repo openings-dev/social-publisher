@@ -50,6 +50,7 @@ function isRemoteJob(job) {
 function discoveryHashtags(job, post) {
   const candidates = [
     ...String(post.hashtags ?? '').split(/\s+/u),
+    '#OpeningsJobs',
     '#Hiring',
     ...(isRemoteJob(job) ? ['#RemoteJobs'] : []),
   ];
@@ -60,7 +61,7 @@ function discoveryHashtags(job, post) {
     if (seen.has(key)) return false;
     seen.add(key);
     return true;
-  }).slice(0, 4).join(' ');
+  }).slice(0, 5).join(' ');
 }
 
 export function formatInstagramCaption(job, post) {
