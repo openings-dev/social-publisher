@@ -10,6 +10,12 @@ import { escapeAttribute, escapeHtml } from '../../shared/escape.mjs';
 import { createCjkFontStyle, SOCIAL_CARD_FONT_STACK } from './cjk-fonts.mjs';
 import { formatSalary } from './format-job.mjs';
 import { opportunityDescription } from './html-page.mjs';
+import {
+  createSocialPosterModel,
+  encodeSocialPosterModel,
+  INSTAGRAM_POSTER_GEOMETRY,
+  SOCIAL_POSTER_MODEL_VERSION,
+} from './social-poster-model.mjs';
 
 const COLORS = Object.freeze({
   canvas: '#f5f3ef',
@@ -229,72 +235,63 @@ export function createSocialCardSvg(job, { wordmarkSvg }) {
 export function createInstagramCardSvg(job, { wordmarkSvg }) {
   const trustedWordmark = assertTrustedWordmark(wordmarkSvg);
   const card = presentation(job);
-  const fontSize = instagramTitleFontSize(card.title);
-  const titleLines = wrapText(card.title, { fontSize, maxWidth: 912, maxLines: 6 });
-  const titleLineHeight = Math.round(fontSize * 1.06);
-  const titleBottom = 316 + Math.max(0, titleLines.length - 1) * titleLineHeight;
-  const descriptionLines = wrapText(card.description || card.fallbackDescription, {
-    fontSize: 27,
-    maxWidth: 900,
-    maxLines: 2,
-  });
-  const descriptionY = titleBottom + 54;
-  const tagsY = Math.min(770, descriptionY + descriptionLines.length * 38 + 32);
+  const model = createSocialPosterModel(job);
+  const encodedModel = encodeSocialPosterModel(model);
+  const geometry = INSTAGRAM_POSTER_GEOMETRY;
+  const layout = model.layouts.instagram;
+  const titleBlockHeight = layout.titleLines.length * layout.titleLineHeight;
+  const titleY = 272 + Math.max(0, (420 - titleBlockHeight) / 2)
+    + Math.round(layout.titleFontSize * 0.78);
   const wordmarkData = Buffer.from(trustedWordmark).toString('base64');
-
-  let tagsMarkup = '';
-  let tagX = 84;
-  for (const tag of card.tags) {
-    const width = Math.min(244, Math.max(92, 38 + [...segmenter.segment(tag)].length * 11));
-    if (tagX + width > 996) break;
-    tagsMarkup += `<rect data-instagram-tag="true" x="${tagX}" y="${tagsY}" width="${width}" height="48" rx="24" fill="${COLORS.surfaceMuted}"/><text x="${tagX + 19}" y="${tagsY + 32}" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="700">${escapeHtml(tag)}</text>`;
-    tagX += width + 12;
-  }
-
-  const facts = (card.facts.length < 3
-    ? [['Community', card.community], ...card.facts]
-    : card.facts).slice(0, 3);
-  const factWidth = facts.length === 2 ? 420 : 270;
-  const factGap = facts.length === 2 ? 36 : 30;
-  const factsMarkup = facts.map(([label, value], index) => {
-    const x = 84 + index * (factWidth + factGap);
-    const valueFontSize = instagramFactFontSize(value);
-    const valueLines = wrapText(value, {
-      fontSize: valueFontSize,
-      maxWidth: factWidth - 12,
-      maxLines: 2,
-    });
-    return `<text data-instagram-fact-label="true" x="${x}" y="890" fill="${COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="700" letter-spacing="1.2">${escapeHtml(label.toUpperCase())}</text>${textLines(valueLines, { x, y: 933, fontSize: valueFontSize, lineHeight: Math.round(valueFontSize * 1.3), weight: 700, attribute: 'data-instagram-fact-value="true"' })}`;
+  const dominantLength = [...segmenter.segment(model.dominantFact.value)].length;
+  const dominantFontSize = dominantLength > 22 ? 38 : dominantLength > 16 ? 58 : dominantLength > 11 ? 76 : 116;
+  const dominantLines = wrapText(model.dominantFact.value, {
+    fontSize: dominantFontSize,
+    maxWidth: 650,
+    maxLines: 3,
+  });
+  const dominantLineHeight = Math.round(dominantFontSize * 1.02);
+  const supportingFacts = model.supportingFacts.map((fact, index) => {
+    const y = 824 + index * 166;
+    const lines = wrapText(fact.value, { fontSize: 31, maxWidth: 290, maxLines: 2 });
+    return `<g data-instagram-supporting-fact="true">
+      <text x="730" y="${y}" fill="#a9b7b4" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="800" letter-spacing="1.4">${escapeHtml(fact.label)}</text>
+      ${textLines(lines, { x: 730, y: y + 48, fontSize: 31, lineHeight: 38, weight: 750, fill: COLORS.paper })}
+    </g>`;
   }).join('');
 
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${INSTAGRAM_IMAGE_WIDTH}" height="${INSTAGRAM_IMAGE_HEIGHT}" viewBox="0 0 ${INSTAGRAM_IMAGE_WIDTH} ${INSTAGRAM_IMAGE_HEIGHT}" role="img" aria-labelledby="instagram-card-title instagram-card-description" data-instagram-card="true">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${INSTAGRAM_IMAGE_WIDTH}" height="${INSTAGRAM_IMAGE_HEIGHT}" viewBox="0 0 ${INSTAGRAM_IMAGE_WIDTH} ${INSTAGRAM_IMAGE_HEIGHT}" role="img" aria-labelledby="instagram-card-title instagram-card-description" data-instagram-card="true" data-social-poster-version="${SOCIAL_POSTER_MODEL_VERSION}" data-poster-model="${encodedModel}">
   <title id="instagram-card-title">${escapeHtml(card.title)} — Open job on openings.dev</title>
   <desc id="instagram-card-description">${escapeHtml(card.fallbackDescription)}</desc>
-  <defs>
-    <filter id="portrait-shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="22" stdDeviation="26" flood-color="${COLORS.ink}" flood-opacity="0.11"/></filter>
-    <clipPath id="portrait-card-clip"><rect x="40" y="40" width="1000" height="1270" rx="32"/></clipPath>
-  </defs>
-  <rect width="1080" height="1350" fill="${COLORS.canvas}"/>
-  <circle cx="1010" cy="62" r="190" fill="${COLORS.mint}"/>
-  <rect x="40" y="40" width="1000" height="1270" rx="32" fill="${COLORS.paper}" stroke="${COLORS.line}" filter="url(#portrait-shadow)"/>
-  <rect data-safe-area="true" x="56" y="56" width="968" height="1238" fill="none"/>
-  <g clip-path="url(#portrait-card-clip)">
-    <line x1="40" y1="178" x2="1040" y2="178" stroke="${COLORS.line}"/>
-    <rect data-instagram-facts="true" x="40" y="830" width="1000" height="260" fill="#fbfaf6"/>
-    <line x1="40" y1="830" x2="1040" y2="830" stroke="${COLORS.line}"/>
-    <line x1="40" y1="1090" x2="1040" y2="1090" stroke="${COLORS.line}"/>
+  <rect width="1080" height="1350" fill="${COLORS.mint}"/>
+  <circle cx="1010" cy="246" r="210" fill="#c6f4b7"/>
+  <circle cx="72" cy="1110" r="190" fill="#9fdf8b" opacity="0.72"/>
+  <rect data-safe-area="true" x="${geometry.safeArea.x}" y="${geometry.safeArea.y}" width="${geometry.safeArea.width}" height="${geometry.safeArea.height}" fill="none"/>
+  <rect data-poster-role-region="true" x="${geometry.role.x}" y="${geometry.role.y}" width="${geometry.role.width}" height="${geometry.role.height}" fill="none"/>
+  <rect data-instagram-facts="true" data-poster-facts-region="true" x="${geometry.facts.x}" y="${geometry.facts.y}" width="${geometry.facts.width}" height="${geometry.facts.height}" fill="${COLORS.ink}"/>
+  <rect data-poster-attribution-region="true" x="${geometry.attribution.x}" y="${geometry.attribution.y}" width="${geometry.attribution.width}" height="${geometry.attribution.height}" fill="none"/>
+  <g data-important-content="true" data-x="30" data-y="60" data-width="1020" data-height="92" data-poster-header="true">
+    <image data-instagram-wordmark="true" x="30" y="66" width="250" height="46" preserveAspectRatio="xMinYMid meet" href="data:image/svg+xml;base64,${wordmarkData}"/>
+    <text x="1050" y="91" text-anchor="end" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="20" font-weight="850">${model.handle}</text>
+    <text x="1050" y="123" text-anchor="end" fill="${COLORS.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="750">Tech jobs from public communities</text>
   </g>
-  <image data-instagram-wordmark="true" x="84" y="78" width="320" height="58" preserveAspectRatio="xMinYMid meet" href="data:image/svg+xml;base64,${wordmarkData}"/>
-  <text x="996" y="99" text-anchor="end" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="800">@openingshq</text>
-  <text x="996" y="127" text-anchor="end" fill="${COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="600">Tech jobs from public communities</text>
-  <text x="84" y="244" fill="${COLORS.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="800" letter-spacing="1.5">${escapeHtml(card.eyebrow.toUpperCase())}</text>
-  ${textLines(titleLines, { x: 84, y: 316, fontSize, lineHeight: titleLineHeight, weight: 800, attribute: 'letter-spacing="-1.3" data-instagram-title-line="true"' })}
-  ${textLines(descriptionLines, { x: 84, y: descriptionY, fontSize: 27, lineHeight: 38, weight: 400, fill: COLORS.mutedInk })}
-  ${tagsMarkup}
-  ${factsMarkup}
-  <rect data-instagram-cta="true" x="84" y="1146" width="912" height="108" rx="54" fill="${COLORS.mint}"/>
-  <text x="118" y="1212" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="27" font-weight="800">View this opening on openings.dev</text>
-  <text x="950" y="1215" text-anchor="end" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="36" font-weight="700">→</text>
+  <g data-important-content="true" data-x="30" data-y="152" data-width="1020" data-height="590" data-poster-role="true">
+    <text x="30" y="210" fill="${COLORS.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="17" font-weight="850" letter-spacing="1.6">${escapeHtml(model.eyebrow.toUpperCase())}</text>
+    ${textLines(layout.titleLines, { x: 30, y: Math.round(titleY), fontSize: layout.titleFontSize, lineHeight: layout.titleLineHeight, weight: 900, attribute: 'letter-spacing="-2.4" data-instagram-title-line="true"' })}
+  </g>
+  <g data-important-content="true" data-x="30" data-y="742" data-width="1020" data-height="432" data-poster-facts-content="true">
+    <text x="30" y="812" fill="#a9b7b4" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="16" font-weight="850" letter-spacing="1.5">${escapeHtml(model.dominantFact.label)}</text>
+    ${textLines(dominantLines, { x: 30, y: 900, fontSize: dominantFontSize, lineHeight: dominantLineHeight, weight: 900, fill: COLORS.paper, attribute: 'letter-spacing="-1.8" data-instagram-dominant-fact="true"' })}
+    <line x1="692" y1="790" x2="692" y2="1124" stroke="#53615e"/>
+    ${supportingFacts}
+  </g>
+  <g data-important-content="true" data-x="30" data-y="1174" data-width="1020" data-height="116" data-poster-attribution="true">
+    <text x="30" y="1210" fill="${COLORS.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="12" font-weight="850" letter-spacing="1.5">${escapeHtml(model.attribution.label)}</text>
+    <text x="30" y="1252" fill="${COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="24" font-weight="850">${escapeHtml(model.attribution.value)}</text>
+    <rect data-instagram-cta="true" x="700" y="1198" width="350" height="74" rx="37" fill="${COLORS.ink}"/>
+    <text x="724" y="1244" fill="${COLORS.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="17" font-weight="800">${escapeHtml(model.attribution.action)}</text>
+    <text x="1020" y="1248" text-anchor="end" fill="${COLORS.mint}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="28" font-weight="850">→</text>
+  </g>
 </svg>`;
 }
 

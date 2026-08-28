@@ -1036,46 +1036,65 @@ validation('fits Latin, CJK, and emoji-led poster titles deterministically', asy
   assert.equal(overflowing.layouts.reel.titleLines.at(-1).endsWith('…'), true);
 });
 
-validation('defines a dedicated portrait-safe Instagram card', () => {
+validation('defines a dense full-canvas portrait-safe Instagram poster', () => {
   assert.equal(typeof socialCardModule.createInstagramCardSvg, 'function');
   const job = makeJob({
     title: '[广州 / 线下] 招聘Bitcoin创新开发工程师 | 国内BTC底层开发团队',
     community: { name: 'rebase-network' },
     country: 'Global',
+    tags: ['on-site'],
   });
   const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
   const svg = socialCardModule.createInstagramCardSvg(job, { wordmarkSvg });
 
   assert.match(svg, /width="1080" height="1350" viewBox="0 0 1080 1350"/u);
   assert.match(svg, /data-instagram-card="true"/u);
-  assert.match(svg, /data-safe-area="true"[^>]*x="56"[^>]*width="968"/u);
+  assert.match(svg, /data-social-poster-version="1"/u);
+  assert.match(svg, /data-poster-model="[A-Za-z0-9+/]+={0,2}"/u);
+  assert.match(svg, /data-safe-area="true"[^>]*x="30"[^>]*y="60"[^>]*width="1020"[^>]*height="1230"/u);
+  assert.match(svg, /data-poster-role-region="true"[^>]*x="30"[^>]*y="152"[^>]*width="1020"[^>]*height="590"/u);
+  assert.match(svg, /data-poster-facts-region="true"[^>]*x="0"[^>]*y="742"[^>]*width="1080"[^>]*height="432"/u);
+  assert.match(svg, /data-poster-attribution-region="true"[^>]*x="30"[^>]*y="1174"[^>]*width="1020"[^>]*height="116"/u);
   assert.match(svg, /data-instagram-title-line="true"/u);
   assert.match(svg, /工程师—国内/u);
   assert.doesNotMatch(svg, />\|<\/text>/u);
-  assert.match(svg, /data-instagram-wordmark="true"[^>]*width="320"/u);
+  assert.match(svg, /data-instagram-wordmark="true"[^>]*width="250"/u);
   assert.match(svg, />@openingshq<\/text>/u);
-  assert.match(svg, /data-instagram-facts="true"[^>]*y="830"/u);
-  assert.match(svg, /font-size="25"[^>]*data-instagram-fact-value="true"/u);
-  assert.match(svg, />COMMUNITY<\/text>/u);
-  assert.match(svg, />rebase-network<\/text>/u);
-  assert.match(svg, /data-instagram-cta="true"[^>]*y="1146"[^>]*height="108"/u);
-  assert.match(svg, /View this opening on openings\.dev/u);
+  assert.match(svg, /data-instagram-facts="true"[^>]*y="742"[^>]*height="432"[^>]*fill="#21302e"/u);
+  assert.match(svg, /data-instagram-dominant-fact="true"/u);
+  assert.match(svg, />WORK MODE<\/text>/u);
+  assert.match(svg, />ON-SITE<\/text>/u);
+  assert.match(svg, /data-instagram-cta="true"[^>]*x="700"[^>]*y="1198"[^>]*width="350"[^>]*height="74"/u);
+  assert.match(svg, /Find this opening on openings\.dev/u);
   assert.doesNotMatch(svg, /data:font\/woff2;base64,/u);
+  assert.doesNotMatch(svg, /x="40" y="40" width="1000" height="1270"/u);
+  assert.doesNotMatch(svg, /data-instagram-facts="true"[^>]*y="830"/u);
+
+  const importantBounds = [...svg.matchAll(
+    /data-important-content="true" data-x="(?<x>\d+)" data-y="(?<y>\d+)" data-width="(?<width>\d+)" data-height="(?<height>\d+)"/gu,
+  )];
+  assert.ok(importantBounds.length >= 4);
+  for (const match of importantBounds) {
+    const bounds = Object.fromEntries(
+      Object.entries(match.groups).map(([key, value]) => [key, Number(value)]),
+    );
+    assert.ok(bounds.x >= 30 && bounds.y >= 60);
+    assert.ok(bounds.x + bounds.width <= 1050);
+    assert.ok(bounds.y + bounds.height <= 1290);
+  }
 
   const shortSvg = socialCardModule.createInstagramCardSvg(
     makeJob({ title: 'Senior Product Engineer', tags: ['typescript'] }),
     { wordmarkSvg },
   );
-  assert.match(shortSvg, /font-size="88"[^>]*data-instagram-title-line="true"/u);
-  assert.match(shortSvg, /font-size="27"[^>]*>Shared through/u);
-  assert.match(shortSvg, /data-instagram-tag="true"[^>]*height="48"/u);
+  assert.match(shortSvg, /font-size="112"[^>]*data-instagram-title-line="true"/u);
+  assert.match(shortSvg, />SHARED THROUGH<\/text>/u);
 
   const longSalarySvg = socialCardModule.createInstagramCardSvg(makeJob({
     salary: { currency: 'JPY', min: 9000000, max: 14000000, period: 'year' },
   }), { wordmarkSvg });
-  assert.match(longSalarySvg, /font-size="19"[^>]*data-instagram-fact-value="true"[^>]*>¥9,000,000–¥14,000,000<\/text>/u);
-  assert.match(longSalarySvg, /font-size="19"[^>]*data-instagram-fact-value="true"[^>]*>\/year<\/text>/u);
-  assert.doesNotMatch(longSalarySvg, />¥9,000,000–¥14,0<\/text>/u);
+  assert.match(longSalarySvg, />SALARY<\/text>/u);
+  assert.match(longSalarySvg, />¥9,000,000–¥14,000,000\/year<\/text>/u);
 });
 
 validation('renders a bounded 1080 by 1350 Instagram JPEG preview', async () => {
@@ -1246,16 +1265,16 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.equal(sha256(calls[0].image), calls[0].expectedPngHash);
     assert.match(calls[0].instagramSvg.toString('utf8'), /data-instagram-card="true"/u);
     assert.equal(sha256(calls[0].instagramSvg), calls[0].expectedInstagramSvgHash);
-    assert.equal(calls[0].expectedInstagramCardVersion, '2');
-    assert.equal(calls[0].expectedSocialVideoVersion, '1');
+    assert.equal(calls[0].expectedInstagramCardVersion, '3');
+    assert.equal(calls[0].expectedSocialVideoVersion, '2');
     assert.equal(calls[0].forceDeployment, true);
     assert.equal(result.status, 'deployed');
     assert.equal(result.canonicalUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}`);
     assert.equal(result.instagramImageUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`);
     assert.equal(result.socialVideoUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`);
     assert.equal(result.socialVideoCoverUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg`);
-    assert.equal(result.instagramCardVersion, '2');
-    assert.equal(result.socialVideoVersion, '1');
+    assert.equal(result.instagramCardVersion, '3');
+    assert.equal(result.socialVideoVersion, '2');
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -1352,14 +1371,14 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   assert.equal(result.matches, true);
   assert.equal(result.canonicalUrl, canonicalUrl);
   assert.equal(result.instagramImageUrl, instagramImageUrl);
-  assert.equal(result.instagramCardVersion, '2');
+  assert.equal(result.instagramCardVersion, '3');
   assert.equal(result.socialVideoUrl, socialVideoUrl);
   assert.equal(result.socialVideoCoverUrl, socialVideoCoverUrl);
-  assert.equal(result.socialVideoVersion, '1');
+  assert.equal(result.socialVideoVersion, '2');
 
   const staleHtml = html.replace(
+    'name="openings:instagram-card-version" content="3"',
     'name="openings:instagram-card-version" content="2"',
-    'name="openings:instagram-card-version" content="1"',
   );
   const staleVersion = await verifyPublicBridge({
     jobId: job.id,
@@ -1377,8 +1396,8 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   assert.equal(staleVersion.reason, 'instagram_card_version_mismatch');
 
   const staleSocialVideoHtml = html.replace(
+    'name="openings:social-video-version" content="2"',
     'name="openings:social-video-version" content="1"',
-    'name="openings:social-video-version" content="0"',
   );
   const staleSocialVideo = await verifyPublicBridge({
     jobId: job.id,
