@@ -62,6 +62,7 @@ import { createBridgeHtml } from '../render/html-page.mjs';
 import { createSocialCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
 import * as socialCardModule from '../render/social-card.mjs';
 import { createCjkFontStyle, SOCIAL_CARD_FONT_STACK } from '../render/cjk-fonts.mjs';
+import { resolveSocialTheme } from '../render/social-theme.mjs';
 import {
   buildReelFfmpegArguments,
   createOriginalSoundtrackWav,
@@ -114,7 +115,7 @@ validation('exports the approved immutable constants', () => {
   assert.deepEqual([SOCIAL_VIDEO_WIDTH, SOCIAL_VIDEO_HEIGHT], [1080, 1920]);
   assert.equal(SOCIAL_VIDEO_FPS, 30);
   assert.equal(SOCIAL_VIDEO_DURATION_SECONDS, 9);
-  assert.equal(INSTAGRAM_CARD_VERSION, '3');
+  assert.equal(INSTAGRAM_CARD_VERSION, '4');
   assert.equal(SOCIAL_VIDEO_VERSION, '2');
 });
 
@@ -1110,7 +1111,7 @@ validation('renders a complete escaped canonical job bridge', () => {
   assert.match(html, /<meta property="og:image:width" content="1200">/);
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
   assert.match(html, new RegExp(`<meta name="openings:data-hash" content="${job.contentHash}"`));
-  assert.match(html, /<meta name="openings:instagram-card-version" content="3">/u);
+  assert.match(html, /<meta name="openings:instagram-card-version" content="4">/u);
   assert.match(html, /<meta name="openings:social-video-version" content="2">/u);
   assert.match(html, /&lt;script&gt;publish\(\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<img src=x|onerror=/);
@@ -1129,10 +1130,12 @@ validation('renders the production social-card system to a bounded PNG', async (
   });
   const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302e"/></svg>';
   const svg = createSocialCardSvg(job, { wordmarkSvg });
+  const theme = resolveSocialTheme(job.id);
   assert.match(svg, /width="1200" height="630"/);
-  for (const color of ['#f5f3ef', '#fffefa', '#21302e', '#5e6663', '#d8d8d1', '#eeefeb', '#b0ec9c', '#315d35']) {
+  for (const color of ['#f5f3ef', '#fffefa', '#21302e', '#5e6663', '#d8d8d1', '#f0f1ed', theme.accent, theme.soft]) {
     assert.match(svg, new RegExp(color));
   }
+  assert.match(svg, new RegExp(`data-theme="${theme.id}"`));
   assert.match(svg, /data:image\/svg\+xml;base64,/);
   assert.match(svg, /Senior TypeScript Engineer/);
   assert.match(svg, /View job/);
@@ -1300,7 +1303,7 @@ validation('fits Latin, CJK, and emoji-led poster titles deterministically', asy
   assert.equal(overflowing.layouts.reel.titleLines.at(-1).endsWith('…'), true);
 });
 
-validation('defines a dense full-canvas portrait-safe Instagram poster', () => {
+validation('defines a white-led editorial-band Instagram poster', () => {
   assert.equal(typeof socialCardModule.createInstagramCardSvg, 'function');
   const job = makeJob({
     title: '[广州 / 线下] 招聘Bitcoin创新开发工程师 | 国内BTC底层开发团队',
@@ -1310,25 +1313,28 @@ validation('defines a dense full-canvas portrait-safe Instagram poster', () => {
   });
   const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
   const svg = socialCardModule.createInstagramCardSvg(job, { wordmarkSvg });
+  const theme = resolveSocialTheme(job.id);
 
   assert.match(svg, /width="1080" height="1350" viewBox="0 0 1080 1350"/u);
   assert.match(svg, /data-instagram-card="true"/u);
+  assert.match(svg, new RegExp(`data-theme="${theme.id}"`));
   assert.match(svg, /data-social-poster-version="2"/u);
   assert.match(svg, /data-poster-model="[A-Za-z0-9+/]+={0,2}"/u);
   assert.match(svg, /data-safe-area="true"[^>]*x="30"[^>]*y="60"[^>]*width="1020"[^>]*height="1230"/u);
   assert.match(svg, /data-poster-role-region="true"[^>]*x="30"[^>]*y="152"[^>]*width="1020"[^>]*height="590"/u);
-  assert.match(svg, /data-poster-facts-region="true"[^>]*x="0"[^>]*y="742"[^>]*width="1080"[^>]*height="432"/u);
-  assert.match(svg, /data-poster-attribution-region="true"[^>]*x="30"[^>]*y="1174"[^>]*width="1020"[^>]*height="116"/u);
+  assert.match(svg, /data-poster-facts-region="true"[^>]*x="30"[^>]*y="742"[^>]*width="1020"[^>]*height="341"/u);
+  assert.match(svg, /data-poster-attribution-region="true"[^>]*x="30"[^>]*y="1107"[^>]*width="1020"[^>]*height="183"/u);
+  assert.match(svg, new RegExp(`data-editorial-band="true"[^>]*y="1107"[^>]*height="243"[^>]*fill="${theme.accent}"`));
   assert.match(svg, /data-instagram-title-line="true"/u);
   assert.match(svg, /工程师—国内/u);
   assert.doesNotMatch(svg, />\|<\/text>/u);
   assert.match(svg, /data-instagram-wordmark="true"[^>]*width="250"/u);
   assert.match(svg, />@openingshq<\/text>/u);
-  assert.match(svg, /data-instagram-facts="true"[^>]*y="742"[^>]*height="432"[^>]*fill="#21302e"/u);
+  assert.match(svg, /data-instagram-facts="true"[^>]*x="30"[^>]*y="742"[^>]*height="341"[^>]*rx="28"[^>]*fill="#f0f1ed"/u);
   assert.match(svg, /data-instagram-dominant-fact="true"/u);
   assert.match(svg, />WORK MODE<\/text>/u);
   assert.match(svg, />ON-SITE<\/text>/u);
-  assert.match(svg, /data-instagram-cta="true"[^>]*x="700"[^>]*y="1198"[^>]*width="350"[^>]*height="74"/u);
+  assert.match(svg, /data-instagram-cta="true"[^>]*x="700"[^>]*y="1152"[^>]*width="350"[^>]*height="88"/u);
   assert.match(svg, /Find this opening on openings\.dev/u);
   assert.doesNotMatch(svg, /data:font\/woff2;base64,/u);
   assert.doesNotMatch(svg, /x="40" y="40" width="1000" height="1270"/u);
@@ -1551,7 +1557,7 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.equal(sha256(calls[0].image), calls[0].expectedPngHash);
     assert.match(calls[0].instagramSvg.toString('utf8'), /data-instagram-card="true"/u);
     assert.equal(sha256(calls[0].instagramSvg), calls[0].expectedInstagramSvgHash);
-    assert.equal(calls[0].expectedInstagramCardVersion, '3');
+    assert.equal(calls[0].expectedInstagramCardVersion, '4');
     assert.equal(calls[0].expectedSocialVideoVersion, '2');
     assert.equal(calls[0].forceDeployment, true);
     assert.equal(result.status, 'deployed');
@@ -1559,7 +1565,7 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.equal(result.instagramImageUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`);
     assert.equal(result.socialVideoUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`);
     assert.equal(result.socialVideoCoverUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg`);
-    assert.equal(result.instagramCardVersion, '3');
+    assert.equal(result.instagramCardVersion, '4');
     assert.equal(result.socialVideoVersion, '2');
   } finally {
     await rm(directory, { recursive: true, force: true });
@@ -1654,7 +1660,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   });
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
-  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=4.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=2.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=2.${instagramSvgHash.slice(0, 16)}`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
@@ -1690,14 +1696,14 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   assert.equal(result.matches, true);
   assert.equal(result.canonicalUrl, canonicalUrl);
   assert.equal(result.instagramImageUrl, instagramImageUrl);
-  assert.equal(result.instagramCardVersion, '3');
+  assert.equal(result.instagramCardVersion, '4');
   assert.equal(result.socialVideoUrl, socialVideoUrl);
   assert.equal(result.socialVideoCoverUrl, socialVideoCoverUrl);
   assert.equal(result.socialVideoVersion, '2');
 
   const staleHtml = html.replace(
+    'name="openings:instagram-card-version" content="4"',
     'name="openings:instagram-card-version" content="3"',
-    'name="openings:instagram-card-version" content="2"',
   );
   const staleVersion = await verifyPublicBridge({
     jobId: job.id,
@@ -1757,7 +1763,7 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
-  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=4.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=2.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=2.${instagramSvgHash.slice(0, 16)}`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
@@ -1817,7 +1823,7 @@ validation('verifies exact public assets when Cloudflare blocks Node HTML reques
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png`;
-  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
+  const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=4.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=2.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=2.${instagramSvgHash.slice(0, 16)}`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {

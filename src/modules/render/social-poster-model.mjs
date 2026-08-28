@@ -18,8 +18,8 @@ export const INSTAGRAM_POSTER_GEOMETRY = deepFreeze({
   safeArea: { x: 30, y: 60, width: 1020, height: 1230 },
   header: { x: 30, y: 60, width: 1020, height: 92 },
   role: { x: 30, y: 152, width: 1020, height: 590 },
-  facts: { x: 0, y: 742, width: 1080, height: 432 },
-  attribution: { x: 30, y: 1174, width: 1020, height: 116 },
+  facts: { x: 30, y: 742, width: 1020, height: 341 },
+  attribution: { x: 30, y: 1107, width: 1020, height: 183 },
 });
 
 export const REEL_POSTER_GEOMETRY = deepFreeze({
