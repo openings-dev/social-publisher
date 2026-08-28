@@ -16,6 +16,7 @@ import {
   IMAGE_WIDTH,
   INSTAGRAM_CARD_VERSION,
   MAX_CHANNEL_ATTEMPTS,
+  OPEN_GRAPH_IMAGE_VERSION,
   OPENINGS_ORIGIN,
   SOCIAL_VIDEO_DURATION_SECONDS,
   SOCIAL_VIDEO_FPS,
@@ -116,6 +117,7 @@ validation('exports the approved immutable constants', () => {
   assert.equal(SOCIAL_VIDEO_FPS, 30);
   assert.equal(SOCIAL_VIDEO_DURATION_SECONDS, 9);
   assert.equal(INSTAGRAM_CARD_VERSION, '4');
+  assert.equal(OPEN_GRAPH_IMAGE_VERSION, '2');
   assert.equal(SOCIAL_VIDEO_VERSION, '3');
 });
 
@@ -1134,8 +1136,8 @@ validation('renders a complete escaped canonical job bridge', () => {
   assert.match(html, /<!doctype html>/i);
   assert.match(html, new RegExp(`<link rel="canonical" href="${canonicalUrl}"`));
   assert.match(html, new RegExp(`<meta property="og:url" content="${canonicalUrl}"`));
-  assert.match(html, new RegExp(`<meta property="og:image" content="${canonicalUrl}/opengraph-image.png\\?v=${imageHash.slice(0, 16)}"`));
-  assert.match(html, new RegExp(`<meta name="twitter:image" content="${canonicalUrl}/opengraph-image.png\\?v=${imageHash.slice(0, 16)}"`));
+  assert.match(html, new RegExp(`<meta property="og:image" content="${canonicalUrl}/opengraph-image.png\\?v=2\\.${imageHash.slice(0, 16)}"`));
+  assert.match(html, new RegExp(`<meta name="twitter:image" content="${canonicalUrl}/opengraph-image.png\\?v=2\\.${imageHash.slice(0, 16)}"`));
   assert.match(html, /<meta property="og:image:width" content="1200">/);
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
   assert.match(html, new RegExp(`<meta name="openings:data-hash" content="${job.contentHash}"`));
@@ -1696,7 +1698,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   const pngHash = sha256(png);
   const html = createBridgeHtml(job, { imageHash: pngHash });
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
-  const imageUrl = `${canonicalUrl}/opengraph-image.png?v=${pngHash.slice(0, 16)}`;
+  const imageUrl = `${canonicalUrl}/opengraph-image.png?v=2.${pngHash.slice(0, 16)}`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=4.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=3.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
@@ -1800,7 +1802,7 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   const html = createBridgeHtml(job, { imageHash: pngHash });
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const redirectedUrl = `${canonicalUrl}/`;
-  const imageUrl = `${canonicalUrl}/opengraph-image.png?v=${pngHash.slice(0, 16)}`;
+  const imageUrl = `${canonicalUrl}/opengraph-image.png?v=2.${pngHash.slice(0, 16)}`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=4.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=3.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;
@@ -1861,7 +1863,7 @@ validation('verifies exact public assets when Cloudflare blocks Node HTML reques
   const pngHash = sha256(png);
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const redirectedUrl = `${canonicalUrl}/`;
-  const imageUrl = `${canonicalUrl}/opengraph-image.png?v=${pngHash.slice(0, 16)}`;
+  const imageUrl = `${canonicalUrl}/opengraph-image.png?v=2.${pngHash.slice(0, 16)}`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=4.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=3.${instagramSvgHash.slice(0, 16)}`;
   const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=3.${instagramSvgHash.slice(0, 16)}`;

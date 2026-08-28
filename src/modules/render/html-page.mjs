@@ -2,6 +2,7 @@ import {
   IMAGE_HEIGHT,
   IMAGE_WIDTH,
   INSTAGRAM_CARD_VERSION,
+  OPEN_GRAPH_IMAGE_VERSION,
   OPENINGS_ORIGIN,
   SOCIAL_VIDEO_VERSION,
 } from '../../config/constants.mjs';
@@ -41,7 +42,7 @@ function versionedOpenGraphImageUrl(canonicalUrl, imageHash) {
   if (typeof imageHash !== 'string' || !SHA256_PATTERN.test(imageHash)) {
     throw new Error('Open Graph image hash is invalid');
   }
-  return `${canonicalUrl}/opengraph-image.png?v=${imageHash.slice(0, 16)}`;
+  return `${canonicalUrl}/opengraph-image.png?v=${OPEN_GRAPH_IMAGE_VERSION}.${imageHash.slice(0, 16)}`;
 }
 
 export function createBridgeHtml(job, { origin = OPENINGS_ORIGIN, imageHash } = {}) {

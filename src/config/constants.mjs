@@ -15,6 +15,7 @@ export const MAX_CHANNEL_ATTEMPTS = 3;
 export const STARVATION_THRESHOLD_MS = 24 * 60 * 60 * 1000;
 export const IMAGE_WIDTH = 1200;
 export const IMAGE_HEIGHT = 630;
+export const OPEN_GRAPH_IMAGE_VERSION = '2';
 export const INSTAGRAM_IMAGE_WIDTH = 1080;
 export const INSTAGRAM_IMAGE_HEIGHT = 1350;
 export const INSTAGRAM_CARD_VERSION = '4';

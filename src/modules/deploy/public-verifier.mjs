@@ -6,6 +6,7 @@ import {
   INSTAGRAM_CARD_VERSION,
   INSTAGRAM_IMAGE_HEIGHT,
   INSTAGRAM_IMAGE_WIDTH,
+  OPEN_GRAPH_IMAGE_VERSION,
   OPENINGS_ORIGIN,
   REQUEST_TIMEOUT_MS,
   SOCIAL_VIDEO_HEIGHT,
@@ -72,6 +73,7 @@ export async function verifyPublicBridge({
   const imageUrl = versionAssetUrl(
     `${canonicalUrl}/opengraph-image.png`,
     expectedPngHash,
+    OPEN_GRAPH_IMAGE_VERSION,
   );
   const instagramImageUrl = versionAssetUrl(
     `${canonicalUrl}/instagram-image.jpg`,
