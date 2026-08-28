@@ -1108,7 +1108,7 @@ validation('renders a bounded 1080 by 1350 Instagram JPEG preview', async () => 
   assert.ok(jpeg.byteLength < 2 * 1024 * 1024);
 });
 
-validation('builds four layered 9:16 Reel stages from the canonical Instagram card', () => {
+validation('builds four native full-canvas 9:16 Reel stages from the canonical model', () => {
   const instagramSvg = socialCardModule.createInstagramCardSvg(makeJob({
     title: 'Senior ソフトウェア Engineer',
   }), {
@@ -1123,14 +1123,21 @@ validation('builds four layered 9:16 Reel stages from the canonical Instagram ca
   );
   for (const stage of stages) {
     assert.match(stage, /width="1080" height="1920" viewBox="0 0 1080 1920"/u);
+    assert.match(stage, /data-safe-area="true"[^>]*x="30"[^>]*y="60"[^>]*width="1020"[^>]*height="1800"/u);
     assert.match(stage, /data:image\/svg\+xml;base64,/u);
     assert.match(stage, /@openingshq/u);
-    assert.match(stage, /New opening/u);
+    assert.match(stage, /Senior/u);
+    assert.match(stage, /ソフトウェア/u);
+    assert.doesNotMatch(stage, /<image[^>]*x="60"[^>]*y="210"[^>]*width="960"[^>]*height="1200"/u);
+    assert.doesNotMatch(stage, /data-reel-reveal="true"/u);
   }
-  assert.match(stages[0], /height="158"[^>]*data-reel-reveal/u);
-  assert.match(stages[1], /height="729"[^>]*data-reel-reveal/u);
-  assert.match(stages[2], /height="969"[^>]*data-reel-reveal/u);
-  assert.match(stages[3], /height="1200"[^>]*data-reel-reveal/u);
+  assert.match(stages[0], /data-reel-brand="true"[^>]*opacity="1"/u);
+  assert.match(stages[0], /data-reel-title="true"[^>]*opacity="0"/u);
+  assert.match(stages[1], /data-reel-title="true"[^>]*opacity="1"/u);
+  assert.match(stages[1], /data-reel-facts="true"[^>]*opacity="0"/u);
+  assert.match(stages[2], /data-reel-facts="true"[^>]*opacity="1"/u);
+  assert.match(stages[2], /data-reel-attribution="true"[^>]*opacity="0"/u);
+  assert.match(stages[3], /data-reel-attribution="true"[^>]*opacity="1"/u);
 });
 
 validation('creates an original deterministic 48 kHz stereo soundtrack', () => {
@@ -1191,6 +1198,10 @@ validation('renders the public Reel video and final-frame cover into one job dir
     assert.equal(calls[0].command, 'ffmpeg');
     assert.equal(result.videoPath, join(directory, 'social-video.mp4'));
     assert.equal(result.coverPath, join(directory, 'social-video-cover.jpg'));
+    assert.equal(
+      result.coverSourceHash,
+      sha256(Buffer.from(createReelStageSvgs(instagramSvg).at(-1), 'utf8')),
+    );
     assert.equal((await readFile(result.videoPath)).subarray(4, 8).toString('ascii'), 'ftyp');
     const cover = await sharp(await readFile(result.coverPath)).metadata();
     assert.deepEqual([cover.format, cover.width, cover.height], ['jpeg', 1080, 1920]);

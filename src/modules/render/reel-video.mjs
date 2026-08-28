@@ -1,20 +1,30 @@
+import { execFile as execFileCallback } from 'node:child_process';
+import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
+import { tmpdir } from 'node:os';
+import { join, resolve } from 'node:path';
+import { promisify } from 'node:util';
+
+import sharp from 'sharp';
+
 import {
   SOCIAL_VIDEO_DURATION_SECONDS,
   SOCIAL_VIDEO_FPS,
   SOCIAL_VIDEO_HEIGHT,
   SOCIAL_VIDEO_WIDTH,
 } from '../../config/constants.mjs';
+import { escapeHtml } from '../../shared/escape.mjs';
+import { sha256 } from '../../shared/hash.mjs';
 import { SOCIAL_CARD_COLORS } from './social-card.mjs';
 import { SOCIAL_CARD_FONT_STACK } from './cjk-fonts.mjs';
+import {
+  decodeSocialPosterModel,
+  REEL_POSTER_GEOMETRY,
+  SOCIAL_POSTER_MODEL_VERSION,
+} from './social-poster-model.mjs';
 
 const SAMPLE_RATE = 48_000;
 const CHANNELS = 2;
 const BITS_PER_SAMPLE = 16;
-const CARD_X = 60;
-const CARD_Y = 210;
-const CARD_WIDTH = 960;
-const CARD_HEIGHT = 1200;
-const REVEAL_HEIGHTS = Object.freeze([158, 729, 969, 1200]);
 const STAGE_DURATIONS = Object.freeze(['1.65', '3.40', '2.55', '2.15']);
 const TRANSITION_DURATION = '0.25';
 const TRANSITION_OFFSETS = Object.freeze(['1.40', '4.55', '6.85']);
@@ -22,7 +32,7 @@ const execFile = promisify(execFileCallback);
 
 function assertInstagramSvg(value) {
   if (typeof value !== 'string'
-    || !/<svg\b[^>]*width="1080"[^>]*height="1350"[^>]*data-instagram-card="true"/iu.test(value)) {
+    || !/<svg\b[^>]*width="1080"[^>]*height="1350"[^>]*data-instagram-card="true"[^>]*data-social-poster-version="1"/iu.test(value)) {
     throw new Error('A canonical 1080×1350 Instagram SVG is required');
   }
   if (/<(?:script|foreignObject)\b|\bon[a-z]+\s*=|@import|url\(\s*["']?https?:/iu.test(value)) {
@@ -31,32 +41,117 @@ function assertInstagramSvg(value) {
   return value;
 }
 
-function stageSvg(cardData, stage, revealHeight) {
+function extractPosterInput(instagramSvg) {
+  const document = assertInstagramSvg(instagramSvg);
+  const modelValue = /<svg\b[^>]*\bdata-poster-model="(?<model>[A-Za-z0-9+/]+={0,2})"/iu
+    .exec(document)?.groups?.model;
+  const wordmark = /<image\b(?=[^>]*\bdata-instagram-wordmark="true")[^>]*\bhref="(?<href>data:image\/svg\+xml;base64,[A-Za-z0-9+/]+={0,2})"[^>]*>/iu
+    .exec(document)?.groups?.href;
+  if (!modelValue || !wordmark) {
+    throw new Error('Instagram SVG is missing its canonical poster payload');
+  }
+  return Object.freeze({ model: decodeSocialPosterModel(modelValue), wordmark });
+}
+
+const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
+
+function glyphWidth(character, fontSize) {
+  if (/\s/u.test(character)) return fontSize * 0.31;
+  if (/[A-Z0-9]/u.test(character)) return fontSize * 0.62;
+  if (/[a-z]/u.test(character)) return fontSize * 0.53;
+  if (/[,.;:!?\u2013\u2014'"()[\]{}\-/]/u.test(character)) return fontSize * 0.35;
+  return fontSize * 0.93;
+}
+
+function wrapFact(value, { fontSize, maxWidth, maxLines }) {
+  const input = [...segmenter.segment(String(value))].map(({ segment }) => segment);
+  const lines = [];
+  let line = '';
+  let width = 0;
+  let index = 0;
+  while (index < input.length && lines.length < maxLines) {
+    const character = input[index];
+    const characterWidth = glyphWidth(character, fontSize);
+    if (line && width + characterWidth > maxWidth) {
+      lines.push(line.trimEnd());
+      line = '';
+      width = 0;
+      continue;
+    }
+    line += character;
+    width += characterWidth;
+    index += 1;
+  }
+  if (line && lines.length < maxLines) lines.push(line.trimEnd());
+  if (index < input.length && lines.length > 0) {
+    lines[lines.length - 1] = `${lines.at(-1).replace(/[\s,.;:!?-]+$/u, '')}…`;
+  }
+  return lines;
+}
+
+function textLines(lines, { x, y, fontSize, lineHeight, fill, weight, attribute = '' }) {
+  return lines.map((line, index) => `<text x="${x}" y="${y + index * lineHeight}" fill="${fill}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="${fontSize}" font-weight="${weight}" ${attribute}>${escapeHtml(line)}</text>`).join('');
+}
+
+function stageSvg({ model, wordmark }, stage) {
   const colors = SOCIAL_CARD_COLORS;
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${SOCIAL_VIDEO_WIDTH}" height="${SOCIAL_VIDEO_HEIGHT}" viewBox="0 0 ${SOCIAL_VIDEO_WIDTH} ${SOCIAL_VIDEO_HEIGHT}" data-reel-stage="${stage}">
-  <defs>
-    <filter id="reel-shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="30" stdDeviation="34" flood-color="${colors.ink}" flood-opacity="0.14"/></filter>
-    <clipPath id="reveal-${stage}"><rect x="${CARD_X}" y="${CARD_Y}" width="${CARD_WIDTH}" height="${revealHeight}" rx="28" data-reel-reveal="true"/></clipPath>
-  </defs>
-  <rect width="1080" height="1920" fill="${colors.canvas}"/>
-  <circle cx="1018" cy="180" r="230" fill="${colors.mint}"/>
-  <circle cx="70" cy="1740" r="210" fill="${colors.surfaceMuted}"/>
-  <text x="60" y="148" fill="${colors.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="23" font-weight="800" letter-spacing="2.4">New opening</text>
-  <text x="1020" y="148" text-anchor="end" fill="${colors.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="24" font-weight="800">@openingshq</text>
-  <rect x="${CARD_X}" y="${CARD_Y}" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" rx="28" fill="${colors.paper}" stroke="${colors.line}" filter="url(#reel-shadow)"/>
-  <image x="${CARD_X}" y="${CARD_Y}" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" opacity="0.075" preserveAspectRatio="none" href="data:image/svg+xml;base64,${cardData}"/>
-  <g clip-path="url(#reveal-${stage})">
-    <image x="${CARD_X}" y="${CARD_Y}" width="${CARD_WIDTH}" height="${CARD_HEIGHT}" preserveAspectRatio="none" href="data:image/svg+xml;base64,${cardData}"/>
+  const geometry = REEL_POSTER_GEOMETRY;
+  const layout = model.layouts.reel;
+  const titleBlockHeight = layout.titleLines.length * layout.titleLineHeight;
+  const titleY = 350 + Math.max(0, (620 - titleBlockHeight) / 2)
+    + Math.round(layout.titleFontSize * 0.78);
+  const dominantLength = [...segmenter.segment(model.dominantFact.value)].length;
+  const dominantFontSize = dominantLength > 22 ? 50 : dominantLength > 16 ? 70 : dominantLength > 11 ? 94 : 152;
+  const dominantLines = wrapFact(model.dominantFact.value, {
+    fontSize: dominantFontSize,
+    maxWidth: 650,
+    maxLines: 3,
+  });
+  const supporting = model.supportingFacts.map((fact, index) => {
+    const y = 1150 + index * 230;
+    const lines = wrapFact(fact.value, { fontSize: 38, maxWidth: 290, maxLines: 2 });
+    return `<text x="730" y="${y}" fill="#a9b7b4" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="17" font-weight="850" letter-spacing="1.6">${escapeHtml(fact.label)}</text>
+    ${textLines(lines, { x: 730, y: y + 60, fontSize: 38, lineHeight: 46, fill: colors.paper, weight: 780 })}`;
+  }).join('');
+  const titleOpacity = stage >= 2 ? 1 : 0;
+  const factsOpacity = stage >= 3 ? 1 : 0;
+  const attributionOpacity = stage >= 4 ? 1 : 0;
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${SOCIAL_VIDEO_WIDTH}" height="${SOCIAL_VIDEO_HEIGHT}" viewBox="0 0 ${SOCIAL_VIDEO_WIDTH} ${SOCIAL_VIDEO_HEIGHT}" data-reel-stage="${stage}" data-social-poster-version="${SOCIAL_POSTER_MODEL_VERSION}">
+  <rect width="1080" height="1920" fill="${colors.mint}"/>
+  <circle cx="1022" cy="306" r="254" fill="#c6f4b7"/>
+  <circle cx="54" cy="1550" r="238" fill="#9fdf8b" opacity="0.70"/>
+  <rect data-safe-area="true" x="${geometry.safeArea.x}" y="${geometry.safeArea.y}" width="${geometry.safeArea.width}" height="${geometry.safeArea.height}" fill="none"/>
+  <rect data-poster-role-region="true" x="${geometry.role.x}" y="${geometry.role.y}" width="${geometry.role.width}" height="${geometry.role.height}" fill="none"/>
+  <rect data-poster-facts-region="true" x="${geometry.facts.x}" y="${geometry.facts.y}" width="${geometry.facts.width}" height="${geometry.facts.height}" fill="${colors.ink}" opacity="${factsOpacity}"/>
+  <rect data-poster-attribution-region="true" x="${geometry.attribution.x}" y="${geometry.attribution.y}" width="${geometry.attribution.width}" height="${geometry.attribution.height}" fill="none"/>
+  <g data-reel-brand="true" opacity="1" data-important-content="true" data-x="30" data-y="60" data-width="1020" data-height="130">
+    <image x="30" y="72" width="285" height="52" preserveAspectRatio="xMinYMid meet" href="${wordmark}"/>
+    <text x="1050" y="103" text-anchor="end" fill="${colors.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="24" font-weight="850">${escapeHtml(model.handle)}</text>
+    <text x="1050" y="143" text-anchor="end" fill="${colors.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="750">Tech jobs from public communities</text>
   </g>
-  <text x="60" y="1512" fill="${colors.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="42" font-weight="800" letter-spacing="-1.1">Your next role might be here.</text>
-  <rect x="60" y="1560" width="182" height="7" rx="3.5" fill="${colors.mint}"/>
-  <text x="60" y="1616" fill="${colors.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="25" font-weight="600">Jobs shared by public tech communities.</text>
+  <g data-reel-title="true" opacity="${titleOpacity}" data-important-content="true" data-x="30" data-y="190" data-width="1020" data-height="866">
+    <text x="30" y="264" fill="${colors.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="20" font-weight="850" letter-spacing="1.9">${escapeHtml(model.eyebrow.toUpperCase())}</text>
+    ${textLines(layout.titleLines, { x: 30, y: Math.round(titleY), fontSize: layout.titleFontSize, lineHeight: layout.titleLineHeight, fill: colors.ink, weight: 900, attribute: 'letter-spacing="-2.8" data-reel-title-line="true"' })}
+  </g>
+  <g data-reel-facts="true" opacity="${factsOpacity}" data-important-content="true" data-x="30" data-y="1056" data-width="1020" data-height="614">
+    <text x="30" y="1150" fill="#a9b7b4" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="850" letter-spacing="1.7">${escapeHtml(model.dominantFact.label)}</text>
+    ${textLines(dominantLines, { x: 30, y: 1280, fontSize: dominantFontSize, lineHeight: Math.round(dominantFontSize * 1.02), fill: colors.paper, weight: 900, attribute: 'letter-spacing="-2.2" data-reel-dominant-fact="true"' })}
+    <line x1="692" y1="1120" x2="692" y2="1600" stroke="#53615e"/>
+    ${supporting}
+  </g>
+  <g data-reel-attribution="true" opacity="${attributionOpacity}" data-important-content="true" data-x="30" data-y="1670" data-width="1020" data-height="190">
+    <text x="30" y="1735" fill="${colors.mintDeep}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="850" letter-spacing="1.7">${escapeHtml(model.attribution.label)}</text>
+    <text x="30" y="1790" fill="${colors.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="31" font-weight="850">${escapeHtml(model.attribution.value)}</text>
+    <rect x="600" y="1728" width="450" height="102" rx="51" fill="${colors.ink}"/>
+    <text x="630" y="1790" fill="${colors.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="21" font-weight="800">${escapeHtml(model.attribution.action)}</text>
+    <text x="1018" y="1795" text-anchor="end" fill="${colors.mint}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="34" font-weight="850">→</text>
+  </g>
 </svg>`;
 }
 
 export function createReelStageSvgs(instagramSvg) {
-  const cardData = Buffer.from(assertInstagramSvg(instagramSvg), 'utf8').toString('base64');
-  return Object.freeze(REVEAL_HEIGHTS.map((height, index) => stageSvg(cardData, index + 1, height)));
+  const poster = extractPosterInput(instagramSvg);
+  return Object.freeze([1, 2, 3, 4].map((stage) => stageSvg(poster, stage)));
 }
 
 function writeAscii(buffer, value, offset) {
@@ -203,8 +298,9 @@ export async function renderReelVideo({
         .toFile(stagePath);
       return stagePath;
     }));
-    await sharp(Buffer.from(stages.at(-1), 'utf8'))
-      .flatten({ background: SOCIAL_CARD_COLORS.canvas })
+    const coverSource = stages.at(-1);
+    await sharp(Buffer.from(coverSource, 'utf8'))
+      .flatten({ background: SOCIAL_CARD_COLORS.mint })
       .jpeg({ quality: 88, chromaSubsampling: '4:4:4' })
       .toFile(coverPath);
     const coverMetadata = await sharp(coverPath).metadata();
@@ -222,15 +318,8 @@ export async function renderReelVideo({
       outputPath: videoPath,
     }), { maxBuffer: 4 * 1024 * 1024 });
     assertMp4Header(await readFile(videoPath));
-    return Object.freeze({ videoPath, coverPath });
+    return Object.freeze({ videoPath, coverPath, coverSourceHash: sha256(Buffer.from(coverSource, 'utf8')) });
   } finally {
     await rm(temporaryDirectory, { recursive: true, force: true });
   }
 }
-import { execFile as execFileCallback } from 'node:child_process';
-import { mkdtemp, mkdir, readFile, rm, writeFile } from 'node:fs/promises';
-import { tmpdir } from 'node:os';
-import { join, resolve } from 'node:path';
-import { promisify } from 'node:util';
-
-import sharp from 'sharp';
