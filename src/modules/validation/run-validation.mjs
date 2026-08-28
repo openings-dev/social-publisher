@@ -107,7 +107,8 @@ validation('exports the approved immutable constants', () => {
   assert.deepEqual([SOCIAL_VIDEO_WIDTH, SOCIAL_VIDEO_HEIGHT], [1080, 1920]);
   assert.equal(SOCIAL_VIDEO_FPS, 30);
   assert.equal(SOCIAL_VIDEO_DURATION_SECONDS, 9);
-  assert.equal(SOCIAL_VIDEO_VERSION, '1');
+  assert.equal(INSTAGRAM_CARD_VERSION, '3');
+  assert.equal(SOCIAL_VIDEO_VERSION, '2');
 });
 
 validation('installs Noto CJK before every Ubuntu social-card render', async () => {
@@ -853,8 +854,8 @@ validation('renders a complete escaped canonical job bridge', () => {
   assert.match(html, /<meta property="og:image:width" content="1200">/);
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
   assert.match(html, new RegExp(`<meta name="openings:data-hash" content="${job.contentHash}"`));
-  assert.match(html, /<meta name="openings:instagram-card-version" content="2">/u);
-  assert.match(html, /<meta name="openings:social-video-version" content="1">/u);
+  assert.match(html, /<meta name="openings:instagram-card-version" content="3">/u);
+  assert.match(html, /<meta name="openings:social-video-version" content="2">/u);
   assert.match(html, /&lt;script&gt;publish\(\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<img src=x|onerror=/);
   assert.match(html, new RegExp(`location\\.replace\\("https://openings\\.dev/\\?job=${job.id}"\\)`));
@@ -943,6 +944,96 @@ validation('uses installed Noto CJK fonts instead of ignored embedded web fonts'
     SOCIAL_CARD_FONT_STACK,
     'Noto Sans CJK SC, Noto Sans CJK JP, Noto Sans CJK KR, Arial, sans-serif',
   );
+});
+
+validation('builds a compact immutable full-canvas poster model', async () => {
+  const posterModule = await import('../render/social-poster-model.mjs');
+  assert.equal(posterModule.SOCIAL_SAFE_INSET_X, 30);
+  assert.equal(posterModule.SOCIAL_SAFE_INSET_Y, 60);
+  assert.deepEqual(posterModule.INSTAGRAM_POSTER_GEOMETRY.safeArea, {
+    x: 30,
+    y: 60,
+    width: 1020,
+    height: 1230,
+  });
+  assert.deepEqual(posterModule.REEL_POSTER_GEOMETRY.safeArea, {
+    x: 30,
+    y: 60,
+    width: 1020,
+    height: 1800,
+  });
+
+  const salary = posterModule.createSocialPosterModel(makeJob({
+    salary: { currency: 'USD', min: 9000, max: 12000, period: 'month' },
+    tags: ['remote', 'typescript'],
+    country: 'Brazil',
+    region: 'Latin America',
+    community: { name: 'Awesome Jobs' },
+  }));
+  assert.equal(salary.dominantFact.label, 'SALARY');
+  assert.equal(salary.dominantFact.value, '$9,000–$12,000/month');
+  assert.deepEqual(salary.supportingFacts.map(({ label }) => label), ['WORK MODE', 'LOCATION']);
+  assert.equal(Object.isFrozen(salary), true);
+  assert.equal(Object.isFrozen(salary.layouts.instagram), true);
+
+  const remote = posterModule.createSocialPosterModel(makeJob({
+    tags: ['typescript', 'remote'],
+    country: 'Worldwide',
+    community: { name: 'Remote Makers' },
+  }));
+  assert.deepEqual(remote.dominantFact, { label: 'WORK MODE', value: 'REMOTE' });
+
+  const hybrid = posterModule.createSocialPosterModel(makeJob({ tags: ['hybrid'] }));
+  assert.deepEqual(hybrid.dominantFact, { label: 'WORK MODE', value: 'HYBRID' });
+
+  const onsite = posterModule.createSocialPosterModel(makeJob({ tags: ['on-site'] }));
+  assert.deepEqual(onsite.dominantFact, { label: 'WORK MODE', value: 'ON-SITE' });
+
+  const location = posterModule.createSocialPosterModel(makeJob({
+    country: 'Japan',
+    region: 'Asia',
+    tags: ['rust'],
+  }));
+  assert.deepEqual(location.dominantFact, { label: 'LOCATION', value: 'Japan · Asia' });
+
+  const fallback = posterModule.createSocialPosterModel(makeJob({
+    repository: 'fallback-owner/jobs',
+  }));
+  assert.deepEqual(fallback.dominantFact, { label: 'STATUS', value: 'OPEN ROLE' });
+  assert.equal(fallback.community, 'fallback-owner');
+  assert.equal(fallback.supportingFacts.some(({ value }) => value === 'Location not specified'), true);
+
+  const encoded = posterModule.encodeSocialPosterModel(salary);
+  assert.match(encoded, /^[A-Za-z0-9+/]+={0,2}$/u);
+  assert.ok(encoded.length < 8_192);
+  assert.deepEqual(posterModule.decodeSocialPosterModel(encoded), salary);
+});
+
+validation('fits Latin, CJK, and emoji-led poster titles deterministically', async () => {
+  const { createSocialPosterModel } = await import('../render/social-poster-model.mjs');
+  const fixtures = [
+    'Senior Product Engineer',
+    'Principal Platform Engineer building reliable distributed developer infrastructure across public communities',
+    '東京勤務 シニアソフトウェアエンジニア プラットフォーム信頼性と開発者体験',
+    '全球远程 高级软件工程师 开发者平台与基础设施',
+    '🚀 Senior TypeScript Engineer for community infrastructure',
+  ];
+  for (const title of fixtures) {
+    const first = createSocialPosterModel(makeJob({ title }));
+    const second = createSocialPosterModel(makeJob({ title }));
+    assert.deepEqual(first.layouts, second.layouts);
+    for (const layout of [first.layouts.instagram, first.layouts.reel]) {
+      assert.ok(layout.titleLines.length >= 1 && layout.titleLines.length <= 5);
+      assert.ok(layout.titleLines.every((line) => !line.includes('\uFFFD')));
+      assert.ok(layout.titleFontSize >= 68);
+    }
+  }
+
+  const overflowing = createSocialPosterModel(makeJob({
+    title: '超高性能分散システムソフトウェアエンジニア'.repeat(18),
+  }));
+  assert.equal(overflowing.layouts.instagram.titleLines.at(-1).endsWith('…'), true);
+  assert.equal(overflowing.layouts.reel.titleLines.at(-1).endsWith('…'), true);
 });
 
 validation('defines a dedicated portrait-safe Instagram card', () => {
