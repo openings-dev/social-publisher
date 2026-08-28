@@ -160,7 +160,7 @@ jobs:
           retention-days: 3
 
       - name: Process snapshot intake and verified bridges
-        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled')
+        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled'
         env:
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
         run: |
@@ -178,7 +178,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit and push intake state before provider calls
-        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled')
+        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

@@ -2603,6 +2603,16 @@ validation('keeps validation read-only and production publishing explicitly gate
     /- name: Check out social-publisher state and source(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
   )?.groups?.block ?? '';
   assert.match(stateCheckout, /ref:\s*\$\{\{ github\.ref_name \}\}/u);
+  for (const stepName of [
+    'Process snapshot intake and verified bridges',
+    'Commit and push intake state before provider calls',
+  ]) {
+    const step = productionWorkflow.match(
+      new RegExp(`- name: ${stepName}(?<block>[\\s\\S]*?)(?=\\n\\s+- name:)`, 'u'),
+    )?.groups?.block ?? '';
+    assert.match(step, /env\.RUN_MODE == 'scheduled'/u);
+    assert.doesNotMatch(step, /env\.RUN_MODE == 'controlled'/u);
+  }
   assert.doesNotMatch(productionWorkflow, /FTP_(?:SERVER|USERNAME|PASSWORD|JOB_ROOT)|Install LFTP/u);
   const actionUses = [...`${validationWorkflow}\n${productionWorkflow}`.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/gu)];
   assert.ok(actionUses.length >= 5);
