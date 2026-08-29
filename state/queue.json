@@ -4406,18 +4406,18 @@
       "createdAt": "2026-08-25T20:46:46Z",
       "publicationCreatedAt": "2026-08-26T03:17:49.391Z",
       "bridge": {
-        "status": "published",
+        "status": "retryable",
         "attempts": 1,
-        "updatedAt": "2026-08-26T03:17:49.391Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "already_current",
-          "canonicalUrl": "https://openings.dev/jobs/gh_9f91cca173864103e1a5724f",
-          "imageUrl": "https://openings.dev/jobs/gh_9f91cca173864103e1a5724f/opengraph-image.png",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_9f91cca173864103e1a5724f/instagram-image.jpg",
-          "pngHash": "5bf2830e2b00c8ae457847042c6b6e056f0b94eb3c3b5e1cb28bdc62da372582"
-        }
+        "updatedAt": "2026-08-29T21:08:41.837Z",
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-08-29T21:08:41.837Z"
+        },
+        "lastReset": {
+          "at": "2026-08-29T21:08:41.837Z",
+          "reason": "instagram_card_upgrade"
+        },
+        "result": null
       },
       "bluesky": {
         "status": "pending",
