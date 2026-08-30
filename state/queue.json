@@ -4406,12 +4406,12 @@
       "createdAt": "2026-08-25T20:46:46Z",
       "publicationCreatedAt": "2026-08-26T03:17:49.391Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-08-30T00:33:26.587Z",
+        "status": "failed",
+        "attempts": 3,
+        "updatedAt": "2026-08-30T08:24:06.093Z",
         "lastError": {
           "code": "deployment",
-          "at": "2026-08-30T00:33:26.587Z"
+          "at": "2026-08-30T08:24:06.093Z"
         },
         "lastReset": {
           "at": "2026-08-29T21:08:41.837Z",
