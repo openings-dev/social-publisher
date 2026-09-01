@@ -63,7 +63,10 @@ import {
   publishStoryToInstagram,
   publishToInstagram,
 } from '../networks/instagram-client.mjs';
-import { verifyBufferLinkedInChannel } from '../networks/buffer-linkedin-client.mjs';
+import {
+  publishToLinkedInViaBuffer,
+  verifyBufferLinkedInChannel,
+} from '../networks/buffer-linkedin-client.mjs';
 import { publishToLinkedIn } from '../networks/linkedin-client.mjs';
 import { deleteThreadsPost, publishToThreads } from '../networks/threads-client.mjs';
 import {
@@ -942,6 +945,155 @@ validation('fails closed for unsafe Buffer responses and unusable LinkedIn chann
       && !`${error.message}${JSON.stringify(error.diagnostic ?? null)}`.includes('buffer-secret')
       && !`${error.message}${JSON.stringify(error.diagnostic ?? null)}`.includes('secret provider detail')
     ));
+  }
+});
+
+function bufferChannelPayload() {
+  return {
+    data: {
+      channels: [{
+        id: '68b68e0fc159685850cf2c11',
+        service: 'linkedin',
+        isDisconnected: false,
+        isLocked: false,
+      }],
+    },
+  };
+}
+
+function bufferPublicationOptions(overrides = {}) {
+  const job = makeJob();
+  return {
+    job,
+    post: formatSocialPost(job),
+    imageUrl: `https://openings.dev/jobs/${job.id}/opengraph-image.png`,
+    publicSiteOrigin: 'https://openings.dev',
+    apiKey: 'buffer-secret',
+    organizationId: '68b68d3ac159685850cf2b8d',
+    channelId: '68b68e0fc159685850cf2c11',
+    apiOrigin: 'https://api.buffer.com',
+    pollAttempts: 3,
+    pollDelayMs: 25,
+    sleep: async () => {},
+    ...overrides,
+  };
+}
+
+validation('publishes a LinkedIn image immediately through Buffer and waits for its public URL', async () => {
+  const requests = [];
+  const delays = [];
+  const responses = [
+    bufferChannelPayload(),
+    { data: { posts: { edges: [], pageInfo: { hasNextPage: false, endCursor: null } } } },
+    { data: { createPost: {
+      __typename: 'PostActionSuccess',
+      post: { id: 'buffer-post-1', status: 'sending', externalLink: null },
+    } } },
+    { data: { post: { id: 'buffer-post-1', status: 'sending', externalLink: null } } },
+    { data: { post: {
+      id: 'buffer-post-1',
+      status: 'sent',
+      externalLink: 'https://www.linkedin.com/feed/update/urn:li:share:123456789/',
+    } } },
+  ];
+  const options = bufferPublicationOptions({
+    fetchImpl: async (url, requestOptions) => {
+      requests.push({ url, options: requestOptions });
+      const response = responses.shift();
+      if (!response) throw new Error('Unexpected Buffer request');
+      return jsonResponse(response);
+    },
+    sleep: async (delay) => delays.push(delay),
+  });
+  const result = await publishToLinkedInViaBuffer(options);
+  assert.deepEqual(result, {
+    status: 'published',
+    id: 'buffer-post-1',
+    url: 'https://www.linkedin.com/feed/update/urn:li:share:123456789/',
+    provider: 'buffer',
+  });
+  assert.deepEqual(requests.map(({ options: request }) => JSON.parse(request.body).operationName), [
+    'GetChannels',
+    'GetRecentPosts',
+    'CreateLinkedInPost',
+    'GetPost',
+    'GetPost',
+  ]);
+  const creation = JSON.parse(requests[2].options.body);
+  assert.match(creation.query, /schedulingType:\s*automatic/u);
+  assert.match(creation.query, /mode:\s*shareNow/u);
+  assert.match(creation.query, /image:\s*\{\s*url:\s*\$imageUrl/u);
+  assert.match(creation.query, /altText:\s*\$altText/u);
+  assert.doesNotMatch(creation.query, /addToQueue|customScheduled|dueAt|needsApproval|saveToDraft/u);
+  assert.equal(creation.query.includes(options.post.text), false);
+  assert.deepEqual(creation.variables, {
+    text: options.post.text,
+    channelId: options.channelId,
+    imageUrl: options.imageUrl,
+    altText: 'Senior TypeScript Engineer job opening on openings.dev',
+  });
+  assert.deepEqual(delays, [25]);
+});
+
+validation('rejects unsafe Buffer media before making a provider request', async () => {
+  const values = [
+    'http://openings.dev/jobs/example/opengraph-image.png',
+    'https://user:secret@openings.dev/jobs/example/opengraph-image.png',
+    'https://cdn.example.test/jobs/example/opengraph-image.png',
+  ];
+  for (const imageUrl of values) {
+    let calls = 0;
+    await assert.rejects(publishToLinkedInViaBuffer(bufferPublicationOptions({
+      imageUrl,
+      fetchImpl: async () => { calls += 1; return jsonResponse(bufferChannelPayload()); },
+    })), (error) => error.code === 'buffer_media');
+    assert.equal(calls, 0);
+  }
+});
+
+validation('categorizes Buffer mutation errors without leaking provider details', async () => {
+  for (const [typename, message, code] of [
+    ['UnauthorizedError', 'private provider authorization detail', 'buffer_authentication'],
+    ['LimitReachedError', 'private provider limit detail', 'buffer_rate_limit'],
+    ['InvalidInputError', 'Failed to fetch image dimensions from private URL', 'buffer_media'],
+    ['UnexpectedError', 'private provider publication detail', 'buffer_publication'],
+  ]) {
+    const responses = [
+      bufferChannelPayload(),
+      { data: { posts: { edges: [], pageInfo: { hasNextPage: false, endCursor: null } } } },
+      { data: { createPost: { __typename: typename, message } } },
+    ];
+    await assert.rejects(publishToLinkedInViaBuffer(bufferPublicationOptions({
+      fetchImpl: async () => jsonResponse(responses.shift()),
+    })), (error) => (
+      error.code === code
+      && !`${error.message}${JSON.stringify(error.diagnostic ?? null)}`.includes('private provider')
+      && !`${error.message}${JSON.stringify(error.diagnostic ?? null)}`.includes('buffer-secret')
+    ));
+  }
+});
+
+validation('fails closed for terminal and timed-out Buffer post processing', async () => {
+  for (const [post, attempts, code] of [
+    [{ id: 'buffer-post-2', status: 'error', externalLink: null }, 2, 'buffer_publication'],
+    [{ id: 'buffer-post-2', status: 'needs_approval', externalLink: null }, 2, 'buffer_processing'],
+    [{ id: 'buffer-post-2', status: 'draft', externalLink: null }, 2, 'buffer_processing'],
+    [{ id: 'buffer-post-2', status: 'sent', externalLink: 'https://example.test/not-linkedin' }, 2, 'buffer_response'],
+    [{ id: 'buffer-post-2', status: 'sending', externalLink: null }, 1, 'buffer_processing'],
+  ]) {
+    const responses = [
+      bufferChannelPayload(),
+      { data: { posts: { edges: [], pageInfo: { hasNextPage: false, endCursor: null } } } },
+      { data: { createPost: {
+        __typename: 'PostActionSuccess',
+        post: { id: 'buffer-post-2', status: 'sending', externalLink: null },
+      } } },
+      { data: { post } },
+    ];
+    await assert.rejects(publishToLinkedInViaBuffer(bufferPublicationOptions({
+      pollAttempts: attempts,
+      fetchImpl: async () => jsonResponse(responses.shift()),
+    })), (error) => error.code === code);
   }
 });
 
