@@ -313,6 +313,56 @@ validation('enables Meta channels independently and requires only their own cred
   assert.equal(instagram.instagram.apiVersion, 'v23.0');
 });
 
+validation('enables LinkedIn independently with bounded organization configuration', () => {
+  const base = {
+    SOCIAL_AUTO_PUBLISH: 'true',
+    WEB_DEPLOY_TOKEN: 'github-fine-grained-token',
+    BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+    BLUESKY_APP_PASSWORD: 'app-secret',
+    MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+  };
+  const disabled = readEnvironment({ env: base, mode: 'scheduled' });
+  assert.equal(disabled.linkedin, null);
+  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'mastodon']);
+
+  const enabled = readEnvironment({
+    env: {
+      ...base,
+      LINKEDIN_AUTO_PUBLISH: 'true',
+      LINKEDIN_ACCESS_TOKEN: 'linkedin-secret',
+      LINKEDIN_ORGANIZATION_ID: '108765432',
+      LINKEDIN_API_VERSION: '202608',
+    },
+    mode: 'scheduled',
+  });
+  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'mastodon', 'linkedin']);
+  assert.deepEqual(enabled.linkedin, {
+    accessToken: 'linkedin-secret',
+    organizationId: '108765432',
+    organizationUrn: 'urn:li:organization:108765432',
+    apiVersion: '202608',
+    apiOrigin: 'https://api.linkedin.com',
+  });
+
+  for (const [key, value] of [
+    ['LINKEDIN_ACCESS_TOKEN', ''],
+    ['LINKEDIN_ORGANIZATION_ID', 'opening-dev'],
+    ['LINKEDIN_API_VERSION', 'v202608'],
+  ]) {
+    assert.throws(() => readEnvironment({
+      env: {
+        ...base,
+        LINKEDIN_AUTO_PUBLISH: 'true',
+        LINKEDIN_ACCESS_TOKEN: 'linkedin-secret',
+        LINKEDIN_ORGANIZATION_ID: '108765432',
+        LINKEDIN_API_VERSION: '202608',
+        [key]: value,
+      },
+      mode: 'scheduled',
+    }), /LINKEDIN_/u);
+  }
+});
+
 validation('loads only deploy and Meta credentials for a controlled migration', () => {
   const config = readEnvironment({
     env: {

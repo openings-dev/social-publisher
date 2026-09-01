@@ -2,6 +2,7 @@ import {
   BLUESKY_SERVICE_URL,
   DEFAULT_SOCIAL_CHANNELS,
   INSTAGRAM_API_ORIGIN,
+  LINKEDIN_API_ORIGIN,
   MASTODON_BASE_URL,
   OPENINGS_ORIGIN,
   THREADS_API_URL,
@@ -53,10 +54,12 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
   const threadsEnabled = env.THREADS_AUTO_PUBLISH === 'true';
   const instagramEnabled = env.INSTAGRAM_AUTO_PUBLISH === 'true';
+  const linkedinEnabled = env.LINKEDIN_AUTO_PUBLISH === 'true';
   const enabledChannels = [
     ...DEFAULT_SOCIAL_CHANNELS,
     ...(threadsEnabled ? ['threads'] : []),
     ...(instagramEnabled ? ['instagram'] : []),
+    ...(linkedinEnabled ? ['linkedin'] : []),
   ];
 
   if (requiresDeploy) {
@@ -69,6 +72,19 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       requireKeys(env, ['INSTAGRAM_ACCESS_TOKEN', 'INSTAGRAM_USER_ID', 'META_GRAPH_VERSION']);
       if (!/^v\d+\.\d+$/u.test(env.META_GRAPH_VERSION)) {
         throw new Error('Invalid configuration: META_GRAPH_VERSION');
+      }
+    }
+    if (linkedinEnabled) {
+      requireKeys(env, [
+        'LINKEDIN_ACCESS_TOKEN',
+        'LINKEDIN_ORGANIZATION_ID',
+        'LINKEDIN_API_VERSION',
+      ]);
+      if (!/^[1-9][0-9]{0,19}$/u.test(env.LINKEDIN_ORGANIZATION_ID)) {
+        throw new Error('Invalid configuration: LINKEDIN_ORGANIZATION_ID');
+      }
+      if (!/^20[0-9]{4}$/u.test(env.LINKEDIN_API_VERSION)) {
+        throw new Error('Invalid configuration: LINKEDIN_API_VERSION');
       }
     }
   }
@@ -109,6 +125,17 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       userId: env.INSTAGRAM_USER_ID,
       apiVersion: env.META_GRAPH_VERSION,
       apiOrigin: normalizeOrigin(env.INSTAGRAM_API_ORIGIN, INSTAGRAM_API_ORIGIN, 'INSTAGRAM_API_ORIGIN'),
+    }) : null,
+    linkedin: requiresSocial && linkedinEnabled ? Object.freeze({
+      accessToken: env.LINKEDIN_ACCESS_TOKEN,
+      organizationId: env.LINKEDIN_ORGANIZATION_ID,
+      organizationUrn: `urn:li:organization:${env.LINKEDIN_ORGANIZATION_ID}`,
+      apiVersion: env.LINKEDIN_API_VERSION,
+      apiOrigin: normalizeOrigin(
+        env.LINKEDIN_API_ORIGIN,
+        LINKEDIN_API_ORIGIN,
+        'LINKEDIN_API_ORIGIN',
+      ),
     }) : null,
   });
 }
