@@ -14,6 +14,10 @@ import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest, runPublication } from '../../cli/publish.mjs';
 import { runJobStoryPublication } from '../../cli/publish-story.mjs';
 import { EDITORIAL_CATALOG } from '../../content/editorial-catalog.mjs';
+import {
+  assertEditorialCopyPolicy,
+  EDITORIAL_CONTENT_VERSION,
+} from '../../content/editorial-copy-policy.mjs';
 
 import {
   DEPLOY_POLL_ATTEMPTS,
@@ -4397,7 +4401,8 @@ validation('ships a complete, source-grounded 12-week Instagram editorial catalo
   );
   assert.equal(new Set(EDITORIAL_CATALOG.map(({ id }) => id)).size, 36);
   for (const item of EDITORIAL_CATALOG) {
-    assert.equal(item.version, '1');
+    assert.equal(item.version, EDITORIAL_CONTENT_VERSION);
+    assertEditorialCopyPolicy(item);
     assert.equal(item.slides.length, 7);
     assert.deepEqual(item.slides.map(({ kind }) => kind), [
       'cover', 'context', 'action', 'example', 'action', 'checklist', 'cta',
@@ -4408,10 +4413,41 @@ validation('ships a complete, source-grounded 12-week Instagram editorial catalo
     assert.ok(item.minRepeatDays >= 84);
     assert.equal(JSON.stringify(item).includes('<'), false);
   }
-  const nicoleSource = 'https://www.linkedin.com/pulse/optimizing-your-linkedin-profile-international-guide-nicole-barra--ujebf/';
-  assert.ok(EDITORIAL_CATALOG
-    .filter(({ pillar }) => pillar === 'linkedin')
-    .every(({ sources }) => sources.some(({ url }) => url === nicoleSource)));
+  for (const item of EDITORIAL_CATALOG.filter(({ pillar }) => pillar === 'linkedin')) {
+    assert.ok(item.sources.every(({ author, url }) => (
+      author === 'LinkedIn Help'
+        && new URL(url).hostname === 'www.linkedin.com'
+        && new URL(url).pathname.startsWith('/help/linkedin/')
+    )));
+  }
+});
+
+validation('rejects editorial copy that breaks the English publishing policy', () => {
+  const fixture = structuredClone(EDITORIAL_CATALOG[0]);
+  fixture.version = EDITORIAL_CONTENT_VERSION;
+  fixture.sources = [{
+    title: 'How do I create a good LinkedIn profile?',
+    author: 'LinkedIn Help',
+    url: 'https://www.linkedin.com/help/linkedin/answer/a554351/how-do-i-create-a-good-linkedin-profile-?lang=en',
+  }];
+
+  for (const [field, value, expected] of [
+    ['title', 'Clear profile — better search', /dash characters/u],
+    ['title', 'Why it matters: currículo', /Portuguese editorial copy/u],
+    ['promise', 'Leverage your profile for more views.', /banned editorial term/u],
+  ]) {
+    const candidate = structuredClone(fixture);
+    candidate[field] = value;
+    assert.throws(() => assertEditorialCopyPolicy(candidate), expected);
+  }
+
+  const personalSource = structuredClone(fixture);
+  personalSource.sources = [{
+    title: 'Profile advice',
+    author: 'Personal author',
+    url: 'https://www.linkedin.com/pulse/profile-advice',
+  }];
+  assert.throws(() => assertEditorialCopyPolicy(personalSource), /official LinkedIn Help sources/u);
 });
 
 validation('schedules the right editorial pillar and never duplicates a pending slot', () => {
@@ -4436,6 +4472,8 @@ validation('schedules the right editorial pillar and never duplicates a pending 
   assert.equal(selected.scheduledDate, '2026-09-07');
   const queued = enqueueEditorialItem(empty, selected, { at: now });
   validateEditorialState(queued, EDITORIAL_CATALOG);
+  assert.equal(queued.catalogVersion, '2');
+  assert.equal(queued.pending[0].contentVersion, EDITORIAL_CONTENT_VERSION);
   assert.equal(selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: queued, now }), null);
 
   const completed = validateEditorialState({
@@ -4526,7 +4564,8 @@ validation('formats and writes a complete editorial dry run', async () => {
   const content = EDITORIAL_CATALOG[0];
   const caption = formatEditorialCaption(content);
   assert.ok(caption.length < 2_200);
-  assert.match(caption, /Fonte:/u);
+  assert.match(caption, /Sources:/u);
+  assert.doesNotMatch(caption, /[\u2013\u2014]/u);
   assert.match(caption, /#OpeningsDev/u);
   const directory = await mkdtemp(join(tmpdir(), 'openings-editorial-'));
   const wordmarkPath = join(directory, 'wordmark.svg');
