@@ -30,12 +30,16 @@
         }
       },
       "feed": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-01T16:38:32.920Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18128197930682687",
+          "url": "https://www.instagram.com/p/DcwHIgKIDGw/"
+        }
       },
       "story": {
         "status": "pending",
