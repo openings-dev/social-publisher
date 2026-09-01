@@ -14,6 +14,9 @@
     "intake": "node src/cli/intake.mjs",
     "migrate:linkedin-state": "node src/cli/migrate-linkedin-state.mjs",
     "publish": "node src/cli/publish.mjs",
+    "publish:story": "node src/cli/publish-story.mjs",
+    "editorial": "node src/cli/editorial.mjs",
+    "editorial:dry-run": "node src/cli/editorial.mjs --mode dry-run",
     "migrate:meta": "node src/cli/migrate-meta.mjs"
   },
   "dependencies": {

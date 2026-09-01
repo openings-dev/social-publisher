@@ -39,6 +39,7 @@ export function migrateLinkedInState({ intakeState, queueState, publicationsStat
       items: queueState.items.map((item) => ({
         ...item,
         linkedin: historicalStage(at),
+        instagramStory: item.instagramStory ?? historicalStage(at),
       })),
     },
     publicationsState: {
@@ -46,7 +47,11 @@ export function migrateLinkedInState({ intakeState, queueState, publicationsStat
       schemaVersion: STATE_SCHEMA_VERSION,
       jobs: Object.fromEntries(Object.entries(publicationsState.jobs).map(([jobId, publication]) => [
         jobId,
-        { ...publication, linkedin: publication.linkedin ?? null },
+        {
+          ...publication,
+          linkedin: publication.linkedin ?? null,
+          instagramStory: publication.instagramStory ?? null,
+        },
       ])),
     },
   };

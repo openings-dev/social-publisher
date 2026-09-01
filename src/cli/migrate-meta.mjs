@@ -17,7 +17,12 @@ import {
 } from '../modules/publishing/meta-migration.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import { saveStateFile } from '../modules/state/save-state.mjs';
-import { validatePublicationsState, validateQueueState } from '../modules/state/state-model.mjs';
+import {
+  migratePublicationsState,
+  migrateQueueState,
+  validatePublicationsState,
+  validateQueueState,
+} from '../modules/state/state-model.mjs';
 
 function parseArguments(argumentsList) {
   const values = {};
@@ -53,8 +58,8 @@ export async function runMetaMigration({
   const queuePath = resolve(stateDirectory, 'queue.json');
   const publicationsPath = resolve(stateDirectory, 'publications.json');
   let [queueState, publicationsState] = await Promise.all([
-    loadStateFile(queuePath, validateQueueState),
-    loadStateFile(publicationsPath, validatePublicationsState),
+    loadStateFile(queuePath, validateQueueState, migrateQueueState),
+    loadStateFile(publicationsPath, validatePublicationsState, migratePublicationsState),
   ]);
   const [commit, wordmarkSvg] = await Promise.all([
     (dependencies.resolveGitCommit ?? resolveGitCommit)(dataRepositoryPath, dataReference),

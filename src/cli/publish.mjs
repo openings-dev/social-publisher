@@ -19,10 +19,15 @@ import { renderSocialCardPng } from '../modules/render/social-card.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import { resetFailedStage } from '../modules/state/queue-operations.mjs';
 import { saveStateFile } from '../modules/state/save-state.mjs';
-import { validatePublicationsState, validateQueueState } from '../modules/state/state-model.mjs';
+import {
+  migratePublicationsState,
+  migrateQueueState,
+  validatePublicationsState,
+  validateQueueState,
+} from '../modules/state/state-model.mjs';
 import { assertValidJobId } from '../shared/job-id.mjs';
 
-const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS]);
+const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS, 'instagramStory']);
 const MODES = new Set(['scheduled', 'controlled', 'retry-stage']);
 
 function parseArguments(argumentsList) {
@@ -74,8 +79,12 @@ export async function runPublication({
   const parsed = parsePublicationRequest(request);
   const queuePath = resolve(stateDirectory, 'queue.json');
   const publicationsPath = resolve(stateDirectory, 'publications.json');
-  let queueState = await loadStateFile(queuePath, validateQueueState);
-  const publicationsState = await loadStateFile(publicationsPath, validatePublicationsState);
+  let queueState = await loadStateFile(queuePath, validateQueueState, migrateQueueState);
+  const publicationsState = await loadStateFile(
+    publicationsPath,
+    validatePublicationsState,
+    migratePublicationsState,
+  );
 
   if (parsed.mode === 'retry-stage') {
     queueState = resetFailedStage(queueState, parsed.jobId, parsed.stage, {
@@ -180,6 +189,7 @@ export async function runPublication({
     publishInstagram,
     publishLinkedIn,
     enabledChannels: config.enabledChannels,
+    instagramStoryEnabled: config.instagramStoryEnabled,
     jobId: parsed.jobId ?? undefined,
   });
   await saveStateFile(queuePath, result.queueState, validateQueueState);

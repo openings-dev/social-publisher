@@ -4,7 +4,12 @@ import { pathToFileURL } from 'node:url';
 
 import { decideScheduledWork } from '../modules/publishing/scheduled-work.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
-import { validateIntakeState, validateQueueState } from '../modules/state/state-model.mjs';
+import {
+  migrateIntakeState,
+  migrateQueueState,
+  validateIntakeState,
+  validateQueueState,
+} from '../modules/state/state-model.mjs';
 
 const DEFAULT_MANIFEST_URL = 'https://raw.githubusercontent.com/openings-dev/data-pipeline/main/snapshots/opportunities/api/manifest.json';
 const MAX_MANIFEST_BYTES = 256 * 1024;
@@ -40,6 +45,7 @@ async function fetchManifestJson(url, { fetchImpl = fetch } = {}) {
 export async function runPreflight({
   eventName,
   publishEnabled,
+  storyPublishEnabled = false,
   stateDirectory,
   manifestUrl = DEFAULT_MANIFEST_URL,
   fetchManifest = fetchManifestJson,
@@ -52,12 +58,13 @@ export async function runPreflight({
   }
 
   const [intakeState, queueState] = await Promise.all([
-    loadStateFile(resolve(stateDirectory, 'intake.json'), validateIntakeState),
-    loadStateFile(resolve(stateDirectory, 'queue.json'), validateQueueState),
+    loadStateFile(resolve(stateDirectory, 'intake.json'), validateIntakeState, migrateIntakeState),
+    loadStateFile(resolve(stateDirectory, 'queue.json'), validateQueueState, migrateQueueState),
   ]);
   const knownDataHash = intakeState.processedSnapshot?.dataHash ?? '0'.repeat(64);
   const localDecision = decideScheduledWork({
     publishEnabled,
+    storyPublishEnabled,
     intakeState,
     queueState,
     currentDataHash: knownDataHash,
@@ -71,6 +78,7 @@ export async function runPreflight({
     const manifest = await fetchManifest(manifestUrl);
     const result = decideScheduledWork({
       publishEnabled,
+      storyPublishEnabled,
       intakeState,
       queueState,
       currentDataHash: manifest?.dataHash,
@@ -93,6 +101,7 @@ async function main() {
   const result = await runPreflight({
     eventName: process.env.GITHUB_EVENT_NAME ?? 'workflow_dispatch',
     publishEnabled: process.env.SOCIAL_AUTO_PUBLISH === 'true',
+    storyPublishEnabled: process.env.INSTAGRAM_STORY_AUTO_PUBLISH === 'true',
     stateDirectory: resolve(args.state ?? 'state'),
     manifestUrl: process.env.DATA_MANIFEST_URL ?? DEFAULT_MANIFEST_URL,
   });

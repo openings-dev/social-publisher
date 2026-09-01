@@ -12,21 +12,31 @@ function isReadyQueueItem(item) {
   return [item.bridge, ...SOCIAL_CHANNELS.map((channel) => item[channel])].some(isReadyStage);
 }
 
+function isReadyStory(item) {
+  return isReadyStage(item.instagramStory) || item.instagramStory.status === 'publishing';
+}
+
 export function decideScheduledWork({
   publishEnabled,
+  storyPublishEnabled = false,
   intakeState,
   queueState,
   currentDataHash,
 }) {
   validateIntakeState(intakeState);
   validateQueueState(queueState);
-  const queueDepth = queueState.items.filter(isReadyQueueItem).length;
+  const queueDepth = queueState.items.filter((item) => (
+    (publishEnabled && isReadyQueueItem(item)) || (storyPublishEnabled && isReadyStory(item))
+  )).length;
 
-  if (publishEnabled !== true) {
+  if (publishEnabled !== true && storyPublishEnabled !== true) {
     return { shouldRun: false, reason: 'disabled', queueDepth };
   }
   if (queueDepth > 0) {
     return { shouldRun: true, reason: 'queued', queueDepth };
+  }
+  if (publishEnabled !== true) {
+    return { shouldRun: false, reason: 'story_up_to_date', queueDepth };
   }
   if (intakeState.pendingBridges.some((bridge) => isReadyStage(bridge.stage))) {
     return { shouldRun: true, reason: 'bridge_queued', queueDepth };

@@ -5,8 +5,9 @@ import {
   STARVATION_THRESHOLD_MS,
 } from '../../config/constants.mjs';
 import { validateIntakeState, validateQueueState } from './state-model.mjs';
+import { assertValidJobId } from '../../shared/job-id.mjs';
 
-const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS]);
+const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS, 'instagramStory']);
 const READY_STATUSES = new Set(['pending', 'retryable']);
 const TERMINAL_STATUSES = new Set([
   'published',
@@ -63,6 +64,7 @@ export function enqueueJob(queueState, {
   snapshot,
   discoveredAt,
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
+  instagramStoryEnabled = false,
 }) {
   validateQueueState(queueState);
   if (queueState.items.some((item) => item.jobId === job.id)) {
@@ -85,6 +87,9 @@ export function enqueueJob(queueState, {
       channel,
       stageState(enabled.has(channel) ? 'pending' : 'skipped_disabled'),
     ])),
+    instagramStory: stageState(
+      instagramStoryEnabled && enabled.has('instagram') ? 'pending' : 'skipped_disabled',
+    ),
   };
   return validateQueueState({ ...queueState, items: [...queueState.items, item] });
 }
@@ -122,6 +127,7 @@ export function transitionQueueStage(queueState, jobId, stageName, nextStatus, {
   at = new Date().toISOString(),
   errorCode,
   result,
+  intent,
 } = {}) {
   if (!STAGES.has(stageName)) {
     throw new Error(`Unknown queue stage: ${stageName}`);
@@ -153,7 +159,11 @@ export function transitionQueueStage(queueState, jobId, stageName, nextStatus, {
       lastError: ['retryable', 'failed'].includes(effectiveStatus)
         ? { code: sanitizeCode(errorCode), at }
         : null,
-      result: effectiveStatus === 'published' ? { ...(result ?? {}) } : current.result,
+      result: effectiveStatus === 'published'
+        ? { ...(result ?? {}) }
+        : nextStatus === 'publishing' && intent
+          ? { operationKey: intent.operationKey }
+          : current.result,
     };
     return { ...item, [stageName]: next };
   });
@@ -217,6 +227,7 @@ export function markJobClosed(queueState, jobId, at) {
       ...item,
       bridge: closeStage(item.bridge),
       ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => [channel, closeStage(item[channel])])),
+      instagramStory: closeStage(item.instagramStory),
     };
   });
 }
@@ -251,4 +262,21 @@ export function selectNextQueueItem(queueState, now = new Date().toISOString()) 
   return highestCoverage.sort((left, right) => Date.parse(right.createdAt) - Date.parse(left.createdAt)
     || Date.parse(right.discoveredAt) - Date.parse(left.discoveredAt)
     || left.jobId.localeCompare(right.jobId))[0];
+}
+
+export function selectNextInstagramStory(queueState, jobId = null) {
+  validateQueueState(queueState);
+  if (jobId !== null) assertValidJobId(jobId);
+  return queueState.items
+    .filter((item) => (READY_STATUSES.has(item.instagramStory.status) || item.instagramStory.status === 'publishing')
+      && (jobId === null || item.jobId === jobId)
+      && item.instagram.status === 'published'
+      && typeof item.instagram.result?.id === 'string'
+      && item.instagram.result.id.length > 0
+      && item.bridge.status === 'published'
+      && typeof item.bridge.result?.socialVideoUrl === 'string'
+      && item.bridge.result.socialVideoUrl.length > 0)
+    .sort((left, right) => Date.parse(left.instagram.updatedAt) - Date.parse(right.instagram.updatedAt)
+      || Date.parse(left.discoveredAt) - Date.parse(right.discoveredAt)
+      || left.jobId.localeCompare(right.jobId))[0] ?? null;
 }

@@ -169,6 +169,7 @@ function completePublication(publicationsState, item, at) {
     threads: item.threads.result,
     instagram: item.instagram.result,
     linkedin: item.linkedin.result,
+    instagramStory: item.instagramStory.result,
   };
   return validatePublicationsState({
     ...publicationsState,
@@ -187,6 +188,7 @@ export async function processIntakeSnapshots({
   snapshots,
   publishBridge,
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
+  instagramStoryEnabled = false,
   now = new Date().toISOString(),
 }) {
   let nextIntake = validateIntakeState(intakeState);
@@ -242,6 +244,7 @@ export async function processIntakeSnapshots({
           snapshot: current,
           discoveredAt: now,
           enabledChannels,
+          instagramStoryEnabled,
         });
         if (nextQueue.items.length > beforeCount) {
           queuedCount += 1;
@@ -293,6 +296,7 @@ export async function processOnePublication({
   publishInstagram,
   publishLinkedIn,
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
+  instagramStoryEnabled = false,
   now = new Date().toISOString(),
   jobId,
 }) {
@@ -324,6 +328,7 @@ export async function processOnePublication({
       snapshot: currentSnapshot,
       discoveredAt: now,
       enabledChannels,
+      instagramStoryEnabled,
     });
   }
 

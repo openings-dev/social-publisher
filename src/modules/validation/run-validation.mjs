@@ -3,13 +3,17 @@ import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { gunzipSync } from 'node:zlib';
 import { TID } from '@atproto/common-web';
 import sharp from 'sharp';
 
 import { runDryRun } from '../../cli/dry-run.mjs';
+import { parseEditorialRequest, renderEditorialDryRun } from '../../cli/editorial.mjs';
 import { runLinkedInStateMigration } from '../../cli/migrate-linkedin-state.mjs';
 import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest, runPublication } from '../../cli/publish.mjs';
+import { runJobStoryPublication } from '../../cli/publish-story.mjs';
+import { EDITORIAL_CATALOG } from '../../content/editorial-catalog.mjs';
 
 import {
   DEPLOY_POLL_ATTEMPTS,
@@ -17,6 +21,7 @@ import {
   IMAGE_WIDTH,
   INSTAGRAM_CARD_VERSION,
   MAX_CHANNEL_ATTEMPTS,
+  MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS,
   OPEN_GRAPH_IMAGE_VERSION,
   OPENINGS_ORIGIN,
   SOCIAL_VIDEO_DURATION_SECONDS,
@@ -48,14 +53,29 @@ import {
   mastodonIdempotencyKey,
   publishToMastodon,
 } from '../networks/mastodon-client.mjs';
-import { publishToInstagram } from '../networks/instagram-client.mjs';
+import {
+  publishCarouselToInstagram,
+  publishStoryToInstagram,
+  publishToInstagram,
+} from '../networks/instagram-client.mjs';
 import { publishToLinkedIn } from '../networks/linkedin-client.mjs';
 import { deleteThreadsPost, publishToThreads } from '../networks/threads-client.mjs';
 import {
+  buildEditorialDispatchRequest,
   buildRepositoryDispatchRequest,
+  requestEditorialDeployment,
   requestIncrementalBridgeDeployment,
 } from '../deploy/web-deploy-client.mjs';
+import { verifyPublicEditorial } from '../deploy/editorial-verifier.mjs';
 import { verifyPublicBridge } from '../deploy/public-verifier.mjs';
+import { validateEditorialCatalog } from '../editorial/editorial-model.mjs';
+import {
+  createEmptyEditorialState,
+  enqueueEditorialItem,
+  transitionEditorialStage,
+  validateEditorialState,
+} from '../editorial/editorial-state.mjs';
+import { selectEditorialItem, slotForDate } from '../editorial/editorial-scheduler.mjs';
 import {
   countGraphemes,
   formatSalary,
@@ -72,6 +92,13 @@ import {
   createReelStageSvgs,
   renderReelVideo,
 } from '../render/reel-video.mjs';
+import {
+  createEditorialSlideSvg,
+  createEditorialStorySvg,
+  renderEditorialAssets,
+  resolveEditorialTheme,
+} from '../render/editorial-card.mjs';
+import { formatEditorialCaption } from '../render/editorial-caption.mjs';
 import { createBridgePublisher } from '../publishing/bridge-publisher.mjs';
 import {
   META_MIGRATION_REVISION,
@@ -85,11 +112,17 @@ import {
 } from '../publishing/orchestrator.mjs';
 import { decideScheduledWork } from '../publishing/scheduled-work.mjs';
 import {
+  enqueueScheduledEditorial,
+  prepareEditorialStageIntent,
+  processEditorialStage,
+} from '../publishing/editorial-publisher.mjs';
+import {
   enqueueBridgeWork,
   enqueueJob,
   markJobClosed,
   resetFailedStage,
   resetPublishedMetaStages,
+  selectNextInstagramStory,
   selectNextQueueItem,
   transitionQueueStage,
 } from '../state/queue-operations.mjs';
@@ -98,6 +131,9 @@ import { saveStateFile } from '../state/save-state.mjs';
 import { migrateLinkedInState } from '../state/linkedin-state-migration.mjs';
 import {
   assertNoSensitiveKeys,
+  migrateIntakeState,
+  migratePublicationsState,
+  migrateQueueState,
   validateIntakeState,
   validatePublicationsState,
   validateQueueState,
@@ -934,6 +970,27 @@ validation('loads only deploy and Meta credentials for a controlled migration', 
   }), /META_GRAPH_VERSION/u);
 });
 
+validation('isolates editorial deploy and Instagram credentials by stage', () => {
+  const deploy = readEnvironment({
+    env: { INSTAGRAM_EDITORIAL_AUTO_PUBLISH: 'true', WEB_DEPLOY_TOKEN: 'deploy-secret' },
+    mode: 'editorial-assets',
+  });
+  assert.equal(deploy.instagramEditorialEnabled, true);
+  assert.equal(deploy.webDeploy.token, 'deploy-secret');
+  assert.equal(deploy.instagram, null);
+  const instagram = readEnvironment({
+    env: {
+      INSTAGRAM_EDITORIAL_AUTO_PUBLISH: 'true',
+      INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+      INSTAGRAM_USER_ID: '17841400000000000',
+      META_GRAPH_VERSION: 'v26.0',
+    },
+    mode: 'editorial-feed',
+  });
+  assert.equal(instagram.webDeploy, null);
+  assert.equal(instagram.instagram.accessToken, 'instagram-secret');
+});
+
 validation('enables Meta only for jobs enqueued after activation', () => {
   const snapshot = makeLoadedSnapshot({
     commit: '8'.repeat(40),
@@ -959,6 +1016,245 @@ validation('enables Meta only for jobs enqueued after activation', () => {
   assert.equal(activated.items[0].instagram.status, 'skipped_disabled');
   assert.equal(activated.items[1].threads.status, 'pending');
   assert.equal(activated.items[1].instagram.status, 'pending');
+});
+
+validation('migrates version-two state without historical Story backfill', async () => {
+  const snapshot = makeLoadedSnapshot({
+    commit: '8'.repeat(40),
+    generatedAt: '2026-08-25T19:00:00.000Z',
+    dataHash: '8'.repeat(64),
+    jobs: [],
+  });
+  const job = makeJob({ id: 'gh_888888888888888888888883' });
+  const currentQueue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-25T19:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: true,
+  });
+  const legacyItems = currentQueue.items.map(({ instagramStory: _ignored, ...item }) => item);
+  const migratedQueue = migrateQueueState({ schemaVersion: 2, items: legacyItems });
+  assert.equal(migratedQueue.schemaVersion, 3);
+  assert.equal(migratedQueue.items[0].instagramStory.status, 'skipped_before_activation');
+  assert.equal(migratedQueue.items[0].instagram.status, 'pending');
+
+  const migratedIntake = migrateIntakeState({
+    schemaVersion: 2,
+    processedSnapshot: null,
+    pendingBridges: [],
+    removedJobs: [],
+  });
+  assert.equal(migratedIntake.schemaVersion, 3);
+
+  const migratedPublications = migratePublicationsState({
+    schemaVersion: 2,
+    jobs: {
+      [job.id]: { status: 'completed', instagram: { id: 'feed-1' } },
+    },
+  });
+  assert.equal(migratedPublications.schemaVersion, 3);
+  assert.equal(migratedPublications.jobs[job.id].instagramStory, null);
+
+  const enabled = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-25T19:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: true,
+  });
+  assert.equal(enabled.items[0].instagramStory.status, 'pending');
+  const disabled = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-25T19:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: false,
+  });
+  assert.equal(disabled.items[0].instagramStory.status, 'skipped_disabled');
+
+  const directory = await mkdtemp(join(tmpdir(), 'openings-state-migration-'));
+  const queuePath = join(directory, 'queue.json');
+  try {
+    await writeFile(queuePath, `${JSON.stringify({ schemaVersion: 2, items: legacyItems }, null, 2)}\n`);
+    const loaded = await loadStateFile(queuePath, validateQueueState, migrateQueueState);
+    assert.equal(loaded.schemaVersion, 3);
+    assert.equal(loaded.items[0].instagramStory.status, 'skipped_before_activation');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+validation('selects and publishes only a ready job Story', async () => {
+  const job = makeJob({ id: 'gh_888888888888888888888884' });
+  const snapshot = makeLoadedSnapshot({
+    commit: '9'.repeat(40),
+    generatedAt: '2026-08-25T20:00:00.000Z',
+    dataHash: '9'.repeat(64),
+    jobs: [job],
+  });
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-25T20:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: true,
+  });
+  assert.equal(selectNextInstagramStory(queue), null);
+  queue = transitionQueueStage(queue, job.id, 'bridge', 'publishing', {
+    at: '2026-08-25T20:02:00.000Z',
+  });
+  queue = transitionQueueStage(queue, job.id, 'bridge', 'published', {
+    at: '2026-08-25T20:02:10.000Z',
+    result: {
+      socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`,
+    },
+  });
+  queue = transitionQueueStage(queue, job.id, 'instagram', 'publishing', {
+    at: '2026-08-25T20:03:00.000Z',
+  });
+  queue = transitionQueueStage(queue, job.id, 'instagram', 'published', {
+    at: '2026-08-25T20:03:10.000Z',
+    result: { status: 'published', id: 'feed-1', url: 'https://www.instagram.com/reel/feed-1/' },
+  });
+  assert.equal(selectNextInstagramStory(queue).jobId, job.id);
+  const olderItem = {
+    ...queue.items[0],
+    jobId: 'gh_888888888888888888888883',
+    createdAt: '2026-08-25T19:00:00.000Z',
+    discoveredAt: '2026-08-25T19:01:00.000Z',
+    instagram: { ...queue.items[0].instagram, updatedAt: '2026-08-25T19:03:10.000Z' },
+  };
+  const controlledQueue = validateQueueState({ ...queue, items: [olderItem, queue.items[0]] });
+  assert.equal(selectNextInstagramStory(controlledQueue, job.id).jobId, job.id);
+
+  const directory = await mkdtemp(join(tmpdir(), 'openings-job-story-'));
+  const queuePath = join(directory, 'queue.json');
+  const publicationsPath = join(directory, 'publications.json');
+  const publications = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: {
+      [job.id]: {
+        status: 'completed',
+        instagram: queue.items[0].instagram.result,
+        linkedin: null,
+        instagramStory: null,
+      },
+    },
+  };
+  try {
+    await saveStateFile(queuePath, queue, validateQueueState);
+    await saveStateFile(publicationsPath, publications, validatePublicationsState);
+    let storyCalls = 0;
+    const prepared = await runJobStoryPublication({
+      stateDirectory: directory,
+      mode: 'intent',
+      jobId: job.id,
+      operationKey: 'test-run-1',
+      env: { INSTAGRAM_STORY_AUTO_PUBLISH: 'true' },
+      now: '2026-08-25T20:03:50.000Z',
+      log: () => {},
+    });
+    assert.equal(prepared.outcome, 'prepared');
+    assert.equal(prepared.queueState.items[0].instagramStory.result.operationKey, 'test-run-1');
+    const interruptedDirectory = await mkdtemp(join(tmpdir(), 'openings-job-story-interrupted-'));
+    try {
+      await saveStateFile(join(interruptedDirectory, 'queue.json'), prepared.queueState, validateQueueState);
+      await saveStateFile(join(interruptedDirectory, 'publications.json'), publications, validatePublicationsState);
+      const interrupted = await runJobStoryPublication({
+        stateDirectory: interruptedDirectory,
+        mode: 'intent',
+        jobId: job.id,
+        operationKey: 'test-restarted-run',
+        env: { INSTAGRAM_STORY_AUTO_PUBLISH: 'true' },
+        now: '2026-08-25T20:03:55.000Z',
+        log: () => {},
+      });
+      assert.equal(interrupted.outcome, 'failed_manual_review');
+      assert.equal(interrupted.queueState.items[0].instagramStory.lastError.code, 'instagram_story_interrupted');
+    } finally {
+      await rm(interruptedDirectory, { recursive: true, force: true });
+    }
+    const result = await runJobStoryPublication({
+      stateDirectory: directory,
+      mode: 'publish',
+      jobId: job.id,
+      operationKey: 'test-run-1',
+      env: {
+        INSTAGRAM_STORY_AUTO_PUBLISH: 'true',
+        INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+        INSTAGRAM_USER_ID: '17841400000000000',
+        META_GRAPH_VERSION: 'v26.0',
+      },
+      now: '2026-08-25T20:04:00.000Z',
+      dependencies: {
+        publishStory: async ({ mediaUrl, mediaKind }) => {
+          storyCalls += 1;
+          assert.equal(mediaUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`);
+          assert.equal(mediaKind, 'video');
+          return { status: 'published', id: 'story-1', url: null };
+        },
+      },
+      log: () => {},
+    });
+    assert.equal(storyCalls, 1);
+    assert.equal(result.queueState.items[0].instagramStory.status, 'published');
+    assert.equal(result.queueState.items[0].instagram.result.id, 'feed-1');
+    assert.equal(result.publicationsState.jobs[job.id].instagramStory.id, 'story-1');
+
+    const partialCases = [
+      {
+        label: 'queue-authoritative',
+        queueState: result.queueState,
+        publicationsState: publications,
+      },
+      {
+        label: 'publication-authoritative',
+        queueState: prepared.queueState,
+        publicationsState: result.publicationsState,
+      },
+    ];
+    for (const partial of partialCases) {
+      const repairDirectory = await mkdtemp(join(tmpdir(), `openings-job-story-${partial.label}-`));
+      try {
+        await saveStateFile(join(repairDirectory, 'queue.json'), partial.queueState, validateQueueState);
+        await saveStateFile(join(repairDirectory, 'publications.json'), partial.publicationsState, validatePublicationsState);
+        const repaired = await runJobStoryPublication({
+          stateDirectory: repairDirectory,
+          mode: 'intent',
+          operationKey: 'repair-state-only',
+          env: { INSTAGRAM_STORY_AUTO_PUBLISH: 'true' },
+          now: '2026-08-25T20:05:00.000Z',
+          log: () => {},
+        });
+        assert.equal(repaired.outcome, 'idle');
+        assert.equal(repaired.queueState.items[0].instagramStory.status, 'published');
+        assert.equal(repaired.queueState.items[0].instagramStory.result.id, 'story-1');
+        assert.equal(repaired.publicationsState.jobs[job.id].instagramStory.id, 'story-1');
+      } finally {
+        await rm(repairDirectory, { recursive: true, force: true });
+      }
+    }
+
+    const idle = await runJobStoryPublication({
+      stateDirectory: directory,
+      mode: 'publish',
+      operationKey: 'test-run-2',
+      env: {
+        INSTAGRAM_STORY_AUTO_PUBLISH: 'true',
+        INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+        INSTAGRAM_USER_ID: '17841400000000000',
+        META_GRAPH_VERSION: 'v26.0',
+      },
+      dependencies: {
+        publishStory: async () => { throw new Error('must not republish'); },
+      },
+      log: () => {},
+    });
+    assert.equal(idle.outcome, 'idle');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 validation('skips disabled and up-to-date schedules before expensive setup', () => {
@@ -987,6 +1283,13 @@ validation('skips disabled and up-to-date schedules before expensive setup', () 
     queueState,
     currentDataHash: dataHash,
   }), { shouldRun: false, reason: 'up_to_date', queueDepth: 0 });
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: false,
+    storyPublishEnabled: true,
+    intakeState,
+    queueState,
+    currentDataHash: dataHash,
+  }), { shouldRun: false, reason: 'story_up_to_date', queueDepth: 0 });
   assert.deepEqual(decideScheduledWork({
     publishEnabled: true,
     intakeState,
@@ -1024,6 +1327,39 @@ validation('runs schedules while social or bridge work is ready', () => {
     publishEnabled: true,
     intakeState,
     queueState,
+    currentDataHash: dataHash,
+  }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
+
+  let interruptedStory = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-23T12:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: true,
+  });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'bridge', 'publishing', { at: '2026-08-23T12:02:00.000Z' });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'bridge', 'published', {
+    at: '2026-08-23T12:02:10.000Z', result: { socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4` },
+  });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'instagram', 'publishing', { at: '2026-08-23T12:03:00.000Z' });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'instagram', 'published', {
+    at: '2026-08-23T12:03:10.000Z', result: { id: 'feed-interrupted', url: 'https://instagram.com/p/feed-interrupted' },
+  });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'instagramStory', 'publishing', {
+    at: '2026-08-23T12:04:00.000Z', intent: { operationKey: 'previous-workflow-run' },
+  });
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: true,
+    storyPublishEnabled: true,
+    intakeState,
+    queueState: interruptedStory,
+    currentDataHash: dataHash,
+  }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: false,
+    storyPublishEnabled: true,
+    intakeState,
+    queueState: interruptedStory,
     currentDataHash: dataHash,
   }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
 
@@ -3261,6 +3597,184 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
   }), /public HTTPS MP4/u);
 });
 
+validation('publishes an ordered seven-image Instagram carousel', async () => {
+  const imageUrls = Array.from(
+    { length: 7 },
+    (_, index) => `https://openings.dev/social/editorial/linkedin-headline-clara/1/slide-${String(index + 1).padStart(2, '0')}.jpg`,
+  );
+  const calls = [];
+  let childIndex = 0;
+  const fetchImpl = async (url, options = {}) => {
+    const body = options.body ? new URLSearchParams(options.body) : null;
+    calls.push({ url: String(url), options, body });
+    const pathname = new URL(url).pathname;
+    if (pathname.endsWith('/media') && options.method !== 'POST') {
+      return jsonResponse({ data: [] });
+    }
+    if (pathname.endsWith('/media') && options.method === 'POST') {
+      if (body.get('is_carousel_item') === 'true') {
+        childIndex += 1;
+        return jsonResponse({ id: `child-${childIndex}` });
+      }
+      return jsonResponse({ id: 'carousel-container' });
+    }
+    if (/\/child-\d+$/u.test(pathname) || pathname.endsWith('/carousel-container')) {
+      return jsonResponse({ status_code: 'FINISHED' });
+    }
+    if (pathname.endsWith('/media_publish')) {
+      return jsonResponse({ id: 'carousel-media' });
+    }
+    if (pathname.endsWith('/carousel-media')) {
+      return jsonResponse({ id: 'carousel-media', permalink: 'https://www.instagram.com/p/carousel-media/' });
+    }
+    return jsonResponse({ error: 'missing' }, 404);
+  };
+
+  const result = await publishCarouselToInstagram({
+    imageUrls,
+    caption: 'Headline claro ajuda recrutadores.\n\n#OpeningsGuideL01',
+    reconciliationMarker: '#OpeningsGuideL01',
+    accessToken: 'instagram-secret',
+    userId: '17841400000000000',
+    apiVersion: 'v26.0',
+    fetchImpl,
+    sleep: async () => {},
+  });
+
+  assert.deepEqual(result, {
+    status: 'published',
+    id: 'carousel-media',
+    url: 'https://www.instagram.com/p/carousel-media/',
+  });
+  const children = calls.filter(({ body }) => body?.get('is_carousel_item') === 'true');
+  assert.deepEqual(children.map(({ body }) => body.get('image_url')), imageUrls);
+  const parent = calls.find(({ body }) => body?.get('media_type') === 'CAROUSEL');
+  assert.equal(parent.body.get('children'), 'child-1,child-2,child-3,child-4,child-5,child-6,child-7');
+  assert.equal(parent.body.get('caption'), 'Headline claro ajuda recrutadores.\n\n#OpeningsGuideL01');
+
+  let unsafePostAttempted = false;
+  await assert.rejects(
+    publishCarouselToInstagram({
+      imageUrls,
+      caption: 'Headline claro ajuda recrutadores.\n\n#OpeningsGuideL01',
+      reconciliationMarker: '#OpeningsGuideL01',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl: async (_url, options = {}) => {
+        if (options.method === 'POST') unsafePostAttempted = true;
+        throw new Error('lookup unavailable');
+      },
+    }),
+    (error) => error?.code === 'instagram_carousel_reconciliation',
+  );
+  assert.equal(unsafePostAttempted, false);
+
+  await assert.rejects(
+    publishCarouselToInstagram({
+      imageUrls: imageUrls.slice(0, 1),
+      caption: 'Invalid carousel',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl,
+    }),
+    /between 2 and 10/u,
+  );
+});
+
+validation('publishes image and video Stories without republishing ambiguous results', async () => {
+  const storyUrl = 'https://openings.dev/social/editorial/linkedin-headline-clara/1/story.jpg';
+  const calls = [];
+  const fetchImpl = async (url, options = {}) => {
+    const body = options.body ? new URLSearchParams(options.body) : null;
+    calls.push({ url: String(url), options, body });
+    const pathname = new URL(url).pathname;
+    if (pathname.endsWith('/media') && options.method === 'POST') {
+      return jsonResponse({ id: 'story-container' });
+    }
+    if (pathname.endsWith('/story-container')) {
+      return jsonResponse({ status_code: 'FINISHED' });
+    }
+    if (pathname.endsWith('/media_publish')) {
+      return jsonResponse({ id: 'story-media' });
+    }
+    if (pathname.endsWith('/story-media')) {
+      return jsonResponse({ id: 'story-media', permalink: null });
+    }
+    return jsonResponse({ error: 'missing' }, 404);
+  };
+
+  const result = await publishStoryToInstagram({
+    mediaUrl: storyUrl,
+    mediaKind: 'image',
+    accessToken: 'instagram-secret',
+    userId: '17841400000000000',
+    apiVersion: 'v26.0',
+    fetchImpl,
+    sleep: async () => {},
+  });
+  assert.deepEqual(result, { status: 'published', id: 'story-media', url: null });
+  const storyContainer = calls.find(({ body }) => body?.get('media_type') === 'STORIES');
+  assert.equal(storyContainer.body.get('image_url'), storyUrl);
+  assert.equal(storyContainer.body.has('video_url'), false);
+
+  let publishAttempts = 0;
+  const ambiguousFetch = async (url, options = {}) => {
+    const pathname = new URL(url).pathname;
+    if (pathname.endsWith('/media') && options.method === 'POST') {
+      return jsonResponse({ id: 'ambiguous-container' });
+    }
+    if (pathname.endsWith('/ambiguous-container')) {
+      return jsonResponse({ status_code: 'FINISHED' });
+    }
+    if (pathname.endsWith('/media_publish')) {
+      publishAttempts += 1;
+      throw new Error('connection closed');
+    }
+    if (pathname.endsWith('/media')) {
+      return jsonResponse({ data: [] });
+    }
+    return jsonResponse({ error: 'missing' }, 404);
+  };
+  await assert.rejects(
+    publishStoryToInstagram({
+      mediaUrl: storyUrl,
+      mediaKind: 'image',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl: ambiguousFetch,
+      sleep: async () => {},
+    }),
+    (error) => error?.code === 'instagram_story_ambiguous',
+  );
+  assert.equal(publishAttempts, 1);
+
+  await assert.rejects(
+    publishStoryToInstagram({
+      mediaUrl: 'http://openings.dev/story.jpg',
+      mediaKind: 'image',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl,
+    }),
+    /public HTTPS JPEG/u,
+  );
+  await assert.rejects(
+    publishStoryToInstagram({
+      mediaUrl: storyUrl,
+      mediaKind: 'animation',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl,
+    }),
+    /media kind/u,
+  );
+});
+
 function makeLoadedSnapshot({ commit, generatedAt, dataHash, jobs }) {
   return {
     commit,
@@ -3765,6 +4279,7 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(productionWorkflow, /WEB_DEPLOY_TOKEN/u);
   assert.match(productionWorkflow, /THREADS_AUTO_PUBLISH/u);
   assert.match(productionWorkflow, /INSTAGRAM_AUTO_PUBLISH/u);
+  assert.match(productionWorkflow, /INSTAGRAM_STORY_AUTO_PUBLISH/u);
   assert.match(productionWorkflow, /THREADS_ACCESS_TOKEN/u);
   assert.match(productionWorkflow, /INSTAGRAM_ACCESS_TOKEN/u);
   assert.match(productionWorkflow, /META_GRAPH_VERSION/u);
@@ -3800,6 +4315,35 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(productionWorkflow, /id:\s*preflight/u);
   assert.match(productionWorkflow, /src\/cli\/preflight\.mjs/u);
   assert.match(productionWorkflow, /steps\.preflight\.outputs\.should_run == 'true'/u);
+  assert.match(productionWorkflow, /npm run publish:story/u);
+  assert.match(productionWorkflow, /chore\(state\): record Instagram story/u);
+  assert.ok(
+    productionWorkflow.indexOf('Commit and push publication or reset state')
+      < productionWorkflow.indexOf('Prepare Instagram Story publication intent'),
+  );
+  assert.ok(
+    productionWorkflow.indexOf('Prepare Instagram Story publication intent')
+      < productionWorkflow.indexOf('Commit and push Instagram Story intent'),
+  );
+  assert.ok(
+    productionWorkflow.indexOf('Commit and push Instagram Story intent')
+      < productionWorkflow.indexOf('Publish Instagram Story for a completed feed post'),
+  );
+  assert.ok(
+    productionWorkflow.indexOf('Publish Instagram Story for a completed feed post')
+      < productionWorkflow.indexOf('Commit and push Instagram Story state'),
+  );
+  const storyPublication = productionWorkflow.match(
+    /- name: Publish Instagram Story for a completed feed post(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
+  )?.groups?.block ?? '';
+  assert.match(storyPublication, /--mode publish/u);
+  assert.match(storyPublication, /--operation "\$STORY_OPERATION_KEY"/u);
+  assert.match(storyPublication, /--job "\$REQUEST_JOB_ID"/u);
+  assert.doesNotMatch(storyPublication, /INSTAGRAM_AUTO_PUBLISH/u);
+  const storyResultCommit = productionWorkflow.match(
+    /- name: Commit and push Instagram Story state(?<block>[\s\S]*?)$/u,
+  )?.groups?.block ?? '';
+  assert.match(storyResultCommit, /if: always\(\)/u);
   const stateCheckout = productionWorkflow.match(
     /- name: Check out social-publisher state and source(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
   )?.groups?.block ?? '';
@@ -3818,6 +4362,415 @@ validation('keeps validation read-only and production publishing explicitly gate
   const actionUses = [...`${validationWorkflow}\n${productionWorkflow}`.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/gu)];
   assert.ok(actionUses.length >= 5);
   assert.equal(actionUses.every((match) => /^[0-9a-f]{40}$/u.test(match[1])), true);
+});
+
+validation('ships a complete, source-grounded 12-week Instagram editorial catalog', () => {
+  validateEditorialCatalog(EDITORIAL_CATALOG);
+  assert.equal(EDITORIAL_CATALOG.length, 36);
+  assert.deepEqual(
+    Object.fromEntries(['linkedin', 'resume', 'search', 'application', 'interview'].map((pillar) => [
+      pillar,
+      EDITORIAL_CATALOG.filter((item) => item.pillar === pillar).length,
+    ])),
+    { linkedin: 12, resume: 8, search: 6, application: 4, interview: 6 },
+  );
+  assert.equal(new Set(EDITORIAL_CATALOG.map(({ id }) => id)).size, 36);
+  for (const item of EDITORIAL_CATALOG) {
+    assert.equal(item.version, '1');
+    assert.equal(item.slides.length, 7);
+    assert.deepEqual(item.slides.map(({ kind }) => kind), [
+      'cover', 'context', 'action', 'example', 'action', 'checklist', 'cta',
+    ]);
+    assert.equal(item.slides[5].items.length, 4);
+    assert.ok(item.sources.length > 0);
+    assert.ok(item.sources.every(({ url }) => url.startsWith('https://')));
+    assert.ok(item.minRepeatDays >= 84);
+    assert.equal(JSON.stringify(item).includes('<'), false);
+  }
+  const nicoleSource = 'https://www.linkedin.com/pulse/optimizing-your-linkedin-profile-international-guide-nicole-barra--ujebf/';
+  assert.ok(EDITORIAL_CATALOG
+    .filter(({ pillar }) => pillar === 'linkedin')
+    .every(({ sources }) => sources.some(({ url }) => url === nicoleSource)));
+});
+
+validation('schedules the right editorial pillar and never duplicates a pending slot', () => {
+  assert.deepEqual(slotForDate('2026-09-07T15:17:00.000Z'), {
+    key: '2026-09-07',
+    pillars: ['linkedin'],
+  });
+  assert.deepEqual(slotForDate('2026-09-09T15:17:00.000Z'), {
+    key: '2026-09-09',
+    pillars: ['resume', 'application'],
+  });
+  assert.deepEqual(slotForDate('2026-09-11T15:17:00.000Z'), {
+    key: '2026-09-11',
+    pillars: ['search', 'interview'],
+  });
+  assert.equal(slotForDate('2026-09-08T15:17:00.000Z'), null);
+
+  const now = '2026-09-07T15:17:00.000Z';
+  const empty = createEmptyEditorialState();
+  const selected = selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: empty, now });
+  assert.equal(selected.content.id, 'linkedin-atividade-estrategica');
+  assert.equal(selected.scheduledDate, '2026-09-07');
+  const queued = enqueueEditorialItem(empty, selected, { at: now });
+  validateEditorialState(queued, EDITORIAL_CATALOG);
+  assert.equal(selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: queued, now }), null);
+
+  const completed = validateEditorialState({
+    ...empty,
+    history: {
+      [selected.content.id]: {
+        lastPublishedAt: '2026-09-07T15:20:00.000Z',
+        cycles: 1,
+        lastPublication: {
+          scheduledDate: '2026-09-07',
+          contentVersion: '1',
+          assets: { status: 'deployed' },
+          feed: { id: 'same-day-feed' },
+          story: { id: 'same-day-story' },
+        },
+      },
+    },
+  }, EDITORIAL_CATALOG);
+  assert.equal(selectEditorialItem({
+    catalog: EDITORIAL_CATALOG,
+    state: completed,
+    now: '2026-09-07T18:00:00.000Z',
+  }), null);
+  assert.equal(enqueueScheduledEditorial({
+    state: completed,
+    catalog: EDITORIAL_CATALOG,
+    now: '2026-09-07T18:00:00.000Z',
+    contentId: EDITORIAL_CATALOG.find(({ id }) => id !== selected.content.id).id,
+  }), completed);
+});
+
+validation('keeps editorial feed and Story stages independently durable', () => {
+  const now = '2026-09-07T15:17:00.000Z';
+  const selected = selectEditorialItem({
+    catalog: EDITORIAL_CATALOG,
+    state: createEmptyEditorialState(),
+    now,
+  });
+  let state = enqueueEditorialItem(createEmptyEditorialState(), selected, { at: now });
+  state = transitionEditorialStage(state, selected.content.id, 'assets', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selected.content.id, 'assets', 'published', {
+    at: now,
+    result: { manifestPath: 'editorial/linkedin-atividade-estrategica/manifest.json' },
+  });
+  state = transitionEditorialStage(state, selected.content.id, 'feed', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selected.content.id, 'feed', 'published', {
+    at: now,
+    result: { id: 'feed-1' },
+  });
+  assert.equal(state.pending[0].story.status, 'pending');
+  assert.equal(state.history[selected.content.id], undefined);
+  state = transitionEditorialStage(state, selected.content.id, 'story', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selected.content.id, 'story', 'published', {
+    at: now,
+    result: { id: 'story-1' },
+  });
+  assert.equal(state.pending.length, 0);
+  assert.equal(state.history[selected.content.id].lastPublishedAt, now);
+  assert.equal(state.history[selected.content.id].cycles, 1);
+  assert.equal(state.history[selected.content.id].lastPublication.feed.id, 'feed-1');
+  assert.equal(state.history[selected.content.id].lastPublication.story.id, 'story-1');
+  validateEditorialState(state, EDITORIAL_CATALOG);
+});
+
+validation('renders deterministic editorial carousels and a dedicated Story', async () => {
+  const content = EDITORIAL_CATALOG[0];
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302e"/></svg>';
+  assert.deepEqual(resolveEditorialTheme(content.id), resolveEditorialTheme(content.id));
+  assert.notDeepEqual(resolveEditorialTheme(content.id), resolveEditorialTheme(EDITORIAL_CATALOG[1].id));
+  const coverSvg = createEditorialSlideSvg(content, 0, { wordmarkSvg });
+  const storySvg = createEditorialStorySvg(content, { wordmarkSvg });
+  assert.match(coverSvg, /width="1080" height="1350"/u);
+  assert.match(coverSvg, /data-editorial-slide="1"/u);
+  assert.match(storySvg, /width="1080" height="1920"/u);
+  assert.match(storySvg, /data-editorial-story="true"/u);
+  const rendered = await renderEditorialAssets(content, { wordmarkSvg });
+  assert.equal(rendered.slides.length, 7);
+  for (const jpeg of [...rendered.slides, rendered.story]) {
+    const metadata = await sharp(jpeg).metadata();
+    assert.equal(metadata.format, 'jpeg');
+    assert.equal(metadata.width, 1080);
+  }
+  assert.equal((await sharp(rendered.slides[0]).metadata()).height, 1350);
+  assert.equal((await sharp(rendered.story).metadata()).height, 1920);
+});
+
+validation('formats and writes a complete editorial dry run', async () => {
+  const content = EDITORIAL_CATALOG[0];
+  const caption = formatEditorialCaption(content);
+  assert.ok(caption.length < 2_200);
+  assert.match(caption, /Fonte:/u);
+  assert.match(caption, /#OpeningsDev/u);
+  const directory = await mkdtemp(join(tmpdir(), 'openings-editorial-'));
+  const wordmarkPath = join(directory, 'wordmark.svg');
+  await writeFile(wordmarkPath, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>');
+  try {
+    const result = await renderEditorialDryRun({
+      content,
+      wordmarkPath,
+      outputPath: directory,
+      log: () => {},
+    });
+    assert.equal(result.files.length, 10);
+    const names = await readdir(join(directory, 'editorial', content.id));
+    assert.deepEqual(names.sort(), [
+      'caption.txt', 'manifest.json', 'slide-01.jpg', 'slide-02.jpg', 'slide-03.jpg',
+      'slide-04.jpg', 'slide-05.jpg', 'slide-06.jpg', 'slide-07.jpg', 'story.jpg',
+    ]);
+    const manifest = JSON.parse(await readFile(join(directory, 'editorial', content.id, 'manifest.json'), 'utf8'));
+    assert.equal(manifest.contentId, content.id);
+    assert.equal(manifest.slides.length, 7);
+    assert.equal(typeof manifest.story.sha256, 'string');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+validation('builds a bounded editorial deployment request with eight canonical SVG assets', () => {
+  const content = EDITORIAL_CATALOG[0];
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const carouselSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
+  const storySvg = createEditorialStorySvg(content, { wordmarkSvg });
+  const request = buildEditorialDispatchRequest({
+    contentId: content.id,
+    version: content.version,
+    carouselSvgs,
+    storySvg,
+    repository: 'openings-dev/web-deploy',
+  });
+  const body = JSON.parse(request.body);
+  assert.equal(body.event_type, 'publish_instagram_editorial');
+  assert.equal(body.client_payload.assets.length, 8);
+  assert.deepEqual(body.client_payload.assets.map(({ name }) => name), [
+    'slide-01', 'slide-02', 'slide-03', 'slide-04', 'slide-05', 'slide-06', 'slide-07', 'story',
+  ]);
+  for (const [index, asset] of body.client_payload.assets.entries()) {
+    const source = index < 7 ? carouselSvgs[index] : storySvg;
+    assert.equal(asset.sha256, sha256(source));
+    assert.equal(gunzipSync(Buffer.from(asset.svg_gzip_base64, 'base64')).toString('utf8'), source);
+  }
+  for (const catalogContent of EDITORIAL_CATALOG) {
+    const catalogSlides = catalogContent.slides.map((_, index) => createEditorialSlideSvg(catalogContent, index, { wordmarkSvg }));
+    const catalogStory = createEditorialStorySvg(catalogContent, { wordmarkSvg });
+    const catalogRequest = buildEditorialDispatchRequest({
+      contentId: catalogContent.id,
+      version: catalogContent.version,
+      carouselSvgs: catalogSlides,
+      storySvg: catalogStory,
+      repository: 'openings-dev/web-deploy',
+    });
+    assert.ok(catalogRequest.body.length <= MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS);
+  }
+  assert.throws(() => buildEditorialDispatchRequest({
+    contentId: '../escape', version: '1', carouselSvgs, storySvg, repository: 'openings-dev/web-deploy',
+  }), /content ID/i);
+  for (const unsafe of [
+    '<image href="file:///etc/passwd"/>',
+    '<image href="//example.com/tracker.svg"/>',
+    '<rect style="fill:url(ftp://example.com/pixel.svg)"/>',
+  ]) {
+    const unsafeSlides = [...carouselSvgs];
+    unsafeSlides[0] = unsafeSlides[0].replace('</svg>', `${unsafe}</svg>`);
+    assert.throws(() => buildEditorialDispatchRequest({
+      contentId: content.id,
+      version: content.version,
+      carouselSvgs: unsafeSlides,
+      storySvg,
+      repository: 'openings-dev/web-deploy',
+    }), /unsupported SVG/u);
+  }
+});
+
+validation('verifies every public editorial JPEG against its canonical manifest', async () => {
+  const content = EDITORIAL_CATALOG[0];
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const rendered = await renderEditorialAssets(content, { wordmarkSvg });
+  const sourceSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
+  sourceSvgs.push(createEditorialStorySvg(content, { wordmarkSvg }));
+  const names = [...content.slides.map((_, index) => `slide-${String(index + 1).padStart(2, '0')}`), 'story'];
+  const buffers = [...rendered.slides, rendered.story];
+  const manifest = {
+    schemaVersion: 1,
+    contentId: content.id,
+    contentVersion: content.version,
+    assets: names.map((name, index) => ({
+      name,
+      path: `${name}.jpg`,
+      sourceSha256: sha256(sourceSvgs[index]),
+      sha256: sha256(buffers[index]),
+      width: 1080,
+      height: name === 'story' ? 1920 : 1350,
+    })),
+  };
+  const base = `https://openings.dev/social/editorial/${content.id}/1`;
+  const result = await verifyPublicEditorial({
+    contentId: content.id,
+    version: '1',
+    expectedSourceHashes: Object.fromEntries(manifest.assets.map(({ name, sourceSha256 }) => [name, sourceSha256])),
+    fetchImpl: async (url) => {
+      if (url === `${base}/manifest.json`) return new Response(JSON.stringify(manifest), { headers: { 'content-type': 'application/json' } });
+      const index = manifest.assets.findIndex(({ path }) => url === `${base}/${path}`);
+      return index >= 0
+        ? new Response(buffers[index], { headers: { 'content-type': 'image/jpeg' } })
+        : new Response('missing', { status: 404 });
+    },
+  });
+  assert.equal(result.matches, true);
+  assert.equal(result.carouselUrls.length, 7);
+  assert.equal(result.storyUrl, `${base}/story.jpg`);
+});
+
+validation('orchestrates editorial assets, feed, and Story as durable independent stages', async () => {
+  const monday = '2026-09-07T15:17:00.000Z';
+  let state = enqueueScheduledEditorial({
+    state: createEmptyEditorialState(), catalog: EDITORIAL_CATALOG, now: monday,
+  });
+  const contentId = state.pending[0].contentId;
+  const calls = [];
+  state = (await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'assets', now: monday,
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+    deployAssets: async ({ carouselSvgs, storySvg }) => {
+      calls.push('assets');
+      assert.equal(carouselSvgs.length, 7);
+      assert.match(storySvg, /height="1920"/u);
+      return { status: 'deployed', verification: {
+        manifestUrl: 'https://openings.dev/social/editorial/manifest.json',
+        carouselUrls: Array.from({ length: 7 }, (_, index) => `https://openings.dev/social/editorial/slide-0${index + 1}.jpg`),
+        storyUrl: 'https://openings.dev/social/editorial/story.jpg',
+      } };
+    },
+  })).state;
+  assert.equal(state.pending[0].assets.status, 'published');
+  assert.equal(state.pending[0].feed.status, 'pending');
+  state = (await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'feed', now: monday,
+    publishCarousel: async ({ imageUrls, caption, reconciliationMarker }) => {
+      calls.push('feed');
+      assert.equal(imageUrls.length, 7);
+      assert.ok(caption.includes(reconciliationMarker));
+      return { status: 'published', id: 'carousel-media', url: 'https://instagram.com/p/carousel' };
+    },
+  })).state;
+  assert.equal(state.pending[0].feed.result.id, 'carousel-media');
+  assert.equal(state.pending[0].story.status, 'pending');
+  const preparedStory = prepareEditorialStageIntent({
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', operationKey: 'editorial-test-1', now: monday,
+  });
+  assert.equal(preparedStory.outcome, 'prepared');
+  state = preparedStory.state;
+  state = (await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', now: monday,
+    operationKey: 'editorial-test-1',
+    publishStory: async ({ mediaUrl, mediaKind }) => {
+      calls.push('story');
+      assert.equal(mediaUrl, 'https://openings.dev/social/editorial/story.jpg');
+      assert.equal(mediaKind, 'image');
+      return { status: 'published', id: 'story-media', url: null };
+    },
+  })).state;
+  assert.deepEqual(calls, ['assets', 'feed', 'story']);
+  assert.equal(state.pending.length, 0);
+  assert.equal(state.history[contentId].cycles, 1);
+  assert.equal(state.history[contentId].lastPublication.feed.id, 'carousel-media');
+  assert.equal(state.history[contentId].lastPublication.story.id, 'story-media');
+});
+
+validation('fails closed when an editorial Story is ambiguous and enforces the manual gate', async () => {
+  assert.deepEqual(parseEditorialRequest({
+    mode: 'controlled', contentId: 'linkedin-headline-clara', confirmation: 'PUBLISH_ONE_EDITORIAL_POST',
+  }), { mode: 'controlled', contentId: 'linkedin-headline-clara', stage: null });
+  assert.throws(() => parseEditorialRequest({
+    mode: 'controlled', contentId: 'linkedin-headline-clara', confirmation: 'publish',
+  }), /exact confirmation/i);
+
+  const now = '2026-09-07T15:17:00.000Z';
+  const selection = selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: createEmptyEditorialState(), now });
+  let state = enqueueEditorialItem(createEmptyEditorialState(), selection, { at: now });
+  assert.throws(() => enqueueScheduledEditorial({
+    state,
+    catalog: EDITORIAL_CATALOG,
+    now,
+    contentId: 'linkedin-headline-clara' === selection.content.id
+      ? 'linkedin-idioma-do-perfil'
+      : 'linkedin-headline-clara',
+  }), /already pending/i);
+  let called = false;
+  const blocked = await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', now,
+    publishStory: async () => { called = true; },
+  });
+  assert.equal(blocked.outcome, 'blocked');
+  assert.equal(called, false);
+  state = transitionEditorialStage(state, selection.content.id, 'assets', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selection.content.id, 'assets', 'published', {
+    at: now, result: { carouselUrls: Array(7).fill('https://openings.dev/slide.jpg'), storyUrl: 'https://openings.dev/story.jpg' },
+  });
+  state = transitionEditorialStage(state, selection.content.id, 'feed', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selection.content.id, 'feed', 'published', { at: now, result: { id: 'feed' } });
+  const prepared = prepareEditorialStageIntent({
+    state,
+    catalog: EDITORIAL_CATALOG,
+    stage: 'story',
+    operationKey: 'editorial-test-2',
+    now,
+  });
+  state = prepared.state;
+  const error = new Error('ambiguous');
+  error.code = 'instagram_story_ambiguous';
+  const failed = await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', now,
+    operationKey: 'editorial-test-2',
+    publishStory: async () => { throw error; },
+  });
+  assert.equal(failed.outcome, 'failed_manual_review');
+  assert.equal(failed.state.pending[0].story.status, 'failed');
+  assert.equal(failed.state.pending[0].feed.status, 'published');
+
+  const interrupted = prepareEditorialStageIntent({
+    state: prepared.state,
+    catalog: EDITORIAL_CATALOG,
+    stage: 'story',
+    operationKey: 'editorial-restarted-run',
+    now: '2026-09-07T15:18:00.000Z',
+  });
+  assert.equal(interrupted.outcome, 'failed_manual_review');
+  assert.equal(interrupted.state.pending[0].story.lastError.code, 'instagram_story_interrupted');
+});
+
+validation('checkpoints the automated editorial workflow in dependency order', async () => {
+  const workflow = await readFile(fileURLToPath(new URL('../../../.github/workflows/publish-editorial.yml', import.meta.url)), 'utf8');
+  assert.match(workflow, /cron:\s*['"]17 15 \* \* 1,3,5['"]/u);
+  assert.match(workflow, /INSTAGRAM_EDITORIAL_AUTO_PUBLISH/u);
+  assert.match(workflow, /PUBLISH_ONE_EDITORIAL_POST/u);
+  assert.match(workflow, /social-publisher-publication/u);
+  assert.match(workflow, /fonts-noto-cjk/u);
+  assert.match(workflow, /librsvg2-bin/u);
+  assert.match(workflow, /npm ci/u);
+  const order = [
+    'Enqueue one editorial guide',
+    'Commit editorial intent',
+    'Deploy editorial assets',
+    'Commit editorial asset result',
+    'Publish editorial carousel',
+    'Commit editorial feed result',
+    'Prepare editorial Story intent',
+    'Commit editorial Story intent',
+    'Publish editorial Story',
+    'Commit editorial Story result',
+  ];
+  order.reduce((previous, label) => {
+    const index = workflow.indexOf(label);
+    assert.ok(index > previous, `${label} must follow its durable prerequisite`);
+    return index;
+  }, -1);
+  assert.doesNotMatch(workflow, /^\s{2}(?:push|pull_request):/mu);
 });
 
 let passed = 0;

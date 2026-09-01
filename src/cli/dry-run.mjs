@@ -17,6 +17,9 @@ import { isEligibleNewJob } from '../modules/intake/eligibility.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import { selectNextQueueItem } from '../modules/state/queue-operations.mjs';
 import {
+  migrateIntakeState,
+  migratePublicationsState,
+  migrateQueueState,
   validateIntakeState,
   validatePublicationsState,
   validateQueueState,
@@ -101,9 +104,9 @@ export async function runSnapshotDryRun({
 }) {
   const [currentCommit, intakeState, queueState, publicationsState] = await Promise.all([
     resolveGitCommit(dataRepositoryPath, dataReference),
-    loadStateFile(resolve(stateDirectory, 'intake.json'), validateIntakeState),
-    loadStateFile(resolve(stateDirectory, 'queue.json'), validateQueueState),
-    loadStateFile(resolve(stateDirectory, 'publications.json'), validatePublicationsState),
+    loadStateFile(resolve(stateDirectory, 'intake.json'), validateIntakeState, migrateIntakeState),
+    loadStateFile(resolve(stateDirectory, 'queue.json'), validateQueueState, migrateQueueState),
+    loadStateFile(resolve(stateDirectory, 'publications.json'), validatePublicationsState, migratePublicationsState),
   ]);
   const current = await loadSnapshot(dataRepositoryPath, currentCommit);
   const previous = intakeState.processedSnapshot === null
