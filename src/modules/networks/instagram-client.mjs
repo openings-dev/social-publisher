@@ -120,7 +120,7 @@ async function findRecentMediaByMarker({
   accessToken,
   fetchImpl,
 }) {
-  if (reconciliationMarker === null) return null;
+  if (reconciliationMarker === null) return { ok: false, media: null };
   const url = new URL(`${base}/${encodeURIComponent(userId)}/media`);
   url.searchParams.set('fields', 'id,caption,permalink,timestamp');
   url.searchParams.set('limit', '50');
@@ -129,36 +129,14 @@ async function findRecentMediaByMarker({
       fetchImpl,
       headers: { Authorization: `Bearer ${accessToken}` },
     });
-    return Array.isArray(response?.data)
-      ? response.data.find((media) => typeof media?.caption === 'string'
-        && media.caption.includes(reconciliationMarker)) ?? null
-      : null;
+    if (!Array.isArray(response?.data)) return { ok: false, media: null };
+    const matches = response.data.filter((media) => typeof media?.caption === 'string'
+      && media.caption.includes(reconciliationMarker));
+    return matches.length <= 1
+      ? { ok: true, media: matches[0] ?? null }
+      : { ok: false, media: null };
   } catch {
-    return null;
-  }
-}
-
-async function findRecentStoryByMediaUrl({
-  base,
-  userId,
-  mediaUrl,
-  accessToken,
-  fetchImpl,
-}) {
-  const url = new URL(`${base}/${encodeURIComponent(userId)}/media`);
-  url.searchParams.set('fields', 'id,media_url,permalink,timestamp');
-  url.searchParams.set('limit', '50');
-  try {
-    const response = await fetchJson(url, {
-      fetchImpl,
-      headers: { Authorization: `Bearer ${accessToken}` },
-    });
-    const matches = Array.isArray(response?.data)
-      ? response.data.filter((media) => media?.media_url === mediaUrl)
-      : [];
-    return matches.length === 1 ? matches[0] : null;
-  } catch {
-    return null;
+    return { ok: false, media: null };
   }
 }
 
@@ -406,6 +384,9 @@ export async function publishCarouselToInstagram({
   }
   const safeCaption = validateCaption(caption);
   const marker = normalizeReconciliationMarker(reconciliationMarker);
+  if (marker === null || !safeCaption.includes(marker)) {
+    throw publicationError('instagram_configuration', 'Instagram carousel requires a caption reconciliation marker');
+  }
   const base = apiBase(apiOrigin, apiVersion);
   const existing = await findRecentMediaByMarker({
     base,
@@ -414,7 +395,10 @@ export async function publishCarouselToInstagram({
     accessToken,
     fetchImpl,
   });
-  if (existing) return normalizedResult(existing, 'reconciled');
+  if (!existing.ok) {
+    throw publicationError('instagram_carousel_reconciliation', 'Instagram carousel reconciliation failed before publication');
+  }
+  if (existing.media) return normalizedResult(existing.media, 'reconciled');
 
   const polling = pollingOptions({ containerPollAttempts, containerPollDelayMs });
   const childIds = [];
@@ -464,13 +448,16 @@ export async function publishCarouselToInstagram({
     accessToken,
     fetchImpl,
     errorCode: 'instagram_carousel_publication',
-    reconcile: () => findRecentMediaByMarker({
-      base,
-      userId,
-      reconciliationMarker: marker,
-      accessToken,
-      fetchImpl,
-    }),
+    reconcile: async () => {
+      const scan = await findRecentMediaByMarker({
+        base,
+        userId,
+        reconciliationMarker: marker,
+        accessToken,
+        fetchImpl,
+      });
+      return scan.ok ? scan.media : null;
+    },
   });
 }
 
@@ -521,12 +508,5 @@ export async function publishStoryToInstagram({
     accessToken,
     fetchImpl,
     errorCode: 'instagram_story_ambiguous',
-    reconcile: () => findRecentStoryByMediaUrl({
-      base,
-      userId,
-      mediaUrl: publicUrl,
-      accessToken,
-      fetchImpl,
-    }),
   });
 }

@@ -3,6 +3,7 @@ import { mkdtemp, readFile, readdir, rm, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { gunzipSync } from 'node:zlib';
 import { TID } from '@atproto/common-web';
 import sharp from 'sharp';
 
@@ -19,6 +20,7 @@ import {
   IMAGE_WIDTH,
   INSTAGRAM_CARD_VERSION,
   MAX_CHANNEL_ATTEMPTS,
+  MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS,
   OPEN_GRAPH_IMAGE_VERSION,
   OPENINGS_ORIGIN,
   SOCIAL_VIDEO_DURATION_SECONDS,
@@ -109,6 +111,7 @@ import {
 import { decideScheduledWork } from '../publishing/scheduled-work.mjs';
 import {
   enqueueScheduledEditorial,
+  prepareEditorialStageIntent,
   processEditorialStage,
 } from '../publishing/editorial-publisher.mjs';
 import {
@@ -373,6 +376,27 @@ validation('loads only deploy and Meta credentials for a controlled migration', 
   }), /META_GRAPH_VERSION/u);
 });
 
+validation('isolates editorial deploy and Instagram credentials by stage', () => {
+  const deploy = readEnvironment({
+    env: { INSTAGRAM_EDITORIAL_AUTO_PUBLISH: 'true', WEB_DEPLOY_TOKEN: 'deploy-secret' },
+    mode: 'editorial-assets',
+  });
+  assert.equal(deploy.instagramEditorialEnabled, true);
+  assert.equal(deploy.webDeploy.token, 'deploy-secret');
+  assert.equal(deploy.instagram, null);
+  const instagram = readEnvironment({
+    env: {
+      INSTAGRAM_EDITORIAL_AUTO_PUBLISH: 'true',
+      INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+      INSTAGRAM_USER_ID: '17841400000000000',
+      META_GRAPH_VERSION: 'v26.0',
+    },
+    mode: 'editorial-feed',
+  });
+  assert.equal(instagram.webDeploy, null);
+  assert.equal(instagram.instagram.accessToken, 'instagram-secret');
+});
+
 validation('enables Meta only for jobs enqueued after activation', () => {
   const snapshot = makeLoadedSnapshot({
     commit: '8'.repeat(40),
@@ -500,6 +524,15 @@ validation('selects and publishes only a ready job Story', async () => {
     result: { status: 'published', id: 'feed-1', url: 'https://www.instagram.com/reel/feed-1/' },
   });
   assert.equal(selectNextInstagramStory(queue).jobId, job.id);
+  const olderItem = {
+    ...queue.items[0],
+    jobId: 'gh_888888888888888888888883',
+    createdAt: '2026-08-25T19:00:00.000Z',
+    discoveredAt: '2026-08-25T19:01:00.000Z',
+    instagram: { ...queue.items[0].instagram, updatedAt: '2026-08-25T19:03:10.000Z' },
+  };
+  const controlledQueue = validateQueueState({ ...queue, items: [olderItem, queue.items[0]] });
+  assert.equal(selectNextInstagramStory(controlledQueue, job.id).jobId, job.id);
 
   const directory = await mkdtemp(join(tmpdir(), 'openings-job-story-'));
   const queuePath = join(directory, 'queue.json');
@@ -518,8 +551,40 @@ validation('selects and publishes only a ready job Story', async () => {
     await saveStateFile(queuePath, queue, validateQueueState);
     await saveStateFile(publicationsPath, publications, validatePublicationsState);
     let storyCalls = 0;
+    const prepared = await runJobStoryPublication({
+      stateDirectory: directory,
+      mode: 'intent',
+      jobId: job.id,
+      operationKey: 'test-run-1',
+      env: { INSTAGRAM_STORY_AUTO_PUBLISH: 'true' },
+      now: '2026-08-25T20:03:50.000Z',
+      log: () => {},
+    });
+    assert.equal(prepared.outcome, 'prepared');
+    assert.equal(prepared.queueState.items[0].instagramStory.result.operationKey, 'test-run-1');
+    const interruptedDirectory = await mkdtemp(join(tmpdir(), 'openings-job-story-interrupted-'));
+    try {
+      await saveStateFile(join(interruptedDirectory, 'queue.json'), prepared.queueState, validateQueueState);
+      await saveStateFile(join(interruptedDirectory, 'publications.json'), publications, validatePublicationsState);
+      const interrupted = await runJobStoryPublication({
+        stateDirectory: interruptedDirectory,
+        mode: 'intent',
+        jobId: job.id,
+        operationKey: 'test-restarted-run',
+        env: { INSTAGRAM_STORY_AUTO_PUBLISH: 'true' },
+        now: '2026-08-25T20:03:55.000Z',
+        log: () => {},
+      });
+      assert.equal(interrupted.outcome, 'failed_manual_review');
+      assert.equal(interrupted.queueState.items[0].instagramStory.lastError.code, 'instagram_story_interrupted');
+    } finally {
+      await rm(interruptedDirectory, { recursive: true, force: true });
+    }
     const result = await runJobStoryPublication({
       stateDirectory: directory,
+      mode: 'publish',
+      jobId: job.id,
+      operationKey: 'test-run-1',
       env: {
         INSTAGRAM_STORY_AUTO_PUBLISH: 'true',
         INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
@@ -542,8 +607,44 @@ validation('selects and publishes only a ready job Story', async () => {
     assert.equal(result.queueState.items[0].instagram.result.id, 'feed-1');
     assert.equal(result.publicationsState.jobs[job.id].instagramStory.id, 'story-1');
 
+    const partialCases = [
+      {
+        label: 'queue-authoritative',
+        queueState: result.queueState,
+        publicationsState: publications,
+      },
+      {
+        label: 'publication-authoritative',
+        queueState: prepared.queueState,
+        publicationsState: result.publicationsState,
+      },
+    ];
+    for (const partial of partialCases) {
+      const repairDirectory = await mkdtemp(join(tmpdir(), `openings-job-story-${partial.label}-`));
+      try {
+        await saveStateFile(join(repairDirectory, 'queue.json'), partial.queueState, validateQueueState);
+        await saveStateFile(join(repairDirectory, 'publications.json'), partial.publicationsState, validatePublicationsState);
+        const repaired = await runJobStoryPublication({
+          stateDirectory: repairDirectory,
+          mode: 'intent',
+          operationKey: 'repair-state-only',
+          env: { INSTAGRAM_STORY_AUTO_PUBLISH: 'true' },
+          now: '2026-08-25T20:05:00.000Z',
+          log: () => {},
+        });
+        assert.equal(repaired.outcome, 'idle');
+        assert.equal(repaired.queueState.items[0].instagramStory.status, 'published');
+        assert.equal(repaired.queueState.items[0].instagramStory.result.id, 'story-1');
+        assert.equal(repaired.publicationsState.jobs[job.id].instagramStory.id, 'story-1');
+      } finally {
+        await rm(repairDirectory, { recursive: true, force: true });
+      }
+    }
+
     const idle = await runJobStoryPublication({
       stateDirectory: directory,
+      mode: 'publish',
+      operationKey: 'test-run-2',
       env: {
         INSTAGRAM_STORY_AUTO_PUBLISH: 'true',
         INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
@@ -588,6 +689,13 @@ validation('skips disabled and up-to-date schedules before expensive setup', () 
     currentDataHash: dataHash,
   }), { shouldRun: false, reason: 'up_to_date', queueDepth: 0 });
   assert.deepEqual(decideScheduledWork({
+    publishEnabled: false,
+    storyPublishEnabled: true,
+    intakeState,
+    queueState,
+    currentDataHash: dataHash,
+  }), { shouldRun: false, reason: 'story_up_to_date', queueDepth: 0 });
+  assert.deepEqual(decideScheduledWork({
     publishEnabled: true,
     intakeState,
     queueState,
@@ -624,6 +732,39 @@ validation('runs schedules while social or bridge work is ready', () => {
     publishEnabled: true,
     intakeState,
     queueState,
+    currentDataHash: dataHash,
+  }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
+
+  let interruptedStory = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-23T12:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: true,
+  });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'bridge', 'publishing', { at: '2026-08-23T12:02:00.000Z' });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'bridge', 'published', {
+    at: '2026-08-23T12:02:10.000Z', result: { socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4` },
+  });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'instagram', 'publishing', { at: '2026-08-23T12:03:00.000Z' });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'instagram', 'published', {
+    at: '2026-08-23T12:03:10.000Z', result: { id: 'feed-interrupted', url: 'https://instagram.com/p/feed-interrupted' },
+  });
+  interruptedStory = transitionQueueStage(interruptedStory, job.id, 'instagramStory', 'publishing', {
+    at: '2026-08-23T12:04:00.000Z', intent: { operationKey: 'previous-workflow-run' },
+  });
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: true,
+    storyPublishEnabled: true,
+    intakeState,
+    queueState: interruptedStory,
+    currentDataHash: dataHash,
+  }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: false,
+    storyPublishEnabled: true,
+    intakeState,
+    queueState: interruptedStory,
     currentDataHash: dataHash,
   }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
 
@@ -2757,6 +2898,9 @@ validation('publishes an ordered seven-image Instagram carousel', async () => {
     const body = options.body ? new URLSearchParams(options.body) : null;
     calls.push({ url: String(url), options, body });
     const pathname = new URL(url).pathname;
+    if (pathname.endsWith('/media') && options.method !== 'POST') {
+      return jsonResponse({ data: [] });
+    }
     if (pathname.endsWith('/media') && options.method === 'POST') {
       if (body.get('is_carousel_item') === 'true') {
         childIndex += 1;
@@ -2779,6 +2923,7 @@ validation('publishes an ordered seven-image Instagram carousel', async () => {
   const result = await publishCarouselToInstagram({
     imageUrls,
     caption: 'Headline claro ajuda recrutadores.\n\n#OpeningsGuideL01',
+    reconciliationMarker: '#OpeningsGuideL01',
     accessToken: 'instagram-secret',
     userId: '17841400000000000',
     apiVersion: 'v26.0',
@@ -2796,6 +2941,24 @@ validation('publishes an ordered seven-image Instagram carousel', async () => {
   const parent = calls.find(({ body }) => body?.get('media_type') === 'CAROUSEL');
   assert.equal(parent.body.get('children'), 'child-1,child-2,child-3,child-4,child-5,child-6,child-7');
   assert.equal(parent.body.get('caption'), 'Headline claro ajuda recrutadores.\n\n#OpeningsGuideL01');
+
+  let unsafePostAttempted = false;
+  await assert.rejects(
+    publishCarouselToInstagram({
+      imageUrls,
+      caption: 'Headline claro ajuda recrutadores.\n\n#OpeningsGuideL01',
+      reconciliationMarker: '#OpeningsGuideL01',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl: async (_url, options = {}) => {
+        if (options.method === 'POST') unsafePostAttempted = true;
+        throw new Error('lookup unavailable');
+      },
+    }),
+    (error) => error?.code === 'instagram_carousel_reconciliation',
+  );
+  assert.equal(unsafePostAttempted, false);
 
   await assert.rejects(
     publishCarouselToInstagram({
@@ -2842,9 +3005,9 @@ validation('publishes image and video Stories without republishing ambiguous res
     sleep: async () => {},
   });
   assert.deepEqual(result, { status: 'published', id: 'story-media', url: null });
-  assert.equal(calls[0].body.get('media_type'), 'STORIES');
-  assert.equal(calls[0].body.get('image_url'), storyUrl);
-  assert.equal(calls[0].body.has('video_url'), false);
+  const storyContainer = calls.find(({ body }) => body?.get('media_type') === 'STORIES');
+  assert.equal(storyContainer.body.get('image_url'), storyUrl);
+  assert.equal(storyContainer.body.has('video_url'), false);
 
   let publishAttempts = 0;
   const ambiguousFetch = async (url, options = {}) => {
@@ -3306,12 +3469,31 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(productionWorkflow, /chore\(state\): record Instagram story/u);
   assert.ok(
     productionWorkflow.indexOf('Commit and push publication or reset state')
+      < productionWorkflow.indexOf('Prepare Instagram Story publication intent'),
+  );
+  assert.ok(
+    productionWorkflow.indexOf('Prepare Instagram Story publication intent')
+      < productionWorkflow.indexOf('Commit and push Instagram Story intent'),
+  );
+  assert.ok(
+    productionWorkflow.indexOf('Commit and push Instagram Story intent')
       < productionWorkflow.indexOf('Publish Instagram Story for a completed feed post'),
   );
   assert.ok(
     productionWorkflow.indexOf('Publish Instagram Story for a completed feed post')
       < productionWorkflow.indexOf('Commit and push Instagram Story state'),
   );
+  const storyPublication = productionWorkflow.match(
+    /- name: Publish Instagram Story for a completed feed post(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
+  )?.groups?.block ?? '';
+  assert.match(storyPublication, /--mode publish/u);
+  assert.match(storyPublication, /--operation "\$STORY_OPERATION_KEY"/u);
+  assert.match(storyPublication, /--job "\$REQUEST_JOB_ID"/u);
+  assert.doesNotMatch(storyPublication, /INSTAGRAM_AUTO_PUBLISH/u);
+  const storyResultCommit = productionWorkflow.match(
+    /- name: Commit and push Instagram Story state(?<block>[\s\S]*?)$/u,
+  )?.groups?.block ?? '';
+  assert.match(storyResultCommit, /if: always\(\)/u);
   const stateCheckout = productionWorkflow.match(
     /- name: Check out social-publisher state and source(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
   )?.groups?.block ?? '';
@@ -3384,6 +3566,34 @@ validation('schedules the right editorial pillar and never duplicates a pending 
   const queued = enqueueEditorialItem(empty, selected, { at: now });
   validateEditorialState(queued, EDITORIAL_CATALOG);
   assert.equal(selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: queued, now }), null);
+
+  const completed = validateEditorialState({
+    ...empty,
+    history: {
+      [selected.content.id]: {
+        lastPublishedAt: '2026-09-07T15:20:00.000Z',
+        cycles: 1,
+        lastPublication: {
+          scheduledDate: '2026-09-07',
+          contentVersion: '1',
+          assets: { status: 'deployed' },
+          feed: { id: 'same-day-feed' },
+          story: { id: 'same-day-story' },
+        },
+      },
+    },
+  }, EDITORIAL_CATALOG);
+  assert.equal(selectEditorialItem({
+    catalog: EDITORIAL_CATALOG,
+    state: completed,
+    now: '2026-09-07T18:00:00.000Z',
+  }), null);
+  assert.equal(enqueueScheduledEditorial({
+    state: completed,
+    catalog: EDITORIAL_CATALOG,
+    now: '2026-09-07T18:00:00.000Z',
+    contentId: EDITORIAL_CATALOG.find(({ id }) => id !== selected.content.id).id,
+  }), completed);
 });
 
 validation('keeps editorial feed and Story stages independently durable', () => {
@@ -3414,6 +3624,8 @@ validation('keeps editorial feed and Story stages independently durable', () => 
   assert.equal(state.pending.length, 0);
   assert.equal(state.history[selected.content.id].lastPublishedAt, now);
   assert.equal(state.history[selected.content.id].cycles, 1);
+  assert.equal(state.history[selected.content.id].lastPublication.feed.id, 'feed-1');
+  assert.equal(state.history[selected.content.id].lastPublication.story.id, 'story-1');
   validateEditorialState(state, EDITORIAL_CATALOG);
 });
 
@@ -3491,11 +3703,38 @@ validation('builds a bounded editorial deployment request with eight canonical S
   for (const [index, asset] of body.client_payload.assets.entries()) {
     const source = index < 7 ? carouselSvgs[index] : storySvg;
     assert.equal(asset.sha256, sha256(source));
-    assert.equal(Buffer.from(asset.svg_base64, 'base64').toString('utf8'), source);
+    assert.equal(gunzipSync(Buffer.from(asset.svg_gzip_base64, 'base64')).toString('utf8'), source);
+  }
+  for (const catalogContent of EDITORIAL_CATALOG) {
+    const catalogSlides = catalogContent.slides.map((_, index) => createEditorialSlideSvg(catalogContent, index, { wordmarkSvg }));
+    const catalogStory = createEditorialStorySvg(catalogContent, { wordmarkSvg });
+    const catalogRequest = buildEditorialDispatchRequest({
+      contentId: catalogContent.id,
+      version: catalogContent.version,
+      carouselSvgs: catalogSlides,
+      storySvg: catalogStory,
+      repository: 'openings-dev/web-deploy',
+    });
+    assert.ok(catalogRequest.body.length <= MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS);
   }
   assert.throws(() => buildEditorialDispatchRequest({
     contentId: '../escape', version: '1', carouselSvgs, storySvg, repository: 'openings-dev/web-deploy',
   }), /content ID/i);
+  for (const unsafe of [
+    '<image href="file:///etc/passwd"/>',
+    '<image href="//example.com/tracker.svg"/>',
+    '<rect style="fill:url(ftp://example.com/pixel.svg)"/>',
+  ]) {
+    const unsafeSlides = [...carouselSvgs];
+    unsafeSlides[0] = unsafeSlides[0].replace('</svg>', `${unsafe}</svg>`);
+    assert.throws(() => buildEditorialDispatchRequest({
+      contentId: content.id,
+      version: content.version,
+      carouselSvgs: unsafeSlides,
+      storySvg,
+      repository: 'openings-dev/web-deploy',
+    }), /unsupported SVG/u);
+  }
 });
 
 validation('verifies every public editorial JPEG against its canonical manifest', async () => {
@@ -3571,8 +3810,14 @@ validation('orchestrates editorial assets, feed, and Story as durable independen
   })).state;
   assert.equal(state.pending[0].feed.result.id, 'carousel-media');
   assert.equal(state.pending[0].story.status, 'pending');
+  const preparedStory = prepareEditorialStageIntent({
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', operationKey: 'editorial-test-1', now: monday,
+  });
+  assert.equal(preparedStory.outcome, 'prepared');
+  state = preparedStory.state;
   state = (await processEditorialStage({
     state, catalog: EDITORIAL_CATALOG, stage: 'story', now: monday,
+    operationKey: 'editorial-test-1',
     publishStory: async ({ mediaUrl, mediaKind }) => {
       calls.push('story');
       assert.equal(mediaUrl, 'https://openings.dev/social/editorial/story.jpg');
@@ -3583,6 +3828,8 @@ validation('orchestrates editorial assets, feed, and Story as durable independen
   assert.deepEqual(calls, ['assets', 'feed', 'story']);
   assert.equal(state.pending.length, 0);
   assert.equal(state.history[contentId].cycles, 1);
+  assert.equal(state.history[contentId].lastPublication.feed.id, 'carousel-media');
+  assert.equal(state.history[contentId].lastPublication.story.id, 'story-media');
 });
 
 validation('fails closed when an editorial Story is ambiguous and enforces the manual gate', async () => {
@@ -3596,6 +3843,14 @@ validation('fails closed when an editorial Story is ambiguous and enforces the m
   const now = '2026-09-07T15:17:00.000Z';
   const selection = selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: createEmptyEditorialState(), now });
   let state = enqueueEditorialItem(createEmptyEditorialState(), selection, { at: now });
+  assert.throws(() => enqueueScheduledEditorial({
+    state,
+    catalog: EDITORIAL_CATALOG,
+    now,
+    contentId: 'linkedin-headline-clara' === selection.content.id
+      ? 'linkedin-idioma-do-perfil'
+      : 'linkedin-headline-clara',
+  }), /already pending/i);
   let called = false;
   const blocked = await processEditorialStage({
     state, catalog: EDITORIAL_CATALOG, stage: 'story', now,
@@ -3609,15 +3864,34 @@ validation('fails closed when an editorial Story is ambiguous and enforces the m
   });
   state = transitionEditorialStage(state, selection.content.id, 'feed', 'publishing', { at: now });
   state = transitionEditorialStage(state, selection.content.id, 'feed', 'published', { at: now, result: { id: 'feed' } });
+  const prepared = prepareEditorialStageIntent({
+    state,
+    catalog: EDITORIAL_CATALOG,
+    stage: 'story',
+    operationKey: 'editorial-test-2',
+    now,
+  });
+  state = prepared.state;
   const error = new Error('ambiguous');
   error.code = 'instagram_story_ambiguous';
   const failed = await processEditorialStage({
     state, catalog: EDITORIAL_CATALOG, stage: 'story', now,
+    operationKey: 'editorial-test-2',
     publishStory: async () => { throw error; },
   });
   assert.equal(failed.outcome, 'failed_manual_review');
   assert.equal(failed.state.pending[0].story.status, 'failed');
   assert.equal(failed.state.pending[0].feed.status, 'published');
+
+  const interrupted = prepareEditorialStageIntent({
+    state: prepared.state,
+    catalog: EDITORIAL_CATALOG,
+    stage: 'story',
+    operationKey: 'editorial-restarted-run',
+    now: '2026-09-07T15:18:00.000Z',
+  });
+  assert.equal(interrupted.outcome, 'failed_manual_review');
+  assert.equal(interrupted.state.pending[0].story.lastError.code, 'instagram_story_interrupted');
 });
 
 validation('checkpoints the automated editorial workflow in dependency order', async () => {
@@ -3636,6 +3910,8 @@ validation('checkpoints the automated editorial workflow in dependency order', a
     'Commit editorial asset result',
     'Publish editorial carousel',
     'Commit editorial feed result',
+    'Prepare editorial Story intent',
+    'Commit editorial Story intent',
     'Publish editorial Story',
     'Commit editorial Story result',
   ];

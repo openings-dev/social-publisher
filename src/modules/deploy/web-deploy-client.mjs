@@ -6,6 +6,7 @@ import {
   MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS,
   SOCIAL_VIDEO_VERSION,
 } from '../../config/constants.mjs';
+import { gzipSync } from 'node:zlib';
 import { sha256 } from '../../shared/hash.mjs';
 import { assertValidJobId } from '../../shared/job-id.mjs';
 import { verifyPublicBridge } from './public-verifier.mjs';
@@ -14,7 +15,8 @@ import { verifyPublicEditorial } from './editorial-verifier.mjs';
 const HASH_PATTERN = /^[0-9a-f]{64}$/;
 const REPOSITORY_PATTERN = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 const EDITORIAL_ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
-const MAX_EDITORIAL_DISPATCH_BODY_CHARACTERS = 500_000;
+const SVG_FRAGMENT_PATTERN = /^#[A-Za-z_][A-Za-z0-9_.:-]*$/u;
+const SVG_DATA_PATTERN = /^data:image\/svg\+xml;base64,((?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?)$/u;
 
 function assertHash(value, label) {
   if (typeof value !== 'string' || !HASH_PATTERN.test(value)) {
@@ -90,15 +92,38 @@ export function buildRepositoryDispatchRequest({
   });
 }
 
+function assertSafeSvgDocument(document, label, { embedded = false } = {}) {
+  if (/<!DOCTYPE|<!ENTITY|<(?:script|style|foreignObject)\b|\b(?:on[a-z]+|style)\s*=|@import/iu.test(document)) {
+    throw new Error(`${label} contains unsupported SVG content`);
+  }
+  let remaining = document.replace(/\b(?:href|src)\s*=\s*(["'])([^"']*)\1/giu, (attribute, quote, reference) => {
+    if (SVG_FRAGMENT_PATTERN.test(reference)) return '';
+    const data = SVG_DATA_PATTERN.exec(reference)?.[1];
+    if (embedded || data === undefined) throw new Error(`${label} contains an unsupported SVG resource`);
+    const decoded = Buffer.from(data, 'base64');
+    const nested = decoded.toString('utf8');
+    if (decoded.length === 0 || decoded.length > 128 * 1024 || decoded.toString('base64') !== data
+      || !Buffer.from(nested, 'utf8').equals(decoded) || !/^\s*<svg\b/iu.test(nested)) {
+      throw new Error(`${label} contains an invalid embedded SVG resource`);
+    }
+    assertSafeSvgDocument(nested, `${label} embedded resource`, { embedded: true });
+    return '';
+  });
+  if (/\b(?:href|src)\s*=/iu.test(remaining)) {
+    throw new Error(`${label} contains an unsupported SVG resource`);
+  }
+  remaining = remaining.replace(/url\(\s*(["']?)(#[A-Za-z_][A-Za-z0-9_.:-]*)\1\s*\)/giu, '');
+  if (/url\s*\(/iu.test(remaining)) throw new Error(`${label} contains an unsupported SVG URL`);
+}
+
 function assertEditorialSvg(value, label, height) {
   const buffer = toBuffer(value, label);
   const document = buffer.toString('utf8');
   if (!Buffer.from(document, 'utf8').equals(buffer)
-    || !new RegExp(`^\\s*<svg\\b[^>]*\\bwidth="1080"[^>]*\\bheight="${height}"`, 'iu').test(document)
-    || /<!DOCTYPE|<!ENTITY|<(?:script|foreignObject)\b|\bon[a-z]+\s*=|@import|url\(\s*["']?https?:/iu.test(document)
-    || /\b(?:href|src)\s*=\s*["']https?:/iu.test(document)) {
+    || !new RegExp(`^\\s*<svg\\b[^>]*\\bwidth="1080"[^>]*\\bheight="${height}"`, 'iu').test(document)) {
     throw new Error(`${label} is not a safe 1080×${height} SVG`);
   }
+  assertSafeSvgDocument(document, label);
   return buffer;
 }
 
@@ -122,14 +147,17 @@ export function buildEditorialDispatchRequest({
     client_payload: {
       content_id: contentId,
       content_version: version,
-      assets: buffers.map((buffer, index) => ({
-        name: names[index],
-        sha256: sha256(buffer),
-        svg_base64: buffer.toString('base64'),
-      })),
+      assets: buffers.map((buffer, index) => {
+        const compressed = gzipSync(buffer, { level: 9, mtime: 0 });
+        return {
+          name: names[index],
+          sha256: sha256(buffer),
+          svg_gzip_base64: compressed.toString('base64'),
+        };
+      }),
     },
   });
-  if (body.length > MAX_EDITORIAL_DISPATCH_BODY_CHARACTERS) {
+  if (body.length > MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS) {
     throw new Error(`Editorial repository dispatch payload is too large (${body.length} characters)`);
   }
   return Object.freeze({ url: `${apiOrigin}/repos/${safeRepository}/dispatches`, body });

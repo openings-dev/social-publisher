@@ -5,6 +5,7 @@ import {
   STARVATION_THRESHOLD_MS,
 } from '../../config/constants.mjs';
 import { validateIntakeState, validateQueueState } from './state-model.mjs';
+import { assertValidJobId } from '../../shared/job-id.mjs';
 
 const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS, 'instagramStory']);
 const READY_STATUSES = new Set(['pending', 'retryable']);
@@ -126,6 +127,7 @@ export function transitionQueueStage(queueState, jobId, stageName, nextStatus, {
   at = new Date().toISOString(),
   errorCode,
   result,
+  intent,
 } = {}) {
   if (!STAGES.has(stageName)) {
     throw new Error(`Unknown queue stage: ${stageName}`);
@@ -157,7 +159,11 @@ export function transitionQueueStage(queueState, jobId, stageName, nextStatus, {
       lastError: ['retryable', 'failed'].includes(effectiveStatus)
         ? { code: sanitizeCode(errorCode), at }
         : null,
-      result: effectiveStatus === 'published' ? { ...(result ?? {}) } : current.result,
+      result: effectiveStatus === 'published'
+        ? { ...(result ?? {}) }
+        : nextStatus === 'publishing' && intent
+          ? { operationKey: intent.operationKey }
+          : current.result,
     };
     return { ...item, [stageName]: next };
   });
@@ -258,10 +264,12 @@ export function selectNextQueueItem(queueState, now = new Date().toISOString()) 
     || left.jobId.localeCompare(right.jobId))[0];
 }
 
-export function selectNextInstagramStory(queueState) {
+export function selectNextInstagramStory(queueState, jobId = null) {
   validateQueueState(queueState);
+  if (jobId !== null) assertValidJobId(jobId);
   return queueState.items
-    .filter((item) => READY_STATUSES.has(item.instagramStory.status)
+    .filter((item) => (READY_STATUSES.has(item.instagramStory.status) || item.instagramStory.status === 'publishing')
+      && (jobId === null || item.jobId === jobId)
       && item.instagram.status === 'published'
       && typeof item.instagram.result?.id === 'string'
       && item.instagram.result.id.length > 0

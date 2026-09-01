@@ -53,6 +53,17 @@ export function validateEditorialState(value, catalog = null) {
     if (catalogIds && !catalogIds.has(contentId)) throw new Error(`unknown editorial history content: ${contentId}`);
     iso(entry?.lastPublishedAt, 'editorial lastPublishedAt');
     if (!Number.isInteger(entry.cycles) || entry.cycles < 1) throw new Error('editorial history cycles is invalid');
+    const publication = entry.lastPublication;
+    if (publication === null || typeof publication !== 'object' || Array.isArray(publication)
+      || publication.contentVersion !== '1'
+      || !/^\d{4}-\d{2}-\d{2}$/u.test(publication.scheduledDate)) {
+      throw new Error('editorial history publication is invalid');
+    }
+    for (const stage of STAGES) {
+      if (publication[stage] === null || typeof publication[stage] !== 'object' || Array.isArray(publication[stage])) {
+        throw new Error(`editorial history ${stage} result is invalid`);
+      }
+    }
   }
   assertNoSensitiveKeys(value, 'editorial state');
   return value;
@@ -81,7 +92,7 @@ export function enqueueEditorialItem(state, selection, { at = new Date().toISOSt
 }
 
 export function transitionEditorialStage(state, contentId, stageName, nextStatus, {
-  at = new Date().toISOString(), errorCode, result,
+  at = new Date().toISOString(), errorCode, result, intent,
 } = {}) {
   validateEditorialState(state);
   if (!STAGES.has(stageName)) throw new Error(`unknown editorial stage: ${stageName}`);
@@ -103,7 +114,11 @@ export function transitionEditorialStage(state, contentId, stageName, nextStatus
     attempts,
     updatedAt: at,
     lastError: ['retryable', 'failed'].includes(effectiveStatus) ? { code: code(errorCode), at } : null,
-    result: effectiveStatus === 'published' ? { ...(result ?? {}) } : current.result,
+    result: effectiveStatus === 'published'
+      ? { ...(result ?? {}) }
+      : nextStatus === 'publishing' && intent
+        ? { operationKey: intent.operationKey }
+        : current.result,
   };
   const updated = { ...item, [stageName]: nextStage };
   if (stageName === 'story' && effectiveStatus === 'published') {
@@ -113,7 +128,17 @@ export function transitionEditorialStage(state, contentId, stageName, nextStatus
       pending: state.pending.filter((candidate) => candidate.contentId !== contentId),
       history: {
         ...state.history,
-        [contentId]: { lastPublishedAt: at, cycles: (previous?.cycles ?? 0) + 1 },
+        [contentId]: {
+          lastPublishedAt: at,
+          cycles: (previous?.cycles ?? 0) + 1,
+          lastPublication: {
+            scheduledDate: item.scheduledDate,
+            contentVersion: item.contentVersion,
+            assets: { ...(item.assets.result ?? {}) },
+            feed: { ...(item.feed.result ?? {}) },
+            story: { ...(nextStage.result ?? {}) },
+          },
+        },
       },
     });
   }
@@ -143,4 +168,3 @@ export function resetEditorialStage(state, contentId, stageName, {
   };
   return validateEditorialState({ ...state, pending });
 }
-

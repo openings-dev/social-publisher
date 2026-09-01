@@ -8,7 +8,11 @@ import { sha256 } from '../shared/hash.mjs';
 import { requestEditorialDeployment } from '../modules/deploy/web-deploy-client.mjs';
 import { resetEditorialStage, validateEditorialState } from '../modules/editorial/editorial-state.mjs';
 import { publishCarouselToInstagram, publishStoryToInstagram } from '../modules/networks/instagram-client.mjs';
-import { enqueueScheduledEditorial, processEditorialStage } from '../modules/publishing/editorial-publisher.mjs';
+import {
+  enqueueScheduledEditorial,
+  prepareEditorialStageIntent,
+  processEditorialStage,
+} from '../modules/publishing/editorial-publisher.mjs';
 import { renderEditorialAssets } from '../modules/render/editorial-card.mjs';
 import { formatEditorialCaption } from '../modules/render/editorial-caption.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
@@ -29,7 +33,7 @@ function parseArguments(argumentsList) {
 }
 
 export function parseEditorialRequest({ mode, contentId, stage, confirmation }) {
-  if (!['dry-run', 'enqueue', 'assets', 'feed', 'story', 'controlled', 'reset-stage'].includes(mode)) {
+  if (!['dry-run', 'enqueue', 'assets', 'feed', 'story-intent', 'story', 'controlled', 'reset-stage'].includes(mode)) {
     throw new Error(`Unsupported editorial mode: ${String(mode)}`);
   }
   if (contentId !== undefined && !/^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(contentId)) {
@@ -92,6 +96,7 @@ export async function runEditorialCommand({
   contentId,
   stage,
   confirmation,
+  operationKey,
   env = process.env,
   now = new Date().toISOString(),
   log = console.log,
@@ -139,18 +144,38 @@ export async function runEditorialCommand({
     return { ...summary, state };
   }
 
-  const configMode = mode === 'assets' ? 'editorial-assets' : `editorial-${mode}`;
-  const config = readEnvironment({ env, mode: configMode });
   const persistState = async (value) => saveStateFile(
     statePath,
     value,
     (candidate) => validateEditorialState(candidate, EDITORIAL_CATALOG),
   );
+  if (mode === 'story-intent') {
+    const result = prepareEditorialStageIntent({
+      state,
+      catalog: EDITORIAL_CATALOG,
+      stage: 'story',
+      operationKey,
+      now,
+    });
+    state = result.state;
+    await persistState(state);
+    log(JSON.stringify({
+      outcome: result.outcome,
+      contentId: result.selectedContentId,
+      stage: 'story',
+      error: result.errorCode ?? null,
+    }));
+    return result;
+  }
+
+  const configMode = mode === 'assets' ? 'editorial-assets' : `editorial-${mode}`;
+  const config = readEnvironment({ env, mode: configMode });
   const options = {
     state,
     catalog: EDITORIAL_CATALOG,
     stage: mode,
     now,
+    operationKey,
     persistState,
   };
   if (mode === 'assets') {
@@ -197,6 +222,7 @@ async function main() {
     contentId: args.content ?? args.id ?? (mode === 'dry-run' ? contentId : undefined),
     stage: args.stage,
     confirmation: args.confirmation,
+    operationKey: args.operation ?? process.env.EDITORIAL_OPERATION_KEY,
     stateDirectory: resolve(args.state ?? 'state'),
     wordmarkPath: resolve(args.wordmark ?? process.env.OPENINGS_WORDMARK_PATH ?? '../web/public/openings-wordmark-light.svg'),
     outputPath: resolve(args.output ?? '.tmp/editorial'),

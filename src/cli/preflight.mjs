@@ -45,6 +45,7 @@ async function fetchManifestJson(url, { fetchImpl = fetch } = {}) {
 export async function runPreflight({
   eventName,
   publishEnabled,
+  storyPublishEnabled = false,
   stateDirectory,
   manifestUrl = DEFAULT_MANIFEST_URL,
   fetchManifest = fetchManifestJson,
@@ -63,6 +64,7 @@ export async function runPreflight({
   const knownDataHash = intakeState.processedSnapshot?.dataHash ?? '0'.repeat(64);
   const localDecision = decideScheduledWork({
     publishEnabled,
+    storyPublishEnabled,
     intakeState,
     queueState,
     currentDataHash: knownDataHash,
@@ -76,6 +78,7 @@ export async function runPreflight({
     const manifest = await fetchManifest(manifestUrl);
     const result = decideScheduledWork({
       publishEnabled,
+      storyPublishEnabled,
       intakeState,
       queueState,
       currentDataHash: manifest?.dataHash,
@@ -98,6 +101,7 @@ async function main() {
   const result = await runPreflight({
     eventName: process.env.GITHUB_EVENT_NAME ?? 'workflow_dispatch',
     publishEnabled: process.env.SOCIAL_AUTO_PUBLISH === 'true',
+    storyPublishEnabled: process.env.INSTAGRAM_STORY_AUTO_PUBLISH === 'true',
     stateDirectory: resolve(args.state ?? 'state'),
     manifestUrl: process.env.DATA_MANIFEST_URL ?? DEFAULT_MANIFEST_URL,
   });

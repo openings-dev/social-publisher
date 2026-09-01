@@ -43,6 +43,7 @@ jobs:
       META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION }}
       INSTAGRAM_USER_ID: ${{ vars.INSTAGRAM_USER_ID }}
       INSTAGRAM_EDITORIAL_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled') && 'true' || vars.INSTAGRAM_EDITORIAL_AUTO_PUBLISH || 'false' }}
+      EDITORIAL_OPERATION_KEY: editorial-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Check out social-publisher state and source
         # actions/checkout v4.3.1
@@ -158,9 +159,22 @@ jobs:
           git commit -m 'chore(state): record editorial feed [skip ci]'
           git push origin "HEAD:${GITHUB_REF_NAME}"
 
+      - name: Prepare editorial Story intent
+        id: editorial_story_intent
+        if: (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_EDITORIAL_AUTO_PUBLISH == 'true' && steps.editorial_feed.outcome == 'success'
+        run: npm run editorial -- --mode story-intent --state state
+
+      - name: Commit editorial Story intent
+        if: always() && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_EDITORIAL_AUTO_PUBLISH == 'true' && steps.editorial_story_intent.outcome != 'skipped'
+        run: |
+          git add -- state/editorial.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(state): record editorial Story intent [skip ci]'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
       - name: Publish editorial Story
         id: editorial_story
-        if: (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_EDITORIAL_AUTO_PUBLISH == 'true' && steps.editorial_feed.outcome == 'success'
+        if: (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_EDITORIAL_AUTO_PUBLISH == 'true' && steps.editorial_story_intent.outcome == 'success'
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
         run: npm run editorial -- --mode story --state state

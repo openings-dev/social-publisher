@@ -32,6 +32,9 @@ export function selectEditorialItem({ catalog, state, now = new Date().toISOStri
   validateEditorialState(state, catalog);
   const slot = slotForDate(now, { timeZone });
   if (!slot || state.pending.length > 0) return null;
+  if (Object.values(state.history).some(({ lastPublication }) => (
+    lastPublication.scheduledDate === slot.key
+  ))) return null;
   const pendingIds = new Set(state.pending.map(({ contentId }) => contentId));
   const nowMs = Date.parse(now);
   const eligible = catalog.filter((content) => {

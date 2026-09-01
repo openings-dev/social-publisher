@@ -74,6 +74,7 @@ jobs:
       THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.THREADS_AUTO_PUBLISH || 'false' }}
       INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
       INSTAGRAM_STORY_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_STORY_AUTO_PUBLISH || 'false' }}
+      STORY_OPERATION_KEY: job-story-${{ github.run_id }}-${{ github.run_attempt }}
     steps:
       - name: Check out social-publisher state and source
         # actions/checkout v4.3.1
@@ -176,7 +177,7 @@ jobs:
           retention-days: 3
 
       - name: Process snapshot intake and verified bridges
-        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled'
+        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled' && env.SOCIAL_AUTO_PUBLISH == 'true'
         env:
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
         run: |
@@ -194,7 +195,7 @@ jobs:
           } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Commit and push intake state before provider calls
-        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled'
+        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled' && env.SOCIAL_AUTO_PUBLISH == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
@@ -307,14 +308,39 @@ jobs:
           npm run validate
           git push origin "HEAD:${GITHUB_REF_NAME}"
 
+      - name: Prepare Instagram Story publication intent
+        id: instagram_story_intent
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true'
+        env:
+          REQUEST_JOB_ID: ${{ inputs.job_id }}
+        run: |
+          arguments=(--mode intent --operation "$STORY_OPERATION_KEY" --state state)
+          if [[ "$RUN_MODE" == 'controlled' ]]; then arguments+=(--job "$REQUEST_JOB_ID"); fi
+          npm run publish:story -- "${arguments[@]}"
+
+      - name: Commit and push Instagram Story intent
+        if: always() && steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true' && steps.instagram_story_intent.outcome != 'skipped'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- state/queue.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(state): record Instagram Story intent [skip ci]'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
       - name: Publish Instagram Story for a completed feed post
-        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true' && env.INSTAGRAM_AUTO_PUBLISH == 'true'
+        id: instagram_story
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true' && steps.instagram_story_intent.outcome == 'success'
         env:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
-        run: npm run publish:story -- --state state
+          REQUEST_JOB_ID: ${{ inputs.job_id }}
+        run: |
+          arguments=(--mode publish --operation "$STORY_OPERATION_KEY" --state state)
+          if [[ "$RUN_MODE" == 'controlled' ]]; then arguments+=(--job "$REQUEST_JOB_ID"); fi
+          npm run publish:story -- "${arguments[@]}"
 
       - name: Commit and push Instagram Story state
-        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true' && env.INSTAGRAM_AUTO_PUBLISH == 'true'
+        if: always() && steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true' && steps.instagram_story.outcome != 'skipped'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
