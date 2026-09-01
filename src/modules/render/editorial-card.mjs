@@ -10,10 +10,10 @@ import { SOCIAL_THEMES } from './social-theme.mjs';
 const FEED = Object.freeze({ width: 1080, height: 1350 });
 const STORY = Object.freeze({ width: 1080, height: 1920 });
 const PILLAR_LABEL = Object.freeze({
-  linkedin: 'LINKEDIN', resume: 'CURRÍCULO', search: 'BUSCA DE VAGAS',
-  application: 'CANDIDATURA', interview: 'ENTREVISTA',
+  linkedin: 'LINKEDIN', resume: 'RESUME', search: 'JOB SEARCH',
+  application: 'APPLICATION', interview: 'INTERVIEW',
 });
-const segmenter = new Intl.Segmenter('pt-BR', { granularity: 'grapheme' });
+const segmenter = new Intl.Segmenter('en-US', { granularity: 'grapheme' });
 
 function assertWordmark(value) {
   if (typeof value !== 'string' || !/^\s*<svg\b/iu.test(value)) throw new Error('A canonical SVG wordmark is required');
@@ -101,12 +101,12 @@ function coverBody(content, slide, theme) {
   const bodyLines = wrap(slide.body, { size: 29, width: 760, lines: 4 });
   return `<circle cx="930" cy="270" r="162" fill="${theme.soft}"/>
     <circle cx="976" cy="224" r="92" fill="${theme.accent}"/>
-    <text x="58" y="235" fill="${SOCIAL_CARD_COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="17" font-weight="850" letter-spacing="2">GUIA PRÁTICO · ${escapeHtml(PILLAR_LABEL[content.pillar])}</text>
+    <text x="58" y="235" fill="${SOCIAL_CARD_COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="17" font-weight="850" letter-spacing="2">PRACTICAL GUIDE · ${escapeHtml(PILLAR_LABEL[content.pillar])}</text>
     ${linesMarkup(titleLines, { x: 58, y: titleY, size: titleSize, height: Math.round(titleSize * 1.05), weight: 880 })}
     <line x1="58" y1="${bottom + 58}" x2="350" y2="${bottom + 58}" stroke="${theme.accent}" stroke-width="12" stroke-linecap="round"/>
     ${linesMarkup(bodyLines, { x: 58, y: bottom + 132, size: 29, height: 43, weight: 520, fill: SOCIAL_CARD_COLORS.mutedInk })}
     <rect x="58" y="1138" width="270" height="68" rx="34" fill="${SOCIAL_CARD_COLORS.ink}"/>
-    <text x="193" y="1181" text-anchor="middle" fill="${SOCIAL_CARD_COLORS.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="17" font-weight="850">DESLIZE PARA APLICAR →</text>`;
+    <text x="193" y="1181" text-anchor="middle" fill="${SOCIAL_CARD_COLORS.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="17" font-weight="850">SWIPE TO APPLY →</text>`;
 }
 
 function exampleBody(slide, theme) {
@@ -119,8 +119,8 @@ function exampleBody(slide, theme) {
     ${linesMarkup(lines, { x: x + 42, y: 630, size: 28, height: 45, weight: 680 })}`;
   return `<text x="58" y="225" fill="${theme.accent}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="104" font-weight="900">04</text>
     ${linesMarkup(titleLines, { x: 58, y: 365, size: 57, height: 61, weight: 850 })}
-    ${panel(58, 'ANTES', beforeLines, '#f5ece8', '#a34f42')}
-    ${panel(568, 'DEPOIS', afterLines, theme.soft, '#315d35')}`;
+    ${panel(58, 'BEFORE', beforeLines, '#f5ece8', '#a34f42')}
+    ${panel(568, 'AFTER', afterLines, theme.soft, '#315d35')}`;
 }
 
 function checklistBody(slide, theme) {
@@ -143,11 +143,11 @@ function ctaBody(slide, theme) {
   const bodyLines = wrap(slide.body, { size: 34, width: 760, lines: 6 });
   return `<rect x="58" y="210" width="964" height="886" rx="44" fill="${theme.soft}"/>
     <circle cx="890" cy="350" r="190" fill="${theme.accent}"/>
-    <text x="110" y="305" fill="${SOCIAL_CARD_COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="16" font-weight="850" letter-spacing="2">AGORA É COM VOCÊ</text>
+    <text x="110" y="305" fill="${SOCIAL_CARD_COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="16" font-weight="850" letter-spacing="2">YOUR NEXT STEP</text>
     ${linesMarkup(titleLines, { x: 110, y: 420, size: 68, height: 72, weight: 900 })}
     ${linesMarkup(bodyLines, { x: 110, y: 700, size: 34, height: 51, weight: 550 })}
     <rect x="110" y="970" width="360" height="76" rx="38" fill="${SOCIAL_CARD_COLORS.ink}"/>
-    <text x="290" y="1017" text-anchor="middle" fill="${SOCIAL_CARD_COLORS.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="850">SALVE E COLOQUE EM PRÁTICA</text>`;
+    <text x="290" y="1017" text-anchor="middle" fill="${SOCIAL_CARD_COLORS.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="850">SAVE AND TRY IT</text>`;
 }
 
 export function createEditorialSlideSvg(content, slideIndex, { wordmarkSvg }) {
@@ -182,13 +182,13 @@ export function createEditorialStorySvg(content, { wordmarkSvg }) {
     <circle cx="880" cy="280" r="330" fill="${theme.soft}"/><circle cx="950" cy="190" r="190" fill="${theme.accent}"/>
     <image x="72" y="102" width="260" height="48" preserveAspectRatio="xMinYMid meet" href="data:image/svg+xml;base64,${mark}"/>
     <rect x="72" y="380" width="250" height="58" rx="29" fill="${theme.accent}"/>
-    <text x="197" y="417" text-anchor="middle" fill="${SOCIAL_CARD_COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="900" letter-spacing="1.7">NOVO GUIA · ${escapeHtml(content.story.eyebrow)}</text>
+    <text x="197" y="417" text-anchor="middle" fill="${SOCIAL_CARD_COLORS.ink}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="900" letter-spacing="1.7">NEW GUIDE · ${escapeHtml(content.story.eyebrow)}</text>
     ${linesMarkup(title, { x: 72, y: 600, size: titleSize, height: Math.round(titleSize * 1.06), weight: 900 })}
     <line x1="72" y1="1015" x2="380" y2="1015" stroke="${theme.accent}" stroke-width="14" stroke-linecap="round"/>
     ${linesMarkup(body, { x: 72, y: 1110, size: 32, height: 49, weight: 530, fill: SOCIAL_CARD_COLORS.mutedInk })}
     <rect x="72" y="1550" width="936" height="174" rx="42" fill="${SOCIAL_CARD_COLORS.ink}" filter="url(#shadow)"/>
-    <text x="118" y="1620" fill="${theme.accent}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="900" letter-spacing="2">PASSO A PASSO COMPLETO</text>
-    <text x="118" y="1680" fill="${SOCIAL_CARD_COLORS.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="32" font-weight="850">Veja o carrossel no feed</text>
+    <text x="118" y="1620" fill="${theme.accent}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="15" font-weight="900" letter-spacing="2">FULL STEP-BY-STEP</text>
+    <text x="118" y="1680" fill="${SOCIAL_CARD_COLORS.paper}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="32" font-weight="850">View the carousel in the feed</text>
     <text x="956" y="1678" text-anchor="end" fill="${theme.accent}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="48" font-weight="900">↓</text>
     <text x="72" y="1818" fill="${SOCIAL_CARD_COLORS.mutedInk}" font-family="${SOCIAL_CARD_FONT_STACK}" font-size="18" font-weight="750">@openingshq · openings.dev</text>
   </svg>`;

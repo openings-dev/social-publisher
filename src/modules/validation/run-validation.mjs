@@ -4550,10 +4550,18 @@ validation('renders deterministic editorial carousels and a dedicated Story', as
   assert.notDeepEqual(resolveEditorialTheme(content.id), resolveEditorialTheme(EDITORIAL_CATALOG[1].id));
   const coverSvg = createEditorialSlideSvg(content, 0, { wordmarkSvg });
   const storySvg = createEditorialStorySvg(content, { wordmarkSvg });
+  const allSlideSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
+  const editorialSvgCopy = `${allSlideSvgs.join('\n')}\n${storySvg}`;
   assert.match(coverSvg, /width="1080" height="1350"/u);
   assert.match(coverSvg, /data-editorial-slide="1"/u);
   assert.match(storySvg, /width="1080" height="1920"/u);
   assert.match(storySvg, /data-editorial-story="true"/u);
+  assert.match(editorialSvgCopy, /PRACTICAL GUIDE/u);
+  assert.match(editorialSvgCopy, /BEFORE/u);
+  assert.match(editorialSvgCopy, /AFTER/u);
+  assert.match(editorialSvgCopy, /NEW GUIDE/u);
+  assert.match(editorialSvgCopy, /View the carousel in the feed/u);
+  assert.doesNotMatch(editorialSvgCopy, /GUIA|ANTES|DEPOIS|NOVO|PASSO A PASSO|Veja|SALVE|CURRÍCULO|CANDIDATURA|ENTREVISTA/u);
   const rendered = await renderEditorialAssets(content, { wordmarkSvg });
   assert.equal(rendered.slides.length, 7);
   for (const jpeg of [...rendered.slides, rendered.story]) {
