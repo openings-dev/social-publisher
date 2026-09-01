@@ -4564,9 +4564,12 @@ validation('formats and writes a complete editorial dry run', async () => {
   const content = EDITORIAL_CATALOG[0];
   const caption = formatEditorialCaption(content);
   assert.ok(caption.length < 2_200);
-  assert.match(caption, /Sources:/u);
+  assert.match(caption, /Source:/u);
+  assert.doesNotMatch(caption, /Sources:/u);
   assert.doesNotMatch(caption, /[\u2013\u2014]/u);
   assert.match(caption, /#OpeningsDev/u);
+  const multiSourceContent = EDITORIAL_CATALOG.find(({ sources }) => sources.length > 1);
+  assert.match(formatEditorialCaption(multiSourceContent), /Sources:/u);
   const directory = await mkdtemp(join(tmpdir(), 'openings-editorial-'));
   const wordmarkPath = join(directory, 'wordmark.svg');
   await writeFile(wordmarkPath, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>');
