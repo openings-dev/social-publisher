@@ -5468,8 +5468,11 @@ validation('keeps validation read-only and production publishing explicitly gate
   const publicationStep = productionWorkflow.match(
     /- name: Publish at most one queued job(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
   )?.groups?.block ?? '';
+  assert.match(publicationStep, /id:\s*publication/u);
   assert.match(publicationStep, /mkdir -p \.tmp/u);
   assert.ok(publicationStep.indexOf('mkdir -p .tmp') < publicationStep.indexOf('tee .tmp/publication-summary.txt'));
+  assert.match(publicationStep, /JSON\.parse/u);
+  assert.match(publicationStep, /outcome=.*GITHUB_OUTPUT/u);
   assert.match(productionWorkflow, /npm run publish:story/u);
   assert.match(productionWorkflow, /chore\(state\): record Instagram story/u);
   assert.ok(
@@ -5508,6 +5511,7 @@ validation('keeps validation read-only and production publishing explicitly gate
   )?.groups?.block ?? '';
   assert.match(intakeStep, /id:\s*intake/u);
   assert.match(intakeStep, /env\.RUN_MODE == 'scheduled'/u);
+  assert.match(intakeStep, /steps\.publication\.outputs\.outcome != 'bridge_retryable'/u);
   assert.doesNotMatch(intakeStep, /env\.RUN_MODE == 'controlled'/u);
   assert.match(intakeStep, /for iteration in \{1\.\.8\}/u);
   assert.match(intakeStep, /npm run intake/u);

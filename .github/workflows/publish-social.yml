@@ -209,6 +209,7 @@ jobs:
           --state state
 
       - name: Publish at most one queued job
+        id: publication
         if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled')
         env:
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
@@ -234,10 +235,15 @@ jobs:
             arguments+=(--job "$REQUEST_JOB_ID" --confirmation "$REQUEST_CONFIRMATION")
           fi
           npm run publish -- "${arguments[@]}" | tee .tmp/publication-summary.txt
+          summary="$(tail -n 1 .tmp/publication-summary.txt)"
+          outcome="$(node -e \
+            'process.stdout.write(JSON.parse(process.argv[1]).outcome)' \
+            "$summary")"
+          echo "outcome=$outcome" >> "$GITHUB_OUTPUT"
           {
             echo '### Publication'
             echo '```json'
-            tail -n 1 .tmp/publication-summary.txt
+            echo "$summary"
             echo '```'
           } >> "$GITHUB_STEP_SUMMARY"
 
@@ -344,7 +350,7 @@ jobs:
 
       - name: Process and checkpoint bounded snapshot intake
         id: intake
-        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled' && env.SOCIAL_AUTO_PUBLISH == 'true'
+        if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled' && env.SOCIAL_AUTO_PUBLISH == 'true' && steps.publication.outputs.outcome != 'bridge_retryable'
         env:
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
         run: |
