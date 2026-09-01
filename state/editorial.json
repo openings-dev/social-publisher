@@ -1,6 +1,38 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "1",
-  "pending": [],
+  "pending": [
+    {
+      "contentId": "linkedin-headline-clara",
+      "contentVersion": "1",
+      "pillar": "linkedin",
+      "scheduledDate": "2026-09-01",
+      "createdAt": "2026-09-01T16:37:51.293Z",
+      "assets": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "feed": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "story": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    }
+  ],
   "history": {}
 }
