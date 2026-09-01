@@ -1,3 +1,8 @@
+import {
+  assertEditorialCopyPolicy,
+  EDITORIAL_CONTENT_VERSION,
+} from '../../content/editorial-copy-policy.mjs';
+
 const PILLARS = new Set(['linkedin', 'resume', 'search', 'application', 'interview']);
 const SLIDE_KINDS = ['cover', 'context', 'action', 'example', 'action', 'checklist', 'cta'];
 
@@ -18,7 +23,7 @@ function text(value, label, maximum = 500) {
 export function validateEditorialContent(value) {
   const content = object(value, 'editorial content');
   if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(content.id)) throw new Error('editorial id is invalid');
-  if (content.version !== '1') throw new Error('editorial version is unsupported');
+  if (content.version !== EDITORIAL_CONTENT_VERSION) throw new Error('editorial version is unsupported');
   if (!PILLARS.has(content.pillar)) throw new Error('editorial pillar is invalid');
   text(content.title, 'editorial title', 90);
   text(content.promise, 'editorial promise', 180);
@@ -71,6 +76,7 @@ export function validateEditorialContent(value) {
   if (!Number.isInteger(content.minRepeatDays) || content.minRepeatDays < 84) {
     throw new Error('editorial minRepeatDays must be at least 84');
   }
+  assertEditorialCopyPolicy(content);
   return content;
 }
 
