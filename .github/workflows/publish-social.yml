@@ -83,6 +83,10 @@ jobs:
       LINKEDIN_API_ORIGIN: ${{ vars.LINKEDIN_API_ORIGIN || 'https://api.linkedin.com' }}
       LINKEDIN_API_VERSION: ${{ vars.LINKEDIN_API_VERSION }}
       LINKEDIN_ORGANIZATION_ID: ${{ vars.LINKEDIN_ORGANIZATION_ID }}
+      LINKEDIN_PROVIDER: ${{ vars.LINKEDIN_PROVIDER || 'direct' }}
+      BUFFER_API_ORIGIN: ${{ vars.BUFFER_API_ORIGIN || 'https://api.buffer.com' }}
+      BUFFER_ORGANIZATION_ID: ${{ vars.BUFFER_ORGANIZATION_ID }}
+      BUFFER_LINKEDIN_CHANNEL_ID: ${{ vars.BUFFER_LINKEDIN_CHANNEL_ID }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
       THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.THREADS_AUTO_PUBLISH || 'false' }}
       INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
@@ -250,6 +254,7 @@ jobs:
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
+          BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
           REQUEST_JOB_ID: ${{ inputs.job_id }}
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
         run: |

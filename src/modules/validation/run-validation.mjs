@@ -5014,14 +5014,20 @@ validation('keeps validation read-only and production publishing explicitly gate
   for (const pattern of [
     /publish_linkedin:/u,
     /LINKEDIN_AUTO_PUBLISH/u,
+    /LINKEDIN_PROVIDER/u,
     /LINKEDIN_API_VERSION/u,
     /LINKEDIN_ORGANIZATION_ID/u,
     /LINKEDIN_ACCESS_TOKEN/u,
+    /BUFFER_API_ORIGIN/u,
+    /BUFFER_ORGANIZATION_ID/u,
+    /BUFFER_LINKEDIN_CHANNEL_ID/u,
+    /BUFFER_API_KEY/u,
     /- linkedin/u,
   ]) {
     assert.match(productionWorkflow, pattern);
   }
   assert.equal([...productionWorkflow.matchAll(/secrets\.LINKEDIN_ACCESS_TOKEN/gu)].length, 1);
+  assert.equal([...productionWorkflow.matchAll(/secrets\.BUFFER_API_KEY/gu)].length, 1);
   assert.match(
     productionWorkflow,
     /inputs\.publish_linkedin\) && 'true' \|\| vars\.LINKEDIN_AUTO_PUBLISH \|\| 'false'/u,
@@ -5035,11 +5041,21 @@ validation('keeps validation read-only and production publishing explicitly gate
     'LINKEDIN_ORGANIZATION_ID',
     'LINKEDIN_API_VERSION',
     'LINKEDIN_API_ORIGIN',
+    'LINKEDIN_PROVIDER',
+    'BUFFER_API_ORIGIN',
+    'BUFFER_ORGANIZATION_ID',
+    'BUFFER_LINKEDIN_CHANNEL_ID',
+    'BUFFER_API_KEY',
+    'shareNow',
+    'Buffer Free plan',
+    'direct provider fallback',
     'publish_linkedin',
     'skipped_before_activation',
   ]) {
     assert.match(readme, new RegExp(value, 'u'));
   }
+  assert.doesNotMatch(readme, /BUFFER_API_KEY\s*=\s*[A-Za-z0-9_-]{12,}/u);
+  assert.doesNotMatch(productionWorkflow, /BUFFER_API_KEY:\s*(?!\$\{\{ secrets\.BUFFER_API_KEY \}\})\S+/u);
   assert.match(productionWorkflow, /id:\s*preflight/u);
   assert.match(productionWorkflow, /src\/cli\/preflight\.mjs/u);
   assert.match(productionWorkflow, /steps\.preflight\.outputs\.should_run == 'true'/u);
