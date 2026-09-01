@@ -4438,6 +4438,7 @@ validation('rejects editorial copy that breaks the English publishing policy', (
   for (const [field, value, expected] of [
     ['title', 'Clear profile — better search', /dash characters/u],
     ['title', 'Why it matters: currículo', /Portuguese editorial copy/u],
+    ['title', 'Seu perfil needs one clear role.', /Portuguese editorial copy/u],
     ['promise', 'Leverage your profile for more views.', /banned editorial term/u],
   ]) {
     const candidate = structuredClone(fixture);
