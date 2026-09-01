@@ -10,6 +10,7 @@ import { runDryRun } from '../../cli/dry-run.mjs';
 import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest } from '../../cli/publish.mjs';
 import { runJobStoryPublication } from '../../cli/publish-story.mjs';
+import { EDITORIAL_CATALOG } from '../../content/editorial-catalog.mjs';
 
 import {
   DEPLOY_POLL_ATTEMPTS,
@@ -59,6 +60,14 @@ import {
   requestIncrementalBridgeDeployment,
 } from '../deploy/web-deploy-client.mjs';
 import { verifyPublicBridge } from '../deploy/public-verifier.mjs';
+import { validateEditorialCatalog } from '../editorial/editorial-model.mjs';
+import {
+  createEmptyEditorialState,
+  enqueueEditorialItem,
+  transitionEditorialStage,
+  validateEditorialState,
+} from '../editorial/editorial-state.mjs';
+import { selectEditorialItem, slotForDate } from '../editorial/editorial-scheduler.mjs';
 import {
   countGraphemes,
   formatSalary,
@@ -3306,6 +3315,91 @@ validation('keeps validation read-only and production publishing explicitly gate
   const actionUses = [...`${validationWorkflow}\n${productionWorkflow}`.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/gu)];
   assert.ok(actionUses.length >= 5);
   assert.equal(actionUses.every((match) => /^[0-9a-f]{40}$/u.test(match[1])), true);
+});
+
+validation('ships a complete, source-grounded 12-week Instagram editorial catalog', () => {
+  validateEditorialCatalog(EDITORIAL_CATALOG);
+  assert.equal(EDITORIAL_CATALOG.length, 36);
+  assert.deepEqual(
+    Object.fromEntries(['linkedin', 'resume', 'search', 'application', 'interview'].map((pillar) => [
+      pillar,
+      EDITORIAL_CATALOG.filter((item) => item.pillar === pillar).length,
+    ])),
+    { linkedin: 12, resume: 8, search: 6, application: 4, interview: 6 },
+  );
+  assert.equal(new Set(EDITORIAL_CATALOG.map(({ id }) => id)).size, 36);
+  for (const item of EDITORIAL_CATALOG) {
+    assert.equal(item.version, '1');
+    assert.equal(item.slides.length, 7);
+    assert.deepEqual(item.slides.map(({ kind }) => kind), [
+      'cover', 'context', 'action', 'example', 'action', 'checklist', 'cta',
+    ]);
+    assert.equal(item.slides[5].items.length, 4);
+    assert.ok(item.sources.length > 0);
+    assert.ok(item.sources.every(({ url }) => url.startsWith('https://')));
+    assert.ok(item.minRepeatDays >= 84);
+    assert.equal(JSON.stringify(item).includes('<'), false);
+  }
+  const nicoleSource = 'https://www.linkedin.com/pulse/optimizing-your-linkedin-profile-international-guide-nicole-barra--ujebf/';
+  assert.ok(EDITORIAL_CATALOG
+    .filter(({ pillar }) => pillar === 'linkedin')
+    .every(({ sources }) => sources.some(({ url }) => url === nicoleSource)));
+});
+
+validation('schedules the right editorial pillar and never duplicates a pending slot', () => {
+  assert.deepEqual(slotForDate('2026-09-07T15:17:00.000Z'), {
+    key: '2026-09-07',
+    pillars: ['linkedin'],
+  });
+  assert.deepEqual(slotForDate('2026-09-09T15:17:00.000Z'), {
+    key: '2026-09-09',
+    pillars: ['resume', 'application'],
+  });
+  assert.deepEqual(slotForDate('2026-09-11T15:17:00.000Z'), {
+    key: '2026-09-11',
+    pillars: ['search', 'interview'],
+  });
+  assert.equal(slotForDate('2026-09-08T15:17:00.000Z'), null);
+
+  const now = '2026-09-07T15:17:00.000Z';
+  const empty = createEmptyEditorialState();
+  const selected = selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: empty, now });
+  assert.equal(selected.content.id, 'linkedin-atividade-estrategica');
+  assert.equal(selected.scheduledDate, '2026-09-07');
+  const queued = enqueueEditorialItem(empty, selected, { at: now });
+  validateEditorialState(queued, EDITORIAL_CATALOG);
+  assert.equal(selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: queued, now }), null);
+});
+
+validation('keeps editorial feed and Story stages independently durable', () => {
+  const now = '2026-09-07T15:17:00.000Z';
+  const selected = selectEditorialItem({
+    catalog: EDITORIAL_CATALOG,
+    state: createEmptyEditorialState(),
+    now,
+  });
+  let state = enqueueEditorialItem(createEmptyEditorialState(), selected, { at: now });
+  state = transitionEditorialStage(state, selected.content.id, 'assets', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selected.content.id, 'assets', 'published', {
+    at: now,
+    result: { manifestPath: 'editorial/linkedin-atividade-estrategica/manifest.json' },
+  });
+  state = transitionEditorialStage(state, selected.content.id, 'feed', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selected.content.id, 'feed', 'published', {
+    at: now,
+    result: { id: 'feed-1' },
+  });
+  assert.equal(state.pending[0].story.status, 'pending');
+  assert.equal(state.history[selected.content.id], undefined);
+  state = transitionEditorialStage(state, selected.content.id, 'story', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selected.content.id, 'story', 'published', {
+    at: now,
+    result: { id: 'story-1' },
+  });
+  assert.equal(state.pending.length, 0);
+  assert.equal(state.history[selected.content.id].lastPublishedAt, now);
+  assert.equal(state.history[selected.content.id].cycles, 1);
+  validateEditorialState(state, EDITORIAL_CATALOG);
 });
 
 let passed = 0;
