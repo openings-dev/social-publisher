@@ -59,6 +59,55 @@ function replaceItem(queueState, jobId, update) {
   return validateQueueState({ ...queueState, items });
 }
 
+function replacePendingBridge(intakeState, jobId, update) {
+  const index = intakeState.pendingBridges.findIndex((item) => item.jobId === jobId);
+  if (index < 0) {
+    throw new Error(`Pending bridge not found: ${jobId}`);
+  }
+  const pendingBridges = intakeState.pendingBridges.slice();
+  pendingBridges[index] = update(pendingBridges[index]);
+  return validateIntakeState({ ...intakeState, pendingBridges });
+}
+
+function transitionStage(current, nextStatus, {
+  at = new Date().toISOString(),
+  errorCode,
+  result,
+  intent,
+} = {}) {
+  assertIsoDate(at, 'transition timestamp');
+  if (current.status === nextStatus) {
+    return current;
+  }
+  if (!ALLOWED_TRANSITIONS[current.status]?.has(nextStatus)) {
+    throw new Error(`Invalid stage transition: ${current.status} -> ${nextStatus}`);
+  }
+  let attempts = current.attempts;
+  if (nextStatus === 'publishing') {
+    if (attempts >= MAX_CHANNEL_ATTEMPTS) {
+      throw new Error('Maximum stage attempts reached');
+    }
+    attempts += 1;
+  }
+  const effectiveStatus = nextStatus === 'retryable' && attempts >= MAX_CHANNEL_ATTEMPTS
+    ? 'failed'
+    : nextStatus;
+  return {
+    ...current,
+    status: effectiveStatus,
+    attempts,
+    updatedAt: at,
+    lastError: ['retryable', 'failed'].includes(effectiveStatus)
+      ? { code: sanitizeCode(errorCode), at }
+      : null,
+    result: effectiveStatus === 'published'
+      ? { ...(result ?? {}) }
+      : nextStatus === 'publishing' && intent
+        ? { operationKey: intent.operationKey }
+        : current.result,
+  };
+}
+
 export function enqueueJob(queueState, {
   job,
   snapshot,
@@ -132,41 +181,20 @@ export function transitionQueueStage(queueState, jobId, stageName, nextStatus, {
   if (!STAGES.has(stageName)) {
     throw new Error(`Unknown queue stage: ${stageName}`);
   }
-  assertIsoDate(at, 'transition timestamp');
-  return replaceItem(queueState, jobId, (item) => {
-    const current = item[stageName];
-    if (current.status === nextStatus) {
-      return item;
-    }
-    if (!ALLOWED_TRANSITIONS[current.status]?.has(nextStatus)) {
-      throw new Error(`Invalid stage transition: ${current.status} -> ${nextStatus}`);
-    }
-    let attempts = current.attempts;
-    if (nextStatus === 'publishing') {
-      if (attempts >= MAX_CHANNEL_ATTEMPTS) {
-        throw new Error('Maximum stage attempts reached');
-      }
-      attempts += 1;
-    }
-    const effectiveStatus = nextStatus === 'retryable' && attempts >= MAX_CHANNEL_ATTEMPTS
-      ? 'failed'
-      : nextStatus;
-    const next = {
-      ...current,
-      status: effectiveStatus,
-      attempts,
-      updatedAt: at,
-      lastError: ['retryable', 'failed'].includes(effectiveStatus)
-        ? { code: sanitizeCode(errorCode), at }
-        : null,
-      result: effectiveStatus === 'published'
-        ? { ...(result ?? {}) }
-        : nextStatus === 'publishing' && intent
-          ? { operationKey: intent.operationKey }
-          : current.result,
-    };
-    return { ...item, [stageName]: next };
-  });
+  return replaceItem(queueState, jobId, (item) => ({
+    ...item,
+    [stageName]: transitionStage(item[stageName], nextStatus, {
+      at, errorCode, result, intent,
+    }),
+  }));
+}
+
+export function transitionPendingBridgeStage(intakeState, jobId, nextStatus, options = {}) {
+  validateIntakeState(intakeState);
+  return replacePendingBridge(intakeState, jobId, (bridge) => ({
+    ...bridge,
+    stage: transitionStage(bridge.stage, nextStatus, options),
+  }));
 }
 
 export function resetFailedStage(queueState, jobId, stageName, { at, reason }) {

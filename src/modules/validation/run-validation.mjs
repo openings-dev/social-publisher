@@ -133,6 +133,7 @@ import {
   resetPublishedMetaStages,
   selectNextInstagramStory,
   selectNextQueueItem,
+  transitionPendingBridgeStage,
   transitionQueueStage,
 } from '../state/queue-operations.mjs';
 import { loadStateFile } from '../state/load-state.mjs';
@@ -2377,6 +2378,48 @@ validation('enqueues jobs and bridge refreshes idempotently', () => {
   assert.equal(refreshed.pendingBridges.length, 1);
   assert.equal(refreshed.pendingBridges[0].reason, 'changed');
   assert.equal(refreshed.pendingBridges[0].contentHash, 'b'.repeat(64));
+});
+
+validation('transitions durable pending bridge stages safely', () => {
+  const job = makeJob();
+  const snapshot = snapshotReference();
+  let intake = enqueueBridgeWork({
+    schemaVersion: STATE_SCHEMA_VERSION,
+    processedSnapshot: null,
+    pendingBridges: [],
+    removedJobs: [],
+  }, { job, snapshot, reason: 'new' });
+
+  intake = transitionPendingBridgeStage(intake, job.id, 'publishing', {
+    at: '2026-09-01T18:01:00.000Z',
+  });
+  intake = transitionPendingBridgeStage(intake, job.id, 'retryable', {
+    at: '2026-09-01T18:02:00.000Z',
+    errorCode: 'deployment',
+  });
+  assert.equal(intake.pendingBridges[0].stage.status, 'retryable');
+  assert.deepEqual(intake.pendingBridges[0].stage.lastError, {
+    code: 'deployment',
+    at: '2026-09-01T18:02:00.000Z',
+  });
+
+  intake = transitionPendingBridgeStage(intake, job.id, 'publishing', {
+    at: '2026-09-01T18:03:00.000Z',
+  });
+  intake = transitionPendingBridgeStage(intake, job.id, 'published', {
+    at: '2026-09-01T18:04:00.000Z',
+    result: { status: 'deployed' },
+  });
+  assert.equal(intake.pendingBridges[0].stage.attempts, 2);
+  assert.deepEqual(intake.pendingBridges[0].stage.result, { status: 'deployed' });
+  assert.throws(
+    () => transitionPendingBridgeStage(intake, 'gh_ffffffffffffffffffffffff', 'publishing'),
+    /not found/u,
+  );
+  assert.throws(
+    () => transitionPendingBridgeStage(intake, job.id, 'pending'),
+    /transition/u,
+  );
 });
 
 validation('keeps network transitions independent and caps attempts', () => {
