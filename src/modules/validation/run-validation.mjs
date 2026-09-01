@@ -63,6 +63,7 @@ import {
   publishStoryToInstagram,
   publishToInstagram,
 } from '../networks/instagram-client.mjs';
+import { verifyBufferLinkedInChannel } from '../networks/buffer-linkedin-client.mjs';
 import { publishToLinkedIn } from '../networks/linkedin-client.mjs';
 import { deleteThreadsPost, publishToThreads } from '../networks/threads-client.mjs';
 import {
@@ -844,6 +845,104 @@ validation('categorizes LinkedIn authentication and malformed provider responses
       headers: { 'content-type': 'application/json' },
     }),
   }), (error) => error.code === 'linkedin_image_initialization');
+});
+
+validation('scopes Buffer channel verification to the configured organization', async () => {
+  const requests = [];
+  const channel = await verifyBufferLinkedInChannel({
+    apiKey: 'buffer-secret',
+    organizationId: '68b68d3ac159685850cf2b8d',
+    channelId: '68b68e0fc159685850cf2c11',
+    apiOrigin: 'https://api.buffer.com',
+    fetchImpl: async (url, options) => {
+      requests.push({ url, options });
+      return jsonResponse({
+        data: {
+          channels: [{
+            id: '68b68e0fc159685850cf2c11',
+            service: 'linkedin',
+            isDisconnected: false,
+            isLocked: false,
+          }],
+        },
+      });
+    },
+  });
+  assert.deepEqual(channel, {
+    id: '68b68e0fc159685850cf2c11',
+    service: 'linkedin',
+  });
+  assert.equal(requests.length, 1);
+  assert.equal(requests[0].url, 'https://api.buffer.com');
+  assert.equal(requests[0].options.method, 'POST');
+  assert.equal(requests[0].options.redirect, 'error');
+  assert.equal(requests[0].options.headers.Authorization, 'Bearer buffer-secret');
+  assert.equal(requests[0].options.headers['Content-Type'], 'application/json');
+  const request = JSON.parse(requests[0].options.body);
+  assert.match(request.query, /query GetChannels/u);
+  assert.match(request.query, /channels\(input:\s*\{\s*organizationId:\s*\$organizationId/u);
+  assert.deepEqual(request.variables, { organizationId: '68b68d3ac159685850cf2b8d' });
+});
+
+validation('rejects unsafe Buffer client configuration before requesting a channel', async () => {
+  const base = {
+    apiKey: 'buffer-secret',
+    organizationId: '68b68d3ac159685850cf2b8d',
+    channelId: '68b68e0fc159685850cf2c11',
+    apiOrigin: 'https://api.buffer.com',
+    fetchImpl: async () => { throw new Error('request must not run'); },
+  };
+  for (const override of [
+    { apiKey: '' },
+    { organizationId: '' },
+    { channelId: ' ' },
+    { apiOrigin: 'http://api.buffer.com' },
+    { apiOrigin: 'https://user:secret@api.buffer.com' },
+    { apiOrigin: 'https://api.buffer.com/graphql' },
+  ]) {
+    await assert.rejects(verifyBufferLinkedInChannel({ ...base, ...override }), (error) => (
+      error.code === 'buffer_configuration'
+      && !error.message.includes('buffer-secret')
+    ));
+  }
+});
+
+validation('fails closed for unsafe Buffer responses and unusable LinkedIn channels', async () => {
+  const base = {
+    apiKey: 'buffer-secret',
+    organizationId: '68b68d3ac159685850cf2b8d',
+    channelId: '68b68e0fc159685850cf2c11',
+    apiOrigin: 'https://api.buffer.com',
+  };
+  const cases = [
+    [new Response(null, { status: 401 }), 'buffer_authentication'],
+    [new Response(null, { status: 403 }), 'buffer_authentication'],
+    [new Response(null, { status: 429 }), 'buffer_rate_limit'],
+    [new Response(null, { status: 302, headers: { location: 'https://redirect.test' } }), 'buffer_response'],
+    [new Response('<html></html>', { status: 200, headers: { 'content-type': 'text/html' } }), 'buffer_response'],
+    [new Response('{', { status: 200, headers: { 'content-type': 'application/json' } }), 'buffer_response'],
+    [jsonResponse({ errors: [{ message: 'secret provider detail' }] }), 'buffer_graphql'],
+    [jsonResponse({ data: { channels: [] } }), 'buffer_configuration'],
+    [jsonResponse({ data: { channels: [{
+      id: base.channelId, service: 'facebook', isDisconnected: false, isLocked: false,
+    }] } }), 'buffer_configuration'],
+    [jsonResponse({ data: { channels: [{
+      id: base.channelId, service: 'linkedin', isDisconnected: true, isLocked: false,
+    }] } }), 'buffer_configuration'],
+    [jsonResponse({ data: { channels: [{
+      id: base.channelId, service: 'linkedin', isDisconnected: false, isLocked: true,
+    }] } }), 'buffer_configuration'],
+  ];
+  for (const [response, code] of cases) {
+    await assert.rejects(verifyBufferLinkedInChannel({
+      ...base,
+      fetchImpl: async () => response,
+    }), (error) => (
+      error.code === code
+      && !`${error.message}${JSON.stringify(error.diagnostic ?? null)}`.includes('buffer-secret')
+      && !`${error.message}${JSON.stringify(error.diagnostic ?? null)}`.includes('secret provider detail')
+    ));
+  }
 });
 
 validation('enables scheduled publication only for exact true with every credential', () => {
