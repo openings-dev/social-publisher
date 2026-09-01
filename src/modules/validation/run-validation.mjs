@@ -4668,10 +4668,10 @@ validation('verifies every public editorial JPEG against its canonical manifest'
       height: name === 'story' ? 1920 : 1350,
     })),
   };
-  const base = `https://openings.dev/social/editorial/${content.id}/1`;
+  const base = `https://openings.dev/social/editorial/${content.id}/${content.version}`;
   const result = await verifyPublicEditorial({
     contentId: content.id,
-    version: '1',
+    version: content.version,
     expectedSourceHashes: Object.fromEntries(manifest.assets.map(({ name, sourceSha256 }) => [name, sourceSha256])),
     fetchImpl: async (url) => {
       if (url === `${base}/manifest.json`) return new Response(JSON.stringify(manifest), { headers: { 'content-type': 'application/json' } });

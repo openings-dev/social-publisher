@@ -1,8 +1,10 @@
 import { MAX_CHANNEL_ATTEMPTS } from '../../config/constants.mjs';
+import { EDITORIAL_CATALOG_VERSION } from '../../content/editorial-copy-policy.mjs';
 import { assertNoSensitiveKeys, validateStageState } from '../state/state-model.mjs';
 import { validateEditorialCatalog } from './editorial-model.mjs';
 
 const STAGES = new Set(['assets', 'feed', 'story']);
+const CONTENT_VERSION_PATTERN = /^[1-9]\d*$/u;
 const TRANSITIONS = Object.freeze({
   pending: new Set(['publishing', 'retryable', 'failed']),
   publishing: new Set(['published', 'retryable', 'failed']),
@@ -25,37 +27,47 @@ function code(value, fallback = 'unknown_error') {
 }
 
 export function createEmptyEditorialState() {
-  return { schemaVersion: 1, catalogVersion: '1', pending: [], history: {} };
+  return { schemaVersion: 1, catalogVersion: EDITORIAL_CATALOG_VERSION, pending: [], history: {} };
 }
 
 export function validateEditorialState(value, catalog = null) {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) throw new Error('editorial state must be an object');
-  if (value.schemaVersion !== 1 || value.catalogVersion !== '1') throw new Error('editorial state version is unsupported');
+  if (value.schemaVersion !== 1 || value.catalogVersion !== EDITORIAL_CATALOG_VERSION) {
+    throw new Error('editorial state version is unsupported');
+  }
   if (!Array.isArray(value.pending) || value.history === null || typeof value.history !== 'object' || Array.isArray(value.history)) {
     throw new Error('editorial state collections are invalid');
   }
-  const catalogIds = catalog ? new Set(validateEditorialCatalog(catalog).map(({ id }) => id)) : null;
+  const catalogVersions = catalog
+    ? new Map(validateEditorialCatalog(catalog).map(({ id, version }) => [id, version]))
+    : null;
   const seenIds = new Set();
   const seenDates = new Set();
   for (const item of value.pending) {
     if (typeof item?.contentId !== 'string' || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/u.test(item.contentId)) {
       throw new Error('pending editorial contentId is invalid');
     }
-    if (catalogIds && !catalogIds.has(item.contentId)) throw new Error(`unknown pending editorial content: ${item.contentId}`);
+    if (catalogVersions && !catalogVersions.has(item.contentId)) {
+      throw new Error(`unknown pending editorial content: ${item.contentId}`);
+    }
     if (seenIds.has(item.contentId) || seenDates.has(item.scheduledDate)) throw new Error('editorial pending items must be unique');
     seenIds.add(item.contentId);
     seenDates.add(item.scheduledDate);
-    if (item.contentVersion !== '1' || !/^\d{4}-\d{2}-\d{2}$/u.test(item.scheduledDate)) throw new Error('pending editorial metadata is invalid');
+    if (
+      !CONTENT_VERSION_PATTERN.test(item.contentVersion)
+      || (catalogVersions && catalogVersions.get(item.contentId) !== item.contentVersion)
+      || !/^\d{4}-\d{2}-\d{2}$/u.test(item.scheduledDate)
+    ) throw new Error('pending editorial metadata is invalid');
     iso(item.createdAt, 'pending editorial createdAt');
     for (const stage of STAGES) validateStageState(item[stage], `editorial ${stage}`);
   }
   for (const [contentId, entry] of Object.entries(value.history)) {
-    if (catalogIds && !catalogIds.has(contentId)) throw new Error(`unknown editorial history content: ${contentId}`);
+    if (catalogVersions && !catalogVersions.has(contentId)) throw new Error(`unknown editorial history content: ${contentId}`);
     iso(entry?.lastPublishedAt, 'editorial lastPublishedAt');
     if (!Number.isInteger(entry.cycles) || entry.cycles < 1) throw new Error('editorial history cycles is invalid');
     const publication = entry.lastPublication;
     if (publication === null || typeof publication !== 'object' || Array.isArray(publication)
-      || publication.contentVersion !== '1'
+      || !CONTENT_VERSION_PATTERN.test(publication.contentVersion)
       || !/^\d{4}-\d{2}-\d{2}$/u.test(publication.scheduledDate)) {
       throw new Error('editorial history publication is invalid');
     }
