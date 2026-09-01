@@ -13,6 +13,7 @@ import { processOnePublication } from '../modules/publishing/orchestrator.mjs';
 import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
 import { publishToMastodon } from '../modules/networks/mastodon-client.mjs';
 import { publishToInstagram } from '../modules/networks/instagram-client.mjs';
+import { publishToLinkedIn } from '../modules/networks/linkedin-client.mjs';
 import { publishToThreads } from '../modules/networks/threads-client.mjs';
 import { renderSocialCardPng } from '../modules/render/social-card.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
@@ -50,7 +51,7 @@ export function parsePublicationRequest({ mode = 'scheduled', jobId, stage, conf
   if (mode === 'retry-stage') {
     assertValidJobId(jobId);
     if (!STAGES.has(stage)) {
-      throw new Error('Retry stage must be bridge, bluesky, mastodon, threads, or instagram');
+      throw new Error(`Retry stage must be one of: ${[...STAGES].join(', ')}`);
     }
     if (confirmation !== 'RESET_FAILED_STAGE') {
       throw new Error('Stage reset requires the exact confirmation phrase');
@@ -147,6 +148,27 @@ export async function runPublication({
     apiVersion: config.instagram?.apiVersion,
     apiOrigin: config.instagram?.apiOrigin,
   }));
+  const publishLinkedIn = dependencies.publishLinkedIn ?? (async ({ job, post }) => {
+    const png = await renderSocialCardPng(job, { wordmarkSvg });
+    try {
+      return await publishToLinkedIn({
+        job,
+        post,
+        png,
+        accessToken: config.linkedin?.accessToken,
+        organizationId: config.linkedin?.organizationId,
+        apiVersion: config.linkedin?.apiVersion,
+        apiOrigin: config.linkedin?.apiOrigin,
+      });
+    } catch (error) {
+      log(JSON.stringify({
+        event: 'provider_failure',
+        provider: 'linkedin',
+        code: typeof error?.code === 'string' ? error.code : 'provider',
+      }));
+      throw error;
+    }
+  });
   const result = await processOnePublication({
     queueState,
     publicationsState,
@@ -156,6 +178,7 @@ export async function runPublication({
     publishMastodon,
     publishThreads,
     publishInstagram,
+    publishLinkedIn,
     enabledChannels: config.enabledChannels,
     jobId: parsed.jobId ?? undefined,
   });
@@ -174,6 +197,8 @@ export async function runPublication({
     threadsError: selectedItem?.threads.lastError?.code ?? null,
     instagram: selectedItem?.instagram.status ?? null,
     instagramError: selectedItem?.instagram.lastError?.code ?? null,
+    linkedin: selectedItem?.linkedin.status ?? null,
+    linkedinError: selectedItem?.linkedin.lastError?.code ?? null,
     queueDepth: result.queueState.items.filter((item) => [
       item.bridge,
       ...SOCIAL_CHANNELS.map((channel) => item[channel]),

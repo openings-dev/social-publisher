@@ -168,6 +168,7 @@ function completePublication(publicationsState, item, at) {
     mastodon: item.mastodon.result,
     threads: item.threads.result,
     instagram: item.instagram.result,
+    linkedin: item.linkedin.result,
   };
   return validatePublicationsState({
     ...publicationsState,
@@ -290,6 +291,7 @@ export async function processOnePublication({
   publishMastodon,
   publishThreads,
   publishInstagram,
+  publishLinkedIn,
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
   now = new Date().toISOString(),
   jobId,
@@ -373,6 +375,7 @@ export async function processOnePublication({
     mastodon: publishMastodon,
     threads: publishThreads,
     instagram: publishInstagram,
+    linkedin: publishLinkedIn,
   };
   for (const channel of SOCIAL_CHANNELS) {
     selected = findQueueItem(nextQueue, selected.jobId);

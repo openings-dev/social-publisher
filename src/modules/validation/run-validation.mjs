@@ -9,7 +9,7 @@ import sharp from 'sharp';
 import { runDryRun } from '../../cli/dry-run.mjs';
 import { runLinkedInStateMigration } from '../../cli/migrate-linkedin-state.mjs';
 import { runPreflight } from '../../cli/preflight.mjs';
-import { parsePublicationRequest } from '../../cli/publish.mjs';
+import { parsePublicationRequest, runPublication } from '../../cli/publish.mjs';
 
 import {
   DEPLOY_POLL_ATTEMPTS,
@@ -243,6 +243,81 @@ validation('requires exact manual publication and reset gates', () => {
     stage: 'all',
     confirmation: 'RESET_FAILED_STAGE',
   }), /retry stage/i);
+  assert.deepEqual(parsePublicationRequest({
+    mode: 'retry-stage',
+    jobId,
+    stage: 'linkedin',
+    confirmation: 'RESET_FAILED_STAGE',
+  }), { mode: 'retry-stage', jobId, stage: 'linkedin' });
+});
+
+validation('wires LinkedIn through the publication CLI', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-linkedin-publish-'));
+  const job = makeJob({ id: 'gh_777788889999aaaabbbbcccc' });
+  const snapshot = makeLoadedSnapshot({
+    commit: '7'.repeat(40),
+    generatedAt: '2026-09-01T13:00:00.000Z',
+    dataHash: '7'.repeat(64),
+    jobs: [job],
+  });
+  let linkedinCalls = 0;
+  try {
+    await Promise.all([
+      saveStateFile(join(directory, 'queue.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        items: [],
+      }, validateQueueState),
+      saveStateFile(join(directory, 'publications.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        jobs: {},
+      }, validatePublicationsState),
+    ]);
+    const result = await runPublication({
+      request: {
+        mode: 'controlled',
+        jobId: job.id,
+        confirmation: 'PUBLISH_ONE_JOB',
+      },
+      dataRepositoryPath: '/fixture/data',
+      stateDirectory: directory,
+      wordmarkPath: '/fixture/wordmark.svg',
+      outputPath: join(directory, 'output'),
+      env: {
+        WEB_DEPLOY_TOKEN: 'deploy-secret',
+        BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+        BLUESKY_APP_PASSWORD: 'bluesky-secret',
+        MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+        LINKEDIN_AUTO_PUBLISH: 'true',
+        LINKEDIN_ACCESS_TOKEN: 'linkedin-secret',
+        LINKEDIN_ORGANIZATION_ID: '108765432',
+        LINKEDIN_API_VERSION: '202608',
+      },
+      log: () => {},
+      dependencies: {
+        resolveGitCommit: async () => snapshot.commit,
+        loadCanonicalWordmark: async () => '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
+        loadSnapshot: async () => snapshot,
+        createBridgePublisher: () => async () => ({ status: 'deployed' }),
+        publishBluesky: async () => ({ status: 'published' }),
+        publishMastodon: async () => ({ status: 'published' }),
+        publishLinkedIn: async ({ post: selectedPost }) => {
+          linkedinCalls += 1;
+          assert.equal(selectedPost.canonicalUrl, `https://openings.dev/jobs/${job.id}`);
+          return {
+            status: 'published',
+            id: 'urn:li:share:9988776655',
+            url: 'https://www.linkedin.com/feed/update/urn:li:share:9988776655/',
+          };
+        },
+      },
+    });
+    assert.equal(result.outcome, 'completed');
+    assert.equal(linkedinCalls, 1);
+    assert.equal(JSON.parse(await readFile(join(directory, 'queue.json')))
+      .items[0].linkedin.status, 'published');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 validation('accepts bounded JSON responses and rejects unsafe response types', async () => {
@@ -3298,6 +3373,44 @@ validation('publishes at most one job and never bypasses a failed bridge', async
   assert.equal(result.outcome, 'bridge_retryable');
   assert.deepEqual(providerJobs, []);
   assert.equal(result.queueState.items[1].bridge.status, 'pending');
+});
+
+validation('publishes and persists a LinkedIn-only queue stage', async () => {
+  const job = makeJob({ id: 'gh_111122223333444455556666' });
+  const snapshot = makeLoadedSnapshot({
+    commit: '9'.repeat(40),
+    generatedAt: '2026-09-01T12:30:00.000Z',
+    dataHash: '9'.repeat(64),
+    jobs: [job],
+  });
+  const queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-09-01T12:31:00.000Z',
+    enabledChannels: ['linkedin'],
+  });
+  const result = await processOnePublication({
+    queueState: queue,
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async () => ({ status: 'deployed' }),
+    publishBluesky: async () => { throw new Error('Bluesky must stay skipped'); },
+    publishMastodon: async () => { throw new Error('Mastodon must stay skipped'); },
+    publishLinkedIn: async ({ job: selectedJob, post: selectedPost }) => {
+      assert.equal(selectedJob.id, job.id);
+      assert.equal(selectedPost.canonicalUrl, `https://openings.dev/jobs/${job.id}`);
+      return {
+        status: 'published',
+        id: 'urn:li:share:123456789',
+        url: 'https://www.linkedin.com/feed/update/urn:li:share:123456789/',
+      };
+    },
+    enabledChannels: ['linkedin'],
+    now: '2026-09-01T13:00:00.000Z',
+  });
+  assert.equal(result.outcome, 'completed');
+  assert.equal(result.queueState.items[0].linkedin.status, 'published');
+  assert.equal(result.publicationsState.jobs[job.id].linkedin.id, 'urn:li:share:123456789');
 });
 
 validation('keeps validation read-only and production publishing explicitly gated', async () => {
