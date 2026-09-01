@@ -3498,6 +3498,75 @@ validation('publishes and persists a LinkedIn-only queue stage', async () => {
   assert.equal(result.publicationsState.jobs[job.id].linkedin.id, 'urn:li:share:123456789');
 });
 
+validation('retries LinkedIn without republishing a completed provider', async () => {
+  const job = makeJob({ id: 'gh_111122223333444455557777' });
+  const snapshot = makeLoadedSnapshot({
+    commit: '8'.repeat(40),
+    generatedAt: '2026-09-01T12:30:00.000Z',
+    dataHash: '8'.repeat(64),
+    jobs: [job],
+  });
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-09-01T12:31:00.000Z',
+    enabledChannels: ['bluesky', 'linkedin'],
+  });
+  queue = transitionQueueStage(queue, job.id, 'bridge', 'publishing', {
+    at: '2026-09-01T12:32:00.000Z',
+  });
+  queue = transitionQueueStage(queue, job.id, 'bridge', 'published', {
+    at: '2026-09-01T12:33:00.000Z',
+    result: { status: 'deployed' },
+  });
+  queue = transitionQueueStage(queue, job.id, 'bluesky', 'publishing', {
+    at: '2026-09-01T12:34:00.000Z',
+  });
+  queue = transitionQueueStage(queue, job.id, 'bluesky', 'published', {
+    at: '2026-09-01T12:35:00.000Z',
+    result: { status: 'published', uri: 'at://fixture', cid: 'fixture-cid' },
+  });
+  let linkedinCalls = 0;
+  const publishers = {
+    publishBridge: async () => { throw new Error('Bridge must stay published'); },
+    publishBluesky: async () => { throw new Error('Bluesky must not be republished'); },
+    publishMastodon: async () => { throw new Error('Mastodon must stay skipped'); },
+    publishLinkedIn: async () => {
+      linkedinCalls += 1;
+      if (linkedinCalls === 1) throw new Error('Temporary LinkedIn failure');
+      return {
+        status: 'reconciled',
+        id: 'urn:li:share:2233445566',
+        url: 'https://www.linkedin.com/feed/update/urn:li:share:2233445566/',
+      };
+    },
+  };
+  const first = await processOnePublication({
+    queueState: queue,
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+    currentSnapshot: snapshot,
+    ...publishers,
+    enabledChannels: ['bluesky', 'linkedin'],
+    now: '2026-09-01T13:00:00.000Z',
+  });
+  assert.equal(first.outcome, 'partial');
+  assert.equal(first.queueState.items[0].bluesky.status, 'published');
+  assert.equal(first.queueState.items[0].linkedin.status, 'retryable');
+
+  const second = await processOnePublication({
+    queueState: first.queueState,
+    publicationsState: first.publicationsState,
+    currentSnapshot: snapshot,
+    ...publishers,
+    enabledChannels: ['bluesky', 'linkedin'],
+    now: '2026-09-01T15:00:00.000Z',
+  });
+  assert.equal(linkedinCalls, 2);
+  assert.equal(second.outcome, 'completed');
+  assert.equal(second.queueState.items[0].bluesky.attempts, 1);
+  assert.equal(second.queueState.items[0].linkedin.status, 'published');
+});
+
 validation('keeps validation read-only and production publishing explicitly gated', async () => {
   const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
   const [validationWorkflow, productionWorkflow, readme] = await Promise.all([
