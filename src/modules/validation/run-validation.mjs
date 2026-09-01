@@ -2081,6 +2081,61 @@ validation('prioritizes cross-channel work over a starving legacy-channel item',
   );
 });
 
+validation('skips social work blocked by a terminal bridge failure', () => {
+  const blockedJob = makeJob({
+    id: 'gh_555555555555555555555555',
+    createdAt: '2026-08-18T10:00:00.000Z',
+  });
+  const healthyJob = makeJob({
+    id: 'gh_666666666666666666666666',
+    createdAt: '2026-08-20T12:00:00.000Z',
+  });
+  let queue = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
+  queue = enqueueJob(queue, {
+    job: blockedJob,
+    snapshot: snapshotReference(),
+    discoveredAt: '2026-08-18T10:01:00.000Z',
+  });
+  queue = enqueueJob(queue, {
+    job: healthyJob,
+    snapshot: snapshotReference(),
+    discoveredAt: '2026-08-20T12:01:00.000Z',
+  });
+  queue.items[0].bridge = {
+    status: 'failed',
+    attempts: MAX_CHANNEL_ATTEMPTS,
+    updatedAt: '2026-08-20T13:00:00.000Z',
+    lastError: { code: 'deployment', at: '2026-08-20T13:00:00.000Z' },
+    lastReset: null,
+    result: null,
+  };
+
+  assert.equal(
+    selectNextQueueItem(queue, '2026-08-21T11:00:00.000Z').jobId,
+    healthyJob.id,
+  );
+  assert.deepEqual(decideScheduledWork({
+    publishEnabled: true,
+    intakeState: {
+      schemaVersion: STATE_SCHEMA_VERSION,
+      processedSnapshot: snapshotReference(),
+      pendingBridges: [],
+      removedJobs: [],
+    },
+    queueState: queue,
+    currentDataHash: snapshotReference().dataHash,
+  }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
+
+  const manuallyReset = resetFailedStage(queue, blockedJob.id, 'bridge', {
+    at: '2026-08-21T11:01:00.000Z',
+    reason: 'manual_reset',
+  });
+  assert.equal(
+    selectNextQueueItem(manuallyReset, '2026-08-21T11:02:00.000Z').jobId,
+    blockedJob.id,
+  );
+});
+
 validation('marks a closed queued job without publishing either channel', () => {
   const job = makeJob();
   let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
@@ -3932,6 +3987,61 @@ validation('deploys before providers and preserves partial success for a retry',
   assert.equal(second.publicationsState.jobs[job.id].status, 'completed');
 });
 
+validation('retires closed queue items and publishes the next open job in one run', async () => {
+  const closedJob = makeJob({
+    id: 'gh_777777777777777777777777',
+    createdAt: '2026-08-18T10:00:00.000Z',
+  });
+  const openJob = makeJob({
+    id: 'gh_888888888888888888888888',
+    createdAt: '2026-08-20T12:00:00.000Z',
+  });
+  const snapshot = makeLoadedSnapshot({
+    commit: '8'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: '8'.repeat(64),
+    jobs: [openJob],
+  });
+  let queue = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
+  for (const [job, discoveredAt] of [
+    [closedJob, '2026-08-18T10:01:00.000Z'],
+    [openJob, '2026-08-20T12:01:00.000Z'],
+  ]) {
+    queue = enqueueJob(queue, { job, snapshot, discoveredAt });
+    queue = transitionQueueStage(queue, job.id, 'bridge', 'publishing', {
+      at: discoveredAt,
+    });
+    queue = transitionQueueStage(queue, job.id, 'bridge', 'published', {
+      at: discoveredAt,
+      result: { status: 'deployed' },
+    });
+  }
+
+  const providerJobs = [];
+  const result = await processOnePublication({
+    queueState: queue,
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async () => { throw new Error('Published bridges must not redeploy'); },
+    publishBluesky: async ({ job }) => {
+      providerJobs.push(job.id);
+      return { status: 'published', uri: 'at://fixture', cid: 'fixture-cid' };
+    },
+    publishMastodon: async ({ job, post }) => {
+      providerJobs.push(job.id);
+      return { status: 'published', id: 'status', url: post.canonicalUrl };
+    },
+    now: '2026-08-21T11:00:00.000Z',
+  });
+
+  assert.equal(result.outcome, 'completed');
+  assert.equal(result.selectedJobId, openJob.id);
+  assert.equal(result.queueState.items[0].bridge.status, 'published');
+  assert.equal(result.queueState.items[0].bluesky.status, 'skipped_closed');
+  assert.equal(result.queueState.items[0].mastodon.status, 'skipped_closed');
+  assert.deepEqual(providerJobs, [openJob.id, openJob.id]);
+});
+
 validation('refreshes a stale queued Instagram card before publication', async () => {
   const job = makeJob();
   const snapshot = makeLoadedSnapshot({
@@ -4297,6 +4407,10 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.doesNotMatch(productionWorkflow, /^\s{2}(?:push|pull_request):/mu);
   assert.match(productionWorkflow, /contents:\s*write/u);
   assert.match(productionWorkflow, /cancel-in-progress:\s*false/u);
+  assert.match(
+    productionWorkflow,
+    /^defaults:\n  run:\n    shell: bash$/mu,
+  );
   assert.match(productionWorkflow, /PUBLISH_ONE_JOB/u);
   assert.match(productionWorkflow, /RESET_FAILED_STAGE/u);
   assert.match(productionWorkflow, /chore\(state\): record social intake/u);

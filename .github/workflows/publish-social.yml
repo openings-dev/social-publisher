@@ -59,6 +59,10 @@ concurrency:
   group: social-publisher-publication
   cancel-in-progress: false
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   publish:
     name: Intake and publish one job

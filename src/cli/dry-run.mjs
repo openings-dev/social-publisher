@@ -15,7 +15,10 @@ import { loadSnapshot } from '../modules/data/load-snapshot.mjs';
 import { collectDelta } from '../modules/intake/collect-delta.mjs';
 import { isEligibleNewJob } from '../modules/intake/eligibility.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
-import { selectNextQueueItem } from '../modules/state/queue-operations.mjs';
+import {
+  markMissingJobsClosed,
+  selectNextQueueItem,
+} from '../modules/state/queue-operations.mjs';
 import {
   migrateIntakeState,
   migratePublicationsState,
@@ -116,7 +119,12 @@ export async function runSnapshotDryRun({
   const eligible = previous === null
     ? []
     : delta.new.filter((job) => isEligibleNewJob(job, previous.generatedAt, publicationsState));
-  const queued = selectNextQueueItem(queueState);
+  const currentQueue = markMissingJobsClosed(
+    queueState,
+    current.jobsById.keys(),
+    current.generatedAt,
+  );
+  const queued = selectNextQueueItem(currentQueue);
   const selectedId = jobId ?? queued?.jobId ?? eligible[0]?.id ?? current.jobsById.keys().next().value;
   const selected = current.jobsById.get(assertValidJobId(selectedId));
   if (!selected) {

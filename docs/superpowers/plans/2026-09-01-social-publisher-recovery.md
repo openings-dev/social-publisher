@@ -231,7 +231,48 @@ git add .github/workflows/publish-social.yml src/modules/validation/run-validati
 git commit -m "fix: propagate social workflow pipeline failures"
 ```
 
-### Task 4: Full recovery verification
+### Task 4: Retire closed queue entries before selection
+
+**Files:**
+- Modify: `src/modules/validation/run-validation.mjs`
+- Modify: `src/modules/state/queue-operations.mjs`
+- Modify: `src/modules/publishing/orchestrator.mjs`
+- Modify: `src/cli/dry-run.mjs`
+
+- [ ] **Step 1: Write a failing publication regression**
+
+Create a queue with a starving stale job and a healthy open job. Give both a
+published bridge, provide a current snapshot containing only the healthy job,
+and call `processOnePublication`. Assert that the stale stages become
+`skipped_closed`, the healthy job is selected, and its providers publish during
+the same call.
+
+- [ ] **Step 2: Run validation and verify RED**
+
+Run the full validation command. Expected: FAIL because the existing
+orchestrator returns `skipped_closed` after selecting only the stale job.
+
+- [ ] **Step 3: Normalize missing jobs before automatic selection**
+
+Add `markMissingJobsClosed(queueState, openJobIds, at)` to
+`queue-operations.mjs`. It must validate the timestamp and state, convert the
+iterable of current IDs to a `Set`, and call `markJobClosed` for every missing
+queue item. Use it in scheduled `processOnePublication` before
+`selectNextQueueItem`, and in `runSnapshotDryRun` on an in-memory queue copy
+before dry-run selection. Preserve the existing controlled-job behavior.
+
+- [ ] **Step 4: Run validation and the real schema-6 dry-run**
+
+Run the full validation command, then the schema-6 dry-run command from the
+verification task. Expected: both pass, and the dry-run selects an open job.
+
+- [ ] **Step 5: Commit the closed-item fix**
+
+```bash
+git commit -m "fix: retire closed jobs before queue selection" -- src/modules/state/queue-operations.mjs src/modules/publishing/orchestrator.mjs src/cli/dry-run.mjs src/modules/validation/run-validation.mjs
+```
+
+### Task 5: Full recovery verification
 
 **Files:**
 - Verify only; do not commit generated `.tmp` artifacts.

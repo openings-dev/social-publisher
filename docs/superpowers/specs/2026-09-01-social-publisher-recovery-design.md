@@ -52,6 +52,18 @@ published Instagram and bridge prerequisites.
 Regression contracts cover a failed-bridge poison item followed by a healthy
 item, the matching preflight depth, and manual recovery compatibility.
 
+## Closed queue entries
+
+Before automatic selection, the publisher compares queued IDs with the current
+immutable snapshot and marks every missing job `skipped_closed` in one state
+transition. It then selects an open item during the same run, so a batch of
+closed jobs cannot consume multiple scheduled cycles. Snapshot dry-runs apply
+the same normalization in memory, without persisting state.
+
+A regression contract starts with a stale starving item followed by an open
+item and proves that the stale stages are closed while the open item is
+published in the same operation.
+
 ## Workflow failure propagation
 
 The social workflow explicitly uses Bash for all `run` steps. GitHub Actions

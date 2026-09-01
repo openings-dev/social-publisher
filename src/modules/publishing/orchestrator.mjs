@@ -11,6 +11,7 @@ import {
   enqueueBridgeWork,
   enqueueJob,
   markJobClosed,
+  markMissingJobsClosed,
   selectNextQueueItem,
   transitionQueueStage,
 } from '../state/queue-operations.mjs';
@@ -310,6 +311,15 @@ export async function processOnePublication({
     }
   }
 
+  let automaticallyClosedJobId = null;
+  if (!jobId) {
+    const previouslySelected = selectNextQueueItem(nextQueue, now);
+    nextQueue = markMissingJobsClosed(nextQueue, currentSnapshot.jobsById.keys(), now);
+    if (previouslySelected && !currentSnapshot.jobsById.has(previouslySelected.jobId)) {
+      automaticallyClosedJobId = previouslySelected.jobId;
+    }
+  }
+
   if (jobId && !findQueueItem(nextQueue, jobId)) {
     if (nextPublications.jobs[jobId]?.status === 'completed') {
       return {
@@ -334,7 +344,12 @@ export async function processOnePublication({
 
   let selected = jobId ? findQueueItem(nextQueue, jobId) : selectNextQueueItem(nextQueue, now);
   if (!selected) {
-    return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'idle', selectedJobId: null };
+    return {
+      queueState: nextQueue,
+      publicationsState: nextPublications,
+      outcome: automaticallyClosedJobId ? 'skipped_closed' : 'idle',
+      selectedJobId: automaticallyClosedJobId,
+    };
   }
   const selectedJobId = selected.jobId;
   const job = currentSnapshot.jobsById.get(selected.jobId);
