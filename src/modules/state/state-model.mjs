@@ -178,9 +178,13 @@ export function validatePublicationsState(value) {
   const state = assertObject(value, 'publications state');
   assertSchemaVersion(state.schemaVersion);
   assertObject(state.jobs, 'publications jobs');
-  for (const jobId of Object.keys(state.jobs)) {
+  for (const [jobId, value] of Object.entries(state.jobs)) {
     if (!isValidJobId(jobId)) {
       throw new Error('publication jobId is invalid');
+    }
+    const publication = assertObject(value, `publication ${jobId}`);
+    if (!Object.hasOwn(publication, 'linkedin')) {
+      throw new Error(`publication ${jobId}.linkedin is required`);
     }
   }
   assertNoSensitiveKeys(state);

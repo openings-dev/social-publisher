@@ -1106,6 +1106,12 @@ validation('rejects unknown state versions, duplicates, and sensitive keys', () 
     () => validateQueueState({ schemaVersion: STATE_SCHEMA_VERSION, items: [{ jobId: 'gh_0123456789abcdef01234567' }, { jobId: 'gh_0123456789abcdef01234567' }] }),
     /duplicate/i,
   );
+  assert.throws(() => validatePublicationsState({
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: {
+      gh_0123456789abcdef01234567: { status: 'completed' },
+    },
+  }), /linkedin/u);
   assert.throws(() => assertNoSensitiveKeys({ nested: { accessToken: 'never-track-this' } }), /sensitive/i);
 });
 
@@ -1578,6 +1584,7 @@ validation('replaces only Meta publications and records recoverable cleanup stat
         mastodon: queue.items[0].mastodon.result,
         threads: queue.items[0].threads.result,
         instagram: queue.items[0].instagram.result,
+        linkedin: null,
         metaMigration: priorMigration,
       },
     },
@@ -3500,6 +3507,7 @@ validation('controlled publication never republishes a completed job', async () 
         completedAt: '2026-08-20T15:00:00.000Z',
         bluesky: { status: 'published' },
         mastodon: { status: 'published' },
+        linkedin: null,
       },
     },
   };
