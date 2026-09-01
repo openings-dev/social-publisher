@@ -232,9 +232,10 @@ export function markJobClosed(queueState, jobId, at) {
   });
 }
 
-function isReady(item) {
-  return [item.bridge, ...SOCIAL_CHANNELS.map((channel) => item[channel])]
-    .some((stage) => READY_STATUSES.has(stage.status));
+export function isReadyQueueItem(item) {
+  if (READY_STATUSES.has(item.bridge.status)) return true;
+  return item.bridge.status === 'published'
+    && SOCIAL_CHANNELS.some((channel) => READY_STATUSES.has(item[channel].status));
 }
 
 function readySocialChannelCount(item) {
@@ -246,7 +247,7 @@ function readySocialChannelCount(item) {
 export function selectNextQueueItem(queueState, now = new Date().toISOString()) {
   validateQueueState(queueState);
   const nowMs = Date.parse(assertIsoDate(now, 'selection timestamp'));
-  const ready = queueState.items.filter(isReady);
+  const ready = queueState.items.filter(isReadyQueueItem);
   if (ready.length === 0) {
     return null;
   }
