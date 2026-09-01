@@ -127,7 +127,8 @@ function normalizedResult(post, status) {
 }
 
 function commentaryContainsUrl(commentary, canonicalUrl) {
-  return typeof commentary === 'string' && commentary.includes(canonicalUrl);
+  return typeof commentary === 'string'
+    && commentary.split(/\s+/u).some((token) => token === canonicalUrl);
 }
 
 async function findExistingPost({ config, canonicalUrl, fetchImpl }) {

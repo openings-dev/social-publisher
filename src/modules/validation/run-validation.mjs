@@ -445,6 +445,50 @@ validation('reconciles an existing LinkedIn article before uploading another ima
   assert.equal(requests, 1);
 });
 
+validation('does not reconcile a LinkedIn post whose URL only has the canonical prefix', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const responses = [
+    new Response(JSON.stringify({
+      elements: [{
+        id: 'urn:li:share:9988776655',
+        author: 'urn:li:organization:108765432',
+        commentary: `Different job: ${post.canonicalUrl}/another`,
+        content: {},
+      }],
+    }), { status: 200, headers: { 'content-type': 'application/json' } }),
+    new Response(JSON.stringify({
+      value: {
+        uploadUrl: 'https://www.linkedin.com/dms-uploads/fixture?token=signed',
+        image: 'urn:li:image:fixture-image',
+      },
+    }), { status: 200, headers: { 'content-type': 'application/json' } }),
+    new Response(null, { status: 201 }),
+    new Response(JSON.stringify({
+      id: 'urn:li:image:fixture-image',
+      owner: 'urn:li:organization:108765432',
+      status: 'AVAILABLE',
+    }), { status: 200, headers: { 'content-type': 'application/json' } }),
+    new Response(null, {
+      status: 201,
+      headers: { 'x-restli-id': 'urn:li:share:123456789' },
+    }),
+  ];
+  const result = await publishToLinkedIn({
+    job,
+    post,
+    png: Buffer.from('canonical-png'),
+    accessToken: 'linkedin-secret',
+    organizationId: '108765432',
+    apiVersion: '202608',
+    fetchImpl: async () => responses.shift(),
+    sleep: async () => {},
+  });
+  assert.equal(result.status, 'published');
+  assert.equal(result.id, 'urn:li:share:123456789');
+  assert.equal(responses.length, 0);
+});
+
 validation('reconciles LinkedIn after an ambiguous post creation failure', async () => {
   const job = makeJob();
   const post = formatSocialPost(job);
