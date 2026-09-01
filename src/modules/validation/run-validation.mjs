@@ -1663,6 +1663,27 @@ validation('loads one complete immutable data snapshot', async () => {
   assert.deepEqual([...snapshot.jobsById.keys()], [jobs[0].id]);
 });
 
+validation('loads every reviewed data snapshot schema', async () => {
+  const jobs = [makeJob()];
+  for (const schemaVersion of [4, 5, 6]) {
+    const files = makeSnapshotFiles(jobs, { manifest: { schemaVersion } });
+    const snapshot = await loadSnapshot('/data', 'b'.repeat(40), {
+      readJson: async (_repository, _commit, path) => structuredClone(files[path]),
+    });
+    assert.equal(snapshot.schemaVersion, schemaVersion);
+  }
+});
+
+validation('rejects an unreviewed data snapshot schema', async () => {
+  const files = makeSnapshotFiles([makeJob()], { manifest: { schemaVersion: 7 } });
+  await assert.rejects(
+    loadSnapshot('/data', 'b'.repeat(40), {
+      readJson: async (_repository, _commit, path) => structuredClone(files[path]),
+    }),
+    /Unsupported data schemaVersion: 7/u,
+  );
+});
+
 validation('loads incrementally written artifacts from one immutable commit', async () => {
   const files = makeSnapshotFiles([makeJob()]);
   files['snapshots/opportunities/api/pages/page-0001.json'].generatedAt = '2026-08-20T13:05:00.000Z';

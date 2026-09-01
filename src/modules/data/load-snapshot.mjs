@@ -4,7 +4,7 @@ import { isValidJobId } from '../../shared/job-id.mjs';
 import { readJsonAtCommit } from './git-json.mjs';
 
 const SNAPSHOT_ROOT = 'snapshots/opportunities';
-const SUPPORTED_SCHEMA_VERSION = 4;
+const SUPPORTED_SCHEMA_VERSIONS = new Set([4, 5, 6]);
 const HASH_PATTERN = /^[0-9a-f]{64}$/;
 
 function assertObject(value, label) {
@@ -60,7 +60,7 @@ export async function loadSnapshot(repositoryPath, commit, {
   const manifestPath = path.posix.join(snapshotRoot, 'api/manifest.json');
   const manifest = assertObject(await readJson(repositoryPath, commit, manifestPath), 'manifest');
 
-  if (manifest.schemaVersion !== SUPPORTED_SCHEMA_VERSION) {
+  if (!SUPPORTED_SCHEMA_VERSIONS.has(manifest.schemaVersion)) {
     throw new Error(`Unsupported data schemaVersion: ${String(manifest.schemaVersion)}`);
   }
   assertIsoDate(manifest.generatedAt, 'manifest.generatedAt');
