@@ -229,7 +229,7 @@ async function waitForImage({
   delayMs,
 }) {
   for (let attempt = 0; attempt < attempts; attempt += 1) {
-    if (attempt > 0 || delayMs > 0) await sleep(delayMs);
+    if (attempt > 0) await sleep(delayMs);
     const response = await requestJson(
       new URL(`/rest/images/${encodeURIComponent(image)}`, config.apiOrigin),
       {
@@ -348,6 +348,7 @@ export async function publishToLinkedIn({
       fetchImpl,
     }).catch(() => null);
     if (reconciled) return reconciled;
+    if (error?.code === 'linkedin_response') throw error;
     throw publicationError('linkedin_publication', 'LinkedIn publication failed');
   }
 }
