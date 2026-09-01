@@ -1,11 +1,11 @@
-export const STATE_SCHEMA_VERSION = 2;
+export const STATE_SCHEMA_VERSION = 3;
 export const OPENINGS_ORIGIN = 'https://openings.dev';
 export const BLUESKY_SERVICE_URL = 'https://bsky.social';
 export const MASTODON_BASE_URL = 'https://mastodon.social';
 export const THREADS_API_URL = 'https://graph.threads.net/v1.0';
 export const INSTAGRAM_API_ORIGIN = 'https://graph.instagram.com';
 export const LINKEDIN_API_ORIGIN = 'https://api.linkedin.com';
-export const SOCIAL_CHANNELS = Object.freeze(['bluesky', 'mastodon', 'threads', 'instagram']);
+export const SOCIAL_CHANNELS = Object.freeze(['bluesky', 'mastodon', 'threads', 'instagram', 'linkedin']);
 export const DEFAULT_SOCIAL_CHANNELS = Object.freeze(['bluesky', 'mastodon']);
 export const GITHUB_API_ORIGIN = 'https://api.github.com';
 export const WEB_DEPLOY_REPOSITORY = 'openings-dev/web-deploy';

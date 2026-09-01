@@ -12,6 +12,7 @@
     "validate": "node src/modules/validation/run-validation.mjs",
     "dry-run": "node src/cli/dry-run.mjs",
     "intake": "node src/cli/intake.mjs",
+    "migrate:linkedin-state": "node src/cli/migrate-linkedin-state.mjs",
     "publish": "node src/cli/publish.mjs",
     "migrate:meta": "node src/cli/migrate-meta.mjs"
   },

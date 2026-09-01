@@ -7,6 +7,7 @@ import { TID } from '@atproto/common-web';
 import sharp from 'sharp';
 
 import { runDryRun } from '../../cli/dry-run.mjs';
+import { runLinkedInStateMigration } from '../../cli/migrate-linkedin-state.mjs';
 import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest } from '../../cli/publish.mjs';
 
@@ -93,6 +94,7 @@ import {
 } from '../state/queue-operations.mjs';
 import { loadStateFile } from '../state/load-state.mjs';
 import { saveStateFile } from '../state/save-state.mjs';
+import { migrateLinkedInState } from '../state/linkedin-state-migration.mjs';
 import {
   assertNoSensitiveKeys,
   validateIntakeState,
@@ -107,7 +109,7 @@ function validation(name, run) {
 }
 
 validation('exports the approved immutable constants', () => {
-  assert.equal(STATE_SCHEMA_VERSION, 2);
+  assert.equal(STATE_SCHEMA_VERSION, 3);
   assert.equal(OPENINGS_ORIGIN, 'https://openings.dev');
   assert.equal(MAX_CHANNEL_ATTEMPTS, 3);
   assert.equal(DEPLOY_POLL_ATTEMPTS, 72);
@@ -593,6 +595,108 @@ function makeJob(overrides = {}) {
     ...overrides,
   };
 }
+
+function makeVersionTwoQueueFixture(job) {
+  const stage = (status, result = null) => ({
+    status,
+    attempts: status === 'published' ? 1 : 0,
+    updatedAt: status === 'published' ? '2026-08-20T14:00:00.000Z' : null,
+    lastError: null,
+    lastReset: null,
+    result,
+  });
+  return {
+    schemaVersion: 2,
+    items: [{
+      jobId: job.id,
+      sourceId: job.sourceId,
+      dataCommit: 'f'.repeat(40),
+      dataHash: 'a'.repeat(64),
+      contentHash: job.contentHash,
+      discoveredAt: '2026-08-20T13:01:00.000Z',
+      createdAt: job.createdAt,
+      publicationCreatedAt: '2026-08-20T13:01:00.000Z',
+      bridge: stage('published', { status: 'deployed' }),
+      bluesky: stage('published', { status: 'published' }),
+      mastodon: stage('published', { status: 'published' }),
+      threads: stage('skipped_disabled'),
+      instagram: stage('skipped_disabled'),
+    }],
+  };
+}
+
+validation('migrates LinkedIn state without reopening historical jobs', () => {
+  const job = makeJob();
+  const migrated = migrateLinkedInState({
+    intakeState: {
+      schemaVersion: 2,
+      processedSnapshot: null,
+      pendingBridges: [],
+      removedJobs: [],
+    },
+    queueState: makeVersionTwoQueueFixture(job),
+    publicationsState: {
+      schemaVersion: 2,
+      jobs: {
+        [job.id]: {
+          status: 'completed',
+          completedAt: '2026-08-20T14:00:00.000Z',
+        },
+      },
+    },
+    at: '2026-09-01T12:00:00.000Z',
+  });
+  assert.equal(migrated.intakeState.schemaVersion, 3);
+  assert.equal(migrated.queueState.schemaVersion, 3);
+  assert.deepEqual(migrated.queueState.items[0].linkedin, {
+    status: 'skipped_before_activation',
+    attempts: 0,
+    updatedAt: '2026-09-01T12:00:00.000Z',
+    lastError: null,
+    lastReset: null,
+    result: null,
+  });
+  assert.equal(migrated.publicationsState.schemaVersion, 3);
+  assert.equal(migrated.publicationsState.jobs[job.id].linkedin, null);
+  validateIntakeState(migrated.intakeState);
+  validateQueueState(migrated.queueState);
+  validatePublicationsState(migrated.publicationsState);
+});
+
+validation('applies the guarded LinkedIn migration to tracked state files', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-linkedin-state-'));
+  const job = makeJob();
+  try {
+    await Promise.all([
+      writeFile(join(directory, 'intake.json'), JSON.stringify({
+        schemaVersion: 2,
+        processedSnapshot: null,
+        pendingBridges: [],
+        removedJobs: [],
+      })),
+      writeFile(join(directory, 'queue.json'), JSON.stringify(makeVersionTwoQueueFixture(job))),
+      writeFile(join(directory, 'publications.json'), JSON.stringify({
+        schemaVersion: 2,
+        jobs: { [job.id]: { status: 'completed' } },
+      })),
+    ]);
+    await assert.rejects(runLinkedInStateMigration({
+      stateDirectory: directory,
+      at: '2026-09-01T12:00:00.000Z',
+      confirmation: 'migrate',
+    }), /exact confirmation/u);
+    const result = await runLinkedInStateMigration({
+      stateDirectory: directory,
+      at: '2026-09-01T12:00:00.000Z',
+      confirmation: 'MIGRATE_LINKEDIN_STATE',
+    });
+    assert.deepEqual(result, { queueItems: 1, publications: 1, schemaVersion: 3 });
+    assert.equal(JSON.parse(await readFile(join(directory, 'queue.json'))).items[0]
+      .linkedin.status, 'skipped_before_activation');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
 
 function makeSocialVideoBuffer() {
   const value = Buffer.alloc(24);
