@@ -74,10 +74,16 @@ async function bufferGraphql({
   fetchImpl,
 }) {
   let response;
+  const controller = new AbortController();
+  const timeout = setTimeout(
+    () => controller.abort(new Error('Request timed out')),
+    REQUEST_TIMEOUT_MS,
+  );
   try {
     response = await fetchImpl(apiOrigin, {
       method: 'POST',
       redirect: 'error',
+      signal: controller.signal,
       headers: {
         Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
@@ -86,6 +92,8 @@ async function bufferGraphql({
     });
   } catch {
     throw publicationError('buffer_response', 'Buffer request failed', { operation });
+  } finally {
+    clearTimeout(timeout);
   }
 
   if (response.status === 401 || response.status === 403) {
@@ -516,3 +524,4 @@ export async function publishToLinkedInViaBuffer({
   }
   return pollPost(configuration, created.id, polling);
 }
+import { REQUEST_TIMEOUT_MS } from '../../config/constants.mjs';

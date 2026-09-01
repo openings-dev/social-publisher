@@ -959,6 +959,7 @@ validation('scopes Buffer channel verification to the configured organization', 
   assert.equal(requests[0].url, 'https://api.buffer.com');
   assert.equal(requests[0].options.method, 'POST');
   assert.equal(requests[0].options.redirect, 'error');
+  assert.equal(requests[0].options.signal instanceof AbortSignal, true);
   assert.equal(requests[0].options.headers.Authorization, 'Bearer buffer-secret');
   assert.equal(requests[0].options.headers['Content-Type'], 'application/json');
   const request = JSON.parse(requests[0].options.body);
