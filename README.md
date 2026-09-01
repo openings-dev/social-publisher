@@ -23,9 +23,9 @@ The separate `Publish Instagram editorial guide` workflow enriches the Instagram
 - Wednesday at 12:17: résumé or application.
 - Friday at 12:17: job search or interview.
 
-The deterministic catalog contains 36 complete Portuguese guides: 12 about LinkedIn, 8 about résumés, 6 about job search, 4 about applications, and 6 about interviews. Every guide has seven 1080×1350 slides, a concrete before-and-after example, a four-point checklist, a caption, recorded sources, and a dedicated 1080×1920 Story. A topic cannot repeat for at least 84 days, each calendar slot can be consumed only once, and an unfinished guide blocks the next enqueue so failures cannot accumulate.
+The deterministic catalog contains 36 complete English guides: 12 about LinkedIn, 8 about resumes, 6 about job search, 4 about applications, and 6 about interviews. Every guide has seven 1080×1350 slides, a concrete before-and-after example, a four-point checklist, a caption, recorded sources, and a dedicated 1080×1920 Story. A topic cannot repeat for at least 84 days, each calendar slot can be consumed only once, and an unfinished guide blocks the next enqueue so failures cannot accumulate.
 
-LinkedIn guidance is grounded in Nicole Barra's [international profile optimization guide](https://www.linkedin.com/pulse/optimizing-your-linkedin-profile-international-guide-nicole-barra--ujebf/). Résumé, search, application, and interview guidance also records institutional sources from Harvard Career Services, CareerOneStop, and the U.S. Department of Labor. Runtime publishing does not call a generative model: reviewed catalog copy and deterministic layouts are rendered automatically.
+LinkedIn guidance uses official [LinkedIn Help](https://www.linkedin.com/help/linkedin/topic/a64) documentation. Resume, search, application, and interview guidance records institutional sources from Harvard Career Services, CareerOneStop, and the U.S. Department of Labor. Runtime publishing does not call a generative model: reviewed catalog copy and deterministic layouts are rendered automatically.
 
 Instagram Stories are published as separate media through the professional-account API. They reuse the job Reel or the editorial Story image, but cannot add native reshare chrome, polls, links, music, or interactive stickers through this automation.
 
