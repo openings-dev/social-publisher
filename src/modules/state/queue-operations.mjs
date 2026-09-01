@@ -6,7 +6,7 @@ import {
 } from '../../config/constants.mjs';
 import { validateIntakeState, validateQueueState } from './state-model.mjs';
 
-const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS]);
+const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS, 'instagramStory']);
 const READY_STATUSES = new Set(['pending', 'retryable']);
 const TERMINAL_STATUSES = new Set([
   'published',
@@ -63,6 +63,7 @@ export function enqueueJob(queueState, {
   snapshot,
   discoveredAt,
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
+  instagramStoryEnabled = false,
 }) {
   validateQueueState(queueState);
   if (queueState.items.some((item) => item.jobId === job.id)) {
@@ -85,6 +86,9 @@ export function enqueueJob(queueState, {
       channel,
       stageState(enabled.has(channel) ? 'pending' : 'skipped_disabled'),
     ])),
+    instagramStory: stageState(
+      instagramStoryEnabled && enabled.has('instagram') ? 'pending' : 'skipped_disabled',
+    ),
   };
   return validateQueueState({ ...queueState, items: [...queueState.items, item] });
 }
@@ -217,6 +221,7 @@ export function markJobClosed(queueState, jobId, at) {
       ...item,
       bridge: closeStage(item.bridge),
       ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => [channel, closeStage(item[channel])])),
+      instagramStory: closeStage(item.instagramStory),
     };
   });
 }

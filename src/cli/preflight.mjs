@@ -4,7 +4,12 @@ import { pathToFileURL } from 'node:url';
 
 import { decideScheduledWork } from '../modules/publishing/scheduled-work.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
-import { validateIntakeState, validateQueueState } from '../modules/state/state-model.mjs';
+import {
+  migrateIntakeState,
+  migrateQueueState,
+  validateIntakeState,
+  validateQueueState,
+} from '../modules/state/state-model.mjs';
 
 const DEFAULT_MANIFEST_URL = 'https://raw.githubusercontent.com/openings-dev/data-pipeline/main/snapshots/opportunities/api/manifest.json';
 const MAX_MANIFEST_BYTES = 256 * 1024;
@@ -52,8 +57,8 @@ export async function runPreflight({
   }
 
   const [intakeState, queueState] = await Promise.all([
-    loadStateFile(resolve(stateDirectory, 'intake.json'), validateIntakeState),
-    loadStateFile(resolve(stateDirectory, 'queue.json'), validateQueueState),
+    loadStateFile(resolve(stateDirectory, 'intake.json'), validateIntakeState, migrateIntakeState),
+    loadStateFile(resolve(stateDirectory, 'queue.json'), validateQueueState, migrateQueueState),
   ]);
   const knownDataHash = intakeState.processedSnapshot?.dataHash ?? '0'.repeat(64);
   const localDecision = decideScheduledWork({

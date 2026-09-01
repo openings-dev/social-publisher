@@ -14,6 +14,17 @@ const STAGE_STATUSES = new Set([
 ]);
 const BRIDGE_REASONS = new Set(['new', 'changed']);
 
+function migratedStoryStage() {
+  return {
+    status: 'skipped_before_activation',
+    attempts: 0,
+    updatedAt: null,
+    lastError: null,
+    lastReset: null,
+    result: null,
+  };
+}
+
 function assertObject(value, label) {
   if (value === null || typeof value !== 'object' || Array.isArray(value)) {
     throw new Error(`${label} must be an object`);
@@ -103,6 +114,42 @@ export function assertNoSensitiveKeys(value, path = 'state') {
   return value;
 }
 
+function migrateVersion(value, transform) {
+  const state = assertObject(value, 'state');
+  if (state.schemaVersion === STATE_SCHEMA_VERSION) return state;
+  if (state.schemaVersion !== 2 || STATE_SCHEMA_VERSION !== 3) return state;
+  return transform(state);
+}
+
+export function migrateIntakeState(value) {
+  return migrateVersion(value, (state) => ({ ...state, schemaVersion: STATE_SCHEMA_VERSION }));
+}
+
+export function migrateQueueState(value) {
+  return migrateVersion(value, (state) => ({
+    ...state,
+    schemaVersion: STATE_SCHEMA_VERSION,
+    items: Array.isArray(state.items)
+      ? state.items.map((item) => ({ ...item, instagramStory: migratedStoryStage() }))
+      : state.items,
+  }));
+}
+
+export function migratePublicationsState(value) {
+  return migrateVersion(value, (state) => ({
+    ...state,
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: state.jobs && typeof state.jobs === 'object' && !Array.isArray(state.jobs)
+      ? Object.fromEntries(Object.entries(state.jobs).map(([jobId, publication]) => [
+        jobId,
+        publication && typeof publication === 'object' && !Array.isArray(publication)
+          ? { ...publication, instagramStory: publication.instagramStory ?? null }
+          : publication,
+      ]))
+      : state.jobs,
+  }));
+}
+
 export function validateSnapshotReference(value, label = 'processedSnapshot') {
   const snapshot = assertObject(value, label);
   if (typeof snapshot.commit !== 'string' || !/^[0-9a-f]{7,64}$/i.test(snapshot.commit)) {
@@ -169,6 +216,7 @@ export function validateQueueState(value) {
     for (const channel of SOCIAL_CHANNELS) {
       validateStageState(item[channel], `queue ${channel}`);
     }
+    validateStageState(item.instagramStory, 'queue instagramStory');
   }
   assertNoSensitiveKeys(state);
   return state;

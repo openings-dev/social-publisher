@@ -168,6 +168,7 @@ function completePublication(publicationsState, item, at) {
     mastodon: item.mastodon.result,
     threads: item.threads.result,
     instagram: item.instagram.result,
+    instagramStory: item.instagramStory.result,
   };
   return validatePublicationsState({
     ...publicationsState,

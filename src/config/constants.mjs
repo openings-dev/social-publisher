@@ -1,4 +1,4 @@
-export const STATE_SCHEMA_VERSION = 2;
+export const STATE_SCHEMA_VERSION = 3;
 export const OPENINGS_ORIGIN = 'https://openings.dev';
 export const BLUESKY_SERVICE_URL = 'https://bsky.social';
 export const MASTODON_BASE_URL = 'https://mastodon.social';

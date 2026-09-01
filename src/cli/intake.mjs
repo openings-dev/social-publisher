@@ -13,6 +13,9 @@ import { processIntakeSnapshots } from '../modules/publishing/orchestrator.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import { saveStateFile } from '../modules/state/save-state.mjs';
 import {
+  migrateIntakeState,
+  migratePublicationsState,
+  migrateQueueState,
   validateIntakeState,
   validatePublicationsState,
   validateQueueState,
@@ -47,9 +50,9 @@ export async function runIntake({
   const queuePath = resolve(stateDirectory, 'queue.json');
   const publicationsPath = resolve(stateDirectory, 'publications.json');
   const [intakeState, queueState, publicationsState, currentCommit, wordmarkSvg] = await Promise.all([
-    loadStateFile(intakePath, validateIntakeState),
-    loadStateFile(queuePath, validateQueueState),
-    loadStateFile(publicationsPath, validatePublicationsState),
+    loadStateFile(intakePath, validateIntakeState, migrateIntakeState),
+    loadStateFile(queuePath, validateQueueState, migrateQueueState),
+    loadStateFile(publicationsPath, validatePublicationsState, migratePublicationsState),
     (dependencies.resolveGitCommit ?? resolveGitCommit)(dataRepositoryPath, dataReference),
     (dependencies.loadCanonicalWordmark ?? loadCanonicalWordmark)(wordmarkPath),
   ]);

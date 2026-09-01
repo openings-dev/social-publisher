@@ -99,6 +99,9 @@ import { loadStateFile } from '../state/load-state.mjs';
 import { saveStateFile } from '../state/save-state.mjs';
 import {
   assertNoSensitiveKeys,
+  migrateIntakeState,
+  migratePublicationsState,
+  migrateQueueState,
   validateIntakeState,
   validatePublicationsState,
   validateQueueState,
@@ -111,7 +114,7 @@ function validation(name, run) {
 }
 
 validation('exports the approved immutable constants', () => {
-  assert.equal(STATE_SCHEMA_VERSION, 2);
+  assert.equal(STATE_SCHEMA_VERSION, 3);
   assert.equal(OPENINGS_ORIGIN, 'https://openings.dev');
   assert.equal(MAX_CHANNEL_ATTEMPTS, 3);
   assert.equal(DEPLOY_POLL_ATTEMPTS, 72);
@@ -369,6 +372,73 @@ validation('enables Meta only for jobs enqueued after activation', () => {
   assert.equal(activated.items[0].instagram.status, 'skipped_disabled');
   assert.equal(activated.items[1].threads.status, 'pending');
   assert.equal(activated.items[1].instagram.status, 'pending');
+});
+
+validation('migrates version-two state without historical Story backfill', async () => {
+  const snapshot = makeLoadedSnapshot({
+    commit: '8'.repeat(40),
+    generatedAt: '2026-08-25T19:00:00.000Z',
+    dataHash: '8'.repeat(64),
+    jobs: [],
+  });
+  const job = makeJob({ id: 'gh_888888888888888888888883' });
+  const currentQueue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-25T19:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: true,
+  });
+  const legacyItems = currentQueue.items.map(({ instagramStory: _ignored, ...item }) => item);
+  const migratedQueue = migrateQueueState({ schemaVersion: 2, items: legacyItems });
+  assert.equal(migratedQueue.schemaVersion, 3);
+  assert.equal(migratedQueue.items[0].instagramStory.status, 'skipped_before_activation');
+  assert.equal(migratedQueue.items[0].instagram.status, 'pending');
+
+  const migratedIntake = migrateIntakeState({
+    schemaVersion: 2,
+    processedSnapshot: null,
+    pendingBridges: [],
+    removedJobs: [],
+  });
+  assert.equal(migratedIntake.schemaVersion, 3);
+
+  const migratedPublications = migratePublicationsState({
+    schemaVersion: 2,
+    jobs: {
+      [job.id]: { status: 'completed', instagram: { id: 'feed-1' } },
+    },
+  });
+  assert.equal(migratedPublications.schemaVersion, 3);
+  assert.equal(migratedPublications.jobs[job.id].instagramStory, null);
+
+  const enabled = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-25T19:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: true,
+  });
+  assert.equal(enabled.items[0].instagramStory.status, 'pending');
+  const disabled = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-25T19:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: false,
+  });
+  assert.equal(disabled.items[0].instagramStory.status, 'skipped_disabled');
+
+  const directory = await mkdtemp(join(tmpdir(), 'openings-state-migration-'));
+  const queuePath = join(directory, 'queue.json');
+  try {
+    await writeFile(queuePath, `${JSON.stringify({ schemaVersion: 2, items: legacyItems }, null, 2)}\n`);
+    const loaded = await loadStateFile(queuePath, validateQueueState, migrateQueueState);
+    assert.equal(loaded.schemaVersion, 3);
+    assert.equal(loaded.items[0].instagramStory.status, 'skipped_before_activation');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 validation('skips disabled and up-to-date schedules before expensive setup', () => {
