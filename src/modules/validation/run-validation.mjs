@@ -49,6 +49,7 @@ import {
   publishToMastodon,
 } from '../networks/mastodon-client.mjs';
 import { publishToInstagram } from '../networks/instagram-client.mjs';
+import { publishToLinkedIn } from '../networks/linkedin-client.mjs';
 import { deleteThreadsPost, publishToThreads } from '../networks/threads-client.mjs';
 import {
   buildRepositoryDispatchRequest,
@@ -60,7 +61,7 @@ import {
   formatSalary,
   formatSocialPost,
 } from '../render/format-job.mjs';
-import { createBridgeHtml } from '../render/html-page.mjs';
+import { createBridgeHtml, opportunityDescription } from '../render/html-page.mjs';
 import { createSocialCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
 import * as socialCardModule from '../render/social-card.mjs';
 import { createCjkFontStyle, SOCIAL_CARD_FONT_STACK } from '../render/cjk-fonts.mjs';
@@ -261,6 +262,230 @@ validation('accepts bounded JSON responses and rejects unsafe response types', a
     }),
     /JSON content type/,
   );
+});
+
+validation('publishes an explicit LinkedIn article card with the canonical social image', async () => {
+  const job = makeJob({ excerpt: 'Build reliable developer tools for public communities.' });
+  const post = formatSocialPost(job);
+  const png = Buffer.from('canonical-png');
+  const requests = [];
+  const responses = [
+    new Response(JSON.stringify({ elements: [] }), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    }),
+    new Response(JSON.stringify({
+      value: {
+        uploadUrl: 'https://www.linkedin.com/dms-uploads/fixture?token=signed',
+        image: 'urn:li:image:fixture-image',
+      },
+    }), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    }),
+    new Response(null, { status: 201 }),
+    new Response(JSON.stringify({
+      id: 'urn:li:image:fixture-image',
+      owner: 'urn:li:organization:108765432',
+      status: 'AVAILABLE',
+    }), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    }),
+    new Response(null, {
+      status: 201,
+      headers: { 'x-restli-id': 'urn:li:share:123456789' },
+    }),
+  ];
+  const result = await publishToLinkedIn({
+    job,
+    post,
+    png,
+    accessToken: 'linkedin-secret',
+    organizationId: '108765432',
+    apiVersion: '202608',
+    fetchImpl: async (url, options = {}) => {
+      requests.push({ url: String(url), options });
+      const response = responses.shift();
+      if (!response) throw new Error('Unexpected LinkedIn request');
+      return response;
+    },
+    sleep: async () => {},
+  });
+
+  assert.deepEqual(result, {
+    status: 'published',
+    id: 'urn:li:share:123456789',
+    url: 'https://www.linkedin.com/feed/update/urn:li:share:123456789/',
+  });
+  assert.match(requests[0].url, /\/rest\/posts\?/u);
+  assert.equal(JSON.parse(requests[1].options.body).initializeUploadRequest.owner,
+    'urn:li:organization:108765432');
+  assert.equal(requests[2].options.method, 'PUT');
+  assert.equal(requests[2].options.headers['Content-Type'], 'image/png');
+  assert.equal(requests[2].options.body, png);
+  assert.deepEqual(JSON.parse(requests[4].options.body).content.article, {
+    source: post.canonicalUrl,
+    thumbnail: 'urn:li:image:fixture-image',
+    title: job.title,
+    description: opportunityDescription(job),
+  });
+  for (const request of requests.filter(({ url }) => url.startsWith('https://api.linkedin.com/'))) {
+    assert.equal(request.options.headers['Linkedin-Version'], '202608');
+    assert.equal(request.options.headers['X-Restli-Protocol-Version'], '2.0.0');
+    assert.equal(request.options.headers.Authorization, 'Bearer linkedin-secret');
+  }
+  assert.equal(responses.length, 0);
+});
+
+validation('reconciles an existing LinkedIn article before uploading another image', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  let requests = 0;
+  const result = await publishToLinkedIn({
+    job,
+    post,
+    png: Buffer.from('canonical-png'),
+    accessToken: 'linkedin-secret',
+    organizationId: '108765432',
+    apiVersion: '202608',
+    fetchImpl: async () => {
+      requests += 1;
+      return new Response(JSON.stringify({
+        elements: [{
+          id: 'urn:li:ugcPost:987654321',
+          author: 'urn:li:organization:108765432',
+          commentary: 'Existing publication',
+          content: { article: { source: post.canonicalUrl } },
+        }],
+      }), { status: 200, headers: { 'content-type': 'application/json' } });
+    },
+  });
+  assert.deepEqual(result, {
+    status: 'reconciled',
+    id: 'urn:li:ugcPost:987654321',
+    url: 'https://www.linkedin.com/feed/update/urn:li:ugcPost:987654321/',
+  });
+  assert.equal(requests, 1);
+});
+
+validation('reconciles LinkedIn after an ambiguous post creation failure', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const responses = [
+    new Response(JSON.stringify({ elements: [] }), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    }),
+    new Response(JSON.stringify({
+      value: {
+        uploadUrl: 'https://www.linkedin.com/dms-uploads/fixture?token=signed',
+        image: 'urn:li:image:fixture-image',
+      },
+    }), { status: 200, headers: { 'content-type': 'application/json' } }),
+    new Response(null, { status: 201 }),
+    new Response(JSON.stringify({
+      id: 'urn:li:image:fixture-image',
+      owner: 'urn:li:organization:108765432',
+      status: 'AVAILABLE',
+    }), { status: 200, headers: { 'content-type': 'application/json' } }),
+    new Error('socket closed after request body'),
+    new Response(JSON.stringify({
+      elements: [{
+        id: 'urn:li:share:1122334455',
+        author: 'urn:li:organization:108765432',
+        commentary: post.text,
+        content: {},
+      }],
+    }), { status: 200, headers: { 'content-type': 'application/json' } }),
+  ];
+  const result = await publishToLinkedIn({
+    job,
+    post,
+    png: Buffer.from('canonical-png'),
+    accessToken: 'linkedin-secret',
+    organizationId: '108765432',
+    apiVersion: '202608',
+    fetchImpl: async () => {
+      const response = responses.shift();
+      if (response instanceof Error) throw response;
+      return response;
+    },
+    sleep: async () => {},
+  });
+  assert.equal(result.status, 'reconciled');
+  assert.equal(result.id, 'urn:li:share:1122334455');
+  assert.equal(responses.length, 0);
+});
+
+validation('fails closed for unsafe LinkedIn uploads and failed image processing', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const configuration = {
+    job,
+    post,
+    png: Buffer.from('canonical-png'),
+    accessToken: 'linkedin-secret',
+    organizationId: '108765432',
+    apiVersion: '202608',
+    sleep: async () => {},
+  };
+  await assert.rejects(publishToLinkedIn({
+    ...configuration,
+    fetchImpl: async (_url, _options) => new Response(JSON.stringify(
+      _options?.method === 'POST'
+        ? {
+          value: {
+            uploadUrl: 'https://uploads.example.test/steal',
+            image: 'urn:li:image:fixture-image',
+          },
+        }
+        : { elements: [] },
+    ), { status: 200, headers: { 'content-type': 'application/json' } }),
+  }), (error) => error.code === 'linkedin_image_initialization');
+
+  const responses = [
+    { elements: [] },
+    {
+      value: {
+        uploadUrl: 'https://www.linkedin.com/dms-uploads/fixture?token=signed',
+        image: 'urn:li:image:fixture-image',
+      },
+    },
+    null,
+    {
+      id: 'urn:li:image:fixture-image',
+      owner: 'urn:li:organization:108765432',
+      status: 'PROCESSING_FAILED',
+    },
+  ];
+  await assert.rejects(publishToLinkedIn({
+    ...configuration,
+    fetchImpl: async () => {
+      const payload = responses.shift();
+      return payload === null
+        ? new Response(null, { status: 201 })
+        : new Response(JSON.stringify(payload), {
+          status: 200,
+          headers: { 'content-type': 'application/json' },
+        });
+    },
+  }), (error) => error.code === 'linkedin_image_processing');
+});
+
+validation('rejects invalid LinkedIn configuration before making a request', async () => {
+  let requests = 0;
+  await assert.rejects(publishToLinkedIn({
+    job: makeJob(),
+    post: formatSocialPost(makeJob()),
+    png: Buffer.from('canonical-png'),
+    accessToken: 'linkedin-secret',
+    organizationId: 'openings-dev',
+    apiVersion: '202608',
+    fetchImpl: async () => { requests += 1; },
+  }), (error) => error.code === 'linkedin_configuration'
+    && !error.message.includes('linkedin-secret'));
+  assert.equal(requests, 0);
 });
 
 validation('enables scheduled publication only for exact true with every credential', () => {
