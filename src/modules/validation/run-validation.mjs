@@ -7,7 +7,7 @@ import { TID } from '@atproto/common-web';
 import sharp from 'sharp';
 
 import { runDryRun } from '../../cli/dry-run.mjs';
-import { renderEditorialDryRun } from '../../cli/editorial.mjs';
+import { parseEditorialRequest, renderEditorialDryRun } from '../../cli/editorial.mjs';
 import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest } from '../../cli/publish.mjs';
 import { runJobStoryPublication } from '../../cli/publish-story.mjs';
@@ -107,6 +107,10 @@ import {
   processOnePublication,
 } from '../publishing/orchestrator.mjs';
 import { decideScheduledWork } from '../publishing/scheduled-work.mjs';
+import {
+  enqueueScheduledEditorial,
+  processEditorialStage,
+} from '../publishing/editorial-publisher.mjs';
 import {
   enqueueBridgeWork,
   enqueueJob,
@@ -3531,6 +3535,116 @@ validation('verifies every public editorial JPEG against its canonical manifest'
   assert.equal(result.matches, true);
   assert.equal(result.carouselUrls.length, 7);
   assert.equal(result.storyUrl, `${base}/story.jpg`);
+});
+
+validation('orchestrates editorial assets, feed, and Story as durable independent stages', async () => {
+  const monday = '2026-09-07T15:17:00.000Z';
+  let state = enqueueScheduledEditorial({
+    state: createEmptyEditorialState(), catalog: EDITORIAL_CATALOG, now: monday,
+  });
+  const contentId = state.pending[0].contentId;
+  const calls = [];
+  state = (await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'assets', now: monday,
+    wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
+    deployAssets: async ({ carouselSvgs, storySvg }) => {
+      calls.push('assets');
+      assert.equal(carouselSvgs.length, 7);
+      assert.match(storySvg, /height="1920"/u);
+      return { status: 'deployed', verification: {
+        manifestUrl: 'https://openings.dev/social/editorial/manifest.json',
+        carouselUrls: Array.from({ length: 7 }, (_, index) => `https://openings.dev/social/editorial/slide-0${index + 1}.jpg`),
+        storyUrl: 'https://openings.dev/social/editorial/story.jpg',
+      } };
+    },
+  })).state;
+  assert.equal(state.pending[0].assets.status, 'published');
+  assert.equal(state.pending[0].feed.status, 'pending');
+  state = (await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'feed', now: monday,
+    publishCarousel: async ({ imageUrls, caption, reconciliationMarker }) => {
+      calls.push('feed');
+      assert.equal(imageUrls.length, 7);
+      assert.ok(caption.includes(reconciliationMarker));
+      return { status: 'published', id: 'carousel-media', url: 'https://instagram.com/p/carousel' };
+    },
+  })).state;
+  assert.equal(state.pending[0].feed.result.id, 'carousel-media');
+  assert.equal(state.pending[0].story.status, 'pending');
+  state = (await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', now: monday,
+    publishStory: async ({ mediaUrl, mediaKind }) => {
+      calls.push('story');
+      assert.equal(mediaUrl, 'https://openings.dev/social/editorial/story.jpg');
+      assert.equal(mediaKind, 'image');
+      return { status: 'published', id: 'story-media', url: null };
+    },
+  })).state;
+  assert.deepEqual(calls, ['assets', 'feed', 'story']);
+  assert.equal(state.pending.length, 0);
+  assert.equal(state.history[contentId].cycles, 1);
+});
+
+validation('fails closed when an editorial Story is ambiguous and enforces the manual gate', async () => {
+  assert.deepEqual(parseEditorialRequest({
+    mode: 'controlled', contentId: 'linkedin-headline-clara', confirmation: 'PUBLISH_ONE_EDITORIAL_POST',
+  }), { mode: 'controlled', contentId: 'linkedin-headline-clara', stage: null });
+  assert.throws(() => parseEditorialRequest({
+    mode: 'controlled', contentId: 'linkedin-headline-clara', confirmation: 'publish',
+  }), /exact confirmation/i);
+
+  const now = '2026-09-07T15:17:00.000Z';
+  const selection = selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: createEmptyEditorialState(), now });
+  let state = enqueueEditorialItem(createEmptyEditorialState(), selection, { at: now });
+  let called = false;
+  const blocked = await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', now,
+    publishStory: async () => { called = true; },
+  });
+  assert.equal(blocked.outcome, 'blocked');
+  assert.equal(called, false);
+  state = transitionEditorialStage(state, selection.content.id, 'assets', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selection.content.id, 'assets', 'published', {
+    at: now, result: { carouselUrls: Array(7).fill('https://openings.dev/slide.jpg'), storyUrl: 'https://openings.dev/story.jpg' },
+  });
+  state = transitionEditorialStage(state, selection.content.id, 'feed', 'publishing', { at: now });
+  state = transitionEditorialStage(state, selection.content.id, 'feed', 'published', { at: now, result: { id: 'feed' } });
+  const error = new Error('ambiguous');
+  error.code = 'instagram_story_ambiguous';
+  const failed = await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', now,
+    publishStory: async () => { throw error; },
+  });
+  assert.equal(failed.outcome, 'failed_manual_review');
+  assert.equal(failed.state.pending[0].story.status, 'failed');
+  assert.equal(failed.state.pending[0].feed.status, 'published');
+});
+
+validation('checkpoints the automated editorial workflow in dependency order', async () => {
+  const workflow = await readFile(fileURLToPath(new URL('../../../.github/workflows/publish-editorial.yml', import.meta.url)), 'utf8');
+  assert.match(workflow, /cron:\s*['"]17 15 \* \* 1,3,5['"]/u);
+  assert.match(workflow, /INSTAGRAM_EDITORIAL_AUTO_PUBLISH/u);
+  assert.match(workflow, /PUBLISH_ONE_EDITORIAL_POST/u);
+  assert.match(workflow, /social-publisher-publication/u);
+  assert.match(workflow, /fonts-noto-cjk/u);
+  assert.match(workflow, /librsvg2-bin/u);
+  assert.match(workflow, /npm ci/u);
+  const order = [
+    'Enqueue one editorial guide',
+    'Commit editorial intent',
+    'Deploy editorial assets',
+    'Commit editorial asset result',
+    'Publish editorial carousel',
+    'Commit editorial feed result',
+    'Publish editorial Story',
+    'Commit editorial Story result',
+  ];
+  order.reduce((previous, label) => {
+    const index = workflow.indexOf(label);
+    assert.ok(index > previous, `${label} must follow its durable prerequisite`);
+    return index;
+  }, -1);
+  assert.doesNotMatch(workflow, /^\s{2}(?:push|pull_request):/mu);
 });
 
 let passed = 0;

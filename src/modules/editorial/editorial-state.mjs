@@ -122,3 +122,25 @@ export function transitionEditorialStage(state, contentId, stageName, nextStatus
   return validateEditorialState({ ...state, pending });
 }
 
+export function resetEditorialStage(state, contentId, stageName, {
+  at = new Date().toISOString(), reason = 'manual_reset',
+} = {}) {
+  validateEditorialState(state);
+  if (!STAGES.has(stageName)) throw new Error(`unknown editorial stage: ${stageName}`);
+  iso(at, 'editorial reset timestamp');
+  const index = state.pending.findIndex((item) => item.contentId === contentId);
+  if (index < 0) throw new Error(`pending editorial item not found: ${contentId}`);
+  const item = state.pending[index];
+  if (item[stageName].status !== 'failed') throw new Error('only a failed editorial stage can be reset');
+  const pending = state.pending.slice();
+  pending[index] = {
+    ...item,
+    [stageName]: {
+      ...stageState(),
+      updatedAt: at,
+      lastReset: { at, reason: code(reason, 'manual_reset') },
+    },
+  };
+  return validateEditorialState({ ...state, pending });
+}
+

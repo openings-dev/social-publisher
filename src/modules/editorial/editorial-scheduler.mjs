@@ -31,7 +31,7 @@ export function selectEditorialItem({ catalog, state, now = new Date().toISOStri
   validateEditorialCatalog(catalog);
   validateEditorialState(state, catalog);
   const slot = slotForDate(now, { timeZone });
-  if (!slot || state.pending.some(({ scheduledDate }) => scheduledDate === slot.key)) return null;
+  if (!slot || state.pending.length > 0) return null;
   const pendingIds = new Set(state.pending.map(({ contentId }) => contentId));
   const nowMs = Date.parse(now);
   const eligible = catalog.filter((content) => {
@@ -49,4 +49,3 @@ export function selectEditorialItem({ catalog, state, now = new Date().toISOStri
   });
   return eligible[0] ? { content: eligible[0], scheduledDate: slot.key } : null;
 }
-
