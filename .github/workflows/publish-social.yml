@@ -35,12 +35,18 @@ on:
           - mastodon
           - threads
           - instagram
+          - linkedin
       confirmation:
         description: Enter PUBLISH_ONE_JOB, RESET_FAILED_STAGE, or MIGRATE_META_POSTS
         required: false
         type: string
       publish_meta:
         description: Include Instagram and Threads in this controlled publication only
+        required: false
+        default: false
+        type: boolean
+      publish_linkedin:
+        description: Include LinkedIn in this controlled publication only
         required: false
         default: false
         type: boolean
@@ -69,9 +75,13 @@ jobs:
       INSTAGRAM_API_ORIGIN: ${{ vars.INSTAGRAM_API_ORIGIN || 'https://graph.instagram.com' }}
       META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION }}
       INSTAGRAM_USER_ID: ${{ vars.INSTAGRAM_USER_ID }}
+      LINKEDIN_API_ORIGIN: ${{ vars.LINKEDIN_API_ORIGIN || 'https://api.linkedin.com' }}
+      LINKEDIN_API_VERSION: ${{ vars.LINKEDIN_API_VERSION }}
+      LINKEDIN_ORGANIZATION_ID: ${{ vars.LINKEDIN_ORGANIZATION_ID }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
       THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.THREADS_AUTO_PUBLISH || 'false' }}
       INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
+      LINKEDIN_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_linkedin) && 'true' || vars.LINKEDIN_AUTO_PUBLISH || 'false' }}
     steps:
       - name: Check out social-publisher state and source
         # actions/checkout v4.3.1
@@ -232,6 +242,7 @@ jobs:
           MASTODON_ACCESS_TOKEN: ${{ secrets.MASTODON_ACCESS_TOKEN }}
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           REQUEST_JOB_ID: ${{ inputs.job_id }}
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
         run: |

@@ -3415,8 +3415,11 @@ validation('publishes and persists a LinkedIn-only queue stage', async () => {
 
 validation('keeps validation read-only and production publishing explicitly gated', async () => {
   const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
-  const validationWorkflow = await readFile(join(repositoryRoot, '.github/workflows/validate.yml'), 'utf8');
-  const productionWorkflow = await readFile(join(repositoryRoot, '.github/workflows/publish-social.yml'), 'utf8');
+  const [validationWorkflow, productionWorkflow, readme] = await Promise.all([
+    readFile(join(repositoryRoot, '.github/workflows/validate.yml'), 'utf8'),
+    readFile(join(repositoryRoot, '.github/workflows/publish-social.yml'), 'utf8'),
+    readFile(join(repositoryRoot, 'README.md'), 'utf8'),
+  ]);
   assert.match(validationWorkflow, /pull_request:/u);
   assert.match(validationWorkflow, /push:/u);
   assert.match(validationWorkflow, /contents:\s*read/u);
@@ -3440,6 +3443,35 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(productionWorkflow, /THREADS_ACCESS_TOKEN/u);
   assert.match(productionWorkflow, /INSTAGRAM_ACCESS_TOKEN/u);
   assert.match(productionWorkflow, /META_GRAPH_VERSION/u);
+  for (const pattern of [
+    /publish_linkedin:/u,
+    /LINKEDIN_AUTO_PUBLISH/u,
+    /LINKEDIN_API_VERSION/u,
+    /LINKEDIN_ORGANIZATION_ID/u,
+    /LINKEDIN_ACCESS_TOKEN/u,
+    /- linkedin/u,
+  ]) {
+    assert.match(productionWorkflow, pattern);
+  }
+  assert.equal([...productionWorkflow.matchAll(/secrets\.LINKEDIN_ACCESS_TOKEN/gu)].length, 1);
+  assert.match(
+    productionWorkflow,
+    /inputs\.publish_linkedin\) && 'true' \|\| vars\.LINKEDIN_AUTO_PUBLISH \|\| 'false'/u,
+  );
+  for (const value of [
+    'LinkedIn Page',
+    'w_organization_social',
+    'r_organization_social',
+    'LINKEDIN_AUTO_PUBLISH',
+    'LINKEDIN_ACCESS_TOKEN',
+    'LINKEDIN_ORGANIZATION_ID',
+    'LINKEDIN_API_VERSION',
+    'LINKEDIN_API_ORIGIN',
+    'publish_linkedin',
+    'skipped_before_activation',
+  ]) {
+    assert.match(readme, new RegExp(value, 'u'));
+  }
   assert.match(productionWorkflow, /id:\s*preflight/u);
   assert.match(productionWorkflow, /src\/cli\/preflight\.mjs/u);
   assert.match(productionWorkflow, /steps\.preflight\.outputs\.should_run == 'true'/u);
