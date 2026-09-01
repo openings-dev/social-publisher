@@ -1,6 +1,7 @@
 const MAX_RESPONSE_CHARACTERS = 1_000_000;
 const IDENTIFIER_PATTERN = /^[A-Za-z0-9_-]{1,128}$/u;
 const LINKEDIN_HOST_PATTERN = /^(?:[a-z0-9-]+\.)*linkedin\.com$/u;
+const POST_STATUSES = new Set(['draft', 'error', 'needs_approval', 'scheduled', 'sending', 'sent']);
 
 function publicationError(code, message, diagnostic = null) {
   const error = new Error(message);
@@ -320,7 +321,44 @@ async function listRecentPosts(configuration) {
   if (!data.posts || typeof data.posts !== 'object' || !Array.isArray(data.posts.edges)) {
     throw publicationError('buffer_reconciliation', 'Buffer recent posts are unavailable');
   }
-  return data.posts.edges;
+  return data.posts.edges.map((edge) => {
+    const node = edge?.node;
+    if (!node || typeof node !== 'object' || Array.isArray(node)
+      || typeof node.id !== 'string' || !IDENTIFIER_PATTERN.test(node.id)
+      || typeof node.text !== 'string'
+      || typeof node.channelId !== 'string' || !IDENTIFIER_PATTERN.test(node.channelId)
+      || typeof node.status !== 'string' || !POST_STATUSES.has(node.status)
+      || (node.externalLink !== null && typeof node.externalLink !== 'string')
+      || !Array.isArray(node.assets)
+      || node.assets.some((asset) => (
+        !asset || typeof asset !== 'object' || Array.isArray(asset)
+        || typeof asset.source !== 'string'
+      ))) {
+      throw publicationError('buffer_reconciliation', 'Buffer returned an invalid recent post');
+    }
+    return node;
+  });
+}
+
+function normalizedUrl(value) {
+  try {
+    return new URL(value).toString();
+  } catch {
+    return null;
+  }
+}
+
+function textContainsExactUrl(text, expectedUrl) {
+  const candidates = text.match(/https:\/\/[^\s<>"']+/gu) ?? [];
+  return candidates.some((candidate) => (
+    normalizedUrl(candidate.replace(/[\])},.;!?]+$/u, '')) === expectedUrl
+  ));
+}
+
+function matchesPublication(post, { canonicalUrl, imageUrl, channelId }) {
+  if (post.channelId !== channelId) return false;
+  if (textContainsExactUrl(post.text, canonicalUrl)) return true;
+  return post.assets.some((asset) => normalizedUrl(asset.source) === imageUrl);
 }
 
 function mutationFailure(payload) {
@@ -405,6 +443,28 @@ async function pollPost(configuration, postId, polling, resultStatus = 'publishe
   throw publicationError('buffer_processing', 'Buffer publication processing timed out');
 }
 
+async function reconcileExisting(configuration, publication, imageUrl, polling) {
+  const recentPosts = await listRecentPosts(configuration);
+  const matches = recentPosts.filter((post) => matchesPublication(post, {
+    canonicalUrl: normalizedUrl(publication.canonicalUrl),
+    imageUrl: normalizedUrl(imageUrl),
+    channelId: configuration.channelId,
+  }));
+  if (matches.length > 1) {
+    throw publicationError('buffer_reconciliation', 'Multiple Buffer posts match this job');
+  }
+  const [match] = matches;
+  if (!match) return null;
+  if (match.status === 'sent') return completedResult(match, 'reconciled');
+  if (match.status === 'sending' || match.status === 'scheduled') {
+    return pollPost(configuration, match.id, polling, 'reconciled');
+  }
+  if (match.status === 'error') {
+    throw publicationError('buffer_publication', 'The matching Buffer post failed');
+  }
+  throw publicationError('buffer_processing', 'The matching Buffer post is not automatic');
+}
+
 export async function publishToLinkedInViaBuffer({
   job,
   post,
@@ -430,8 +490,23 @@ export async function publishToLinkedInViaBuffer({
     fetchImpl,
   });
   await loadLinkedInChannel(configuration);
-  await listRecentPosts(configuration);
-  const created = await createPost(configuration, publication, publicImageUrl);
+  const existing = await reconcileExisting(configuration, publication, publicImageUrl, polling);
+  if (existing) return existing;
+  let created;
+  try {
+    created = await createPost(configuration, publication, publicImageUrl);
+  } catch (error) {
+    if (error?.code === 'buffer_response' || error?.code === 'buffer_graphql') {
+      const reconciled = await reconcileExisting(
+        configuration,
+        publication,
+        publicImageUrl,
+        polling,
+      );
+      if (reconciled) return reconciled;
+    }
+    throw error;
+  }
   if (created.status === 'sent') return completedResult(created);
   if (created.status !== 'sending' && created.status !== 'scheduled') {
     if (created.status === 'error') {

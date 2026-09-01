@@ -1097,6 +1097,204 @@ validation('fails closed for terminal and timed-out Buffer post processing', asy
   }
 });
 
+function recentBufferPosts(nodes) {
+  return {
+    data: {
+      posts: {
+        edges: nodes.map((node) => ({ node })),
+        pageInfo: { hasNextPage: false, endCursor: null },
+      },
+    },
+  };
+}
+
+function bufferPost(overrides = {}) {
+  return {
+    id: 'buffer-existing-1',
+    text: 'A previous post',
+    status: 'sent',
+    externalLink: 'https://www.linkedin.com/feed/update/urn:li:share:123456789/',
+    channelId: '68b68e0fc159685850cf2c11',
+    assets: [],
+    ...overrides,
+  };
+}
+
+validation('reconciles an exact Buffer canonical URL before creating another post', async () => {
+  const operations = [];
+  const options = bufferPublicationOptions();
+  const responses = [
+    bufferChannelPayload(),
+    recentBufferPosts([bufferPost({ text: `Published earlier\n${options.post.canonicalUrl}\n#TechJobs` })]),
+  ];
+  const result = await publishToLinkedInViaBuffer({
+    ...options,
+    fetchImpl: async (_url, request) => {
+      operations.push(JSON.parse(request.body).operationName);
+      return jsonResponse(responses.shift());
+    },
+  });
+  assert.deepEqual(result, {
+    status: 'reconciled',
+    id: 'buffer-existing-1',
+    url: 'https://www.linkedin.com/feed/update/urn:li:share:123456789/',
+    provider: 'buffer',
+  });
+  assert.deepEqual(operations, ['GetChannels', 'GetRecentPosts']);
+});
+
+validation('reconciles the exact Buffer image source but not canonical URL lookalikes', async () => {
+  const exact = bufferPublicationOptions();
+  const exactResponses = [
+    bufferChannelPayload(),
+    recentBufferPosts([bufferPost({
+      text: 'Published without its original text marker',
+      assets: [{ source: exact.imageUrl }],
+    })]),
+  ];
+  const reconciled = await publishToLinkedInViaBuffer({
+    ...exact,
+    fetchImpl: async () => jsonResponse(exactResponses.shift()),
+  });
+  assert.equal(reconciled.status, 'reconciled');
+
+  const prefixResponses = [
+    bufferChannelPayload(),
+    recentBufferPosts([bufferPost({
+      text: `${exact.post.canonicalUrl}-different`,
+      assets: [],
+    })]),
+    { data: { createPost: {
+      __typename: 'PostActionSuccess',
+      post: {
+        id: 'buffer-created-2',
+        status: 'sent',
+        externalLink: 'https://www.linkedin.com/feed/update/urn:li:share:222222222/',
+      },
+    } } },
+  ];
+  const published = await publishToLinkedInViaBuffer({
+    ...exact,
+    fetchImpl: async () => jsonResponse(prefixResponses.shift()),
+  });
+  assert.equal(published.status, 'published');
+  assert.equal(published.id, 'buffer-created-2');
+});
+
+validation('resumes a matching in-flight Buffer post instead of creating another', async () => {
+  const operations = [];
+  const options = bufferPublicationOptions();
+  const responses = [
+    bufferChannelPayload(),
+    recentBufferPosts([bufferPost({
+      text: options.post.text,
+      status: 'sending',
+      externalLink: null,
+    })]),
+    { data: { post: {
+      id: 'buffer-existing-1',
+      status: 'sent',
+      externalLink: 'https://www.linkedin.com/feed/update/urn:li:share:123456789/',
+    } } },
+  ];
+  const result = await publishToLinkedInViaBuffer({
+    ...options,
+    fetchImpl: async (_url, request) => {
+      operations.push(JSON.parse(request.body).operationName);
+      return jsonResponse(responses.shift());
+    },
+  });
+  assert.equal(result.status, 'reconciled');
+  assert.deepEqual(operations, ['GetChannels', 'GetRecentPosts', 'GetPost']);
+});
+
+validation('fails closed for matching errored or ambiguous Buffer posts', async () => {
+  for (const status of ['error', 'needs_approval', 'draft']) {
+    const options = bufferPublicationOptions();
+    const responses = [
+      bufferChannelPayload(),
+      recentBufferPosts([bufferPost({
+        text: options.post.text,
+        status,
+        externalLink: null,
+      })]),
+    ];
+    await assert.rejects(publishToLinkedInViaBuffer({
+      ...options,
+      fetchImpl: async () => jsonResponse(responses.shift()),
+    }), (error) => (
+      error.code === (status === 'error' ? 'buffer_publication' : 'buffer_processing')
+    ));
+  }
+
+  const multiple = bufferPublicationOptions();
+  const multipleResponses = [
+    bufferChannelPayload(),
+    recentBufferPosts([
+      bufferPost({ id: 'buffer-existing-1', text: multiple.post.text }),
+      bufferPost({ id: 'buffer-existing-2', text: multiple.post.text }),
+    ]),
+  ];
+  await assert.rejects(publishToLinkedInViaBuffer({
+    ...multiple,
+    fetchImpl: async () => jsonResponse(multipleResponses.shift()),
+  }), (error) => error.code === 'buffer_reconciliation');
+});
+
+validation('reconciles once after an ambiguous Buffer create response', async () => {
+  const operations = [];
+  const options = bufferPublicationOptions();
+  const responses = [
+    bufferChannelPayload(),
+    recentBufferPosts([]),
+    new Error('connection reset after upload'),
+    recentBufferPosts([bufferPost({ text: options.post.text })]),
+  ];
+  const result = await publishToLinkedInViaBuffer({
+    ...options,
+    fetchImpl: async (_url, request) => {
+      operations.push(JSON.parse(request.body).operationName);
+      const response = responses.shift();
+      if (response instanceof Error) throw response;
+      return jsonResponse(response);
+    },
+  });
+  assert.equal(result.status, 'reconciled');
+  assert.deepEqual(operations, [
+    'GetChannels',
+    'GetRecentPosts',
+    'CreateLinkedInPost',
+    'GetRecentPosts',
+  ]);
+
+  const missingResponses = [
+    bufferChannelPayload(),
+    recentBufferPosts([]),
+    new Error('connection reset after upload'),
+    recentBufferPosts([]),
+  ];
+  await assert.rejects(publishToLinkedInViaBuffer({
+    ...options,
+    fetchImpl: async () => {
+      const response = missingResponses.shift();
+      if (response instanceof Error) throw response;
+      return jsonResponse(response);
+    },
+  }), (error) => error.code === 'buffer_response');
+});
+
+validation('rejects malformed Buffer reconciliation nodes instead of risking a duplicate', async () => {
+  const options = bufferPublicationOptions();
+  const responses = [
+    bufferChannelPayload(),
+    recentBufferPosts([{ id: 'buffer-existing-1', text: options.post.text }]),
+  ];
+  await assert.rejects(publishToLinkedInViaBuffer({
+    ...options,
+    fetchImpl: async () => jsonResponse(responses.shift()),
+  }), (error) => error.code === 'buffer_reconciliation');
+});
+
 validation('enables scheduled publication only for exact true with every credential', () => {
   const env = {
     SOCIAL_AUTO_PUBLISH: 'true',
