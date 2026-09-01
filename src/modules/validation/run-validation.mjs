@@ -5465,6 +5465,11 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.ok(publicationIndex >= 0);
   assert.ok(publicationIndex < publicationCommitIndex);
   assert.ok(publicationCommitIndex < intakeIndex);
+  const publicationStep = productionWorkflow.match(
+    /- name: Publish at most one queued job(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
+  )?.groups?.block ?? '';
+  assert.match(publicationStep, /mkdir -p \.tmp/u);
+  assert.ok(publicationStep.indexOf('mkdir -p .tmp') < publicationStep.indexOf('tee .tmp/publication-summary.txt'));
   assert.match(productionWorkflow, /npm run publish:story/u);
   assert.match(productionWorkflow, /chore\(state\): record Instagram story/u);
   assert.ok(

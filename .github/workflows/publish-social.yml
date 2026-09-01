@@ -222,6 +222,7 @@ jobs:
           REQUEST_JOB_ID: ${{ inputs.job_id }}
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
         run: |
+          mkdir -p .tmp
           arguments=(
             --mode "$RUN_MODE"
             --data "$DATA_PATH"
