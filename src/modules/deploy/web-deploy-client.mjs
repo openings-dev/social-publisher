@@ -9,9 +9,12 @@ import {
 import { sha256 } from '../../shared/hash.mjs';
 import { assertValidJobId } from '../../shared/job-id.mjs';
 import { verifyPublicBridge } from './public-verifier.mjs';
+import { verifyPublicEditorial } from './editorial-verifier.mjs';
 
 const HASH_PATTERN = /^[0-9a-f]{64}$/;
 const REPOSITORY_PATTERN = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
+const EDITORIAL_ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
+const MAX_EDITORIAL_DISPATCH_BODY_CHARACTERS = 500_000;
 
 function assertHash(value, label) {
   if (typeof value !== 'string' || !HASH_PATTERN.test(value)) {
@@ -85,6 +88,51 @@ export function buildRepositoryDispatchRequest({
     url: `${apiOrigin}/repos/${safeRepository}/dispatches`,
     body,
   });
+}
+
+function assertEditorialSvg(value, label, height) {
+  const buffer = toBuffer(value, label);
+  const document = buffer.toString('utf8');
+  if (!Buffer.from(document, 'utf8').equals(buffer)
+    || !new RegExp(`^\\s*<svg\\b[^>]*\\bwidth="1080"[^>]*\\bheight="${height}"`, 'iu').test(document)
+    || /<!DOCTYPE|<!ENTITY|<(?:script|foreignObject)\b|\bon[a-z]+\s*=|@import|url\(\s*["']?https?:/iu.test(document)
+    || /\b(?:href|src)\s*=\s*["']https?:/iu.test(document)) {
+    throw new Error(`${label} is not a safe 1080×${height} SVG`);
+  }
+  return buffer;
+}
+
+export function buildEditorialDispatchRequest({
+  contentId,
+  version,
+  carouselSvgs,
+  storySvg,
+  repository,
+  apiOrigin = GITHUB_API_ORIGIN,
+}) {
+  if (typeof contentId !== 'string' || !EDITORIAL_ID_PATTERN.test(contentId)) throw new Error('Editorial content ID is invalid');
+  if (typeof version !== 'string' || !/^[1-9][0-9]*$/u.test(version)) throw new Error('Editorial version is invalid');
+  const safeRepository = assertRepository(repository);
+  if (!Array.isArray(carouselSvgs) || carouselSvgs.length !== 7) throw new Error('Editorial carousel must contain seven SVGs');
+  const buffers = carouselSvgs.map((svg, index) => assertEditorialSvg(svg, `Editorial slide ${index + 1}`, 1350));
+  buffers.push(assertEditorialSvg(storySvg, 'Editorial Story', 1920));
+  const names = [...buffers.slice(0, 7).map((_, index) => `slide-${String(index + 1).padStart(2, '0')}`), 'story'];
+  const body = JSON.stringify({
+    event_type: 'publish_instagram_editorial',
+    client_payload: {
+      content_id: contentId,
+      content_version: version,
+      assets: buffers.map((buffer, index) => ({
+        name: names[index],
+        sha256: sha256(buffer),
+        svg_base64: buffer.toString('base64'),
+      })),
+    },
+  });
+  if (body.length > MAX_EDITORIAL_DISPATCH_BODY_CHARACTERS) {
+    throw new Error(`Editorial repository dispatch payload is too large (${body.length} characters)`);
+  }
+  return Object.freeze({ url: `${apiOrigin}/repos/${safeRepository}/dispatches`, body });
 }
 
 function wait(milliseconds) {
@@ -182,4 +230,50 @@ export async function requestIncrementalBridgeDeployment({
   }
 
   throw new Error(`Public bridge verification timed out for job ${safeJobId}`);
+}
+
+export async function requestEditorialDeployment({
+  contentId,
+  version,
+  carouselSvgs,
+  storySvg,
+  repository,
+  token,
+  origin,
+  fetchImpl = globalThis.fetch,
+  verifyPublic = verifyPublicEditorial,
+  sleep = wait,
+  pollAttempts = DEPLOY_POLL_ATTEMPTS,
+  pollDelayMs = DEPLOY_POLL_DELAY_MS,
+}) {
+  const request = buildEditorialDispatchRequest({ contentId, version, carouselSvgs, storySvg, repository });
+  const payload = JSON.parse(request.body).client_payload;
+  const expectedSourceHashes = Object.fromEntries(payload.assets.map(({ name, sha256: hash }) => [name, hash]));
+  const verificationInput = { contentId, version, expectedSourceHashes, origin, fetchImpl };
+  const current = await verifyPublic({ ...verificationInput, allowMismatch: true });
+  if (current.matches) return Object.freeze({ status: 'already_current', verification: current });
+  let response;
+  try {
+    response = await fetchImpl(request.url, {
+      method: 'POST',
+      headers: {
+        accept: 'application/vnd.github+json',
+        authorization: `Bearer ${assertToken(token)}`,
+        'content-type': 'application/json',
+        'user-agent': 'openings-social-publisher',
+        'x-github-api-version': '2026-03-10',
+      },
+      body: request.body,
+      redirect: 'error',
+    });
+  } catch {
+    throw new Error(`GitHub editorial deployment dispatch failed for ${contentId}`);
+  }
+  if (response.status !== 204) throw new Error(`GitHub editorial deployment dispatch failed with HTTP ${response.status}`);
+  for (let attempt = 0; attempt < pollAttempts; attempt += 1) {
+    await sleep(pollDelayMs);
+    const verification = await verifyPublic({ ...verificationInput, allowMismatch: true });
+    if (verification.matches) return Object.freeze({ status: 'deployed', verification });
+  }
+  throw new Error(`Public editorial verification timed out for ${contentId}`);
 }

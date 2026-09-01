@@ -57,9 +57,12 @@ import {
 } from '../networks/instagram-client.mjs';
 import { deleteThreadsPost, publishToThreads } from '../networks/threads-client.mjs';
 import {
+  buildEditorialDispatchRequest,
   buildRepositoryDispatchRequest,
+  requestEditorialDeployment,
   requestIncrementalBridgeDeployment,
 } from '../deploy/web-deploy-client.mjs';
+import { verifyPublicEditorial } from '../deploy/editorial-verifier.mjs';
 import { verifyPublicBridge } from '../deploy/public-verifier.mjs';
 import { validateEditorialCatalog } from '../editorial/editorial-model.mjs';
 import {
@@ -3461,6 +3464,73 @@ validation('formats and writes a complete editorial dry run', async () => {
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
+});
+
+validation('builds a bounded editorial deployment request with eight canonical SVG assets', () => {
+  const content = EDITORIAL_CATALOG[0];
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const carouselSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
+  const storySvg = createEditorialStorySvg(content, { wordmarkSvg });
+  const request = buildEditorialDispatchRequest({
+    contentId: content.id,
+    version: content.version,
+    carouselSvgs,
+    storySvg,
+    repository: 'openings-dev/web-deploy',
+  });
+  const body = JSON.parse(request.body);
+  assert.equal(body.event_type, 'publish_instagram_editorial');
+  assert.equal(body.client_payload.assets.length, 8);
+  assert.deepEqual(body.client_payload.assets.map(({ name }) => name), [
+    'slide-01', 'slide-02', 'slide-03', 'slide-04', 'slide-05', 'slide-06', 'slide-07', 'story',
+  ]);
+  for (const [index, asset] of body.client_payload.assets.entries()) {
+    const source = index < 7 ? carouselSvgs[index] : storySvg;
+    assert.equal(asset.sha256, sha256(source));
+    assert.equal(Buffer.from(asset.svg_base64, 'base64').toString('utf8'), source);
+  }
+  assert.throws(() => buildEditorialDispatchRequest({
+    contentId: '../escape', version: '1', carouselSvgs, storySvg, repository: 'openings-dev/web-deploy',
+  }), /content ID/i);
+});
+
+validation('verifies every public editorial JPEG against its canonical manifest', async () => {
+  const content = EDITORIAL_CATALOG[0];
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const rendered = await renderEditorialAssets(content, { wordmarkSvg });
+  const sourceSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
+  sourceSvgs.push(createEditorialStorySvg(content, { wordmarkSvg }));
+  const names = [...content.slides.map((_, index) => `slide-${String(index + 1).padStart(2, '0')}`), 'story'];
+  const buffers = [...rendered.slides, rendered.story];
+  const manifest = {
+    schemaVersion: 1,
+    contentId: content.id,
+    contentVersion: content.version,
+    assets: names.map((name, index) => ({
+      name,
+      path: `${name}.jpg`,
+      sourceSha256: sha256(sourceSvgs[index]),
+      sha256: sha256(buffers[index]),
+      width: 1080,
+      height: name === 'story' ? 1920 : 1350,
+    })),
+  };
+  const base = `https://openings.dev/social/editorial/${content.id}/1`;
+  const result = await verifyPublicEditorial({
+    contentId: content.id,
+    version: '1',
+    expectedSourceHashes: Object.fromEntries(manifest.assets.map(({ name, sourceSha256 }) => [name, sourceSha256])),
+    fetchImpl: async (url) => {
+      if (url === `${base}/manifest.json`) return new Response(JSON.stringify(manifest), { headers: { 'content-type': 'application/json' } });
+      const index = manifest.assets.findIndex(({ path }) => url === `${base}/${path}`);
+      return index >= 0
+        ? new Response(buffers[index], { headers: { 'content-type': 'image/jpeg' } })
+        : new Response('missing', { status: 404 });
+    },
+  });
+  assert.equal(result.matches, true);
+  assert.equal(result.carouselUrls.length, 7);
+  assert.equal(result.storyUrl, `${base}/story.jpg`);
 });
 
 let passed = 0;
