@@ -4348,6 +4348,10 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.doesNotMatch(productionWorkflow, /^\s{2}(?:push|pull_request):/mu);
   assert.match(productionWorkflow, /contents:\s*write/u);
   assert.match(productionWorkflow, /cancel-in-progress:\s*false/u);
+  assert.match(
+    productionWorkflow,
+    /^defaults:\n  run:\n    shell: bash$/mu,
+  );
   assert.match(productionWorkflow, /PUBLISH_ONE_JOB/u);
   assert.match(productionWorkflow, /RESET_FAILED_STAGE/u);
   assert.match(productionWorkflow, /chore\(state\): record social intake/u);
