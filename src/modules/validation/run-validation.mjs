@@ -5402,7 +5402,7 @@ validation('keeps validation read-only and production publishing explicitly gate
   );
   assert.match(productionWorkflow, /PUBLISH_ONE_JOB/u);
   assert.match(productionWorkflow, /RESET_FAILED_STAGE/u);
-  assert.match(productionWorkflow, /chore\(state\): record social intake/u);
+  assert.match(productionWorkflow, /chore\(state\): checkpoint social intake/u);
   assert.match(productionWorkflow, /chore\(state\): record social publication/u);
   assert.match(productionWorkflow, /WEB_DEPLOY_TOKEN/u);
   assert.match(productionWorkflow, /THREADS_AUTO_PUBLISH/u);
@@ -5459,6 +5459,12 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(productionWorkflow, /id:\s*preflight/u);
   assert.match(productionWorkflow, /src\/cli\/preflight\.mjs/u);
   assert.match(productionWorkflow, /steps\.preflight\.outputs\.should_run == 'true'/u);
+  const publicationIndex = productionWorkflow.indexOf('Publish at most one queued job');
+  const publicationCommitIndex = productionWorkflow.indexOf('Commit and push publication or reset state');
+  const intakeIndex = productionWorkflow.indexOf('Process and checkpoint bounded snapshot intake');
+  assert.ok(publicationIndex >= 0);
+  assert.ok(publicationIndex < publicationCommitIndex);
+  assert.ok(publicationCommitIndex < intakeIndex);
   assert.match(productionWorkflow, /npm run publish:story/u);
   assert.match(productionWorkflow, /chore\(state\): record Instagram story/u);
   assert.ok(
@@ -5492,16 +5498,26 @@ validation('keeps validation read-only and production publishing explicitly gate
     /- name: Check out social-publisher state and source(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
   )?.groups?.block ?? '';
   assert.match(stateCheckout, /ref:\s*\$\{\{ github\.ref_name \}\}/u);
-  for (const stepName of [
-    'Process snapshot intake and verified bridges',
-    'Commit and push intake state before provider calls',
-  ]) {
-    const step = productionWorkflow.match(
-      new RegExp(`- name: ${stepName}(?<block>[\\s\\S]*?)(?=\\n\\s+- name:)`, 'u'),
-    )?.groups?.block ?? '';
-    assert.match(step, /env\.RUN_MODE == 'scheduled'/u);
-    assert.doesNotMatch(step, /env\.RUN_MODE == 'controlled'/u);
-  }
+  const intakeStep = productionWorkflow.match(
+    /- name: Process and checkpoint bounded snapshot intake(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
+  )?.groups?.block ?? '';
+  assert.match(intakeStep, /id:\s*intake/u);
+  assert.match(intakeStep, /env\.RUN_MODE == 'scheduled'/u);
+  assert.doesNotMatch(intakeStep, /env\.RUN_MODE == 'controlled'/u);
+  assert.match(intakeStep, /for iteration in \{1\.\.8\}/u);
+  assert.match(intakeStep, /npm run intake/u);
+  assert.match(intakeStep, /git add -- state\/intake\.json state\/queue\.json/u);
+  assert.match(intakeStep, /chore\(state\): checkpoint social intake \[skip ci\]/u);
+  assert.match(intakeStep, /git fetch origin/u);
+  assert.match(intakeStep, /git rebase/u);
+  assert.match(intakeStep, /npm run validate/u);
+  assert.match(intakeStep, /JSON\.parse/u);
+  assert.match(intakeStep, /GITHUB_OUTPUT/u);
+  const intakeGuard = productionWorkflow.match(
+    /- name: Fail after preserving an intake error(?<block>[\s\S]*?)(?=\n\s+- name:|$)/u,
+  )?.groups?.block ?? '';
+  assert.match(intakeGuard, /steps\.intake\.outputs\.error != ''/u);
+  assert.match(intakeGuard, /exit 1/u);
   assert.doesNotMatch(productionWorkflow, /FTP_(?:SERVER|USERNAME|PASSWORD|JOB_ROOT)|Install LFTP/u);
   const actionUses = [...`${validationWorkflow}\n${productionWorkflow}`.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/gu)];
   assert.ok(actionUses.length >= 5);
