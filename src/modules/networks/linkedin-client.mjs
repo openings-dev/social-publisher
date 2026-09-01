@@ -284,6 +284,9 @@ async function createArticlePost({ config, fetchImpl, job, post, image }) {
     throw publicationError('linkedin_publication', 'LinkedIn publication failed');
   }
   assertSuccessfulResponse(response, 'linkedin_publication', 'LinkedIn publication failed');
+  if (response.status !== 201) {
+    throw publicationError('linkedin_response', 'LinkedIn returned an invalid publication status');
+  }
   return normalizedResult({ id: response.headers.get('x-restli-id') }, 'published');
 }
 

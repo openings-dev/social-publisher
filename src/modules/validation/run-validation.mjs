@@ -578,6 +578,48 @@ validation('preserves a malformed successful LinkedIn create response after reco
   assert.equal(responses.length, 0);
 });
 
+validation('requires LinkedIn post creation to return the documented 201 status', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const responses = [
+    new Response(JSON.stringify({ elements: [] }), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    }),
+    new Response(JSON.stringify({
+      value: {
+        uploadUrl: 'https://www.linkedin.com/dms-uploads/fixture?token=signed',
+        image: 'urn:li:image:fixture-image',
+      },
+    }), { status: 200, headers: { 'content-type': 'application/json' } }),
+    new Response(null, { status: 201 }),
+    new Response(JSON.stringify({
+      id: 'urn:li:image:fixture-image',
+      owner: 'urn:li:organization:108765432',
+      status: 'AVAILABLE',
+    }), { status: 200, headers: { 'content-type': 'application/json' } }),
+    new Response(null, {
+      status: 200,
+      headers: { 'x-restli-id': 'urn:li:share:123456789' },
+    }),
+    new Response(JSON.stringify({ elements: [] }), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    }),
+  ];
+  await assert.rejects(publishToLinkedIn({
+    job,
+    post,
+    png: Buffer.from('canonical-png'),
+    accessToken: 'linkedin-secret',
+    organizationId: '108765432',
+    apiVersion: '202608',
+    fetchImpl: async () => responses.shift(),
+    sleep: async () => {},
+  }), (error) => error.code === 'linkedin_response');
+  assert.equal(responses.length, 0);
+});
+
 validation('fails closed for unsafe LinkedIn uploads and failed image processing', async () => {
   const job = makeJob();
   const post = formatSocialPost(job);
