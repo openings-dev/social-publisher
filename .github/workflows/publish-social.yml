@@ -35,6 +35,7 @@ on:
           - mastodon
           - threads
           - instagram
+          - instagramStory
       confirmation:
         description: Enter PUBLISH_ONE_JOB, RESET_FAILED_STAGE, or MIGRATE_META_POSTS
         required: false
@@ -72,6 +73,7 @@ jobs:
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
       THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.THREADS_AUTO_PUBLISH || 'false' }}
       INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
+      INSTAGRAM_STORY_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_STORY_AUTO_PUBLISH || 'false' }}
     steps:
       - name: Check out social-publisher state and source
         # actions/checkout v4.3.1
@@ -297,6 +299,30 @@ jobs:
             exit 0
           fi
           git commit -m 'chore(state): record social publication [skip ci]'
+          if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+            exit 0
+          fi
+          git fetch origin "$GITHUB_REF_NAME"
+          git rebase "origin/$GITHUB_REF_NAME"
+          npm run validate
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
+      - name: Publish Instagram Story for a completed feed post
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true' && env.INSTAGRAM_AUTO_PUBLISH == 'true'
+        env:
+          INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+        run: npm run publish:story -- --state state
+
+      - name: Commit and push Instagram Story state
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true' && env.INSTAGRAM_AUTO_PUBLISH == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- state/queue.json state/publications.json
+          if git diff --cached --quiet; then
+            exit 0
+          fi
+          git commit -m 'chore(state): record Instagram story [skip ci]'
           if git push origin "HEAD:${GITHUB_REF_NAME}"; then
             exit 0
           fi

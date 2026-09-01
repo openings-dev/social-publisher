@@ -26,7 +26,7 @@ import {
 } from '../modules/state/state-model.mjs';
 import { assertValidJobId } from '../shared/job-id.mjs';
 
-const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS]);
+const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS, 'instagramStory']);
 const MODES = new Set(['scheduled', 'controlled', 'retry-stage']);
 
 function parseArguments(argumentsList) {
@@ -55,7 +55,7 @@ export function parsePublicationRequest({ mode = 'scheduled', jobId, stage, conf
   if (mode === 'retry-stage') {
     assertValidJobId(jobId);
     if (!STAGES.has(stage)) {
-      throw new Error('Retry stage must be bridge, bluesky, mastodon, threads, or instagram');
+      throw new Error('Retry stage must be bridge, bluesky, mastodon, threads, instagram, or instagramStory');
     }
     if (confirmation !== 'RESET_FAILED_STAGE') {
       throw new Error('Stage reset requires the exact confirmation phrase');
@@ -166,6 +166,7 @@ export async function runPublication({
     publishThreads,
     publishInstagram,
     enabledChannels: config.enabledChannels,
+    instagramStoryEnabled: config.instagramStoryEnabled,
     jobId: parsed.jobId ?? undefined,
   });
   await saveStateFile(queuePath, result.queueState, validateQueueState);

@@ -9,7 +9,8 @@ function isReadyStage(stage) {
 }
 
 function isReadyQueueItem(item) {
-  return [item.bridge, ...SOCIAL_CHANNELS.map((channel) => item[channel])].some(isReadyStage);
+  return [item.bridge, ...SOCIAL_CHANNELS.map((channel) => item[channel]), item.instagramStory]
+    .some(isReadyStage);
 }
 
 export function decideScheduledWork({

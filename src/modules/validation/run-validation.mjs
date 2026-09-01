@@ -9,6 +9,7 @@ import sharp from 'sharp';
 import { runDryRun } from '../../cli/dry-run.mjs';
 import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest } from '../../cli/publish.mjs';
+import { runJobStoryPublication } from '../../cli/publish-story.mjs';
 
 import {
   DEPLOY_POLL_ATTEMPTS,
@@ -92,6 +93,7 @@ import {
   markJobClosed,
   resetFailedStage,
   resetPublishedMetaStages,
+  selectNextInstagramStory,
   selectNextQueueItem,
   transitionQueueStage,
 } from '../state/queue-operations.mjs';
@@ -436,6 +438,100 @@ validation('migrates version-two state without historical Story backfill', async
     const loaded = await loadStateFile(queuePath, validateQueueState, migrateQueueState);
     assert.equal(loaded.schemaVersion, 3);
     assert.equal(loaded.items[0].instagramStory.status, 'skipped_before_activation');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+validation('selects and publishes only a ready job Story', async () => {
+  const job = makeJob({ id: 'gh_888888888888888888888884' });
+  const snapshot = makeLoadedSnapshot({
+    commit: '9'.repeat(40),
+    generatedAt: '2026-08-25T20:00:00.000Z',
+    dataHash: '9'.repeat(64),
+    jobs: [job],
+  });
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-25T20:01:00.000Z',
+    enabledChannels: ['instagram'],
+    instagramStoryEnabled: true,
+  });
+  assert.equal(selectNextInstagramStory(queue), null);
+  queue = transitionQueueStage(queue, job.id, 'bridge', 'publishing', {
+    at: '2026-08-25T20:02:00.000Z',
+  });
+  queue = transitionQueueStage(queue, job.id, 'bridge', 'published', {
+    at: '2026-08-25T20:02:10.000Z',
+    result: {
+      socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`,
+    },
+  });
+  queue = transitionQueueStage(queue, job.id, 'instagram', 'publishing', {
+    at: '2026-08-25T20:03:00.000Z',
+  });
+  queue = transitionQueueStage(queue, job.id, 'instagram', 'published', {
+    at: '2026-08-25T20:03:10.000Z',
+    result: { status: 'published', id: 'feed-1', url: 'https://www.instagram.com/reel/feed-1/' },
+  });
+  assert.equal(selectNextInstagramStory(queue).jobId, job.id);
+
+  const directory = await mkdtemp(join(tmpdir(), 'openings-job-story-'));
+  const queuePath = join(directory, 'queue.json');
+  const publicationsPath = join(directory, 'publications.json');
+  const publications = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: {
+      [job.id]: {
+        status: 'completed',
+        instagram: queue.items[0].instagram.result,
+        instagramStory: null,
+      },
+    },
+  };
+  try {
+    await saveStateFile(queuePath, queue, validateQueueState);
+    await saveStateFile(publicationsPath, publications, validatePublicationsState);
+    let storyCalls = 0;
+    const result = await runJobStoryPublication({
+      stateDirectory: directory,
+      env: {
+        INSTAGRAM_STORY_AUTO_PUBLISH: 'true',
+        INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+        INSTAGRAM_USER_ID: '17841400000000000',
+        META_GRAPH_VERSION: 'v26.0',
+      },
+      now: '2026-08-25T20:04:00.000Z',
+      dependencies: {
+        publishStory: async ({ mediaUrl, mediaKind }) => {
+          storyCalls += 1;
+          assert.equal(mediaUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`);
+          assert.equal(mediaKind, 'video');
+          return { status: 'published', id: 'story-1', url: null };
+        },
+      },
+      log: () => {},
+    });
+    assert.equal(storyCalls, 1);
+    assert.equal(result.queueState.items[0].instagramStory.status, 'published');
+    assert.equal(result.queueState.items[0].instagram.result.id, 'feed-1');
+    assert.equal(result.publicationsState.jobs[job.id].instagramStory.id, 'story-1');
+
+    const idle = await runJobStoryPublication({
+      stateDirectory: directory,
+      env: {
+        INSTAGRAM_STORY_AUTO_PUBLISH: 'true',
+        INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+        INSTAGRAM_USER_ID: '17841400000000000',
+        META_GRAPH_VERSION: 'v26.0',
+      },
+      dependencies: {
+        publishStory: async () => { throw new Error('must not republish'); },
+      },
+      log: () => {},
+    });
+    assert.equal(idle.outcome, 'idle');
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -3175,12 +3271,23 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(productionWorkflow, /WEB_DEPLOY_TOKEN/u);
   assert.match(productionWorkflow, /THREADS_AUTO_PUBLISH/u);
   assert.match(productionWorkflow, /INSTAGRAM_AUTO_PUBLISH/u);
+  assert.match(productionWorkflow, /INSTAGRAM_STORY_AUTO_PUBLISH/u);
   assert.match(productionWorkflow, /THREADS_ACCESS_TOKEN/u);
   assert.match(productionWorkflow, /INSTAGRAM_ACCESS_TOKEN/u);
   assert.match(productionWorkflow, /META_GRAPH_VERSION/u);
   assert.match(productionWorkflow, /id:\s*preflight/u);
   assert.match(productionWorkflow, /src\/cli\/preflight\.mjs/u);
   assert.match(productionWorkflow, /steps\.preflight\.outputs\.should_run == 'true'/u);
+  assert.match(productionWorkflow, /npm run publish:story/u);
+  assert.match(productionWorkflow, /chore\(state\): record Instagram story/u);
+  assert.ok(
+    productionWorkflow.indexOf('Commit and push publication or reset state')
+      < productionWorkflow.indexOf('Publish Instagram Story for a completed feed post'),
+  );
+  assert.ok(
+    productionWorkflow.indexOf('Publish Instagram Story for a completed feed post')
+      < productionWorkflow.indexOf('Commit and push Instagram Story state'),
+  );
   const stateCheckout = productionWorkflow.match(
     /- name: Check out social-publisher state and source(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
   )?.groups?.block ?? '';

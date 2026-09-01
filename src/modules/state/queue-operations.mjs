@@ -257,3 +257,18 @@ export function selectNextQueueItem(queueState, now = new Date().toISOString()) 
     || Date.parse(right.discoveredAt) - Date.parse(left.discoveredAt)
     || left.jobId.localeCompare(right.jobId))[0];
 }
+
+export function selectNextInstagramStory(queueState) {
+  validateQueueState(queueState);
+  return queueState.items
+    .filter((item) => READY_STATUSES.has(item.instagramStory.status)
+      && item.instagram.status === 'published'
+      && typeof item.instagram.result?.id === 'string'
+      && item.instagram.result.id.length > 0
+      && item.bridge.status === 'published'
+      && typeof item.bridge.result?.socialVideoUrl === 'string'
+      && item.bridge.result.socialVideoUrl.length > 0)
+    .sort((left, right) => Date.parse(left.instagram.updatedAt) - Date.parse(right.instagram.updatedAt)
+      || Date.parse(left.discoveredAt) - Date.parse(right.discoveredAt)
+      || left.jobId.localeCompare(right.jobId))[0] ?? null;
+}

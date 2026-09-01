@@ -79,6 +79,7 @@ export async function runIntake({
     snapshots,
     publishBridge,
     enabledChannels: config.enabledChannels,
+    instagramStoryEnabled: config.instagramStoryEnabled,
   });
   await saveStateFile(intakePath, result.intakeState, validateIntakeState);
   await saveStateFile(queuePath, result.queueState, validateQueueState);

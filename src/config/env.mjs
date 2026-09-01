@@ -49,10 +49,12 @@ function normalizeApiBase(value, fallback, key) {
 export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
   const automatic = env.SOCIAL_AUTO_PUBLISH === 'true';
   const metaMigration = mode === 'meta-migration';
+  const storyMode = mode === 'story';
   const requiresDeploy = mode === 'intake' || mode === 'scheduled' || mode === 'controlled' || metaMigration;
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
   const threadsEnabled = env.THREADS_AUTO_PUBLISH === 'true';
   const instagramEnabled = env.INSTAGRAM_AUTO_PUBLISH === 'true';
+  const instagramStoryEnabled = env.INSTAGRAM_STORY_AUTO_PUBLISH === 'true';
   const enabledChannels = [
     ...DEFAULT_SOCIAL_CHANNELS,
     ...(threadsEnabled ? ['threads'] : []),
@@ -83,10 +85,17 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       throw new Error('Invalid configuration: META_GRAPH_VERSION');
     }
   }
+  if (storyMode) {
+    requireKeys(env, ['INSTAGRAM_ACCESS_TOKEN', 'INSTAGRAM_USER_ID', 'META_GRAPH_VERSION']);
+    if (!/^v\d+\.\d+$/u.test(env.META_GRAPH_VERSION)) {
+      throw new Error('Invalid configuration: META_GRAPH_VERSION');
+    }
+  }
 
   return Object.freeze({
     mode,
     publishEnabled: mode === 'controlled' || metaMigration || (mode === 'scheduled' && automatic),
+    instagramStoryEnabled,
     enabledChannels: Object.freeze(enabledChannels),
     publicSiteOrigin: normalizeOrigin(env.PUBLIC_SITE_ORIGIN, OPENINGS_ORIGIN, 'PUBLIC_SITE_ORIGIN'),
     mastodonBaseUrl: normalizeOrigin(env.MASTODON_BASE_URL, MASTODON_BASE_URL, 'MASTODON_BASE_URL'),
@@ -104,7 +113,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       accessToken: env.THREADS_ACCESS_TOKEN,
       apiUrl: normalizeApiBase(env.THREADS_API_URL, THREADS_API_URL, 'THREADS_API_URL'),
     }) : null,
-    instagram: (metaMigration || (requiresSocial && instagramEnabled)) ? Object.freeze({
+    instagram: (storyMode || metaMigration || (requiresSocial && instagramEnabled)) ? Object.freeze({
       accessToken: env.INSTAGRAM_ACCESS_TOKEN,
       userId: env.INSTAGRAM_USER_ID,
       apiVersion: env.META_GRAPH_VERSION,
