@@ -9,6 +9,7 @@ import sharp from 'sharp';
 
 import { runDryRun } from '../../cli/dry-run.mjs';
 import { parseEditorialRequest, renderEditorialDryRun } from '../../cli/editorial.mjs';
+import { runIntake } from '../../cli/intake.mjs';
 import { runLinkedInStateMigration } from '../../cli/migrate-linkedin-state.mjs';
 import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest, runPublication } from '../../cli/publish.mjs';
@@ -4764,6 +4765,166 @@ validation('replaces a stale intake checkpoint before deploying changed content'
   assert.equal(result.intakeState.processedSnapshot.commit, current.commit);
   assert.deepEqual(result.intakeState.pendingBridges, []);
   assert.deepEqual(result.queueState.items, []);
+});
+
+validation('persists one bounded intake attempt through the CLI', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-bounded-intake-'));
+  const jobs = [
+    makeJob({
+      id: 'gh_666666666666666666666661',
+      contentHash: '6'.repeat(64),
+      createdAt: '2026-09-01T18:00:01.000Z',
+    }),
+    makeJob({
+      id: 'gh_666666666666666666666662',
+      contentHash: '7'.repeat(64),
+      createdAt: '2026-09-01T18:00:02.000Z',
+    }),
+  ];
+  const previous = makeLoadedSnapshot({
+    commit: '6'.repeat(40),
+    generatedAt: '2026-09-01T18:00:00.000Z',
+    dataHash: '6'.repeat(64),
+    jobs: [],
+  });
+  const current = makeLoadedSnapshot({
+    commit: '7'.repeat(40),
+    generatedAt: '2026-09-01T18:05:00.000Z',
+    dataHash: '7'.repeat(64),
+    jobs,
+  });
+  const logs = [];
+  let bridgeCalls = 0;
+  try {
+    await saveStateFile(join(directory, 'intake.json'), {
+      schemaVersion: STATE_SCHEMA_VERSION,
+      processedSnapshot: snapshotReference({
+        commit: previous.commit,
+        generatedAt: previous.generatedAt,
+        dataHash: previous.dataHash,
+      }),
+      pendingBridges: [],
+      removedJobs: [],
+    }, validateIntakeState);
+    await saveStateFile(join(directory, 'queue.json'), {
+      schemaVersion: STATE_SCHEMA_VERSION,
+      items: [],
+    }, validateQueueState);
+    await saveStateFile(join(directory, 'publications.json'), {
+      schemaVersion: STATE_SCHEMA_VERSION,
+      jobs: {},
+    }, validatePublicationsState);
+
+    await runIntake({
+      dataRepositoryPath: '/fixture/data',
+      stateDirectory: directory,
+      wordmarkPath: '/fixture/wordmark.svg',
+      outputPath: join(directory, 'output'),
+      env: { WEB_DEPLOY_TOKEN: 'deploy-secret' },
+      maxBridgeAttempts: 1,
+      log: (message) => logs.push(message),
+      dependencies: {
+        resolveGitCommit: async () => current.commit,
+        listSnapshotCommits: async () => [previous.commit, current.commit],
+        loadSnapshot: async (_repository, commit) => (
+          commit === previous.commit ? previous : current
+        ),
+        loadCanonicalWordmark: async () => '<svg></svg>',
+        createBridgePublisher: () => async ({ job }) => {
+          bridgeCalls += 1;
+          return { status: 'deployed', canonicalUrl: `https://openings.dev/jobs/${job.id}` };
+        },
+      },
+    });
+
+    const [intake, queue] = await Promise.all([
+      loadStateFile(join(directory, 'intake.json'), validateIntakeState),
+      loadStateFile(join(directory, 'queue.json'), validateQueueState),
+    ]);
+    const summary = JSON.parse(logs.at(-1));
+    assert.equal(bridgeCalls, 1);
+    assert.equal(intake.processedSnapshot.commit, previous.commit);
+    assert.equal(intake.pendingBridges.length, 1);
+    assert.equal(intake.pendingBridges[0].stage.status, 'published');
+    assert.deepEqual(queue.items.map(({ jobId }) => jobId), [jobs[0].id]);
+    assert.equal(summary.complete, false);
+    assert.equal(summary.error, null);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+validation('persists a failed CLI intake attempt without logging its diagnostic', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-failed-intake-'));
+  const job = makeJob({
+    id: 'gh_777777777777777777777777',
+    contentHash: '8'.repeat(64),
+    createdAt: '2026-09-01T18:00:01.000Z',
+  });
+  const previous = makeLoadedSnapshot({
+    commit: '8'.repeat(40),
+    generatedAt: '2026-09-01T18:00:00.000Z',
+    dataHash: '8'.repeat(64),
+    jobs: [],
+  });
+  const current = makeLoadedSnapshot({
+    commit: '9'.repeat(40),
+    generatedAt: '2026-09-01T18:05:00.000Z',
+    dataHash: '9'.repeat(64),
+    jobs: [job],
+  });
+  const logs = [];
+  try {
+    await saveStateFile(join(directory, 'intake.json'), {
+      schemaVersion: STATE_SCHEMA_VERSION,
+      processedSnapshot: snapshotReference({
+        commit: previous.commit,
+        generatedAt: previous.generatedAt,
+        dataHash: previous.dataHash,
+      }),
+      pendingBridges: [],
+      removedJobs: [],
+    }, validateIntakeState);
+    await saveStateFile(join(directory, 'queue.json'), {
+      schemaVersion: STATE_SCHEMA_VERSION,
+      items: [],
+    }, validateQueueState);
+    await saveStateFile(join(directory, 'publications.json'), {
+      schemaVersion: STATE_SCHEMA_VERSION,
+      jobs: {},
+    }, validatePublicationsState);
+
+    await runIntake({
+      dataRepositoryPath: '/fixture/data',
+      stateDirectory: directory,
+      wordmarkPath: '/fixture/wordmark.svg',
+      outputPath: join(directory, 'output'),
+      env: { WEB_DEPLOY_TOKEN: 'deploy-secret' },
+      maxBridgeAttempts: 1,
+      log: (message) => logs.push(message),
+      dependencies: {
+        resolveGitCommit: async () => current.commit,
+        listSnapshotCommits: async () => [previous.commit, current.commit],
+        loadSnapshot: async (_repository, commit) => (
+          commit === previous.commit ? previous : current
+        ),
+        loadCanonicalWordmark: async () => '<svg></svg>',
+        createBridgePublisher: () => async () => {
+          const error = new Error('secret FTP diagnostic');
+          error.code = 'bridge_deployment';
+          throw error;
+        },
+      },
+    });
+
+    const intake = await loadStateFile(join(directory, 'intake.json'), validateIntakeState);
+    const summary = JSON.parse(logs.at(-1));
+    assert.equal(intake.pendingBridges[0].stage.status, 'retryable');
+    assert.equal(summary.error, 'bridge_deployment');
+    assert.equal(logs.join('\n').includes('secret FTP diagnostic'), false);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 validation('deploys before providers and preserves partial success for a retry', async () => {

@@ -41,6 +41,7 @@ export async function runIntake({
   outputPath,
   dataReference = 'HEAD',
   mode = 'intake',
+  maxBridgeAttempts = 1,
   env = process.env,
   log = console.log,
   dependencies = {},
@@ -80,6 +81,7 @@ export async function runIntake({
     publishBridge,
     enabledChannels: config.enabledChannels,
     instagramStoryEnabled: config.instagramStoryEnabled,
+    maxBridgeAttempts,
   });
   await saveStateFile(intakePath, result.intakeState, validateIntakeState);
   await saveStateFile(queuePath, result.queueState, validateQueueState);
