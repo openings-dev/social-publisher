@@ -4571,6 +4571,201 @@ validation('deploys every new or changed bridge but queues only genuinely new is
   assert.equal(result.intakeState.processedSnapshot.commit, current.commit);
 });
 
+validation('checkpoints one bridge attempt and resumes without duplicate deployment', async () => {
+  const jobs = [
+    makeJob({
+      id: 'gh_111111111111111111111111',
+      contentHash: '1'.repeat(64),
+      createdAt: '2026-09-01T18:00:01.000Z',
+    }),
+    makeJob({
+      id: 'gh_222222222222222222222222',
+      contentHash: '2'.repeat(64),
+      createdAt: '2026-09-01T18:00:02.000Z',
+    }),
+    makeJob({
+      id: 'gh_333333333333333333333333',
+      contentHash: '3'.repeat(64),
+      createdAt: '2026-09-01T18:00:03.000Z',
+    }),
+  ];
+  const previous = makeLoadedSnapshot({
+    commit: 'a'.repeat(40),
+    generatedAt: '2026-09-01T18:00:00.000Z',
+    dataHash: 'a'.repeat(64),
+    jobs: [],
+  });
+  const current = makeLoadedSnapshot({
+    commit: 'b'.repeat(40),
+    generatedAt: '2026-09-01T18:05:00.000Z',
+    dataHash: 'b'.repeat(64),
+    jobs,
+  });
+  const bridgeCalls = [];
+  const publishBridge = async ({ job }) => {
+    bridgeCalls.push(job.id);
+    return { status: 'deployed', canonicalUrl: `https://openings.dev/jobs/${job.id}` };
+  };
+  const initialIntake = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    processedSnapshot: snapshotReference({
+      commit: previous.commit,
+      generatedAt: previous.generatedAt,
+      dataHash: previous.dataHash,
+    }),
+    pendingBridges: [],
+    removedJobs: [],
+  };
+  const emptyQueue = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
+  const publications = { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} };
+
+  const first = await processIntakeSnapshots({
+    intakeState: initialIntake,
+    queueState: emptyQueue,
+    publicationsState: publications,
+    snapshots: [previous, current],
+    publishBridge,
+    maxBridgeAttempts: 1,
+    now: '2026-09-01T18:06:00.000Z',
+  });
+  assert.equal(first.summary.complete, false);
+  assert.equal(first.summary.error, null);
+  assert.equal(first.summary.bridges, 1);
+  assert.equal(first.intakeState.processedSnapshot.commit, previous.commit);
+  assert.equal(first.intakeState.pendingBridges.length, 1);
+  assert.equal(first.intakeState.pendingBridges[0].stage.status, 'published');
+  assert.deepEqual(first.queueState.items.map(({ jobId }) => jobId), [jobs[0].id]);
+  assert.deepEqual(bridgeCalls, [jobs[0].id]);
+
+  const second = await processIntakeSnapshots({
+    intakeState: first.intakeState,
+    queueState: first.queueState,
+    publicationsState: publications,
+    snapshots: [previous, current],
+    publishBridge,
+    maxBridgeAttempts: 1,
+    now: '2026-09-01T18:07:00.000Z',
+  });
+  assert.equal(second.summary.complete, false);
+  assert.equal(second.summary.bridges, 1);
+  assert.equal(second.intakeState.processedSnapshot.commit, previous.commit);
+  assert.deepEqual(second.queueState.items.map(({ jobId }) => jobId), [jobs[0].id, jobs[1].id]);
+  assert.deepEqual(bridgeCalls, [jobs[0].id, jobs[1].id]);
+
+  const completed = await processIntakeSnapshots({
+    intakeState: second.intakeState,
+    queueState: second.queueState,
+    publicationsState: publications,
+    snapshots: [previous, current],
+    publishBridge,
+    now: '2026-09-01T18:08:00.000Z',
+  });
+  assert.equal(completed.summary.complete, true);
+  assert.equal(completed.summary.bridges, 1);
+  assert.equal(completed.intakeState.processedSnapshot.commit, current.commit);
+  assert.deepEqual(completed.intakeState.pendingBridges, []);
+  assert.deepEqual(completed.queueState.items.map(({ jobId }) => jobId), jobs.map(({ id }) => id));
+  assert.deepEqual(bridgeCalls, jobs.map(({ id }) => id));
+});
+
+validation('persists a retryable intake bridge instead of discarding the failure', async () => {
+  const job = makeJob({
+    id: 'gh_444444444444444444444444',
+    contentHash: '4'.repeat(64),
+    createdAt: '2026-09-01T18:00:01.000Z',
+  });
+  const previous = makeLoadedSnapshot({
+    commit: 'c'.repeat(40),
+    generatedAt: '2026-09-01T18:00:00.000Z',
+    dataHash: 'c'.repeat(64),
+    jobs: [],
+  });
+  const current = makeLoadedSnapshot({
+    commit: 'd'.repeat(40),
+    generatedAt: '2026-09-01T18:05:00.000Z',
+    dataHash: 'd'.repeat(64),
+    jobs: [job],
+  });
+  const failure = new Error('secret FTP diagnostic');
+  failure.code = 'bridge_deployment';
+  const result = await processIntakeSnapshots({
+    intakeState: {
+      schemaVersion: STATE_SCHEMA_VERSION,
+      processedSnapshot: snapshotReference({
+        commit: previous.commit,
+        generatedAt: previous.generatedAt,
+        dataHash: previous.dataHash,
+      }),
+      pendingBridges: [],
+      removedJobs: [],
+    },
+    queueState: { schemaVersion: STATE_SCHEMA_VERSION, items: [] },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+    snapshots: [previous, current],
+    publishBridge: async () => { throw failure; },
+    maxBridgeAttempts: 1,
+    now: '2026-09-01T18:06:00.000Z',
+  });
+  assert.equal(result.summary.complete, false);
+  assert.equal(result.summary.error, 'bridge_deployment');
+  assert.equal(result.intakeState.processedSnapshot.commit, previous.commit);
+  assert.equal(result.intakeState.pendingBridges[0].stage.status, 'retryable');
+  assert.equal(result.intakeState.pendingBridges[0].stage.attempts, 1);
+  assert.equal(result.intakeState.pendingBridges[0].stage.lastError.code, 'bridge_deployment');
+  assert.deepEqual(result.queueState.items, []);
+  assert.equal(JSON.stringify(result).includes('secret FTP diagnostic'), false);
+});
+
+validation('replaces a stale intake checkpoint before deploying changed content', async () => {
+  const before = makeJob({
+    id: 'gh_555555555555555555555555',
+    contentHash: '5'.repeat(64),
+  });
+  const after = { ...before, contentHash: '6'.repeat(64), updatedAt: '2026-09-01T18:05:00.000Z' };
+  const previous = makeLoadedSnapshot({
+    commit: 'e'.repeat(40),
+    generatedAt: '2026-09-01T18:00:00.000Z',
+    dataHash: 'e'.repeat(64),
+    jobs: [before],
+  });
+  const current = makeLoadedSnapshot({
+    commit: 'f'.repeat(40),
+    generatedAt: '2026-09-01T18:05:00.000Z',
+    dataHash: 'f'.repeat(64),
+    jobs: [after],
+  });
+  const staleSnapshot = snapshotReference({
+    commit: previous.commit,
+    generatedAt: previous.generatedAt,
+    dataHash: previous.dataHash,
+  });
+  let intake = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    processedSnapshot: staleSnapshot,
+    pendingBridges: [],
+    removedJobs: [],
+  };
+  intake = enqueueBridgeWork(intake, { job: before, snapshot: previous, reason: 'changed' });
+  let deployedHash = null;
+  const result = await processIntakeSnapshots({
+    intakeState: intake,
+    queueState: { schemaVersion: STATE_SCHEMA_VERSION, items: [] },
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+    snapshots: [previous, current],
+    publishBridge: async ({ job }) => {
+      deployedHash = job.contentHash;
+      return { status: 'deployed' };
+    },
+    maxBridgeAttempts: 1,
+    now: '2026-09-01T18:06:00.000Z',
+  });
+  assert.equal(deployedHash, after.contentHash);
+  assert.equal(result.summary.complete, true);
+  assert.equal(result.intakeState.processedSnapshot.commit, current.commit);
+  assert.deepEqual(result.intakeState.pendingBridges, []);
+  assert.deepEqual(result.queueState.items, []);
+});
+
 validation('deploys before providers and preserves partial success for a retry', async () => {
   const job = makeJob({ community: { name: 'Openings Fixtures' }, tags: ['typescript'] });
   const snapshot = makeLoadedSnapshot({

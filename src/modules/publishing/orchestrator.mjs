@@ -13,6 +13,7 @@ import {
   markJobClosed,
   markMissingJobsClosed,
   selectNextQueueItem,
+  transitionPendingBridgeStage,
   transitionQueueStage,
 } from '../state/queue-operations.mjs';
 import {
@@ -81,11 +82,23 @@ function safeErrorCode(error, stage) {
   return 'provider';
 }
 
-function removePendingBridge(intakeState, jobId) {
+function removePendingBridges(intakeState, jobIds) {
+  const removed = new Set(jobIds);
   return validateIntakeState({
     ...intakeState,
-    pendingBridges: intakeState.pendingBridges.filter((bridge) => bridge.jobId !== jobId),
+    pendingBridges: intakeState.pendingBridges.filter((bridge) => !removed.has(bridge.jobId)),
   });
+}
+
+function assertMaxBridgeAttempts(value) {
+  if (value !== Number.POSITIVE_INFINITY && (!Number.isSafeInteger(value) || value < 1)) {
+    throw new Error('maxBridgeAttempts must be a positive integer');
+  }
+  return value;
+}
+
+function intakeSummary({ baseline = false, bridges = 0, queued = 0, removed = 0, complete, error = null }) {
+  return Object.freeze({ baseline, bridges, queued, removed, complete, error });
 }
 
 function recordRemovedJobs(intakeState, removedJobs) {
@@ -196,12 +209,14 @@ export async function processIntakeSnapshots({
   publishBridge,
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
   instagramStoryEnabled = false,
+  maxBridgeAttempts = Number.POSITIVE_INFINITY,
   now = new Date().toISOString(),
 }) {
   let nextIntake = validateIntakeState(intakeState);
   let nextQueue = validateQueueState(queueState);
   const publications = validatePublicationsState(publicationsState);
   assertNow(now);
+  assertMaxBridgeAttempts(maxBridgeAttempts);
   if (!Array.isArray(snapshots) || snapshots.length === 0) {
     throw new Error('At least one loaded snapshot is required');
   }
@@ -219,7 +234,7 @@ export async function processIntakeSnapshots({
     return {
       intakeState: nextIntake,
       queueState: nextQueue,
-      summary: Object.freeze({ baseline: true, bridges: 0, queued: 0, removed: 0 }),
+      summary: intakeSummary({ baseline: true, complete: true }),
     };
   }
 
@@ -237,12 +252,88 @@ export async function processIntakeSnapshots({
     const delta = collectDelta(previous, current);
     const newIds = new Set(delta.new.map((job) => job.id));
 
-    for (const job of collectBridgeJobs(delta)) {
+    const bridgeJobs = collectBridgeJobs(delta);
+    for (const job of bridgeJobs) {
       const reason = newIds.has(job.id) ? 'new' : 'changed';
+      const checkpoint = nextIntake.pendingBridges.find((bridge) => (
+        bridge.jobId === job.id && bridge.contentHash === job.contentHash
+      ));
+      if (checkpoint?.stage.status !== 'published' && bridgeCount >= maxBridgeAttempts) {
+        return {
+          intakeState: nextIntake,
+          queueState: nextQueue,
+          summary: intakeSummary({
+            bridges: bridgeCount,
+            queued: queuedCount,
+            removed: removedCount,
+            complete: false,
+          }),
+        };
+      }
       nextIntake = enqueueBridgeWork(nextIntake, { job, snapshot: current, reason });
-      const bridgeResult = await publishBridge({ job, snapshot: current, reason });
-      nextIntake = removePendingBridge(nextIntake, job.id);
-      bridgeCount += 1;
+      let pendingBridge = nextIntake.pendingBridges.find((bridge) => bridge.jobId === job.id);
+      let bridgeResult = pendingBridge.stage.result;
+      if (pendingBridge.stage.status !== 'published') {
+        if (pendingBridge.stage.status === 'failed') {
+          return {
+            intakeState: nextIntake,
+            queueState: nextQueue,
+            summary: intakeSummary({
+              bridges: bridgeCount,
+              queued: queuedCount,
+              removed: removedCount,
+              complete: false,
+              error: pendingBridge.stage.lastError?.code ?? 'deployment',
+            }),
+          };
+        }
+        if (pendingBridge.stage.status === 'publishing') {
+          nextIntake = transitionPendingBridgeStage(nextIntake, job.id, 'retryable', {
+            at: now,
+            errorCode: 'interrupted',
+          });
+          pendingBridge = nextIntake.pendingBridges.find((bridge) => bridge.jobId === job.id);
+          if (pendingBridge.stage.status === 'failed') {
+            return {
+              intakeState: nextIntake,
+              queueState: nextQueue,
+              summary: intakeSummary({
+                bridges: bridgeCount,
+                queued: queuedCount,
+                removed: removedCount,
+                complete: false,
+                error: pendingBridge.stage.lastError.code,
+              }),
+            };
+          }
+        }
+        nextIntake = transitionPendingBridgeStage(nextIntake, job.id, 'publishing', { at: now });
+        bridgeCount += 1;
+        try {
+          bridgeResult = await publishBridge({ job, snapshot: current, reason });
+          nextIntake = transitionPendingBridgeStage(nextIntake, job.id, 'published', {
+            at: now,
+            result: bridgeResult,
+          });
+        } catch (error) {
+          const errorCode = safeErrorCode(error, 'bridge');
+          nextIntake = transitionPendingBridgeStage(nextIntake, job.id, 'retryable', {
+            at: now,
+            errorCode,
+          });
+          return {
+            intakeState: nextIntake,
+            queueState: nextQueue,
+            summary: intakeSummary({
+              bridges: bridgeCount,
+              queued: queuedCount,
+              removed: removedCount,
+              complete: false,
+              error: errorCode,
+            }),
+          };
+        }
+      }
 
       if (reason === 'new' && isEligibleNewJob(job, previous.generatedAt, publications)) {
         const beforeCount = nextQueue.items.length;
@@ -260,6 +351,7 @@ export async function processIntakeSnapshots({
       }
     }
 
+    nextIntake = removePendingBridges(nextIntake, bridgeJobs.map((job) => job.id));
     nextIntake = recordRemovedJobs(nextIntake, delta.removed);
     removedCount += delta.removed.length;
     nextIntake = validateIntakeState({
@@ -271,7 +363,12 @@ export async function processIntakeSnapshots({
   return {
     intakeState: nextIntake,
     queueState: nextQueue,
-    summary: Object.freeze({ baseline: false, bridges: bridgeCount, queued: queuedCount, removed: removedCount }),
+    summary: intakeSummary({
+      bridges: bridgeCount,
+      queued: queuedCount,
+      removed: removedCount,
+      complete: true,
+    }),
   };
 }
 
