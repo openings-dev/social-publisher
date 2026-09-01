@@ -186,6 +186,9 @@ export function validatePublicationsState(value) {
     if (!Object.hasOwn(publication, 'linkedin')) {
       throw new Error(`publication ${jobId}.linkedin is required`);
     }
+    if (publication.linkedin !== null) {
+      assertObject(publication.linkedin, `publication ${jobId}.linkedin`);
+    }
   }
   assertNoSensitiveKeys(state);
   return state;

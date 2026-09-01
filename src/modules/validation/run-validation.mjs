@@ -1112,6 +1112,12 @@ validation('rejects unknown state versions, duplicates, and sensitive keys', () 
       gh_0123456789abcdef01234567: { status: 'completed' },
     },
   }), /linkedin/u);
+  assert.throws(() => validatePublicationsState({
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: {
+      gh_0123456789abcdef01234567: { status: 'completed', linkedin: 'invalid' },
+    },
+  }), /linkedin/u);
   assert.throws(() => assertNoSensitiveKeys({ nested: { accessToken: 'never-track-this' } }), /sensitive/i);
 });
 
