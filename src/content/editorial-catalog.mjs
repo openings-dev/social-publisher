@@ -1,8 +1,59 @@
-const LINKEDIN_SOURCE = Object.freeze({
-  title: 'Optimizing your LinkedIn profile: an international guide',
-  author: 'Nicole Barra',
-  url: 'https://www.linkedin.com/pulse/optimizing-your-linkedin-profile-international-guide-nicole-barra--ujebf/',
+const LINKEDIN_PROFILE_SOURCE = Object.freeze({
+  title: 'How do I create a good LinkedIn profile?',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a554351/how-do-i-create-a-good-linkedin-profile-?lang=en',
 });
+const LINKEDIN_HEADLINE_SOURCE = Object.freeze({
+  title: 'Edit the Introduction section on your profile',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a1435876',
+});
+const LINKEDIN_LANGUAGE_SOURCE = Object.freeze({
+  title: 'Create or delete a profile in another language',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a541878/create-or-delete-a-profile-in-another-language?lang=en',
+});
+const LINKEDIN_ABOUT_SOURCE = Object.freeze({
+  title: 'Edit the About section in your profile',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a553140/edit-the-about-section-in-your-profile?lang=en',
+});
+const LINKEDIN_EXPERIENCE_SOURCE = Object.freeze({
+  title: 'Manage your Experience section',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a593695/manage-your-experience-section?lang=en',
+});
+const LINKEDIN_SKILLS_SOURCE = Object.freeze({
+  title: 'Add and remove skills on your profile',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a549047/add-and-remove-skills-on-your-profile?lang=en',
+});
+const LINKEDIN_FEATURED_SOURCE = Object.freeze({
+  title: 'Featured section on your profile FAQs',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a552452/featured-section-on-your-profile-faqs?lang=en',
+});
+const LINKEDIN_RECOMMENDATIONS_SOURCE = Object.freeze({
+  title: 'Request a recommendation',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a546682/request-a-recommendation?lang=en',
+});
+const LINKEDIN_CONTACT_SOURCE = Object.freeze({
+  title: 'Contact Info Section of Your Profile',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a565128/contact-info-section-of-your-profile?lang=en',
+});
+const LINKEDIN_ACTIVITY_SOURCE = Object.freeze({
+  title: 'View your activity or a member\'s activity on LinkedIn',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a546122/viewing-recent-activity?lang=en',
+});
+const LINKEDIN_OPEN_TO_WORK_SOURCE = Object.freeze({
+  title: 'Let recruiters know you are Open to Work',
+  author: 'LinkedIn Help',
+  url: 'https://www.linkedin.com/help/linkedin/answer/a507508/making-your-profile-visible-or-hidden-from-recruiters?lang=en',
+});
+const LINKEDIN_SOURCE = LINKEDIN_PROFILE_SOURCE;
 const HARVARD_RESUME_SOURCE = Object.freeze({
   title: 'Create a Resume or Cover Letter',
   author: 'Harvard FAS Mignone Center for Career Success',
@@ -31,41 +82,41 @@ const DOL_INTERVIEW_GUIDE = Object.freeze({
 
 const PILLAR_LABEL = Object.freeze({
   linkedin: 'LINKEDIN',
-  resume: 'CURRÍCULO',
-  search: 'BUSCA DE VAGAS',
-  application: 'CANDIDATURA',
-  interview: 'ENTREVISTA',
+  resume: 'RESUME',
+  search: 'JOB SEARCH',
+  application: 'APPLICATION',
+  interview: 'INTERVIEW',
 });
 
 function guide({
-  id, pillar, title, promise, context, action, actionTitle = 'Faça assim', before, after,
-  second, secondTitle = 'Ajuste que faz diferença', checklist, cta, sources,
+  id, pillar, title, promise, context, action, actionTitle = 'Do this', before, after,
+  second, secondTitle = 'A useful adjustment', checklist, cta, sources,
 }) {
   return Object.freeze({
     id,
-    version: '1',
+    version: '2',
     pillar,
     title,
     promise,
     slides: Object.freeze([
       Object.freeze({ kind: 'cover', title, body: promise }),
-      Object.freeze({ kind: 'context', title: 'Por que isso importa', body: context }),
+      Object.freeze({ kind: 'context', title: 'Why it matters', body: context }),
       Object.freeze({ kind: 'action', title: actionTitle, body: action }),
-      Object.freeze({ kind: 'example', title: 'Antes e depois', before, after }),
+      Object.freeze({ kind: 'example', title: 'Before and after', before, after }),
       Object.freeze({ kind: 'action', title: secondTitle, body: second }),
-      Object.freeze({ kind: 'checklist', title: 'Checklist rápido', items: Object.freeze(checklist) }),
-      Object.freeze({ kind: 'cta', title: 'Aplique hoje', body: cta }),
+      Object.freeze({ kind: 'checklist', title: 'Quick checklist', items: Object.freeze(checklist) }),
+      Object.freeze({ kind: 'cta', title: 'Apply it today', body: cta }),
     ]),
     story: Object.freeze({
       eyebrow: PILLAR_LABEL[pillar],
       title,
-      body: `${promise} Veja o passo a passo completo no feed.`,
+      body: `${promise} Read the full guide in the feed.`,
     }),
     caption: Object.freeze({
       hook: promise,
-      action: `${cta} Salve este guia para revisar antes da próxima candidatura.`,
+      action: `${cta} Save this guide before your next application.`,
     }),
-    hashtags: Object.freeze(['OpeningsDev', 'CarreiraTech', PILLAR_LABEL[pillar].replaceAll(' ', '')]),
+    hashtags: Object.freeze(['OpeningsDev', 'CareerTips', PILLAR_LABEL[pillar].replaceAll(' ', '')]),
     sources: Object.freeze(sources),
     minRepeatDays: 84,
   });
