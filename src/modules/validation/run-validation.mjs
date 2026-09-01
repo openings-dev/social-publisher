@@ -47,7 +47,11 @@ import {
   mastodonIdempotencyKey,
   publishToMastodon,
 } from '../networks/mastodon-client.mjs';
-import { publishToInstagram } from '../networks/instagram-client.mjs';
+import {
+  publishCarouselToInstagram,
+  publishStoryToInstagram,
+  publishToInstagram,
+} from '../networks/instagram-client.mjs';
 import { deleteThreadsPost, publishToThreads } from '../networks/threads-client.mjs';
 import {
   buildRepositoryDispatchRequest,
@@ -2550,6 +2554,162 @@ validation('publishes and reconciles one Instagram Reel by canonical job URL', a
     apiVersion: 'v23.0',
     fetchImpl,
   }), /public HTTPS MP4/u);
+});
+
+validation('publishes an ordered seven-image Instagram carousel', async () => {
+  const imageUrls = Array.from(
+    { length: 7 },
+    (_, index) => `https://openings.dev/social/editorial/linkedin-headline-clara/1/slide-${String(index + 1).padStart(2, '0')}.jpg`,
+  );
+  const calls = [];
+  let childIndex = 0;
+  const fetchImpl = async (url, options = {}) => {
+    const body = options.body ? new URLSearchParams(options.body) : null;
+    calls.push({ url: String(url), options, body });
+    const pathname = new URL(url).pathname;
+    if (pathname.endsWith('/media') && options.method === 'POST') {
+      if (body.get('is_carousel_item') === 'true') {
+        childIndex += 1;
+        return jsonResponse({ id: `child-${childIndex}` });
+      }
+      return jsonResponse({ id: 'carousel-container' });
+    }
+    if (/\/child-\d+$/u.test(pathname) || pathname.endsWith('/carousel-container')) {
+      return jsonResponse({ status_code: 'FINISHED' });
+    }
+    if (pathname.endsWith('/media_publish')) {
+      return jsonResponse({ id: 'carousel-media' });
+    }
+    if (pathname.endsWith('/carousel-media')) {
+      return jsonResponse({ id: 'carousel-media', permalink: 'https://www.instagram.com/p/carousel-media/' });
+    }
+    return jsonResponse({ error: 'missing' }, 404);
+  };
+
+  const result = await publishCarouselToInstagram({
+    imageUrls,
+    caption: 'Headline claro ajuda recrutadores.\n\n#OpeningsGuideL01',
+    accessToken: 'instagram-secret',
+    userId: '17841400000000000',
+    apiVersion: 'v26.0',
+    fetchImpl,
+    sleep: async () => {},
+  });
+
+  assert.deepEqual(result, {
+    status: 'published',
+    id: 'carousel-media',
+    url: 'https://www.instagram.com/p/carousel-media/',
+  });
+  const children = calls.filter(({ body }) => body?.get('is_carousel_item') === 'true');
+  assert.deepEqual(children.map(({ body }) => body.get('image_url')), imageUrls);
+  const parent = calls.find(({ body }) => body?.get('media_type') === 'CAROUSEL');
+  assert.equal(parent.body.get('children'), 'child-1,child-2,child-3,child-4,child-5,child-6,child-7');
+  assert.equal(parent.body.get('caption'), 'Headline claro ajuda recrutadores.\n\n#OpeningsGuideL01');
+
+  await assert.rejects(
+    publishCarouselToInstagram({
+      imageUrls: imageUrls.slice(0, 1),
+      caption: 'Invalid carousel',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl,
+    }),
+    /between 2 and 10/u,
+  );
+});
+
+validation('publishes image and video Stories without republishing ambiguous results', async () => {
+  const storyUrl = 'https://openings.dev/social/editorial/linkedin-headline-clara/1/story.jpg';
+  const calls = [];
+  const fetchImpl = async (url, options = {}) => {
+    const body = options.body ? new URLSearchParams(options.body) : null;
+    calls.push({ url: String(url), options, body });
+    const pathname = new URL(url).pathname;
+    if (pathname.endsWith('/media') && options.method === 'POST') {
+      return jsonResponse({ id: 'story-container' });
+    }
+    if (pathname.endsWith('/story-container')) {
+      return jsonResponse({ status_code: 'FINISHED' });
+    }
+    if (pathname.endsWith('/media_publish')) {
+      return jsonResponse({ id: 'story-media' });
+    }
+    if (pathname.endsWith('/story-media')) {
+      return jsonResponse({ id: 'story-media', permalink: null });
+    }
+    return jsonResponse({ error: 'missing' }, 404);
+  };
+
+  const result = await publishStoryToInstagram({
+    mediaUrl: storyUrl,
+    mediaKind: 'image',
+    accessToken: 'instagram-secret',
+    userId: '17841400000000000',
+    apiVersion: 'v26.0',
+    fetchImpl,
+    sleep: async () => {},
+  });
+  assert.deepEqual(result, { status: 'published', id: 'story-media', url: null });
+  assert.equal(calls[0].body.get('media_type'), 'STORIES');
+  assert.equal(calls[0].body.get('image_url'), storyUrl);
+  assert.equal(calls[0].body.has('video_url'), false);
+
+  let publishAttempts = 0;
+  const ambiguousFetch = async (url, options = {}) => {
+    const pathname = new URL(url).pathname;
+    if (pathname.endsWith('/media') && options.method === 'POST') {
+      return jsonResponse({ id: 'ambiguous-container' });
+    }
+    if (pathname.endsWith('/ambiguous-container')) {
+      return jsonResponse({ status_code: 'FINISHED' });
+    }
+    if (pathname.endsWith('/media_publish')) {
+      publishAttempts += 1;
+      throw new Error('connection closed');
+    }
+    if (pathname.endsWith('/media')) {
+      return jsonResponse({ data: [] });
+    }
+    return jsonResponse({ error: 'missing' }, 404);
+  };
+  await assert.rejects(
+    publishStoryToInstagram({
+      mediaUrl: storyUrl,
+      mediaKind: 'image',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl: ambiguousFetch,
+      sleep: async () => {},
+    }),
+    (error) => error?.code === 'instagram_story_ambiguous',
+  );
+  assert.equal(publishAttempts, 1);
+
+  await assert.rejects(
+    publishStoryToInstagram({
+      mediaUrl: 'http://openings.dev/story.jpg',
+      mediaKind: 'image',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl,
+    }),
+    /public HTTPS JPEG/u,
+  );
+  await assert.rejects(
+    publishStoryToInstagram({
+      mediaUrl: storyUrl,
+      mediaKind: 'animation',
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion: 'v26.0',
+      fetchImpl,
+    }),
+    /media kind/u,
+  );
 });
 
 function makeLoadedSnapshot({ commit, generatedAt, dataHash, jobs }) {

@@ -39,6 +39,38 @@ function apiBase(apiOrigin, apiVersion) {
   return `${new URL(apiOrigin).origin}/${apiVersion}`;
 }
 
+function assertCredentials(accessToken, userId) {
+  if (typeof accessToken !== 'string' || accessToken.trim() === '') {
+    throw publicationError('instagram_authentication', 'Instagram authentication is required');
+  }
+  if (typeof userId !== 'string' || !/^\d+$/u.test(userId)) {
+    throw publicationError('instagram_configuration', 'Instagram user ID is invalid');
+  }
+}
+
+function publicMediaUrl(value, { extension, label }) {
+  let url;
+  try {
+    url = new URL(value);
+  } catch {
+    throw publicationError('instagram_configuration', `${label} URL is invalid`);
+  }
+  if (url.protocol !== 'https:' || !url.pathname.toLowerCase().endsWith(extension)) {
+    throw publicationError(
+      'instagram_configuration',
+      `${label} URL must be a public HTTPS ${extension === '.mp4' ? 'MP4' : 'JPEG'}`,
+    );
+  }
+  return url.toString();
+}
+
+function validateCaption(value) {
+  if (typeof value !== 'string' || value.trim() === '' || value.length > 2_200) {
+    throw publicationError('instagram_configuration', 'Instagram caption is invalid');
+  }
+  return value;
+}
+
 async function findRecentMedia({
   base,
   userId,
@@ -79,6 +111,126 @@ async function findMediaById({ base, id, accessToken, fetchImpl }) {
   } catch {
     return null;
   }
+}
+
+async function findRecentMediaByMarker({
+  base,
+  userId,
+  reconciliationMarker,
+  accessToken,
+  fetchImpl,
+}) {
+  if (reconciliationMarker === null) return null;
+  const url = new URL(`${base}/${encodeURIComponent(userId)}/media`);
+  url.searchParams.set('fields', 'id,caption,permalink,timestamp');
+  url.searchParams.set('limit', '50');
+  try {
+    const response = await fetchJson(url, {
+      fetchImpl,
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    return Array.isArray(response?.data)
+      ? response.data.find((media) => typeof media?.caption === 'string'
+        && media.caption.includes(reconciliationMarker)) ?? null
+      : null;
+  } catch {
+    return null;
+  }
+}
+
+async function findRecentStoryByMediaUrl({
+  base,
+  userId,
+  mediaUrl,
+  accessToken,
+  fetchImpl,
+}) {
+  const url = new URL(`${base}/${encodeURIComponent(userId)}/media`);
+  url.searchParams.set('fields', 'id,media_url,permalink,timestamp');
+  url.searchParams.set('limit', '50');
+  try {
+    const response = await fetchJson(url, {
+      fetchImpl,
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
+    const matches = Array.isArray(response?.data)
+      ? response.data.filter((media) => media?.media_url === mediaUrl)
+      : [];
+    return matches.length === 1 ? matches[0] : null;
+  } catch {
+    return null;
+  }
+}
+
+async function createMediaContainer({
+  base,
+  userId,
+  accessToken,
+  fetchImpl,
+  parameters,
+  errorCode,
+}) {
+  let container;
+  try {
+    container = await fetchJson(`${base}/${encodeURIComponent(userId)}/media`, {
+      fetchImpl,
+      method: 'POST',
+      headers: headers(accessToken),
+      body: new URLSearchParams(parameters).toString(),
+    });
+  } catch {
+    throw publicationError(errorCode, 'Instagram media container creation failed');
+  }
+  if (typeof container?.id !== 'string' || container.id.length === 0) {
+    throw publicationError(errorCode, 'Instagram media container returned invalid data');
+  }
+  return container;
+}
+
+async function publishMediaContainer({
+  base,
+  userId,
+  containerId,
+  accessToken,
+  fetchImpl,
+  errorCode,
+  reconcile,
+}) {
+  let published;
+  try {
+    published = await fetchJson(`${base}/${encodeURIComponent(userId)}/media_publish`, {
+      fetchImpl,
+      method: 'POST',
+      headers: headers(accessToken),
+      body: new URLSearchParams({ creation_id: containerId }).toString(),
+    });
+  } catch {
+    const reconciled = typeof reconcile === 'function' ? await reconcile() : null;
+    if (reconciled) return normalizedResult(reconciled, 'reconciled');
+    throw publicationError(errorCode, 'Instagram publication result is ambiguous');
+  }
+  if (typeof published?.id !== 'string' || published.id.length === 0) {
+    throw publicationError(errorCode, 'Instagram publication returned invalid data');
+  }
+  const media = await findMediaById({
+    base,
+    id: published.id,
+    accessToken,
+    fetchImpl,
+  });
+  return normalizedResult(media ?? { id: published.id }, 'published');
+}
+
+function pollingOptions({
+  containerPollAttempts = 24,
+  containerPollDelayMs = 5_000,
+} = {}) {
+  return {
+    attempts: Number.isInteger(containerPollAttempts) && containerPollAttempts > 0
+      ? Math.min(containerPollAttempts, 60)
+      : 1,
+    delayMs: Math.max(0, containerPollDelayMs),
+  };
 }
 
 async function waitUntilContainerReady({
@@ -126,12 +278,7 @@ export async function publishToInstagram({
   containerPollAttempts = 24,
   containerPollDelayMs = 5_000,
 }) {
-  if (typeof accessToken !== 'string' || accessToken.trim() === '') {
-    throw publicationError('instagram_authentication', 'Instagram authentication is required');
-  }
-  if (typeof userId !== 'string' || !/^\d+$/u.test(userId)) {
-    throw publicationError('instagram_configuration', 'Instagram user ID is invalid');
-  }
+  assertCredentials(accessToken, userId);
   const marker = normalizeReconciliationMarker(reconciliationMarker);
   let publicVideo;
   let publicCover;
@@ -231,4 +378,155 @@ export async function publishToInstagram({
     fetchImpl,
   });
   return normalizedResult(media ?? { id: published.id }, 'published');
+}
+
+export async function publishCarouselToInstagram({
+  imageUrls,
+  caption,
+  accessToken,
+  userId,
+  apiVersion,
+  reconciliationMarker,
+  apiOrigin = INSTAGRAM_API_ORIGIN,
+  fetchImpl = globalThis.fetch,
+  sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)),
+  containerPollAttempts = 24,
+  containerPollDelayMs = 5_000,
+}) {
+  assertCredentials(accessToken, userId);
+  if (!Array.isArray(imageUrls) || imageUrls.length < 2 || imageUrls.length > 10) {
+    throw publicationError('instagram_configuration', 'Instagram carousel must contain between 2 and 10 images');
+  }
+  const images = imageUrls.map((imageUrl) => publicMediaUrl(imageUrl, {
+    extension: '.jpg',
+    label: 'Instagram carousel image',
+  }));
+  if (new Set(images).size !== images.length) {
+    throw publicationError('instagram_configuration', 'Instagram carousel image URLs must be unique');
+  }
+  const safeCaption = validateCaption(caption);
+  const marker = normalizeReconciliationMarker(reconciliationMarker);
+  const base = apiBase(apiOrigin, apiVersion);
+  const existing = await findRecentMediaByMarker({
+    base,
+    userId,
+    reconciliationMarker: marker,
+    accessToken,
+    fetchImpl,
+  });
+  if (existing) return normalizedResult(existing, 'reconciled');
+
+  const polling = pollingOptions({ containerPollAttempts, containerPollDelayMs });
+  const childIds = [];
+  for (const imageUrl of images) {
+    const child = await createMediaContainer({
+      base,
+      userId,
+      accessToken,
+      fetchImpl,
+      parameters: { image_url: imageUrl, is_carousel_item: 'true' },
+      errorCode: 'instagram_carousel_container',
+    });
+    await waitUntilContainerReady({
+      base,
+      containerId: child.id,
+      accessToken,
+      fetchImpl,
+      sleep,
+      ...polling,
+    });
+    childIds.push(child.id);
+  }
+  const parent = await createMediaContainer({
+    base,
+    userId,
+    accessToken,
+    fetchImpl,
+    parameters: {
+      media_type: 'CAROUSEL',
+      children: childIds.join(','),
+      caption: safeCaption,
+    },
+    errorCode: 'instagram_carousel_container',
+  });
+  await waitUntilContainerReady({
+    base,
+    containerId: parent.id,
+    accessToken,
+    fetchImpl,
+    sleep,
+    ...polling,
+  });
+  return publishMediaContainer({
+    base,
+    userId,
+    containerId: parent.id,
+    accessToken,
+    fetchImpl,
+    errorCode: 'instagram_carousel_publication',
+    reconcile: () => findRecentMediaByMarker({
+      base,
+      userId,
+      reconciliationMarker: marker,
+      accessToken,
+      fetchImpl,
+    }),
+  });
+}
+
+export async function publishStoryToInstagram({
+  mediaUrl,
+  mediaKind,
+  accessToken,
+  userId,
+  apiVersion,
+  apiOrigin = INSTAGRAM_API_ORIGIN,
+  fetchImpl = globalThis.fetch,
+  sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)),
+  containerPollAttempts = 24,
+  containerPollDelayMs = 5_000,
+}) {
+  assertCredentials(accessToken, userId);
+  if (mediaKind !== 'image' && mediaKind !== 'video') {
+    throw publicationError('instagram_configuration', 'Instagram Story media kind must be image or video');
+  }
+  const publicUrl = publicMediaUrl(mediaUrl, {
+    extension: mediaKind === 'video' ? '.mp4' : '.jpg',
+    label: 'Instagram Story media',
+  });
+  const base = apiBase(apiOrigin, apiVersion);
+  const container = await createMediaContainer({
+    base,
+    userId,
+    accessToken,
+    fetchImpl,
+    parameters: {
+      media_type: 'STORIES',
+      [mediaKind === 'video' ? 'video_url' : 'image_url']: publicUrl,
+    },
+    errorCode: 'instagram_story_container',
+  });
+  await waitUntilContainerReady({
+    base,
+    containerId: container.id,
+    accessToken,
+    fetchImpl,
+    sleep,
+    ...pollingOptions({ containerPollAttempts, containerPollDelayMs }),
+  });
+  return publishMediaContainer({
+    base,
+    userId,
+    containerId: container.id,
+    accessToken,
+    fetchImpl,
+    errorCode: 'instagram_story_ambiguous',
+    reconcile: () => findRecentStoryByMediaUrl({
+      base,
+      userId,
+      mediaUrl: publicUrl,
+      accessToken,
+      fetchImpl,
+    }),
+  });
 }
