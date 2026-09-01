@@ -7,6 +7,7 @@ import { TID } from '@atproto/common-web';
 import sharp from 'sharp';
 
 import { runDryRun } from '../../cli/dry-run.mjs';
+import { renderEditorialDryRun } from '../../cli/editorial.mjs';
 import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest } from '../../cli/publish.mjs';
 import { runJobStoryPublication } from '../../cli/publish-story.mjs';
@@ -84,6 +85,13 @@ import {
   createReelStageSvgs,
   renderReelVideo,
 } from '../render/reel-video.mjs';
+import {
+  createEditorialSlideSvg,
+  createEditorialStorySvg,
+  renderEditorialAssets,
+  resolveEditorialTheme,
+} from '../render/editorial-card.mjs';
+import { formatEditorialCaption } from '../render/editorial-caption.mjs';
 import { createBridgePublisher } from '../publishing/bridge-publisher.mjs';
 import {
   META_MIGRATION_REVISION,
@@ -3400,6 +3408,59 @@ validation('keeps editorial feed and Story stages independently durable', () => 
   assert.equal(state.history[selected.content.id].lastPublishedAt, now);
   assert.equal(state.history[selected.content.id].cycles, 1);
   validateEditorialState(state, EDITORIAL_CATALOG);
+});
+
+validation('renders deterministic editorial carousels and a dedicated Story', async () => {
+  const content = EDITORIAL_CATALOG[0];
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302e"/></svg>';
+  assert.deepEqual(resolveEditorialTheme(content.id), resolveEditorialTheme(content.id));
+  assert.notDeepEqual(resolveEditorialTheme(content.id), resolveEditorialTheme(EDITORIAL_CATALOG[1].id));
+  const coverSvg = createEditorialSlideSvg(content, 0, { wordmarkSvg });
+  const storySvg = createEditorialStorySvg(content, { wordmarkSvg });
+  assert.match(coverSvg, /width="1080" height="1350"/u);
+  assert.match(coverSvg, /data-editorial-slide="1"/u);
+  assert.match(storySvg, /width="1080" height="1920"/u);
+  assert.match(storySvg, /data-editorial-story="true"/u);
+  const rendered = await renderEditorialAssets(content, { wordmarkSvg });
+  assert.equal(rendered.slides.length, 7);
+  for (const jpeg of [...rendered.slides, rendered.story]) {
+    const metadata = await sharp(jpeg).metadata();
+    assert.equal(metadata.format, 'jpeg');
+    assert.equal(metadata.width, 1080);
+  }
+  assert.equal((await sharp(rendered.slides[0]).metadata()).height, 1350);
+  assert.equal((await sharp(rendered.story).metadata()).height, 1920);
+});
+
+validation('formats and writes a complete editorial dry run', async () => {
+  const content = EDITORIAL_CATALOG[0];
+  const caption = formatEditorialCaption(content);
+  assert.ok(caption.length < 2_200);
+  assert.match(caption, /Fonte:/u);
+  assert.match(caption, /#OpeningsDev/u);
+  const directory = await mkdtemp(join(tmpdir(), 'openings-editorial-'));
+  const wordmarkPath = join(directory, 'wordmark.svg');
+  await writeFile(wordmarkPath, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>');
+  try {
+    const result = await renderEditorialDryRun({
+      content,
+      wordmarkPath,
+      outputPath: directory,
+      log: () => {},
+    });
+    assert.equal(result.files.length, 10);
+    const names = await readdir(join(directory, 'editorial', content.id));
+    assert.deepEqual(names.sort(), [
+      'caption.txt', 'manifest.json', 'slide-01.jpg', 'slide-02.jpg', 'slide-03.jpg',
+      'slide-04.jpg', 'slide-05.jpg', 'slide-06.jpg', 'slide-07.jpg', 'story.jpg',
+    ]);
+    const manifest = JSON.parse(await readFile(join(directory, 'editorial', content.id, 'manifest.json'), 'utf8'));
+    assert.equal(manifest.contentId, content.id);
+    assert.equal(manifest.slides.length, 7);
+    assert.equal(typeof manifest.story.sha256, 'string');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 let passed = 0;

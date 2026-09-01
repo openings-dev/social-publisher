@@ -14,6 +14,7 @@
     "intake": "node src/cli/intake.mjs",
     "publish": "node src/cli/publish.mjs",
     "publish:story": "node src/cli/publish-story.mjs",
+    "editorial:dry-run": "node src/cli/editorial.mjs",
     "migrate:meta": "node src/cli/migrate-meta.mjs"
   },
   "dependencies": {
