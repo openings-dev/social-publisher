@@ -3983,6 +3983,61 @@ validation('deploys before providers and preserves partial success for a retry',
   assert.equal(second.publicationsState.jobs[job.id].status, 'completed');
 });
 
+validation('retires closed queue items and publishes the next open job in one run', async () => {
+  const closedJob = makeJob({
+    id: 'gh_777777777777777777777777',
+    createdAt: '2026-08-18T10:00:00.000Z',
+  });
+  const openJob = makeJob({
+    id: 'gh_888888888888888888888888',
+    createdAt: '2026-08-20T12:00:00.000Z',
+  });
+  const snapshot = makeLoadedSnapshot({
+    commit: '8'.repeat(40),
+    generatedAt: '2026-08-20T13:00:00.000Z',
+    dataHash: '8'.repeat(64),
+    jobs: [openJob],
+  });
+  let queue = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
+  for (const [job, discoveredAt] of [
+    [closedJob, '2026-08-18T10:01:00.000Z'],
+    [openJob, '2026-08-20T12:01:00.000Z'],
+  ]) {
+    queue = enqueueJob(queue, { job, snapshot, discoveredAt });
+    queue = transitionQueueStage(queue, job.id, 'bridge', 'publishing', {
+      at: discoveredAt,
+    });
+    queue = transitionQueueStage(queue, job.id, 'bridge', 'published', {
+      at: discoveredAt,
+      result: { status: 'deployed' },
+    });
+  }
+
+  const providerJobs = [];
+  const result = await processOnePublication({
+    queueState: queue,
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async () => { throw new Error('Published bridges must not redeploy'); },
+    publishBluesky: async ({ job }) => {
+      providerJobs.push(job.id);
+      return { status: 'published', uri: 'at://fixture', cid: 'fixture-cid' };
+    },
+    publishMastodon: async ({ job, post }) => {
+      providerJobs.push(job.id);
+      return { status: 'published', id: 'status', url: post.canonicalUrl };
+    },
+    now: '2026-08-21T11:00:00.000Z',
+  });
+
+  assert.equal(result.outcome, 'completed');
+  assert.equal(result.selectedJobId, openJob.id);
+  assert.equal(result.queueState.items[0].bridge.status, 'published');
+  assert.equal(result.queueState.items[0].bluesky.status, 'skipped_closed');
+  assert.equal(result.queueState.items[0].mastodon.status, 'skipped_closed');
+  assert.deepEqual(providerJobs, [openJob.id, openJob.id]);
+});
+
 validation('refreshes a stale queued Instagram card before publication', async () => {
   const job = makeJob();
   const snapshot = makeLoadedSnapshot({

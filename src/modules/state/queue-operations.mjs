@@ -232,6 +232,15 @@ export function markJobClosed(queueState, jobId, at) {
   });
 }
 
+export function markMissingJobsClosed(queueState, openJobIds, at) {
+  validateQueueState(queueState);
+  assertIsoDate(at, 'closed timestamp');
+  const open = new Set(openJobIds);
+  return queueState.items.reduce((next, item) => (
+    open.has(item.jobId) ? next : markJobClosed(next, item.jobId, at)
+  ), queueState);
+}
+
 export function isReadyQueueItem(item) {
   if (READY_STATUSES.has(item.bridge.status)) return true;
   return item.bridge.status === 'published'
