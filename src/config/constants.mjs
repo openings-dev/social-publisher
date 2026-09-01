@@ -5,6 +5,7 @@ export const MASTODON_BASE_URL = 'https://mastodon.social';
 export const THREADS_API_URL = 'https://graph.threads.net/v1.0';
 export const INSTAGRAM_API_ORIGIN = 'https://graph.instagram.com';
 export const LINKEDIN_API_ORIGIN = 'https://api.linkedin.com';
+export const BUFFER_API_ORIGIN = 'https://api.buffer.com';
 export const SOCIAL_CHANNELS = Object.freeze(['bluesky', 'mastodon', 'threads', 'instagram', 'linkedin']);
 export const DEFAULT_SOCIAL_CHANNELS = Object.freeze(['bluesky', 'mastodon']);
 export const GITHUB_API_ORIGIN = 'https://api.github.com';

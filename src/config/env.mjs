@@ -1,5 +1,6 @@
 import {
   BLUESKY_SERVICE_URL,
+  BUFFER_API_ORIGIN,
   DEFAULT_SOCIAL_CHANNELS,
   INSTAGRAM_API_ORIGIN,
   LINKEDIN_API_ORIGIN,
@@ -47,6 +48,20 @@ function normalizeApiBase(value, fallback, key) {
   return url.toString().replace(/\/$/u, '');
 }
 
+function normalizeExactOrigin(value, fallback, key) {
+  const candidate = value?.trim() || fallback;
+  let url;
+  try {
+    url = new URL(candidate);
+  } catch {
+    throw new Error(`Invalid URL configuration: ${key}`);
+  }
+  if (url.pathname !== '/') {
+    throw new Error(`Invalid URL configuration: ${key}`);
+  }
+  return normalizeOrigin(candidate, fallback, key);
+}
+
 export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
   const automatic = env.SOCIAL_AUTO_PUBLISH === 'true';
   const metaMigration = mode === 'meta-migration';
@@ -58,6 +73,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
   const threadsEnabled = env.THREADS_AUTO_PUBLISH === 'true';
   const instagramEnabled = env.INSTAGRAM_AUTO_PUBLISH === 'true';
   const linkedinEnabled = env.LINKEDIN_AUTO_PUBLISH === 'true';
+  const linkedinProvider = env.LINKEDIN_PROVIDER?.trim() || 'direct';
   const instagramStoryEnabled = env.INSTAGRAM_STORY_AUTO_PUBLISH === 'true';
   const instagramEditorialEnabled = env.INSTAGRAM_EDITORIAL_AUTO_PUBLISH === 'true';
   const enabledChannels = [
@@ -80,16 +96,26 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       }
     }
     if (linkedinEnabled) {
-      requireKeys(env, [
-        'LINKEDIN_ACCESS_TOKEN',
-        'LINKEDIN_ORGANIZATION_ID',
-        'LINKEDIN_API_VERSION',
-      ]);
-      if (!/^[1-9][0-9]{0,19}$/u.test(env.LINKEDIN_ORGANIZATION_ID)) {
-        throw new Error('Invalid configuration: LINKEDIN_ORGANIZATION_ID');
-      }
-      if (!/^20[0-9]{4}$/u.test(env.LINKEDIN_API_VERSION)) {
-        throw new Error('Invalid configuration: LINKEDIN_API_VERSION');
+      if (linkedinProvider === 'direct') {
+        requireKeys(env, [
+          'LINKEDIN_ACCESS_TOKEN',
+          'LINKEDIN_ORGANIZATION_ID',
+          'LINKEDIN_API_VERSION',
+        ]);
+        if (!/^[1-9][0-9]{0,19}$/u.test(env.LINKEDIN_ORGANIZATION_ID)) {
+          throw new Error('Invalid configuration: LINKEDIN_ORGANIZATION_ID');
+        }
+        if (!/^20[0-9]{4}$/u.test(env.LINKEDIN_API_VERSION)) {
+          throw new Error('Invalid configuration: LINKEDIN_API_VERSION');
+        }
+      } else if (linkedinProvider === 'buffer') {
+        requireKeys(env, [
+          'BUFFER_API_KEY',
+          'BUFFER_ORGANIZATION_ID',
+          'BUFFER_LINKEDIN_CHANNEL_ID',
+        ]);
+      } else {
+        throw new Error('Invalid configuration: LINKEDIN_PROVIDER');
       }
     }
   }
@@ -139,7 +165,18 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       apiVersion: env.META_GRAPH_VERSION,
       apiOrigin: normalizeOrigin(env.INSTAGRAM_API_ORIGIN, INSTAGRAM_API_ORIGIN, 'INSTAGRAM_API_ORIGIN'),
     }) : null,
-    linkedin: requiresSocial && linkedinEnabled ? Object.freeze({
+    linkedin: requiresSocial && linkedinEnabled ? Object.freeze(linkedinProvider === 'buffer' ? {
+      provider: 'buffer',
+      apiKey: env.BUFFER_API_KEY,
+      organizationId: env.BUFFER_ORGANIZATION_ID,
+      channelId: env.BUFFER_LINKEDIN_CHANNEL_ID,
+      apiOrigin: normalizeExactOrigin(
+        env.BUFFER_API_ORIGIN,
+        BUFFER_API_ORIGIN,
+        'BUFFER_API_ORIGIN',
+      ),
+    } : {
+      provider: 'direct',
       accessToken: env.LINKEDIN_ACCESS_TOKEN,
       organizationId: env.LINKEDIN_ORGANIZATION_ID,
       organizationUrn: `urn:li:organization:${env.LINKEDIN_ORGANIZATION_ID}`,

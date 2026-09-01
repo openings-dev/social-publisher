@@ -20,6 +20,7 @@ import {
 } from '../../content/editorial-copy-policy.mjs';
 
 import {
+  BUFFER_API_ORIGIN,
   DEPLOY_POLL_ATTEMPTS,
   IMAGE_HEIGHT,
   IMAGE_WIDTH,
@@ -921,6 +922,7 @@ validation('enables LinkedIn independently with bounded organization configurati
   });
   assert.deepEqual(enabled.enabledChannels, ['bluesky', 'mastodon', 'linkedin']);
   assert.deepEqual(enabled.linkedin, {
+    provider: 'direct',
     accessToken: 'linkedin-secret',
     organizationId: '108765432',
     organizationUrn: 'urn:li:organization:108765432',
@@ -945,6 +947,59 @@ validation('enables LinkedIn independently with bounded organization configurati
       mode: 'scheduled',
     }), /LINKEDIN_/u);
   }
+});
+
+validation('selects Buffer for LinkedIn without requiring direct LinkedIn credentials', () => {
+  const base = {
+    SOCIAL_AUTO_PUBLISH: 'true',
+    WEB_DEPLOY_TOKEN: 'github-fine-grained-token',
+    BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+    BLUESKY_APP_PASSWORD: 'app-secret',
+    MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+    LINKEDIN_AUTO_PUBLISH: 'true',
+    LINKEDIN_PROVIDER: 'buffer',
+    BUFFER_API_KEY: 'buffer-secret',
+    BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+    BUFFER_LINKEDIN_CHANNEL_ID: '68b68e0fc159685850cf2c11',
+  };
+  const enabled = readEnvironment({ env: base, mode: 'scheduled' });
+  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'mastodon', 'linkedin']);
+  assert.deepEqual(enabled.linkedin, {
+    provider: 'buffer',
+    apiKey: 'buffer-secret',
+    organizationId: '68b68d3ac159685850cf2b8d',
+    channelId: '68b68e0fc159685850cf2c11',
+    apiOrigin: BUFFER_API_ORIGIN,
+  });
+
+  for (const key of ['BUFFER_API_KEY', 'BUFFER_ORGANIZATION_ID', 'BUFFER_LINKEDIN_CHANNEL_ID']) {
+    assert.throws(() => readEnvironment({
+      env: { ...base, [key]: '' },
+      mode: 'scheduled',
+    }), (error) => error.message.includes(key) && !error.message.includes('buffer-secret'));
+  }
+
+  for (const value of [
+    'http://api.buffer.com',
+    'https://user:secret@api.buffer.com',
+    'https://api.buffer.com/graphql',
+  ]) {
+    assert.throws(() => readEnvironment({
+      env: { ...base, BUFFER_API_ORIGIN: value },
+      mode: 'scheduled',
+    }), /BUFFER_API_ORIGIN/u);
+  }
+
+  assert.throws(() => readEnvironment({
+    env: { ...base, LINKEDIN_PROVIDER: 'queue' },
+    mode: 'scheduled',
+  }), /LINKEDIN_PROVIDER/u);
+
+  const disabled = readEnvironment({
+    env: { LINKEDIN_PROVIDER: 'buffer' },
+    mode: 'dry-run',
+  });
+  assert.equal(disabled.linkedin, null);
 });
 
 validation('loads only deploy and Meta credentials for a controlled migration', () => {
