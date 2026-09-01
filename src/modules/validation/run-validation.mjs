@@ -410,6 +410,7 @@ validation('publishes an explicit LinkedIn article card with the canonical socia
     assert.equal(request.options.headers['X-Restli-Protocol-Version'], '2.0.0');
     assert.equal(request.options.headers.Authorization, 'Bearer linkedin-secret');
   }
+  for (const request of requests) assert.equal(request.options.redirect, 'error');
   assert.equal(responses.length, 0);
 });
 
@@ -677,17 +678,87 @@ validation('fails closed for unsafe LinkedIn uploads and failed image processing
 
 validation('rejects invalid LinkedIn configuration before making a request', async () => {
   let requests = 0;
-  await assert.rejects(publishToLinkedIn({
-    job: makeJob(),
-    post: formatSocialPost(makeJob()),
+  const job = makeJob();
+  const base = {
+    job,
+    post: formatSocialPost(job),
     png: Buffer.from('canonical-png'),
     accessToken: 'linkedin-secret',
-    organizationId: 'openings-dev',
+    organizationId: '108765432',
     apiVersion: '202608',
     fetchImpl: async () => { requests += 1; },
-  }), (error) => error.code === 'linkedin_configuration'
-    && !error.message.includes('linkedin-secret'));
+  };
+  for (const [invalid, expectedCode] of [
+    [{ accessToken: '' }, 'linkedin_authentication'],
+    [{ organizationId: 'openings-dev' }, 'linkedin_configuration'],
+    [{ apiVersion: 'v202608' }, 'linkedin_configuration'],
+    [{ apiOrigin: 'http://api.linkedin.com' }, 'linkedin_configuration'],
+  ]) {
+    await assert.rejects(publishToLinkedIn({
+      ...base,
+      ...invalid,
+    }), (error) => error.code === expectedCode
+      && !error.message.includes('linkedin-secret'));
+  }
   assert.equal(requests, 0);
+});
+
+validation('categorizes LinkedIn authentication and malformed provider responses', async () => {
+  const job = makeJob();
+  const post = formatSocialPost(job);
+  const base = {
+    job,
+    post,
+    png: Buffer.from('canonical-png'),
+    accessToken: 'linkedin-secret',
+    organizationId: '108765432',
+    apiVersion: '202608',
+    sleep: async () => {},
+  };
+  await assert.rejects(publishToLinkedIn({
+    ...base,
+    fetchImpl: async () => new Response(JSON.stringify({ message: 'forbidden' }), {
+      status: 403,
+      headers: { 'content-type': 'application/json' },
+    }),
+  }), (error) => error.code === 'linkedin_authentication'
+    && !error.message.includes('forbidden'));
+
+  await assert.rejects(publishToLinkedIn({
+    ...base,
+    fetchImpl: async () => new Response('<html>not json</html>', {
+      status: 200,
+      headers: { 'content-type': 'text/html' },
+    }),
+  }), (error) => error.code === 'linkedin_response');
+
+  await assert.rejects(publishToLinkedIn({
+    ...base,
+    fetchImpl: async () => new Response(JSON.stringify({
+      elements: [{
+        id: 'urn:li:share:not-numeric',
+        author: 'urn:li:organization:108765432',
+        commentary: post.text,
+      }],
+    }), { status: 200, headers: { 'content-type': 'application/json' } }),
+  }), (error) => error.code === 'linkedin_response');
+
+  const invalidImageResponses = [
+    { elements: [] },
+    {
+      value: {
+        uploadUrl: 'https://www.linkedin.com/dms-uploads/fixture?token=signed',
+        image: 'urn:li:image:invalid:value',
+      },
+    },
+  ];
+  await assert.rejects(publishToLinkedIn({
+    ...base,
+    fetchImpl: async () => new Response(JSON.stringify(invalidImageResponses.shift()), {
+      status: 200,
+      headers: { 'content-type': 'application/json' },
+    }),
+  }), (error) => error.code === 'linkedin_image_initialization');
 });
 
 validation('enables scheduled publication only for exact true with every credential', () => {
