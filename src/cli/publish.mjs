@@ -13,6 +13,7 @@ import { processOnePublication } from '../modules/publishing/orchestrator.mjs';
 import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
 import { publishToMastodon } from '../modules/networks/mastodon-client.mjs';
 import { publishToInstagram } from '../modules/networks/instagram-client.mjs';
+import { publishToLinkedInViaBuffer } from '../modules/networks/buffer-linkedin-client.mjs';
 import { publishToLinkedIn } from '../modules/networks/linkedin-client.mjs';
 import { publishToThreads } from '../modules/networks/threads-client.mjs';
 import { renderSocialCardPng } from '../modules/render/social-card.mjs';
@@ -157,9 +158,22 @@ export async function runPublication({
     apiVersion: config.instagram?.apiVersion,
     apiOrigin: config.instagram?.apiOrigin,
   }));
-  const publishLinkedIn = dependencies.publishLinkedIn ?? (async ({ job, post }) => {
-    const png = await renderSocialCardPng(job, { wordmarkSvg });
+  const publishLinkedIn = dependencies.publishLinkedIn ?? (async ({ job, post, queueItem }) => {
+    const provider = config.linkedin?.provider === 'buffer' ? 'buffer' : 'linkedin';
     try {
+      if (provider === 'buffer') {
+        return await (dependencies.publishLinkedInViaBuffer ?? publishToLinkedInViaBuffer)({
+          job,
+          post,
+          imageUrl: queueItem.bridge.result?.imageUrl,
+          publicSiteOrigin: config.publicSiteOrigin,
+          apiKey: config.linkedin?.apiKey,
+          organizationId: config.linkedin?.organizationId,
+          channelId: config.linkedin?.channelId,
+          apiOrigin: config.linkedin?.apiOrigin,
+        });
+      }
+      const png = await renderSocialCardPng(job, { wordmarkSvg });
       return await publishToLinkedIn({
         job,
         post,
@@ -172,7 +186,7 @@ export async function runPublication({
     } catch (error) {
       log(JSON.stringify({
         event: 'provider_failure',
-        provider: 'linkedin',
+        provider,
         code: typeof error?.code === 'string' ? error.code : 'provider',
       }));
       throw error;

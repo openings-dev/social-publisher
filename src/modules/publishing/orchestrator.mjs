@@ -56,6 +56,12 @@ function sameSnapshot(left, right) {
 
 function safeErrorCode(error, stage) {
   const text = error instanceof Error ? `${error.name} ${error.message}`.toLowerCase() : '';
+  if (stage === 'linkedin'
+    && typeof error?.code === 'string'
+    && /^buffer_(?:authentication|configuration|graphql|reconciliation|media|publication|processing|rate_limit|response)$/u
+      .test(error.code)) {
+    return error.code;
+  }
   if (typeof error?.code === 'string'
     && new RegExp(`^${stage}_[a-z0-9_]{1,48}$`, 'u').test(error.code)) {
     return error.code;

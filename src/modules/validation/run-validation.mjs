@@ -365,6 +365,86 @@ validation('wires LinkedIn through the publication CLI', async () => {
   }
 });
 
+validation('routes the LinkedIn queue stage through Buffer with the verified bridge image', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-buffer-linkedin-publish-'));
+  const job = makeJob({ id: 'gh_777788889999aaaabbbbcccd' });
+  const snapshot = makeLoadedSnapshot({
+    commit: '8'.repeat(40),
+    generatedAt: '2026-09-01T13:30:00.000Z',
+    dataHash: '8'.repeat(64),
+    jobs: [job],
+  });
+  const imageUrl = `https://openings.dev/jobs/${job.id}/opengraph-image.png`;
+  const calls = [];
+  try {
+    await Promise.all([
+      saveStateFile(join(directory, 'queue.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        items: [],
+      }, validateQueueState),
+      saveStateFile(join(directory, 'publications.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        jobs: {},
+      }, validatePublicationsState),
+    ]);
+    const result = await runPublication({
+      request: {
+        mode: 'controlled',
+        jobId: job.id,
+        confirmation: 'PUBLISH_ONE_JOB',
+      },
+      dataRepositoryPath: '/fixture/data',
+      stateDirectory: directory,
+      wordmarkPath: '/fixture/wordmark.svg',
+      outputPath: join(directory, 'output'),
+      env: {
+        WEB_DEPLOY_TOKEN: 'deploy-secret',
+        BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+        BLUESKY_APP_PASSWORD: 'bluesky-secret',
+        MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+        LINKEDIN_AUTO_PUBLISH: 'true',
+        LINKEDIN_PROVIDER: 'buffer',
+        BUFFER_API_KEY: 'buffer-secret',
+        BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+        BUFFER_LINKEDIN_CHANNEL_ID: '68b68e0fc159685850cf2c11',
+      },
+      log: () => {},
+      dependencies: {
+        resolveGitCommit: async () => snapshot.commit,
+        loadCanonicalWordmark: async () => '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
+        loadSnapshot: async () => snapshot,
+        createBridgePublisher: () => async () => ({ status: 'deployed', imageUrl }),
+        publishBluesky: async () => ({ status: 'published' }),
+        publishMastodon: async () => ({ status: 'published' }),
+        publishLinkedInViaBuffer: async (input) => {
+          calls.push(input);
+          return {
+            status: 'published',
+            id: 'buffer-post-cli-1',
+            url: 'https://www.linkedin.com/feed/update/urn:li:share:123456789/',
+            provider: 'buffer',
+          };
+        },
+      },
+    });
+    assert.equal(result.outcome, 'completed');
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].job.id, job.id);
+    assert.equal(calls[0].post.canonicalUrl, `https://openings.dev/jobs/${job.id}`);
+    assert.equal(calls[0].imageUrl, imageUrl);
+    assert.equal(calls[0].publicSiteOrigin, 'https://openings.dev');
+    assert.equal(calls[0].apiKey, 'buffer-secret');
+    assert.equal(calls[0].organizationId, '68b68d3ac159685850cf2b8d');
+    assert.equal(calls[0].channelId, '68b68e0fc159685850cf2c11');
+    assert.equal(calls[0].apiOrigin, 'https://api.buffer.com');
+    assert.equal(Object.hasOwn(calls[0], 'png'), false);
+    assert.equal(Object.hasOwn(calls[0], 'accessToken'), false);
+    assert.equal(result.queueState.items[0].linkedin.result.provider, 'buffer');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
 validation('accepts bounded JSON responses and rejects unsafe response types', async () => {
   const response = await fetchJson('https://example.test/data.json', {
     fetchImpl: async () => new Response('{"ok":true}', {
@@ -4857,7 +4937,11 @@ validation('retries LinkedIn without republishing a completed provider', async (
     publishMastodon: async () => { throw new Error('Mastodon must stay skipped'); },
     publishLinkedIn: async () => {
       linkedinCalls += 1;
-      if (linkedinCalls === 1) throw new Error('Temporary LinkedIn failure');
+      if (linkedinCalls === 1) {
+        const error = new Error('Temporary Buffer failure');
+        error.code = 'buffer_rate_limit';
+        throw error;
+      }
       return {
         status: 'reconciled',
         id: 'urn:li:share:2233445566',
@@ -4876,6 +4960,7 @@ validation('retries LinkedIn without republishing a completed provider', async (
   assert.equal(first.outcome, 'partial');
   assert.equal(first.queueState.items[0].bluesky.status, 'published');
   assert.equal(first.queueState.items[0].linkedin.status, 'retryable');
+  assert.equal(first.queueState.items[0].linkedin.lastError.code, 'buffer_rate_limit');
 
   const second = await processOnePublication({
     queueState: first.queueState,
