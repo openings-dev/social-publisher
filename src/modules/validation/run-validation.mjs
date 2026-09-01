@@ -4407,6 +4407,10 @@ validation('ships a complete, source-grounded 12-week Instagram editorial catalo
     assert.deepEqual(item.slides.map(({ kind }) => kind), [
       'cover', 'context', 'action', 'example', 'action', 'checklist', 'cta',
     ]);
+    assert.deepEqual(item.slides.slice(1).map(({ title }) => title), [
+      'Why it matters', 'Try this', 'Before and after',
+      'A useful adjustment', 'Quick checklist', 'Do it today',
+    ]);
     assert.equal(item.slides[5].items.length, 4);
     assert.ok(item.sources.length > 0);
     assert.ok(item.sources.every(({ url }) => url.startsWith('https://')));

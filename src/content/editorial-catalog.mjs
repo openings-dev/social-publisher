@@ -88,7 +88,7 @@ const PILLAR_LABEL = Object.freeze({
 });
 
 function guide({
-  id, pillar, title, promise, context, action, actionTitle = 'Do this', before, after,
+  id, pillar, title, promise, context, action, actionTitle = 'Try this', before, after,
   second, secondTitle = 'A useful adjustment', checklist, cta, sources,
 }) {
   return Object.freeze({
@@ -104,7 +104,7 @@ function guide({
       Object.freeze({ kind: 'example', title: 'Before and after', before, after }),
       Object.freeze({ kind: 'action', title: secondTitle, body: second }),
       Object.freeze({ kind: 'checklist', title: 'Quick checklist', items: Object.freeze(checklist) }),
-      Object.freeze({ kind: 'cta', title: 'Apply it today', body: cta }),
+      Object.freeze({ kind: 'cta', title: 'Do it today', body: cta }),
     ]),
     story: Object.freeze({
       eyebrow: PILLAR_LABEL[pillar],
