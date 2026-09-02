@@ -1,38 +1,11 @@
 {
   "schemaVersion": 3,
   "processedSnapshot": {
-    "commit": "cebe22bb21abdea2e939d6e2ce44821c82951a62",
-    "generatedAt": "2026-08-28T23:48:48.705Z",
-    "dataHash": "379c083756d64b1251f2ea3acb728e02c97fa633cfd91b1057896547b2fa083d"
+    "commit": "920eef9371887ac87eb8fc631ae385a21b69f2d0",
+    "generatedAt": "2026-08-29T04:58:34.850Z",
+    "dataHash": "27b28feeec520fd11ff85ecdceb0b807038a66f17c4cd6136ece7c0decca0daf"
   },
-  "pendingBridges": [
-    {
-      "jobId": "gh_7319bc343f7fa5b428800281",
-      "contentHash": "611f8bab5437cd0e2852616e30dc6689dc22913b4dd2da4740a3703af8d9c367",
-      "dataCommit": "920eef9371887ac87eb8fc631ae385a21b69f2d0",
-      "dataHash": "27b28feeec520fd11ff85ecdceb0b807038a66f17c4cd6136ece7c0decca0daf",
-      "reason": "new",
-      "stage": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-02T14:00:15.061Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_7319bc343f7fa5b428800281",
-          "imageUrl": "https://openings.dev/jobs/gh_7319bc343f7fa5b428800281/opengraph-image.png?v=2.10be12b82fe9abfd",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_7319bc343f7fa5b428800281/instagram-image.jpg?v=4.cc55380b413d904a",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_7319bc343f7fa5b428800281/social-video.mp4?v=3.cc55380b413d904a",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_7319bc343f7fa5b428800281/social-video-cover.jpg?v=3.cc55380b413d904a",
-          "pngHash": "10be12b82fe9abfd7f6b87b46a38600133a861f27ec495d0cb5ccfe843f7bb1c",
-          "instagramSvgHash": "cc55380b413d904af9930e48d9ad0503724306f5204e64508c7086d2d5534599",
-          "instagramCardVersion": "4",
-          "socialVideoVersion": "3"
-        }
-      }
-    }
-  ],
+  "pendingBridges": [],
   "removedJobs": [
     "gh_c3605fc975a166a5a3b747f4",
     "gh_e854ce22e08a801f635b5fff",
@@ -196,6 +169,8 @@
     "gh_e0be42313695863a7be771d3",
     "gh_a0b79bcbb61d3dbab86b9dba",
     "gh_6d7ea827286e56a8852b02bb",
-    "gh_0871ca1a0ecc002bf7e9c19a"
+    "gh_0871ca1a0ecc002bf7e9c19a",
+    "gh_4db55cf3f46e5c008496aa03",
+    "gh_a6c2a2b23c9062e1829400dc"
   ]
 }
