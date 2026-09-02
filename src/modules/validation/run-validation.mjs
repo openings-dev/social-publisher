@@ -3412,6 +3412,20 @@ validation('builds a bounded repository dispatch without credentials in its body
   }), /payload.*large/i);
 });
 
+validation('accepts a valid repository dispatch between 60 KB and GitHub\'s 64 KB limit', () => {
+  const request = buildRepositoryDispatchRequest({
+    jobId: 'gh_0123456789abcdef01234567',
+    contentHash: 'a'.repeat(64),
+    html: Buffer.from('<!doctype html><html></html>'),
+    image: Buffer.alloc(45_000),
+    instagramSvg: Buffer.from('<svg width="1080" height="1350"></svg>'),
+    repository: 'openings-dev/web-deploy',
+  });
+
+  assert.ok(Buffer.byteLength(request.body, 'utf8') > 60_000);
+  assert.ok(Buffer.byteLength(request.body, 'utf8') < 64 * 1024);
+});
+
 validation('keeps the largest multilingual poster inside the incremental dispatch limit', async () => {
   const job = makeJob({
     title: '全球远程 シニアソフトウェアエンジニア 개발자 플랫폼 '.repeat(8).trim(),
