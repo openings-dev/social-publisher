@@ -3783,6 +3783,119 @@ validation('skips current bridges and dispatches stale bridges exactly once', as
   );
 });
 
+function transientBridgeDispatchInput({ fetchImpl, sleep, ...overrides }) {
+  const image = Buffer.from('fixture-image');
+  const instagramSvg = Buffer.from('<svg width="1080" height="1350"></svg>');
+  let verification = 0;
+  return {
+    jobId: 'gh_0123456789abcdef01234567',
+    contentHash: 'a'.repeat(64),
+    expectedPngHash: sha256(image),
+    expectedInstagramSvgHash: sha256(instagramSvg),
+    html: Buffer.from('<!doctype html><html></html>'),
+    image,
+    instagramSvg,
+    repository: 'openings-dev/web-deploy',
+    token: 'github-secret',
+    verifyPublic: async () => {
+      verification += 1;
+      return verification === 1
+        ? { matches: false, reason: 'not_found' }
+        : {
+            matches: true,
+            canonicalUrl: 'https://openings.dev/jobs/gh_0123456789abcdef01234567',
+            imageUrl: 'https://openings.dev/jobs/gh_0123456789abcdef01234567/opengraph-image.png',
+          };
+    },
+    fetchImpl,
+    sleep,
+    pollAttempts: 1,
+    pollDelayMs: 0,
+    ...overrides,
+  };
+}
+
+validation('retries a transient bridge dispatch transport failure', async () => {
+  const delays = [];
+  let dispatches = 0;
+  const result = await requestIncrementalBridgeDeployment(transientBridgeDispatchInput({
+    fetchImpl: async () => {
+      dispatches += 1;
+      if (dispatches === 1) throw new TypeError('socket reset');
+      return new Response(null, { status: 204 });
+    },
+    sleep: async (delay) => delays.push(delay),
+    dispatchAttempts: 2,
+    dispatchRetryDelayMs: 25,
+  }));
+
+  assert.equal(result.status, 'deployed');
+  assert.equal(dispatches, 2);
+  assert.deepEqual(delays, [25, 0]);
+});
+
+validation('retries a transient bridge dispatch HTTP response', async () => {
+  const delays = [];
+  let dispatches = 0;
+  const result = await requestIncrementalBridgeDeployment(transientBridgeDispatchInput({
+    fetchImpl: async () => {
+      dispatches += 1;
+      return new Response(null, { status: dispatches === 1 ? 503 : 204 });
+    },
+    sleep: async (delay) => delays.push(delay),
+    dispatchAttempts: 2,
+    dispatchRetryDelayMs: 30,
+  }));
+
+  assert.equal(result.status, 'deployed');
+  assert.equal(dispatches, 2);
+  assert.deepEqual(delays, [30, 0]);
+});
+
+validation('does not retry a permanent bridge dispatch HTTP response', async () => {
+  const delays = [];
+  let dispatches = 0;
+  await assert.rejects(
+    requestIncrementalBridgeDeployment(transientBridgeDispatchInput({
+      fetchImpl: async () => {
+        dispatches += 1;
+        return new Response('forbidden', { status: 403 });
+      },
+      sleep: async (delay) => delays.push(delay),
+      dispatchAttempts: 3,
+      dispatchRetryDelayMs: 20,
+    })),
+    (error) => error.code === 'bridge_dispatch'
+      && /HTTP 403/u.test(error.message)
+      && !error.message.includes('github-secret'),
+  );
+
+  assert.equal(dispatches, 1);
+  assert.deepEqual(delays, []);
+});
+
+validation('reports exhausted transient bridge dispatch attempts safely', async () => {
+  const delays = [];
+  let dispatches = 0;
+  await assert.rejects(
+    requestIncrementalBridgeDeployment(transientBridgeDispatchInput({
+      fetchImpl: async () => {
+        dispatches += 1;
+        return new Response(null, { status: 503 });
+      },
+      sleep: async (delay) => delays.push(delay),
+      dispatchAttempts: 3,
+      dispatchRetryDelayMs: 15,
+    })),
+    (error) => error.code === 'bridge_dispatch'
+      && /HTTP 503/u.test(error.message)
+      && !error.message.includes('github-secret'),
+  );
+
+  assert.equal(dispatches, 3);
+  assert.deepEqual(delays, [15, 15]);
+});
+
 function createFakeBlueskyAgent({ existing = null, uploadError = null, putError = null } = {}) {
   const calls = { login: [], get: [], upload: [], put: [] };
   const agent = {
