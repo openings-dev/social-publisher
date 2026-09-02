@@ -221,12 +221,12 @@
       "dataHash": "935434082596926f5b2af00c0893eff39ad80a343bbad9a9384c392c0de2f7e4",
       "reason": "new",
       "stage": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-09-02T12:38:53.579Z",
+        "status": "failed",
+        "attempts": 3,
+        "updatedAt": "2026-09-02T12:51:17.138Z",
         "lastError": {
           "code": "deployment",
-          "at": "2026-09-02T12:38:53.579Z"
+          "at": "2026-09-02T12:51:17.138Z"
         },
         "lastReset": null,
         "result": null
