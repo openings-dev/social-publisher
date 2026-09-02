@@ -17,6 +17,43 @@ const REPOSITORY_PATTERN = /^[A-Za-z0-9_.-]+\/[A-Za-z0-9_.-]+$/;
 const EDITORIAL_ID_PATTERN = /^[a-z0-9]+(?:-[a-z0-9]+)*$/u;
 const SVG_FRAGMENT_PATTERN = /^#[A-Za-z_][A-Za-z0-9_.:-]*$/u;
 const SVG_DATA_PATTERN = /^data:image\/svg\+xml;base64,((?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?)$/u;
+const DEFAULT_DISPATCH_ATTEMPTS = 3;
+const DEFAULT_DISPATCH_RETRY_DELAY_MS = 2_000;
+const MAX_DISPATCH_ATTEMPTS = 5;
+const MAX_DISPATCH_RETRY_DELAY_MS = 60_000;
+
+function bridgeDispatchError(message) {
+  const error = new Error(message);
+  error.code = 'bridge_dispatch';
+  return error;
+}
+
+function dispatchAttemptsValue(value) {
+  return Number.isInteger(value) && value > 0
+    ? Math.min(value, MAX_DISPATCH_ATTEMPTS)
+    : 1;
+}
+
+function dispatchRetryDelay(response, fallbackDelayMs) {
+  const retryAfter = response.headers.get('retry-after');
+  if (retryAfter !== null && retryAfter.trim() !== '') {
+    const seconds = Number(retryAfter);
+    if (Number.isFinite(seconds) && seconds >= 0) {
+      return Math.min(seconds * 1_000, MAX_DISPATCH_RETRY_DELAY_MS);
+    }
+  }
+  return Math.min(Math.max(0, fallbackDelayMs), MAX_DISPATCH_RETRY_DELAY_MS);
+}
+
+async function isTransientDispatchResponse(response) {
+  if (response.status === 429 || (response.status >= 500 && response.status <= 599)) return true;
+  if (response.status !== 422) return false;
+  try {
+    return /endpoint has been spammed|secondary rate limit|abuse/iu.test(await response.text());
+  } catch {
+    return false;
+  }
+}
 
 function assertHash(value, label) {
   if (typeof value !== 'string' || !HASH_PATTERN.test(value)) {
@@ -186,6 +223,8 @@ export async function requestIncrementalBridgeDeployment({
   sleep = wait,
   pollAttempts = DEPLOY_POLL_ATTEMPTS,
   pollDelayMs = DEPLOY_POLL_DELAY_MS,
+  dispatchAttempts = DEFAULT_DISPATCH_ATTEMPTS,
+  dispatchRetryDelayMs = DEFAULT_DISPATCH_RETRY_DELAY_MS,
 }) {
   const safeJobId = assertValidJobId(jobId);
   if (typeof forceDeployment !== 'boolean') {
@@ -228,25 +267,36 @@ export async function requestIncrementalBridgeDeployment({
     instagramSvg: instagramSvgBuffer,
     repository,
   });
-  let response;
-  try {
-    response = await fetchImpl(request.url, {
-      method: 'POST',
-      headers: {
-        accept: 'application/vnd.github+json',
-        authorization: `Bearer ${assertToken(token)}`,
-        'content-type': 'application/json',
-        'user-agent': 'openings-social-publisher',
-        'x-github-api-version': '2026-03-10',
-      },
-      body: request.body,
-      redirect: 'error',
-    });
-  } catch {
-    throw new Error(`GitHub deployment dispatch failed for job ${safeJobId}`);
-  }
-  if (response.status !== 204) {
-    throw new Error(`GitHub deployment dispatch failed for job ${safeJobId} with HTTP ${response.status}`);
+  const attempts = dispatchAttemptsValue(dispatchAttempts);
+  const requestOptions = {
+    method: 'POST',
+    headers: {
+      accept: 'application/vnd.github+json',
+      authorization: `Bearer ${assertToken(token)}`,
+      'content-type': 'application/json',
+      'user-agent': 'openings-social-publisher',
+      'x-github-api-version': '2026-03-10',
+    },
+    body: request.body,
+    redirect: 'error',
+  };
+  for (let attempt = 0; attempt < attempts; attempt += 1) {
+    let response;
+    try {
+      response = await fetchImpl(request.url, requestOptions);
+    } catch {
+      if (attempt < attempts - 1) {
+        await sleep(Math.min(Math.max(0, dispatchRetryDelayMs), MAX_DISPATCH_RETRY_DELAY_MS));
+        continue;
+      }
+      throw bridgeDispatchError(`GitHub deployment dispatch failed for job ${safeJobId}`);
+    }
+    if (response.status === 204) break;
+    const error = bridgeDispatchError(
+      `GitHub deployment dispatch failed for job ${safeJobId} with HTTP ${response.status}`,
+    );
+    if (!await isTransientDispatchResponse(response) || attempt === attempts - 1) throw error;
+    await sleep(dispatchRetryDelay(response, dispatchRetryDelayMs));
   }
 
   for (let attempt = 0; attempt < pollAttempts; attempt += 1) {
