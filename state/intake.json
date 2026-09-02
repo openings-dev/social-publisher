@@ -1,38 +1,11 @@
 {
   "schemaVersion": 3,
   "processedSnapshot": {
-    "commit": "920eef9371887ac87eb8fc631ae385a21b69f2d0",
-    "generatedAt": "2026-08-29T04:58:34.850Z",
-    "dataHash": "27b28feeec520fd11ff85ecdceb0b807038a66f17c4cd6136ece7c0decca0daf"
+    "commit": "9209d9802afb1342be6bd7332deccdd06d7babaf",
+    "generatedAt": "2026-08-30T08:46:50.003Z",
+    "dataHash": "7e6cd6d94e514387928015976209be5343a381e67444260a21a28360ee2f566d"
   },
-  "pendingBridges": [
-    {
-      "jobId": "gh_0ec4ea7435acd0daa0ac5446",
-      "contentHash": "3dd40e4d979a8bac7001f5d9cd451eae1397dab74942bf90fe06520eeb2b01fb",
-      "dataCommit": "2c5a6b81f310efcfdf9206785a9d53be9f303dbf",
-      "dataHash": "dc91502c85e6d0273f7f3042f66e2a74ba0236bfbb4a2e27c912b28b3a557d50",
-      "reason": "new",
-      "stage": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-02T14:02:55.288Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_0ec4ea7435acd0daa0ac5446",
-          "imageUrl": "https://openings.dev/jobs/gh_0ec4ea7435acd0daa0ac5446/opengraph-image.png?v=2.717f5e49aa0199c5",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_0ec4ea7435acd0daa0ac5446/instagram-image.jpg?v=4.383c928e614fda61",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_0ec4ea7435acd0daa0ac5446/social-video.mp4?v=3.383c928e614fda61",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_0ec4ea7435acd0daa0ac5446/social-video-cover.jpg?v=3.383c928e614fda61",
-          "pngHash": "717f5e49aa0199c5f162d53e15dd7da1f39e8f20a4db58c4bc09f2e9cccb7682",
-          "instagramSvgHash": "383c928e614fda613c5bc4b621eb43b639c879c20976cc25741d19b87f9c428d",
-          "instagramCardVersion": "4",
-          "socialVideoVersion": "3"
-        }
-      }
-    }
-  ],
+  "pendingBridges": [],
   "removedJobs": [
     "gh_c3605fc975a166a5a3b747f4",
     "gh_e854ce22e08a801f635b5fff",
@@ -198,6 +171,20 @@
     "gh_6d7ea827286e56a8852b02bb",
     "gh_0871ca1a0ecc002bf7e9c19a",
     "gh_4db55cf3f46e5c008496aa03",
-    "gh_a6c2a2b23c9062e1829400dc"
+    "gh_a6c2a2b23c9062e1829400dc",
+    "gh_f56503532982a29116fdf52d",
+    "gh_244a031d8c5938d801877fb4",
+    "gh_0fe275533f5da07f8d0c9026",
+    "gh_59b39ee32f655477601eec29",
+    "gh_9874644137bb79a282d99093",
+    "gh_1edb9a4bd5459573c65f14d8",
+    "gh_2f3ed949eb1e867f4547c5ce",
+    "gh_d745286de58b9dcf439338bc",
+    "gh_dcdf78cbd3dbfc81b414065f",
+    "gh_8ac6e6406bab29dc70c10f65",
+    "gh_bf55e273bcd1fcc7a52d3299",
+    "gh_68146619ba7a00c9c8a193f3",
+    "gh_95a8021dd1d639dc225f97f5",
+    "gh_004b49621bd20b2dde844a3d"
   ]
 }
