@@ -6589,27 +6589,22 @@
     {
       "jobId": "gh_ee686526a9c92ac84e45c6f1",
       "sourceId": "pydevbr/vagas#48",
-      "dataCommit": "32b964a74c70b227c102495570b3b1a89889f300",
-      "dataHash": "12d86c4acea95e60f2b1b714e83deee3e1694c01b53ac18124d73189af1480bb",
-      "contentHash": "43dc2e25eda3b04fb4258f3119c918ba62f65b89a7dd5474ee10fcd7c1691909",
+      "dataCommit": "454dbd1ddb7b205c4692fc1685c192c5d31ae44a",
+      "dataHash": "b6820244ab8b8640c8a44cd636749aa202e1bf0a75a76bd0a2318197f4517f9f",
+      "contentHash": "e0e99853b3b7997c6524e38cbe89d7e8635a594fd6b58013f242be454e250fd8",
       "discoveredAt": "2026-08-27T09:46:27.806Z",
       "createdAt": "2026-08-26T19:51:52Z",
       "publicationCreatedAt": "2026-08-27T09:46:27.806Z",
       "bridge": {
-        "status": "published",
+        "status": "retryable",
         "attempts": 1,
-        "updatedAt": "2026-08-27T09:46:27.806Z",
-        "lastError": null,
+        "updatedAt": "2026-09-02T00:13:50.648Z",
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-09-02T00:13:50.648Z"
+        },
         "lastReset": null,
-        "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_ee686526a9c92ac84e45c6f1",
-          "imageUrl": "https://openings.dev/jobs/gh_ee686526a9c92ac84e45c6f1/opengraph-image.png",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_ee686526a9c92ac84e45c6f1/instagram-image.jpg",
-          "pngHash": "7b6c3d2a81d8f6ded3ac82006802d4c6a32b6ff2d59c76e1b3ee48b4fbecb4bc",
-          "instagramSvgHash": "01f452ca1bdebd843c7f892caefaeff83fe5405fcc7d4b65770256ac36712078",
-          "instagramCardVersion": "2"
-        }
+        "result": null
       },
       "bluesky": {
         "status": "pending",
