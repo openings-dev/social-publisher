@@ -57,6 +57,24 @@
           "socialVideoVersion": "3"
         }
       }
+    },
+    {
+      "jobId": "gh_de4cd6aab751d967e5196c76",
+      "contentHash": "d60202fc3f871ffc48ddcb15198ed7515899b0121e2b9287e8f48d887ae6ac98",
+      "dataCommit": "c47bbfba388d30ce46a2ab064e704bfa21120ad0",
+      "dataHash": "b469af8631577821689bb65c8b032becffa4cb6731f0000607607ec199633e44",
+      "reason": "new",
+      "stage": {
+        "status": "retryable",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T21:08:36.048Z",
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-09-02T21:08:36.048Z"
+        },
+        "lastReset": null,
+        "result": null
+      }
     }
   ],
   "removedJobs": [
