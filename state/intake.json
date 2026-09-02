@@ -39,15 +39,23 @@
       "dataHash": "19d6a71c469e098d46ee279172149f7fddd72a726c48bf36c04e574bcfe54b1e",
       "reason": "new",
       "stage": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-01T22:34:09.944Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-09-01T22:34:09.944Z"
-        },
+        "status": "published",
+        "attempts": 2,
+        "updatedAt": "2026-09-02T04:34:57.434Z",
+        "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4069aaa4b8ed2c6ca16fa901",
+          "imageUrl": "https://openings.dev/jobs/gh_4069aaa4b8ed2c6ca16fa901/opengraph-image.png?v=2.295d660719532578",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_4069aaa4b8ed2c6ca16fa901/instagram-image.jpg?v=4.527fe408b988e1d7",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_4069aaa4b8ed2c6ca16fa901/social-video.mp4?v=3.527fe408b988e1d7",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_4069aaa4b8ed2c6ca16fa901/social-video-cover.jpg?v=3.527fe408b988e1d7",
+          "pngHash": "295d6607195325781607c6382a7e485d780f6a292bc47ec24b426c04a9c6afa0",
+          "instagramSvgHash": "527fe408b988e1d7041f1e861349e26907b1d73c3a17ef47c719e04131875703",
+          "instagramCardVersion": "4",
+          "socialVideoVersion": "3"
+        }
       }
     }
   ],
