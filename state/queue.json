@@ -8623,13 +8623,15 @@
         }
       },
       "instagramStory": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-09-02T13:40:13.489Z",
+        "updatedAt": "2026-09-02T13:40:14.954Z",
         "lastError": null,
         "lastReset": null,
         "result": {
-          "operationKey": "job-story-33636855967-1"
+          "status": "published",
+          "id": "18078008423359404",
+          "url": null
         }
       }
     },
