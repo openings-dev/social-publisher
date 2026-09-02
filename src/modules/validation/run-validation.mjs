@@ -2940,7 +2940,7 @@ validation('renders the production social-card system to a bounded PNG', async (
     instagramSvg: Buffer.from(socialCardModule.createInstagramCardSvg(job, { wordmarkSvg })),
     repository: 'openings-dev/web-deploy',
   });
-  assert.ok(dispatch.body.length < 60_000);
+  assert.ok(dispatch.body.length <= MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS);
 });
 
 validation('keeps a long salary period intact in the social-card sidebar', () => {
@@ -3409,7 +3409,7 @@ validation('builds a bounded repository dispatch without credentials in its body
     image: Buffer.alloc(60_000),
     instagramSvg,
     repository: 'openings-dev/web-deploy',
-  }), /payload.*large/i);
+  }), (error) => error.code === 'bridge_payload' && /payload.*large/i.test(error.message));
 });
 
 validation('accepts a valid repository dispatch between 60 KB and GitHub\'s 64 KB limit', () => {
@@ -3448,7 +3448,7 @@ validation('keeps the largest multilingual poster inside the incremental dispatc
     repository: 'openings-dev/web-deploy',
   });
   const payload = JSON.parse(request.body).client_payload;
-  assert.ok(request.body.length < 60_000);
+  assert.ok(request.body.length <= MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS);
   assert.equal('reel_svg_base64' in payload, false);
   assert.equal('poster_model_base64' in payload, false);
   assert.match(

@@ -120,7 +120,9 @@ export function buildRepositoryDispatchRequest({
   });
 
   if (body.length > MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS) {
-    throw new Error(`Repository dispatch payload is too large (${body.length} characters)`);
+    const error = new Error(`Repository dispatch payload is too large (${body.length} characters)`);
+    error.code = 'bridge_payload';
+    throw error;
   }
 
   return Object.freeze({
