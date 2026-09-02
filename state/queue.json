@@ -7889,6 +7889,83 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_42e1f85542a92100804d8a9b",
+      "sourceId": "awesome-jobs/jobs#5038",
+      "dataCommit": "d143c63d95acbdfb2835d48a305fbecf3a18d8ee",
+      "dataHash": "935434082596926f5b2af00c0893eff39ad80a343bbad9a9384c392c0de2f7e4",
+      "contentHash": "bf2bad10b58afcaee77b467aa8825a42d0cfecece3791f6ab0b910a9d8f3a82c",
+      "discoveredAt": "2026-09-02T11:20:43.159Z",
+      "createdAt": "2026-08-28T03:38:59Z",
+      "publicationCreatedAt": "2026-09-02T11:20:43.159Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T11:20:43.159Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_42e1f85542a92100804d8a9b",
+          "imageUrl": "https://openings.dev/jobs/gh_42e1f85542a92100804d8a9b/opengraph-image.png?v=2.0e962644ccb38ce5",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_42e1f85542a92100804d8a9b/instagram-image.jpg?v=4.a741e20aad80651b",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_42e1f85542a92100804d8a9b/social-video.mp4?v=3.a741e20aad80651b",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_42e1f85542a92100804d8a9b/social-video-cover.jpg?v=3.a741e20aad80651b",
+          "pngHash": "0e962644ccb38ce5e16658fce1cd84db5bde579539492e81b0feaa9d7fe26c19",
+          "instagramSvgHash": "a741e20aad80651b11476632b6538de2cbfbb7a79e6f1d4cb0dadc4f6b2ddcf2",
+          "instagramCardVersion": "4",
+          "socialVideoVersion": "3"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
