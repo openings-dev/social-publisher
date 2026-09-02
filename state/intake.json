@@ -31,6 +31,32 @@
           "socialVideoVersion": "3"
         }
       }
+    },
+    {
+      "jobId": "gh_1c2b57871a734db05f971bcd",
+      "contentHash": "2888897ec61ee8bbaecb944eecfd1b8c786a504426405151b78b6e9a40d639d3",
+      "dataCommit": "c47bbfba388d30ce46a2ab064e704bfa21120ad0",
+      "dataHash": "b469af8631577821689bb65c8b032becffa4cb6731f0000607607ec199633e44",
+      "reason": "new",
+      "stage": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T21:07:13.182Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd",
+          "imageUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd/opengraph-image.png?v=2.c532ee5e1a42fcbc",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd/instagram-image.jpg?v=4.3da3cc518626b296",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd/social-video.mp4?v=3.3da3cc518626b296",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd/social-video-cover.jpg?v=3.3da3cc518626b296",
+          "pngHash": "c532ee5e1a42fcbc069cb979288654882280aab5399f9b6c66775a9548cb7454",
+          "instagramSvgHash": "3da3cc518626b2968675c9a8e8a526a5320c4cc024ff3eb166ec2d7c9af35b5d",
+          "instagramCardVersion": "4",
+          "socialVideoVersion": "3"
+        }
+      }
     }
   ],
   "removedJobs": [
