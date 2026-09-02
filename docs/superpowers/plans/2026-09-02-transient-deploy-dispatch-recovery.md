@@ -4,7 +4,7 @@
 
 **Goal:** Recover transient GitHub deployment dispatch failures in-place without duplicating completed social publications.
 
-**Architecture:** Keep bridge rendering, state checkpoints, and public verification unchanged. Isolate the GitHub `repository_dispatch` call behind a bounded retry that retries only transport errors, HTTP 429, and HTTP 5xx responses, then reports a stable bridge error code if attempts are exhausted.
+**Architecture:** Keep bridge rendering, state checkpoints, and public verification unchanged. Isolate the GitHub `repository_dispatch` call behind a bounded retry that retries transport errors, HTTP 429, HTTP 5xx, and GitHub's documented endpoint-throttling form of HTTP 422, then reports a stable bridge error code if attempts are exhausted.
 
 **Tech Stack:** Node.js 20 ESM, native Fetch API, `node:assert`, GitHub Actions.
 
@@ -22,7 +22,7 @@ Extend the existing `skips current bridges and dispatches stale bridges exactly 
 
 - [ ] **Step 2: Write a failing validation for HTTP retry classification**
 
-Add cases showing that HTTP `503` is retried before a successful `204`, while HTTP `403` is rejected after one call. Assert that exhausted HTTP `503` attempts throw an error with `code === 'bridge_dispatch'` and do not include the token.
+Add cases showing that HTTP `503` is retried before a successful `204`, HTTP `422` is retried only when its body says the endpoint was spammed, and HTTP `403` is rejected after one call. Assert that exhausted HTTP `503` attempts throw an error with `code === 'bridge_dispatch'` and do not include the token.
 
 - [ ] **Step 3: Run validation and verify RED**
 
@@ -44,7 +44,7 @@ git commit -m "test(deploy): cover transient dispatch recovery"
 
 - [ ] **Step 1: Add dispatch retry helpers**
 
-Add constants for the default attempt count and delay, a `bridgeDispatchError(message)` helper that assigns `error.code = 'bridge_dispatch'`, a status classifier that retries `429` and `500..599`, and a delay selector that honors a numeric `Retry-After` response header.
+Add constants for the default attempt count and delay, a `bridgeDispatchError(message)` helper that assigns `error.code = 'bridge_dispatch'`, a response classifier that retries `429`, `500..599`, and throttling-specific `422` responses, and a delay selector that honors a numeric `Retry-After` response header.
 
 - [ ] **Step 2: Replace the single dispatch request with a bounded loop**
 

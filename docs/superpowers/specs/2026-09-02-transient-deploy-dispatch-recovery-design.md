@@ -11,7 +11,7 @@ The failure boundary is the GitHub `repository_dispatch` request. The current cl
 Keep the existing checkpoint and idempotency model. Add a small bounded retry around only the GitHub dispatch request:
 
 - accept `204` immediately;
-- retry transport exceptions, HTTP `429`, and HTTP `5xx` responses;
+- retry transport exceptions, HTTP `429`, HTTP `5xx`, and HTTP `422` responses whose body identifies GitHub endpoint throttling;
 - honor a numeric `Retry-After` header when present, otherwise use a short fixed delay;
 - reject other HTTP `4xx` responses immediately;
 - expose a stable `bridge_dispatch` error code after exhaustion so the checkpoint identifies the failing boundary;
@@ -27,7 +27,7 @@ After the change passes the full deterministic validation suite and is pushed to
 
 - A transient transport failure followed by a `204` dispatches successfully.
 - A transient HTTP response followed by a `204` dispatches successfully.
-- An authentication or validation response is not retried.
+- An authentication response or a genuine HTTP `422` validation response is not retried.
 - Exhausted transient attempts report `bridge_dispatch` without leaking credentials.
 - The full validation suite passes.
 - The pending bridge is deployed and the recovery workflow completes successfully.
