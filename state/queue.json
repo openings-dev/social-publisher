@@ -7127,55 +7127,86 @@
       "createdAt": "2026-09-01T20:12:02Z",
       "publicationCreatedAt": "2026-09-02T01:05:15.962Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-02T01:05:15.962Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-09-02T01:05:15.962Z"
-        },
+        "status": "published",
+        "attempts": 2,
+        "updatedAt": "2026-09-02T01:13:39.665Z",
+        "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "already_current",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9da8f7f2ea6553053f4e06b2",
+          "imageUrl": "https://openings.dev/jobs/gh_9da8f7f2ea6553053f4e06b2/opengraph-image.png?v=2.e46c11d7331aae05",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_9da8f7f2ea6553053f4e06b2/instagram-image.jpg?v=4.b9d5b637eb5935be",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_9da8f7f2ea6553053f4e06b2/social-video.mp4?v=3.b9d5b637eb5935be",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_9da8f7f2ea6553053f4e06b2/social-video-cover.jpg?v=3.b9d5b637eb5935be",
+          "pngHash": "e46c11d7331aae057e2db529e04c3679fd14d857f5db611aa567c0b68b4ed629",
+          "instagramSvgHash": "b9d5b637eb5935beea90f0ed5918eb0710d2190d0013d6c405d20581fb4091bc",
+          "instagramCardVersion": "4",
+          "socialVideoVersion": "3"
+        }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T01:13:39.665Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3muiqkpy7os2z",
+          "cid": "bafyreieka4hv36onaj6oh3yrv5uxiviqsdprfyelgcbkpjb7zi5c3fivwe",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3muiqkpy7os2z"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T01:13:39.665Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117198790551407207",
+          "url": "https://mastodon.social/@openingshq/117198790551407207",
+          "cardStatus": "resolved"
+        }
       },
       "threads": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T01:13:39.665Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18110039279518670",
+          "url": "https://www.threads.com/@openingshq/post/DcxB-xTEYmH"
+        }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T01:13:39.665Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17958720945213626",
+          "url": "https://www.instagram.com/reel/DcxCAaRiA1Q/"
+        }
       },
       "linkedin": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T01:13:39.665Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "6a977874625d5bf9aadd59b4",
+          "url": "https://www.linkedin.com/feed/update/urn:li:share:7500722872974204928",
+          "provider": "buffer"
+        }
       },
       "instagramStory": {
         "status": "pending",
