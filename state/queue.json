@@ -7812,6 +7812,83 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_618613ce504927eaf623bd37",
+      "sourceId": "awesome-jobs/vietnam#5039",
+      "dataCommit": "d143c63d95acbdfb2835d48a305fbecf3a18d8ee",
+      "dataHash": "935434082596926f5b2af00c0893eff39ad80a343bbad9a9384c392c0de2f7e4",
+      "contentHash": "2fce17b1c4315b52ecece83edc65ed7f53a1b15dd92c8d68ad78c7c652fa5631",
+      "discoveredAt": "2026-09-02T11:18:48.013Z",
+      "createdAt": "2026-08-28T03:44:09Z",
+      "publicationCreatedAt": "2026-09-02T11:18:48.013Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T11:18:48.013Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37",
+          "imageUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/opengraph-image.png?v=2.66171f04d60e60b2",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/instagram-image.jpg?v=4.b70568d9cc79323f",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/social-video.mp4?v=3.b70568d9cc79323f",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/social-video-cover.jpg?v=3.b70568d9cc79323f",
+          "pngHash": "66171f04d60e60b2c0592a46cd82a8497ccec3a6c031190559e395b31b28e315",
+          "instagramSvgHash": "b70568d9cc79323f3c20415ffa8dafb7466ed97c3420eccfeb15a3626f383d79",
+          "instagramCardVersion": "4",
+          "socialVideoVersion": "3"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
