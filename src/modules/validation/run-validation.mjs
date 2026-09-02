@@ -3852,6 +3852,26 @@ validation('retries a transient bridge dispatch HTTP response', async () => {
   assert.deepEqual(delays, [30, 0]);
 });
 
+validation('honors Retry-After for a rate-limited bridge dispatch', async () => {
+  const delays = [];
+  let dispatches = 0;
+  const result = await requestIncrementalBridgeDeployment(transientBridgeDispatchInput({
+    fetchImpl: async () => {
+      dispatches += 1;
+      return dispatches === 1
+        ? new Response(null, { status: 429, headers: { 'retry-after': '2' } })
+        : new Response(null, { status: 204 });
+    },
+    sleep: async (delay) => delays.push(delay),
+    dispatchAttempts: 2,
+    dispatchRetryDelayMs: 30,
+  }));
+
+  assert.equal(result.status, 'deployed');
+  assert.equal(dispatches, 2);
+  assert.deepEqual(delays, [2_000, 0]);
+});
+
 validation('does not retry a permanent bridge dispatch HTTP response', async () => {
   const delays = [];
   let dispatches = 0;
