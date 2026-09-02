@@ -9,15 +9,25 @@
       "scheduledDate": "2026-09-02",
       "createdAt": "2026-09-02T18:44:10.398Z",
       "assets": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-02T18:44:12.395Z",
-        "lastError": {
-          "code": "editorial_deploy_provider",
-          "at": "2026-09-02T18:44:12.395Z"
-        },
+        "status": "published",
+        "attempts": 2,
+        "updatedAt": "2026-09-02T19:31:26.936Z",
+        "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "deployed",
+          "manifestUrl": "https://openings.dev/social/editorial/application-evidencias-de-fit/2/manifest.json",
+          "carouselUrls": [
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-01.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-02.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-03.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-04.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-05.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-06.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-07.jpg"
+          ],
+          "storyUrl": "https://openings.dev/social/editorial/application-evidencias-de-fit/2/story.jpg"
+        }
       },
       "feed": {
         "status": "pending",
