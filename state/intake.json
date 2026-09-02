@@ -220,17 +220,17 @@
       "dataCommit": "d143c63d95acbdfb2835d48a305fbecf3a18d8ee",
       "dataHash": "935434082596926f5b2af00c0893eff39ad80a343bbad9a9384c392c0de2f7e4",
       "reason": "new",
-      "stage": {
-        "status": "failed",
-        "attempts": 3,
-        "updatedAt": "2026-09-02T12:51:17.138Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-09-02T12:51:17.138Z"
-        },
-        "lastReset": null,
-        "result": null
-      }
+    "stage": {
+      "status": "pending",
+      "attempts": 0,
+      "updatedAt": "2026-09-02T13:00:06.000Z",
+      "lastError": null,
+      "lastReset": {
+        "at": "2026-09-02T13:00:06.000Z",
+        "reason": "payload_limit_fixed"
+      },
+      "result": null
+    }
     }
   ],
   "removedJobs": [
