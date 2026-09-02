@@ -1,58 +1,7 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [
-    {
-      "contentId": "application-evidencias-de-fit",
-      "contentVersion": "2",
-      "pillar": "application",
-      "scheduledDate": "2026-09-02",
-      "createdAt": "2026-09-02T18:44:10.398Z",
-      "assets": {
-        "status": "published",
-        "attempts": 2,
-        "updatedAt": "2026-09-02T19:31:26.936Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "deployed",
-          "manifestUrl": "https://openings.dev/social/editorial/application-evidencias-de-fit/2/manifest.json",
-          "carouselUrls": [
-            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-01.jpg",
-            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-02.jpg",
-            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-03.jpg",
-            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-04.jpg",
-            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-05.jpg",
-            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-06.jpg",
-            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-07.jpg"
-          ],
-          "storyUrl": "https://openings.dev/social/editorial/application-evidencias-de-fit/2/story.jpg"
-        }
-      },
-      "feed": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-02T19:32:08.274Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "published",
-          "id": "17979017697082943",
-          "url": "https://www.instagram.com/p/Dcy_ysJn3TS/"
-        }
-      },
-      "story": {
-        "status": "publishing",
-        "attempts": 1,
-        "updatedAt": "2026-09-02T19:33:27.712Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "operationKey": "editorial-33668934915-2"
-        }
-      }
-    }
-  ],
+  "pending": [],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",
@@ -83,6 +32,38 @@
           "status": "published",
           "id": "18191269153402517",
           "url": "https://www.instagram.com/stories/openingshq/3976710003277968199"
+        }
+      }
+    },
+    "application-evidencias-de-fit": {
+      "lastPublishedAt": "2026-09-02T19:33:29.401Z",
+      "cycles": 1,
+      "lastPublication": {
+        "scheduledDate": "2026-09-02",
+        "contentVersion": "2",
+        "assets": {
+          "status": "deployed",
+          "manifestUrl": "https://openings.dev/social/editorial/application-evidencias-de-fit/2/manifest.json",
+          "carouselUrls": [
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-01.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-02.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-03.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-04.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-05.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-06.jpg",
+            "https://openings.dev/social/editorial/application-evidencias-de-fit/2/slide-07.jpg"
+          ],
+          "storyUrl": "https://openings.dev/social/editorial/application-evidencias-de-fit/2/story.jpg"
+        },
+        "feed": {
+          "status": "published",
+          "id": "17979017697082943",
+          "url": "https://www.instagram.com/p/Dcy_ysJn3TS/"
+        },
+        "story": {
+          "status": "published",
+          "id": "18126852640755656",
+          "url": "https://www.instagram.com/stories/openingshq/3977522147695199206"
         }
       }
     }
