@@ -7116,6 +7116,75 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_9da8f7f2ea6553053f4e06b2",
+      "sourceId": "backend-br/vagas#12408",
+      "dataCommit": "454dbd1ddb7b205c4692fc1685c192c5d31ae44a",
+      "dataHash": "b6820244ab8b8640c8a44cd636749aa202e1bf0a75a76bd0a2318197f4517f9f",
+      "contentHash": "2e3de066abc10de2a07644501b5a34743aa7ab850a4b61d45851374a98b0ece0",
+      "discoveredAt": "2026-09-02T01:05:15.962Z",
+      "createdAt": "2026-09-01T20:12:02Z",
+      "publicationCreatedAt": "2026-09-02T01:05:15.962Z",
+      "bridge": {
+        "status": "retryable",
+        "attempts": 1,
+        "updatedAt": "2026-09-02T01:05:15.962Z",
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-09-02T01:05:15.962Z"
+        },
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
