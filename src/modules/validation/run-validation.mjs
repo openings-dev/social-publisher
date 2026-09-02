@@ -160,7 +160,7 @@ validation('exports the approved immutable constants', () => {
   assert.equal(STATE_SCHEMA_VERSION, 3);
   assert.equal(OPENINGS_ORIGIN, 'https://openings.dev');
   assert.equal(MAX_CHANNEL_ATTEMPTS, 3);
-  assert.equal(DEPLOY_POLL_ATTEMPTS, 72);
+  assert.equal(DEPLOY_POLL_ATTEMPTS, 144);
   assert.equal(STARVATION_THRESHOLD_MS, 24 * 60 * 60 * 1000);
   assert.deepEqual([IMAGE_WIDTH, IMAGE_HEIGHT], [1200, 630]);
   assert.deepEqual([SOCIAL_VIDEO_WIDTH, SOCIAL_VIDEO_HEIGHT], [1080, 1920]);
