@@ -3872,6 +3872,46 @@ validation('honors Retry-After for a rate-limited bridge dispatch', async () => 
   assert.deepEqual(delays, [2_000, 0]);
 });
 
+validation('retries a bridge dispatch rejected as endpoint spam', async () => {
+  const delays = [];
+  let dispatches = 0;
+  const result = await requestIncrementalBridgeDeployment(transientBridgeDispatchInput({
+    fetchImpl: async () => {
+      dispatches += 1;
+      return dispatches === 1
+        ? Response.json({ message: 'Validation failed, or the endpoint has been spammed.' }, { status: 422 })
+        : new Response(null, { status: 204 });
+    },
+    sleep: async (delay) => delays.push(delay),
+    dispatchAttempts: 2,
+    dispatchRetryDelayMs: 40,
+  }));
+
+  assert.equal(result.status, 'deployed');
+  assert.equal(dispatches, 2);
+  assert.deepEqual(delays, [40, 0]);
+});
+
+validation('does not retry a bridge dispatch validation failure', async () => {
+  const delays = [];
+  let dispatches = 0;
+  await assert.rejects(
+    requestIncrementalBridgeDeployment(transientBridgeDispatchInput({
+      fetchImpl: async () => {
+        dispatches += 1;
+        return Response.json({ message: 'Validation Failed' }, { status: 422 });
+      },
+      sleep: async (delay) => delays.push(delay),
+      dispatchAttempts: 3,
+      dispatchRetryDelayMs: 40,
+    })),
+    (error) => error.code === 'bridge_dispatch' && /HTTP 422/u.test(error.message),
+  );
+
+  assert.equal(dispatches, 1);
+  assert.deepEqual(delays, []);
+});
+
 validation('does not retry a permanent bridge dispatch HTTP response', async () => {
   const delays = [];
   let dispatches = 0;
