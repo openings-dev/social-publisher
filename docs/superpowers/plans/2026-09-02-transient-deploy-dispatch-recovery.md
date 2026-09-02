@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Recover transient GitHub deployment dispatch failures in-place without duplicating completed social publications.
+**Goal:** Recover GitHub deployment dispatch failures in-place without duplicating completed social publications.
 
-**Architecture:** Keep bridge rendering, state checkpoints, and public verification unchanged. Isolate the GitHub `repository_dispatch` call behind a bounded retry that retries transport errors, HTTP 429, HTTP 5xx, and GitHub's documented endpoint-throttling form of HTTP 422, then reports a stable bridge error code if attempts are exhausted.
+**Architecture:** Keep bridge rendering, state checkpoints, and public verification unchanged. Accept repository dispatch bodies up to GitHub's strict less-than-64-KB limit, identify local size failures as `bridge_payload`, and retain the bounded transient dispatch retry already implemented.
 
 **Tech Stack:** Node.js 20 ESM, native Fetch API, `node:assert`, GitHub Actions.
 
@@ -96,3 +96,30 @@ Expected: one new `Publish social jobs` run starts on the pushed `main` revision
 - [ ] **Step 5: Monitor the recovery and inspect final state**
 
 Wait for the new run, confirm a successful conclusion, synchronize `main`, and verify that `gh_785da28a609b497462469c95` is no longer a retryable pending bridge. Confirm the previously completed publication IDs remain unchanged.
+
+### Task 4: Align the local body limit with GitHub
+
+**Files:**
+- Modify: `src/config/constants.mjs`
+- Modify: `src/modules/deploy/web-deploy-client.mjs`
+- Test: `src/modules/validation/run-validation.mjs`
+
+- [x] **Step 1: Reproduce with runner fonts**
+
+Render the exact failed bridge in Linux with the fonts installed by the workflow and confirm its repository dispatch body is 61,261 characters.
+
+- [x] **Step 2: Add a failing contract**
+
+Add a deterministic request fixture whose body is above 60,000 characters and below 64 KB. Confirm the old local cap rejects it.
+
+- [x] **Step 3: Implement the GitHub-aligned limit**
+
+Set the maximum ASCII JSON body to 65,535 characters and classify a locally oversized bridge as `bridge_payload`.
+
+- [x] **Step 4: Verify the complete contract suite**
+
+Run `npm run validate` and confirm all deterministic contracts pass.
+
+- [ ] **Step 5: Reset and recover only the affected checkpoint**
+
+Reset `gh_785da28a609b497462469c95`, push the micro-commits to `main`, run the scheduled workflow, and confirm the bridge is deployed without duplicating completed posts.
