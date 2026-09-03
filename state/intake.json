@@ -1,76 +1,50 @@
 {
   "schemaVersion": 3,
   "processedSnapshot": {
-    "commit": "a9af43cdf077a3bd815a7f406067e0a2097328a1",
-    "generatedAt": "2026-08-31T09:08:54.467Z",
-    "dataHash": "0cc58ff1748221822c55c36c87079e8aba08c948cf7d9a7b1df564ab0f8f43f7"
+    "commit": "ae63e8023155e1d32a455b0440b3a09162381dd7",
+    "generatedAt": "2026-09-01T00:16:23.104Z",
+    "dataHash": "aaa83aea2b344b379ff7a4cb1bb4116fc7eedf24ed6cef61db57c637375b2443"
   },
   "pendingBridges": [
     {
-      "jobId": "gh_9499903d9ceab1f6edc8ae09",
-      "contentHash": "0d0de9da8c9199d871a3f3e964acc13850c642d8e79d8c5609688cdb7f0c3894",
-      "dataCommit": "c47bbfba388d30ce46a2ab064e704bfa21120ad0",
-      "dataHash": "b469af8631577821689bb65c8b032becffa4cb6731f0000607607ec199633e44",
+      "jobId": "gh_9a799e19eb535af68bce3706",
+      "contentHash": "1f181f4cf5c9d39ffa96a7f53b251d64d9f53f14e6a4db4101d417dc972bcb60",
+      "dataCommit": "cd1c492e8776ad53bab83bcdb9132ee7ffe70636",
+      "dataHash": "5f14f49761e51c026e0d62930199ee3b31e5e21340a21b09dcd9e0261f0567f1",
       "reason": "new",
       "stage": {
         "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-09-02T21:06:10.255Z",
+        "updatedAt": "2026-09-03T00:25:12.704Z",
         "lastError": null,
         "lastReset": null,
         "result": {
           "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_9499903d9ceab1f6edc8ae09",
-          "imageUrl": "https://openings.dev/jobs/gh_9499903d9ceab1f6edc8ae09/opengraph-image.png?v=2.a1eb02f603d5fc10",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_9499903d9ceab1f6edc8ae09/instagram-image.jpg?v=4.e68f3fb96b85b0c8",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_9499903d9ceab1f6edc8ae09/social-video.mp4?v=3.e68f3fb96b85b0c8",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_9499903d9ceab1f6edc8ae09/social-video-cover.jpg?v=3.e68f3fb96b85b0c8",
-          "pngHash": "a1eb02f603d5fc1059c24596012d52c252b77ca9df0cafb5f7201bfd5ec98695",
-          "instagramSvgHash": "e68f3fb96b85b0c83d0b0c063ce0d2b34c1b7ab6c75756c3a5fa90f237864f61",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9a799e19eb535af68bce3706",
+          "imageUrl": "https://openings.dev/jobs/gh_9a799e19eb535af68bce3706/opengraph-image.png?v=2.77c79b39fb57cf9e",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_9a799e19eb535af68bce3706/instagram-image.jpg?v=4.3d2192ab6e35a80a",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_9a799e19eb535af68bce3706/social-video.mp4?v=3.3d2192ab6e35a80a",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_9a799e19eb535af68bce3706/social-video-cover.jpg?v=3.3d2192ab6e35a80a",
+          "pngHash": "77c79b39fb57cf9eee04770902c48f16008e16ef285ae5103e60f5c1b5639689",
+          "instagramSvgHash": "3d2192ab6e35a80a8072e1d037e4ac4205c6cc5674156a46742c63c85f3e9959",
           "instagramCardVersion": "4",
           "socialVideoVersion": "3"
         }
       }
     },
     {
-      "jobId": "gh_1c2b57871a734db05f971bcd",
-      "contentHash": "2888897ec61ee8bbaecb944eecfd1b8c786a504426405151b78b6e9a40d639d3",
-      "dataCommit": "c47bbfba388d30ce46a2ab064e704bfa21120ad0",
-      "dataHash": "b469af8631577821689bb65c8b032becffa4cb6731f0000607607ec199633e44",
-      "reason": "new",
-      "stage": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-02T21:07:13.182Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd",
-          "imageUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd/opengraph-image.png?v=2.c532ee5e1a42fcbc",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd/instagram-image.jpg?v=4.3da3cc518626b296",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd/social-video.mp4?v=3.3da3cc518626b296",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_1c2b57871a734db05f971bcd/social-video-cover.jpg?v=3.3da3cc518626b296",
-          "pngHash": "c532ee5e1a42fcbc069cb979288654882280aab5399f9b6c66775a9548cb7454",
-          "instagramSvgHash": "3da3cc518626b2968675c9a8e8a526a5320c4cc024ff3eb166ec2d7c9af35b5d",
-          "instagramCardVersion": "4",
-          "socialVideoVersion": "3"
-        }
-      }
-    },
-    {
-      "jobId": "gh_de4cd6aab751d967e5196c76",
-      "contentHash": "d60202fc3f871ffc48ddcb15198ed7515899b0121e2b9287e8f48d887ae6ac98",
-      "dataCommit": "c47bbfba388d30ce46a2ab064e704bfa21120ad0",
-      "dataHash": "b469af8631577821689bb65c8b032becffa4cb6731f0000607607ec199633e44",
+      "jobId": "gh_ce0c87c727232ee1a852362e",
+      "contentHash": "1f181f4cf5c9d39ffa96a7f53b251d64d9f53f14e6a4db4101d417dc972bcb60",
+      "dataCommit": "cd1c492e8776ad53bab83bcdb9132ee7ffe70636",
+      "dataHash": "5f14f49761e51c026e0d62930199ee3b31e5e21340a21b09dcd9e0261f0567f1",
       "reason": "new",
       "stage": {
         "status": "retryable",
         "attempts": 1,
-        "updatedAt": "2026-09-02T21:08:36.048Z",
+        "updatedAt": "2026-09-03T04:37:03.771Z",
         "lastError": {
           "code": "deployment",
-          "at": "2026-09-02T21:08:36.048Z"
+          "at": "2026-09-03T04:37:03.771Z"
         },
         "lastReset": null,
         "result": null
@@ -263,6 +237,11 @@
     "gh_5785e611680b5a017f944305",
     "gh_e317cf7cc308ab44f7d0b888",
     "gh_9dcaafdb25ea23ef3bfbc8ef",
-    "gh_feb466ba4cbe4c6806ea058b"
+    "gh_feb466ba4cbe4c6806ea058b",
+    "gh_c4d97ccd6bc8bc0284f04557",
+    "gh_c16a9b067fa99b03ac968205",
+    "gh_8f6acbc7503a309cd947e8b2",
+    "gh_7557e8348cc3ee95670cabc5",
+    "gh_1efee2417f6bee01b5cd3f0a"
   ]
 }
