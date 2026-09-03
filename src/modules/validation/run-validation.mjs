@@ -1848,6 +1848,95 @@ validation('selects and publishes only a ready job Story', async () => {
   }
 });
 
+validation('publishes a Story before the job\'s other channels have completed', async () => {
+  const job = makeJob({ id: 'gh_888888888888888888888885' });
+  const snapshot = makeLoadedSnapshot({
+    commit: '9'.repeat(40),
+    generatedAt: '2026-08-25T20:00:00.000Z',
+    dataHash: '9'.repeat(64),
+    jobs: [job],
+  });
+  let queue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-08-25T20:01:00.000Z',
+    enabledChannels: ['instagram', 'linkedin'],
+    instagramStoryEnabled: true,
+  });
+  queue = transitionQueueStage(queue, job.id, 'bridge', 'publishing', { at: '2026-08-25T20:02:00.000Z' });
+  queue = transitionQueueStage(queue, job.id, 'bridge', 'published', {
+    at: '2026-08-25T20:02:10.000Z',
+    result: { socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4` },
+  });
+  queue = transitionQueueStage(queue, job.id, 'instagram', 'publishing', { at: '2026-08-25T20:03:00.000Z' });
+  queue = transitionQueueStage(queue, job.id, 'instagram', 'published', {
+    at: '2026-08-25T20:03:10.000Z',
+    result: { status: 'published', id: 'feed-2', url: 'https://www.instagram.com/reel/feed-2/' },
+  });
+  // LinkedIn (or any other channel) is still retryable, so the orchestrator
+  // has not called completePublication yet: publications.json has no entry
+  // for this job at all, unlike the "interrupted" test above where one
+  // already exists.
+  queue = transitionQueueStage(queue, job.id, 'linkedin', 'publishing', { at: '2026-08-25T20:03:20.000Z' });
+  queue = transitionQueueStage(queue, job.id, 'linkedin', 'retryable', {
+    at: '2026-08-25T20:03:30.000Z',
+    errorCode: 'buffer_media',
+  });
+
+  const directory = await mkdtemp(join(tmpdir(), 'openings-job-story-early-'));
+  try {
+    await saveStateFile(join(directory, 'queue.json'), queue, validateQueueState);
+    await saveStateFile(
+      join(directory, 'publications.json'),
+      { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+      validatePublicationsState,
+    );
+    const prepared = await runJobStoryPublication({
+      stateDirectory: directory,
+      mode: 'intent',
+      jobId: job.id,
+      operationKey: 'test-early-run',
+      env: { INSTAGRAM_STORY_AUTO_PUBLISH: 'true' },
+      now: '2026-08-25T20:03:50.000Z',
+      log: () => {},
+    });
+    assert.equal(prepared.outcome, 'prepared');
+    const result = await runJobStoryPublication({
+      stateDirectory: directory,
+      mode: 'publish',
+      jobId: job.id,
+      operationKey: 'test-early-run',
+      env: {
+        INSTAGRAM_STORY_AUTO_PUBLISH: 'true',
+        INSTAGRAM_ACCESS_TOKEN: 'instagram-secret',
+        INSTAGRAM_USER_ID: '17841400000000000',
+        META_GRAPH_VERSION: 'v26.0',
+      },
+      now: '2026-08-25T20:04:00.000Z',
+      dependencies: {
+        publishStory: async () => ({ status: 'published', id: 'story-2', url: null }),
+      },
+      log: () => {},
+    });
+    assert.equal(result.outcome, 'published');
+    assert.equal(result.queueState.items[0].instagramStory.status, 'published');
+    assert.equal(result.publicationsState.jobs[job.id].instagramStory.id, 'story-2');
+    assert.equal(result.publicationsState.jobs[job.id].linkedin, null);
+    assert.equal(result.publicationsState.jobs[job.id].status, undefined);
+
+    const persistedQueue = await loadStateFile(join(directory, 'queue.json'), validateQueueState, migrateQueueState);
+    assert.equal(persistedQueue.items[0].instagramStory.status, 'published');
+    const persistedPublications = await loadStateFile(
+      join(directory, 'publications.json'),
+      validatePublicationsState,
+      migratePublicationsState,
+    );
+    assert.equal(persistedPublications.jobs[job.id].instagramStory.id, 'story-2');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
 validation('skips disabled and up-to-date schedules before expensive setup', () => {
   const dataHash = 'a'.repeat(64);
   const intakeState = {

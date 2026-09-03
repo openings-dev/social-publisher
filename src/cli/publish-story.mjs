@@ -49,10 +49,13 @@ function assertOperationKey(value) {
 }
 
 function withPublicationStory(publicationsState, jobId, result) {
-  const publication = publicationsState.jobs[jobId];
-  if (!publication) {
-    throw new Error(`Completed publication not found for Story: ${jobId}`);
-  }
+  // The Instagram Story only needs the feed post and bridge to be published
+  // (see selectNextInstagramStory), not every social channel. A job can
+  // reach here while another channel (e.g. LinkedIn) is still retryable, in
+  // which case completePublication in the orchestrator hasn't written this
+  // job's entry yet. Recording the Story result must not depend on that:
+  // default to a minimal entry rather than requiring one to pre-exist.
+  const publication = publicationsState.jobs[jobId] ?? { linkedin: null };
   return validatePublicationsState({
     ...publicationsState,
     jobs: {
@@ -209,9 +212,16 @@ export async function runJobStoryPublication({
     at: now,
     result: story,
   });
+  // Persist the queue transition before touching publications.json: the
+  // Instagram post above already happened for real, so the queue record of
+  // that (with the provider's story id) must survive even if the
+  // publications ledger update below fails, otherwise a retry would
+  // re-select this job as still "publishing" and either post a duplicate
+  // Story or, if the operation key no longer matches, get stuck requiring
+  // manual review despite the Story having actually gone out.
+  await saveStateFile(queuePath, queueState, validateQueueState);
   publicationsState = withPublicationStory(publicationsState, selected.jobId, story);
   await saveStateFile(publicationsPath, publicationsState, validatePublicationsState);
-  await saveStateFile(queuePath, queueState, validateQueueState);
   const result = {
     outcome: 'published',
     selectedJobId: selected.jobId,
