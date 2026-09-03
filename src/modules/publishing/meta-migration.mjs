@@ -3,7 +3,7 @@ import { resetPublishedMetaStages } from '../state/queue-operations.mjs';
 import { validatePublicationsState, validateQueueState } from '../state/state-model.mjs';
 import { assertValidJobId } from '../../shared/job-id.mjs';
 
-export const META_MIGRATION_REVISION = 'white_band_poster_v4_social_video_v3';
+export const META_MIGRATION_REVISION = 'white_band_poster_v4_social_video_v4';
 export const META_RECONCILIATION_MARKER = '#OpeningsJobs';
 
 function assertNow(value) {

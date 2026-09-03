@@ -1,9 +1,9 @@
 import { formatSalary } from './format-job.mjs';
 import { resolveSocialTheme, SOCIAL_THEMES } from './social-theme.mjs';
 
-export const SOCIAL_POSTER_MODEL_VERSION = 2;
-export const SOCIAL_SAFE_INSET_X = 30;
-export const SOCIAL_SAFE_INSET_Y = 60;
+export const SOCIAL_POSTER_MODEL_VERSION = 3;
+export const SOCIAL_SAFE_INSET_X = 180;
+export const SOCIAL_SAFE_INSET_Y = 320;
 
 function deepFreeze(value) {
   if (value && typeof value === 'object' && !Object.isFrozen(value)) {
@@ -24,11 +24,11 @@ export const INSTAGRAM_POSTER_GEOMETRY = deepFreeze({
 
 export const REEL_POSTER_GEOMETRY = deepFreeze({
   canvas: { width: 1080, height: 1920 },
-  safeArea: { x: 30, y: 60, width: 1020, height: 1800 },
-  header: { x: 30, y: 60, width: 1020, height: 130 },
-  role: { x: 30, y: 190, width: 1020, height: 866 },
-  facts: { x: 30, y: 1056, width: 1020, height: 488 },
-  attribution: { x: 30, y: 1574, width: 1020, height: 286 },
+  safeArea: { x: 180, y: 320, width: 720, height: 1440 },
+  header: { x: 180, y: 320, width: 720, height: 120 },
+  role: { x: 180, y: 440, width: 720, height: 570 },
+  facts: { x: 180, y: 1030, width: 720, height: 420 },
+  attribution: { x: 180, y: 1490, width: 720, height: 260 },
 });
 
 const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
@@ -292,9 +292,9 @@ export function createSocialPosterModel(job) {
         maxLines: 5,
       }),
       reel: fitTitle(title, {
-        sizes: [136, 128, 120, 112, 104, 96, 88, 80, 72, 68],
-        maxWidth: 960,
-        maxHeight: 690,
+        sizes: [112, 104, 96, 88, 80, 72, 68],
+        maxWidth: 660,
+        maxHeight: 430,
         maxLines: 5,
       }),
     },
