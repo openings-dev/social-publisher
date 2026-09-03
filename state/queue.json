@@ -7441,10 +7441,13 @@
         "result": null
       },
       "instagramStory": {
-        "status": "publishing",
+        "status": "failed",
         "attempts": 1,
-        "updatedAt": "2026-09-03T11:13:38.027Z",
-        "lastError": null,
+        "updatedAt": "2026-09-03T16:28:21.351Z",
+        "lastError": {
+          "code": "instagram_story_interrupted",
+          "at": "2026-09-03T16:28:21.351Z"
+        },
         "lastReset": null,
         "result": {
           "operationKey": "job-story-33748351365-1"
