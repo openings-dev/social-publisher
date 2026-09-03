@@ -2504,7 +2504,7 @@ validation('resets only published Meta stages for a controlled visual migration'
 });
 
 validation('requires an explicit bounded request for a Meta publication migration', () => {
-  assert.equal(META_MIGRATION_REVISION, 'white_band_poster_v4_social_video_v3');
+  assert.equal(META_MIGRATION_REVISION, 'white_band_poster_v4_social_video_v4');
   assert.equal(META_RECONCILIATION_MARKER, '#OpeningsJobs');
   assert.deepEqual(parseMetaMigrationRequest({
     jobIds: ['gh_111111111111111111111111', 'gh_222222222222222222222222'],
@@ -3215,10 +3215,12 @@ validation('builds four white-led native 9:16 Reel stages from the canonical mod
       assert.ok(bounds.x + bounds.width <= 900);
       assert.ok(bounds.y + bounds.height <= 1760);
     }
-    assert.match(stage, /<image x="180" y="338" width="220" height="40"/u);
-    assert.match(stage, /<text x="180"[^>]*data-reel-title-line="true"/u);
+    assert.match(stage, /<image x="210" y="338" width="220" height="40"/u);
+    assert.match(stage, /<text x="210"[^>]*data-reel-title-line="true"/u);
     assert.match(stage, /<text x="210"[^>]*data-reel-dominant-fact="true"/u);
-    assert.match(stage, /<rect x="520" y="1540" width="380" height="104"/u);
+    assert.match(stage, /<text x="870" y="350" text-anchor="end"/u);
+    assert.match(stage, /<text x="210" y="1550"/u);
+    assert.match(stage, /<rect x="510" y="1540" width="360" height="104"/u);
     assert.match(stage, /data:image\/svg\+xml;base64,/u);
     assert.match(stage, /@openingshq/u);
     assert.match(stage, /Senior/u);
@@ -3237,7 +3239,7 @@ validation('builds four white-led native 9:16 Reel stages from the canonical mod
   assert.match(stages[3], /data-reel-attribution="true"[^>]*opacity="1"/u);
   assert.match(stages[3], new RegExp(`data-editorial-band="true"[^>]*x="0"[^>]*y="1490"[^>]*width="1080"[^>]*height="430"[^>]*fill="${theme.accent}"[^>]*opacity="1"`));
   assert.match(stages[2], />\$9,000–\$12,000\/month<\/text>/u);
-  assert.match(stages[2], />Worldwide<\/text>/u);
+  assert.match(stages[2], />Remote · Worldwide<\/text>/u);
   assert.doesNotMatch(stages[2], />World<\/text>.*>wide<\/text>/su);
 });
 
