@@ -126,7 +126,7 @@ export function migrateIntakeState(value) {
 }
 
 export function migrateQueueState(value) {
-  return migrateVersion(value, (state) => ({
+  const migrated = migrateVersion(value, (state) => ({
     ...state,
     schemaVersion: STATE_SCHEMA_VERSION,
     items: Array.isArray(state.items)
@@ -137,10 +137,20 @@ export function migrateQueueState(value) {
       }))
       : state.items,
   }));
+  if (migrated.schemaVersion !== STATE_SCHEMA_VERSION) return migrated;
+  return {
+    ...migrated,
+    items: Array.isArray(migrated.items)
+      ? migrated.items.map((item) => ({
+        ...item,
+        twitter: item.twitter ?? migratedStoryStage(),
+      }))
+      : migrated.items,
+  };
 }
 
 export function migratePublicationsState(value) {
-  return migrateVersion(value, (state) => ({
+  const migrated = migrateVersion(value, (state) => ({
     ...state,
     schemaVersion: STATE_SCHEMA_VERSION,
     jobs: state.jobs && typeof state.jobs === 'object' && !Array.isArray(state.jobs)
@@ -156,6 +166,18 @@ export function migratePublicationsState(value) {
       ]))
       : state.jobs,
   }));
+  if (migrated.schemaVersion !== STATE_SCHEMA_VERSION) return migrated;
+  return {
+    ...migrated,
+    jobs: migrated.jobs && typeof migrated.jobs === 'object' && !Array.isArray(migrated.jobs)
+      ? Object.fromEntries(Object.entries(migrated.jobs).map(([jobId, publication]) => [
+        jobId,
+        publication && typeof publication === 'object' && !Array.isArray(publication)
+          ? { ...publication, twitter: publication.twitter ?? null }
+          : publication,
+      ]))
+      : migrated.jobs,
+  };
 }
 
 export function validateSnapshotReference(value, label = 'processedSnapshot') {
