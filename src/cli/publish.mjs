@@ -19,17 +19,24 @@ import { publishToLinkedIn } from '../modules/networks/linkedin-client.mjs';
 import { publishToThreads } from '../modules/networks/threads-client.mjs';
 import { renderSocialCardPng } from '../modules/render/social-card.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
-import { resetFailedStage } from '../modules/state/queue-operations.mjs';
+import {
+  resetFailedPendingBridge,
+  resetFailedStage,
+} from '../modules/state/queue-operations.mjs';
 import { saveStateFile } from '../modules/state/save-state.mjs';
 import {
+  migrateIntakeState,
   migratePublicationsState,
   migrateQueueState,
+  validateIntakeState,
   validatePublicationsState,
   validateQueueState,
 } from '../modules/state/state-model.mjs';
 import { assertValidJobId } from '../shared/job-id.mjs';
 
 const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS, 'instagramStory']);
+const INTAKE_BRIDGE_STAGE = 'intake-bridge';
+const RETRY_STAGES = new Set([...STAGES, INTAKE_BRIDGE_STAGE]);
 const MODES = new Set(['scheduled', 'controlled', 'retry-stage']);
 
 function parseArguments(argumentsList) {
@@ -57,8 +64,8 @@ export function parsePublicationRequest({ mode = 'scheduled', jobId, stage, conf
   }
   if (mode === 'retry-stage') {
     assertValidJobId(jobId);
-    if (!STAGES.has(stage)) {
-      throw new Error(`Retry stage must be one of: ${[...STAGES].join(', ')}`);
+    if (!RETRY_STAGES.has(stage)) {
+      throw new Error(`Retry stage must be one of: ${[...RETRY_STAGES].join(', ')}`);
     }
     if (confirmation !== 'RESET_FAILED_STAGE') {
       throw new Error('Stage reset requires the exact confirmation phrase');
@@ -79,6 +86,7 @@ export async function runPublication({
   dependencies = {},
 }) {
   const parsed = parsePublicationRequest(request);
+  const intakePath = resolve(stateDirectory, 'intake.json');
   const queuePath = resolve(stateDirectory, 'queue.json');
   const publicationsPath = resolve(stateDirectory, 'publications.json');
   let queueState = await loadStateFile(queuePath, validateQueueState, migrateQueueState);
@@ -89,11 +97,19 @@ export async function runPublication({
   );
 
   if (parsed.mode === 'retry-stage') {
-    queueState = resetFailedStage(queueState, parsed.jobId, parsed.stage, {
-      at: new Date().toISOString(),
-      reason: 'manual_reset',
-    });
-    await saveStateFile(queuePath, queueState, validateQueueState);
+    const resetOptions = { at: new Date().toISOString(), reason: 'manual_reset' };
+    if (parsed.stage === INTAKE_BRIDGE_STAGE) {
+      let intakeState = await loadStateFile(
+        intakePath,
+        validateIntakeState,
+        migrateIntakeState,
+      );
+      intakeState = resetFailedPendingBridge(intakeState, parsed.jobId, resetOptions);
+      await saveStateFile(intakePath, intakeState, validateIntakeState);
+    } else {
+      queueState = resetFailedStage(queueState, parsed.jobId, parsed.stage, resetOptions);
+      await saveStateFile(queuePath, queueState, validateQueueState);
+    }
     const result = { outcome: 'reset', jobId: parsed.jobId, stage: parsed.stage };
     log(JSON.stringify(result));
     return result;

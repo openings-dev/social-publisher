@@ -78,7 +78,7 @@ npm run dry-run -- \
 
 - `dry-run` renders a downloadable review artifact and performs no external write.
 - `controlled` publishes one explicit open job only when the confirmation is exactly `PUBLISH_ONE_JOB`. It can safely enqueue that job after the initial baseline and refuses to republish a completed job.
-- `retry-stage` resets one failed bridge or provider stage only when the confirmation is exactly `RESET_FAILED_STAGE`; it never publishes in the same operation.
+- `retry-stage` resets one failed stage only when the confirmation is exactly `RESET_FAILED_STAGE`; use `bridge` for a publication-queue deploy or `intake-bridge` for a snapshot-intake deploy. It never publishes in the same operation.
 - `scheduled` processes new data and publishes at most one queued job when `SOCIAL_AUTO_PUBLISH` is exactly `true`.
 
 The workflow commits intake/queue state before any provider call, then stores each provider outcome in a second state commit. A repository-wide concurrency lock prevents overlapping publication runs. If a state push races, the workflow rebases once, reruns validation, and otherwise fails closed.

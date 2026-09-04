@@ -217,6 +217,24 @@ export function resetFailedStage(queueState, jobId, stageName, { at, reason }) {
   });
 }
 
+export function resetFailedPendingBridge(intakeState, jobId, { at, reason }) {
+  validateIntakeState(intakeState);
+  assertIsoDate(at, 'reset timestamp');
+  return replacePendingBridge(intakeState, jobId, (bridge) => {
+    if (bridge.stage.status !== 'failed') {
+      throw new Error('Only a failed pending bridge can be reset');
+    }
+    return {
+      ...bridge,
+      stage: {
+        ...stageState(),
+        updatedAt: at,
+        lastReset: { at, reason: sanitizeCode(reason, 'manual_reset') },
+      },
+    };
+  });
+}
+
 export function resetPublishedMetaStages(queueState, jobId, {
   at,
   reason = 'meta_publication_migration',
