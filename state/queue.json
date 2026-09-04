@@ -8174,17 +8174,15 @@
         "result": null
       },
       "instagramStory": {
-        "status": "failed",
-        "attempts": 1,
-        "updatedAt": "2026-09-03T16:28:21.351Z",
-        "lastError": {
-          "code": "instagram_story_interrupted",
-          "at": "2026-09-03T16:28:21.351Z"
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": "2026-09-04T15:07:39.901Z",
+        "lastError": null,
+        "lastReset": {
+          "at": "2026-09-04T15:07:39.901Z",
+          "reason": "manual_reset"
         },
-        "lastReset": null,
-        "result": {
-          "operationKey": "job-story-33748351365-1"
-        }
+        "result": null
       },
       "twitter": {
         "status": "skipped_before_activation",
