@@ -9181,13 +9181,15 @@
         }
       },
       "instagramStory": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-09-04T11:24:27.104Z",
+        "updatedAt": "2026-09-04T11:24:28.602Z",
         "lastError": null,
         "lastReset": null,
         "result": {
-          "operationKey": "job-story-33867066717-1"
+          "status": "published",
+          "id": "17931782223390108",
+          "url": "https://www.instagram.com/stories/openingshq/3978725824970462272"
         }
       }
     },
