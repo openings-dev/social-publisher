@@ -6134,16 +6134,13 @@
       "createdAt": "2026-08-25T20:46:46Z",
       "publicationCreatedAt": "2026-08-26T03:17:49.391Z",
       "bridge": {
-        "status": "failed",
-        "attempts": 3,
-        "updatedAt": "2026-08-30T08:24:06.093Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-08-30T08:24:06.093Z"
-        },
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": "2026-09-04T15:06:23.657Z",
+        "lastError": null,
         "lastReset": {
-          "at": "2026-08-29T21:08:41.837Z",
-          "reason": "instagram_card_upgrade"
+          "at": "2026-09-04T15:06:23.657Z",
+          "reason": "manual_reset"
         },
         "result": null
       },
