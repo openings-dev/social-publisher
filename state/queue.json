@@ -8176,15 +8176,17 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": "2026-09-04T15:07:39.901Z",
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T15:13:43.759Z",
         "lastError": null,
         "lastReset": {
           "at": "2026-09-04T15:07:39.901Z",
           "reason": "manual_reset"
         },
-        "result": null
+        "result": {
+          "operationKey": "job-story-33888123468-1"
+        }
       },
       "twitter": {
         "status": "skipped_before_activation",
