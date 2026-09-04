@@ -2014,6 +2014,59 @@ validation('migrates version-two state without historical Story backfill', async
   }
 });
 
+validation('backfills Twitter when loading pre-activation version-three state', async () => {
+  const snapshot = makeLoadedSnapshot({
+    commit: '8'.repeat(40),
+    generatedAt: '2026-09-03T11:00:00.000Z',
+    dataHash: '8'.repeat(64),
+    jobs: [],
+  });
+  const job = makeJob({ id: 'gh_888888888888888888888885' });
+  const currentQueue = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-09-03T11:01:00.000Z',
+  });
+  const legacyItems = currentQueue.items.map(({ twitter: _ignored, ...item }) => item);
+  const legacyPublications = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: {
+      [job.id]: { linkedin: null, instagramStory: null },
+    },
+  };
+  const directory = await mkdtemp(join(tmpdir(), 'openings-twitter-shape-migration-'));
+  try {
+    await Promise.all([
+      writeFile(join(directory, 'queue.json'), `${JSON.stringify({
+        schemaVersion: STATE_SCHEMA_VERSION,
+        items: legacyItems,
+      }, null, 2)}\n`),
+      writeFile(join(directory, 'publications.json'), `${JSON.stringify(legacyPublications, null, 2)}\n`),
+    ]);
+    const queue = await loadStateFile(
+      join(directory, 'queue.json'),
+      validateQueueState,
+      migrateQueueState,
+    );
+    const publications = await loadStateFile(
+      join(directory, 'publications.json'),
+      validatePublicationsState,
+      migratePublicationsState,
+    );
+    assert.deepEqual(queue.items[0].twitter, {
+      status: 'skipped_before_activation',
+      attempts: 0,
+      updatedAt: null,
+      lastError: null,
+      lastReset: null,
+      result: null,
+    });
+    assert.equal(publications.jobs[job.id].twitter, null);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
 validation('selects and publishes only a ready job Story', async () => {
   const job = makeJob({ id: 'gh_888888888888888888888884' });
   const snapshot = makeLoadedSnapshot({
