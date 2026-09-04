@@ -2143,6 +2143,42 @@
         "provider": "buffer"
       },
       "instagramStory": null
+    },
+    "gh_7319bc343f7fa5b428800281": {
+      "status": "completed",
+      "contentHash": "611f8bab5437cd0e2852616e30dc6689dc22913b4dd2da4740a3703af8d9c367",
+      "dataCommit": "920eef9371887ac87eb8fc631ae385a21b69f2d0",
+      "dataHash": "27b28feeec520fd11ff85ecdceb0b807038a66f17c4cd6136ece7c0decca0daf",
+      "completedAt": "2026-09-04T04:30:34.272Z",
+      "bluesky": {
+        "status": "published",
+        "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3muk3vcjfye2b",
+        "cid": "bafyreid7zzcptf4sohiowhvbyq6frxdgrsumkif6a22b43zztxojkisoaa",
+        "url": "https://bsky.app/profile/openingshq.bsky.social/post/3muk3vcjfye2b"
+      },
+      "mastodon": {
+        "status": "published",
+        "id": "117210893576688566",
+        "url": "https://mastodon.social/@openingshq/117210893576688566",
+        "cardStatus": "resolved"
+      },
+      "threads": {
+        "status": "published",
+        "id": "17933116332370538",
+        "url": "https://www.threads.com/@openingshq/post/Dc2iOvDjrBy"
+      },
+      "instagram": {
+        "status": "published",
+        "id": "18632957098042713",
+        "url": "https://www.instagram.com/reel/Dc2iQSZD5M5/"
+      },
+      "linkedin": {
+        "status": "published",
+        "id": "6a9a49e282940622ebb4dc56",
+        "url": "https://www.linkedin.com/feed/update/urn:li:share:7501497505155772416",
+        "provider": "buffer"
+      },
+      "instagramStory": null
     }
   }
 }
