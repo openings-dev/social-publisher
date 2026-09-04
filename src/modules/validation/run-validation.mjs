@@ -6439,7 +6439,8 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.match(intakeStep, /env\.RUN_MODE == 'scheduled'/u);
   assert.match(intakeStep, /steps\.publication\.outputs\.outcome != 'bridge_retryable'/u);
   assert.doesNotMatch(intakeStep, /env\.RUN_MODE == 'controlled'/u);
-  assert.match(intakeStep, /for iteration in \{1\.\.8\}/u);
+  assert.match(intakeStep, /for iteration in \{1\.\.4\}/u);
+  assert.doesNotMatch(intakeStep, /for iteration in \{1\.\.8\}/u);
   assert.match(intakeStep, /npm run intake/u);
   assert.match(intakeStep, /git add -- state\/intake\.json state\/queue\.json/u);
   assert.match(intakeStep, /chore\(state\): checkpoint social intake \[skip ci\]/u);
