@@ -9,12 +9,25 @@
       "scheduledDate": "2026-09-04",
       "createdAt": "2026-09-04T18:25:29.787Z",
       "assets": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T18:25:31.814Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "deployed",
+          "manifestUrl": "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/manifest.json",
+          "carouselUrls": [
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-01.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-02.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-03.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-04.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-05.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-06.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-07.jpg"
+          ],
+          "storyUrl": "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/story.jpg"
+        }
       },
       "feed": {
         "status": "pending",
