@@ -361,7 +361,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p .tmp
           echo 'error=' >> "$GITHUB_OUTPUT"
-          for iteration in {1..8}; do
+          for iteration in {1..4}; do
             npm run intake -- \
               --data "$DATA_PATH" \
               --state state \
