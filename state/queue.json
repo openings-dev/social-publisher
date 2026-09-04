@@ -8696,20 +8696,23 @@
       "bridge": {
         "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-09-02T11:18:48.013Z",
+        "updatedAt": "2026-09-04T15:17:41.039Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-04T15:17:41.039Z",
+          "reason": "instagram_card_upgrade"
+        },
         "result": {
           "status": "deployed",
           "canonicalUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37",
-          "imageUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/opengraph-image.png?v=2.66171f04d60e60b2",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/instagram-image.jpg?v=4.b70568d9cc79323f",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/social-video.mp4?v=3.b70568d9cc79323f",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/social-video-cover.jpg?v=3.b70568d9cc79323f",
-          "pngHash": "66171f04d60e60b2c0592a46cd82a8497ccec3a6c031190559e395b31b28e315",
-          "instagramSvgHash": "b70568d9cc79323f3c20415ffa8dafb7466ed97c3420eccfeb15a3626f383d79",
+          "imageUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/opengraph-image.png?v=2.d30b18b05c88a90c",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/instagram-image.jpg?v=4.02c9fa539539f7aa",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/social-video.mp4?v=4.02c9fa539539f7aa",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_618613ce504927eaf623bd37/social-video-cover.jpg?v=4.02c9fa539539f7aa",
+          "pngHash": "d30b18b05c88a90cc549968de57280e35f7919a995ffd94bb5245a03db35410c",
+          "instagramSvgHash": "02c9fa539539f7aa66ec57ccde783a6ef6e1064094f9c9609b66f8460a618221",
           "instagramCardVersion": "4",
-          "socialVideoVersion": "3"
+          "socialVideoVersion": "4"
         }
       },
       "bluesky": {
@@ -8739,26 +8742,28 @@
         }
       },
       "threads": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-02T12:37:43.331Z",
-        "lastError": {
-          "code": "threads_publication",
-          "at": "2026-09-02T12:37:43.331Z"
-        },
+        "status": "published",
+        "attempts": 2,
+        "updatedAt": "2026-09-04T15:17:41.039Z",
+        "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "reconciled",
+          "id": "18093674285548611",
+          "url": "https://www.threads.com/@openingshq/post/DcyQRGpG-iL"
+        }
       },
       "instagram": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-02T12:37:43.331Z",
-        "lastError": {
-          "code": "instagram_container",
-          "at": "2026-09-02T12:37:43.331Z"
-        },
+        "status": "published",
+        "attempts": 2,
+        "updatedAt": "2026-09-04T15:17:41.039Z",
+        "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18024018260908042",
+          "url": "https://www.instagram.com/reel/Dc3sRCpj6x3/"
+        }
       },
       "linkedin": {
         "status": "published",
