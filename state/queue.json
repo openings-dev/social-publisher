@@ -14128,6 +14128,91 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_fd0559ba318e23e04014161b",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2963",
+      "dataCommit": "38fd8e2754d1b0164f583bc0ebb5380b138808eb",
+      "dataHash": "6ce66b9d802b3c20d798da69e81270f35b930cc0340369a2616441c74a6b8256",
+      "contentHash": "ea4c790fb7e21bdae1c00a23b0f05dcfb568048ed2004341d563ad8208fc9867",
+      "discoveredAt": "2026-09-04T18:53:49.964Z",
+      "createdAt": "2026-09-01T11:04:27Z",
+      "publicationCreatedAt": "2026-09-04T18:53:49.964Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T18:53:49.964Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_fd0559ba318e23e04014161b",
+          "imageUrl": "https://openings.dev/jobs/gh_fd0559ba318e23e04014161b/opengraph-image.png?v=2.316b26a84286528d",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_fd0559ba318e23e04014161b/instagram-image.jpg?v=4.58b9c1963401def1",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_fd0559ba318e23e04014161b/social-video.mp4?v=4.58b9c1963401def1",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_fd0559ba318e23e04014161b/social-video-cover.jpg?v=4.58b9c1963401def1",
+          "pngHash": "316b26a84286528dc871f5e2c6a2939f271251247b22f5f0db2806ea5b714c03",
+          "instagramSvgHash": "58b9c1963401def13642603ae232f21501dc88e956af0ec53e9f2af5d103e8aa",
+          "instagramCardVersion": "4",
+          "socialVideoVersion": "4"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
