@@ -8163,15 +8163,17 @@
         }
       },
       "linkedin": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-03T11:12:28.741Z",
-        "lastError": {
-          "code": "buffer_media",
-          "at": "2026-09-03T11:12:28.741Z"
-        },
+        "status": "published",
+        "attempts": 2,
+        "updatedAt": "2026-09-04T15:13:15.712Z",
+        "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "6a9ae00c5dff2d12206f86fe",
+          "url": "https://www.linkedin.com/feed/update/urn:li:share:7501658745140133888",
+          "provider": "buffer"
+        }
       },
       "instagramStory": {
         "status": "pending",
