@@ -12947,52 +12947,80 @@
         }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T15:02:25.334Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mup7glgwo42i",
+          "cid": "bafyreiayuenor4k726f3slnug57hju4ruwgawruzuaizbaiqemxv5wtzh4",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mup7glgwo42i"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T15:02:25.334Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117213373984429897",
+          "url": "https://mastodon.social/@openingshq/117213373984429897",
+          "cardStatus": "resolved"
+        }
       },
       "twitter": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T15:02:25.334Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "6a9add8cef3e19024e8be89d",
+          "url": "https://twitter.com/OpeningsDev/status/2095890282965275067",
+          "provider": "buffer"
+        }
       },
       "threads": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T15:02:25.334Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18115184216059234",
+          "url": "https://www.threads.com/@openingshq/post/Dc3qbDbII0z"
+        }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T15:02:25.334Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18106745210157018",
+          "url": "https://www.instagram.com/reel/Dc3qcx8COt5/"
+        }
       },
       "linkedin": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T15:02:25.334Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "6a9addc59e905e8210a73874",
+          "url": "https://www.linkedin.com/feed/update/urn:li:share:7501656298556616704",
+          "provider": "buffer"
+        }
       },
       "instagramStory": {
         "status": "pending",
