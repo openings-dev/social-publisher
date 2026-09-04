@@ -11,6 +11,7 @@ import { runDryRun } from '../../cli/dry-run.mjs';
 import { parseEditorialRequest, renderEditorialDryRun } from '../../cli/editorial.mjs';
 import { runIntake } from '../../cli/intake.mjs';
 import { runLinkedInStateMigration } from '../../cli/migrate-linkedin-state.mjs';
+import { runTwitterStateMigration } from '../../cli/migrate-twitter-state.mjs';
 import { runPreflight } from '../../cli/preflight.mjs';
 import { parsePublicationRequest, runPublication } from '../../cli/publish.mjs';
 import { runJobStoryPublication } from '../../cli/publish-story.mjs';
@@ -22,6 +23,7 @@ import {
 
 import {
   BUFFER_API_ORIGIN,
+  DEFAULT_SOCIAL_CHANNELS,
   DEPLOY_POLL_ATTEMPTS,
   IMAGE_HEIGHT,
   IMAGE_WIDTH,
@@ -30,6 +32,7 @@ import {
   MAX_REPOSITORY_DISPATCH_BODY_CHARACTERS,
   OPEN_GRAPH_IMAGE_VERSION,
   OPENINGS_ORIGIN,
+  SOCIAL_CHANNELS,
   SOCIAL_VIDEO_DURATION_SECONDS,
   SOCIAL_VIDEO_FPS,
   SOCIAL_VIDEO_HEIGHT,
@@ -37,6 +40,7 @@ import {
   SOCIAL_VIDEO_WIDTH,
   STARVATION_THRESHOLD_MS,
   STATE_SCHEMA_VERSION,
+  TWITTER_POST_MAX_GRAPHEMES,
 } from '../../config/constants.mjs';
 import { readEnvironment } from '../../config/env.mjs';
 import { escapeAttribute, escapeHtml } from '../../shared/escape.mjs';
@@ -68,6 +72,10 @@ import {
   publishToLinkedInViaBuffer,
   verifyBufferLinkedInChannel,
 } from '../networks/buffer-linkedin-client.mjs';
+import {
+  publishToTwitterViaBuffer,
+  verifyBufferTwitterChannel,
+} from '../networks/buffer-twitter-client.mjs';
 import { publishToLinkedIn } from '../networks/linkedin-client.mjs';
 import { deleteThreadsPost, publishToThreads } from '../networks/threads-client.mjs';
 import {
@@ -140,6 +148,7 @@ import {
 import { loadStateFile } from '../state/load-state.mjs';
 import { saveStateFile } from '../state/save-state.mjs';
 import { migrateLinkedInState } from '../state/linkedin-state-migration.mjs';
+import { migrateTwitterState } from '../state/twitter-state-migration.mjs';
 import {
   assertNoSensitiveKeys,
   migrateIntakeState,
@@ -160,7 +169,7 @@ validation('exports the approved immutable constants', () => {
   assert.equal(STATE_SCHEMA_VERSION, 3);
   assert.equal(OPENINGS_ORIGIN, 'https://openings.dev');
   assert.equal(MAX_CHANNEL_ATTEMPTS, 3);
-  assert.equal(DEPLOY_POLL_ATTEMPTS, 144);
+  assert.equal(DEPLOY_POLL_ATTEMPTS, 300);
   assert.equal(STARVATION_THRESHOLD_MS, 24 * 60 * 60 * 1000);
   assert.deepEqual([IMAGE_WIDTH, IMAGE_HEIGHT], [1200, 630]);
   assert.deepEqual([SOCIAL_VIDEO_WIDTH, SOCIAL_VIDEO_HEIGHT], [1080, 1920]);
@@ -169,6 +178,9 @@ validation('exports the approved immutable constants', () => {
   assert.equal(INSTAGRAM_CARD_VERSION, '4');
   assert.equal(OPEN_GRAPH_IMAGE_VERSION, '2');
   assert.equal(SOCIAL_VIDEO_VERSION, '4');
+  assert.deepEqual(SOCIAL_CHANNELS, ['bluesky', 'mastodon', 'twitter', 'threads', 'instagram', 'linkedin']);
+  assert.deepEqual(DEFAULT_SOCIAL_CHANNELS, ['bluesky', 'mastodon', 'twitter']);
+  assert.equal(TWITTER_POST_MAX_GRAPHEMES, 280);
 });
 
 validation('installs Noto CJK before every Ubuntu social-card render', async () => {
@@ -338,15 +350,27 @@ validation('wires LinkedIn through the publication CLI', async () => {
         LINKEDIN_ACCESS_TOKEN: 'linkedin-secret',
         LINKEDIN_ORGANIZATION_ID: '108765432',
         LINKEDIN_API_VERSION: '202608',
+        BUFFER_API_KEY: 'buffer-secret',
+        BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+        BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
       },
       log: () => {},
       dependencies: {
         resolveGitCommit: async () => snapshot.commit,
         loadCanonicalWordmark: async () => '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
         loadSnapshot: async () => snapshot,
-        createBridgePublisher: () => async () => ({ status: 'deployed' }),
+        createBridgePublisher: () => async () => ({
+          status: 'deployed',
+          imageUrl: `https://openings.dev/jobs/${job.id}/opengraph-image.png`,
+        }),
         publishBluesky: async () => ({ status: 'published' }),
         publishMastodon: async () => ({ status: 'published' }),
+        publishTwitter: async () => ({
+          status: 'published',
+          id: 'buffer-tweet-9988776655',
+          url: 'https://x.com/openingsdev/status/9988776655',
+          provider: 'buffer',
+        }),
         publishLinkedIn: async ({ post: selectedPost }) => {
           linkedinCalls += 1;
           assert.equal(selectedPost.canonicalUrl, `https://openings.dev/jobs/${job.id}`);
@@ -409,6 +433,7 @@ validation('routes the LinkedIn queue stage through Buffer with the verified bri
         BUFFER_API_KEY: 'buffer-secret',
         BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
         BUFFER_LINKEDIN_CHANNEL_ID: '68b68e0fc159685850cf2c11',
+        BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
       },
       log: () => {},
       dependencies: {
@@ -418,6 +443,12 @@ validation('routes the LinkedIn queue stage through Buffer with the verified bri
         createBridgePublisher: () => async () => ({ status: 'deployed', imageUrl }),
         publishBluesky: async () => ({ status: 'published' }),
         publishMastodon: async () => ({ status: 'published' }),
+        publishTwitter: async () => ({
+          status: 'published',
+          id: 'buffer-tweet-cli-0',
+          url: 'https://x.com/openingsdev/status/123456789',
+          provider: 'buffer',
+        }),
         publishLinkedInViaBuffer: async (input) => {
           calls.push(input);
           return {
@@ -442,6 +473,82 @@ validation('routes the LinkedIn queue stage through Buffer with the verified bri
     assert.equal(Object.hasOwn(calls[0], 'png'), false);
     assert.equal(Object.hasOwn(calls[0], 'accessToken'), false);
     assert.equal(result.queueState.items[0].linkedin.result.provider, 'buffer');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+validation('routes the Twitter queue stage through Buffer with the verified bridge image', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-buffer-twitter-publish-'));
+  const job = makeJob({ id: 'gh_111122223333444455556666' });
+  const snapshot = makeLoadedSnapshot({
+    commit: '7'.repeat(40),
+    generatedAt: '2026-09-03T13:30:00.000Z',
+    dataHash: '7'.repeat(64),
+    jobs: [job],
+  });
+  const imageUrl = `https://openings.dev/jobs/${job.id}/opengraph-image.png`;
+  const calls = [];
+  try {
+    await Promise.all([
+      saveStateFile(join(directory, 'queue.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        items: [],
+      }, validateQueueState),
+      saveStateFile(join(directory, 'publications.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        jobs: {},
+      }, validatePublicationsState),
+    ]);
+    const result = await runPublication({
+      request: {
+        mode: 'controlled',
+        jobId: job.id,
+        confirmation: 'PUBLISH_ONE_JOB',
+      },
+      dataRepositoryPath: '/fixture/data',
+      stateDirectory: directory,
+      wordmarkPath: '/fixture/wordmark.svg',
+      outputPath: join(directory, 'output'),
+      env: {
+        WEB_DEPLOY_TOKEN: 'deploy-secret',
+        BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+        BLUESKY_APP_PASSWORD: 'bluesky-secret',
+        MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+        BUFFER_API_KEY: 'buffer-secret',
+        BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+        BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
+      },
+      log: () => {},
+      dependencies: {
+        resolveGitCommit: async () => snapshot.commit,
+        loadCanonicalWordmark: async () => '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
+        loadSnapshot: async () => snapshot,
+        createBridgePublisher: () => async () => ({ status: 'deployed', imageUrl }),
+        publishBluesky: async () => ({ status: 'published' }),
+        publishMastodon: async () => ({ status: 'published' }),
+        publishTwitterViaBuffer: async (input) => {
+          calls.push(input);
+          return {
+            status: 'published',
+            id: 'buffer-tweet-cli-1',
+            url: 'https://x.com/openingsdev/status/998877',
+            provider: 'buffer',
+          };
+        },
+      },
+    });
+    assert.equal(result.outcome, 'completed');
+    assert.equal(calls.length, 1);
+    assert.equal(calls[0].job.id, job.id);
+    assert.ok(calls[0].post.text.length <= 280);
+    assert.equal(calls[0].imageUrl, imageUrl);
+    assert.equal(calls[0].publicSiteOrigin, 'https://openings.dev');
+    assert.equal(calls[0].apiKey, 'buffer-secret');
+    assert.equal(calls[0].organizationId, '68b68d3ac159685850cf2b8d');
+    assert.equal(calls[0].channelId, '68b68e0fc159685850cf2c22');
+    assert.equal(calls[0].apiOrigin, 'https://api.buffer.com');
+    assert.equal(result.queueState.items[0].twitter.result.provider, 'buffer');
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -1378,6 +1485,198 @@ validation('rejects malformed Buffer reconciliation nodes instead of risking a d
   }), (error) => error.code === 'buffer_reconciliation');
 });
 
+function twitterChannelPayload() {
+  return {
+    data: {
+      channels: [{
+        id: '68b68e0fc159685850cf2c22',
+        service: 'twitter',
+        isDisconnected: false,
+        isLocked: false,
+      }],
+    },
+  };
+}
+
+function twitterPublicationOptions(overrides = {}) {
+  const job = makeJob();
+  return {
+    job,
+    post: formatSocialPost(job, { maxGraphemes: TWITTER_POST_MAX_GRAPHEMES }),
+    imageUrl: `https://openings.dev/jobs/${job.id}/opengraph-image.png`,
+    publicSiteOrigin: 'https://openings.dev',
+    apiKey: 'buffer-secret',
+    organizationId: '68b68d3ac159685850cf2b8d',
+    channelId: '68b68e0fc159685850cf2c22',
+    apiOrigin: 'https://api.buffer.com',
+    pollAttempts: 3,
+    pollDelayMs: 25,
+    sleep: async () => {},
+    ...overrides,
+  };
+}
+
+validation('scopes Buffer Twitter channel verification to the configured organization', async () => {
+  const requests = [];
+  const channel = await verifyBufferTwitterChannel({
+    apiKey: 'buffer-secret',
+    organizationId: '68b68d3ac159685850cf2b8d',
+    channelId: '68b68e0fc159685850cf2c22',
+    apiOrigin: 'https://api.buffer.com',
+    fetchImpl: async (url, options) => {
+      requests.push({ url, options });
+      return jsonResponse(twitterChannelPayload());
+    },
+  });
+  assert.deepEqual(channel, {
+    id: '68b68e0fc159685850cf2c22',
+    service: 'twitter',
+  });
+  assert.equal(requests.length, 1);
+  const request = JSON.parse(requests[0].options.body);
+  assert.match(request.query, /query GetChannels/u);
+  assert.deepEqual(request.variables, { organizationId: '68b68d3ac159685850cf2b8d' });
+});
+
+validation('fails closed for unsafe Buffer responses and unusable Twitter channels', async () => {
+  const base = {
+    apiKey: 'buffer-secret',
+    organizationId: '68b68d3ac159685850cf2b8d',
+    channelId: '68b68e0fc159685850cf2c22',
+    apiOrigin: 'https://api.buffer.com',
+  };
+  const cases = [
+    [new Response(null, { status: 401 }), 'buffer_authentication'],
+    [new Response(null, { status: 429 }), 'buffer_rate_limit'],
+    [jsonResponse({ data: { channels: [] } }), 'buffer_configuration'],
+    [jsonResponse({ data: { channels: [{
+      id: base.channelId, service: 'linkedin', isDisconnected: false, isLocked: false,
+    }] } }), 'buffer_configuration'],
+    [jsonResponse({ data: { channels: [{
+      id: base.channelId, service: 'twitter', isDisconnected: true, isLocked: false,
+    }] } }), 'buffer_configuration'],
+  ];
+  for (const [response, code] of cases) {
+    await assert.rejects(verifyBufferTwitterChannel({
+      ...base,
+      fetchImpl: async () => response,
+    }), (error) => error.code === code && !error.message.includes('buffer-secret'));
+  }
+});
+
+validation('publishes a Twitter image immediately through Buffer and waits for its public URL', async () => {
+  const requests = [];
+  const delays = [];
+  const responses = [
+    twitterChannelPayload(),
+    { data: { posts: { edges: [], pageInfo: { hasNextPage: false, endCursor: null } } } },
+    { data: { createPost: {
+      __typename: 'PostActionSuccess',
+      post: { id: 'buffer-tweet-1', status: 'sending', externalLink: null },
+    } } },
+    { data: { post: { id: 'buffer-tweet-1', status: 'sending', externalLink: null } } },
+    { data: { post: {
+      id: 'buffer-tweet-1',
+      status: 'sent',
+      externalLink: 'https://x.com/openingsdev/status/1234567890',
+    } } },
+  ];
+  const options = twitterPublicationOptions({
+    fetchImpl: async (url, requestOptions) => {
+      requests.push({ url, options: requestOptions });
+      const response = responses.shift();
+      if (!response) throw new Error('Unexpected Buffer request');
+      return jsonResponse(response);
+    },
+    sleep: async (delay) => delays.push(delay),
+  });
+  const result = await publishToTwitterViaBuffer(options);
+  assert.deepEqual(result, {
+    status: 'published',
+    id: 'buffer-tweet-1',
+    url: 'https://x.com/openingsdev/status/1234567890',
+    provider: 'buffer',
+  });
+  assert.deepEqual(requests.map(({ options: request }) => JSON.parse(request.body).operationName), [
+    'GetChannels',
+    'GetRecentPosts',
+    'CreateTwitterPost',
+    'GetPost',
+    'GetPost',
+  ]);
+  const creation = JSON.parse(requests[2].options.body);
+  assert.match(creation.query, /schedulingType:\s*automatic/u);
+  assert.match(creation.query, /mode:\s*shareNow/u);
+  assert.equal(creation.query.includes(options.post.text), false);
+  assert.deepEqual(creation.variables, {
+    text: options.post.text,
+    channelId: options.channelId,
+    imageUrl: options.imageUrl,
+    altText: 'Senior TypeScript Engineer job opening on openings.dev',
+  });
+  assert.deepEqual(delays, [25]);
+});
+
+validation('reconciles an exact Buffer Twitter canonical URL before creating another post', async () => {
+  const operations = [];
+  const options = twitterPublicationOptions();
+  const responses = [
+    twitterChannelPayload(),
+    {
+      data: {
+        posts: {
+          edges: [{
+            node: {
+              id: 'buffer-existing-tweet',
+              text: `Published earlier\n${options.post.canonicalUrl}\n#TechJobs`,
+              status: 'sent',
+              externalLink: 'https://x.com/openingsdev/status/1234567890',
+              channelId: options.channelId,
+              assets: [],
+            },
+          }],
+          pageInfo: { hasNextPage: false, endCursor: null },
+        },
+      },
+    },
+  ];
+  const result = await publishToTwitterViaBuffer({
+    ...options,
+    fetchImpl: async (_url, request) => {
+      operations.push(JSON.parse(request.body).operationName);
+      return jsonResponse(responses.shift());
+    },
+  });
+  assert.deepEqual(result, {
+    status: 'reconciled',
+    id: 'buffer-existing-tweet',
+    url: 'https://x.com/openingsdev/status/1234567890',
+    provider: 'buffer',
+  });
+  assert.deepEqual(operations, ['GetChannels', 'GetRecentPosts']);
+});
+
+validation('rejects unsafe Buffer Twitter external links', async () => {
+  const options = twitterPublicationOptions();
+  const responses = [
+    twitterChannelPayload(),
+    { data: { posts: { edges: [], pageInfo: { hasNextPage: false, endCursor: null } } } },
+    { data: { createPost: {
+      __typename: 'PostActionSuccess',
+      post: { id: 'buffer-tweet-2', status: 'sending', externalLink: null },
+    } } },
+    { data: { post: {
+      id: 'buffer-tweet-2',
+      status: 'sent',
+      externalLink: 'https://example.test/not-twitter',
+    } } },
+  ];
+  await assert.rejects(publishToTwitterViaBuffer({
+    ...options,
+    fetchImpl: async () => jsonResponse(responses.shift()),
+  }), (error) => error.code === 'buffer_response');
+});
+
 validation('enables scheduled publication only for exact true with every credential', () => {
   const env = {
     SOCIAL_AUTO_PUBLISH: 'true',
@@ -1385,6 +1684,9 @@ validation('enables scheduled publication only for exact true with every credent
     BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
     BLUESKY_APP_PASSWORD: 'app-secret',
     MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+    BUFFER_API_KEY: 'buffer-secret',
+    BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+    BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
   };
   assert.equal(readEnvironment({ env, mode: 'scheduled' }).publishEnabled, true);
   assert.equal(readEnvironment({ env: { ...env, SOCIAL_AUTO_PUBLISH: 'TRUE' }, mode: 'scheduled' }).publishEnabled, false);
@@ -1401,15 +1703,18 @@ validation('enables Meta channels independently and requires only their own cred
     BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
     BLUESKY_APP_PASSWORD: 'app-secret',
     MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+    BUFFER_API_KEY: 'buffer-secret',
+    BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+    BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
   };
   const disabled = readEnvironment({ env: base, mode: 'scheduled' });
-  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'mastodon']);
+  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'mastodon', 'twitter']);
 
   const threads = readEnvironment({
     env: { ...base, THREADS_AUTO_PUBLISH: 'true', THREADS_ACCESS_TOKEN: 'threads-secret' },
     mode: 'scheduled',
   });
-  assert.deepEqual(threads.enabledChannels, ['bluesky', 'mastodon', 'threads']);
+  assert.deepEqual(threads.enabledChannels, ['bluesky', 'mastodon', 'twitter', 'threads']);
   assert.throws(
     () => readEnvironment({ env: { ...base, THREADS_AUTO_PUBLISH: 'true' }, mode: 'scheduled' }),
     /THREADS_ACCESS_TOKEN/u,
@@ -1425,7 +1730,7 @@ validation('enables Meta channels independently and requires only their own cred
     },
     mode: 'scheduled',
   });
-  assert.deepEqual(instagram.enabledChannels, ['bluesky', 'mastodon', 'instagram']);
+  assert.deepEqual(instagram.enabledChannels, ['bluesky', 'mastodon', 'twitter', 'instagram']);
   assert.equal(instagram.instagram.userId, '17841400000000000');
   assert.equal(instagram.instagram.apiVersion, 'v23.0');
 });
@@ -1437,10 +1742,13 @@ validation('enables LinkedIn independently with bounded organization configurati
     BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
     BLUESKY_APP_PASSWORD: 'app-secret',
     MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+    BUFFER_API_KEY: 'buffer-secret',
+    BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+    BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
   };
   const disabled = readEnvironment({ env: base, mode: 'scheduled' });
   assert.equal(disabled.linkedin, null);
-  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'mastodon']);
+  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'mastodon', 'twitter']);
 
   const enabled = readEnvironment({
     env: {
@@ -1452,7 +1760,7 @@ validation('enables LinkedIn independently with bounded organization configurati
     },
     mode: 'scheduled',
   });
-  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'mastodon', 'linkedin']);
+  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'mastodon', 'twitter', 'linkedin']);
   assert.deepEqual(enabled.linkedin, {
     provider: 'direct',
     accessToken: 'linkedin-secret',
@@ -1493,9 +1801,10 @@ validation('selects Buffer for LinkedIn without requiring direct LinkedIn creden
     BUFFER_API_KEY: 'buffer-secret',
     BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
     BUFFER_LINKEDIN_CHANNEL_ID: '68b68e0fc159685850cf2c11',
+    BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
   };
   const enabled = readEnvironment({ env: base, mode: 'scheduled' });
-  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'mastodon', 'linkedin']);
+  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'mastodon', 'twitter', 'linkedin']);
   assert.deepEqual(enabled.linkedin, {
     provider: 'buffer',
     apiKey: 'buffer-secret',
@@ -1532,6 +1841,35 @@ validation('selects Buffer for LinkedIn without requiring direct LinkedIn creden
     mode: 'dry-run',
   });
   assert.equal(disabled.linkedin, null);
+});
+
+validation('configures Twitter through Buffer using the shared organization credentials', () => {
+  const base = {
+    SOCIAL_AUTO_PUBLISH: 'true',
+    WEB_DEPLOY_TOKEN: 'github-fine-grained-token',
+    BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+    BLUESKY_APP_PASSWORD: 'app-secret',
+    MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+    BUFFER_API_KEY: 'buffer-secret',
+    BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+    BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
+  };
+  const config = readEnvironment({ env: base, mode: 'scheduled' });
+  assert.deepEqual(config.twitter, {
+    apiKey: 'buffer-secret',
+    organizationId: '68b68d3ac159685850cf2b8d',
+    channelId: '68b68e0fc159685850cf2c22',
+    apiOrigin: BUFFER_API_ORIGIN,
+  });
+
+  for (const key of ['BUFFER_API_KEY', 'BUFFER_ORGANIZATION_ID', 'BUFFER_TWITTER_CHANNEL_ID']) {
+    assert.throws(() => readEnvironment({
+      env: { ...base, [key]: '' },
+      mode: 'scheduled',
+    }), (error) => error.message.includes(key) && !error.message.includes('buffer-secret'));
+  }
+
+  assert.equal(readEnvironment({ env: {}, mode: 'dry-run' }).twitter, null);
 });
 
 validation('loads only deploy and Meta credentials for a controlled migration', () => {
@@ -1729,6 +2067,7 @@ validation('selects and publishes only a ready job Story', async () => {
         status: 'completed',
         instagram: queue.items[0].instagram.result,
         linkedin: null,
+        twitter: null,
         instagramStory: null,
       },
     },
@@ -2137,6 +2476,26 @@ validation('rejects unknown state versions, duplicates, and sensitive keys', () 
   assert.throws(() => assertNoSensitiveKeys({ nested: { accessToken: 'never-track-this' } }), /sensitive/i);
 });
 
+validation('requires the twitter field on every publication record', () => {
+  const jobId = 'gh_0123456789abcdef01234567';
+  assert.throws(() => validatePublicationsState({
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: { [jobId]: { linkedin: null, instagramStory: null } },
+  }), /\.twitter is required/u);
+  assert.doesNotThrow(() => validatePublicationsState({
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: { [jobId]: { linkedin: null, instagramStory: null, twitter: null } },
+  }));
+  assert.doesNotThrow(() => validatePublicationsState({
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: { [jobId]: {
+      linkedin: null,
+      instagramStory: null,
+      twitter: { status: 'published', id: 'buffer-tweet-1', url: 'https://x.com/openingsdev/status/1', provider: 'buffer' },
+    } },
+  }));
+});
+
 validation('writes state atomically with stable formatting', async () => {
   const directory = await mkdtemp(join(tmpdir(), 'openings-social-publisher-state-'));
   const file = join(directory, 'queue.json');
@@ -2263,6 +2622,75 @@ validation('applies the guarded LinkedIn migration to tracked state files', asyn
     assert.deepEqual(result, { queueItems: 1, publications: 1, schemaVersion: 3 });
     assert.equal(JSON.parse(await readFile(join(directory, 'queue.json'))).items[0]
       .linkedin.status, 'skipped_before_activation');
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
+});
+
+validation('backfills a skipped-before-activation twitter stage onto existing queue items', () => {
+  const at = '2026-09-03T12:00:00.000Z';
+  const queueState = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    items: [{
+      jobId: 'gh_0123456789abcdef01234567',
+      sourceId: 'src-1',
+      dataCommit: '1'.repeat(40),
+      dataHash: '1'.repeat(64),
+      contentHash: '2'.repeat(64),
+      discoveredAt: at,
+      createdAt: at,
+      publicationCreatedAt: at,
+      bridge: { status: 'published', attempts: 1, updatedAt: at, lastError: null, lastReset: null, result: {} },
+      bluesky: { status: 'published', attempts: 1, updatedAt: at, lastError: null, lastReset: null, result: {} },
+      mastodon: { status: 'published', attempts: 1, updatedAt: at, lastError: null, lastReset: null, result: {} },
+      threads: { status: 'skipped_disabled', attempts: 0, updatedAt: null, lastError: null, lastReset: null, result: null },
+      instagram: { status: 'skipped_disabled', attempts: 0, updatedAt: null, lastError: null, lastReset: null, result: null },
+      linkedin: { status: 'skipped_disabled', attempts: 0, updatedAt: null, lastError: null, lastReset: null, result: null },
+      instagramStory: { status: 'skipped_disabled', attempts: 0, updatedAt: null, lastError: null, lastReset: null, result: null },
+    }],
+  };
+  const publicationsState = {
+    schemaVersion: STATE_SCHEMA_VERSION,
+    jobs: {
+      gh_0123456789abcdef01234567: { linkedin: null, instagramStory: null },
+    },
+  };
+  const migrated = migrateTwitterState({ queueState, publicationsState, at });
+  assert.equal(migrated.queueState.items[0].twitter.status, 'skipped_before_activation');
+  assert.equal(migrated.queueState.items[0].twitter.updatedAt, at);
+  assert.equal(migrated.publicationsState.jobs.gh_0123456789abcdef01234567.twitter, null);
+  assert.doesNotThrow(() => validateQueueState(migrated.queueState));
+  assert.doesNotThrow(() => validatePublicationsState(migrated.publicationsState));
+
+  assert.throws(() => migrateTwitterState({ queueState, publicationsState, at: 'not-a-date' }),
+    /ISO date/u);
+});
+
+validation('runs the twitter state migration only with the exact confirmation phrase', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-twitter-migration-'));
+  const at = '2026-09-03T12:00:00.000Z';
+  try {
+    await Promise.all([
+      saveStateFile(join(directory, 'queue.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        items: [],
+      }, validateQueueState),
+      saveStateFile(join(directory, 'publications.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        jobs: {},
+      }, validatePublicationsState),
+    ]);
+    await assert.rejects(runTwitterStateMigration({
+      stateDirectory: directory,
+      at,
+      confirmation: 'wrong phrase',
+    }), /exact confirmation/i);
+    const result = await runTwitterStateMigration({
+      stateDirectory: directory,
+      at,
+      confirmation: 'MIGRATE_TWITTER_STATE',
+    });
+    assert.deepEqual(result, { queueItems: 0, publications: 0, schemaVersion: STATE_SCHEMA_VERSION });
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -2670,6 +3098,7 @@ validation('replaces only Meta publications and records recoverable cleanup stat
         threads: queue.items[0].threads.result,
         instagram: queue.items[0].instagram.result,
         linkedin: null,
+        twitter: null,
         metaMigration: priorMigration,
       },
     },
@@ -2965,6 +3394,20 @@ validation('keeps long Unicode posts within the Bluesky grapheme limit', () => {
   assert.equal((post.text.match(/https:\/\/openings\.dev\/jobs\//g) ?? []).length, 1);
   assert.match(post.text, /View the listing:/);
   assert.match(post.text, /#TechJobs #TypeScript$/);
+});
+
+validation('formats a tighter Twitter post within its own 280-grapheme limit', () => {
+  const job = makeJob({
+    title: 'Staff Platform Engineer for Distributed Systems and Developer Experience Tooling',
+    excerpt: 'A very long excerpt that has no bearing on the post body but exercises the formatter.',
+  });
+  const defaultPost = formatSocialPost(job);
+  const twitterPost = formatSocialPost(job, { maxGraphemes: TWITTER_POST_MAX_GRAPHEMES });
+  assert.ok(countGraphemes(defaultPost.text) <= 300);
+  assert.ok(countGraphemes(twitterPost.text) <= 280);
+  assert.ok(countGraphemes(twitterPost.text) <= countGraphemes(defaultPost.text));
+  assert.equal(twitterPost.canonicalUrl, defaultPost.canonicalUrl);
+  assert.equal(twitterPost.hashtags, defaultPost.hashtags);
 });
 
 validation('renders a complete escaped canonical job bridge', () => {
@@ -5254,6 +5697,7 @@ validation('deploys before providers and preserves partial success for a retry',
     publishBridge: async () => { order.push('bridge'); return { status: 'deployed' }; },
     publishBluesky: async ({ post }) => { order.push('bluesky'); return { status: 'published', uri: 'at://fixture', cid: 'cid', url: post.canonicalUrl }; },
     publishMastodon: async () => { order.push('mastodon'); throw new Error('Mastodon publication failed'); },
+    publishTwitter: async () => ({ status: 'published', id: 'buffer-tweet', url: 'https://x.com/openingsdev/status/1', provider: 'buffer' }),
     now: '2026-08-20T13:02:00.000Z',
   });
   assert.deepEqual(order, ['bridge', 'bluesky', 'mastodon']);
@@ -5321,6 +5765,10 @@ validation('retires closed queue items and publishes the next open job in one ru
       providerJobs.push(job.id);
       return { status: 'published', id: 'status', url: post.canonicalUrl };
     },
+    publishTwitter: async ({ job }) => {
+      providerJobs.push(job.id);
+      return { status: 'published', id: 'buffer-tweet', url: 'https://x.com/openingsdev/status/1', provider: 'buffer' };
+    },
     now: '2026-08-21T11:00:00.000Z',
   });
 
@@ -5329,7 +5777,7 @@ validation('retires closed queue items and publishes the next open job in one ru
   assert.equal(result.queueState.items[0].bridge.status, 'published');
   assert.equal(result.queueState.items[0].bluesky.status, 'skipped_closed');
   assert.equal(result.queueState.items[0].mastodon.status, 'skipped_closed');
-  assert.deepEqual(providerJobs, [openJob.id, openJob.id]);
+  assert.deepEqual(providerJobs, [openJob.id, openJob.id, openJob.id]);
 });
 
 validation('refreshes a stale queued Instagram card before publication', async () => {
@@ -5423,6 +5871,7 @@ validation('controlled publication can enqueue one explicit current job', async 
     publishBridge: async () => { calls.push('bridge'); return { status: 'deployed' }; },
     publishBluesky: async () => { calls.push('bluesky'); return { status: 'published' }; },
     publishMastodon: async () => { calls.push('mastodon'); return { status: 'published' }; },
+    publishTwitter: async () => ({ status: 'published', id: 'buffer-tweet', url: 'https://x.com/openingsdev/status/1', provider: 'buffer' }),
     now: '2026-08-20T15:30:00.000Z',
     jobId: job.id,
   });
@@ -5453,6 +5902,7 @@ validation('controlled publication never republishes a completed job', async () 
         bluesky: { status: 'published' },
         mastodon: { status: 'published' },
         linkedin: null,
+        twitter: null,
       },
     },
   };
@@ -5606,6 +6056,52 @@ validation('publishes and persists a LinkedIn-only queue stage', async () => {
   assert.equal(result.outcome, 'completed');
   assert.equal(result.queueState.items[0].linkedin.status, 'published');
   assert.equal(result.publicationsState.jobs[job.id].linkedin.id, 'urn:li:share:123456789');
+});
+
+validation('publishes to Twitter through the queue stage machinery', async () => {
+  const job = makeJob({ id: 'gh_aaaabbbbccccddddeeeeffff' });
+  const snapshot = makeLoadedSnapshot({
+    commit: '9'.repeat(40),
+    generatedAt: '2026-09-03T10:00:00.000Z',
+    dataHash: '9'.repeat(64),
+    jobs: [job],
+  });
+  let queueState = enqueueJob({ schemaVersion: STATE_SCHEMA_VERSION, items: [] }, {
+    job,
+    snapshot,
+    discoveredAt: '2026-09-03T10:00:00.000Z',
+    enabledChannels: ['bluesky', 'mastodon', 'twitter'],
+  });
+  queueState = transitionQueueStage(queueState, job.id, 'bridge', 'publishing', { at: '2026-09-03T10:00:01.000Z' });
+  queueState = transitionQueueStage(queueState, job.id, 'bridge', 'published', {
+    at: '2026-09-03T10:00:01.000Z',
+    result: { canonicalUrl: `https://openings.dev/jobs/${job.id}` },
+  });
+  let twitterCalls = 0;
+  const twitterResult = await processOnePublication({
+    queueState,
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+    currentSnapshot: snapshot,
+    publishBridge: async () => { throw new Error('bridge must not run again'); },
+    publishBluesky: async () => ({ status: 'published' }),
+    publishMastodon: async () => ({ status: 'published' }),
+    publishTwitter: async ({ post: selectedPost }) => {
+      twitterCalls += 1;
+      assert.equal(selectedPost.canonicalUrl, `https://openings.dev/jobs/${job.id}`);
+      assert.ok(selectedPost.text.length <= 280);
+      return {
+        status: 'published',
+        id: 'buffer-tweet-3',
+        url: 'https://x.com/openingsdev/status/998877',
+        provider: 'buffer',
+      };
+    },
+    enabledChannels: ['bluesky', 'mastodon', 'twitter'],
+  });
+  assert.equal(twitterResult.outcome, 'completed');
+  assert.equal(twitterCalls, 1);
+  assert.equal(twitterResult.queueState.items[0].twitter.status, 'published');
+  assert.equal(twitterResult.publicationsState.jobs[job.id].twitter.id, 'buffer-tweet-3');
 });
 
 validation('retries LinkedIn without republishing a completed provider', async () => {
@@ -5837,6 +6333,28 @@ validation('keeps validation read-only and production publishing explicitly gate
   const actionUses = [...`${validationWorkflow}\n${productionWorkflow}`.matchAll(/uses:\s*[^@\s]+@([^\s#]+)/gu)];
   assert.ok(actionUses.length >= 5);
   assert.equal(actionUses.every((match) => /^[0-9a-f]{40}$/u.test(match[1])), true);
+});
+
+validation('exposes the Twitter Buffer channel and retry-stage option in the production workflow', async () => {
+  const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
+  const productionWorkflow = await readFile(
+    join(repositoryRoot, '.github/workflows/publish-social.yml'),
+    'utf8',
+  );
+  assert.match(productionWorkflow, /BUFFER_TWITTER_CHANNEL_ID/u);
+  assert.match(productionWorkflow, /- twitter/u);
+  assert.equal([...productionWorkflow.matchAll(/secrets\.BUFFER_API_KEY/gu)].length, 1);
+});
+
+validation('documents the Twitter Buffer configuration and rollout sequence', async () => {
+  const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
+  const readme = await readFile(join(repositoryRoot, 'README.md'), 'utf8');
+  for (const value of [
+    'BUFFER_TWITTER_CHANNEL_ID',
+    'For Twitter/X through Buffer',
+  ]) {
+    assert.match(readme, new RegExp(value, 'u'));
+  }
 });
 
 validation('ships a complete, source-grounded 12-week Instagram editorial catalog', () => {

@@ -39,6 +39,7 @@ export function migrateLinkedInState({ intakeState, queueState, publicationsStat
       items: queueState.items.map((item) => ({
         ...item,
         linkedin: historicalStage(at),
+        twitter: item.twitter ?? historicalStage(at),
         instagramStory: item.instagramStory ?? historicalStage(at),
       })),
     },
@@ -50,6 +51,7 @@ export function migrateLinkedInState({ intakeState, queueState, publicationsStat
         {
           ...publication,
           linkedin: publication.linkedin ?? null,
+          twitter: publication.twitter ?? null,
           instagramStory: publication.instagramStory ?? null,
         },
       ])),

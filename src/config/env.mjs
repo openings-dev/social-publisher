@@ -11,7 +11,14 @@ import {
 } from './constants.mjs';
 
 const DEPLOY_KEYS = ['WEB_DEPLOY_TOKEN'];
-const SOCIAL_KEYS = ['BLUESKY_IDENTIFIER', 'BLUESKY_APP_PASSWORD', 'MASTODON_ACCESS_TOKEN'];
+const SOCIAL_KEYS = [
+  'BLUESKY_IDENTIFIER',
+  'BLUESKY_APP_PASSWORD',
+  'MASTODON_ACCESS_TOKEN',
+  'BUFFER_API_KEY',
+  'BUFFER_ORGANIZATION_ID',
+  'BUFFER_TWITTER_CHANNEL_ID',
+];
 
 function requireKeys(env, keys) {
   const missing = keys.filter((key) => typeof env[key] !== 'string' || env[key].trim() === '');
@@ -185,6 +192,16 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
         env.LINKEDIN_API_ORIGIN,
         LINKEDIN_API_ORIGIN,
         'LINKEDIN_API_ORIGIN',
+      ),
+    }) : null,
+    twitter: requiresSocial ? Object.freeze({
+      apiKey: env.BUFFER_API_KEY,
+      organizationId: env.BUFFER_ORGANIZATION_ID,
+      channelId: env.BUFFER_TWITTER_CHANNEL_ID,
+      apiOrigin: normalizeExactOrigin(
+        env.BUFFER_API_ORIGIN,
+        BUFFER_API_ORIGIN,
+        'BUFFER_API_ORIGIN',
       ),
     }) : null,
   });

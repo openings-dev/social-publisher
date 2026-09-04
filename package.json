@@ -13,6 +13,7 @@
     "dry-run": "node src/cli/dry-run.mjs",
     "intake": "node src/cli/intake.mjs",
     "migrate:linkedin-state": "node src/cli/migrate-linkedin-state.mjs",
+    "migrate:twitter-state": "node src/cli/migrate-twitter-state.mjs",
     "publish": "node src/cli/publish.mjs",
     "publish:story": "node src/cli/publish-story.mjs",
     "editorial": "node src/cli/editorial.mjs",

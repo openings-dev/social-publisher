@@ -14,6 +14,7 @@ import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
 import { publishToMastodon } from '../modules/networks/mastodon-client.mjs';
 import { publishToInstagram } from '../modules/networks/instagram-client.mjs';
 import { publishToLinkedInViaBuffer } from '../modules/networks/buffer-linkedin-client.mjs';
+import { publishToTwitterViaBuffer } from '../modules/networks/buffer-twitter-client.mjs';
 import { publishToLinkedIn } from '../modules/networks/linkedin-client.mjs';
 import { publishToThreads } from '../modules/networks/threads-client.mjs';
 import { renderSocialCardPng } from '../modules/render/social-card.mjs';
@@ -142,6 +143,28 @@ export async function runPublication({
     accessToken: config.mastodonAccessToken,
     baseUrl: config.mastodonBaseUrl,
   }));
+  const publishTwitter = dependencies.publishTwitter ?? (async ({ job, post, queueItem }) => {
+    try {
+      return await (dependencies.publishTwitterViaBuffer ?? publishToTwitterViaBuffer)({
+        job,
+        post,
+        imageUrl: queueItem.bridge.result?.imageUrl,
+        publicSiteOrigin: config.publicSiteOrigin,
+        apiKey: config.twitter?.apiKey,
+        organizationId: config.twitter?.organizationId,
+        channelId: config.twitter?.channelId,
+        apiOrigin: config.twitter?.apiOrigin,
+      });
+    } catch (error) {
+      log(JSON.stringify({
+        event: 'provider_failure',
+        provider: 'twitter',
+        code: typeof error?.code === 'string' ? error.code : 'provider',
+        diagnostic: error?.diagnostic ?? null,
+      }));
+      throw error;
+    }
+  });
   const publishThreads = dependencies.publishThreads ?? (({ job, post }) => publishToThreads({
     job,
     post,
@@ -199,6 +222,7 @@ export async function runPublication({
     publishBridge,
     publishBluesky,
     publishMastodon,
+    publishTwitter,
     publishThreads,
     publishInstagram,
     publishLinkedIn,
@@ -217,6 +241,8 @@ export async function runPublication({
     blueskyError: selectedItem?.bluesky.lastError?.code ?? null,
     mastodon: selectedItem?.mastodon.status ?? null,
     mastodonError: selectedItem?.mastodon.lastError?.code ?? null,
+    twitter: selectedItem?.twitter.status ?? null,
+    twitterError: selectedItem?.twitter.lastError?.code ?? null,
     threads: selectedItem?.threads.status ?? null,
     threadsError: selectedItem?.threads.lastError?.code ?? null,
     instagram: selectedItem?.instagram.status ?? null,

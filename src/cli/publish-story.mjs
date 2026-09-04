@@ -55,7 +55,7 @@ function withPublicationStory(publicationsState, jobId, result) {
   // which case completePublication in the orchestrator hasn't written this
   // job's entry yet. Recording the Story result must not depend on that:
   // default to a minimal entry rather than requiring one to pre-exist.
-  const publication = publicationsState.jobs[jobId] ?? { linkedin: null };
+  const publication = publicationsState.jobs[jobId] ?? { linkedin: null, twitter: null };
   return validatePublicationsState({
     ...publicationsState,
     jobs: {

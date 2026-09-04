@@ -33,6 +33,7 @@ on:
           - bridge
           - bluesky
           - mastodon
+          - twitter
           - threads
           - instagram
           - linkedin
@@ -87,6 +88,7 @@ jobs:
       BUFFER_API_ORIGIN: ${{ vars.BUFFER_API_ORIGIN || 'https://api.buffer.com' }}
       BUFFER_ORGANIZATION_ID: ${{ vars.BUFFER_ORGANIZATION_ID }}
       BUFFER_LINKEDIN_CHANNEL_ID: ${{ vars.BUFFER_LINKEDIN_CHANNEL_ID }}
+      BUFFER_TWITTER_CHANNEL_ID: ${{ vars.BUFFER_TWITTER_CHANNEL_ID }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
       THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.THREADS_AUTO_PUBLISH || 'false' }}
       INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}

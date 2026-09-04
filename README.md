@@ -115,6 +115,7 @@ Repository variables:
 - `BUFFER_API_ORIGIN=https://api.buffer.com`
 - `BUFFER_ORGANIZATION_ID` — the Buffer ID for the `Openings HQ` organization
 - `BUFFER_LINKEDIN_CHANNEL_ID` — the Buffer channel ID for the official Openings.dev LinkedIn Page
+- `BUFFER_TWITTER_CHANNEL_ID` — the Buffer channel ID for the official Openings.dev Twitter/X account
 - `LINKEDIN_API_VERSION` — required only by the direct provider; the supported LinkedIn REST API version in `YYYYMM` format
 - `LINKEDIN_ORGANIZATION_ID` — required only by the direct provider; the numeric ID of the openings.dev LinkedIn Page
 
@@ -151,7 +152,15 @@ For LinkedIn through Buffer:
 5. Verify the Buffer result, public LinkedIn URL, canonical link, image, and duplicate reconciliation.
 6. Enable `LINKEDIN_AUTO_PUBLISH=true` only after the controlled publication passes.
 
-Buffer downloads the stable image directly from `openings.dev`; this repository does not upload media to Buffer or use a paid storage feature. Keep a flag disabled if its credential, public media, or durable result cannot be verified. Long-lived Meta tokens and any direct LinkedIn access token must be renewed before expiry. The Instagram account must be a professional Business account authorized for content publishing.
+For Twitter/X through Buffer:
+
+1. Connect only the official Openings.dev Twitter/X account to the `Openings HQ` organization.
+2. Reuse the existing `BUFFER_API_KEY` and `BUFFER_ORGANIZATION_ID`; add `BUFFER_TWITTER_CHANNEL_ID` for the new channel.
+3. Twitter/X is enabled by default alongside Bluesky and Mastodon — no separate `*_AUTO_PUBLISH` flag exists for it.
+4. Run one controlled publication and verify the Buffer result, public tweet URL, canonical link, image, and duplicate reconciliation before relying on the scheduled run.
+5. Before this code reaches production, run `npm run migrate:twitter-state -- --state state --confirmation MIGRATE_TWITTER_STATE` once against the live `state/` directory so existing queue items and publication records gain the new `twitter` field.
+
+Buffer downloads the stable image directly from `openings.dev`; this repository does not upload media to Buffer or use a paid storage feature. Keep a flag disabled if its credential, public media, or durable result cannot be verified — Twitter/X has no such flag, so an incomplete `BUFFER_TWITTER_CHANNEL_ID` setup will surface as a retryable `twitter` stage rather than silently skipping. Long-lived Meta tokens and any direct LinkedIn access token must be renewed before expiry. The Instagram account must be a professional Business account authorized for content publishing.
 
 ## License
 

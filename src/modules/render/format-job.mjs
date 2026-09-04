@@ -165,7 +165,7 @@ function composePost({ title, metadataLine, salaryLine, canonicalUrl, hashtags }
   return paragraphs.join('\n\n');
 }
 
-function fitPost(title, fields) {
+function fitPost(title, fields, maxGraphemes) {
   let metadataLine = fields.metadataLine;
   let salaryLine = fields.salaryLine;
   const minimumTitleLength = Math.min(24, countGraphemes(title));
@@ -175,7 +175,7 @@ function fitPost(title, fields) {
     title: truncateGraphemes(title, minimumTitleLength),
     metadataLine,
     salaryLine,
-  })) > MAX_POST_GRAPHEMES) {
+  })) > maxGraphemes) {
     if (salaryLine) {
       salaryLine = null;
     } else if (metadataLine) {
@@ -196,7 +196,7 @@ function fitPost(title, fields) {
       metadataLine,
       salaryLine,
     });
-    if (countGraphemes(candidate) <= MAX_POST_GRAPHEMES) {
+    if (countGraphemes(candidate) <= maxGraphemes) {
       best = middle;
       low = middle + 1;
     } else {
@@ -206,15 +206,18 @@ function fitPost(title, fields) {
 
   const fittedTitle = truncateGraphemes(title, best);
   const text = composePost({ ...fields, title: fittedTitle, metadataLine, salaryLine });
-  if (countGraphemes(text) > MAX_POST_GRAPHEMES) {
+  if (countGraphemes(text) > maxGraphemes) {
     throw new Error('Required social post content exceeds the provider limit');
   }
   return { text, title: fittedTitle, metadataLine, salaryLine };
 }
 
-export function formatSocialPost(job, { origin } = {}) {
+export function formatSocialPost(job, { origin, maxGraphemes = MAX_POST_GRAPHEMES } = {}) {
   if (typeof job?.title !== 'string' || job.title.trim() === '') {
     throw new Error('Job title is required for social copy');
+  }
+  if (!Number.isInteger(maxGraphemes) || maxGraphemes < 1 || maxGraphemes > MAX_POST_GRAPHEMES) {
+    throw new Error('maxGraphemes must be a positive integer within the provider limit');
   }
   const originalTitle = job.title.trim();
   const canonicalUrl = buildCanonicalJobUrl(job.id, origin);
@@ -222,7 +225,7 @@ export function formatSocialPost(job, { origin } = {}) {
   const salaryLine = formatSalary(job.salary);
   const stackHashtag = selectStackHashtag(job.tags);
   const hashtags = ['#TechJobs', stackHashtag].filter(Boolean).join(' ');
-  const fitted = fitPost(originalTitle, { metadataLine, salaryLine, canonicalUrl, hashtags });
+  const fitted = fitPost(originalTitle, { metadataLine, salaryLine, canonicalUrl, hashtags }, maxGraphemes);
   return Object.freeze({
     ...fitted,
     canonicalUrl,

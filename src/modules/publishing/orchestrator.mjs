@@ -4,6 +4,7 @@ import {
   INSTAGRAM_CARD_VERSION,
   SOCIAL_VIDEO_VERSION,
   SOCIAL_CHANNELS,
+  TWITTER_POST_MAX_GRAPHEMES,
 } from '../../config/constants.mjs';
 import { isEligibleNewJob } from '../intake/eligibility.mjs';
 import { formatSocialPost } from '../render/format-job.mjs';
@@ -57,7 +58,7 @@ function sameSnapshot(left, right) {
 
 function safeErrorCode(error, stage) {
   const text = error instanceof Error ? `${error.name} ${error.message}`.toLowerCase() : '';
-  if (stage === 'linkedin'
+  if ((stage === 'linkedin' || stage === 'twitter')
     && typeof error?.code === 'string'
     && /^buffer_(?:authentication|configuration|graphql|reconciliation|media|publication|processing|rate_limit|response)$/u
       .test(error.code)) {
@@ -189,6 +190,7 @@ function completePublication(publicationsState, item, at) {
     threads: item.threads.result,
     instagram: item.instagram.result,
     linkedin: item.linkedin.result,
+    twitter: item.twitter.result,
     instagramStory: item.instagramStory.result,
   };
   return validatePublicationsState({
@@ -396,6 +398,7 @@ export async function processOnePublication({
   publishBridge,
   publishBluesky,
   publishMastodon,
+  publishTwitter,
   publishThreads,
   publishInstagram,
   publishLinkedIn,
@@ -493,9 +496,11 @@ export async function processOnePublication({
   }
 
   const post = formatSocialPost(job);
+  const twitterPost = formatSocialPost(job, { maxGraphemes: TWITTER_POST_MAX_GRAPHEMES });
   const publishers = {
     bluesky: publishBluesky,
     mastodon: publishMastodon,
+    twitter: publishTwitter,
     threads: publishThreads,
     instagram: publishInstagram,
     linkedin: publishLinkedIn,
@@ -509,7 +514,7 @@ export async function processOnePublication({
       publish: publishers[channel] ?? (async () => {
         throw new Error(`${channel} publisher is unavailable`);
       }),
-      post,
+      post: channel === 'twitter' ? twitterPost : post,
       job,
       now,
     });
