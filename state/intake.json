@@ -377,14 +377,14 @@
       "dataHash": "5f14f49761e51c026e0d62930199ee3b31e5e21340a21b09dcd9e0261f0567f1",
       "reason": "new",
       "stage": {
-        "status": "failed",
-        "attempts": 3,
-        "updatedAt": "2026-09-04T11:25:35.979Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-09-04T11:25:35.979Z"
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": "2026-09-04T14:41:53.658Z",
+        "lastError": null,
+        "lastReset": {
+          "at": "2026-09-04T14:41:53.658Z",
+          "reason": "manual_reset"
         },
-        "lastReset": null,
         "result": null
       }
     }
