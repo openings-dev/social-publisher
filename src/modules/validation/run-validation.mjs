@@ -308,6 +308,77 @@ validation('requires exact manual publication and reset gates', () => {
     stage: 'linkedin',
     confirmation: 'RESET_FAILED_STAGE',
   }), { mode: 'retry-stage', jobId, stage: 'linkedin' });
+  assert.deepEqual(parsePublicationRequest({
+    mode: 'retry-stage',
+    jobId,
+    stage: 'intake-bridge',
+    confirmation: 'RESET_FAILED_STAGE',
+  }), { mode: 'retry-stage', jobId, stage: 'intake-bridge' });
+});
+
+validation('resets a failed snapshot-intake bridge without publishing', async () => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-intake-bridge-reset-'));
+  const jobId = 'gh_53d53bb4cfce441a70f5e40a';
+  const failedAt = '2026-09-04T11:25:35.979Z';
+  try {
+    await Promise.all([
+      saveStateFile(join(directory, 'intake.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        processedSnapshot: null,
+        pendingBridges: [{
+          jobId,
+          contentHash: '1'.repeat(64),
+          dataHash: '2'.repeat(64),
+          dataCommit: '3'.repeat(40),
+          reason: 'new',
+          stage: {
+            status: 'failed',
+            attempts: MAX_CHANNEL_ATTEMPTS,
+            updatedAt: failedAt,
+            lastError: { code: 'deployment', at: failedAt },
+            lastReset: null,
+            result: null,
+          },
+        }],
+        removedJobs: [],
+      }, validateIntakeState),
+      saveStateFile(join(directory, 'queue.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        items: [],
+      }, validateQueueState),
+      saveStateFile(join(directory, 'publications.json'), {
+        schemaVersion: STATE_SCHEMA_VERSION,
+        jobs: {},
+      }, validatePublicationsState),
+    ]);
+    const result = await runPublication({
+      request: {
+        mode: 'retry-stage',
+        jobId,
+        stage: 'intake-bridge',
+        confirmation: 'RESET_FAILED_STAGE',
+      },
+      dataRepositoryPath: '/not-used',
+      stateDirectory: directory,
+      wordmarkPath: '/not-used',
+      outputPath: '/not-used',
+      log: () => {},
+    });
+    assert.deepEqual(result, { outcome: 'reset', jobId, stage: 'intake-bridge' });
+    const intake = await loadStateFile(
+      join(directory, 'intake.json'),
+      validateIntakeState,
+      migrateIntakeState,
+    );
+    assert.equal(intake.pendingBridges[0].stage.status, 'pending');
+    assert.equal(intake.pendingBridges[0].stage.attempts, 0);
+    assert.equal(intake.pendingBridges[0].stage.lastError, null);
+    assert.equal(intake.pendingBridges[0].stage.result, null);
+    assert.equal(intake.pendingBridges[0].stage.lastReset.reason, 'manual_reset');
+    assert.equal(Number.isFinite(Date.parse(intake.pendingBridges[0].stage.updatedAt)), true);
+  } finally {
+    await rm(directory, { recursive: true, force: true });
+  }
 });
 
 validation('wires LinkedIn through the publication CLI', async () => {
@@ -6397,6 +6468,22 @@ validation('exposes the Twitter Buffer channel and retry-stage option in the pro
   assert.match(productionWorkflow, /BUFFER_TWITTER_CHANNEL_ID/u);
   assert.match(productionWorkflow, /- twitter/u);
   assert.equal([...productionWorkflow.matchAll(/secrets\.BUFFER_API_KEY/gu)].length, 1);
+});
+
+validation('exposes guarded intake-bridge recovery in the production workflow', async () => {
+  const repositoryRoot = fileURLToPath(new URL('../../../', import.meta.url));
+  const productionWorkflow = await readFile(
+    join(repositoryRoot, '.github/workflows/publish-social.yml'),
+    'utf8',
+  );
+  assert.match(productionWorkflow, /- intake-bridge/u);
+  const resetCommit = productionWorkflow.match(
+    /- name: Commit and push publication or reset state(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
+  )?.groups?.block ?? '';
+  assert.match(
+    resetCommit,
+    /git add -- state\/intake\.json state\/queue\.json state\/publications\.json/u,
+  );
 });
 
 validation('documents the Twitter Buffer configuration and rollout sequence', async () => {
