@@ -7733,13 +7733,15 @@
         }
       },
       "instagramStory": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-09-04T00:12:37.263Z",
+        "updatedAt": "2026-09-04T00:12:38.767Z",
         "lastError": null,
         "lastReset": null,
         "result": {
-          "operationKey": "job-story-33820280433-1"
+          "status": "published",
+          "id": "18114037643050154",
+          "url": "https://www.instagram.com/stories/openingshq/3978387525329217632"
         }
       }
     },
