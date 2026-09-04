@@ -10579,61 +10579,87 @@
       "bridge": {
         "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-09-02T16:39:44.547Z",
+        "updatedAt": "2026-09-04T14:29:42.432Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-04T14:29:42.432Z",
+          "reason": "instagram_card_upgrade"
+        },
         "result": {
           "status": "deployed",
           "canonicalUrl": "https://openings.dev/jobs/gh_7d2213af574d6ea198f8dc96",
           "imageUrl": "https://openings.dev/jobs/gh_7d2213af574d6ea198f8dc96/opengraph-image.png?v=2.a75dfe0e5fb63b20",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_7d2213af574d6ea198f8dc96/instagram-image.jpg?v=4.ca350e8808c1e93c",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_7d2213af574d6ea198f8dc96/social-video.mp4?v=3.ca350e8808c1e93c",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_7d2213af574d6ea198f8dc96/social-video-cover.jpg?v=3.ca350e8808c1e93c",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_7d2213af574d6ea198f8dc96/instagram-image.jpg?v=4.b1d659d5ea948293",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_7d2213af574d6ea198f8dc96/social-video.mp4?v=4.b1d659d5ea948293",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_7d2213af574d6ea198f8dc96/social-video-cover.jpg?v=4.b1d659d5ea948293",
           "pngHash": "a75dfe0e5fb63b2072a4e11d955ce305afef32474b1c5c4aef27dc9362e38f98",
-          "instagramSvgHash": "ca350e8808c1e93c9916ad43a1069991965ea661d345f9b38917bfb0df19a4c7",
+          "instagramSvgHash": "b1d659d5ea9482935d27b31ba125ca7131cf50d98382a44e49d97d919a18fe3d",
           "instagramCardVersion": "4",
-          "socialVideoVersion": "3"
+          "socialVideoVersion": "4"
         }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T14:29:42.432Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mukespiwmz2l",
+          "cid": "bafyreiguhoru3eezm6pqcvmp2na3ertse44iwyox3kejmnydzuvc52tvc4",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mukespiwmz2l"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T14:29:42.432Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117213249797285345",
+          "url": "https://mastodon.social/@openingshq/117213249797285345",
+          "cardStatus": "pending"
+        }
       },
       "threads": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T14:29:42.432Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17945479845326327",
+          "url": "https://www.threads.com/@openingshq/post/Dc3m2mvFtAd"
+        }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T14:29:42.432Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18111261740116086",
+          "url": "https://www.instagram.com/reel/Dc3m3yKDvzY/"
+        }
       },
       "linkedin": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-04T14:29:42.432Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "6a9ad66a276284e54171ac1f",
+          "url": "https://www.linkedin.com/feed/update/urn:li:share:7501648400849793024",
+          "provider": "buffer"
+        }
       },
       "instagramStory": {
         "status": "pending",
