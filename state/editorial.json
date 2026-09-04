@@ -1,58 +1,7 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [
-    {
-      "contentId": "interview-comunique-raciocinio",
-      "contentVersion": "2",
-      "pillar": "interview",
-      "scheduledDate": "2026-09-04",
-      "createdAt": "2026-09-04T18:25:29.787Z",
-      "assets": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-04T18:25:31.814Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "deployed",
-          "manifestUrl": "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/manifest.json",
-          "carouselUrls": [
-            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-01.jpg",
-            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-02.jpg",
-            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-03.jpg",
-            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-04.jpg",
-            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-05.jpg",
-            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-06.jpg",
-            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-07.jpg"
-          ],
-          "storyUrl": "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/story.jpg"
-        }
-      },
-      "feed": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-04T18:26:21.502Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "published",
-          "id": "18122730361852733",
-          "url": "https://www.instagram.com/p/Dc4B1fsG49H/"
-        }
-      },
-      "story": {
-        "status": "publishing",
-        "attempts": 1,
-        "updatedAt": "2026-09-04T18:27:29.783Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "operationKey": "editorial-33905747794-1"
-        }
-      }
-    }
-  ],
+  "pending": [],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",
@@ -115,6 +64,38 @@
           "status": "published",
           "id": "18126852640755656",
           "url": "https://www.instagram.com/stories/openingshq/3977522147695199206"
+        }
+      }
+    },
+    "interview-comunique-raciocinio": {
+      "lastPublishedAt": "2026-09-04T18:27:31.403Z",
+      "cycles": 1,
+      "lastPublication": {
+        "scheduledDate": "2026-09-04",
+        "contentVersion": "2",
+        "assets": {
+          "status": "deployed",
+          "manifestUrl": "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/manifest.json",
+          "carouselUrls": [
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-01.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-02.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-03.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-04.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-05.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-06.jpg",
+            "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/slide-07.jpg"
+          ],
+          "storyUrl": "https://openings.dev/social/editorial/interview-comunique-raciocinio/2/story.jpg"
+        },
+        "feed": {
+          "status": "published",
+          "id": "18122730361852733",
+          "url": "https://www.instagram.com/p/Dc4B1fsG49H/"
+        },
+        "story": {
+          "status": "published",
+          "id": "18102064750976446",
+          "url": "https://www.instagram.com/stories/openingshq/3978938494320597416"
         }
       }
     }
