@@ -28,7 +28,7 @@ test('maps one eligible opening to web and provider-neutral social deliveries', 
   assert.equal(envelope.identity.tenant, 'openings');
   assert.deepEqual(envelope.deliveries.map(({ adapter }) => adapter), ['web.r2', 'social.shadow']);
   assert.equal(envelope.artifacts[0].locator, `temporary/openings/${job.id}/${hash}.png`);
-  assert.deepEqual(envelope.deliveries[1].dependsOn, [{ deliveryId: 'web', state: 'succeeded' }]);
+  assert.deepEqual(envelope.deliveries[1].dependsOn, [{ deliveryId: 'web', state: 'complete' }]);
   assert.doesNotMatch(JSON.stringify(envelope), /token|secret|credential/iu);
 });
 

@@ -75,7 +75,7 @@ export function toPlatformShadowEnvelope({ job, socialPost, artifacts }) {
       }),
       Object.freeze({
         id: 'social', adapter: 'social.shadow', operation: 'compare', required: false,
-        dependsOn: [{ deliveryId: 'web', state: 'succeeded' }],
+        dependsOn: [{ deliveryId: 'web', state: 'complete' }],
         payload: {
           type: 'social.post',
           text: socialPost.text,
