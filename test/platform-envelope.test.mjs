@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 
-import { toPlatformShadowEnvelope } from '../src/modules/publishing/platform-envelope.mjs';
+import { preparePlatformHandoff, toPlatformShadowEnvelope } from '../src/modules/publishing/platform-envelope.mjs';
 
 const hash = 'a'.repeat(64);
 const job = {
@@ -30,6 +30,16 @@ test('maps one eligible opening to web and provider-neutral social deliveries', 
   assert.equal(envelope.artifacts[0].locator, `temporary/openings/${job.id}/${hash}.png`);
   assert.deepEqual(envelope.deliveries[1].dependsOn, [{ deliveryId: 'web', state: 'succeeded' }]);
   assert.doesNotMatch(JSON.stringify(envelope), /token|secret|credential/iu);
+});
+
+test('keeps local paths beside, but never inside, the publication envelope', () => {
+  const handoff = preparePlatformHandoff({
+    job,
+    socialPost: { text: 'New job on openings.dev', canonicalUrl: `https://openings.dev/jobs/${job.id}` },
+    artifacts: [{ sha256: hash, byteSize: 2048, mediaType: 'image/png', filePath: '/runtime/card.png' }],
+  });
+  assert.deepEqual(handoff.uploads, [{ reference: handoff.envelope.artifacts[0], filePath: '/runtime/card.png' }]);
+  assert.doesNotMatch(JSON.stringify(handoff.envelope), /\/runtime\//u);
 });
 
 test('rejects a closed opening', () => {

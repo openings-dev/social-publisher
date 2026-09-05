@@ -85,3 +85,15 @@ export function toPlatformShadowEnvelope({ job, socialPost, artifacts }) {
     ]),
   });
 }
+
+export function preparePlatformHandoff(input) {
+  const envelope = toPlatformShadowEnvelope(input);
+  const uploads = envelope.artifacts.map((reference, index) => {
+    const filePath = input.artifacts[index]?.filePath;
+    if (typeof filePath !== 'string' || filePath.trim() === '') {
+      throw new Error('Platform opening artifact requires a local file path');
+    }
+    return Object.freeze({ reference, filePath });
+  });
+  return Object.freeze({ envelope, uploads: Object.freeze(uploads) });
+}
