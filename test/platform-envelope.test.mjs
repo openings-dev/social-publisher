@@ -1,5 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
+import { stagePlatformHandoff } from '@trebla/publishing-client';
 
 import { preparePlatformHandoff, toPlatformShadowEnvelope } from '../src/modules/publishing/platform-envelope.mjs';
 
@@ -48,4 +49,18 @@ test('rejects a closed opening', () => {
     socialPost: { text: 'New job', canonicalUrl: `https://openings.dev/jobs/${job.id}` },
     artifacts: [],
   }), /open job/iu);
+});
+
+test('stages the handoff through the shared client without network access', async () => {
+  const handoff = preparePlatformHandoff({
+    job,
+    socialPost: { text: 'New job on openings.dev', canonicalUrl: `https://openings.dev/jobs/${job.id}` },
+    artifacts: [{ sha256: hash, byteSize: 2048, mediaType: 'image/png', filePath: '/runtime/card.png' }],
+  });
+  let staged;
+  await stagePlatformHandoff(handoff, { prepare: (envelope) => {
+    staged = envelope;
+    return Promise.resolve({ id: 'local', path: '/runtime/outbox/local.json', envelope });
+  } });
+  assert.equal(staged, handoff.envelope);
 });
