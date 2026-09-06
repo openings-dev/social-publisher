@@ -1,0 +1,113 @@
+# Clean social artwork for openings.dev
+
+## Approval and purpose
+
+The user approved combining quick tips, before/after examples and practical guides,
+then requested the official openings logo, fewer labels, no drawn CTA buttons and
+contextual calls to save, share, like or visit the bio link. These rules also apply
+to job artwork. The approved local reference is
+`../../../../.superpowers/brainstorm/83611-1788713954/content/editorial-contextual-cta.html`.
+The reference is a mockup, not a production renderer or an actual job listing.
+
+This spec covers the first independently releasable part: consistent production
+artwork. Content expansion and TikTok publishing remain subsequent work, not claims
+of functionality delivered by this change.
+
+## Visual contract
+
+- Use the canonical wordmark from `web/public/openings-wordmark-light.svg` and its
+  dark-background counterpart. Never reconstruct the symbol or wordmark as text.
+- Preserve Figtree and the existing Night, paper, lavender and peach palette.
+- Retain meaningful titles, examples and checklist content. Remove series names,
+  decorative numbering, eyebrows such as “Your turn”, “The interview kit”,
+  “Your next step” and ornamental badges from exported editorial images.
+- “Before” and “After” are useful comparison labels and remain. Internal guide IDs,
+  slide indices and series metadata remain in data, not in the visible artwork.
+- Render the CTA as a single plain-text line with a leading arrow: no pill,
+  filled rectangle, border, shadow or simulated clickable control.
+- Use one contextual call per standalone asset. In a carousel, reserve the CTA for
+  the final slide rather than repeating an engagement request on every slide.
+- Job Instagram feed, Reel and Story artwork uses `→ Link na bio`.
+- Editorial saving-oriented guides use `→ Salve para revisar`; sharing-oriented
+  examples use `→ Compartilhe esta dica`. Other calls, including liking, must be
+  explicitly assigned in the reviewed catalog, not randomly combined.
+- Match CTAs to the destination: do not ask users to save a Story when that action
+  is unavailable. Use a suitable sharing call for editorial Stories instead.
+- Retain English editorial body copy. Portuguese CTA labels match the approved
+  mockup; do not translate the complete catalog as a side effect.
+- For clickable link-preview cards used outside Instagram/TikTok, remove the fake
+  button but use `→ openings.dev` instead of implying that the link is in a bio.
+  Actual website links and buttons are outside this visual-only scope.
+
+## Layout and formats
+
+Job feed remains 1080×1350. Job Story and Reel remain the same 1080×1920 composition.
+Editorial feed and Story retain their existing export dimensions. Essential content
+must fit the established conservative reading guides; decorative backgrounds may
+bleed to the edges. These guides are internal targets, not universal platform
+guarantees. Test long text and CTA contrast in light and dark variants.
+
+Reflow the editorial templates to achieve the approved clean hierarchy rather than
+merely hiding text while leaving its blank containers. Preserve the seven-slide
+production carousel contract and all substantive guidance. The three-slide mockup
+demonstrates visual direction; it does not authorize dropping four content slides.
+
+## Implementation boundaries
+
+1. Add a focused, deterministic CTA selector/renderer with separate job, link-card,
+   editorial-feed and editorial-Story contexts. Rendering uses validated choices,
+   never arbitrary SVG or HTML. Selection is stable across retries.
+2. Update `src/modules/render/job-poster.mjs` and its portable web-deploy copy.
+   Preserve the saved artwork rotation and music selection. Do not edit unrelated
+   legacy WIP in `social-poster-model.mjs` or `reel-poster.mjs`.
+3. Update `src/modules/render/editorial-card.mjs` to the clean wordmark/title/body/
+   CTA hierarchy. Keep catalog source references and copy validation intact.
+4. Keep production previews on the same renderers as actual exports. The local
+   HTML mockup must not become a separate production rendering implementation.
+5. Version changed assets and update matching deployment validation/cache contracts.
+   Preserve pending historical payload compatibility explicitly. Do not overwrite
+   completed publication results, clear ledgers or replay previously published posts.
+
+## Publication and state safety
+
+Do not change provider credentials, activate another destination, dispatch posts,
+change scheduled frequency or increase daily volume in this visual release.
+Keep the existing durable publication checkpoints and duplicate protection.
+Leave original licensed music and its alternating selection unchanged.
+Use local micro-commits on main, preserving the stash and unrelated user files.
+When push is authorized, release the compatible web-deploy changes before publisher.
+
+## Acceptance checks
+
+- Tests first demonstrate that the old fake buttons/labels violate this contract.
+- Every current job direction and format has exactly one destination-appropriate
+  plain CTA, with no CTA background shape.
+- Every editorial catalog entry renders all seven slides and its Story without
+  forbidden decorative labels, overflow or clipped text.
+- Native render inspection confirms official logo, readable contrast and content
+  within the target guide, including longest titles, examples and CTA labels.
+- Story and Reel job SVGs remain byte-identical; both licensed soundtracks still
+  produce valid native videos with the existing dimensions and audio encoding.
+- Publisher validation, standalone deployment contracts and portable-file parity
+  pass. Retry tests confirm stable selection and no duplicate publication.
+- Produce a local review gallery using real renderers before releasing.
+
+## Follow-on work, tracked separately
+
+After the visual release, expand the reviewed tips catalog and implement derived
+quick-tip images and editorial videos. Preserve source attribution, avoid invented
+results and set an explicit reviewed content cadence before enabling more posts.
+
+For TikTok, verify the available account connection, free publishing route, supported
+photo/video operations, permissions and destination-specific layout requirements.
+Asset generation and successful TikTok publication are separate acceptance criteria.
+Do not label the destination active or promise automatic posting until a verified
+integration exists. Any required account access or terms acceptance is handled
+separately with the user.
+
+## Self-review
+
+The approved visual rules are covered without changing content language, publication
+volume or the seven-slide schema. Contextual CTAs distinguish Stories and clickable
+link previews from feed assets. The remaining content/video/TikTok expansion is
+explicitly separate so this first release can be tested and shipped independently.
