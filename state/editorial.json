@@ -1,58 +1,7 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [
-    {
-      "contentId": "resume-portfolio-que-prova",
-      "contentVersion": "2",
-      "pillar": "resume",
-      "scheduledDate": "2026-09-06",
-      "createdAt": "2026-09-06T19:01:40.405Z",
-      "assets": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-06T19:01:42.168Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "deployed",
-          "manifestUrl": "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/manifest.json",
-          "carouselUrls": [
-            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-01.jpg",
-            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-02.jpg",
-            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-03.jpg",
-            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-04.jpg",
-            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-05.jpg",
-            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-06.jpg",
-            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-07.jpg"
-          ],
-          "storyUrl": "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/story.jpg"
-        }
-      },
-      "feed": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-06T19:02:34.082Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "published",
-          "id": "18051152471646003",
-          "url": "https://www.instagram.com/p/Dc9PmVommg1/"
-        }
-      },
-      "story": {
-        "status": "publishing",
-        "attempts": 1,
-        "updatedAt": "2026-09-06T19:03:56.726Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "operationKey": "editorial-34053529198-1"
-        }
-      }
-    }
-  ],
+  "pending": [],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",
@@ -147,6 +96,38 @@
           "status": "published",
           "id": "18102064750976446",
           "url": "https://www.instagram.com/stories/openingshq/3978938494320597416"
+        }
+      }
+    },
+    "resume-portfolio-que-prova": {
+      "lastPublishedAt": "2026-09-06T19:03:58.474Z",
+      "cycles": 1,
+      "lastPublication": {
+        "scheduledDate": "2026-09-06",
+        "contentVersion": "2",
+        "assets": {
+          "status": "deployed",
+          "manifestUrl": "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/manifest.json",
+          "carouselUrls": [
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-01.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-02.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-03.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-04.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-05.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-06.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-07.jpg"
+          ],
+          "storyUrl": "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/story.jpg"
+        },
+        "feed": {
+          "status": "published",
+          "id": "18051152471646003",
+          "url": "https://www.instagram.com/p/Dc9PmVommg1/"
+        },
+        "story": {
+          "status": "published",
+          "id": "17984856240063304",
+          "url": "https://www.instagram.com/stories/openingshq/3980406391987396420"
         }
       }
     }
