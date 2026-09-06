@@ -13849,12 +13849,14 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T18:44:50.487Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "operationKey": "job-story-34051182116-1"
+        }
       },
       "visualDirection": "night",
       "visualSequence": 0
