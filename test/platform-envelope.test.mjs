@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { stagePlatformHandoff } from '@trebla/publishing-client';
+import { stagePlatformHandoff } from '@trebla/publishing';
 
 import { preparePlatformHandoff, toPlatformShadowEnvelope } from '../src/modules/publishing/platform-envelope.mjs';
 
