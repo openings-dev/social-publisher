@@ -88,7 +88,7 @@ const PILLAR_LABEL = Object.freeze({
 });
 
 function guide({
-  id, pillar, title, promise, context, action, actionTitle = 'Try this', before, after,
+  id, pillar, title, promise, context, contextTitle = 'Why it matters', action, actionTitle = 'Try this', before, after,
   second, secondTitle = 'A useful adjustment', checklist, cta, sources,
 }) {
   return Object.freeze({
@@ -99,7 +99,7 @@ function guide({
     promise,
     slides: Object.freeze([
       Object.freeze({ kind: 'cover', title, body: promise }),
-      Object.freeze({ kind: 'context', title: 'Why it matters', body: context }),
+      Object.freeze({ kind: 'context', title: contextTitle, body: context }),
       Object.freeze({ kind: 'action', title: actionTitle, body: action }),
       Object.freeze({ kind: 'example', title: 'Before and after', before, after }),
       Object.freeze({ kind: 'action', title: secondTitle, body: second }),
@@ -322,13 +322,15 @@ export const EDITORIAL_CATALOG = Object.freeze([
     cta: 'Pick the project closest to your target role and rewrite it as three bullets.', sources: [HARVARD_RESUME_SOURCE, DOL_RESUME_SOURCE],
   }),
   guide({
-    id: 'resume-portfolio-que-prova', pillar: 'resume', title: 'Make your portfolio answer recruiter questions',
-    promise: 'Turn each link into clear evidence of your role, decisions, and result.',
-    context: 'A portfolio with no context makes the recruiter reconstruct the work. Each case should explain the problem and your contribution.',
-    action: 'For each case, show the setting, constraints, options, your decision, and the result. Protect confidential material.',
+    id: 'resume-portfolio-que-prova', pillar: 'resume', title: 'Show a project you built.',
+    promise: 'Explain what it does and why you built it.',
+    contextTitle: 'Make your part clear.',
+    context: 'Describe what you contributed to the project.',
+    actionTitle: 'Explain one decision.',
+    action: 'What did you choose, and why?',
     before: 'A gallery of screens with no explanation',
     after: 'A case with the problem, options considered, decision, and measured effect',
-    second: 'Use stable URLs and descriptive titles. Test each case on mobile and in a private window.',
+    second: 'Use stable URLs and descriptive titles. Test each case on mobile and in a private window. Protect confidential material.',
     checklist: ['Problem has context', 'Your role is explicit', 'Decision is visible', 'Public link works'],
     cta: 'Open your main case as a visitor and note what is unclear after 30 seconds.', sources: [HARVARD_RESUME_SOURCE],
   }),

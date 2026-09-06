@@ -32,12 +32,12 @@ test('clean editorial dispatches use a separate render namespace and pass deploy
         carouselSvgs: content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg })),
         storySvg: createEditorialStorySvg(content, { wordmarkSvg }), repository: 'openings-dev/web-deploy' });
       const payload = JSON.parse(request.body).client_payload;
-      assert.equal(payload.content_version, '3');
+      assert.equal(payload.content_version, '4');
       const result = await prepareEditorialAssets({ outputRoot: directory, siteOrigin: 'https://openings.dev', payload: {
         contentId: payload.content_id, contentVersion: payload.content_version,
         assets: payload.assets.map(({ name, sha256, svg_gzip_base64 }) => ({ name, sha256, svgGzipBase64: svg_gzip_base64 })),
       } });
-      assert.ok(result.remoteDirectory.endsWith(`/${content.id}/3`));
+      assert.ok(result.remoteDirectory.endsWith(`/${content.id}/4`));
     }
   } finally { await rm(directory, { recursive: true, force: true }); }
 });

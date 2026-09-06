@@ -6432,7 +6432,9 @@ validation('ships a complete, source-grounded 12-week Instagram editorial catalo
       'cover', 'context', 'action', 'example', 'action', 'checklist', 'cta',
     ]);
     assert.deepEqual(item.slides.slice(1).map(({ title }) => title), [
-      'Why it matters', 'Try this', 'Before and after',
+      ...(item.id === 'resume-portfolio-que-prova'
+        ? ['Make your part clear.', 'Explain one decision.']
+        : ['Why it matters', 'Try this']), 'Before and after',
       'A useful adjustment', 'Quick checklist', 'Do it today',
     ]);
     assert.equal(item.slides[5].items.length, 4);

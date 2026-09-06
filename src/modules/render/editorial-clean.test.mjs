@@ -23,7 +23,7 @@ test('every editorial slide retains complete guidance in the clean reading guide
     const svgs = content.slides.map((slide, index) => ({ svg: createEditorialSlideSvg(content, index, options), texts: [decorativeTitles.has(slide.title) ? null : slide.title, slide.body, slide.before, slide.after, ...(slide.items ?? [])].filter(Boolean), story: false, final: index === 6 }));
     svgs.push({ svg: createEditorialStorySvg(content, options), texts: [content.story.title, content.story.body], story: true, final: true });
     for (const { svg, texts, story, final } of svgs) {
-      assert.match(svg, /data-editorial-render-version="3"/u);
+      assert.match(svg, /data-editorial-render-version="4"/u);
       assert.match(svg, /font-family="Figtree/u);
       assert.equal((svg.match(/<rect\b/gu) ?? []).length, 1, 'Only the canvas has a rectangle');
       assert.doesNotMatch(svg, /<circle|<filter|SWIPE TO APPLY|YOUR NEXT STEP|NEW GUIDE|FULL STEP-BY-STEP|@openingshq/u);
@@ -34,9 +34,9 @@ test('every editorial slide retains complete guidance in the clean reading guide
       assert.equal((copy.match(/→ /gu) ?? []).length, final ? 1 : 0);
       if (story) assert.ok(copy.endsWith('→ Compartilhe esta dica'));
       else if (final) assert.match(copy, /→ (Salve para revisar|Compartilhe esta dica)$/u);
-      const image = /<image\b[^>]*x="108" y="(\d+)" width="(\d+)"/u.exec(svg);
+      const image = /<image\b[^>]*x="(?:108|380)" y="([\d.]+)" width="(\d+)"/u.exec(svg);
       assert.ok(image);
-      assert.equal(Number(image[1]), story ? 304 : 160);
+      assert.ok(Number(image[1]) >= (story ? 280 : 144));
       assert.ok(Number(image[2]) >= 290 && Number(image[2]) <= 350);
       for (const text of svg.matchAll(/<text\b[^>]*x="([\d.]+)" y="([\d.]+)"[^>]*font-size="([\d.]+)"/gu)) {
         assert.ok(Number(text[1]) >= 108 && Number(text[1]) <= 972);
@@ -45,6 +45,32 @@ test('every editorial slide retains complete guidance in the clean reading guide
       }
     }
   }
+});
+
+test('editorial supports both horizontal alignments with compact vertically centered groups', () => {
+  for (const alignment of ['left', 'center']) {
+    for (const content of EDITORIAL_CATALOG) {
+      for (const svg of [...content.slides.map((_, i) => createEditorialSlideSvg(content, i, { ...options, alignment })), createEditorialStorySvg(content, { ...options, alignment })]) {
+        assert.match(svg, new RegExp(`data-alignment="${alignment}"`));
+        const group = /data-group-top="([\d.]+)" data-group-height="([\d.]+)"/u.exec(svg);
+        assert.ok(group, 'Renderer must center a measured stack');
+        const story = svg.includes('data-editorial-story');
+        assert.ok(Math.abs(Number(group[1]) + Number(group[2]) / 2 - (story ? 908 : 675)) < 1);
+        assert.match(svg, new RegExp(`text-anchor="${alignment === 'center' ? 'middle' : 'start'}"`));
+      }
+    }
+  }
+  assert.throws(() => createEditorialSlideSvg(EDITORIAL_CATALOG[0], 0, { ...options, alignment: 'right' }), /alignment/u);
+});
+
+test('portfolio uses the approved short copy', () => {
+  const content = EDITORIAL_CATALOG.find(item => item.id === 'resume-portfolio-que-prova');
+  assert.equal(content.slides[0].title, 'Show a project you built.');
+  assert.equal(content.slides[0].body, 'Explain what it does and why you built it.');
+  assert.equal(content.slides[1].title, 'Make your part clear.');
+  assert.equal(content.slides[1].body, 'Describe what you contributed to the project.');
+  assert.equal(content.slides[2].title, 'Explain one decision.');
+  assert.equal(content.slides[2].body, 'What did you choose, and why?');
 });
 
 test('editorial palette is stable and uses the four approved colors', () => {
@@ -61,8 +87,10 @@ test('editorial rejects active and external SVG wordmarks', () => {
 });
 
 test('all 36 carousels and Stories render at native dimensions with pixels inside reading guides', async () => {
+  for (const alignment of ['left', 'center']) {
   for (const content of EDITORIAL_CATALOG) {
-    const assets = await renderEditorialAssets(content, options);
+    const alignedOptions = { ...options, alignment };
+    const assets = await renderEditorialAssets(content, alignedOptions);
     assert.equal(assets.slides.length, 7);
     for (const [index, buffer] of [...assets.slides, assets.story].entries()) {
       const metadata = await sharp(buffer).metadata();
@@ -70,24 +98,28 @@ test('all 36 carousels and Stories render at native dimensions with pixels insid
       assert.equal(metadata.width, 1080);
       assert.equal(metadata.height, index === 7 ? 1920 : 1350);
       assert.ok(buffer.byteLength < 4 * 1024 * 1024);
-      const svg = index === 7 ? createEditorialStorySvg(content, options) : createEditorialSlideSvg(content, index, options);
+      const svg = index === 7 ? createEditorialStorySvg(content, alignedOptions) : createEditorialSlideSvg(content, index, alignedOptions);
       const { data, info } = await sharp(Buffer.from(svg)).removeAlpha().raw().toBuffer({ resolveWithObject: true });
       const background = resolveEditorialTheme(content.id).background.slice(1).match(/../gu).map(channel => Number.parseInt(channel, 16));
       const top = index === 7 ? 280 : 144;
       const bottom = index === 7 ? 1536 : 1206;
       let outside = 0;
       let inside = 0;
+      let first = info.height, last = -1;
       for (let y = 0; y < info.height; y += 1) {
         for (let x = 0; x < info.width; x += 1) {
           const offset = (y * info.width + x) * info.channels;
           const foreground = background.some((channel, channelIndex) => Math.abs(data[offset + channelIndex] - channel) > 3);
           if (!foreground) continue;
+          first = Math.min(first, y); last = Math.max(last, y);
           if (x < 108 || x >= 972 || y < top || y >= bottom) outside += 1;
           else inside += 1;
         }
       }
       assert.equal(outside, 0, `${content.id} asset ${index}: native pixels exceed reading guide`);
       assert.ok(inside > 1000, 'Native artwork must contain visible content');
+      assert.ok(Math.abs((first + last) / 2 - (top + bottom) / 2) < 24, `${content.id} asset ${index}: visible group is not vertically centered`);
     }
+  }
   }
 });
