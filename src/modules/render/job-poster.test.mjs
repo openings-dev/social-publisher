@@ -28,7 +28,7 @@ test('production cards use approved colors, compact payload and no community eye
       const svg = render(job, { direction, wordmarkSvg });
       assert.ok(svg.includes(`data-direction="${direction}"`), 'Production renderer has not adopted approved artwork');
       assert.ok(svg.includes(`fill="${background}"`));
-      assert.ok(svg.includes(render === createSocialCardSvg ? '→ openings.dev' : '→ Link na bio'));
+      assert.ok(svg.includes(render === createSocialCardSvg ? '→ openings.dev' : '→ Link in bio'));
       assert.ok(!svg.includes('From ') && !svg.includes('Openings Fixtures'));
       assert.ok(!svg.includes('data:font/'), 'Font bytes must not inflate dispatch payload');
       assert.ok(svg.length < 16000);

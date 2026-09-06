@@ -89,7 +89,7 @@ const PILLAR_LABEL = Object.freeze({
 
 function guide({
   id, pillar, title, promise, context, contextTitle = 'Why it matters', action, actionTitle = 'Try this', before, after,
-  second, secondTitle = 'A useful adjustment', checklist, cta, sources,
+  second, secondTitle = 'A useful adjustment', checklist, cta, sources, shortSlides,
 }) {
   return Object.freeze({
     id,
@@ -97,7 +97,10 @@ function guide({
     pillar,
     title,
     promise,
-    slides: Object.freeze([
+    ...(shortSlides ? { layout: 'short-guide' } : {}),
+    slides: Object.freeze(shortSlides ? shortSlides.map((slide, index) => Object.freeze({
+      ...slide, kind: index === 0 ? 'cover' : index === 6 ? 'cta' : 'action',
+    })) : [
       Object.freeze({ kind: 'cover', title, body: promise }),
       Object.freeze({ kind: 'context', title: contextTitle, body: context }),
       Object.freeze({ kind: 'action', title: actionTitle, body: action }),
@@ -108,8 +111,8 @@ function guide({
     ]),
     story: Object.freeze({
       eyebrow: PILLAR_LABEL[pillar],
-      title,
-      body: `${promise} Read the full guide in the feed.`,
+      title: shortSlides?.[0].title ?? title,
+      body: shortSlides?.[0].body ?? `${promise} Read the full guide in the feed.`,
     }),
     caption: Object.freeze({
       hook: promise,
@@ -322,17 +325,18 @@ export const EDITORIAL_CATALOG = Object.freeze([
     cta: 'Pick the project closest to your target role and rewrite it as three bullets.', sources: [HARVARD_RESUME_SOURCE, DOL_RESUME_SOURCE],
   }),
   guide({
-    id: 'resume-portfolio-que-prova', pillar: 'resume', title: 'Show a project you built.',
-    promise: 'Explain what it does and why you built it.',
-    contextTitle: 'Make your part clear.',
-    context: 'Describe what you contributed to the project.',
-    actionTitle: 'Explain one decision.',
-    action: 'What did you choose, and why?',
-    before: 'A gallery of screens with no explanation',
-    after: 'A case with the problem, options considered, decision, and measured effect',
-    second: 'Use stable URLs and descriptive titles. Test each case on mobile and in a private window. Protect confidential material.',
-    checklist: ['Problem has context', 'Your role is explicit', 'Decision is visible', 'Public link works'],
-    cta: 'Open your main case as a visitor and note what is unclear after 30 seconds.', sources: [HARVARD_RESUME_SOURCE],
+    id: 'resume-portfolio-que-prova', pillar: 'resume', title: 'Turn a project into a case study.',
+    promise: 'Give the reader enough context to understand the work you did.',
+    shortSlides: [
+      { title: 'Turn a project into\na case study.', body: 'Give the reader enough context to\nunderstand the work you did.' },
+      { title: 'Start with\nthe problem.', body: 'Who was it for?\nWhat did they need to do?' },
+      { title: 'Show your\ncontribution.', body: 'Name the features you built\nor the decisions you owned.' },
+      { title: 'Explain one\ntrade-off.', body: 'Which options did you consider?\nWhy did you choose this one?' },
+      { title: 'Describe\nwhat changed.', body: 'Use a result you can support.\nLeave out confidential details.' },
+      { title: 'Check the\npublic link.', body: 'Open it on your phone\nand in a private window.' },
+      { title: 'Review your\ncase study.', body: 'Can someone understand your role\nand decisions without asking you?' },
+    ],
+    cta: 'Review your case study before your next portfolio update.', sources: [HARVARD_RESUME_SOURCE],
   }),
   guide({
     id: 'resume-revisao-final', pillar: 'resume', title: 'Run a final resume check before you apply',

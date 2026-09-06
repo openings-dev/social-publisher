@@ -40,11 +40,11 @@ function logo(wordmarkSvg, x, y, width, dark = false) {
 }
 
 function action(x, y, width = 320, size = 30, { dark = false, link = false, center = false } = {}) {
-  return `<g data-block="action">${text(link ? '→ openings.dev' : '→ Link in bio', center ? x + width / 2 : x, y + 46, size, { weight: 550, color: dark ? '#B0EC9C' : '#21302E', anchor: center ? 'middle' : 'start' })}</g>`;
+  return `<g data-block="action">${text(link ? '→ openings.dev' : '→ Link na bio', center ? x + width / 2 : x, y + 46, size, { weight: 550, color: dark ? '#B0EC9C' : '#21302E', anchor: center ? 'middle' : 'start' })}</g>`;
 }
 
 function verticalAction(x, y, { width, height, size, dark = false }) {
-  return `<g data-block="action">${text('→ Link in bio', dark ? x + width / 2 : x, y + height / 2 + size * .34, size, { weight: 550, color: dark ? '#B0EC9C' : '#21302E', anchor: dark ? 'middle' : 'start' })}</g>`;
+  return `<g data-block="action">${text('→ Link na bio', dark ? x + width / 2 : x, y + height / 2 + size * .34, size, { weight: 550, color: dark ? '#B0EC9C' : '#21302E', anchor: dark ? 'middle' : 'start' })}</g>`;
 }
 
 // Organic Story composition. Its larger internal guide is not a universal ad-safe zone.
@@ -138,7 +138,7 @@ export function createJobPosterSvg(model, { format, wordmarkSvg }) {
   const background = style.background;
   // Only paper edges extend into the bleed. Essential content stays in the guide.
   const bleed = !dark && format !== 'link' ? `<path d="M${width - 26} 0v${height}M0 ${height - 32}h${width}" stroke="#21302E" stroke-opacity=".10"/>` : '';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(data.title)}" ${format === 'feed' ? `data-instagram-card="true" data-social-poster-version="4" data-poster-model="${encodeArtworkModel(data)}" ` : ''}data-artwork-revision="3" data-direction="${direction}" data-safe="${safe.x},${safe.y},${safe.width},${safe.height}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(data.title)}" ${format === 'feed' ? `data-instagram-card="true" data-social-poster-version="4" data-poster-model="${encodeArtworkModel(data)}" ` : ''}data-artwork-revision="2" data-direction="${direction}" data-safe="${safe.x},${safe.y},${safe.width},${safe.height}">
     <title>${escapeHtml([data.title, data.company, data.salary, data.period, data.mode, data.place].filter(Boolean).join(' · '))}</title>
     <rect width="${width}" height="${height}" fill="${background}"/>${bleed}
     <g data-essential="true">${['story', 'reel'].includes(format) ? story(data, wordmarkSvg, { dark }) : dark ? night(data, format, wordmarkSvg) : editorial(data, format, wordmarkSvg)}</g>

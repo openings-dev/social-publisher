@@ -7,7 +7,7 @@ import { fitPosterText, textWidth } from './poster-typography.mjs';
 
 const FEED = Object.freeze({ width: 1080, height: 1350 });
 const STORY = Object.freeze({ width: 1080, height: 1920 });
-export const EDITORIAL_RENDER_VERSION = '4';
+export const EDITORIAL_RENDER_VERSION = '5';
 const DECORATIVE_TITLES = new Set(['Do it today', 'Try this', 'A useful adjustment', 'Why it matters', 'Quick checklist']);
 const THEMES = Object.freeze([
   { id: 'night', background: '#172624', ink: '#F2F4F1' },
@@ -25,16 +25,16 @@ function wordmark(wordmarkSvg, theme, y, alignment) {
   if (typeof wordmarkSvg !== 'string' || !/^\s*<svg\b/iu.test(wordmarkSvg)
     || /<!DOCTYPE|<!ENTITY|<(?:script|foreignObject)\b|\bon[a-z]+\s*=|(?:href|src)\s*=|@import|url\(/iu.test(wordmarkSvg)) throw new Error('A trusted canonical SVG wordmark is required');
   const svg = theme.id === 'night' ? wordmarkSvg.replace(/#21302e/giu, theme.ink) : wordmarkSvg;
-  return `<image data-editorial-wordmark="true" x="${alignment === 'center' ? 380 : 108}" y="${y}" width="320" height="${320 * 219 / 1202}" preserveAspectRatio="xMinYMid meet" href="data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}"/>`;
+  return `<image data-editorial-wordmark="true" x="${alignment === 'center' ? 365 : 124}" y="${y}" width="350" height="${350 * 219 / 1202}" preserveAspectRatio="xMinYMid meet" href="data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}"/>`;
 }
 
 function ctaLabel(story, pillar) {
-  return story || pillar === 'linkedin' ? '→ Compartilhe esta dica' : '→ Salve para revisar';
+  return story || pillar === 'linkedin' ? 'Share this tip →' : 'Save for later →';
 }
 
-function slideBlocks(slide, pillar) {
+function slideBlocks(slide, pillar, short) {
   const blocks = [];
-  if (!DECORATIVE_TITLES.has(slide.title)) blocks.push({ value: slide.title, size: 104, minimum: 64, weight: 550, gap: 64 });
+  if (!DECORATIVE_TITLES.has(slide.title)) blocks.push({ value: slide.title, size: 96, minimum: 64, weight: 550, gap: 64, title: true, accent: short && slide.kind === 'cover' });
   if (slide.kind === 'example') {
     blocks.push({ value: 'BEFORE', size: 24, gap: 40 }, { value: slide.before, size: 46, gap: 16 });
     blocks.push({ value: 'AFTER', size: 24, gap: 40 }, { value: slide.after, size: 46, gap: 16 });
@@ -43,14 +43,14 @@ function slideBlocks(slide, pillar) {
   } else {
     blocks.push({ value: slide.body, size: blocks.length ? 46 : 56, gap: blocks.length ? 40 : 64 });
   }
-  if (slide.kind === 'cta') blocks.push({ value: ctaLabel(false, pillar), size: 34, gap: 52, cta: true });
+  if (slide.kind === 'cta') blocks.push({ value: short ? 'Save for your next portfolio update →' : ctaLabel(false, pillar), size: 34, gap: 52, cta: true });
   return blocks;
 }
 
 function stack(blocks, { theme, story, alignment, wordmarkSvg }) {
   const guideTop = story ? 280 : 144;
   const guideHeight = story ? 1256 : 1062;
-  const logoHeight = 320 * 219 / 1202;
+  const logoHeight = 350 * 219 / 1202;
   let measured, height;
   for (let reduction = 0; reduction <= 40; reduction += 2) {
     measured = blocks.map(block => {
@@ -58,7 +58,9 @@ function stack(blocks, { theme, story, alignment, wordmarkSvg }) {
       let size = Math.max(minimum, block.size - reduction);
       while (size > minimum && block.value.split(/\s+/u).some(word => textWidth(word, size) > 810)) size -= 2;
       if (block.value.split(/\s+/u).some(word => textWidth(word, size) > 810)) throw new Error('Editorial word exceeds its reading guide');
-      const fit = fitPosterText(block.value, { sizes: [size], maxWidth: 810, maxLines: 30 });
+      const parts = block.value.split('\n').map(value => fitPosterText(value, { sizes: [size], maxWidth: 810, maxLines: 30 }));
+      // Authored line breaks are reviewed at native size; preserve their composition.
+      const fit = { ...parts[0], lines: block.value.includes('\n') ? block.value.split('\n') : parts.flatMap(part => part.lines), truncated: parts.some(part => part.truncated), lineHeight: Math.round(size * (block.title ? 1.06 : 1.3)) };
       if (fit.truncated) throw new Error('Editorial text exceeds its reading guide');
       return { ...block, fit, height: size + (fit.lines.length - 1) * fit.lineHeight };
     });
@@ -72,7 +74,11 @@ function stack(blocks, { theme, story, alignment, wordmarkSvg }) {
     y += block.gap;
     // Approximate Figtree's cap-height baseline; leave descent space in each block.
     const baseline = y + block.fit.fontSize * 0.8;
-    const text = block.fit.lines.map((line, index) => `<text x="${alignment === 'center' ? 540 : 116}" y="${baseline + index * block.fit.lineHeight}" fill="${theme.ink}" font-family="Figtree, Arial, sans-serif" font-size="${block.fit.fontSize}" font-weight="${block.weight ?? 450}" text-anchor="${alignment === 'center' ? 'middle' : 'start'}">${escapeHtml(line)}</text>`).join('');
+    const text = block.fit.lines.map((line, index) => {
+      const color = block.accent && index === block.fit.lines.length - 1 ? (theme.id === 'night' ? '#B0EC9C' : '#2F6B3A')
+        : block.title || block.cta ? theme.ink : theme.id === 'night' ? '#B7BFBB' : '#5E6663';
+      return `<text x="${alignment === 'center' ? 540 : 132}" y="${baseline + index * block.fit.lineHeight}" fill="${color}" font-family="Figtree, Arial, sans-serif" font-size="${block.fit.fontSize}" font-weight="${block.weight ?? 400}" letter-spacing="${block.title ? -1.6 : 0}" text-anchor="${alignment === 'center' ? 'middle' : 'start'}">${escapeHtml(line)}</text>`;
+    }).join('');
     y += block.height;
     return block.cta ? `<g data-editorial-cta="true">${text}</g>` : text;
   }).join('');
@@ -80,7 +86,7 @@ function stack(blocks, { theme, story, alignment, wordmarkSvg }) {
 }
 
 function resolveAlignment(alignment, theme) {
-  const resolved = alignment ?? (['night', 'lavender'].includes(theme.id) ? 'center' : 'left');
+  const resolved = alignment ?? 'left';
   if (!['center', 'left'].includes(resolved)) throw new Error('Editorial alignment is invalid');
   return resolved;
 }
@@ -98,14 +104,15 @@ function canvas(content, { theme, story = false, index, blocks, wordmarkSvg, ali
 export function createEditorialSlideSvg(content, slideIndex, { wordmarkSvg, alignment }) {
   validateEditorialContent(content);
   if (!Number.isInteger(slideIndex) || slideIndex < 0 || slideIndex >= content.slides.length) throw new Error('Editorial slide index is invalid');
-  const theme = resolveEditorialTheme(content.id);
-  return canvas(content, { theme, index: slideIndex, wordmarkSvg, alignment, blocks: slideBlocks(content.slides[slideIndex], content.pillar) });
+  const short = content.layout === 'short-guide';
+  const theme = short ? THEMES[[0, 1, 1, 2, 1, 1, 0][slideIndex]] : resolveEditorialTheme(content.id);
+  return canvas(content, { theme, index: slideIndex, wordmarkSvg, alignment, blocks: slideBlocks(content.slides[slideIndex], content.pillar, short) });
 }
 
 export function createEditorialStorySvg(content, { wordmarkSvg, alignment }) {
   validateEditorialContent(content);
-  const theme = resolveEditorialTheme(content.id);
-  const blocks = [{ value: content.story.title, size: 104, minimum: 64, weight: 550, gap: 64 },
+  const theme = content.layout === 'short-guide' ? THEMES[0] : resolveEditorialTheme(content.id);
+  const blocks = [{ value: content.story.title, size: 96, minimum: 64, weight: 550, gap: 64, title: true, accent: content.layout === 'short-guide' },
     { value: content.story.body, size: 46, gap: 40 },
     { value: ctaLabel(true, content.pillar), size: 34, gap: 52, cta: true }];
   return canvas(content, { theme, story: true, wordmarkSvg, alignment, blocks });

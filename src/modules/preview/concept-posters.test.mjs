@@ -11,7 +11,7 @@ test('new artwork removes the community eyebrow in every layout and format', () 
       const svg = concepts.createConceptPosterSvg(PREVIEW_SAMPLES[0].job, { direction, format, wordmarkSvg });
       assert.equal(/>From [^<]*</u.test(svg), false, `${direction}/${format}: community eyebrow remains`);
       assert.equal(svg.includes('Openings Fixtures'), false);
-      assert.ok(svg.includes(format === 'link' ? '→ openings.dev' : '→ Link na bio'));
+      assert.ok(svg.includes(format === 'link' ? '→ openings.dev' : '→ Link in bio'));
     }
   }
 });
@@ -46,7 +46,7 @@ test('Story separates work model and location, and makes its action readable', (
     const svg = concepts.createConceptPosterSvg(job, { direction, format: 'story', wordmarkSvg });
     assert.match(svg, /font-size="48"[^>]*>Remote<\/text>/u);
     assert.match(svg, /font-size="44"[^>]*>Brazil · South America<\/text>/u);
-    assert.match(svg, /font-size="48"[^>]*>→ Link na bio<\/text>/u);
+    assert.match(svg, /font-size="48"[^>]*>→ Link in bio<\/text>/u);
     assert.match(svg, /data-block="action"/u);
     assert.ok(svg.includes('$60–$110'));
     assert.ok(svg.includes('per hour · USD'));
@@ -60,6 +60,6 @@ test('Reel uses the approved Story typography', () => {
     const svg = concepts.createConceptPosterSvg(job, { direction, format: 'reel', wordmarkSvg });
     assert.match(svg, /font-size="48"[^>]*>Remote<\/text>/u);
     assert.match(svg, /font-size="44"[^>]*>Brazil · South America<\/text>/u);
-    assert.match(svg, /font-size="48"[^>]*>→ Link na bio<\/text>/u);
+    assert.match(svg, /font-size="48"[^>]*>→ Link in bio<\/text>/u);
   }
 });

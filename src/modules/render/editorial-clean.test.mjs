@@ -23,7 +23,7 @@ test('every editorial slide retains complete guidance in the clean reading guide
     const svgs = content.slides.map((slide, index) => ({ svg: createEditorialSlideSvg(content, index, options), texts: [decorativeTitles.has(slide.title) ? null : slide.title, slide.body, slide.before, slide.after, ...(slide.items ?? [])].filter(Boolean), story: false, final: index === 6 }));
     svgs.push({ svg: createEditorialStorySvg(content, options), texts: [content.story.title, content.story.body], story: true, final: true });
     for (const { svg, texts, story, final } of svgs) {
-      assert.match(svg, /data-editorial-render-version="4"/u);
+      assert.match(svg, /data-editorial-render-version="5"/u);
       assert.match(svg, /font-family="Figtree/u);
       assert.equal((svg.match(/<rect\b/gu) ?? []).length, 1, 'Only the canvas has a rectangle');
       assert.doesNotMatch(svg, /<circle|<filter|SWIPE TO APPLY|YOUR NEXT STEP|NEW GUIDE|FULL STEP-BY-STEP|@openingshq/u);
@@ -31,10 +31,11 @@ test('every editorial slide retains complete guidance in the clean reading guide
       for (const title of decorativeTitles) assert.ok(!copy.includes(title), `Decorative title remains: ${title}`);
       for (const text of texts) assert.ok(copy.includes(text.replace(/\s+/gu, ' ').trim()), `${content.id}: missing ${text}`);
       assert.doesNotMatch(copy, /…/u);
-      assert.equal((copy.match(/→ /gu) ?? []).length, final ? 1 : 0);
-      if (story) assert.ok(copy.endsWith('→ Compartilhe esta dica'));
-      else if (final) assert.match(copy, /→ (Salve para revisar|Compartilhe esta dica)$/u);
-      const image = /<image\b[^>]*x="(?:108|380)" y="([\d.]+)" width="(\d+)"/u.exec(svg);
+      assert.equal((copy.match(/→/gu) ?? []).length, final ? 1 : 0);
+      if (story) assert.ok(copy.endsWith('Share this tip →'));
+      else if (final) assert.match(copy, /(Save for later|Share this tip|Save for your next portfolio update) →$/u);
+      assert.doesNotMatch(copy, /Salve|Compartilhe|na bio/u);
+      const image = /<image\b[^>]*x="(?:124|365)" y="([\d.]+)" width="(\d+)"/u.exec(svg);
       assert.ok(image);
       assert.ok(Number(image[1]) >= (story ? 280 : 144));
       assert.ok(Number(image[2]) >= 290 && Number(image[2]) <= 350);
@@ -63,14 +64,18 @@ test('editorial supports both horizontal alignments with compact vertically cent
   assert.throws(() => createEditorialSlideSvg(EDITORIAL_CATALOG[0], 0, { ...options, alignment: 'right' }), /alignment/u);
 });
 
-test('portfolio uses the approved short copy', () => {
+test('portfolio uses the approved seven-slide English case study', () => {
   const content = EDITORIAL_CATALOG.find(item => item.id === 'resume-portfolio-que-prova');
-  assert.equal(content.slides[0].title, 'Show a project you built.');
-  assert.equal(content.slides[0].body, 'Explain what it does and why you built it.');
-  assert.equal(content.slides[1].title, 'Make your part clear.');
-  assert.equal(content.slides[1].body, 'Describe what you contributed to the project.');
-  assert.equal(content.slides[2].title, 'Explain one decision.');
-  assert.equal(content.slides[2].body, 'What did you choose, and why?');
+  assert.equal(content.layout, 'short-guide');
+  assert.deepEqual(content.slides.map(slide => slide.title.replace(/\s+/gu, ' ')), [
+    'Turn a project into a case study.', 'Start with the problem.', 'Show your contribution.',
+    'Explain one trade-off.', 'Describe what changed.', 'Check the public link.', 'Review your case study.',
+  ]);
+  const svg = createEditorialSlideSvg(content, 0, options);
+  assert.match(svg, />Turn a project into<\/text>/u);
+  assert.match(svg, /fill="#B0EC9C"[^>]*>a case study\.<\/text>/u);
+  assert.match(svg, /font-size="96"/u);
+  assert.match(svg, /data-alignment="left"/u);
 });
 
 test('editorial palette is stable and uses the four approved colors', () => {
@@ -100,7 +105,7 @@ test('all 36 carousels and Stories render at native dimensions with pixels insid
       assert.ok(buffer.byteLength < 4 * 1024 * 1024);
       const svg = index === 7 ? createEditorialStorySvg(content, alignedOptions) : createEditorialSlideSvg(content, index, alignedOptions);
       const { data, info } = await sharp(Buffer.from(svg)).removeAlpha().raw().toBuffer({ resolveWithObject: true });
-      const background = resolveEditorialTheme(content.id).background.slice(1).match(/../gu).map(channel => Number.parseInt(channel, 16));
+      const background = /<rect[^>]*fill="(#[A-Fa-f0-9]{6})"/u.exec(svg)[1].slice(1).match(/../gu).map(channel => Number.parseInt(channel, 16));
       const top = index === 7 ? 280 : 144;
       const bottom = index === 7 ? 1536 : 1206;
       let outside = 0;

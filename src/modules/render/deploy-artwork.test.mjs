@@ -15,7 +15,7 @@ const deploy = new URL('../../../../web-deploy/', import.meta.url);
 const publisher = new URL('../../../', import.meta.url);
 const available = existsSync(new URL('scripts/prepare-job-bridge.mjs', deploy));
 const files = ['src/modules/render/job-poster.mjs', 'src/modules/render/job-poster-model.mjs', 'src/modules/render/poster-typography.mjs', 'src/modules/render/format-job.mjs', 'src/modules/render/font-runtime.mjs', 'src/shared/escape.mjs', 'src/shared/job-id.mjs', 'src/config/constants.mjs', 'assets/fonts/figtree.json', 'assets/fonts/OFL.txt'];
-files.push('src/modules/render/job-poster-v4.mjs', 'src/modules/render/job-poster-input.mjs');
+files.push('src/modules/render/job-poster-v4.mjs', 'src/modules/render/job-poster-v6.mjs', 'src/modules/render/job-poster-input.mjs');
 files.push('src/modules/render/soundtrack.mjs', 'assets/audio/README.md', 'assets/audio/funked-up.mp3', 'assets/audio/funky-house.mp3');
 
 test('clean editorial dispatches use a separate render namespace and pass deployment validation', { skip: !available }, async () => {
@@ -32,12 +32,12 @@ test('clean editorial dispatches use a separate render namespace and pass deploy
         carouselSvgs: content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg })),
         storySvg: createEditorialStorySvg(content, { wordmarkSvg }), repository: 'openings-dev/web-deploy' });
       const payload = JSON.parse(request.body).client_payload;
-      assert.equal(payload.content_version, '4');
+      assert.equal(payload.content_version, '5');
       const result = await prepareEditorialAssets({ outputRoot: directory, siteOrigin: 'https://openings.dev', payload: {
         contentId: payload.content_id, contentVersion: payload.content_version,
         assets: payload.assets.map(({ name, sha256, svg_gzip_base64 }) => ({ name, sha256, svgGzipBase64: svg_gzip_base64 })),
       } });
-      assert.ok(result.remoteDirectory.endsWith(`/${content.id}/4`));
+      assert.ok(result.remoteDirectory.endsWith(`/${content.id}/5`));
     }
   } finally { await rm(directory, { recursive: true, force: true }); }
 });
@@ -72,8 +72,8 @@ test('real image dispatches fit GitHub limits and pass standalone deployment val
       const payload = JSON.parse(request.body).client_payload;
       const input = { jobId: payload.job_id, contentHash: payload.content_hash, htmlSha256: payload.html_sha256, imageSha256: payload.image_sha256, instagramSvgSha256: payload.instagram_svg_sha256, htmlBase64: payload.html_base64, imageBase64: payload.image_base64, instagramSvgBase64: payload.instagram_svg_base64 };
       await prepareJobBridgePayload({ payload: input, outputRoot: join(directory, 'deploy'), siteOrigin: 'https://openings.dev' });
-      for (const version of ['5', '6', '8']) {
-        const html = Buffer.from(input.htmlBase64, 'base64').toString().replace('name="openings:social-video-version" content="7"', `name="openings:social-video-version" content="${version}"`);
+      for (const version of ['5', '6', '7', '9']) {
+        const html = Buffer.from(input.htmlBase64, 'base64').toString().replace('name="openings:social-video-version" content="8"', `name="openings:social-video-version" content="${version}"`);
         const revised = { ...input, htmlBase64: Buffer.from(html).toString('base64'), htmlSha256: createHash('sha256').update(html).digest('hex') };
         const prepare = () => prepareJobBridgePayload({ payload: revised, outputRoot: join(directory, `deploy-${version}`), siteOrigin: 'https://openings.dev' });
         await assert.rejects(prepare, /unsupported social-video-version/u);
@@ -83,12 +83,22 @@ test('real image dispatches fit GitHub limits and pass standalone deployment val
       const remoteAudio = await remote.resolveReelSoundtrack(artifacts.instagramSvg.toString());
       assert.equal(remoteAudio.id, localAudio.id);
       assert.ok((await readFile(remoteAudio.path)).equals(await readFile(localAudio.path)));
+      const { createArtworkSvg: previousArtwork } = await import('./job-poster-v6.mjs');
+      const previousSvg = previousArtwork(job, { direction, format: 'feed', wordmarkSvg });
+      const previousHtml = Buffer.from(input.htmlBase64, 'base64').toString()
+        .replace('name="openings:instagram-card-version" content="7"', 'name="openings:instagram-card-version" content="6"')
+        .replace('name="openings:social-video-version" content="8"', 'name="openings:social-video-version" content="7"');
+      const previousInput = { ...input, htmlBase64: Buffer.from(previousHtml).toString('base64'), htmlSha256: createHash('sha256').update(previousHtml).digest('hex'),
+        instagramSvgBase64: Buffer.from(previousSvg).toString('base64'), instagramSvgSha256: createHash('sha256').update(previousSvg).digest('hex') };
+      await prepareJobBridgePayload({ payload: previousInput, outputRoot: join(directory, 'previous'), siteOrigin: 'https://openings.dev' });
+      assert.deepEqual(remote.createReelStageSvgs(previousSvg), createReelStageSvgs(previousSvg));
+      assert.ok(remote.createReelStageSvgs(previousSvg)[0].includes('→ Link na bio'));
       const { createArtworkSvg: legacyArtwork } = await import('./job-poster-v4.mjs');
       const legacySvg = legacyArtwork(job, { direction, format: 'feed', wordmarkSvg });
       for (const version of ['5', '6']) {
         const html = Buffer.from(input.htmlBase64, 'base64').toString()
-          .replace('name="openings:instagram-card-version" content="6"', 'name="openings:instagram-card-version" content="5"')
-          .replace('name="openings:social-video-version" content="7"', `name="openings:social-video-version" content="${version}"`);
+          .replace('name="openings:instagram-card-version" content="7"', 'name="openings:instagram-card-version" content="5"')
+          .replace('name="openings:social-video-version" content="8"', `name="openings:social-video-version" content="${version}"`);
         const legacyInput = { ...input, htmlBase64: Buffer.from(html).toString('base64'), htmlSha256: createHash('sha256').update(html).digest('hex'),
           instagramSvgBase64: Buffer.from(legacySvg).toString('base64'), instagramSvgSha256: createHash('sha256').update(legacySvg).digest('hex') };
         await prepareJobBridgePayload({ payload: legacyInput, outputRoot: join(directory, `legacy-${version}`), siteOrigin: 'https://openings.dev' });

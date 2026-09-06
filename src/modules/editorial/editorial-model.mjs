@@ -30,9 +30,11 @@ export function validateEditorialContent(value) {
   if (!Array.isArray(content.slides) || content.slides.length !== 7) {
     throw new Error('editorial content must contain seven slides');
   }
+  if (content.layout !== undefined && content.layout !== 'short-guide') throw new Error('editorial layout is unsupported');
+  const kinds = content.layout === 'short-guide' ? ['cover', 'action', 'action', 'action', 'action', 'action', 'cta'] : SLIDE_KINDS;
   content.slides.forEach((slide, index) => {
     object(slide, `slide ${index + 1}`);
-    if (slide.kind !== SLIDE_KINDS[index]) throw new Error(`slide ${index + 1} has an invalid kind`);
+    if (slide.kind !== kinds[index]) throw new Error(`slide ${index + 1} has an invalid kind`);
     text(slide.title, `slide ${index + 1} title`, 90);
     if (slide.kind === 'example') {
       text(slide.before, 'example before', 220);
