@@ -14,6 +14,8 @@ import {
 } from '../../config/constants.mjs';
 import { escapeHtml } from '../../shared/escape.mjs';
 import { sha256 } from '../../shared/hash.mjs';
+import { createJobPosterSvg } from './job-poster.mjs';
+import { decodeArtworkModel } from './job-poster-model.mjs';
 import { SOCIAL_CARD_COLORS } from './social-card.mjs';
 import { SOCIAL_CARD_FONT_STACK } from './cjk-fonts.mjs';
 import {
@@ -33,7 +35,7 @@ const execFile = promisify(execFileCallback);
 function assertInstagramSvg(value) {
   if (typeof value !== 'string'
     || !/<svg\b[^>]*width="1080"[^>]*height="1350"[^>]*data-instagram-card="true"/iu.test(value)
-    || !value.includes(`data-social-poster-version="${SOCIAL_POSTER_MODEL_VERSION}"`)) {
+    || !/data-social-poster-version="[34]"/u.test(value)) {
     throw new Error('A canonical 1080×1350 Instagram SVG is required');
   }
   if (/<(?:script|foreignObject)\b|\bon[a-z]+\s*=|@import|url\(\s*["']?https?:/iu.test(value)) {
@@ -51,7 +53,8 @@ function extractPosterInput(instagramSvg) {
   if (!modelValue || !wordmark) {
     throw new Error('Instagram SVG is missing its canonical poster payload');
   }
-  return Object.freeze({ model: decodeSocialPosterModel(modelValue), wordmark });
+  return Object.freeze({ model: document.includes('data-social-poster-version="4"')
+    ? decodeArtworkModel(modelValue) : decodeSocialPosterModel(modelValue), wordmark });
 }
 
 const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
@@ -171,6 +174,11 @@ function stageSvg({ model, wordmark }, stage) {
 
 export function createReelStageSvgs(instagramSvg) {
   const poster = extractPosterInput(instagramSvg);
+  if (poster.model.version === 4) {
+    const wordmarkSvg = Buffer.from(poster.wordmark.split(',')[1], 'base64').toString('utf8');
+    const svg = createJobPosterSvg(poster.model, { format: 'story', wordmarkSvg });
+    return Object.freeze([svg, svg, svg, svg]);
+  }
   return Object.freeze([1, 2, 3, 4].map((stage) => stageSvg(poster, stage)));
 }
 

@@ -6,6 +6,25 @@ import {
 } from '../../config/constants.mjs';
 import { validateIntakeState, validateQueueState } from './state-model.mjs';
 import { assertValidJobId } from '../../shared/job-id.mjs';
+import { artworkAt, defaultArtworkDirection } from '../render/job-poster-model.mjs';
+
+export function queuedArtworkDirection(queueState, jobId) {
+  const item = queueState.items.find(item => item.jobId === jobId);
+  return item?.visualDirection ?? item?.bridge?.result?.visualDirection
+    ?? defaultArtworkDirection(jobId);
+}
+
+export function reservePublicationArtwork(queueState, jobId) {
+  const current = queueState.items.find(item => item.jobId === jobId);
+  if (!current) throw new Error('Artwork reservation requires a queued job');
+  if (current.visualDirection) return queueState;
+  const started = SOCIAL_CHANNELS.some(channel => current[channel].attempts > 0 || current[channel].status === 'published');
+  const index = queueState.items.reduce((next, item) => Math.max(next, (item.visualSequence ?? -1) + 1), 0);
+  return replaceItem(queueState, jobId, item => ({ ...item,
+    visualDirection: started ? queuedArtworkDirection(queueState, jobId) : artworkAt(index),
+    ...(started ? {} : { visualSequence: index }),
+  }));
+}
 
 const STAGES = new Set(['bridge', ...SOCIAL_CHANNELS, 'instagramStory']);
 const READY_STATUSES = new Set(['pending', 'retryable']);

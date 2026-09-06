@@ -6,19 +6,21 @@ import { createBridgeHtml } from '../render/html-page.mjs';
 import { createInstagramCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
 import { INSTAGRAM_CARD_VERSION, SOCIAL_VIDEO_VERSION } from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
+import { defaultArtworkDirection } from '../render/job-poster-model.mjs';
 
 export async function renderBridgeArtifacts(job, {
   wordmarkSvg,
   outputRoot,
   origin,
+  direction = defaultArtworkDirection(job.id),
 }) {
   const directory = resolve(outputRoot, 'jobs', job.id);
   const htmlPath = resolve(directory, 'index.html');
   const imagePath = resolve(directory, 'opengraph-image.png');
   const instagramSvgPath = resolve(directory, 'instagram-image.svg');
   const [png, instagramSvgSource] = await Promise.all([
-    renderSocialCardPng(job, { wordmarkSvg }),
-    Promise.resolve(createInstagramCardSvg(job, { wordmarkSvg })),
+    renderSocialCardPng(job, { wordmarkSvg, direction }),
+    Promise.resolve(createInstagramCardSvg(job, { wordmarkSvg, direction })),
   ]);
   const pngHash = sha256(png);
   const htmlSource = createBridgeHtml(job, { origin, imageHash: pngHash });
@@ -56,11 +58,12 @@ export function createBridgePublisher({
   if (!config?.webDeploy) {
     throw new Error('Web deploy configuration is required for bridge publication');
   }
-  return async function publishBridge({ job, reason }) {
+  return async function publishBridge({ job, reason, direction = defaultArtworkDirection(job.id) }) {
     const artifacts = await renderBridgeArtifacts(job, {
       wordmarkSvg,
       outputRoot,
       origin: config.publicSiteOrigin,
+      direction,
     });
     const deployment = await requestDeployment({
       jobId: job.id,
@@ -89,6 +92,7 @@ export function createBridgePublisher({
       instagramSvgHash: artifacts.instagramSvgHash,
       instagramCardVersion: INSTAGRAM_CARD_VERSION,
       socialVideoVersion: SOCIAL_VIDEO_VERSION,
+      visualDirection: direction,
     });
   };
 }
