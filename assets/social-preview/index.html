@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Social Studio · openings.dev</title>
+  <style>
+    :root{font-family:ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#21302e;background:#f5f3ef;font-synthesis:none;color-scheme:light}
+    *{box-sizing:border-box}[hidden]{display:none!important}body{margin:0}button,select{font:inherit}button,select,a{touch-action:manipulation}
+    button:focus-visible,select:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #2f6b3a;outline-offset:4px}
+    header{padding:22px 36px;border-bottom:1px solid #ddd9d2;display:flex;align-items:center;justify-content:space-between;background:#fffefa;gap:16px}
+    .brand{font-weight:600;letter-spacing:-.7px;font-size:21px}.brand span{color:#5e6663;font-weight:400}.local{font-size:12px;color:#5e6663}
+    main{max-width:1280px;margin:auto;padding:32px 36px}h1{font-size:36px;letter-spacing:-1.2px;margin:0 0 12px;font-weight:500;line-height:1.1}
+    .intro{color:#5e6663;line-height:1.65;margin:0;max-width:850px;font-size:14px}.toolbar{margin:26px 0 18px;display:flex;gap:16px;align-items:end;justify-content:space-between;flex-wrap:wrap}
+    .tabs{display:flex;gap:4px;background:#e8e7e1;padding:4px;border-radius:10px}.tabs button{min-height:44px;padding:9px 14px;border:0;background:none;border-radius:7px;color:#5e6663;font-size:13px;cursor:pointer}
+    .tabs button[aria-pressed=true]{background:#fffefa;color:#21302e}.inspectors{display:flex;gap:18px;margin:18px 0;flex-wrap:wrap}.field{display:grid;gap:7px;font-size:12px;color:#5e6663}
+    select{font-size:14px;color:#21302e;border:1px solid #918c84;border-radius:8px;min-height:44px;padding:10px 32px 10px 12px;background:#fffefa;max-width:100%}
+    .view-options{display:flex;align-items:center;gap:18px;flex-wrap:wrap;font-size:12px;color:#5e6663;margin:20px 0}.view-options label{display:flex;gap:7px;align-items:center;cursor:pointer}input{accent-color:#2f6b3a}
+    #status{margin-left:auto;font-size:11px}.format-note{font-size:12px;color:#5e6663;line-height:1.7;margin:0 0 24px;max-width:1060px}
+    .gallery{display:grid;gap:28px;align-items:start}.gallery.sequence{grid-template-columns:repeat(3,minmax(0,1fr))}.gallery.comparison{grid-template-columns:repeat(2,minmax(0,1fr));max-width:1080px;margin:auto}
+    .card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;gap:8px}.card-head h2{font-size:13px;font-weight:500;margin:0}.swatch{width:14px;height:14px;flex:none;border-radius:50%;border:1px solid #21302e20}
+    .frame{position:relative;overflow:hidden;border:1px solid #ddd9d2;background:#fffefa}.frame img{width:100%;display:block}
+    .safe{display:none;position:absolute;pointer-events:none;border:1px dashed #c54538;box-shadow:0 0 0 2000px #c5453809;z-index:3}.safe::after{content:'Conteúdo essencial';position:absolute;left:4px;top:4px;font-size:8px;color:#963a32;background:#fffefae8;padding:3px}
+    .show-safe .safe{display:block}.feed .safe{left:10%;top:10.6667%;width:80%;height:78.6667%}.reel .safe{left:10%;top:14.5833%;width:80%;height:65.4167%}.link .safe{left:6%;top:9.5238%;width:88%;height:80.9524%}
+    .story .safe{left:10%;top:14.5833%;width:80%;height:65.4167%}.story .crop{display:none}
+    .crop{display:none;position:absolute;pointer-events:none;left:0;right:0;border:1px solid #5980ac;box-shadow:0 0 0 2000px #14243355}.show-crop .crop{display:block}.feed .crop{top:10%;height:80%}.reel .crop{top:12.5%;height:75%}.link .crop{display:none}
+    .chrome{display:none;position:absolute;inset:0;color:white;pointer-events:none;text-shadow:0 1px 4px #0008;z-index:2}.show-chrome.reel .chrome{display:block}.chrome .top{position:absolute;left:5%;right:5%;top:6%;font-size:14px;display:flex;justify-content:space-between}
+    .chrome .right{position:absolute;right:3%;top:66%;font-size:24px;display:grid;gap:16px}.chrome .bottom{position:absolute;bottom:0;left:0;right:0;padding:26% 6% 12%;background:linear-gradient(transparent,#0009);font-size:11px;line-height:2}
+    .show-chrome.story .chrome{display:block}.story-progress{position:absolute;left:4%;right:4%;top:2.5%;height:2px;background:#ffffff80}.story-profile{position:absolute;top:5%;left:5%;right:5%;display:flex;gap:8px;align-items:center;font-size:12px}.story-profile span:last-child{margin-left:auto;font-size:20px}.story-bottom{position:absolute;left:5%;right:5%;bottom:5%;display:flex;gap:10px;align-items:center;font-size:12px}.story-bottom span:first-child{flex:1;border:1px solid #ffffffaa;border-radius:24px;padding:11px}.story-bottom span:not(:first-child){font-size:24px}.story .chrome{background:linear-gradient(#0002,transparent 14%,transparent 82%,#0006)}
+    .card-foot{display:flex;justify-content:space-between;gap:8px;margin-top:10px;font-size:11px;color:#5e6663}.card-foot a,.notes a{color:#2f6b3a;text-decoration:none}.card-foot a:hover,.notes a:hover{text-decoration:underline}
+    .notes{margin:30px 0 0;padding:20px 0;border-top:1px solid #ddd9d2;color:#5e6663;font-size:12px;line-height:1.8}.notes strong{color:#21302e;font-weight:550}.notes p{margin:0 0 8px}
+    footer{padding:0 24px 28px;font-size:11px;color:#5e6663;text-align:center}
+    @media(max-width:900px){header,main{padding:24px}.gallery{gap:18px}.tabs button{padding:9px 11px}.toolbar{align-items:stretch}}
+    @media(max-width:600px){header{padding:18px}.brand{font-size:19px}.brand span{display:none}.local{font-size:10px}main{padding:26px 16px}h1{font-size:30px}.gallery.sequence{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 12px}.gallery.comparison{grid-template-columns:1fr;max-width:480px}.tabs{width:100%}.tabs button{flex:1;padding:9px 8px}.field,select{width:100%}#status{width:100%;margin-left:0}.card-head h2{font-size:11px}.card-foot{font-size:10px}.sequence .card-foot>span{display:none}}
+  </style>
+</head>
+<body>
+  <header><div class="brand">openings.dev <span>/ social studio</span></div><span class="local">Prévia local · sem publicação</span></header>
+  <main>
+    <h1>Um feed com ritmo próprio.</h1>
+    <p class="intro">Night alterna com Editorial em papel, lavanda e pêssego. A cor muda; a tipografia, o logo e a chamada verde mantêm a identidade. Sem a linha “From…” nas artes.</p>
+    <div class="toolbar">
+      <div class="tabs" aria-label="Visualização">
+        <button data-view="sequence" aria-pressed="true">Sequência de posts</button>
+        <button data-view="comparison" aria-pressed="false">Comparar uma vaga</button>
+      </div>
+      <div class="tabs" aria-label="Formato">
+        <button data-format="feed" aria-pressed="true">Feed 4:5</button>
+        <button data-format="story" aria-pressed="false">Story</button>
+        <button data-format="reel" aria-pressed="false">Reel</button>
+        <button data-format="link" aria-pressed="false">Horizontal</button>
+      </div>
+    </div>
+    <div class="inspectors" id="inspectors" hidden>
+      <label class="field">Exemplo<select id="sample" aria-label="Exemplo de vaga"></select></label>
+      <label class="field">Cor do Editorial<select id="tone" aria-label="Cor do Editorial"><option value="editorial">Papel</option><option value="lavender">Lavanda</option><option value="peach">Pêssego</option></select></label>
+    </div>
+    <div class="view-options">
+      <label><input type="checkbox" id="safe"> Área segura</label>
+      <label><input type="checkbox" id="crop"> Simular corte da miniatura</label>
+      <label id="chrome-option" hidden><input type="checkbox" id="chrome"> Simular interface do Instagram</label>
+      <span id="status" role="status">Preparando imagens…</span>
+    </div>
+    <p class="format-note" id="format-note"></p>
+    <div class="gallery sequence" id="gallery"></div>
+    <div class="notes">
+      <p><strong>Sequência ilustrativa, em ordem de publicação.</strong> Depois do sexto post, o ciclo recomeça no Night. A geração real já usa estes modelos no código local; nada foi publicado por esta prévia. A cor é reservada quando a vaga é selecionada para publicação e permanece estável em novas tentativas; a ordem de entrega pode variar entre redes.</p>
+      <p>Exemplos de teste, não vagas disponíveis. As fontes e cores vêm do web e o logo é o original. Só o fundo e as bordas decorativas entram na sangria. As guias são margens deste projeto para publicação orgânica, não garantias universais nem aprovação para anúncios. Story e Reel compartilham exatamente a mesma composição, com simulações de interface separadas; cortes e sobreposições variam conforme o aparelho, a legenda e o posicionamento.</p>
+      <p>Referências: <a href="https://www.facebook.com/business/ads/facebook-instagram-reels-ads" target="_blank" rel="noopener">Meta — Reels e área segura</a> · <a href="https://www.linkedin.com/help/linkedin/answer/a426534/single-image-ads-advertising-specifications" target="_blank" rel="noopener">LinkedIn — proporções de imagem</a>. Referências de anúncios usadas para orientar a composição dos posts orgânicos.</p>
+    </div>
+  </main>
+  <footer>openings.dev · mesma identidade, novas composições</footer>
+  <script>
+    const params=new URLSearchParams(location.search);
+    let manifest,format=['feed','story','reel','link'].includes(params.get('format'))?params.get('format'):'feed',view=params.get('view')==='comparison'?'comparison':'sequence';
+    const dimensions={feed:'1080 × 1350',story:'1080 × 1920',reel:'1080 × 1920',link:'1200 × 630'};
+    const formatNotes={feed:'Feed 4:5 · conteúdo protegido também no corte quadrado central simulado.',story:'Story orgânico · leitura maior, com modelo de trabalho e localização em linhas separadas. Margens próprias: 280 px no topo, 384 px embaixo e 108 px nas laterais. A mesma arte também é usada no Reel.',reel:'Reel 9:16 · mesma arte ampliada do Story, com todas as informações visíveis durante o vídeo. Margens próprias: 280 px no topo, 384 px embaixo e 108 px nas laterais. A interface do Instagram pode sobrepor conteúdo, sobretudo com a legenda expandida.',link:'Horizontal · 1200 × 630, padrão social do web. Margens de 72 px nas laterais e 60 px em cima e embaixo. Composição própria para LinkedIn, X e Bluesky; não é o cartaz vertical encolhido.'};
+    const sample=document.querySelector('#sample'),gallery=document.querySelector('#gallery');
+    function element(tag,className,value){const node=document.createElement(tag);if(className)node.className=className;if(value!==undefined)node.textContent=value;return node}
+    function cardFor(entry,index){
+      const style=manifest.styles[entry.variant],job=manifest.samples.find(item=>item.key===entry.sample);
+      const path='/'+entry.sample+'/'+entry.variant+'/'+format+'.jpg';
+      const card=element('article','card'),head=element('div','card-head');
+      head.append(element('h2','',(view==='sequence'?String(index+1).padStart(2,'0')+' · ':'')+style.label));
+      const swatch=element('span','swatch');swatch.style.background=style.background;swatch.setAttribute('aria-hidden','true');head.append(swatch);
+      const frame=element('div','frame '+format),image=element('img');image.alt=style.label+' — '+job.title;image.src=path+'?v='+manifest.version;image.width=manifest.formats[format].width;image.height=manifest.formats[format].height;image.style.height='auto';
+      const chrome=element('div','chrome');chrome.setAttribute('aria-hidden','true');chrome.innerHTML=format==='story'?'<div class="story-progress"></div><div class="story-profile"><span>▣</span><strong>openingshq</strong><span>1 h</span><span>×</span></div><div class="story-bottom"><span>Enviar mensagem</span><span>♡</span><span>➤</span></div>':'<div class="top"><span>‹</span><span>Reels</span><span>⌕</span></div><div class="right"><span>♡</span><span>◯</span><span>➤</span></div><div class="bottom"><strong>▣ &nbsp; openingshq</strong><br>New opening on openings.dev…</div>';
+      frame.append(image,element('div','safe'),element('div','crop'),chrome);
+      const foot=element('div','card-foot'),link=element('a','','Abrir imagem ↗');link.href=path;link.target='_blank';link.rel='noopener';foot.append(element('span','',dimensions[format]),link);
+      card.append(head,frame,foot);return card;
+    }
+    function render(){
+      if(!manifest?.sequence)return;
+      const entries=view==='sequence'?manifest.sequence:[{variant:'night',sample:sample.value},{variant:document.querySelector('#tone').value,sample:sample.value}];
+      gallery.className='gallery '+view;gallery.replaceChildren(...entries.map(cardFor));
+      document.querySelector('#inspectors').hidden=view==='sequence';
+      gallery.classList.toggle('show-safe',document.querySelector('#safe').checked);
+      gallery.classList.toggle('show-crop',document.querySelector('#crop').checked);
+      document.querySelector('#crop').disabled=format==='link'||format==='story';
+      document.querySelector('#format-note').textContent=formatNotes[format];
+      document.querySelectorAll('.frame').forEach(frame=>frame.classList.toggle('show-chrome',document.querySelector('#chrome').checked));
+      document.querySelector('#chrome-option').hidden=format!=='reel'&&format!=='story';
+      document.querySelectorAll('[data-format]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.format===format)));
+      document.querySelectorAll('[data-view]').forEach(button=>button.setAttribute('aria-pressed',String(button.dataset.view===view)));
+      document.querySelector('#status').textContent='Atualizado às '+new Date(manifest.version).toLocaleTimeString('pt-BR');
+    }
+    async function refresh(){
+      try{const next=await fetch('/manifest.json').then(response=>response.json());if(next.version===manifest?.version)return;manifest=next;
+        const selected=sample.value||params.get('sample');sample.replaceChildren(...manifest.samples.map(entry=>{const option=element('option','',entry.label);option.value=entry.key;return option}));if(manifest.samples.some(entry=>entry.key===selected))sample.value=selected;render();
+      }catch{document.querySelector('#status').textContent='Aguardando atualização local…'}
+    }
+    document.querySelectorAll('[data-format]').forEach(button=>button.addEventListener('click',()=>{format=button.dataset.format;document.querySelectorAll('[data-format]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));render()}));
+    document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{view=button.dataset.view;document.querySelectorAll('[data-view]').forEach(item=>item.setAttribute('aria-pressed',String(item===button)));render()}));
+    document.querySelectorAll('select,input').forEach(control=>control.addEventListener('change',render));
+    refresh();setInterval(refresh,2500);
+  </script>
+</body>
+</html>
