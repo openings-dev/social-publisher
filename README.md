@@ -38,12 +38,20 @@ Open `http://127.0.0.1:4174/` to compare the final raster artwork, toggle margin
 guides and inspect sample jobs. The preview never reads a stash or publishes posts.
 
 Deployment order matters: release the matching `web-deploy` renderer first, then
-`social-publisher`. Poster model 4 uses image asset version 5 and video version 6; `web-deploy`
+`social-publisher`. Poster model 4, artwork revision 2 uses image asset version 6 and video version 7; `web-deploy`
 continues accepting legacy model 3 / asset version 4 during the transition. Old
 bridge assets are refreshed before pending channels run, without repeating already
 published social posts. No new service, paid plan or credential is required.
 
 ## Instagram editorial guides
+
+Production artwork uses the official wordmark and plain contextual CTA text,
+never simulated buttons. Instagram jobs point to the bio link; clickable link
+previews point to openings.dev. Guides use saving/sharing calls only on the final
+carousel slide, and sharing calls on Stories. The editorial render version is 3
+(asset directory `/3`), separate from catalog/state content version 2. Existing
+publication checkpoints keep their original asset URLs. Historical job artwork
+without a revision marker retains its canonical renderer during rollout.
 
 The separate `Publish Instagram editorial guide` workflow enriches the Instagram feed with three practical carousels per week:
 

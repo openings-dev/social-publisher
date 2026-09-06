@@ -39,14 +39,12 @@ function logo(wordmarkSvg, x, y, width, dark = false) {
   return `<image data-instagram-wordmark="true" x="${x}" y="${y}" width="${width}" height="${width * 219 / 1202}" href="data:image/svg+xml;base64,${Buffer.from(content).toString('base64')}"/>`;
 }
 
-function action(x, y, width = 320, size = 30) {
-  return `<rect x="${x}" y="${y}" width="${width}" height="72" rx="36" fill="#B0EC9C"/>${text('View opening', x + 28, y + 46, size, { weight: 550 })}<g transform="translate(${x + width - 53} ${y + 25})" fill="none" stroke="#21302E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M0 11h24m-10-10 10 10-10 10"/></g>`;
+function action(x, y, width = 320, size = 30, { dark = false, link = false, center = false } = {}) {
+  return `<g data-block="action">${text(link ? '→ openings.dev' : '→ Link na bio', center ? x + width / 2 : x, y + 46, size, { weight: 550, color: dark ? '#B0EC9C' : '#21302E', anchor: center ? 'middle' : 'start' })}</g>`;
 }
 
-function verticalAction(x, y, { width, height, size }) {
-  const inset = height * .34;
-  const arrowSize = height * .3;
-  return `<g data-block="action"><rect x="${x}" y="${y}" width="${width}" height="${height}" rx="${height / 2}" fill="#B0EC9C"/>${text('View opening', x + inset, y + height / 2 + size * .34, size, { weight: 550 })}<g transform="translate(${x + width - inset - arrowSize} ${y + (height - arrowSize) / 2}) scale(${arrowSize / 24})" fill="none" stroke="#21302E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12h22m-10-10 10 10-10 10"/></g></g>`;
+function verticalAction(x, y, { width, height, size, dark = false }) {
+  return `<g data-block="action">${text('→ Link na bio', dark ? x + width / 2 : x, y + height / 2 + size * .34, size, { weight: 550, color: dark ? '#B0EC9C' : '#21302E', anchor: dark ? 'middle' : 'start' })}</g>`;
 }
 
 // Organic Story composition. Its larger internal guide is not a universal ad-safe zone.
@@ -65,7 +63,7 @@ function story(data, wordmarkSvg, { dark }) {
     ${data.salary ? `<g data-block="compensation">${rule(dark ? 452 : left, 1170, dark ? 176 : width, dark)}
     ${text(salary.lines[0], x, 1178 + salary.fontSize, salary.fontSize, { weight: 500, color: ink, anchor })}
     ${text(data.period, x, 1338, 38, { color: muted, anchor })}</g>` : ''}
-    ${verticalAction(dark ? 180 : left, 1396, { width: dark ? 720 : width, height: 120, size: 48 })}`;
+    ${verticalAction(dark ? 180 : left, 1396, { width: dark ? 720 : width, height: 120, size: 48, dark })}`;
 }
 
 function facts(data, x, y, width, { dark = false, center = false, compact = false } = {}) {
@@ -88,7 +86,7 @@ function editorial(data, format, wordmarkSvg) {
       ${text(fitSingleLine(data.company, 640, 27), 72, 446, 27, { color: '#5E6663' })}
       ${data.salary ? rule(798, 201, 330) : ''}${facts(data, 798, 232, 330, { compact: true })}
       ${text(fitSingleLine([data.mode, data.place].filter(Boolean).join(' · '), 650, 25), 72, 531, 25)}
-      ${action(798, 474, 330, 28)}`;
+      ${action(798, 474, 330, 28, { link: true })}`;
   }
   const reel = format === 'reel', x = 108, width = reel ? 810 : 864;
   const brandY = reel ? 338 : 160, titleY = reel ? 470 : 316;
@@ -114,7 +112,7 @@ function night(data, format, wordmarkSvg) {
       ${text(fitSingleLine([data.company, data.mode].filter(Boolean).join(' · '), 710, 27), 72, 450, 27, { color: muted })}
       ${text(fitSingleLine(data.place, 700, 25), 72, 502, 25, { color: muted })}
       ${facts(data, 830, 236, 298, { dark: true, compact: true })}
-      ${action(798, 474, 330, 28)}`;
+      ${action(798, 474, 330, 28, { link: true, dark: true })}`;
   }
   const reel = format === 'reel', cx = reel ? 513 : 540, width = reel ? 810 : 864;
   const brandY = reel ? 338 : 160, titleY = reel ? 473 : 320;
@@ -124,7 +122,7 @@ function night(data, format, wordmarkSvg) {
     ${data.salary ? rule(cx - 88, reel ? 905 : 850, 176, true) : ''}
     ${facts(data, cx, reel ? 922 : 888, width, { dark: true, center: true })}
     ${text(fitSingleLine([data.mode, data.place].filter(Boolean).join(' · '), width, reel ? 38 : 28), cx, reel ? 1090 : 1060, reel ? 38 : 28, { color: muted, anchor: 'middle' })}
-    ${reel ? verticalAction(cx - 230, 1140, { width: 460, height: 96, size: 40 }) : action(cx - 160, 1115)}`;
+    ${reel ? verticalAction(cx - 230, 1140, { width: 460, height: 96, size: 40, dark: true }) : action(cx - 160, 1115, 320, 30, { dark: true, center: true })}`;
 }
 
 export function createJobPosterSvg(model, { format, wordmarkSvg }) {
@@ -140,7 +138,7 @@ export function createJobPosterSvg(model, { format, wordmarkSvg }) {
   const background = style.background;
   // Only paper edges extend into the bleed. Essential content stays in the guide.
   const bleed = !dark && format !== 'link' ? `<path d="M${width - 26} 0v${height}M0 ${height - 32}h${width}" stroke="#21302E" stroke-opacity=".10"/>` : '';
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(data.title)}" ${format === 'feed' ? `data-instagram-card="true" data-social-poster-version="4" data-poster-model="${encodeArtworkModel(data)}" ` : ''}data-direction="${direction}" data-safe="${safe.x},${safe.y},${safe.width},${safe.height}">
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${width}" height="${height}" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeHtml(data.title)}" ${format === 'feed' ? `data-instagram-card="true" data-social-poster-version="4" data-poster-model="${encodeArtworkModel(data)}" ` : ''}data-artwork-revision="2" data-direction="${direction}" data-safe="${safe.x},${safe.y},${safe.width},${safe.height}">
     <title>${escapeHtml([data.title, data.company, data.salary, data.period, data.mode, data.place].filter(Boolean).join(' · '))}</title>
     <rect width="${width}" height="${height}" fill="${background}"/>${bleed}
     <g data-essential="true">${['story', 'reel'].includes(format) ? story(data, wordmarkSvg, { dark }) : dark ? night(data, format, wordmarkSvg) : editorial(data, format, wordmarkSvg)}</g>

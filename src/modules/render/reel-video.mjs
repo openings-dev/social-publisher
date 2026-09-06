@@ -14,7 +14,7 @@ import {
 } from '../../config/constants.mjs';
 import { escapeHtml } from '../../shared/escape.mjs';
 import { sha256 } from '../../shared/hash.mjs';
-import { createJobPosterSvg } from './job-poster.mjs';
+import { decodeJobPosterInput } from './job-poster-input.mjs';
 import { decodeArtworkModel } from './job-poster-model.mjs';
 import { resolveReelSoundtrack } from './soundtrack.mjs';
 export { resolveReelSoundtrack } from './soundtrack.mjs';
@@ -177,8 +177,8 @@ function stageSvg({ model, wordmark }, stage) {
 export function createReelStageSvgs(instagramSvg) {
   const poster = extractPosterInput(instagramSvg);
   if (poster.model.version === 4) {
-    const wordmarkSvg = Buffer.from(poster.wordmark.split(',')[1], 'base64').toString('utf8');
-    const svg = createJobPosterSvg(poster.model, { format: 'story', wordmarkSvg });
+    const { model, render, wordmarkSvg } = decodeJobPosterInput(instagramSvg);
+    const svg = render(model, { format: 'story', wordmarkSvg });
     return Object.freeze([svg, svg, svg, svg]);
   }
   return Object.freeze([1, 2, 3, 4].map((stage) => stageSvg(poster, stage)));

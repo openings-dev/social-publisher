@@ -13,7 +13,7 @@ import {
   prepareEditorialStageIntent,
   processEditorialStage,
 } from '../modules/publishing/editorial-publisher.mjs';
-import { renderEditorialAssets } from '../modules/render/editorial-card.mjs';
+import { EDITORIAL_RENDER_VERSION, renderEditorialAssets } from '../modules/render/editorial-card.mjs';
 import { formatEditorialCaption } from '../modules/render/editorial-caption.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import { saveStateFile } from '../modules/state/save-state.mjs';
@@ -69,6 +69,7 @@ export async function renderEditorialDryRun({ content, wordmarkPath, outputPath,
     schemaVersion: 1,
     contentId: content.id,
     contentVersion: content.version,
+    renderVersion: EDITORIAL_RENDER_VERSION,
     pillar: content.pillar,
     slides: slideEntries,
     story: storyEntry,
@@ -182,7 +183,7 @@ export async function runEditorialCommand({
     options.wordmarkSvg = await readFile(wordmarkPath, 'utf8');
     options.deployAssets = dependencies.deployAssets ?? (({ content, carouselSvgs, storySvg }) => requestEditorialDeployment({
       contentId: content.id,
-      version: content.version,
+      version: EDITORIAL_RENDER_VERSION,
       carouselSvgs,
       storySvg,
       repository: config.webDeploy.repository,
