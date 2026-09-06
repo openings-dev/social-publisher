@@ -9,12 +9,25 @@
       "scheduledDate": "2026-09-06",
       "createdAt": "2026-09-06T19:01:40.405Z",
       "assets": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T19:01:42.168Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "deployed",
+          "manifestUrl": "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/manifest.json",
+          "carouselUrls": [
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-01.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-02.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-03.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-04.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-05.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-06.jpg",
+            "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/slide-07.jpg"
+          ],
+          "storyUrl": "https://openings.dev/social/editorial/resume-portfolio-que-prova/5/story.jpg"
+        }
       },
       "feed": {
         "status": "pending",
