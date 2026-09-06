@@ -16,6 +16,8 @@ import { escapeHtml } from '../../shared/escape.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 import { createJobPosterSvg } from './job-poster.mjs';
 import { decodeArtworkModel } from './job-poster-model.mjs';
+import { resolveReelSoundtrack } from './soundtrack.mjs';
+export { resolveReelSoundtrack } from './soundtrack.mjs';
 import { SOCIAL_CARD_COLORS } from './social-card.mjs';
 import { SOCIAL_CARD_FONT_STACK } from './cjk-fonts.mjs';
 import {
@@ -338,15 +340,17 @@ export async function renderReelVideo({
       throw new Error('Rendered social video cover has invalid dimensions');
     }
 
-    const audioPath = join(temporaryDirectory, 'soundtrack.wav');
-    await writeFile(audioPath, createOriginalSoundtrackWav());
+    const soundtrack = await resolveReelSoundtrack(instagramSvg);
+    const audioPath = soundtrack?.path ?? join(temporaryDirectory, 'soundtrack.wav');
+    if (!soundtrack) await writeFile(audioPath, createOriginalSoundtrackWav());
     await execFileImpl(ffmpegPath, buildReelFfmpegArguments({
       stagePaths,
       audioPath,
       outputPath: videoPath,
     }), { maxBuffer: 4 * 1024 * 1024 });
     assertMp4Header(await readFile(videoPath));
-    return Object.freeze({ videoPath, coverPath, coverSourceHash: sha256(Buffer.from(coverSource, 'utf8')) });
+    return Object.freeze({ videoPath, coverPath, coverSourceHash: sha256(Buffer.from(coverSource, 'utf8')),
+      soundtrackId: soundtrack?.id ?? 'legacy-synth', soundtrackSha256: soundtrack?.sha256 ?? null });
   } finally {
     await rm(temporaryDirectory, { recursive: true, force: true });
   }

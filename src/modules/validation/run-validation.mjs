@@ -177,7 +177,7 @@ validation('exports the approved immutable constants', () => {
   assert.equal(SOCIAL_VIDEO_DURATION_SECONDS, 9);
   assert.equal(INSTAGRAM_CARD_VERSION, '5');
   assert.equal(OPEN_GRAPH_IMAGE_VERSION, '2');
-  assert.equal(SOCIAL_VIDEO_VERSION, '5');
+  assert.equal(SOCIAL_VIDEO_VERSION, '6');
   assert.deepEqual(SOCIAL_CHANNELS, ['bluesky', 'mastodon', 'twitter', 'threads', 'instagram', 'linkedin']);
   assert.deepEqual(DEFAULT_SOCIAL_CHANNELS, ['bluesky', 'mastodon', 'twitter']);
   assert.equal(TWITTER_POST_MAX_GRAPHEMES, 280);
@@ -3552,7 +3552,7 @@ validation('renders a complete escaped canonical job bridge', () => {
   assert.match(html, /<meta name="twitter:card" content="summary_large_image">/);
   assert.match(html, new RegExp(`<meta name="openings:data-hash" content="${job.contentHash}"`));
   assert.match(html, /<meta name="openings:instagram-card-version" content="5">/u);
-  assert.match(html, /<meta name="openings:social-video-version" content="5">/u);
+  assert.match(html, /<meta name="openings:social-video-version" content="6">/u);
   assert.match(html, /&lt;script&gt;publish\(\)&lt;\/script&gt;/);
   assert.doesNotMatch(html, /<img src=x|onerror=/);
   assert.match(html, new RegExp(`location\\.replace\\("https://openings\\.dev/\\?job=${job.id}"\\)`));
@@ -3867,6 +3867,9 @@ validation('renders the public Reel video and final-frame cover into one job dir
     });
     assert.equal(calls.length, 1);
     assert.equal(calls[0].command, 'ffmpeg');
+    assert.ok(['funked-up', 'funky-house'].includes(result.soundtrackId));
+    assert.ok(calls[0].argumentsList.some((value) => value.endsWith(`/assets/audio/${result.soundtrackId}.mp3`)));
+    assert.match(result.soundtrackSha256, /^[0-9a-f]{64}$/u);
     assert.equal(result.videoPath, join(directory, 'social-video.mp4'));
     assert.equal(result.coverPath, join(directory, 'social-video-cover.jpg'));
     assert.equal(
@@ -3948,7 +3951,7 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.match(calls[0].instagramSvg.toString('utf8'), /data-instagram-card="true"/u);
     assert.equal(sha256(calls[0].instagramSvg), calls[0].expectedInstagramSvgHash);
     assert.equal(calls[0].expectedInstagramCardVersion, '5');
-    assert.equal(calls[0].expectedSocialVideoVersion, '5');
+    assert.equal(calls[0].expectedSocialVideoVersion, '6');
     assert.equal(calls[0].forceDeployment, true);
     assert.equal(result.status, 'deployed');
     assert.equal(result.canonicalUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}`);
@@ -3956,7 +3959,7 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.equal(result.socialVideoUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`);
     assert.equal(result.socialVideoCoverUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg`);
     assert.equal(result.instagramCardVersion, '5');
-    assert.equal(result.socialVideoVersion, '5');
+    assert.equal(result.socialVideoVersion, '6');
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -4066,8 +4069,8 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   const canonicalUrl = `https://openings.dev/jobs/${job.id}`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png?v=2.${pngHash.slice(0, 16)}`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=5.${instagramSvgHash.slice(0, 16)}`;
-  const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=5.${instagramSvgHash.slice(0, 16)}`;
-  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=5.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=6.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=6.${instagramSvgHash.slice(0, 16)}`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
@@ -4104,7 +4107,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   assert.equal(result.instagramCardVersion, '5');
   assert.equal(result.socialVideoUrl, socialVideoUrl);
   assert.equal(result.socialVideoCoverUrl, socialVideoCoverUrl);
-  assert.equal(result.socialVideoVersion, '5');
+  assert.equal(result.socialVideoVersion, '6');
 
   const staleHtml = html.replace(
     'name="openings:instagram-card-version" content="5"',
@@ -4127,7 +4130,7 @@ validation('verifies public HTML, exact PNG bytes, and the Instagram JPEG deriva
   assert.equal(staleVersion.reason, 'instagram_card_version_mismatch');
 
   const staleSocialVideoHtml = html.replace(
-    'name="openings:social-video-version" content="5"',
+    'name="openings:social-video-version" content="6"',
     'name="openings:social-video-version" content="3"',
   );
   const staleSocialVideo = await verifyPublicBridge({
@@ -4170,8 +4173,8 @@ validation('accepts the canonical Hostinger trailing-slash redirect only', async
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png?v=2.${pngHash.slice(0, 16)}`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=5.${instagramSvgHash.slice(0, 16)}`;
-  const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=5.${instagramSvgHash.slice(0, 16)}`;
-  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=5.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=6.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=6.${instagramSvgHash.slice(0, 16)}`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });
@@ -4231,8 +4234,8 @@ validation('verifies exact public assets when Cloudflare blocks Node HTML reques
   const redirectedUrl = `${canonicalUrl}/`;
   const imageUrl = `${canonicalUrl}/opengraph-image.png?v=2.${pngHash.slice(0, 16)}`;
   const instagramImageUrl = `${canonicalUrl}/instagram-image.jpg?v=5.${instagramSvgHash.slice(0, 16)}`;
-  const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=5.${instagramSvgHash.slice(0, 16)}`;
-  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=5.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoUrl = `${canonicalUrl}/social-video.mp4?v=6.${instagramSvgHash.slice(0, 16)}`;
+  const socialVideoCoverUrl = `${canonicalUrl}/social-video-cover.jpg?v=6.${instagramSvgHash.slice(0, 16)}`;
   const instagramImage = await socialCardModule.renderInstagramCardJpeg(job, {
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
   });

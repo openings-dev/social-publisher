@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { existsSync } from 'node:fs';
 import { mkdtemp, readFile, rm } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
@@ -14,6 +15,7 @@ const deploy = new URL('../../../../web-deploy/', import.meta.url);
 const publisher = new URL('../../../', import.meta.url);
 const available = existsSync(new URL('scripts/prepare-job-bridge.mjs', deploy));
 const files = ['src/modules/render/job-poster.mjs', 'src/modules/render/job-poster-model.mjs', 'src/modules/render/poster-typography.mjs', 'src/modules/render/format-job.mjs', 'src/modules/render/font-runtime.mjs', 'src/shared/escape.mjs', 'src/shared/job-id.mjs', 'src/config/constants.mjs', 'assets/fonts/figtree.json', 'assets/fonts/OFL.txt'];
+files.push('src/modules/render/soundtrack.mjs', 'assets/audio/README.md', 'assets/audio/funked-up.mp3', 'assets/audio/funky-house.mp3');
 
 test('legacy poster payloads retain the deployment renderer output', { skip: !available }, async () => {
   const remote = await import(new URL('scripts/render-reel.mjs', deploy));
@@ -45,7 +47,18 @@ test('real image dispatches fit GitHub limits and pass standalone deployment val
       const payload = JSON.parse(request.body).client_payload;
       const input = { jobId: payload.job_id, contentHash: payload.content_hash, htmlSha256: payload.html_sha256, imageSha256: payload.image_sha256, instagramSvgSha256: payload.instagram_svg_sha256, htmlBase64: payload.html_base64, imageBase64: payload.image_base64, instagramSvgBase64: payload.instagram_svg_base64 };
       await prepareJobBridgePayload({ payload: input, outputRoot: join(directory, 'deploy'), siteOrigin: 'https://openings.dev' });
+      for (const version of ['5', '7']) {
+        const html = Buffer.from(input.htmlBase64, 'base64').toString().replace('name="openings:social-video-version" content="6"', `name="openings:social-video-version" content="${version}"`);
+        const revised = { ...input, htmlBase64: Buffer.from(html).toString('base64'), htmlSha256: createHash('sha256').update(html).digest('hex') };
+        const prepare = () => prepareJobBridgePayload({ payload: revised, outputRoot: join(directory, `deploy-${version}`), siteOrigin: 'https://openings.dev' });
+        if (version === '5') await prepare();
+        else await assert.rejects(prepare, /unsupported social-video-version/u);
+      }
       assert.deepEqual(remote.createReelStageSvgs(artifacts.instagramSvg.toString()), createReelStageSvgs(artifacts.instagramSvg.toString()));
+      const localAudio = await (await import('./soundtrack.mjs')).resolveReelSoundtrack(artifacts.instagramSvg.toString());
+      const remoteAudio = await remote.resolveReelSoundtrack(artifacts.instagramSvg.toString());
+      assert.equal(remoteAudio.id, localAudio.id);
+      assert.ok((await readFile(remoteAudio.path)).equals(await readFile(localAudio.path)));
     }
   } finally {
     await rm(directory, { recursive: true, force: true });
