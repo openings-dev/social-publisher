@@ -77,6 +77,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
   const editorialInstagramMode = mode === 'editorial-feed' || mode === 'editorial-story';
   const requiresDeploy = mode === 'intake' || mode === 'scheduled' || mode === 'controlled' || metaMigration || editorialAssetsMode;
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
+  const platformMastodonEnabled = requiresSocial && env.PUBLISHING_MASTODON_ENABLED === 'true';
   const threadsEnabled = env.THREADS_AUTO_PUBLISH === 'true';
   const instagramEnabled = env.INSTAGRAM_AUTO_PUBLISH === 'true';
   const linkedinEnabled = env.LINKEDIN_AUTO_PUBLISH === 'true';
@@ -94,7 +95,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
     requireKeys(env, DEPLOY_KEYS);
   }
   if (requiresSocial) {
-    requireKeys(env, SOCIAL_KEYS);
+    requireKeys(env, SOCIAL_KEYS.filter(key => !(platformMastodonEnabled && key === 'MASTODON_ACCESS_TOKEN')));
     if (threadsEnabled) requireKeys(env, ['THREADS_ACCESS_TOKEN']);
     if (instagramEnabled) {
       requireKeys(env, ['INSTAGRAM_ACCESS_TOKEN', 'INSTAGRAM_USER_ID', 'META_GRAPH_VERSION']);
@@ -145,8 +146,13 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
   }
 
   const platformEnabled = requiresDeploy && env.PUBLISHING_SOCIAL_SHADOW_ENABLED === 'true';
-  if (platformEnabled) requireKeys(env, ['PUBLISHING_ENDPOINT', 'PUBLISHING_CLIENT_ID', 'PUBLISHING_CLIENT_SECRET']);
+  if (platformEnabled || platformMastodonEnabled) requireKeys(env, ['PUBLISHING_ENDPOINT', 'PUBLISHING_CLIENT_ID', 'PUBLISHING_CLIENT_SECRET']);
   return Object.freeze({
+    platformMastodon: platformMastodonEnabled ? Object.freeze({
+      baseUrl: normalizeExactOrigin(env.PUBLISHING_ENDPOINT, undefined, 'PUBLISHING_ENDPOINT'),
+      clientId: env.PUBLISHING_CLIENT_ID,
+      secret: env.PUBLISHING_CLIENT_SECRET,
+    }) : null,
     platformShadow: platformEnabled ? Object.freeze({
       baseUrl: normalizeExactOrigin(env.PUBLISHING_ENDPOINT, undefined, 'PUBLISHING_ENDPOINT'),
       clientId: env.PUBLISHING_CLIENT_ID,
@@ -168,7 +174,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       identifier: env.BLUESKY_IDENTIFIER,
       appPassword: env.BLUESKY_APP_PASSWORD,
     }) : null,
-    mastodonAccessToken: requiresSocial ? env.MASTODON_ACCESS_TOKEN : null,
+    mastodonAccessToken: requiresSocial && !platformMastodonEnabled ? env.MASTODON_ACCESS_TOKEN : null,
     threads: (metaMigration || (requiresSocial && threadsEnabled)) ? Object.freeze({
       accessToken: env.THREADS_ACCESS_TOKEN,
       apiUrl: normalizeApiBase(env.THREADS_API_URL, THREADS_API_URL, 'THREADS_API_URL'),

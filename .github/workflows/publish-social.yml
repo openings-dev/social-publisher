@@ -92,6 +92,7 @@ jobs:
       BUFFER_TWITTER_CHANNEL_ID: ${{ vars.BUFFER_TWITTER_CHANNEL_ID }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
       PUBLISHING_SOCIAL_SHADOW_ENABLED: ${{ vars.PUBLISHING_SOCIAL_SHADOW_ENABLED || 'false' }}
+      PUBLISHING_MASTODON_ENABLED: ${{ vars.PUBLISHING_MASTODON_ENABLED || 'false' }}
       PUBLISHING_ENDPOINT: ${{ vars.PUBLISHING_ENDPOINT }}
       PUBLISHING_CLIENT_ID: ${{ vars.PUBLISHING_CLIENT_ID }}
       PUBLISHING_CLIENT_SECRET: ${{ secrets.PUBLISHING_CLIENT_SECRET }}
@@ -410,11 +411,12 @@ jobs:
         run: exit 1
 
       - name: Preserve deferred platform handoff and source media
-        if: failure() && env.PUBLISHING_SOCIAL_SHADOW_ENABLED == 'true'
+        if: failure() && (env.PUBLISHING_SOCIAL_SHADOW_ENABLED == 'true' || env.PUBLISHING_MASTODON_ENABLED == 'true')
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: platform-recovery-${{ github.run_id }}
           path: |
+            state/.publishing/
             .tmp/publish/.publishing/
             .tmp/publish/jobs/*/opengraph-image.png
             .tmp/intake-*/.publishing/

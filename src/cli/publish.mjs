@@ -12,6 +12,7 @@ import {
 import { processOnePublication } from '../modules/publishing/orchestrator.mjs';
 import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
 import { publishToMastodon } from '../modules/networks/mastodon-client.mjs';
+import { publishMastodonThroughPlatform } from '../modules/publishing/platform-mastodon.mjs';
 import { publishToInstagram } from '../modules/networks/instagram-client.mjs';
 import { publishToLinkedInViaBuffer } from '../modules/networks/buffer-linkedin-client.mjs';
 import { publishToTwitterViaBuffer } from '../modules/networks/buffer-twitter-client.mjs';
@@ -153,7 +154,11 @@ export async function runPublication({
       throw error;
     }
   });
-  const publishMastodon = dependencies.publishMastodon ?? (({ job, post }) => publishToMastodon({
+  const publishMastodon = dependencies.publishMastodon ?? (config.platformMastodon
+    ? ({ job, post }) => publishMastodonThroughPlatform({
+      job, post, transport: config.platformMastodon, outboxDirectory: resolve(stateDirectory, '.publishing', 'mastodon'),
+    })
+    : ({ job, post }) => publishToMastodon({
     job,
     post,
     accessToken: config.mastodonAccessToken,
