@@ -14228,12 +14228,12 @@
       "createdAt": "2026-09-01T00:24:23Z",
       "publicationCreatedAt": "2026-09-04T18:52:09.889Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-09-07T12:30:02.089Z",
+        "status": "failed",
+        "attempts": 3,
+        "updatedAt": "2026-09-07T18:43:58.766Z",
         "lastError": {
-          "code": "deployment",
-          "at": "2026-09-07T12:30:02.089Z"
+          "code": "bridge_platform_media_pending",
+          "at": "2026-09-07T18:43:58.766Z"
         },
         "lastReset": {
           "at": "2026-09-07T04:38:37.456Z",
