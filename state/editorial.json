@@ -9,10 +9,13 @@
       "scheduledDate": "2026-09-07",
       "createdAt": "2026-09-07T19:10:28.049Z",
       "assets": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
-        "lastError": null,
+        "status": "retryable",
+        "attempts": 1,
+        "updatedAt": "2026-09-07T19:10:29.850Z",
+        "lastError": {
+          "code": "editorial_deploy_provider",
+          "at": "2026-09-07T19:10:29.850Z"
+        },
         "lastReset": null,
         "result": null
       },
