@@ -91,6 +91,10 @@ jobs:
       BUFFER_LINKEDIN_CHANNEL_ID: ${{ vars.BUFFER_LINKEDIN_CHANNEL_ID }}
       BUFFER_TWITTER_CHANNEL_ID: ${{ vars.BUFFER_TWITTER_CHANNEL_ID }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
+      PUBLISHING_SOCIAL_SHADOW_ENABLED: ${{ vars.PUBLISHING_SOCIAL_SHADOW_ENABLED || 'false' }}
+      PUBLISHING_ENDPOINT: ${{ vars.PUBLISHING_ENDPOINT }}
+      PUBLISHING_CLIENT_ID: ${{ vars.PUBLISHING_CLIENT_ID }}
+      PUBLISHING_CLIENT_SECRET: ${{ secrets.PUBLISHING_CLIENT_SECRET }}
       THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.THREADS_AUTO_PUBLISH || 'false' }}
       INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
       LINKEDIN_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_linkedin) && 'true' || vars.LINKEDIN_AUTO_PUBLISH || 'false' }}
@@ -404,3 +408,17 @@ jobs:
       - name: Fail after preserving an intake error
         if: always() && steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled' && steps.intake.outputs.error != ''
         run: exit 1
+
+      - name: Preserve deferred platform handoff and source media
+        if: failure() && env.PUBLISHING_SOCIAL_SHADOW_ENABLED == 'true'
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: platform-recovery-${{ github.run_id }}
+          path: |
+            .tmp/publish/.publishing/
+            .tmp/publish/jobs/*/opengraph-image.png
+            .tmp/intake-*/.publishing/
+            .tmp/intake-*/jobs/*/opengraph-image.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 1

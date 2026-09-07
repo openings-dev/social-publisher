@@ -201,3 +201,31 @@ Buffer downloads the stable image directly from `openings.dev`; this repository 
 ## License
 
 MIT
+# Cloudflare social handoff
+
+`@trebla/publishing@0.1.0` prepares and submits one durable `social.shadow`
+delivery. The data pipeline retains ownership of web entities. Legacy social
+providers still own public posts; a shadow receipt does not indicate a post
+was published to a network.
+
+The regular dry run also writes a private handoff under its output directory.
+The production bridge submits it before deploying its assets when
+`PUBLISHING_SOCIAL_SHADOW_ENABLED=true`. Configure `PUBLISHING_ENDPOINT` and
+`PUBLISHING_CLIENT_ID` as GitHub variables and `PUBLISHING_CLIENT_SECRET` as a
+GitHub secret. Dry runs do not read the credential or make platform requests.
+
+For an explicit local handoff:
+
+```sh
+npm run platform -- prepare --job job.json --media card.png
+npm run platform -- submit --handoff .publishing/outbox/HASH/handoff.json
+```
+
+Submission verifies local media, uploads it, and submits only that envelope.
+Capacity deferrals exit with code 75 and retain the handoff for retry. Accepted
+receipts suppress repeated local uploads; interrupted submissions reuse the
+same idempotency key. Keep the handoff directory and original media together.
+Failed automatic runs preserve their recovery artifacts for one day. Restore
+them under the same checkout paths when resuming on another runner, since
+handoff upload bindings contain absolute local paths. Secrets never belong in
+handoffs, source control, or recovery artifacts.

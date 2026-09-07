@@ -29,6 +29,7 @@ import {
 } from '../modules/state/state-model.mjs';
 import { assertValidJobId } from '../shared/job-id.mjs';
 import { sha256 } from '../shared/hash.mjs';
+import { prepareSocialPublication } from '../modules/publishing/platform-publisher.mjs';
 
 function parseArguments(argumentsList) {
   const values = {};
@@ -84,6 +85,9 @@ export async function runDryRun({ fixturePath, wordmarkPath, outputPath, log = c
     instagramSvg,
     outputDirectory: jobDirectory,
   });
+  const platform = await prepareSocialPublication({
+    job: fixture, mediaPath: imagePath, outboxDirectory: resolve(outputPath, '.publishing/outbox'),
+  });
 
   log(`Dry-run job: ${fixture.id}`);
   log(`\n${post.text}\n`);
@@ -91,6 +95,7 @@ export async function runDryRun({ fixturePath, wordmarkPath, outputPath, log = c
 
   return Object.freeze({
     jobId: fixture.id,
+    platformHandoffPath: platform.path,
     post,
     files: Object.freeze([htmlPath, imagePath, instagramImagePath, reel.coverPath, reel.videoPath]),
   });

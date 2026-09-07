@@ -144,7 +144,14 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
     }
   }
 
+  const platformEnabled = requiresDeploy && env.PUBLISHING_SOCIAL_SHADOW_ENABLED === 'true';
+  if (platformEnabled) requireKeys(env, ['PUBLISHING_ENDPOINT', 'PUBLISHING_CLIENT_ID', 'PUBLISHING_CLIENT_SECRET']);
   return Object.freeze({
+    platformShadow: platformEnabled ? Object.freeze({
+      baseUrl: normalizeExactOrigin(env.PUBLISHING_ENDPOINT, undefined, 'PUBLISHING_ENDPOINT'),
+      clientId: env.PUBLISHING_CLIENT_ID,
+      secret: env.PUBLISHING_CLIENT_SECRET,
+    }) : null,
     mode,
     publishEnabled: mode === 'controlled' || metaMigration || (mode === 'scheduled' && automatic),
     instagramStoryEnabled,
