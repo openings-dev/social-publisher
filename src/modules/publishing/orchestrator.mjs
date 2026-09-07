@@ -11,6 +11,8 @@ import { formatSocialPost } from '../render/format-job.mjs';
 import {
   enqueueBridgeWork,
   enqueueJob,
+  queuedArtworkDirection,
+  reservePublicationArtwork,
   markJobClosed,
   markMissingJobsClosed,
   selectNextQueueItem,
@@ -148,10 +150,12 @@ function updateQueuedRevision(queueState, job, snapshot) {
 }
 
 function needsInstagramBridgeUpgrade(item) {
-  return READY_STATUSES.has(item.instagram.status)
-    && item.bridge.status === 'published'
+  if (item.bridge.status !== 'published') return false;
+  const artworkChanged = item.visualDirection !== undefined
+    && item.bridge.result?.visualDirection !== item.visualDirection;
+  return artworkChanged || (READY_STATUSES.has(item.instagram.status)
     && (item.bridge.result?.instagramCardVersion !== INSTAGRAM_CARD_VERSION
-      || item.bridge.result?.socialVideoVersion !== SOCIAL_VIDEO_VERSION);
+      || item.bridge.result?.socialVideoVersion !== SOCIAL_VIDEO_VERSION));
 }
 
 function invalidateStaleInstagramBridge(queueState, jobId, at) {
@@ -312,7 +316,8 @@ export async function processIntakeSnapshots({
         nextIntake = transitionPendingBridgeStage(nextIntake, job.id, 'publishing', { at: now });
         bridgeCount += 1;
         try {
-          bridgeResult = await publishBridge({ job, snapshot: current, reason });
+          const direction = queuedArtworkDirection(nextQueue, job.id);
+          bridgeResult = { ...await publishBridge({ job, snapshot: current, reason, direction }), visualDirection: direction };
           nextIntake = transitionPendingBridgeStage(nextIntake, job.id, 'published', {
             at: now,
             result: bridgeResult,
@@ -467,6 +472,7 @@ export async function processOnePublication({
   const revisionChanged = selected.contentHash !== job.contentHash
     || selected.dataCommit !== currentSnapshot.commit
     || selected.dataHash !== currentSnapshot.dataHash;
+  nextQueue = reservePublicationArtwork(nextQueue, job.id);
   nextQueue = updateQueuedRevision(nextQueue, job, currentSnapshot);
   selected = findQueueItem(nextQueue, selected.jobId);
   const instagramCardUpgrade = needsInstagramBridgeUpgrade(selected);
@@ -477,10 +483,13 @@ export async function processOnePublication({
     try {
       const result = await publishBridge({
         job,
+        direction: queuedArtworkDirection(nextQueue, job.id),
         snapshot: currentSnapshot,
         reason: instagramCardUpgrade ? 'instagram_card_upgrade' : (revisionChanged ? 'changed' : 'new'),
       });
-      nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'published', { at: now, result });
+      nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'published', {
+        at: now, result: { ...result, visualDirection: queuedArtworkDirection(nextQueue, job.id) },
+      });
     } catch (error) {
       nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'retryable', {
         at: now,

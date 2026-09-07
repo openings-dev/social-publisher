@@ -13643,12 +13643,16 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T15:30:33.907Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18621728494013739",
+          "url": "https://www.instagram.com/stories/openingshq/3980299492649955158"
+        }
       }
     },
     {
@@ -13748,78 +13752,116 @@
       "bridge": {
         "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-09-04T16:22:57.084Z",
+        "updatedAt": "2026-09-06T15:27:39.784Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-06T15:27:39.784Z",
+          "reason": "instagram_card_upgrade"
+        },
         "result": {
           "status": "deployed",
           "canonicalUrl": "https://openings.dev/jobs/gh_312c1d1da4fda56e93aab52b",
-          "imageUrl": "https://openings.dev/jobs/gh_312c1d1da4fda56e93aab52b/opengraph-image.png?v=2.e7cc29b59cfbfd34",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_312c1d1da4fda56e93aab52b/instagram-image.jpg?v=4.57ebc85ae6aea447",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_312c1d1da4fda56e93aab52b/social-video.mp4?v=4.57ebc85ae6aea447",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_312c1d1da4fda56e93aab52b/social-video-cover.jpg?v=4.57ebc85ae6aea447",
-          "pngHash": "e7cc29b59cfbfd346541696c1e78f4c6b1203d8de99cd33b737549fcf33dd261",
-          "instagramSvgHash": "57ebc85ae6aea44712324387f73687a54de9ebd079c1524cc14766c82fd79194",
-          "instagramCardVersion": "4",
-          "socialVideoVersion": "4"
+          "imageUrl": "https://openings.dev/jobs/gh_312c1d1da4fda56e93aab52b/opengraph-image.png?v=2.d2e9811714ee4e59",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_312c1d1da4fda56e93aab52b/instagram-image.jpg?v=5.fae8a3185fcc583f",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_312c1d1da4fda56e93aab52b/social-video.mp4?v=6.fae8a3185fcc583f",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_312c1d1da4fda56e93aab52b/social-video-cover.jpg?v=6.fae8a3185fcc583f",
+          "pngHash": "d2e9811714ee4e599d5626b4577989e046f7fe7e051384c04ff5020755c17dd8",
+          "instagramSvgHash": "fae8a3185fcc583fb64045adb70071e71c22342dda64dda02bec3bccfd4bd369",
+          "instagramCardVersion": "5",
+          "socialVideoVersion": "6",
+          "visualDirection": "night"
         }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T15:27:39.784Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mupernxwmn23",
+          "cid": "bafyreievlprvqrewkxndii55xfeflkgcj5e4teewua24zw2pwdjn5knja4",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mupernxwmn23"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T15:27:39.784Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117224803374724457",
+          "url": "https://mastodon.social/@openingshq/117224803374724457",
+          "cardStatus": "resolved"
+        }
       },
       "twitter": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T15:27:39.784Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "6a9d86ca2066ff47cc3dffab",
+          "url": "https://twitter.com/OpeningsDev/status/2096621759529099593",
+          "provider": "buffer"
+        }
       },
       "threads": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T15:27:39.784Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18087517796280721",
+          "url": "https://www.threads.com/@openingshq/post/Dc83D4OGwn4"
+        }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T15:27:39.784Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18111638051037339",
+          "url": "https://www.instagram.com/reel/Dc83FWPlXO6/"
+        }
       },
       "linkedin": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T15:27:39.784Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "6a9d86fc05c83fb1f6231cf4",
+          "url": "https://www.linkedin.com/feed/update/urn:li:share:7502387746343313408",
+          "provider": "buffer"
+        }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T18:44:52.128Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
-      }
+        "result": {
+          "status": "published",
+          "id": "18088062491654987",
+          "url": "https://www.instagram.com/stories/openingshq/3980397114580350675"
+        }
+      },
+      "visualDirection": "night",
+      "visualSequence": 0
     },
     {
       "jobId": "gh_d02f8e2464d3165527beaea0",
@@ -13917,79 +13959,117 @@
       "publicationCreatedAt": "2026-09-04T16:27:21.525Z",
       "bridge": {
         "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-04T16:27:21.525Z",
+        "attempts": 3,
+        "updatedAt": "2026-09-06T23:53:14.810Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-06T18:18:34.731Z",
+          "reason": "instagram_card_upgrade"
+        },
         "result": {
           "status": "deployed",
           "canonicalUrl": "https://openings.dev/jobs/gh_7adc09e88e30769222c35f94",
-          "imageUrl": "https://openings.dev/jobs/gh_7adc09e88e30769222c35f94/opengraph-image.png?v=2.1ffb0678e2cd68aa",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_7adc09e88e30769222c35f94/instagram-image.jpg?v=4.feb9b039f5295cfb",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_7adc09e88e30769222c35f94/social-video.mp4?v=4.feb9b039f5295cfb",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_7adc09e88e30769222c35f94/social-video-cover.jpg?v=4.feb9b039f5295cfb",
-          "pngHash": "1ffb0678e2cd68aae46445c2bd4b66294506b7fe96b02c434d77c2c17f5c139d",
-          "instagramSvgHash": "feb9b039f5295cfbe630e285c14d512382efec3ed3f378bb5c2bb904bf92afbb",
-          "instagramCardVersion": "4",
-          "socialVideoVersion": "4"
+          "imageUrl": "https://openings.dev/jobs/gh_7adc09e88e30769222c35f94/opengraph-image.png?v=2.8324dabc56bef51d",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_7adc09e88e30769222c35f94/instagram-image.jpg?v=7.b3d5712462aef842",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_7adc09e88e30769222c35f94/social-video.mp4?v=8.b3d5712462aef842",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_7adc09e88e30769222c35f94/social-video-cover.jpg?v=8.b3d5712462aef842",
+          "pngHash": "8324dabc56bef51d610a16046169e0f90ede76ac66f735a29327ae2df0261f1a",
+          "instagramSvgHash": "b3d5712462aef842733bf703c75db78ea9ab651a8cbd9ae8ba3552bae4c3c727",
+          "instagramCardVersion": "7",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial"
         }
       },
       "bluesky": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T23:53:14.810Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mupezgkxfd2x",
+          "cid": "bafyreibpqjqzuq6ixt3ujdh4ivnfyi7dsb7phpxgce554lgmcwcwmwot3y",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mupezgkxfd2x"
+        }
       },
       "mastodon": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T23:53:14.810Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "117226823832574193",
+          "url": "https://mastodon.social/@openingshq/117226823832574193",
+          "cardStatus": "resolved"
+        }
       },
       "twitter": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T23:53:14.810Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "6a9dff38c3f65d238efafcfa",
+          "url": "https://twitter.com/OpeningsDev/status/2096751068893905104",
+          "provider": "buffer"
+        }
       },
       "threads": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T23:53:14.810Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18099883151574643",
+          "url": "https://www.threads.com/@openingshq/post/Dc9x3QjG41r"
+        }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T23:53:14.810Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18031076996670130",
+          "url": "https://www.instagram.com/reel/Dc9x4nHjo7K/"
+        }
       },
       "linkedin": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-06T23:53:14.810Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "6a9dff5c32d4364c943b1d86",
+          "url": "https://www.linkedin.com/feed/update/urn:li:share:7502516994877902849",
+          "provider": "buffer"
+        }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-07T00:04:08.537Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
-      }
+        "result": {
+          "status": "published",
+          "id": "18086737331680088",
+          "url": "https://www.instagram.com/stories/openingshq/3980557595832370709"
+        }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 1
     },
     {
       "jobId": "gh_ea5af2b7d9172ac9b9d96edd",
@@ -14276,6 +14356,92 @@
           "id": "18140431735510553",
           "url": "https://www.instagram.com/stories/openingshq/3979108758038673474"
         }
+      }
+    },
+    {
+      "jobId": "gh_9be96c4ad694d4c67023486b",
+      "sourceId": "soujava/vagas-java#1948",
+      "dataCommit": "cb89651954e726c7b153c0cf48947ba34c348164",
+      "dataHash": "1c720cfcb9ae796f7104ae353414badf8dfc033000f036b6ce1f91d979172873",
+      "contentHash": "7678c17ceaf9fef6335399e934cf1d69fd6d46939d2cccb134057b7b3e6347b3",
+      "discoveredAt": "2026-09-07T00:09:35.866Z",
+      "createdAt": "2026-09-01T14:27:13Z",
+      "publicationCreatedAt": "2026-09-07T00:09:35.866Z",
+      "bridge": {
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-07T00:09:35.866Z",
+        "lastError": null,
+        "lastReset": null,
+        "result": {
+          "status": "deployed",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9be96c4ad694d4c67023486b",
+          "imageUrl": "https://openings.dev/jobs/gh_9be96c4ad694d4c67023486b/opengraph-image.png?v=2.cabdb74bbd41a6be",
+          "instagramImageUrl": "https://openings.dev/jobs/gh_9be96c4ad694d4c67023486b/instagram-image.jpg?v=7.bca47dc1aa0a3d2c",
+          "socialVideoUrl": "https://openings.dev/jobs/gh_9be96c4ad694d4c67023486b/social-video.mp4?v=8.bca47dc1aa0a3d2c",
+          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_9be96c4ad694d4c67023486b/social-video-cover.jpg?v=8.bca47dc1aa0a3d2c",
+          "pngHash": "cabdb74bbd41a6be3069c3d0805134d2356354d2d5c2ff32fe7e76439dee929d",
+          "instagramSvgHash": "bca47dc1aa0a3d2cc59c472feac824616113d2d0cec1436b2610c63477bec57a",
+          "instagramCardVersion": "7",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial"
+        }
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
       }
     }
   ]

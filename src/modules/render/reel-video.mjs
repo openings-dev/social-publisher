@@ -14,6 +14,10 @@ import {
 } from '../../config/constants.mjs';
 import { escapeHtml } from '../../shared/escape.mjs';
 import { sha256 } from '../../shared/hash.mjs';
+import { decodeJobPosterInput } from './job-poster-input.mjs';
+import { decodeArtworkModel } from './job-poster-model.mjs';
+import { resolveReelSoundtrack } from './soundtrack.mjs';
+export { resolveReelSoundtrack } from './soundtrack.mjs';
 import { SOCIAL_CARD_COLORS } from './social-card.mjs';
 import { SOCIAL_CARD_FONT_STACK } from './cjk-fonts.mjs';
 import {
@@ -33,7 +37,7 @@ const execFile = promisify(execFileCallback);
 function assertInstagramSvg(value) {
   if (typeof value !== 'string'
     || !/<svg\b[^>]*width="1080"[^>]*height="1350"[^>]*data-instagram-card="true"/iu.test(value)
-    || !value.includes(`data-social-poster-version="${SOCIAL_POSTER_MODEL_VERSION}"`)) {
+    || !/data-social-poster-version="[34]"/u.test(value)) {
     throw new Error('A canonical 1080×1350 Instagram SVG is required');
   }
   if (/<(?:script|foreignObject)\b|\bon[a-z]+\s*=|@import|url\(\s*["']?https?:/iu.test(value)) {
@@ -51,7 +55,8 @@ function extractPosterInput(instagramSvg) {
   if (!modelValue || !wordmark) {
     throw new Error('Instagram SVG is missing its canonical poster payload');
   }
-  return Object.freeze({ model: decodeSocialPosterModel(modelValue), wordmark });
+  return Object.freeze({ model: document.includes('data-social-poster-version="4"')
+    ? decodeArtworkModel(modelValue) : decodeSocialPosterModel(modelValue), wordmark });
 }
 
 const segmenter = new Intl.Segmenter('en', { granularity: 'grapheme' });
@@ -171,6 +176,11 @@ function stageSvg({ model, wordmark }, stage) {
 
 export function createReelStageSvgs(instagramSvg) {
   const poster = extractPosterInput(instagramSvg);
+  if (poster.model.version === 4) {
+    const { model, render, wordmarkSvg } = decodeJobPosterInput(instagramSvg);
+    const svg = render(model, { format: 'story', wordmarkSvg });
+    return Object.freeze([svg, svg, svg, svg]);
+  }
   return Object.freeze([1, 2, 3, 4].map((stage) => stageSvg(poster, stage)));
 }
 
@@ -330,15 +340,17 @@ export async function renderReelVideo({
       throw new Error('Rendered social video cover has invalid dimensions');
     }
 
-    const audioPath = join(temporaryDirectory, 'soundtrack.wav');
-    await writeFile(audioPath, createOriginalSoundtrackWav());
+    const soundtrack = await resolveReelSoundtrack(instagramSvg);
+    const audioPath = soundtrack?.path ?? join(temporaryDirectory, 'soundtrack.wav');
+    if (!soundtrack) await writeFile(audioPath, createOriginalSoundtrackWav());
     await execFileImpl(ffmpegPath, buildReelFfmpegArguments({
       stagePaths,
       audioPath,
       outputPath: videoPath,
     }), { maxBuffer: 4 * 1024 * 1024 });
     assertMp4Header(await readFile(videoPath));
-    return Object.freeze({ videoPath, coverPath, coverSourceHash: sha256(Buffer.from(coverSource, 'utf8')) });
+    return Object.freeze({ videoPath, coverPath, coverSourceHash: sha256(Buffer.from(coverSource, 'utf8')),
+      soundtrackId: soundtrack?.id ?? 'legacy-synth', soundtrackSha256: soundtrack?.sha256 ?? null });
   } finally {
     await rm(temporaryDirectory, { recursive: true, force: true });
   }

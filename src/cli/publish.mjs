@@ -133,7 +133,7 @@ export async function runPublication({
     outputRoot: outputPath,
   });
   const publishBluesky = dependencies.publishBluesky ?? (async ({ job, post, queueItem }) => {
-    const png = await renderSocialCardPng(job, { wordmarkSvg });
+    const png = await renderSocialCardPng(job, { wordmarkSvg, direction: queueItem.visualDirection ?? queueItem.bridge.result?.visualDirection });
     try {
       return await publishToBluesky({
         job,
@@ -212,7 +212,7 @@ export async function runPublication({
           apiOrigin: config.linkedin?.apiOrigin,
         });
       }
-      const png = await renderSocialCardPng(job, { wordmarkSvg });
+      const png = await renderSocialCardPng(job, { wordmarkSvg, direction: queueItem.visualDirection ?? queueItem.bridge.result?.visualDirection });
       return await publishToLinkedIn({
         job,
         post,

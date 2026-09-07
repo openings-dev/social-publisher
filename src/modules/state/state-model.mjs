@@ -1,5 +1,6 @@
 import { MAX_CHANNEL_ATTEMPTS, SOCIAL_CHANNELS, STATE_SCHEMA_VERSION } from '../../config/constants.mjs';
 import { isValidJobId } from '../../shared/job-id.mjs';
+import { ARTWORK_DIRECTIONS, artworkAt } from '../render/job-poster-model.mjs';
 
 const SENSITIVE_KEY_PATTERN = /(?:authorization|credential|password|private.?key|secret|token)/i;
 const STAGE_STATUSES = new Set([
@@ -231,6 +232,13 @@ export function validateQueueState(value) {
   }
   assertUniqueJobIds(state.items, 'queue');
   for (const item of state.items) {
+    if (item.visualDirection !== undefined && !ARTWORK_DIRECTIONS.includes(item.visualDirection)) {
+      throw new Error('Queue artwork direction is invalid');
+    }
+    if (item.visualSequence !== undefined && (!Number.isSafeInteger(item.visualSequence)
+      || item.visualSequence < 0 || item.visualDirection !== artworkAt(item.visualSequence))) {
+      throw new Error('Queue artwork sequence is invalid');
+    }
     if (!isValidJobId(item.jobId)) {
       throw new Error('queue jobId is invalid');
     }
