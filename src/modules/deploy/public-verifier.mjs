@@ -42,9 +42,9 @@ async function fetchResponse(url, fetchImpl, timeoutMs, redirect = 'error') {
   }
 }
 
-function mismatch(reason, allowMismatch) {
+function verificationMismatch(reason, allowMismatch, runtime) {
   if (allowMismatch) {
-    return Object.freeze({ matches: false, reason });
+    return Object.freeze({ matches: false, reason, ...(runtime ? { runtime } : {}) });
   }
   throw new Error(`Public bridge verification failed: ${reason}`);
 }
@@ -69,6 +69,8 @@ export async function verifyPublicBridge({
   timeoutMs = REQUEST_TIMEOUT_MS,
   allowMismatch = false,
 }) {
+  let runtime;
+  const mismatch = (reason, permitted) => verificationMismatch(reason, permitted, runtime);
   const canonicalUrl = buildCanonicalJobUrl(jobId, origin);
   const imageUrl = versionAssetUrl(
     `${canonicalUrl}/opengraph-image.png`,
@@ -96,6 +98,7 @@ export async function verifyPublicBridge({
   } catch {
     return mismatch('html_request_failed', allowMismatch);
   }
+  if (htmlResponse.headers.has('x-publishing-revision')) runtime = 'publishing-platform';
   if (htmlResponse.status === 301 || htmlResponse.status === 308) {
     const redirectedUrl = `${canonicalUrl}/`;
     if (htmlResponse.headers.get('location') !== redirectedUrl) {
@@ -107,6 +110,7 @@ export async function verifyPublicBridge({
       return mismatch('html_request_failed', allowMismatch);
     }
   }
+  if (htmlResponse.headers.has('x-publishing-revision')) runtime = 'publishing-platform';
   const edgeBlocked = htmlResponse.status === 403
     && /cloudflare/iu.test(htmlResponse.headers.get('server') ?? '');
   if (!edgeBlocked) {
@@ -239,6 +243,7 @@ export async function verifyPublicBridge({
   }
   return Object.freeze({
     matches: true,
+    ...(runtime ? { runtime } : {}),
     canonicalUrl,
     imageUrl,
     instagramImageUrl,
