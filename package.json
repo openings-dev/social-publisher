@@ -25,9 +25,9 @@
     "migrate:meta": "node src/cli/migrate-meta.mjs"
   },
   "dependencies": {
-    "@trebla/publishing": "0.1.0",
     "@atproto/api": "^0.17.0",
     "@atproto/common-web": "^0.4.21",
+    "@trebla/publishing": "0.1.1",
     "sharp": "^0.35.3"
   }
 }
