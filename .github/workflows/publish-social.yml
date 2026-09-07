@@ -216,6 +216,17 @@ jobs:
           --confirmation "$REQUEST_CONFIRMATION"
           --state state
 
+      - name: Checkpoint Cloudflare Mastodon ownership before any provider request
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.PUBLISHING_MASTODON_ENABLED == 'true'
+        run: |
+          node src/cli/claim-platform-mastodon.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- state/queue.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(state): claim Cloudflare Mastodon ownership [skip ci]'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+
       - name: Publish at most one queued job
         id: publication
         if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled')

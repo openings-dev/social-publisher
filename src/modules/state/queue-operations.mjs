@@ -229,6 +229,8 @@ export function resetFailedStage(queueState, jobId, stageName, { at, reason }) {
       ...item,
       [stageName]: {
         ...stageState(),
+        ...(stageName === 'mastodon' && item.mastodon.result?.executionOwner === 'cloudflare'
+          ? { result: item.mastodon.result } : {}),
         updatedAt: at,
         lastReset: { at, reason: sanitizeCode(reason, 'manual_reset') },
       },
