@@ -1,5 +1,5 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile, mkdir } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, mkdir, unlink } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { basename, dirname, join } from 'node:path';
 import test from 'node:test';
@@ -27,13 +27,14 @@ test('prepares real media locally with social ownership and content-sensitive id
   assert.notEqual(changed.path, first.path);
 });
 
-test('uploads before signed submission and persists acceptance for duplicate invocations', async () => {
+test('checks acceptance before upload and persists acceptance for duplicate invocations', async () => {
   const prepared = await prepareSocialPublication(await fixture());
   const calls = [];
   const transport = {
     baseUrl: 'https://publisher.example', clientId: 'test-client', secret: 'test-only-secret',
     fetch: async (url, init) => {
       calls.push(init.method);
+      if (calls.length === 1) return Response.json({ code: 'ARTIFACT_NOT_READY' }, { status: 409 });
       if (init.method === 'PUT') {
         await new Response(init.body).arrayBuffer();
         return Response.json({ status: 'stored' });
@@ -43,12 +44,12 @@ test('uploads before signed submission and persists acceptance for duplicate inv
     },
   };
   assert.equal((await submitSocialPublication({ path: prepared.path, transport })).outcome, 'accepted');
-  assert.deepEqual(calls, ['PUT', 'POST']);
+  assert.deepEqual(calls, ['POST', 'PUT', 'POST']);
   assert.equal((await submitSocialPublication({ path: prepared.path, transport })).outcome, 'already-accepted');
-  assert.deepEqual(calls, ['PUT', 'POST']);
+  assert.deepEqual(calls, ['POST', 'PUT', 'POST']);
 });
 
-test('capacity rejection retains handoff and never submits the envelope', async () => {
+test('capacity rejection retains handoff without uploading media', async () => {
   const prepared = await prepareSocialPublication(await fixture());
   const calls = [];
   const result = await submitSocialPublication({ path: prepared.path, transport: {
@@ -60,17 +61,20 @@ test('capacity rejection retains handoff and never submits the envelope', async 
     },
   } });
   assert.equal(result.outcome, 'retry-later');
-  assert.deepEqual(calls, ['PUT']);
+  assert.deepEqual(calls, ['POST']);
   assert.ok(await readFile(prepared.path));
 });
 
-test('changed source bytes fail before any network request', async () => {
+test('changed source bytes fail before upload when remote intake needs the artifact', async () => {
   const input = await fixture();
   const prepared = await prepareSocialPublication(input);
   await writeFile(input.mediaPath, 'changed artwork');
   await assert.rejects(submitSocialPublication({ path: prepared.path, transport: {
     baseUrl: 'https://publisher.example', clientId: 'test-client', secret: 'test-only-secret',
-    fetch: () => assert.fail('network must not run'),
+    fetch: async (_url, init) => {
+      assert.equal(init.method, 'POST');
+      return Response.json({ code: 'ARTIFACT_NOT_READY' }, { status: 409 });
+    },
   } }), /changed after preparation/);
 });
 
@@ -94,6 +98,7 @@ test('the production bridge invokes the shared transport before its existing dep
     outputRoot: input.directory,
     fetchImpl: async (_url, init) => {
       calls.push(init.method);
+      if (calls.length === 1) return Response.json({ code: 'ARTIFACT_NOT_READY' }, { status: 409 });
       if (init.method === 'PUT') {
         await new Response(init.body).arrayBuffer();
         return Response.json({ status: 'stored' });
@@ -103,7 +108,26 @@ test('the production bridge invokes the shared transport before its existing dep
     requestDeployment: async () => { calls.push('legacy-bridge'); return { status: 'verified', verification: {} }; },
   });
   await publish({ job: input.job });
-  assert.deepEqual(calls, ['PUT', 'POST', 'legacy-bridge']);
+  assert.deepEqual(calls, ['POST', 'PUT', 'POST', 'legacy-bridge']);
+});
+
+test('recovers remote acceptance after media is deleted without uploading', async () => {
+  const input = await fixture();
+  const prepared = await prepareSocialPublication(input);
+  await unlink(input.mediaPath);
+  const calls = [];
+  const result = await submitSocialPublication({ path: prepared.path, transport: {
+    baseUrl: 'https://publisher.example', clientId: 'test-client', secret: 'test-only-secret',
+    fetch: async (_url, init) => {
+      calls.push(init.method);
+      assert.equal(init.method, 'POST');
+      assert.deepEqual(JSON.parse(init.body), prepared.handoff.envelope);
+      return Response.json({ publicationId: 'existing-publication' }, { status: 202 });
+    },
+  } });
+  assert.equal(result.outcome, 'accepted');
+  assert.equal(result.publicationId, 'existing-publication');
+  assert.deepEqual(calls, ['POST']);
 });
 
 test('dry run never reads the social signing secret even if the gate is enabled', () => {
