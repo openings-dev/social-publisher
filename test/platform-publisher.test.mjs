@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
-import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
+import { mkdtemp, readFile, writeFile, mkdir } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
-import { join } from 'node:path';
+import { basename, dirname, join } from 'node:path';
 import test from 'node:test';
 import { prepareSocialPublication, submitSocialPublication, readSocialPublication } from '../src/modules/publishing/platform-publisher.mjs';
 import { createBridgePublisher } from '../src/modules/publishing/bridge-publisher.mjs';
@@ -124,4 +124,18 @@ test('reads a receipt through a signed GET without uploading or submitting', asy
     },
   } });
   assert.equal(result.deliveries[0].state, 'verified');
+});
+
+test('a local acceptance cannot bypass Openings shadow ownership validation', async () => {
+  const prepared = await prepareSocialPublication(await fixture());
+  const directory = dirname(prepared.path);
+  const changed = structuredClone(prepared.handoff);
+  changed.envelope.identity.tenant = 'another-tenant';
+  await writeFile(prepared.path, JSON.stringify(changed));
+  await mkdir(join(directory, 'accepted'));
+  await writeFile(join(directory, 'accepted', `${basename(directory)}.json`), JSON.stringify({ publicationId: 'copied' }));
+  await assert.rejects(submitSocialPublication({ path: prepared.path, transport: {
+    baseUrl: 'https://publisher.example', clientId: 'test-client', secret: 'test-only-secret',
+    fetch: () => assert.fail('invalid handoff must not use transport'),
+  } }), /Only one Openings shadow delivery/);
 });

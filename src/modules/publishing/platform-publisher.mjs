@@ -2,8 +2,8 @@ import { mkdir, readFile, rename, writeFile } from 'node:fs/promises';
 import { dirname, resolve } from 'node:path';
 import { randomUUID } from 'node:crypto';
 import {
-  createArtifactUploader, createFileOutbox, createLocalProducer, createPublishingClient,
-  prepareArtifactReference, stagePlatformHandoff, uploadPlatformHandoff,
+  createFileOutbox, createLocalProducer, createPlatformPublisher,
+  prepareArtifactReference, stagePlatformHandoff,
   buildSignedHeaders,
 } from '@trebla/publishing';
 import { formatSocialPost } from '../render/format-job.mjs';
@@ -81,27 +81,13 @@ export async function submitSocialPublication({ path, transport }) {
   const id = sha256(handoff.envelope.identity.idempotencyKey);
   const directory = dirname(resolve(path));
   if (resolve(directory, '..', id) !== directory) throw new Error('Handoff directory does not match identity');
-  // Retry after acceptance performs no upload and no second intake request.
-  try {
-    const receipt = JSON.parse(await readFile(resolve(directory, 'accepted', `${id}.json`), 'utf8'));
-    if (typeof receipt.publicationId !== 'string' || !receipt.publicationId) throw new Error('Invalid acceptance receipt');
-    return { outcome: 'already-accepted', publicationId: receipt.publicationId };
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
-  }
   if (handoff.envelope.identity.tenant !== 'openings'
     || handoff.envelope.identity.sourceType !== 'social-shadow'
     || handoff.envelope.deliveries.length !== 1
     || handoff.envelope.deliveries[0].adapter !== 'social.shadow') {
     throw new Error('Only one Openings shadow delivery is allowed');
   }
-  const outbox = createFileOutbox(directory);
-  const producer = createLocalProducer({ outbox });
-  await stagePlatformHandoff(handoff, producer);
-  const upload = await uploadPlatformHandoff(handoff, createArtifactUploader(transport));
-  if (upload.outcome !== 'available') return upload;
-  // Submit exactly this handoff, never drain unrelated or unuploaded entries.
-  const result = await createPublishingClient(transport).submit(handoff.envelope);
-  if (result.outcome === 'accepted') await outbox.acknowledge(id, result.publicationId);
-  return result;
+  // Preserve the existing per-identity directory while delegating recovery and
+  // upload sequencing to the same coordinator used by the other products.
+  return createPlatformPublisher({ outboxDirectory: dirname(directory), transport }).submit(handoff);
 }
