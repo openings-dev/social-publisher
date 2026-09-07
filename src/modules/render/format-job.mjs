@@ -219,7 +219,7 @@ export function formatSocialPost(job, { origin, maxGraphemes = MAX_POST_GRAPHEME
   if (!Number.isInteger(maxGraphemes) || maxGraphemes < 1 || maxGraphemes > MAX_POST_GRAPHEMES) {
     throw new Error('maxGraphemes must be a positive integer within the provider limit');
   }
-  const originalTitle = job.title.trim();
+  const originalTitle = (job.socialTitle ?? job.title).trim();
   const canonicalUrl = buildCanonicalJobUrl(job.id, origin);
   const metadataLine = formatMetadataLine(job);
   const salaryLine = formatSalary(job.salary);

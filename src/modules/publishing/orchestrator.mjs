@@ -409,6 +409,7 @@ export async function processOnePublication({
   publishLinkedIn,
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
   instagramStoryEnabled = false,
+  preparePublicationJob = (job) => job,
   now = new Date().toISOString(),
   jobId,
 }) {
@@ -463,10 +464,38 @@ export async function processOnePublication({
     };
   }
   const selectedJobId = selected.jobId;
-  const job = currentSnapshot.jobsById.get(selected.jobId);
+  let job = currentSnapshot.jobsById.get(selected.jobId);
   if (!job) {
     nextQueue = markJobClosed(nextQueue, selected.jobId, now);
     return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'skipped_closed', selectedJobId };
+  }
+
+  const started = SOCIAL_CHANNELS.some(channel => selected[channel].attempts > 0 || selected[channel].status === 'published');
+  if (started) {
+    // Keep already-started publication copy stable, including legacy originals.
+    if (selected.bridge.result?.socialTitle) job = { ...job, socialTitle: selected.bridge.result.socialTitle };
+  } else {
+    try {
+      job = preparePublicationJob(job);
+    } catch (error) {
+      if (error?.code !== 'social_title_review_required') throw error;
+      for (const stage of ['bridge', ...SOCIAL_CHANNELS, 'instagramStory']) {
+        if (READY_STATUSES.has(selected[stage].status)) {
+          nextQueue = transitionQueueStage(nextQueue, selected.jobId, stage, 'failed', {
+            at: now, errorCode: 'social_title_review_required',
+          });
+        }
+      }
+      return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'title_review_required', selectedJobId };
+    }
+  }
+
+  if (job.socialTitle && selected.bridge.status === 'published' && selected.bridge.result?.socialTitle !== job.socialTitle) {
+    nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map(item => item.jobId !== selected.jobId ? item : {
+      ...item, bridge: { ...item.bridge, status: 'pending', attempts: 0, result: null, lastError: null,
+        updatedAt: now, lastReset: { at: now, reason: 'social_title_update' } },
+    }) });
+    selected = findQueueItem(nextQueue, selected.jobId);
   }
 
   const revisionChanged = selected.contentHash !== job.contentHash
@@ -478,6 +507,12 @@ export async function processOnePublication({
   const instagramCardUpgrade = needsInstagramBridgeUpgrade(selected);
   nextQueue = invalidateStaleInstagramBridge(nextQueue, selected.jobId, now);
   selected = findQueueItem(nextQueue, selected.jobId);
+  if (job.socialTitle && selected.bridge.result?.socialTitle !== job.socialTitle) {
+    nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map(item => item.jobId !== job.id ? item : {
+      ...item, bridge: { ...item.bridge, result: { ...item.bridge.result, socialTitle: job.socialTitle } },
+    }) });
+    selected = findQueueItem(nextQueue, selected.jobId);
+  }
   if (READY_STATUSES.has(selected.bridge.status)) {
     nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'publishing', { at: now });
     try {
@@ -488,7 +523,8 @@ export async function processOnePublication({
         reason: instagramCardUpgrade ? 'instagram_card_upgrade' : (revisionChanged ? 'changed' : 'new'),
       });
       nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'published', {
-        at: now, result: { ...result, visualDirection: queuedArtworkDirection(nextQueue, job.id) },
+        at: now, result: { ...result, visualDirection: queuedArtworkDirection(nextQueue, job.id),
+          ...(job.socialTitle ? { socialTitle: job.socialTitle } : {}) },
       });
     } catch (error) {
       nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'retryable', {

@@ -10,6 +10,7 @@ import { buildRepositoryDispatchRequest } from '../deploy/web-deploy-client.mjs'
 import { createReelStageSvgs } from './reel-video.mjs';
 import { createSocialPosterModel, encodeSocialPosterModel } from './social-poster-model.mjs';
 import { PREVIEW_SAMPLES } from '../preview/sample-jobs.mjs';
+import { prepareSocialJob } from './social-title.mjs';
 
 const deploy = new URL('../../../../web-deploy/', import.meta.url);
 const publisher = new URL('../../../', import.meta.url);
@@ -64,8 +65,9 @@ test('real image dispatches fit GitHub limits and pass standalone deployment val
   const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302E"/></svg>';
   const directory = await mkdtemp(join(tmpdir(), 'openings-artwork-contract-'));
   try {
-    for (const direction of ['night', 'editorial', 'lavender', 'peach']) {
-      const job = PREVIEW_SAMPLES[1].job;
+    const translated = prepareSocialJob({ ...PREVIEW_SAMPLES[1].job, title: 'バックエンドエンジニア募集' });
+    for (const { direction, job } of ['night', 'editorial', 'lavender', 'peach'].flatMap(direction =>
+      [PREVIEW_SAMPLES[1].job, translated].map(job => ({ direction, job })))) {
       const artifacts = await renderBridgeArtifacts(job, { direction, wordmarkSvg, outputRoot: directory, origin: 'https://openings.dev' });
       const request = buildRepositoryDispatchRequest({ jobId: job.id, contentHash: job.contentHash, ...artifacts, image: artifacts.png, repository: 'openings-dev/web-deploy' });
       assert.ok(request.body.length < 65536);

@@ -35,7 +35,7 @@ export function validateArtworkModel(model) {
 
 export function createArtworkModel(job, { direction = defaultArtworkDirection(job.id) } = {}) {
   const company = useful(job.companyName).slice(0, 220);
-  let title = useful(job.title).replace(/\s*\|\s*/gu, '—') || 'Open role';
+  let title = useful(job.socialTitle ?? job.title).replace(/\s*\|\s*/gu, '—') || 'Open role';
   const context = [...(Array.isArray(job.tags) ? job.tags : []), job.country, job.region].map(useful).join(' ');
   const mode = /\bhybrid\b|híbrido/iu.test(context) ? 'Hybrid'
     : /\bon[ -]?site\b|presencial|in[ -]?office/iu.test(context) ? 'On-site'

@@ -10,6 +10,7 @@ import {
   loadCanonicalWordmark,
 } from '../modules/publishing/bridge-publisher.mjs';
 import { processOnePublication } from '../modules/publishing/orchestrator.mjs';
+import { prepareSocialJob } from '../modules/render/social-title.mjs';
 import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
 import { publishToMastodon } from '../modules/networks/mastodon-client.mjs';
 import { publishToInstagram } from '../modules/networks/instagram-client.mjs';
@@ -232,6 +233,7 @@ export async function runPublication({
     }
   });
   const result = await processOnePublication({
+    preparePublicationJob: prepareSocialJob,
     queueState,
     publicationsState,
     currentSnapshot: snapshot,
