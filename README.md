@@ -219,6 +219,7 @@ For an explicit local handoff:
 ```sh
 npm run platform -- prepare --job job.json --media card.png
 npm run platform -- submit --handoff .publishing/outbox/HASH/handoff.json
+npm run platform -- status --publication PUBLICATION_ID
 ```
 
 Submission verifies local media, uploads it, and submits only that envelope.

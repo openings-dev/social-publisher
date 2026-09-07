@@ -3,7 +3,7 @@ import { mkdtemp, readFile, writeFile } from 'node:fs/promises';
 import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
-import { prepareSocialPublication, submitSocialPublication } from '../src/modules/publishing/platform-publisher.mjs';
+import { prepareSocialPublication, submitSocialPublication, readSocialPublication } from '../src/modules/publishing/platform-publisher.mjs';
 import { createBridgePublisher } from '../src/modules/publishing/bridge-publisher.mjs';
 import { readEnvironment } from '../src/config/env.mjs';
 
@@ -111,4 +111,17 @@ test('dry run never reads the social signing secret even if the gate is enabled'
     get PUBLISHING_CLIENT_SECRET() { assert.fail('dry run must not access credentials'); },
   };
   assert.equal(readEnvironment({ env, mode: 'dry-run' }).platformShadow, null);
+});
+test('reads a receipt through a signed GET without uploading or submitting', async () => {
+  const result = await readSocialPublication({ publicationId: 'publication-1', transport: {
+    baseUrl: 'https://publisher.example', clientId: 'test-client', secret: 'test-only-secret',
+    fetch: async (url, init) => {
+      assert.equal(url, 'https://publisher.example/v1/publications/publication-1');
+      assert.equal(init.method, 'GET');
+      assert.ok(new Headers(init.headers).get('x-pub-signature'));
+      assert.equal(init.body, undefined);
+      return Response.json({ publicationId: 'publication-1', deliveries: [{ state: 'verified' }] });
+    },
+  } });
+  assert.equal(result.deliveries[0].state, 'verified');
 });

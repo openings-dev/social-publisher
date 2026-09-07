@@ -4,6 +4,7 @@ import { randomUUID } from 'node:crypto';
 import {
   createArtifactUploader, createFileOutbox, createLocalProducer, createPublishingClient,
   prepareArtifactReference, stagePlatformHandoff, uploadPlatformHandoff,
+  buildSignedHeaders,
 } from '@trebla/publishing';
 import { formatSocialPost } from '../render/format-job.mjs';
 import { preparePlatformHandoff } from './platform-envelope.mjs';
@@ -46,7 +47,7 @@ export async function prepareSocialPublication({ job, mediaPath, outboxDirectory
   return { path, handoff };
 }
 
-export async function submitSocialPublication({ path, transport }) {
+function validateTransport(transport) {
   if (!transport?.baseUrl || !transport.clientId || !transport.secret) {
     throw new Error('Publishing endpoint and credentials are required');
   }
@@ -55,6 +56,27 @@ export async function submitSocialPublication({ path, transport }) {
     || endpoint.search || endpoint.hash || endpoint.pathname !== '/') {
     throw new Error('Publishing endpoint must be a plain HTTPS origin');
   }
+}
+
+export async function readSocialPublication({ publicationId, transport }) {
+  validateTransport(transport);
+  if (typeof publicationId !== 'string' || !/^[a-zA-Z0-9-]{1,128}$/.test(publicationId)) throw new Error('Invalid publication ID');
+  const path = `/v1/publications/${publicationId}`;
+  const headers = await buildSignedHeaders({
+    clientId: transport.clientId, secret: transport.secret, method: 'GET', path,
+    tenant: 'openings', timestamp: new Date().toISOString(), nonce: randomUUID(), body: '',
+  });
+  const response = await (transport.fetch ?? fetch)(`${new URL(transport.baseUrl).origin}${path}`, {
+    method: 'GET', headers, signal: AbortSignal.timeout(20_000),
+  });
+  if (!response.ok) throw new Error(`Publication status returned HTTP ${response.status}`);
+  const value = await response.json();
+  if (value?.publicationId !== publicationId || !Array.isArray(value.deliveries)) throw new Error('Invalid publication status');
+  return value;
+}
+
+export async function submitSocialPublication({ path, transport }) {
+  validateTransport(transport);
   const handoff = JSON.parse(await readFile(path, 'utf8'));
   const id = sha256(handoff.envelope.identity.idempotencyKey);
   const directory = dirname(resolve(path));
