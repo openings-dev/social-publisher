@@ -388,6 +388,12 @@ async function publishQueueStage({ queueState, item, stage, publish, post, job, 
     const result = await publish({ job, post, queueItem: findQueueItem(next, item.jobId) });
     next = transitionQueueStage(next, item.jobId, stage, 'published', { at: now, result });
   } catch (error) {
+    if (stage === 'mastodon' && /^[a-zA-Z0-9-]{1,128}$/.test(error?.platformPublicationId ?? '')) {
+      next = validateQueueState({ ...next, items: next.items.map(entry => entry.jobId === item.jobId
+        ? { ...entry, mastodon: { ...entry.mastodon, result: {
+          executionOwner: 'cloudflare', platformPublicationId: error.platformPublicationId,
+        } } } : entry) });
+    }
     next = transitionQueueStage(next, item.jobId, stage, 'retryable', {
       at: now,
       errorCode: safeErrorCode(error, stage),

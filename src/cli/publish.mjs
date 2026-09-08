@@ -13,6 +13,7 @@ import { processOnePublication } from '../modules/publishing/orchestrator.mjs';
 import { prepareSocialJob } from '../modules/render/social-title.mjs';
 import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
 import { publishToMastodon } from '../modules/networks/mastodon-client.mjs';
+import { mastodonExecutionOwner, publishMastodonThroughPlatform } from '../modules/publishing/platform-mastodon.mjs';
 import { publishToInstagram } from '../modules/networks/instagram-client.mjs';
 import { publishToLinkedInViaBuffer } from '../modules/networks/buffer-linkedin-client.mjs';
 import { publishToTwitterViaBuffer } from '../modules/networks/buffer-twitter-client.mjs';
@@ -154,12 +155,16 @@ export async function runPublication({
       throw error;
     }
   });
-  const publishMastodon = dependencies.publishMastodon ?? (({ job, post }) => publishToMastodon({
-    job,
-    post,
-    accessToken: config.mastodonAccessToken,
-    baseUrl: config.mastodonBaseUrl,
-  }));
+  const publishMastodon = dependencies.publishMastodon ?? (({ job, post, queueItem }) => {
+    if (mastodonExecutionOwner(queueItem.mastodon, Boolean(config.platformMastodon)) === 'cloudflare') {
+      return publishMastodonThroughPlatform({
+        job, post, transport: config.platformMastodon,
+        acceptedPublicationId: queueItem.mastodon.result?.platformPublicationId,
+        outboxDirectory: resolve(stateDirectory, '.publishing', 'mastodon'),
+      });
+    }
+    return publishToMastodon({ job, post, accessToken: config.mastodonAccessToken, baseUrl: config.mastodonBaseUrl });
+  });
   const publishTwitter = dependencies.publishTwitter ?? (async ({ job, post, queueItem }) => {
     try {
       return await (dependencies.publishTwitterViaBuffer ?? publishToTwitterViaBuffer)({

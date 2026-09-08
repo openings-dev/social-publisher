@@ -260,6 +260,13 @@ export async function requestIncrementalBridgeDeployment({
   if (current.matches && !forceDeployment) {
     return Object.freeze({ status: 'already_current', verification: current });
   }
+  if (current.runtime === 'publishing-platform') {
+    // Uploading to the retired origin cannot update a platform-owned page.
+    // Keep the queue retryable without spending a legacy deployment workflow.
+    const error = new Error('Cloudflare bridge media migration is required before publication');
+    error.code = 'bridge_platform_media_pending';
+    throw error;
+  }
 
   const request = buildRepositoryDispatchRequest({
     jobId: safeJobId,

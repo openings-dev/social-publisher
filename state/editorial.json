@@ -1,7 +1,42 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [],
+  "pending": [
+    {
+      "contentId": "linkedin-atividade-estrategica",
+      "contentVersion": "2",
+      "pillar": "linkedin",
+      "scheduledDate": "2026-09-07",
+      "createdAt": "2026-09-07T19:10:28.049Z",
+      "assets": {
+        "status": "retryable",
+        "attempts": 1,
+        "updatedAt": "2026-09-07T19:10:29.850Z",
+        "lastError": {
+          "code": "editorial_deploy_provider",
+          "at": "2026-09-07T19:10:29.850Z"
+        },
+        "lastReset": null,
+        "result": null
+      },
+      "feed": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "story": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    }
+  ],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",

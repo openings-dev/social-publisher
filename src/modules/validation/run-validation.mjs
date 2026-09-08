@@ -3896,11 +3896,16 @@ validation('dry run emits the canonical bridge and both platform image previews'
     await writeFile(fixturePath, `${JSON.stringify(makeJob({ community: { name: 'Openings Fixtures' } }), null, 2)}\n`);
     await writeFile(wordmarkPath, '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302e"/></svg>');
     const result = await runDryRun({ fixturePath, wordmarkPath, outputPath, log: () => {} });
+    const handoff = JSON.parse(await readFile(result.platformHandoffPath, 'utf8'));
+    const handoffId = sha256(handoff.envelope.identity.idempotencyKey);
+    assert.deepEqual(handoff.envelope.deliveries.map(({ adapter }) => adapter), ['social.shadow']);
     const files = (await readdir(outputPath, { recursive: true, withFileTypes: true }))
       .filter((entry) => entry.isFile())
       .map((entry) => join(entry.parentPath ?? entry.path, entry.name).slice(outputPath.length + 1))
       .sort();
     assert.deepEqual(files, [
+      `.publishing/outbox/${handoffId}/${handoffId}.json`,
+      `.publishing/outbox/${handoffId}/handoff.json`,
       `jobs/${result.jobId}/index.html`,
       `jobs/${result.jobId}/instagram-image.jpg`,
       `jobs/${result.jobId}/opengraph-image.png`,

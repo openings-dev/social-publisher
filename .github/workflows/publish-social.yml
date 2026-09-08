@@ -91,6 +91,11 @@ jobs:
       BUFFER_LINKEDIN_CHANNEL_ID: ${{ vars.BUFFER_LINKEDIN_CHANNEL_ID }}
       BUFFER_TWITTER_CHANNEL_ID: ${{ vars.BUFFER_TWITTER_CHANNEL_ID }}
       SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
+      PUBLISHING_SOCIAL_SHADOW_ENABLED: ${{ vars.PUBLISHING_SOCIAL_SHADOW_ENABLED || 'false' }}
+      PUBLISHING_MASTODON_ENABLED: ${{ vars.PUBLISHING_MASTODON_ENABLED || 'false' }}
+      PUBLISHING_ENDPOINT: ${{ vars.PUBLISHING_ENDPOINT }}
+      PUBLISHING_CLIENT_ID: ${{ vars.PUBLISHING_CLIENT_ID }}
+      PUBLISHING_CLIENT_SECRET: ${{ secrets.PUBLISHING_CLIENT_SECRET }}
       THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.THREADS_AUTO_PUBLISH || 'false' }}
       INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
       LINKEDIN_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_linkedin) && 'true' || vars.LINKEDIN_AUTO_PUBLISH || 'false' }}
@@ -210,6 +215,17 @@ jobs:
           --stage "$REQUEST_STAGE"
           --confirmation "$REQUEST_CONFIRMATION"
           --state state
+
+      - name: Checkpoint Cloudflare Mastodon ownership before any provider request
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.PUBLISHING_MASTODON_ENABLED == 'true'
+        run: |
+          node src/cli/claim-platform-mastodon.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- state/queue.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(state): claim Cloudflare Mastodon ownership [skip ci]'
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Publish at most one queued job
         id: publication
@@ -404,3 +420,18 @@ jobs:
       - name: Fail after preserving an intake error
         if: always() && steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled' && steps.intake.outputs.error != ''
         run: exit 1
+
+      - name: Preserve deferred platform handoff and source media
+        if: failure() && (env.PUBLISHING_SOCIAL_SHADOW_ENABLED == 'true' || env.PUBLISHING_MASTODON_ENABLED == 'true')
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: platform-recovery-${{ github.run_id }}
+          path: |
+            state/.publishing/
+            .tmp/publish/.publishing/
+            .tmp/publish/jobs/*/opengraph-image.png
+            .tmp/intake-*/.publishing/
+            .tmp/intake-*/jobs/*/opengraph-image.png
+          include-hidden-files: true
+          if-no-files-found: ignore
+          retention-days: 1

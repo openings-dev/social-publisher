@@ -231,6 +231,8 @@ export function resetFailedStage(queueState, jobId, stageName, { at, reason }) {
         ...stageState(),
         ...(stageName === 'bridge' && item.bridge.result?.socialTitle
           ? { result: { socialTitle: item.bridge.result.socialTitle } } : {}),
+        ...(stageName === 'mastodon' && item.mastodon.result?.executionOwner === 'cloudflare'
+          ? { result: item.mastodon.result } : {}),
         updatedAt: at,
         lastReset: { at, reason: sanitizeCode(reason, 'manual_reset') },
       },

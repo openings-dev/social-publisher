@@ -7,6 +7,7 @@ import { createInstagramCardSvg, renderSocialCardPng } from '../render/social-ca
 import { INSTAGRAM_CARD_VERSION, SOCIAL_VIDEO_VERSION } from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 import { defaultArtworkDirection } from '../render/job-poster-model.mjs';
+import { prepareSocialPublication, submitSocialPublication } from './platform-publisher.mjs';
 
 export async function renderBridgeArtifacts(job, {
   wordmarkSvg,
@@ -65,6 +66,16 @@ export function createBridgePublisher({
       origin: config.publicSiteOrigin,
       direction,
     });
+    if (config.platformShadow) {
+      const prepared = await prepareSocialPublication({
+        job, mediaPath: artifacts.imagePath, outboxDirectory: resolve(outputRoot, '.publishing/outbox'),
+      });
+      const result = await submitSocialPublication({ path: prepared.path, transport: {
+        ...config.platformShadow,
+        fetch: (url, init) => fetchImpl(url, { ...init, signal: AbortSignal.timeout(60_000) }),
+      } });
+      if (result.outcome === 'retry-later') throw new Error('Platform shadow capacity deferred; retained handoff');
+    }
     const deployment = await requestDeployment({
       jobId: job.id,
       contentHash: job.contentHash,
