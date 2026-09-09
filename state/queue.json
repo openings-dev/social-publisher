@@ -11777,52 +11777,70 @@
         }
       },
       "bluesky": {
-        "status": "pending",
+        "status": "failed",
         "attempts": 0,
-        "updatedAt": null,
-        "lastError": null,
+        "updatedAt": "2026-09-09T11:20:58.860Z",
+        "lastError": {
+          "code": "social_title_review_required",
+          "at": "2026-09-09T11:20:58.860Z"
+        },
         "lastReset": null,
         "result": null
       },
       "mastodon": {
-        "status": "pending",
+        "status": "failed",
         "attempts": 0,
-        "updatedAt": null,
-        "lastError": null,
+        "updatedAt": "2026-09-09T11:20:58.860Z",
+        "lastError": {
+          "code": "social_title_review_required",
+          "at": "2026-09-09T11:20:58.860Z"
+        },
         "lastReset": null,
         "result": {
           "executionOwner": "cloudflare"
         }
       },
       "threads": {
-        "status": "pending",
+        "status": "failed",
         "attempts": 0,
-        "updatedAt": null,
-        "lastError": null,
+        "updatedAt": "2026-09-09T11:20:58.860Z",
+        "lastError": {
+          "code": "social_title_review_required",
+          "at": "2026-09-09T11:20:58.860Z"
+        },
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "failed",
         "attempts": 0,
-        "updatedAt": null,
-        "lastError": null,
+        "updatedAt": "2026-09-09T11:20:58.860Z",
+        "lastError": {
+          "code": "social_title_review_required",
+          "at": "2026-09-09T11:20:58.860Z"
+        },
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "failed",
         "attempts": 0,
-        "updatedAt": null,
-        "lastError": null,
+        "updatedAt": "2026-09-09T11:20:58.860Z",
+        "lastError": {
+          "code": "social_title_review_required",
+          "at": "2026-09-09T11:20:58.860Z"
+        },
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "failed",
         "attempts": 0,
-        "updatedAt": null,
-        "lastError": null,
+        "updatedAt": "2026-09-09T11:20:58.860Z",
+        "lastError": {
+          "code": "social_title_review_required",
+          "at": "2026-09-09T11:20:58.860Z"
+        },
         "lastReset": null,
         "result": null
       },
