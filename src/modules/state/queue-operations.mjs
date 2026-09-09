@@ -229,6 +229,8 @@ export function resetFailedStage(queueState, jobId, stageName, { at, reason }) {
       ...item,
       [stageName]: {
         ...stageState(),
+        ...(stageName === 'bridge' && item.bridge.result?.socialTitle
+          ? { result: { socialTitle: item.bridge.result.socialTitle } } : {}),
         ...(stageName === 'mastodon' && item.mastodon.result?.executionOwner === 'cloudflare'
           ? { result: item.mastodon.result } : {}),
         updatedAt: at,

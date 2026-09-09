@@ -32,6 +32,24 @@
           "visualDirection": "editorial"
         }
       }
+    },
+    {
+      "jobId": "gh_fd0559ba318e23e04014161b",
+      "contentHash": "ea4c790fb7e21bdae1c00a23b0f05dcfb568048ed2004341d563ad8208fc9867",
+      "dataCommit": "cb89651954e726c7b153c0cf48947ba34c348164",
+      "dataHash": "1c720cfcb9ae796f7104ae353414badf8dfc033000f036b6ce1f91d979172873",
+      "reason": "new",
+      "stage": {
+        "status": "failed",
+        "attempts": 3,
+        "updatedAt": "2026-09-08T21:08:56.279Z",
+        "lastError": {
+          "code": "bridge_platform_media_pending",
+          "at": "2026-09-08T21:08:56.279Z"
+        },
+        "lastReset": null,
+        "result": null
+      }
     }
   ],
   "removedJobs": [
