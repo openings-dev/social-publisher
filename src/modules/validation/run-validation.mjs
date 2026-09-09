@@ -3941,8 +3941,8 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
             canonicalUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}`,
             imageUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/opengraph-image.png`,
             instagramImageUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`,
-            socialVideoUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`,
-            socialVideoCoverUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg`,
+            instagramFeedMediaKind: 'image',
+            instagramJpegHash: input.expectedInstagramJpegHash,
           },
         };
       },
@@ -3955,16 +3955,20 @@ validation('publishes rendered bridge artifacts through web-deploy without FTP',
     assert.equal(sha256(calls[0].image), calls[0].expectedPngHash);
     assert.match(calls[0].instagramSvg.toString('utf8'), /data-instagram-card="true"/u);
     assert.equal(sha256(calls[0].instagramSvg), calls[0].expectedInstagramSvgHash);
+    assert.equal(sha256(calls[0].instagramJpeg), calls[0].expectedInstagramJpegHash);
+    assert.equal(calls[0].instagramFeedMediaKind, 'image');
     assert.equal(calls[0].expectedInstagramCardVersion, '7');
-    assert.equal(calls[0].expectedSocialVideoVersion, '8');
-    assert.equal(calls[0].forceDeployment, true);
+    assert.equal(Object.hasOwn(calls[0], 'expectedSocialVideoVersion'), false);
+    assert.equal(calls[0].forceDeployment, false);
     assert.equal(result.status, 'deployed');
     assert.equal(result.canonicalUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}`);
     assert.equal(result.instagramImageUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`);
-    assert.equal(result.socialVideoUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video.mp4`);
-    assert.equal(result.socialVideoCoverUrl, `${OPENINGS_ORIGIN}/jobs/${job.id}/social-video-cover.jpg`);
+    assert.equal(result.instagramFeedMediaKind, 'image');
+    assert.equal(result.instagramJpegHash, calls[0].expectedInstagramJpegHash);
+    assert.equal(Object.hasOwn(result, 'socialVideoUrl'), false);
+    assert.equal(Object.hasOwn(result, 'socialVideoCoverUrl'), false);
     assert.equal(result.instagramCardVersion, '7');
-    assert.equal(result.socialVideoVersion, '8');
+    assert.equal(Object.hasOwn(result, 'socialVideoVersion'), false);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }

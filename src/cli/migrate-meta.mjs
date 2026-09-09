@@ -70,6 +70,7 @@ export async function runMetaMigration({
     config,
     wordmarkSvg,
     outputRoot: outputPath,
+    instagramFeedMediaKind: 'reel',
   });
   const publishThreads = dependencies.publishThreads ?? (({ job, post }) => publishToThreads({
     job,

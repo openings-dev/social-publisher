@@ -16,6 +16,9 @@ import {
 import { sha256 } from '../../shared/hash.mjs';
 import { buildCanonicalJobUrl } from '../../shared/job-id.mjs';
 
+const HASH_PATTERN = /^[0-9a-f]{64}$/u;
+const MAX_INSTAGRAM_IMAGE_BYTES = 2 * 1024 * 1024;
+
 function parseAttributes(tag) {
   const attributes = {};
   for (const match of tag.matchAll(/([:\w-]+)="([^"]*)"/gu)) {
@@ -57,11 +60,27 @@ function versionAssetUrl(url, hash, version) {
   return `${url}?v=${prefix}${fingerprint}`;
 }
 
+function assertInstagramFeedMediaKind(value) {
+  if (value !== 'image' && value !== 'reel') {
+    throw new Error('Instagram feed media kind is invalid');
+  }
+  return value;
+}
+
+function assertHash(value, label) {
+  if (typeof value !== 'string' || !HASH_PATTERN.test(value)) {
+    throw new Error(`${label} is invalid`);
+  }
+  return value;
+}
+
 export async function verifyPublicBridge({
   jobId,
   contentHash,
   expectedPngHash,
   expectedInstagramSvgHash,
+  expectedInstagramJpegHash,
+  instagramFeedMediaKind = 'reel',
   expectedInstagramCardVersion = INSTAGRAM_CARD_VERSION,
   expectedSocialVideoVersion = SOCIAL_VIDEO_VERSION,
   origin = OPENINGS_ORIGIN,
@@ -69,6 +88,10 @@ export async function verifyPublicBridge({
   timeoutMs = REQUEST_TIMEOUT_MS,
   allowMismatch = false,
 }) {
+  const safeInstagramFeedMediaKind = assertInstagramFeedMediaKind(instagramFeedMediaKind);
+  const safeExpectedInstagramJpegHash = safeInstagramFeedMediaKind === 'image'
+    ? assertHash(expectedInstagramJpegHash, 'Expected Instagram JPEG hash')
+    : null;
   let runtime;
   const mismatch = (reason, permitted) => verificationMismatch(reason, permitted, runtime);
   const canonicalUrl = buildCanonicalJobUrl(jobId, origin);
@@ -79,19 +102,25 @@ export async function verifyPublicBridge({
   );
   const instagramImageUrl = versionAssetUrl(
     `${canonicalUrl}/instagram-image.jpg`,
-    expectedInstagramSvgHash,
+    safeInstagramFeedMediaKind === 'image'
+      ? safeExpectedInstagramJpegHash
+      : expectedInstagramSvgHash,
     expectedInstagramCardVersion,
   );
-  const socialVideoUrl = versionAssetUrl(
-    `${canonicalUrl}/social-video.mp4`,
-    expectedInstagramSvgHash,
-    expectedSocialVideoVersion,
-  );
-  const socialVideoCoverUrl = versionAssetUrl(
-    `${canonicalUrl}/social-video-cover.jpg`,
-    expectedInstagramSvgHash,
-    expectedSocialVideoVersion,
-  );
+  const socialVideoUrl = safeInstagramFeedMediaKind === 'reel'
+    ? versionAssetUrl(
+      `${canonicalUrl}/social-video.mp4`,
+      expectedInstagramSvgHash,
+      expectedSocialVideoVersion,
+    )
+    : null;
+  const socialVideoCoverUrl = safeInstagramFeedMediaKind === 'reel'
+    ? versionAssetUrl(
+      `${canonicalUrl}/social-video-cover.jpg`,
+      expectedInstagramSvgHash,
+      expectedSocialVideoVersion,
+    )
+    : null;
   let htmlResponse;
   try {
     htmlResponse = await fetchResponse(canonicalUrl, fetchImpl, timeoutMs, 'manual');
@@ -137,8 +166,9 @@ export async function verifyPublicBridge({
       !== expectedInstagramCardVersion) {
       return mismatch('instagram_card_version_mismatch', allowMismatch);
     }
-    if (findContent(tags, 'name', 'openings:social-video-version', 'content')
-      !== expectedSocialVideoVersion) {
+    if (safeInstagramFeedMediaKind === 'reel'
+      && findContent(tags, 'name', 'openings:social-video-version', 'content')
+        !== expectedSocialVideoVersion) {
       return mismatch('social_video_version_mismatch', allowMismatch);
     }
   }
@@ -183,9 +213,23 @@ export async function verifyPublicBridge({
   if (!/^image\/jpeg\b/iu.test(instagramImageResponse.headers.get('content-type') ?? '')) {
     return mismatch('instagram_image_content_type_mismatch', allowMismatch);
   }
+  let instagramImage;
+  try {
+    instagramImage = Buffer.from(await instagramImageResponse.arrayBuffer());
+  } catch {
+    return mismatch('instagram_image_request_failed', allowMismatch);
+  }
+  if (instagramImage.byteLength === 0
+    || instagramImage.byteLength >= MAX_INSTAGRAM_IMAGE_BYTES) {
+    return mismatch('instagram_image_size_mismatch', allowMismatch);
+  }
+  if (safeInstagramFeedMediaKind === 'image'
+    && sha256(instagramImage) !== safeExpectedInstagramJpegHash) {
+    return mismatch('instagram_image_hash_mismatch', allowMismatch);
+  }
   let instagramMetadata;
   try {
-    instagramMetadata = await sharp(Buffer.from(await instagramImageResponse.arrayBuffer())).metadata();
+    instagramMetadata = await sharp(instagramImage).metadata();
   } catch {
     return mismatch('instagram_image_decode_failed', allowMismatch);
   }
@@ -193,6 +237,22 @@ export async function verifyPublicBridge({
     || instagramMetadata.width !== INSTAGRAM_IMAGE_WIDTH
     || instagramMetadata.height !== INSTAGRAM_IMAGE_HEIGHT) {
     return mismatch('instagram_image_dimensions_mismatch', allowMismatch);
+  }
+
+  if (safeInstagramFeedMediaKind === 'image') {
+    return Object.freeze({
+      matches: true,
+      ...(runtime ? { runtime } : {}),
+      canonicalUrl,
+      imageUrl,
+      instagramImageUrl,
+      contentHash,
+      pngHash: expectedPngHash,
+      instagramFeedMediaKind: 'image',
+      instagramJpegHash: safeExpectedInstagramJpegHash,
+      instagramCardVersion: expectedInstagramCardVersion,
+      htmlVerification: edgeBlocked ? 'edge_blocked_assets_verified' : 'verified',
+    });
   }
 
   let socialVideoCoverResponse;

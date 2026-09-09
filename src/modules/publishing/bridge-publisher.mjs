@@ -59,11 +59,15 @@ export function createBridgePublisher({
   config,
   wordmarkSvg,
   outputRoot,
+  instagramFeedMediaKind = 'image',
   fetchImpl = globalThis.fetch,
   requestDeployment = requestIncrementalBridgeDeployment,
 }) {
   if (!config?.webDeploy) {
     throw new Error('Web deploy configuration is required for bridge publication');
+  }
+  if (instagramFeedMediaKind !== 'image' && instagramFeedMediaKind !== 'reel') {
+    throw new Error('Instagram feed media kind is invalid');
   }
   return async function publishBridge({ job, reason, direction = defaultArtworkDirection(job.id) }) {
     const artifacts = await renderBridgeArtifacts(job, {
@@ -87,9 +91,15 @@ export function createBridgePublisher({
       contentHash: job.contentHash,
       expectedPngHash: artifacts.pngHash,
       expectedInstagramSvgHash: artifacts.instagramSvgHash,
+      ...(instagramFeedMediaKind === 'image' ? {
+        expectedInstagramJpegHash: artifacts.instagramJpegHash,
+        instagramJpeg: artifacts.instagramJpeg,
+      } : {
+        expectedSocialVideoVersion: SOCIAL_VIDEO_VERSION,
+      }),
+      instagramFeedMediaKind,
       expectedInstagramCardVersion: INSTAGRAM_CARD_VERSION,
-      expectedSocialVideoVersion: SOCIAL_VIDEO_VERSION,
-      forceDeployment: reason === 'instagram_card_upgrade',
+      forceDeployment: instagramFeedMediaKind === 'reel' && reason === 'instagram_card_upgrade',
       html: artifacts.html,
       image: artifacts.png,
       instagramSvg: artifacts.instagramSvg,
@@ -103,13 +113,22 @@ export function createBridgePublisher({
       canonicalUrl: deployment.verification.canonicalUrl,
       imageUrl: deployment.verification.imageUrl,
       instagramImageUrl: deployment.verification.instagramImageUrl,
-      socialVideoUrl: deployment.verification.socialVideoUrl,
-      socialVideoCoverUrl: deployment.verification.socialVideoCoverUrl,
       pngHash: artifacts.pngHash,
       instagramSvgHash: artifacts.instagramSvgHash,
       instagramCardVersion: INSTAGRAM_CARD_VERSION,
-      socialVideoVersion: SOCIAL_VIDEO_VERSION,
       visualDirection: direction,
+      ...(instagramFeedMediaKind === 'image' ? {
+        ...(deployment.verification.instagramFeedMediaKind === 'image'
+          ? { instagramFeedMediaKind: deployment.verification.instagramFeedMediaKind }
+          : {}),
+        ...(typeof deployment.verification.instagramJpegHash === 'string'
+          ? { instagramJpegHash: deployment.verification.instagramJpegHash }
+          : {}),
+      } : {
+        socialVideoUrl: deployment.verification.socialVideoUrl,
+        socialVideoCoverUrl: deployment.verification.socialVideoCoverUrl,
+        socialVideoVersion: SOCIAL_VIDEO_VERSION,
+      }),
     });
   };
 }

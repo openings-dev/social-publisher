@@ -54,5 +54,6 @@ test('bridge artifacts include the rendered Instagram feed JPEG', async () => {
 test('normal platform validation includes the Instagram JPEG regression', async () => {
   const packageJson = JSON.parse(await readFile(new URL('../package.json', import.meta.url), 'utf8'));
   assert.match(packageJson.scripts['test:platform'], /test\/instagram-image-artifacts\.test\.mjs/u);
+  assert.match(packageJson.scripts['test:platform'], /test\/instagram-image-verification\.test\.mjs/u);
   assert.match(packageJson.scripts.validate, /npm run test:platform/u);
 });
