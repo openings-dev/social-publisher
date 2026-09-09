@@ -158,6 +158,11 @@ const negativeInstagramCases = [
     body: Buffer.from('not a jpeg'),
   },
   {
+    name: 'truncated real JPEG',
+    expectedReason: 'instagram_image_decode_failed',
+    body: instagramJpeg.subarray(0, Math.floor(instagramJpeg.byteLength / 2)),
+  },
+  {
     name: 'different valid same-size JPEG',
     expectedReason: 'instagram_image_hash_mismatch',
     body: alternateInstagramJpeg,

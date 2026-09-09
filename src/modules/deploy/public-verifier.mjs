@@ -18,6 +18,7 @@ import { buildCanonicalJobUrl } from '../../shared/job-id.mjs';
 
 const HASH_PATTERN = /^[0-9a-f]{64}$/u;
 const MAX_INSTAGRAM_IMAGE_BYTES = 2 * 1024 * 1024;
+const MAX_INSTAGRAM_DECODE_PIXELS = INSTAGRAM_IMAGE_WIDTH * INSTAGRAM_IMAGE_HEIGHT * 4;
 
 function parseAttributes(tag) {
   const attributes = {};
@@ -229,7 +230,9 @@ export async function verifyPublicBridge({
   }
   let instagramMetadata;
   try {
-    instagramMetadata = await sharp(instagramImage).metadata();
+    const decoder = sharp(instagramImage, { limitInputPixels: MAX_INSTAGRAM_DECODE_PIXELS });
+    instagramMetadata = await decoder.metadata();
+    await decoder.raw().toBuffer();
   } catch {
     return mismatch('instagram_image_decode_failed', allowMismatch);
   }
