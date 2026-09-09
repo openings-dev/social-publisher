@@ -3,7 +3,7 @@ import { resolve } from 'node:path';
 
 import { requestIncrementalBridgeDeployment } from '../deploy/web-deploy-client.mjs';
 import { createBridgeHtml } from '../render/html-page.mjs';
-import { createInstagramCardSvg, renderSocialCardPng } from '../render/social-card.mjs';
+import { createInstagramCardSvg, renderInstagramCardJpeg, renderSocialCardPng } from '../render/social-card.mjs';
 import { INSTAGRAM_CARD_VERSION, SOCIAL_VIDEO_VERSION } from '../../config/constants.mjs';
 import { sha256 } from '../../shared/hash.mjs';
 import { defaultArtworkDirection } from '../render/job-poster-model.mjs';
@@ -19,9 +19,11 @@ export async function renderBridgeArtifacts(job, {
   const htmlPath = resolve(directory, 'index.html');
   const imagePath = resolve(directory, 'opengraph-image.png');
   const instagramSvgPath = resolve(directory, 'instagram-image.svg');
-  const [png, instagramSvgSource] = await Promise.all([
+  const instagramJpegPath = resolve(directory, 'instagram-image.jpg');
+  const [png, instagramSvgSource, instagramJpeg] = await Promise.all([
     renderSocialCardPng(job, { wordmarkSvg, direction }),
     Promise.resolve(createInstagramCardSvg(job, { wordmarkSvg, direction })),
+    renderInstagramCardJpeg(job, { wordmarkSvg, direction }),
   ]);
   const pngHash = sha256(png);
   const htmlSource = createBridgeHtml(job, { origin, imageHash: pngHash });
@@ -32,16 +34,20 @@ export async function renderBridgeArtifacts(job, {
     writeFile(htmlPath, html),
     writeFile(imagePath, png),
     writeFile(instagramSvgPath, instagramSvg),
+    writeFile(instagramJpegPath, instagramJpeg),
   ]);
   return Object.freeze({
     htmlPath,
     imagePath,
     instagramSvgPath,
+    instagramJpegPath,
     html,
     png,
     instagramSvg,
+    instagramJpeg,
     pngHash,
     instagramSvgHash: sha256(instagramSvg),
+    instagramJpegHash: sha256(instagramJpeg),
   });
 }
 
