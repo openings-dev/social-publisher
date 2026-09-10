@@ -71,36 +71,33 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 120
     env:
-      RUN_MODE: ${{ github.event_name == 'schedule' && 'scheduled' || inputs.mode }}
-      DATA_PATH: dependencies/data-pipeline
-      WEB_PATH: dependencies/web
-      PUBLIC_SITE_ORIGIN: ${{ vars.PUBLIC_SITE_ORIGIN || 'https://openings.dev' }}
-      WEB_DEPLOY_REPOSITORY: ${{ vars.WEB_DEPLOY_REPOSITORY || 'openings-dev/web-deploy' }}
-      BLUESKY_SERVICE_URL: ${{ vars.BLUESKY_SERVICE_URL || 'https://bsky.social' }}
-      MASTODON_BASE_URL: ${{ vars.MASTODON_BASE_URL || 'https://mastodon.social' }}
-      THREADS_API_URL: ${{ vars.THREADS_API_URL || 'https://graph.threads.net/v1.0' }}
-      INSTAGRAM_API_ORIGIN: ${{ vars.INSTAGRAM_API_ORIGIN || 'https://graph.instagram.com' }}
-      META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION }}
-      INSTAGRAM_USER_ID: ${{ vars.INSTAGRAM_USER_ID }}
-      LINKEDIN_API_ORIGIN: ${{ vars.LINKEDIN_API_ORIGIN || 'https://api.linkedin.com' }}
-      LINKEDIN_API_VERSION: ${{ vars.LINKEDIN_API_VERSION }}
-      LINKEDIN_ORGANIZATION_ID: ${{ vars.LINKEDIN_ORGANIZATION_ID }}
-      LINKEDIN_PROVIDER: ${{ vars.LINKEDIN_PROVIDER || 'direct' }}
-      BUFFER_API_ORIGIN: ${{ vars.BUFFER_API_ORIGIN || 'https://api.buffer.com' }}
-      BUFFER_ORGANIZATION_ID: ${{ vars.BUFFER_ORGANIZATION_ID }}
-      BUFFER_LINKEDIN_CHANNEL_ID: ${{ vars.BUFFER_LINKEDIN_CHANNEL_ID }}
-      BUFFER_TWITTER_CHANNEL_ID: ${{ vars.BUFFER_TWITTER_CHANNEL_ID }}
-      SOCIAL_AUTO_PUBLISH: ${{ vars.SOCIAL_AUTO_PUBLISH || 'false' }}
-      PUBLISHING_SOCIAL_SHADOW_ENABLED: ${{ vars.PUBLISHING_SOCIAL_SHADOW_ENABLED || 'false' }}
-      PUBLISHING_MASTODON_ENABLED: ${{ vars.PUBLISHING_MASTODON_ENABLED || 'false' }}
-      PUBLISHING_ENDPOINT: ${{ vars.PUBLISHING_ENDPOINT }}
-      PUBLISHING_CLIENT_ID: ${{ vars.PUBLISHING_CLIENT_ID }}
-      PUBLISHING_CLIENT_SECRET: ${{ secrets.PUBLISHING_CLIENT_SECRET }}
-      THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.THREADS_AUTO_PUBLISH || 'false' }}
-      INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_AUTO_PUBLISH || 'false' }}
-      LINKEDIN_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_linkedin) && 'true' || vars.LINKEDIN_AUTO_PUBLISH || 'false' }}
-      INSTAGRAM_STORY_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || vars.INSTAGRAM_STORY_AUTO_PUBLISH || 'false' }}
-      STORY_OPERATION_KEY: job-story-${{ github.run_id }}-${{ github.run_attempt }}
+      DATA_PATH: ${{ secrets.DATA_PATH }}
+      WEB_PATH: ${{ secrets.WEB_PATH }}
+      PUBLIC_SITE_ORIGIN: ${{ secrets.PUBLIC_SITE_ORIGIN }}
+      WEB_DEPLOY_REPOSITORY: ${{ secrets.WEB_DEPLOY_REPOSITORY }}
+      BLUESKY_SERVICE_URL: ${{ secrets.BLUESKY_SERVICE_URL }}
+      MASTODON_BASE_URL: ${{ secrets.MASTODON_BASE_URL }}
+      THREADS_API_URL: ${{ secrets.THREADS_API_URL }}
+      INSTAGRAM_API_ORIGIN: ${{ secrets.INSTAGRAM_API_ORIGIN }}
+      META_GRAPH_VERSION: ${{ secrets.META_GRAPH_VERSION }}
+      INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+      LINKEDIN_API_ORIGIN: ${{ secrets.LINKEDIN_API_ORIGIN }}
+      LINKEDIN_API_VERSION: ${{ secrets.LINKEDIN_API_VERSION }}
+      LINKEDIN_ORGANIZATION_ID: ${{ secrets.LINKEDIN_ORGANIZATION_ID }}
+      LINKEDIN_PROVIDER: ${{ secrets.LINKEDIN_PROVIDER }}
+      BUFFER_API_ORIGIN: ${{ secrets.BUFFER_API_ORIGIN }}
+      BUFFER_ORGANIZATION_ID: ${{ secrets.BUFFER_ORGANIZATION_ID }}
+      BUFFER_LINKEDIN_CHANNEL_ID: ${{ secrets.BUFFER_LINKEDIN_CHANNEL_ID }}
+      BUFFER_TWITTER_CHANNEL_ID: ${{ secrets.BUFFER_TWITTER_CHANNEL_ID }}
+      SOCIAL_AUTO_PUBLISH: ${{ secrets.SOCIAL_AUTO_PUBLISH }}
+      PUBLISHING_SOCIAL_SHADOW_ENABLED: ${{ secrets.PUBLISHING_SOCIAL_SHADOW_ENABLED }}
+      PUBLISHING_MASTODON_ENABLED: ${{ secrets.PUBLISHING_MASTODON_ENABLED }}
+      PUBLISHING_ENDPOINT: ${{ secrets.PUBLISHING_ENDPOINT }}
+      PUBLISHING_CLIENT_ID: ${{ secrets.PUBLISHING_CLIENT_ID }}
+      THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || secrets.THREADS_AUTO_PUBLISH }}
+      INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || secrets.INSTAGRAM_AUTO_PUBLISH }}
+      LINKEDIN_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_linkedin) && 'true' || secrets.LINKEDIN_AUTO_PUBLISH }}
+      INSTAGRAM_STORY_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || secrets.INSTAGRAM_STORY_AUTO_PUBLISH }}
     steps:
       - name: Check out social-publisher state and source
         # actions/checkout v4.3.1
@@ -109,10 +106,13 @@ jobs:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
 
+      - name: Mask and export runtime workflow metadata
+        run: node src/cli/mask-workflow-runtime.mjs --kind social
+
       - name: Decide whether scheduled work exists
         id: preflight
         env:
-          DATA_MANIFEST_URL: https://raw.githubusercontent.com/openings-dev/data-pipeline/main/snapshots/opportunities/api/manifest.json
+          DATA_MANIFEST_URL: ${{ secrets.DATA_MANIFEST_URL }}
         run: node src/cli/preflight.mjs --state state
 
       - name: Check out immutable data history
@@ -239,6 +239,7 @@ jobs:
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
           LINKEDIN_ACCESS_TOKEN: ${{ secrets.LINKEDIN_ACCESS_TOKEN }}
           BUFFER_API_KEY: ${{ secrets.BUFFER_API_KEY }}
+          PUBLISHING_CLIENT_SECRET: ${{ secrets.PUBLISHING_CLIENT_SECRET }}
           REQUEST_JOB_ID: ${{ inputs.job_id }}
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
         run: |
@@ -272,6 +273,7 @@ jobs:
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
           THREADS_ACCESS_TOKEN: ${{ secrets.THREADS_ACCESS_TOKEN }}
           INSTAGRAM_ACCESS_TOKEN: ${{ secrets.INSTAGRAM_ACCESS_TOKEN }}
+          PUBLISHING_CLIENT_SECRET: ${{ secrets.PUBLISHING_CLIENT_SECRET }}
           REQUEST_JOB_IDS: ${{ inputs.job_ids }}
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
         run: |
@@ -372,6 +374,7 @@ jobs:
         if: steps.preflight.outputs.should_run == 'true' && env.RUN_MODE == 'scheduled' && env.SOCIAL_AUTO_PUBLISH == 'true' && steps.publication.outputs.outcome != 'bridge_retryable'
         env:
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
+          PUBLISHING_CLIENT_SECRET: ${{ secrets.PUBLISHING_CLIENT_SECRET }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"

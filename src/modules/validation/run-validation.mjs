@@ -6276,7 +6276,7 @@ validation('keeps validation read-only and production publishing explicitly gate
   assert.equal([...productionWorkflow.matchAll(/secrets\.BUFFER_API_KEY/gu)].length, 1);
   assert.match(
     productionWorkflow,
-    /inputs\.publish_linkedin\) && 'true' \|\| vars\.LINKEDIN_AUTO_PUBLISH \|\| 'false'/u,
+    /inputs\.publish_linkedin\) && 'true' \|\| secrets\.LINKEDIN_AUTO_PUBLISH/u,
   );
   for (const value of [
     'LinkedIn Page',
