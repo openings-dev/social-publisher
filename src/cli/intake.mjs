@@ -129,6 +129,8 @@ async function main() {
     outputPath: resolve(args.output ?? '.tmp/intake'),
     dataReference: args.ref ?? 'HEAD',
     mode: 'intake',
+    strategy: args.strategy ?? 'legacy',
+    maxQueueAdditions: Number(args['max-queue-additions'] ?? 25),
   });
 }
 

@@ -111,17 +111,22 @@ test('scopes the platform client secret only to platform web transport steps', (
   assert.doesNotMatch(step(socialWorkflow, 'Render a review artifact without external writes'), /PUBLISHING_CLIENT_SECRET/u);
 });
 
-test('scopes direct R2 credentials to the publisher and does not archive durable R2 media', () => {
+test('scopes direct R2 credentials to publication while intake transfers ownership only', () => {
   const socialEnv = jobEnvironment(socialWorkflow);
   for (const name of ['OPENINGS_R2_ENABLED', 'OPENINGS_R2_ACCOUNT_ID', 'OPENINGS_R2_BUCKET',
     'OPENINGS_R2_BUCKET_PURPOSE', 'OPENINGS_R2_PUBLIC_ORIGIN', 'OPENINGS_R2_CAPACITY_JSON']) {
     assert.match(socialEnv, new RegExp(`^      ${name}: \\$\\{\\{ secrets\\.${name} \\}\\}$`, 'mu'));
   }
   const publisher = step(socialWorkflow, 'Publish at most one queued job');
+  const intake = step(socialWorkflow, 'Process and checkpoint bounded snapshot intake');
   for (const name of ['OPENINGS_R2_ACCESS_KEY_ID', 'OPENINGS_R2_SECRET_ACCESS_KEY']) {
+    assert.equal([...socialWorkflow.matchAll(new RegExp(`${name}:`, 'gu'))].length, 1);
     assert.match(publisher, new RegExp(`${name}: \\$\\{\\{ secrets\\.${name} \\}\\}`, 'u'));
     assert.doesNotMatch(socialEnv, new RegExp(name, 'u'));
+    assert.doesNotMatch(intake, new RegExp(name, 'u'));
   }
+  assert.match(intake, /--strategy selected-media-owner/u);
+  assert.match(intake, /--max-queue-additions 25/u);
   assert.doesNotMatch(step(socialWorkflow, 'Preserve deferred platform handoff and source media'),
     /instagram-image\.jpg|social-video\.mp4|openings\/jobs/u);
 });
