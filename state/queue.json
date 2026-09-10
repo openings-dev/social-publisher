@@ -14494,14 +14494,14 @@
         "result": null
       },
       "linkedin": {
-        "status": "failed",
+        "status": "pending",
         "attempts": 0,
-        "updatedAt": "2026-09-10T13:15:27.637Z",
-        "lastError": {
-          "code": "social_title_review_required",
-          "at": "2026-09-10T13:15:27.637Z"
+        "updatedAt": "2026-09-10T13:42:28.322Z",
+        "lastError": null,
+        "lastReset": {
+          "at": "2026-09-10T13:42:28.322Z",
+          "reason": "manual_reset"
         },
-        "lastReset": null,
         "result": null
       },
       "instagramStory": {
