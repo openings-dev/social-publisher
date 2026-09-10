@@ -74,6 +74,7 @@ function validateCaption(value) {
 const IMAGE_HISTORY_PAGE_LIMIT = 5;
 const IMAGE_HISTORY_PAGE_SIZE = '50';
 const PAGING_CURSOR_PATTERN = /^[A-Za-z0-9._~=-]{1,1024}$/u;
+const IMAGE_MEDIA_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]{0,255}$/u;
 
 function imageAmbiguous() {
   return publicationError(
@@ -89,7 +90,7 @@ function hasExactCanonicalUrlToken(caption, canonicalUrl) {
 
 function validImageHistoryEntry(media) {
   if (media === null || typeof media !== 'object' || Array.isArray(media)) return false;
-  if (typeof media.id !== 'string' || !/^[A-Za-z0-9_-]{1,256}$/u.test(media.id)) return false;
+  if (typeof media.id !== 'string' || !IMAGE_MEDIA_ID_PATTERN.test(media.id)) return false;
   if (media.caption !== undefined && media.caption !== null && typeof media.caption !== 'string') return false;
   if (media.permalink !== undefined && media.permalink !== null && typeof media.permalink !== 'string') return false;
   if (media.timestamp !== undefined && media.timestamp !== null && typeof media.timestamp !== 'string') return false;
@@ -301,14 +302,17 @@ async function publishImageMediaContainer({
   } catch {
     published = null;
   }
-  if (typeof published?.id === 'string' && published.id.length > 0) {
+  if (typeof published?.id === 'string' && IMAGE_MEDIA_ID_PATTERN.test(published.id)) {
     const media = await findMediaById({
       base,
       id: published.id,
       accessToken,
       fetchImpl,
     });
-    return normalizedResult(media ?? { id: published.id }, 'published');
+    return normalizedResult(
+      media && IMAGE_MEDIA_ID_PATTERN.test(media.id) ? media : { id: published.id },
+      'published',
+    );
   }
   const reconciled = await scanImageHistory({
     base,

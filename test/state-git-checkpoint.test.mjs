@@ -135,6 +135,40 @@ test('commits only queue.json, leaves unrelated staged files alone, and pushes H
   assert.equal(await readFile(join(repositoryRoot, 'unrelated.txt'), 'utf8'), 'staged but unrelated\n');
 });
 
+test('retries a real failed push without a duplicate commit and makes the prior intent durable', async () => {
+  const directory = await realpath(await mkdtemp(join(tmpdir(), 'openings-git-push-retry-')));
+  const repositoryRoot = join(directory, 'publisher');
+  const remoteRoot = join(directory, 'remote.git');
+  await Promise.all([mkdir(join(repositoryRoot, 'state'), { recursive: true }), mkdir(remoteRoot)]);
+  await git(remoteRoot, ['init', '--bare', '--initial-branch=main']);
+  await git(repositoryRoot, ['init', '--initial-branch=main']);
+  await git(repositoryRoot, ['config', 'user.name', 'Checkpoint Test']);
+  await git(repositoryRoot, ['config', 'user.email', 'checkpoint@example.invalid']);
+  await writeFile(join(repositoryRoot, 'state', 'queue.json'), '{"instagram":"pending"}\n');
+  await git(repositoryRoot, ['add', '--', 'state/queue.json']);
+  await git(repositoryRoot, ['commit', '-m', 'initial']);
+  await git(repositoryRoot, ['remote', 'add', 'origin', remoteRoot]);
+  await git(repositoryRoot, ['push', 'origin', 'HEAD:refs/heads/main']);
+
+  await writeFile(join(repositoryRoot, 'state', 'queue.json'), '{"instagram":"publishing"}\n');
+  const checkpoint = createQueueGitCheckpoint({
+    repositoryRoot,
+    queuePath: join(repositoryRoot, 'state', 'queue.json'),
+    remote: 'origin',
+    stateRef: 'main',
+  });
+  await git(repositoryRoot, ['remote', 'set-url', 'origin', join(directory, 'missing.git')]);
+  await assert.rejects(checkpoint());
+  const commitsAfterFailure = (await git(repositoryRoot, ['rev-list', '--count', 'HEAD'])).stdout.trim();
+  assert.equal((await git(remoteRoot, ['show', 'refs/heads/main:state/queue.json'])).stdout, '{"instagram":"pending"}\n');
+
+  await git(repositoryRoot, ['remote', 'set-url', 'origin', remoteRoot]);
+  await checkpoint();
+
+  assert.equal((await git(repositoryRoot, ['rev-list', '--count', 'HEAD'])).stdout.trim(), commitsAfterFailure);
+  assert.equal((await git(remoteRoot, ['show', 'refs/heads/main:state/queue.json'])).stdout, '{"instagram":"publishing"}\n');
+});
+
 test('workflow configures one validated main state ref and enables durable queue checkpoints only for publication', () => {
   assert.match(workflow, /^      STATE_REF: main$/mu);
   assert.match(workflow, /^      STATE_GIT_REMOTE: origin$/mu);

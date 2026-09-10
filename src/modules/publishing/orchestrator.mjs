@@ -415,6 +415,7 @@ async function publishQueueStage({
     ? queueState
     : transitionQueueStage(queueState, item.jobId, stage, 'publishing', { at: now, intent });
   await checkpoint({ phase: 'intent', stage, jobId: item.jobId, queueState: next });
+  let checkpointPhase = 'receipt';
   try {
     const result = await publish({
       job,
@@ -439,9 +440,9 @@ async function publishQueueStage({
       at: now,
       errorCode: safeErrorCode(error, stage),
     });
-    return next;
+    checkpointPhase = 'failure';
   }
-  await checkpoint({ phase: 'receipt', stage, jobId: item.jobId, queueState: next });
+  await checkpoint({ phase: checkpointPhase, stage, jobId: item.jobId, queueState: next });
   return next;
 }
 
@@ -543,6 +544,21 @@ export async function processOnePublication({
       reconcileOnly: true,
     });
     selected = findQueueItem(nextQueue, selected.jobId);
+    if (SOCIAL_CHANNELS.every((channel) => COMPLETED_STATUSES.has(selected[channel].status))) {
+      nextPublications = completePublication(nextPublications, selected, now);
+      return {
+        queueState: nextQueue,
+        publicationsState: nextPublications,
+        outcome: 'completed',
+        selectedJobId,
+      };
+    }
+    return {
+      queueState: nextQueue,
+      publicationsState: nextPublications,
+      outcome: 'partial',
+      selectedJobId,
+    };
   }
 
   const started = SOCIAL_CHANNELS.some(channel => selected[channel].attempts > 0 || selected[channel].status === 'published');
@@ -596,6 +612,7 @@ export async function processOnePublication({
       jobId: selected.jobId,
       queueState: nextQueue,
     });
+    let bridgeErrorCode = null;
     try {
       const result = await publishBridge({
         job,
@@ -608,18 +625,21 @@ export async function processOnePublication({
           ...(job.socialTitle ? { socialTitle: job.socialTitle } : {}) },
       });
     } catch (error) {
+      bridgeErrorCode = safeErrorCode(error, 'bridge');
       nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'retryable', {
         at: now,
-        errorCode: safeErrorCode(error, 'bridge'),
+        errorCode: bridgeErrorCode,
       });
-      return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'bridge_retryable', selectedJobId };
     }
     await checkpoint({
-      phase: 'receipt',
+      phase: bridgeErrorCode === null ? 'receipt' : 'failure',
       stage: 'bridge',
       jobId: selected.jobId,
       queueState: nextQueue,
     });
+    if (bridgeErrorCode !== null) {
+      return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'bridge_retryable', selectedJobId };
+    }
   }
 
   selected = findQueueItem(nextQueue, selected.jobId);
@@ -651,7 +671,7 @@ export async function processOnePublication({
       now,
       checkpoint,
       intent: channel === 'instagram'
-        ? { mediaKind: 'image', canonicalUrl: post.canonicalUrl }
+        ? { publicationKind: 'image', canonicalUrl: post.canonicalUrl }
         : undefined,
     });
   }

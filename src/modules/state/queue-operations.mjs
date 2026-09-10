@@ -331,7 +331,7 @@ export function isReadyQueueItem(item) {
 
 export function isInterruptedInstagramImage(item) {
   return item?.instagram?.status === 'publishing'
-    && item.instagram.result?.mediaKind === 'image'
+    && item.instagram.result?.publicationKind === 'image'
     && item.instagram.result?.canonicalUrl === `${OPENINGS_ORIGIN}/jobs/${item.jobId}`;
 }
 

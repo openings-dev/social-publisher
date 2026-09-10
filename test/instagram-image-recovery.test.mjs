@@ -231,3 +231,29 @@ test('a malformed successful publish response reconciles, while an unproven resu
     url.pathname.endsWith('/media_publish') && options.method === 'POST'
   )).length, 1);
 });
+
+test('whitespace, control, and non-string publish IDs trigger one exact reconciliation scan', async () => {
+  for (const invalidId of [' ', 'bad\nid', { nested: 'id' }]) {
+    const fixture = pagedFixture({
+      pages: [{ data: [] }, { data: [exactMedia] }],
+      publishReply: { id: invalidId },
+    });
+    const result = await publishImageToInstagram(adapterInput(fixture.fetch));
+    assert.equal(result.status, 'reconciled');
+    assert.equal(result.id, exactMedia.id);
+    assert.equal(fixture.calls.filter(({ url, options }) => (
+      url.pathname.endsWith('/media_publish') && options.method === 'POST'
+    )).length, 1);
+  }
+});
+
+test('an exact canonical match with a malformed media ID is unproven and never posts', async () => {
+  for (const invalidId of [' ', 'bad\nid']) {
+    const fixture = pagedFixture({ pages: [{ data: [{ ...exactMedia, id: invalidId }] }] });
+    await assert.rejects(
+      publishImageToInstagram(adapterInput(fixture.fetch)),
+      (error) => error?.code === 'instagram_image_ambiguous',
+    );
+    assert.equal(postCount(fixture.calls), 0);
+  }
+});

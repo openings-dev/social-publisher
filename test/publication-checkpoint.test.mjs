@@ -125,10 +125,44 @@ test('checkpoint failures propagate and halt providers while ordinary provider f
   const result = await processOnePublication(baseInput(queued(['bluesky', 'mastodon']), {
     publishBluesky: async () => { continued.push('bluesky'); throw new Error('provider down'); },
     publishMastodon: async () => { continued.push('mastodon'); return { id: 'masto-two' }; },
-    checkpoint: async () => {},
+    checkpoint: async ({ phase, stage }) => { continued.push(`${phase}:${stage}`); },
   }));
   assert.equal(result.outcome, 'partial');
-  assert.deepEqual(continued, ['bluesky', 'mastodon']);
+  assert.deepEqual(continued, [
+    'intent:bluesky', 'bluesky', 'failure:bluesky',
+    'intent:mastodon', 'mastodon', 'receipt:mastodon',
+  ]);
+
+  const stopped = [];
+  await assert.rejects(processOnePublication(baseInput(queued(['bluesky', 'mastodon']), {
+    publishBluesky: async () => { stopped.push('bluesky'); throw new Error('provider down'); },
+    publishMastodon: async () => { stopped.push('mastodon'); return { id: 'must-not-run' }; },
+    checkpoint: async ({ phase, stage }) => {
+      stopped.push(`${phase}:${stage}`);
+      if (phase === 'failure') throw new Error('failure checkpoint unavailable');
+    },
+  })), /failure checkpoint unavailable/);
+  assert.deepEqual(stopped, ['intent:bluesky', 'bluesky', 'failure:bluesky']);
+});
+
+test('a bridge failure is durable before its outcome returns or any channel starts', async () => {
+  const queue = queued(['bluesky']);
+  queue.items[0].bridge = {
+    status: 'pending', attempts: 0, updatedAt: null, lastError: null, lastReset: null, result: null,
+  };
+  const events = [];
+  await assert.rejects(processOnePublication(baseInput(queue, {
+    publishBridge: async () => { events.push('provider:bridge'); throw new Error('deploy failed'); },
+    publishBluesky: async () => { events.push('provider:bluesky'); return { id: 'must-not-run' }; },
+    checkpoint: async ({ phase, stage, queueState }) => {
+      events.push(`${phase}:${stage}`);
+      if (phase === 'failure') {
+        assert.equal(queueState.items[0].bridge.status, 'retryable');
+        throw new Error('bridge failure checkpoint unavailable');
+      }
+    },
+  })), /bridge failure checkpoint unavailable/);
+  assert.deepEqual(events, ['intent:bridge', 'provider:bridge', 'failure:bridge']);
 });
 
 test('serializes an image intent before provider access and resumes only in reconciliation mode', async () => {
@@ -145,7 +179,7 @@ test('serializes an image intent before provider access and resumes only in reco
   })), /interrupt after intent/);
   assert.equal(providerCalls, 0);
   assert.deepEqual(durableIntent.items[0].instagram.result, {
-    mediaKind: 'image',
+    publicationKind: 'image',
     canonicalUrl,
   });
 
@@ -154,7 +188,7 @@ test('serializes an image intent before provider access and resumes only in reco
       providerCalls += 1;
       assert.equal(reconcileOnly, true);
       assert.equal(post.canonicalUrl, canonicalUrl);
-      assert.deepEqual(queueItem.instagram.result, { mediaKind: 'image', canonicalUrl });
+      assert.deepEqual(queueItem.instagram.result, { publicationKind: 'image', canonicalUrl });
       return { status: 'reconciled', id: 'instagram-one', url: 'https://www.instagram.com/p/one/' };
     },
     checkpoint: async () => {},
@@ -163,7 +197,7 @@ test('serializes an image intent before provider access and resumes only in reco
   assert.equal(providerCalls, 1);
   assert.equal(result.outcome, 'completed');
   assert.deepEqual(result.queueState.items[0].instagram.result, {
-    mediaKind: 'image',
+    publicationKind: 'image',
     canonicalUrl,
     status: 'reconciled',
     id: 'instagram-one',
@@ -199,6 +233,63 @@ test('a provider receipt interrupted before its durable checkpoint resumes from 
   }));
   assert.equal(recoveryCalls, 1);
   assert.equal(recovered.queueState.items[0].instagram.result.id, 'provider-returned');
+});
+
+test('an interrupted image recovery error cannot fall through to a fresh attempt in the same invocation', async () => {
+  const queue = queued(['instagram']);
+  queue.items[0].instagram = {
+    ...queue.items[0].instagram,
+    status: 'publishing',
+    attempts: 1,
+    updatedAt: now,
+    result: { publicationKind: 'image', canonicalUrl },
+  };
+  const modes = [];
+  const result = await processOnePublication(baseInput(queue, {
+    publishInstagram: async ({ reconcileOnly }) => {
+      modes.push(reconcileOnly);
+      const error = new Error('temporary adapter failure');
+      error.code = 'instagram_provider';
+      throw error;
+    },
+    checkpoint: async () => {},
+  }));
+  assert.deepEqual(modes, [true]);
+  assert.equal(result.outcome, 'partial');
+  assert.equal(result.queueState.items[0].instagram.status, 'retryable');
+});
+
+test('successful interrupted image recovery never upgrades source or renders a bridge in that invocation', async () => {
+  const queue = queued(['instagram']);
+  queue.items[0].instagram = {
+    ...queue.items[0].instagram,
+    status: 'publishing',
+    attempts: 1,
+    updatedAt: now,
+    result: { publicationKind: 'image', canonicalUrl },
+  };
+  const durableBridge = structuredClone(queue.items[0].bridge);
+  const revisedJob = { ...job, title: 'Changed title', contentHash: '9'.repeat(64) };
+  const revisedSnapshot = {
+    ...snapshot,
+    commit: '9'.repeat(40),
+    dataHash: '9'.repeat(64),
+    jobsById: new Map([[job.id, revisedJob]]),
+  };
+  let bridgeCalls = 0;
+  const result = await processOnePublication(baseInput(queue, {
+    currentSnapshot: revisedSnapshot,
+    publishBridge: async () => { bridgeCalls += 1; return {}; },
+    publishInstagram: async ({ reconcileOnly }) => {
+      assert.equal(reconcileOnly, true);
+      return { id: 'instagram-recovered' };
+    },
+    checkpoint: async () => {},
+  }));
+  assert.equal(result.outcome, 'completed');
+  assert.equal(bridgeCalls, 0);
+  assert.deepEqual(result.queueState.items[0].bridge, durableBridge);
+  assert.equal(result.queueState.items[0].contentHash, job.contentHash);
 });
 
 test('an ambiguous image is a terminal review hold and does not block a later channel', async () => {
@@ -345,7 +436,7 @@ test('failure and image recovery leave every unrelated partial-success receipt d
     instagramStory: resumed.queueState.items[0].instagramStory,
   }, unaffected);
   assert.deepEqual(resumed.publicationsState.jobs[job.id].instagram, {
-    mediaKind: 'image', canonicalUrl, id: 'instagram-recovered',
+    publicationKind: 'image', canonicalUrl, id: 'instagram-recovered',
   });
   assert.strictEqual(resumed.publicationsState.jobs[existingId], existingLedger);
 });
@@ -357,7 +448,7 @@ test('an interrupted image missing from the snapshot becomes an explicit review 
     status: 'publishing',
     attempts: 1,
     updatedAt: now,
-    result: { mediaKind: 'image', canonicalUrl },
+    result: { publicationKind: 'image', canonicalUrl },
   };
   const emptySnapshot = { ...snapshot, jobsById: new Map() };
 
@@ -365,7 +456,7 @@ test('an interrupted image missing from the snapshot becomes an explicit review 
 
   assert.equal(result.queueState.items[0].instagram.status, 'failed');
   assert.equal(result.queueState.items[0].instagram.lastError.code, 'instagram_image_ambiguous');
-  assert.deepEqual(result.queueState.items[0].instagram.result, { mediaKind: 'image', canonicalUrl });
+  assert.deepEqual(result.queueState.items[0].instagram.result, { publicationKind: 'image', canonicalUrl });
   assert.notEqual(result.queueState.items[0].instagram.status, 'skipped_closed');
 });
 
@@ -376,7 +467,7 @@ test('scheduled preflight runs for a lone interrupted image without making publi
     status: 'publishing',
     attempts: 1,
     updatedAt: now,
-    result: { mediaKind: 'image', canonicalUrl },
+    result: { publicationKind: 'image', canonicalUrl },
   };
   const intakeState = {
     schemaVersion: 3,
