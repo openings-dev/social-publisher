@@ -29,6 +29,7 @@ import {
   validateSnapshotReference,
 } from '../state/state-model.mjs';
 import { hasInstagramFeedImage, pendingBridgeMediaResult, retainedStoryMedia } from './instagram-media-provenance.mjs';
+import { updateOpeningsR2Consumer } from './openings-r2-manifest.mjs';
 
 const READY_STATUSES = new Set(['pending', 'retryable']);
 
@@ -147,9 +148,18 @@ function updateQueuedRevision(queueState, job, snapshot) {
   if (current.contentHash === job.contentHash) {
     return queueState;
   }
+  const history = [
+    ...(current.r2MediaHistory ?? []),
+    ...(current.r2Media ? [current.r2Media] : []),
+  ];
+  if (history.length > 16) {
+    throw new Error('R2 media history requires cleanup before another content revision');
+  }
+  const { r2Media: _r2Media, mediaOwner: _mediaOwner, ...revisionBase } = current;
   const items = queueState.items.slice();
   items[index] = {
-    ...current,
+    ...revisionBase,
+    ...(history.length > 0 ? { r2MediaHistory: history } : {}),
     sourceId: job.sourceId,
     contentHash: job.contentHash,
     dataCommit: snapshot.commit,
@@ -545,7 +555,36 @@ async function publishQueueStage({
       post,
       queueItem: findQueueItem(next, item.jobId),
       reconcileOnly: reconcileOnly || recoveringImage,
+      onAccepted: async (accepted) => {
+        if (!accepted || typeof accepted !== 'object' || Array.isArray(accepted)
+          || typeof accepted.id !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/u.test(accepted.id)
+          || typeof accepted.provider !== 'string' || !/^[a-z0-9_-]{1,64}$/u.test(accepted.provider)
+          || typeof accepted.status !== 'string' || !/^[a-z_]{1,32}$/u.test(accepted.status)) {
+          throw new Error('Provider acceptance receipt is invalid');
+        }
+        next = validateQueueState({ ...next, items: next.items.map((entry) => entry.jobId === item.jobId
+          ? {
+            ...entry,
+            [stage]: { ...entry[stage], result: {
+              ...(entry[stage].result ?? {}),
+              acceptedProviderId: accepted.id,
+              acceptedProvider: accepted.provider,
+              acceptedStatus: accepted.status,
+            } },
+            ...(entry.r2Media ? { r2Media: updateOpeningsR2Consumer(entry.r2Media, stage, {
+              state: 'accepted', remoteId: accepted.id, updatedAt: now,
+            }) } : {}),
+          }
+          : entry) });
+        await checkpoint({ phase: 'accepted', stage, jobId: item.jobId, queueState: next });
+      },
     });
+    next = validateQueueState({ ...next, items: next.items.map((entry) => entry.jobId === item.jobId && entry.r2Media
+      && entry.r2Media.files.some((file) => file.consumers.some((consumer) => consumer.channel === stage))
+      ? { ...entry, r2Media: updateOpeningsR2Consumer(entry.r2Media, stage, {
+        state: 'completed', remoteId: result.id, updatedAt: now,
+      }) }
+      : entry) });
     next = transitionQueueStage(next, item.jobId, stage, 'published', { at: now, result });
   } catch (error) {
     if (stage === 'mastodon' && /^[a-zA-Z0-9-]{1,128}$/.test(error?.platformPublicationId ?? '')) {
@@ -565,6 +604,16 @@ async function publishQueueStage({
       at: now,
       errorCode: imageRecoveryHold ? 'instagram_image_ambiguous' : safeErrorCode(error, stage),
     });
+    next = validateQueueState({ ...next, items: next.items.map((entry) => {
+      if (entry.jobId !== item.jobId || !entry.r2Media
+        || entry.r2Media.files.every((file) => file.consumers.every((consumer) => consumer.channel !== stage))) return entry;
+      const existing = entry.r2Media.files.flatMap((file) => file.consumers)
+        .find((consumer) => consumer.channel === stage);
+      if (existing?.state === 'accepted') return entry;
+      return { ...entry, r2Media: updateOpeningsR2Consumer(entry.r2Media, stage, {
+        state: 'ambiguous', updatedAt: now,
+      }) };
+    }) });
     checkpointPhase = 'failure';
   }
   await checkpoint({ phase: checkpointPhase, stage, jobId: item.jobId, queueState: next });
@@ -770,19 +819,32 @@ export async function processOnePublication({
     try {
       const result = await publishBridge({
         job,
+        queueItem: findQueueItem(nextQueue, job.id),
         direction: queuedArtworkDirection(nextQueue, job.id),
         snapshot: currentSnapshot,
         reason: instagramCardUpgrade ? 'instagram_card_upgrade' : (revisionChanged ? 'changed' : 'new'),
+        checkpointMedia: async (r2Media) => {
+          nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map((item) => (
+            item.jobId === selected.jobId ? { ...item, r2Media } : item
+          )) });
+          await checkpoint({ phase: 'media', stage: 'bridge', jobId: selected.jobId, queueState: nextQueue });
+        },
       });
+      const { r2Media, ...bridgeResult } = result;
+      if (r2Media) {
+        nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map((item) => (
+          item.jobId === selected.jobId ? { ...item, r2Media } : item
+        )) });
+      }
       const direction = queuedArtworkDirection(nextQueue, job.id);
-      const storyMedia = retainedStoryMedia(selected.bridge.result?.storyMediaCandidate, { job, direction, bridge: result });
+      const storyMedia = retainedStoryMedia(selected.bridge.result?.storyMediaCandidate, { job, direction, bridge: bridgeResult });
       // Stage receipts merge with their intent for native provider ownership.
       // A rebuilt bridge instead replaces its old media/candidate completely.
       nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map(item => item.jobId !== selected.jobId ? item : {
         ...item, bridge: { ...item.bridge, result: null },
       }) });
       nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'published', {
-        at: now, result: { ...result, ...storyMedia, visualDirection: direction,
+        at: now, result: { ...bridgeResult, ...storyMedia, visualDirection: direction,
           ...(job.socialTitle ? { socialTitle: job.socialTitle } : {}) },
       });
     } catch (error) {

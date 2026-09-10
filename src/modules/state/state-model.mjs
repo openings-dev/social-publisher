@@ -1,6 +1,8 @@
 import { MAX_CHANNEL_ATTEMPTS, SOCIAL_CHANNELS, STATE_SCHEMA_VERSION } from '../../config/constants.mjs';
 import { isValidJobId } from '../../shared/job-id.mjs';
 import { ARTWORK_DIRECTIONS, artworkAt } from '../render/job-poster-model.mjs';
+import { validateOpeningsMediaOwnerRecord } from '../publishing/openings-media-owner.mjs';
+import { validateOpeningsR2Manifest } from '../publishing/openings-r2-manifest.mjs';
 
 const SENSITIVE_KEY_PATTERN = /(?:authorization|credential|password|private.?key|secret|token)/i;
 const STAGE_STATUSES = new Set([
@@ -270,6 +272,20 @@ export function validateQueueState(value) {
     validateStageState(item.bridge, 'queue bridge');
     if (Object.hasOwn(item, 'legacyBridgeProvenance')) {
       validateLegacyBridgeProvenance(item.legacyBridgeProvenance, item);
+    }
+    if (Object.hasOwn(item, 'mediaOwner')) {
+      validateOpeningsMediaOwnerRecord(item.mediaOwner, item);
+    }
+    if (Object.hasOwn(item, 'r2Media')) {
+      validateOpeningsR2Manifest(item.r2Media, item);
+    }
+    if (Object.hasOwn(item, 'r2MediaHistory')) {
+      if (!Array.isArray(item.r2MediaHistory) || item.r2MediaHistory.length > 16) {
+        throw new Error('queue R2 media history is invalid');
+      }
+      for (const manifest of item.r2MediaHistory) {
+        validateOpeningsR2Manifest(manifest, manifest);
+      }
     }
     for (const channel of SOCIAL_CHANNELS) {
       validateStageState(item[channel], `queue ${channel}`);

@@ -9,6 +9,7 @@ import { runPreflight } from '../src/cli/preflight.mjs';
 import { publishImageToInstagram } from '../src/modules/networks/instagram-client.mjs';
 import { processOnePublication } from '../src/modules/publishing/orchestrator.mjs';
 import { decideScheduledWork } from '../src/modules/publishing/scheduled-work.mjs';
+import { buildOpeningsR2Manifest } from '../src/modules/publishing/openings-r2-manifest.mjs';
 import { enqueueJob, resetFailedStage } from '../src/modules/state/queue-operations.mjs';
 
 const now = '2026-09-08T12:00:00.000Z';
@@ -149,6 +150,38 @@ test('checkpoint failures propagate and halt providers while ordinary provider f
   assert.deepEqual(stopped, ['intent:bluesky', 'bluesky', 'failure:bluesky']);
 });
 
+test('persists an accepted Buffer ID before polling can fail', async () => {
+  const events = [];
+  const queue = queued(['twitter', 'mastodon']);
+  queue.items[0].r2Media = buildOpeningsR2Manifest({
+    mediaOwner: { jobId: job.id, sourceId: job.sourceId, contentHash: job.contentHash,
+      requestDigest: 'd'.repeat(64), preparedAt: now, files: [{ role: 'opengraph',
+        fileName: 'opengraph-image.png', logicalArtifactId: 'opengraph', sha256: 'e'.repeat(64),
+        byteSize: 100, mediaType: 'image/png', width: 1200, height: 630, renderVersion: '2' }] },
+    publicOrigin: 'https://media.openings.dev', consumersByRole: { opengraph: ['twitter'] },
+  });
+  const result = await processOnePublication(baseInput(queue, {
+    publishTwitter: async ({ onAccepted }) => {
+      events.push('provider:twitter');
+      await onAccepted({ id: 'buffer-accepted', provider: 'buffer', status: 'scheduled' });
+      events.push('poll:twitter');
+      const error = new Error('polling unavailable'); error.code = 'buffer_processing'; throw error;
+    },
+    publishMastodon: async () => { events.push('provider:mastodon'); return { id: 'masto-one' }; },
+    checkpoint: async ({ phase, stage, queueState }) => {
+      events.push(`${phase}:${stage}`);
+      if (phase === 'accepted') assert.equal(queueState.items[0].twitter.result.acceptedProviderId, 'buffer-accepted');
+    },
+  }));
+  assert.equal(result.outcome, 'partial');
+  assert.equal(result.queueState.items[0].twitter.result.acceptedProviderId, 'buffer-accepted');
+  assert.equal(result.queueState.items[0].r2Media.files[0].consumers[0].state, 'accepted');
+  assert.deepEqual(events, [
+    'intent:mastodon', 'provider:mastodon', 'receipt:mastodon',
+    'intent:twitter', 'provider:twitter', 'accepted:twitter', 'poll:twitter', 'failure:twitter',
+  ]);
+});
+
 test('a bridge failure is durable before its outcome returns or any channel starts', async () => {
   const queue = queued(['bluesky']);
   queue.items[0].bridge = {
@@ -167,6 +200,67 @@ test('a bridge failure is durable before its outcome returns or any channel star
     },
   })), /bridge failure checkpoint unavailable/);
   assert.deepEqual(events, ['intent:bridge', 'provider:bridge', 'failure:bridge']);
+});
+
+test('durably checkpoints R2 media inside the bridge before its receipt and provider calls', async () => {
+  const queue = queued(['twitter']);
+  queue.items[0].bridge = { status: 'pending', attempts: 0, updatedAt: null, lastError: null, lastReset: null, result: null };
+  const events = [];
+  const result = await processOnePublication(baseInput(queue, {
+    publishBridge: async ({ queueItem, checkpointMedia }) => {
+      const mediaOwner = { jobId: job.id, sourceId: job.sourceId, contentHash: job.contentHash,
+        requestDigest: 'd'.repeat(64), preparedAt: now, files: [{ role: 'opengraph',
+          fileName: 'opengraph-image.png', logicalArtifactId: 'opengraph', sha256: 'e'.repeat(64),
+          byteSize: 100, mediaType: 'image/png', width: 1200, height: 630, renderVersion: '2' }] };
+      const manifest = buildOpeningsR2Manifest({ mediaOwner, publicOrigin: 'https://media.openings.dev',
+        consumersByRole: { opengraph: ['twitter'] } });
+      await checkpointMedia(manifest);
+      assert.equal(queueItem.jobId, job.id);
+      return { status: 'hosted', canonicalUrl, imageUrl: manifest.files[0].url,
+        instagramCardVersion: '7', instagramFeedMediaKind: 'image', r2Media: manifest };
+    },
+    publishTwitter: async ({ queueItem }) => {
+      assert.equal(queueItem.r2Media.files[0].url.startsWith('https://media.openings.dev/'), true);
+      events.push('provider:twitter');
+      return { id: 'buffer-one' };
+    },
+    checkpoint: async ({ phase, stage, queueState }) => {
+      events.push(`${phase}:${stage}`);
+      if (phase === 'media') assert.equal(queueState.items[0].r2Media.files[0].uploadState, 'pending');
+    },
+  }));
+  assert.equal(result.outcome, 'completed');
+  assert.equal(result.queueState.items[0].r2Media.files[0].consumers[0].state, 'completed');
+  assert.deepEqual(events, ['intent:bridge', 'media:bridge', 'receipt:bridge',
+    'intent:twitter', 'provider:twitter', 'receipt:twitter']);
+});
+
+test('archives old R2 ownership before rendering a changed content revision', async () => {
+  const queue = queued(['twitter']);
+  const oldManifest = buildOpeningsR2Manifest({
+    mediaOwner: { jobId: job.id, sourceId: job.sourceId, contentHash: job.contentHash,
+      requestDigest: 'd'.repeat(64), preparedAt: now, files: [{ role: 'opengraph',
+        fileName: 'opengraph-image.png', logicalArtifactId: 'opengraph', sha256: 'e'.repeat(64),
+        byteSize: 100, mediaType: 'image/png', width: 1200, height: 630, renderVersion: '2' }] },
+    publicOrigin: 'https://media.openings.dev', consumersByRole: { opengraph: ['twitter'] },
+  });
+  queue.items[0].r2Media = oldManifest;
+  const changedJob = { ...job, title: 'Staff TypeScript Engineer', contentHash: '6'.repeat(64) };
+  const changedSnapshot = { ...snapshot, commit: '8'.repeat(40), dataHash: '8'.repeat(64),
+    jobsById: new Map([[job.id, changedJob]]) };
+  const result = await processOnePublication(baseInput(queue, {
+    currentSnapshot: changedSnapshot,
+    publishBridge: async ({ queueItem }) => {
+      assert.equal(queueItem.r2Media, undefined);
+      assert.deepEqual(queueItem.r2MediaHistory, [oldManifest]);
+      return { status: 'hosted', canonicalUrl, imageUrl: 'https://media.openings.dev/new.png',
+        instagramCardVersion: '7', instagramFeedMediaKind: 'image' };
+    },
+    publishTwitter: async () => ({ id: 'twitter-new' }),
+    checkpoint: async () => {},
+  }));
+  assert.equal(result.queueState.items[0].contentHash, changedJob.contentHash);
+  assert.deepEqual(result.queueState.items[0].r2MediaHistory, [oldManifest]);
 });
 
 test('serializes an image intent before provider access and resumes only in reconciliation mode', async () => {

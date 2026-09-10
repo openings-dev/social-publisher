@@ -9,6 +9,8 @@ import {
   createBridgePublisher,
   loadCanonicalWordmark,
 } from '../modules/publishing/bridge-publisher.mjs';
+import { createOpeningsR2BridgePublisher } from '../modules/publishing/openings-r2-publisher.mjs';
+import { readOpeningsR2Capacity, readOpeningsR2Config } from '../modules/publishing/openings-r2-store.mjs';
 import { processOnePublication } from '../modules/publishing/orchestrator.mjs';
 import { prepareSocialJob } from '../modules/render/social-title.mjs';
 import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
@@ -147,11 +149,23 @@ export async function runPublication({
     (dependencies.loadCanonicalWordmark ?? loadCanonicalWordmark)(wordmarkPath),
   ]);
   const snapshot = await (dependencies.loadSnapshot ?? loadSnapshot)(dataRepositoryPath, commit);
-  const publishBridge = (dependencies.createBridgePublisher ?? createBridgePublisher)({
-    config,
-    wordmarkSvg,
-    outputRoot: outputPath,
-  });
+  const publishBridge = config.r2Enabled
+    ? (dependencies.createOpeningsR2BridgePublisher ?? createOpeningsR2BridgePublisher)({
+      publicOrigin: config.r2PublicOrigin,
+      outputRoot: outputPath,
+      wordmarkSvg,
+      enabledChannels: config.enabledChannels,
+      linkedinProvider: config.linkedinProvider,
+      storyEnabled: config.instagramStoryEnabled,
+      r2Config: (dependencies.readOpeningsR2Config ?? readOpeningsR2Config)(env),
+      capacity: (dependencies.readOpeningsR2Capacity ?? readOpeningsR2Capacity)(env.OPENINGS_R2_CAPACITY_JSON),
+      dependencies: dependencies.r2,
+    })
+    : (dependencies.createBridgePublisher ?? createBridgePublisher)({
+      config,
+      wordmarkSvg,
+      outputRoot: outputPath,
+    });
   const publishBluesky = dependencies.publishBluesky ?? (async ({ job, post, queueItem }) => {
     const png = await renderSocialCardPng(job, { wordmarkSvg, direction: queueItem.visualDirection ?? queueItem.bridge.result?.visualDirection });
     try {
@@ -183,17 +197,19 @@ export async function runPublication({
     }
     return publishToMastodon({ job, post, accessToken: config.mastodonAccessToken, baseUrl: config.mastodonBaseUrl });
   });
-  const publishTwitter = dependencies.publishTwitter ?? (async ({ job, post, queueItem }) => {
+  const publishTwitter = dependencies.publishTwitter ?? (async ({ job, post, queueItem, onAccepted }) => {
     try {
       return await (dependencies.publishTwitterViaBuffer ?? publishToTwitterViaBuffer)({
         job,
         post,
         imageUrl: queueItem.bridge.result?.imageUrl,
-        publicSiteOrigin: config.publicSiteOrigin,
+        publicSiteOrigin: config.r2Enabled ? config.r2PublicOrigin : config.publicSiteOrigin,
         apiKey: config.twitter?.apiKey,
         organizationId: config.twitter?.organizationId,
         channelId: config.twitter?.channelId,
         apiOrigin: config.twitter?.apiOrigin,
+        acceptedPostId: queueItem.twitter.result?.acceptedProviderId ?? null,
+        onAccepted,
       });
     } catch (error) {
       log(JSON.stringify({
@@ -228,7 +244,7 @@ export async function runPublication({
     apiOrigin: config.instagram?.apiOrigin,
     reconcileOnly,
   }));
-  const publishLinkedIn = dependencies.publishLinkedIn ?? (async ({ job, post, queueItem }) => {
+  const publishLinkedIn = dependencies.publishLinkedIn ?? (async ({ job, post, queueItem, onAccepted }) => {
     const provider = config.linkedin?.provider === 'buffer' ? 'buffer' : 'linkedin';
     try {
       if (provider === 'buffer') {
@@ -236,11 +252,13 @@ export async function runPublication({
           job,
           post,
           imageUrl: queueItem.bridge.result?.imageUrl,
-          publicSiteOrigin: config.publicSiteOrigin,
+          publicSiteOrigin: config.r2Enabled ? config.r2PublicOrigin : config.publicSiteOrigin,
           apiKey: config.linkedin?.apiKey,
           organizationId: config.linkedin?.organizationId,
           channelId: config.linkedin?.channelId,
           apiOrigin: config.linkedin?.apiOrigin,
+          acceptedPostId: queueItem.linkedin.result?.acceptedProviderId ?? null,
+          onAccepted,
         });
       }
       const png = await renderSocialCardPng(job, { wordmarkSvg, direction: queueItem.visualDirection ?? queueItem.bridge.result?.visualDirection });

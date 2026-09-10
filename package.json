@@ -10,7 +10,7 @@
   },
   "scripts": {
     "platform": "node src/cli/publish-platform.mjs",
-    "test:platform": "node --test test/platform-*.test.mjs test/instagram-image-artifacts.test.mjs test/instagram-image-client.test.mjs test/instagram-image-queue.test.mjs test/instagram-image-recovery.test.mjs test/instagram-image-verification.test.mjs test/instagram-story-media.test.mjs test/publication-checkpoint.test.mjs test/selected-media-owner-intake.test.mjs test/state-git-checkpoint.test.mjs test/workflow-secrets.test.mjs",
+    "test:platform": "node --test test/platform-*.test.mjs test/instagram-image-artifacts.test.mjs test/instagram-image-client.test.mjs test/instagram-image-queue.test.mjs test/instagram-image-recovery.test.mjs test/instagram-image-verification.test.mjs test/instagram-story-media.test.mjs test/openings-media-*.test.mjs test/openings-r2-*.test.mjs test/publication-checkpoint.test.mjs test/selected-media-owner-intake.test.mjs test/source-event-checkout.test.mjs test/state-git-checkpoint.test.mjs test/workflow-secrets.test.mjs",
     "preview:social": "node src/cli/social-preview.mjs",
     "test:artwork": "node --test src/modules/render/*.test.mjs src/modules/state/*.test.mjs src/modules/preview/*.test.mjs",
     "validate": "npm run test:platform && npm run test:artwork && node src/modules/validation/run-validation.mjs",
@@ -27,6 +27,7 @@
   "dependencies": {
     "@atproto/api": "^0.17.0",
     "@atproto/common-web": "^0.4.21",
+    "@aws-sdk/client-s3": "3.967.0",
     "@trebla/publishing": "0.1.3",
     "sharp": "^0.35.4"
   }

@@ -53,7 +53,7 @@ export async function runPreflight({
   fetchManifest = fetchManifestJson,
   log = console.log,
 }) {
-  if (eventName !== 'schedule') {
+  if (eventName === 'workflow_dispatch') {
     const result = { shouldRun: true, reason: 'manual', queueDepth: null };
     log(JSON.stringify(result));
     return result;
