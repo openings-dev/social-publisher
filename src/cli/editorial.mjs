@@ -5,7 +5,6 @@ import { pathToFileURL } from 'node:url';
 import { EDITORIAL_CATALOG } from '../content/editorial-catalog.mjs';
 import { readEnvironment } from '../config/env.mjs';
 import { sha256 } from '../shared/hash.mjs';
-import { requestEditorialDeployment } from '../modules/deploy/web-deploy-client.mjs';
 import { resetEditorialStage, validateEditorialState } from '../modules/editorial/editorial-state.mjs';
 import { publishCarouselToInstagram, publishStoryToInstagram } from '../modules/networks/instagram-client.mjs';
 import {
@@ -13,6 +12,8 @@ import {
   prepareEditorialStageIntent,
   processEditorialStage,
 } from '../modules/publishing/editorial-publisher.mjs';
+import { publishEditorialAssetsToR2 } from '../modules/publishing/editorial-r2-assets.mjs';
+import { readOpeningsR2Config } from '../modules/publishing/openings-r2-store.mjs';
 import { EDITORIAL_RENDER_VERSION, renderEditorialAssets } from '../modules/render/editorial-card.mjs';
 import { formatEditorialCaption } from '../modules/render/editorial-caption.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
@@ -64,7 +65,6 @@ export async function renderEditorialDryRun({ content, wordmarkPath, outputPath,
     path: `slide-${String(index + 1).padStart(2, '0')}.jpg`,
     sha256: sha256(buffer),
   }));
-  const storyEntry = { path: 'story.jpg', sha256: sha256(rendered.story) };
   const manifest = {
     schemaVersion: 1,
     contentId: content.id,
@@ -72,18 +72,16 @@ export async function renderEditorialDryRun({ content, wordmarkPath, outputPath,
     renderVersion: EDITORIAL_RENDER_VERSION,
     pillar: content.pillar,
     slides: slideEntries,
-    story: storyEntry,
     caption: { path: 'caption.txt', sha256: sha256(caption) },
     sources: content.sources,
   };
   const writes = slideEntries.map((entry, index) => writeFile(resolve(directory, entry.path), rendered.slides[index]));
   writes.push(
-    writeFile(resolve(directory, storyEntry.path), rendered.story),
     writeFile(resolve(directory, 'caption.txt'), `${caption}\n`, 'utf8'),
     writeFile(resolve(directory, 'manifest.json'), `${JSON.stringify(manifest, null, 2)}\n`, 'utf8'),
   );
   await Promise.all(writes);
-  const files = [...slideEntries.map(({ path }) => resolve(directory, path)), resolve(directory, 'story.jpg'), resolve(directory, 'caption.txt'), resolve(directory, 'manifest.json')];
+  const files = [...slideEntries.map(({ path }) => resolve(directory, path)), resolve(directory, 'caption.txt'), resolve(directory, 'manifest.json')];
   log(`Editorial dry run: ${content.id}`);
   log(`Artifacts: ${directory}`);
   return Object.freeze({ contentId: content.id, directory, caption, manifest, files: Object.freeze(files) });
@@ -181,14 +179,13 @@ export async function runEditorialCommand({
   };
   if (mode === 'assets') {
     options.wordmarkSvg = await readFile(wordmarkPath, 'utf8');
-    options.deployAssets = dependencies.deployAssets ?? (({ content, carouselSvgs, storySvg }) => requestEditorialDeployment({
-      contentId: content.id,
-      version: EDITORIAL_RENDER_VERSION,
+    options.deployAssets = dependencies.deployAssets ?? (({ content, carouselSvgs }) => publishEditorialAssetsToR2({
+      content,
       carouselSvgs,
-      storySvg,
-      repository: config.webDeploy.repository,
-      token: config.webDeploy.token,
-      origin: config.publicSiteOrigin,
+      renderVersion: EDITORIAL_RENDER_VERSION,
+      config: (dependencies.readOpeningsR2Config ?? readOpeningsR2Config)(env),
+      client: dependencies.r2Client,
+      fetchImpl: dependencies.fetchImpl,
     }));
   } else if (mode === 'feed') {
     options.publishCarousel = dependencies.publishCarousel ?? ((input) => publishCarouselToInstagram({

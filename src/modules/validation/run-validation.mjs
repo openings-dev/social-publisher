@@ -111,8 +111,8 @@ import {
   renderReelVideo,
 } from '../render/reel-video.mjs';
 import {
+  EDITORIAL_RENDER_VERSION,
   createEditorialSlideSvg,
-  createEditorialStorySvg,
   renderEditorialAssets,
   resolveEditorialTheme,
 } from '../render/editorial-card.mjs';
@@ -134,6 +134,7 @@ import {
   prepareEditorialStageIntent,
   processEditorialStage,
 } from '../publishing/editorial-publisher.mjs';
+import { publishEditorialAssetsToR2 } from '../publishing/editorial-r2-assets.mjs';
 import {
   enqueueBridgeWork,
   enqueueJob,
@@ -1972,11 +1973,32 @@ validation('loads only deploy and Meta credentials for a controlled migration', 
 
 validation('isolates editorial deploy and Instagram credentials by stage', () => {
   const deploy = readEnvironment({
-    env: { INSTAGRAM_EDITORIAL_AUTO_PUBLISH: 'true', WEB_DEPLOY_TOKEN: 'deploy-secret' },
+    env: {
+      INSTAGRAM_EDITORIAL_AUTO_PUBLISH: 'true',
+      OPENINGS_R2_ENABLED: 'true',
+      OPENINGS_R2_ACCOUNT_ID: 'a'.repeat(32),
+      OPENINGS_R2_BUCKET: 'openings-production-public-social-media',
+      OPENINGS_R2_BUCKET_PURPOSE: 'openings-public-social-media-v1',
+      OPENINGS_R2_PUBLIC_ORIGIN: 'https://media.openings.dev',
+      OPENINGS_R2_ACCESS_KEY_ID: 'access-key',
+      OPENINGS_R2_SECRET_ACCESS_KEY: 'secret-key',
+    },
     mode: 'editorial-assets',
   });
   assert.equal(deploy.instagramEditorialEnabled, true);
-  assert.equal(deploy.webDeploy.token, 'deploy-secret');
+  assert.equal(deploy.r2Enabled, true);
+  assert.equal(deploy.r2PublicOrigin, 'https://media.openings.dev');
+  assert.equal(deploy.webDeploy, null);
+  assert.throws(() => readEnvironment({
+    env: {
+      OPENINGS_R2_ENABLED: 'false', OPENINGS_R2_ACCOUNT_ID: 'a'.repeat(32),
+      OPENINGS_R2_BUCKET: 'openings-production-public-social-media',
+      OPENINGS_R2_BUCKET_PURPOSE: 'openings-public-social-media-v1',
+      OPENINGS_R2_PUBLIC_ORIGIN: 'https://media.openings.dev',
+      OPENINGS_R2_ACCESS_KEY_ID: 'access-key', OPENINGS_R2_SECRET_ACCESS_KEY: 'secret-key',
+    },
+    mode: 'editorial-assets',
+  }), /OPENINGS_R2_ENABLED/u);
   assert.equal(deploy.instagram, null);
   const instagram = readEnvironment({
     env: {
@@ -6510,25 +6532,23 @@ validation('rejects editorial copy that breaks the English publishing policy', (
 });
 
 validation('schedules the right editorial pillar and never duplicates a pending slot', () => {
-  assert.deepEqual(slotForDate('2026-09-07T15:17:00.000Z'), {
-    key: '2026-09-07',
-    pillars: ['linkedin'],
+  assert.deepEqual(slotForDate('2026-09-08T15:00:00.000Z'), {
+    key: '2026-09-08',
+    pillars: ['linkedin', 'resume', 'application'],
   });
-  assert.deepEqual(slotForDate('2026-09-09T15:17:00.000Z'), {
-    key: '2026-09-09',
-    pillars: ['resume', 'application'],
-  });
-  assert.deepEqual(slotForDate('2026-09-11T15:17:00.000Z'), {
-    key: '2026-09-11',
+  assert.deepEqual(slotForDate('2026-09-10T15:00:00.000Z'), {
+    key: '2026-09-10',
     pillars: ['search', 'interview'],
   });
-  assert.equal(slotForDate('2026-09-08T15:17:00.000Z'), null);
+  for (const date of ['2026-09-07', '2026-09-09', '2026-09-11', '2026-09-12', '2026-09-13']) {
+    assert.equal(slotForDate(`${date}T15:00:00.000Z`), null);
+  }
 
-  const now = '2026-09-07T15:17:00.000Z';
+  const now = '2026-09-08T15:00:00.000Z';
   const empty = createEmptyEditorialState();
   const selected = selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: empty, now });
-  assert.equal(selected.content.id, 'linkedin-atividade-estrategica');
-  assert.equal(selected.scheduledDate, '2026-09-07');
+  assert.ok(['linkedin', 'resume', 'application'].includes(selected.content.pillar));
+  assert.equal(selected.scheduledDate, '2026-09-08');
   const queued = enqueueEditorialItem(empty, selected, { at: now });
   validateEditorialState(queued, EDITORIAL_CATALOG);
   assert.equal(queued.catalogVersion, '2');
@@ -6539,10 +6559,10 @@ validation('schedules the right editorial pillar and never duplicates a pending 
     ...empty,
     history: {
       [selected.content.id]: {
-        lastPublishedAt: '2026-09-07T15:20:00.000Z',
+        lastPublishedAt: '2026-09-08T15:20:00.000Z',
         cycles: 1,
         lastPublication: {
-          scheduledDate: '2026-09-07',
+          scheduledDate: '2026-09-08',
           contentVersion: '1',
           assets: { status: 'deployed' },
           feed: { id: 'same-day-feed' },
@@ -6554,18 +6574,18 @@ validation('schedules the right editorial pillar and never duplicates a pending 
   assert.equal(selectEditorialItem({
     catalog: EDITORIAL_CATALOG,
     state: completed,
-    now: '2026-09-07T18:00:00.000Z',
+    now: '2026-09-08T18:00:00.000Z',
   }), null);
   assert.equal(enqueueScheduledEditorial({
     state: completed,
     catalog: EDITORIAL_CATALOG,
-    now: '2026-09-07T18:00:00.000Z',
+    now: '2026-09-08T18:00:00.000Z',
     contentId: EDITORIAL_CATALOG.find(({ id }) => id !== selected.content.id).id,
   }), completed);
 });
 
 validation('keeps editorial feed and Story stages independently durable', () => {
-  const now = '2026-09-07T15:17:00.000Z';
+  const now = '2026-09-08T15:00:00.000Z';
   const selected = selectEditorialItem({
     catalog: EDITORIAL_CATALOG,
     state: createEmptyEditorialState(),
@@ -6597,19 +6617,16 @@ validation('keeps editorial feed and Story stages independently durable', () => 
   validateEditorialState(state, EDITORIAL_CATALOG);
 });
 
-validation('renders deterministic editorial carousels and a dedicated Story', async () => {
+validation('renders deterministic editorial carousels without a dedicated Story', async () => {
   const content = EDITORIAL_CATALOG[0];
   const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302e"/></svg>';
   assert.deepEqual(resolveEditorialTheme(content.id), resolveEditorialTheme(content.id));
   assert.notDeepEqual(resolveEditorialTheme(content.id), resolveEditorialTheme(EDITORIAL_CATALOG[1].id));
   const coverSvg = createEditorialSlideSvg(content, 0, { wordmarkSvg });
-  const storySvg = createEditorialStorySvg(content, { wordmarkSvg });
   const allSlideSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
-  const editorialSvgCopy = `${allSlideSvgs.join('\n')}\n${storySvg}`;
+  const editorialSvgCopy = allSlideSvgs.join('\n');
   assert.match(coverSvg, /width="1080" height="1350"/u);
   assert.match(coverSvg, /data-editorial-slide="1"/u);
-  assert.match(storySvg, /width="1080" height="1920"/u);
-  assert.match(storySvg, /data-editorial-story="true"/u);
   assert.doesNotMatch(editorialSvgCopy, /PRACTICAL GUIDE/u);
   assert.match(editorialSvgCopy, /BEFORE/u);
   assert.match(editorialSvgCopy, /AFTER/u);
@@ -6618,13 +6635,12 @@ validation('renders deterministic editorial carousels and a dedicated Story', as
   assert.doesNotMatch(editorialSvgCopy, /GUIA|ANTES|DEPOIS|NOVO|PASSO A PASSO|Veja|SALVE|CURRÍCULO|CANDIDATURA|ENTREVISTA/u);
   const rendered = await renderEditorialAssets(content, { wordmarkSvg });
   assert.equal(rendered.slides.length, 7);
-  for (const jpeg of [...rendered.slides, rendered.story]) {
+  for (const jpeg of rendered.slides) {
     const metadata = await sharp(jpeg).metadata();
     assert.equal(metadata.format, 'jpeg');
     assert.equal(metadata.width, 1080);
   }
   assert.equal((await sharp(rendered.slides[0]).metadata()).height, 1350);
-  assert.equal((await sharp(rendered.story).metadata()).height, 1920);
 });
 
 validation('formats and writes a complete editorial dry run', async () => {
@@ -6647,16 +6663,16 @@ validation('formats and writes a complete editorial dry run', async () => {
       outputPath: directory,
       log: () => {},
     });
-    assert.equal(result.files.length, 10);
+    assert.equal(result.files.length, 9);
     const names = await readdir(join(directory, 'editorial', content.id));
     assert.deepEqual(names.sort(), [
       'caption.txt', 'manifest.json', 'slide-01.jpg', 'slide-02.jpg', 'slide-03.jpg',
-      'slide-04.jpg', 'slide-05.jpg', 'slide-06.jpg', 'slide-07.jpg', 'story.jpg',
+      'slide-04.jpg', 'slide-05.jpg', 'slide-06.jpg', 'slide-07.jpg',
     ]);
     const manifest = JSON.parse(await readFile(join(directory, 'editorial', content.id, 'manifest.json'), 'utf8'));
     assert.equal(manifest.contentId, content.id);
     assert.equal(manifest.slides.length, 7);
-    assert.equal(typeof manifest.story.sha256, 'string');
+    assert.equal('story' in manifest, false);
   } finally {
     await rm(directory, { recursive: true, force: true });
   }
@@ -6666,7 +6682,7 @@ validation('builds a bounded editorial deployment request with eight canonical S
   const content = EDITORIAL_CATALOG[0];
   const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
   const carouselSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
-  const storySvg = createEditorialStorySvg(content, { wordmarkSvg });
+  const storySvg = '<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920" viewBox="0 0 1080 1920"><rect width="1080" height="1920"/></svg>';
   const request = buildEditorialDispatchRequest({
     contentId: content.id,
     version: content.version,
@@ -6687,7 +6703,7 @@ validation('builds a bounded editorial deployment request with eight canonical S
   }
   for (const catalogContent of EDITORIAL_CATALOG) {
     const catalogSlides = catalogContent.slides.map((_, index) => createEditorialSlideSvg(catalogContent, index, { wordmarkSvg }));
-    const catalogStory = createEditorialStorySvg(catalogContent, { wordmarkSvg });
+    const catalogStory = storySvg;
     const catalogRequest = buildEditorialDispatchRequest({
       contentId: catalogContent.id,
       version: catalogContent.version,
@@ -6722,9 +6738,9 @@ validation('verifies every public editorial JPEG against its canonical manifest'
   const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
   const rendered = await renderEditorialAssets(content, { wordmarkSvg });
   const sourceSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
-  sourceSvgs.push(createEditorialStorySvg(content, { wordmarkSvg }));
+  sourceSvgs.push('<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1920"/>');
   const names = [...content.slides.map((_, index) => `slide-${String(index + 1).padStart(2, '0')}`), 'story'];
-  const buffers = [...rendered.slides, rendered.story];
+  const buffers = [...rendered.slides, await sharp(rendered.slides[0]).resize(1080, 1920, { fit: 'fill' }).toBuffer()];
   const manifest = {
     schemaVersion: 1,
     contentId: content.id,
@@ -6756,31 +6772,161 @@ validation('verifies every public editorial JPEG against its canonical manifest'
   assert.equal(result.storyUrl, `${base}/story.jpg`);
 });
 
+validation('publishes seven immutable editorial slides directly to bounded R2 storage', async () => {
+  const content = EDITORIAL_CATALOG[0];
+  const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>';
+  const carouselSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
+  const uploads = [];
+  const publicBytes = new Map();
+  const missing = Object.assign(new Error('missing'), { name: 'NotFound' });
+  const client = { send: async (command) => {
+    if (command.constructor.name === 'ListObjectsV2Command') return { IsTruncated: false };
+    if (command.constructor.name === 'HeadObjectCommand') throw missing;
+    uploads.push(command.input);
+    publicBytes.set(command.input.Key, Buffer.from(command.input.Body));
+    return {};
+  } };
+  const result = await publishEditorialAssetsToR2({
+    content, carouselSvgs, renderVersion: EDITORIAL_RENDER_VERSION,
+    config: { bucket: 'openings-production-public-social-media', publicOrigin: 'https://media.openings.dev' },
+    client,
+    fetchImpl: async (url) => {
+      const key = new URL(url).pathname.slice(1);
+      const bytes = publicBytes.get(key);
+      return new Response(bytes, { headers: { 'content-type': 'image/jpeg', 'content-length': String(bytes.byteLength) } });
+    },
+  });
+  assert.equal(uploads.length, 7);
+  assert.equal(result.verification.carouselUrls.length, 7);
+  assert.deepEqual(result.verification.carouselMedia[0], {
+    url: result.verification.carouselUrls[0], mediaType: 'image/jpeg', width: 1080, height: 1350,
+  });
+  for (const [index, upload] of uploads.entries()) {
+    assert.equal(upload.Key, `openings/editorial/${content.id}/${content.version}/${EDITORIAL_RENDER_VERSION}/slide-${String(index + 1).padStart(2, '0')}.jpg`);
+    assert.equal(upload.IfNoneMatch, '*');
+    assert.equal(upload.ContentType, 'image/jpeg');
+    assert.equal(upload.CacheControl, 'public, max-age=31536000, immutable');
+    assert.equal(upload.Metadata.sha256, sha256(upload.Body));
+    assert.equal(upload.ContentLength, upload.Body.byteLength);
+  }
+
+  const uploadedByKey = new Map(uploads.map((upload) => [upload.Key, upload]));
+  const matchingHead = (key) => {
+    const upload = uploadedByKey.get(key);
+    return { ContentLength: upload.ContentLength, ContentType: upload.ContentType, Metadata: upload.Metadata };
+  };
+  for (const [existingCount, missingCount] of [[999, 1], [1_000, 0]]) {
+    const retryPuts = [];
+    const retryClient = { send: async (command) => {
+      if (command.constructor.name === 'ListObjectsV2Command') {
+        return { Contents: Array.from({ length: existingCount }, (_, index) => ({ Key: `existing-${index}`, Size: 0 })), IsTruncated: false };
+      }
+      if (command.constructor.name === 'HeadObjectCommand') {
+        const index = Number(/slide-(\d+)\.jpg$/u.exec(command.input.Key)[1]);
+        if (index > 7 - missingCount) throw missing;
+        return matchingHead(command.input.Key);
+      }
+      retryPuts.push(command.input);
+      return {};
+    } };
+    const retry = await publishEditorialAssetsToR2({
+      content, carouselSvgs, renderVersion: EDITORIAL_RENDER_VERSION,
+      config: { bucket: 'openings-production-public-social-media', publicOrigin: 'https://media.openings.dev' },
+      client: retryClient,
+      fetchImpl: async (url) => {
+        const upload = uploadedByKey.get(new URL(url).pathname.slice(1));
+        return new Response(upload.Body, { headers: { 'content-type': 'image/jpeg' } });
+      },
+    });
+    assert.equal(retry.verification.carouselUrls.length, 7);
+    assert.equal(retryPuts.length, missingCount);
+  }
+
+  let oversizedStreamCancelled = false;
+  const oversizedClient = { send: async (command) => command.constructor.name === 'ListObjectsV2Command'
+    ? { IsTruncated: false } : matchingHead(command.input.Key) };
+  await assert.rejects(() => publishEditorialAssetsToR2({
+    content, carouselSvgs, renderVersion: EDITORIAL_RENDER_VERSION,
+    config: { bucket: 'openings-production-public-social-media', publicOrigin: 'https://media.openings.dev' },
+    client: oversizedClient,
+    fetchImpl: async (url) => {
+      const upload = uploadedByKey.get(new URL(url).pathname.slice(1));
+      return new Response(new ReadableStream({
+        start(controller) {
+          controller.enqueue(Buffer.concat([Buffer.from(upload.Body), Buffer.from([0])]));
+        },
+        cancel() { oversizedStreamCancelled = true; },
+      }), { headers: { 'content-type': 'image/jpeg' } });
+    },
+  }), /Invalid public editorial R2 asset/u);
+  assert.equal(oversizedStreamCancelled, true);
+
+  const fullClient = { send: async (command) => {
+    if (command.constructor.name === 'ListObjectsV2Command') {
+      return { Contents: [{ Key: 'existing', Size: 512 * 1024 * 1024 }], IsTruncated: false };
+    }
+    throw missing;
+  } };
+  await assert.rejects(() => publishEditorialAssetsToR2({
+    content, carouselSvgs, renderVersion: EDITORIAL_RENDER_VERSION,
+    config: { bucket: 'openings-production-public-social-media', publicOrigin: 'https://media.openings.dev' },
+    client: fullClient,
+  }), /safe admission limit/u);
+
+  const truncatedClient = { send: async () => ({ Contents: [], IsTruncated: true, NextContinuationToken: 'more' }) };
+  await assert.rejects(() => publishEditorialAssetsToR2({
+    content, carouselSvgs, renderVersion: EDITORIAL_RENDER_VERSION,
+    config: { bucket: 'openings-production-public-social-media', publicOrigin: 'https://media.openings.dev' },
+    client: truncatedClient,
+  }), /bounded observation/u);
+
+  const conflictClient = { send: async (command) => command.constructor.name === 'ListObjectsV2Command'
+    ? { Contents: [], IsTruncated: false }
+    : { ContentLength: 1, ContentType: 'image/jpeg', Metadata: { sha256: '0'.repeat(64) } } };
+  await assert.rejects(() => publishEditorialAssetsToR2({
+    content, carouselSvgs, renderVersion: EDITORIAL_RENDER_VERSION,
+    config: { bucket: 'openings-production-public-social-media', publicOrigin: 'https://media.openings.dev' },
+    client: conflictClient,
+  }), /conflicts with immutable/u);
+
+  const interruptedClient = { send: async (command) => {
+    if (command.constructor.name === 'ListObjectsV2Command') return { Contents: [], IsTruncated: false };
+    if (command.constructor.name === 'HeadObjectCommand') throw missing;
+    throw Object.assign(new Error('network interrupted'), { code: 'editorial_r2_upload_interrupted' });
+  } };
+  await assert.rejects(() => publishEditorialAssetsToR2({
+    content, carouselSvgs, renderVersion: EDITORIAL_RENDER_VERSION,
+    config: { bucket: 'openings-production-public-social-media', publicOrigin: 'https://media.openings.dev' },
+    client: interruptedClient,
+  }), (error) => error.code === 'editorial_r2_upload_interrupted');
+});
+
 validation('orchestrates editorial assets, feed, and Story as durable independent stages', async () => {
-  const monday = '2026-09-07T15:17:00.000Z';
+  const tuesday = '2026-09-08T15:00:00.000Z';
   let state = enqueueScheduledEditorial({
-    state: createEmptyEditorialState(), catalog: EDITORIAL_CATALOG, now: monday,
+    state: createEmptyEditorialState(), catalog: EDITORIAL_CATALOG, now: tuesday,
   });
   const contentId = state.pending[0].contentId;
   const calls = [];
   state = (await processEditorialStage({
-    state, catalog: EDITORIAL_CATALOG, stage: 'assets', now: monday,
+    state, catalog: EDITORIAL_CATALOG, stage: 'assets', now: tuesday,
     wordmarkSvg: '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><rect width="1202" height="219"/></svg>',
-    deployAssets: async ({ carouselSvgs, storySvg }) => {
+    deployAssets: async ({ carouselSvgs }) => {
       calls.push('assets');
       assert.equal(carouselSvgs.length, 7);
-      assert.match(storySvg, /height="1920"/u);
       return { status: 'deployed', verification: {
         manifestUrl: 'https://openings.dev/social/editorial/manifest.json',
         carouselUrls: Array.from({ length: 7 }, (_, index) => `https://openings.dev/social/editorial/slide-0${index + 1}.jpg`),
-        storyUrl: 'https://openings.dev/social/editorial/story.jpg',
+        carouselMedia: Array.from({ length: 7 }, (_, index) => ({
+          url: `https://openings.dev/social/editorial/slide-0${index + 1}.jpg`, mediaType: 'image/jpeg', width: 1080, height: 1350,
+        })),
       } };
     },
   })).state;
   assert.equal(state.pending[0].assets.status, 'published');
   assert.equal(state.pending[0].feed.status, 'pending');
   state = (await processEditorialStage({
-    state, catalog: EDITORIAL_CATALOG, stage: 'feed', now: monday,
+    state, catalog: EDITORIAL_CATALOG, stage: 'feed', now: tuesday,
     publishCarousel: async ({ imageUrls, caption, reconciliationMarker }) => {
       calls.push('feed');
       assert.equal(imageUrls.length, 7);
@@ -6791,25 +6937,27 @@ validation('orchestrates editorial assets, feed, and Story as durable independen
   assert.equal(state.pending[0].feed.result.id, 'carousel-media');
   assert.equal(state.pending[0].story.status, 'pending');
   const preparedStory = prepareEditorialStageIntent({
-    state, catalog: EDITORIAL_CATALOG, stage: 'story', operationKey: 'editorial-test-1', now: monday,
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', operationKey: 'editorial-test-1', now: tuesday,
   });
   assert.equal(preparedStory.outcome, 'prepared');
   state = preparedStory.state;
-  state = (await processEditorialStage({
-    state, catalog: EDITORIAL_CATALOG, stage: 'story', now: monday,
+  const storyResult = await processEditorialStage({
+    state, catalog: EDITORIAL_CATALOG, stage: 'story', now: tuesday,
     operationKey: 'editorial-test-1',
-    publishStory: async ({ mediaUrl, mediaKind }) => {
+    publishStory: async () => {
       calls.push('story');
-      assert.equal(mediaUrl, 'https://openings.dev/social/editorial/story.jpg');
-      assert.equal(mediaKind, 'image');
-      return { status: 'published', id: 'story-media', url: null };
     },
-  })).state;
-  assert.deepEqual(calls, ['assets', 'feed', 'story']);
+  });
+  state = storyResult.state;
+  assert.equal(storyResult.outcome, 'unsupported');
+  assert.deepEqual(calls, ['assets', 'feed']);
   assert.equal(state.pending.length, 0);
   assert.equal(state.history[contentId].cycles, 1);
   assert.equal(state.history[contentId].lastPublication.feed.id, 'carousel-media');
-  assert.equal(state.history[contentId].lastPublication.story.id, 'story-media');
+  assert.deepEqual(state.history[contentId].lastPublication.story, {
+    status: 'unsupported', reason: 'editorial_story_feed_media_compatibility_unverified',
+    mediaUrl: 'https://openings.dev/social/editorial/slide-01.jpg', mediaType: 'image/jpeg', width: 1080, height: 1350,
+  });
 });
 
 validation('fails closed when an editorial Story is ambiguous and enforces the manual gate', async () => {
@@ -6820,7 +6968,7 @@ validation('fails closed when an editorial Story is ambiguous and enforces the m
     mode: 'controlled', contentId: 'linkedin-headline-clara', confirmation: 'publish',
   }), /exact confirmation/i);
 
-  const now = '2026-09-07T15:17:00.000Z';
+  const now = '2026-09-08T15:00:00.000Z';
   const selection = selectEditorialItem({ catalog: EDITORIAL_CATALOG, state: createEmptyEditorialState(), now });
   let state = enqueueEditorialItem(createEmptyEditorialState(), selection, { at: now });
   assert.throws(() => enqueueScheduledEditorial({
@@ -6840,7 +6988,13 @@ validation('fails closed when an editorial Story is ambiguous and enforces the m
   assert.equal(called, false);
   state = transitionEditorialStage(state, selection.content.id, 'assets', 'publishing', { at: now });
   state = transitionEditorialStage(state, selection.content.id, 'assets', 'published', {
-    at: now, result: { carouselUrls: Array(7).fill('https://openings.dev/slide.jpg'), storyUrl: 'https://openings.dev/story.jpg' },
+    at: now, result: {
+      carouselUrls: Array(7).fill('https://openings.dev/slide.jpg'),
+      carouselMedia: Array(7).fill(null).map(() => ({
+        url: 'https://openings.dev/slide.jpg', mediaType: 'image/jpeg', width: 1080, height: 1920,
+      })),
+      storyUrl: 'https://openings.dev/story.jpg',
+    },
   });
   state = transitionEditorialStage(state, selection.content.id, 'feed', 'publishing', { at: now });
   state = transitionEditorialStage(state, selection.content.id, 'feed', 'published', { at: now, result: { id: 'feed' } });
@@ -6876,7 +7030,7 @@ validation('fails closed when an editorial Story is ambiguous and enforces the m
 
 validation('checkpoints the automated editorial workflow in dependency order', async () => {
   const workflow = await readFile(fileURLToPath(new URL('../../../.github/workflows/publish-editorial.yml', import.meta.url)), 'utf8');
-  assert.match(workflow, /cron:\s*['"]17 15 \* \* 1,3,5['"]/u);
+  assert.match(workflow, /cron:\s*['"]0 15 \* \* 2,4['"]/u);
   assert.match(workflow, /INSTAGRAM_EDITORIAL_AUTO_PUBLISH/u);
   assert.match(workflow, /PUBLISH_ONE_EDITORIAL_POST/u);
   assert.match(workflow, /social-publisher-publication/u);
@@ -6886,7 +7040,7 @@ validation('checkpoints the automated editorial workflow in dependency order', a
   const order = [
     'Enqueue one editorial guide',
     'Commit editorial intent',
-    'Deploy editorial assets',
+    'Publish editorial assets to R2',
     'Commit editorial asset result',
     'Publish editorial carousel',
     'Commit editorial feed result',

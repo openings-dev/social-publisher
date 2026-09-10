@@ -37,7 +37,9 @@ test('moves workflow configuration to individually masked secrets without public
   for (const name of socialNames) {
     assert.match(socialEnv, new RegExp(`^      ${name}: \\$\\{\\{ secrets\\.${name} \\}\\}$`, 'mu'));
   }
-  for (const name of ['WEB_PATH', 'PUBLIC_SITE_ORIGIN', 'WEB_DEPLOY_REPOSITORY', 'INSTAGRAM_API_ORIGIN', 'META_GRAPH_VERSION', 'INSTAGRAM_USER_ID']) {
+  for (const name of ['WEB_PATH', 'OPENINGS_R2_ENABLED', 'OPENINGS_R2_ACCOUNT_ID', 'OPENINGS_R2_BUCKET',
+    'OPENINGS_R2_BUCKET_PURPOSE', 'OPENINGS_R2_PUBLIC_ORIGIN',
+    'INSTAGRAM_API_ORIGIN', 'META_GRAPH_VERSION', 'INSTAGRAM_USER_ID']) {
     assert.match(editorialEnv, new RegExp(`^      ${name}: \\$\\{\\{ secrets\\.${name} \\}\\}$`, 'mu'));
   }
   assert.match(step(socialWorkflow, 'Decide whether scheduled work exists'), /DATA_MANIFEST_URL: \$\{\{ secrets\.DATA_MANIFEST_URL \}\}/u);
@@ -47,12 +49,27 @@ test('moves workflow configuration to individually masked secrets without public
   assert.doesNotMatch(`${socialEnv}\n${editorialEnv}`, /\|\| '(?:false|direct)'/u);
 });
 
+test('scopes editorial R2 writes to the asset step and retires web deployment', () => {
+  const editorialEnv = jobEnvironment(editorialWorkflow);
+  const assets = step(editorialWorkflow, 'Publish editorial assets to R2');
+  for (const name of ['OPENINGS_R2_ACCESS_KEY_ID', 'OPENINGS_R2_SECRET_ACCESS_KEY']) {
+    assert.equal([...editorialWorkflow.matchAll(new RegExp(`${name}:`, 'gu'))].length, 1);
+    assert.match(assets, new RegExp(`${name}: \\$\\{\\{ secrets\\.${name} \\}\\}`, 'u'));
+    assert.doesNotMatch(editorialEnv, new RegExp(name, 'u'));
+  }
+  assert.doesNotMatch(editorialWorkflow, /WEB_DEPLOY_TOKEN|WEB_DEPLOY_REPOSITORY/u);
+  assert.doesNotMatch(editorialWorkflow, /OPENINGS_R2_CAPACITY_JSON/u);
+  assert.doesNotMatch(step(editorialWorkflow, 'Publish editorial carousel'), /OPENINGS_R2_(?:ACCESS_KEY_ID|SECRET_ACCESS_KEY)/u);
+  assert.doesNotMatch(step(editorialWorkflow, 'Publish editorial Story'), /OPENINGS_R2_(?:ACCESS_KEY_ID|SECRET_ACCESS_KEY)/u);
+});
+
 test('preserves manual overrides, triggers, concurrency, and the editorial job gate', () => {
   for (const name of ['THREADS_AUTO_PUBLISH', 'INSTAGRAM_AUTO_PUBLISH', 'INSTAGRAM_STORY_AUTO_PUBLISH']) {
     assert.match(socialWorkflow, new RegExp(`github\\.event_name == 'workflow_dispatch' && inputs\\.mode == 'controlled' && inputs\\.publish_meta\\) && 'true' \\|\\| secrets\\.${name}`, 'u'));
   }
   assert.match(socialWorkflow, /github\.event_name == 'workflow_dispatch' && inputs\.mode == 'controlled' && inputs\.publish_linkedin\) && 'true' \|\| secrets\.LINKEDIN_AUTO_PUBLISH/u);
   assert.match(editorialWorkflow, /^    if: github\.event_name == 'workflow_dispatch' \|\| vars\.INSTAGRAM_EDITORIAL_AUTO_PUBLISH == 'true'$/mu);
+  assert.match(editorialWorkflow, /cron: '0 15 \* \* 2,4'/u);
   assert.match(editorialWorkflow, /inputs\.mode == 'controlled'\) && 'true' \|\| secrets\.INSTAGRAM_EDITORIAL_AUTO_PUBLISH/u);
   for (const workflow of [socialWorkflow, editorialWorkflow]) {
     assert.match(workflow, /schedule:/u);

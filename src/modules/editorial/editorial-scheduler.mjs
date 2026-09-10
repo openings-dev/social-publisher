@@ -2,9 +2,8 @@ import { validateEditorialCatalog } from './editorial-model.mjs';
 import { validateEditorialState } from './editorial-state.mjs';
 
 const DAY_SLOTS = Object.freeze({
-  Mon: ['linkedin'],
-  Wed: ['resume', 'application'],
-  Fri: ['search', 'interview'],
+  Tue: ['linkedin', 'resume', 'application'],
+  Thu: ['search', 'interview'],
 });
 
 function localParts(value, timeZone) {
