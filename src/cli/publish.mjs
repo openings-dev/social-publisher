@@ -14,7 +14,7 @@ import { prepareSocialJob } from '../modules/render/social-title.mjs';
 import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
 import { publishToMastodon } from '../modules/networks/mastodon-client.mjs';
 import { mastodonExecutionOwner, publishMastodonThroughPlatform } from '../modules/publishing/platform-mastodon.mjs';
-import { publishToInstagram } from '../modules/networks/instagram-client.mjs';
+import { publishImageToInstagram } from '../modules/networks/instagram-client.mjs';
 import { publishToLinkedInViaBuffer } from '../modules/networks/buffer-linkedin-client.mjs';
 import { publishToTwitterViaBuffer } from '../modules/networks/buffer-twitter-client.mjs';
 import { publishToLinkedIn } from '../modules/networks/linkedin-client.mjs';
@@ -193,11 +193,12 @@ export async function runPublication({
     accessToken: config.threads?.accessToken,
     apiUrl: config.threads?.apiUrl,
   }));
-  const publishInstagram = dependencies.publishInstagram ?? (({ job, post, queueItem }) => publishToInstagram({
+  const publishInstagram = dependencies.publishInstagram ?? (({ job, post, queueItem }) => (
+    dependencies.publishImageToInstagram ?? publishImageToInstagram
+  )({
     job,
     post,
-    videoUrl: queueItem.bridge.result?.socialVideoUrl,
-    coverUrl: queueItem.bridge.result?.socialVideoCoverUrl,
+    imageUrl: queueItem.bridge.result?.instagramImageUrl,
     accessToken: config.instagram?.accessToken,
     userId: config.instagram?.userId,
     apiVersion: config.instagram?.apiVersion,

@@ -10,7 +10,7 @@
   },
   "scripts": {
     "platform": "node src/cli/publish-platform.mjs",
-    "test:platform": "node --test test/platform-*.test.mjs test/instagram-image-artifacts.test.mjs test/instagram-image-verification.test.mjs test/workflow-secrets.test.mjs",
+    "test:platform": "node --test test/platform-*.test.mjs test/instagram-image-artifacts.test.mjs test/instagram-image-client.test.mjs test/instagram-image-verification.test.mjs test/workflow-secrets.test.mjs",
     "preview:social": "node src/cli/social-preview.mjs",
     "test:artwork": "node --test src/modules/render/*.test.mjs src/modules/state/*.test.mjs src/modules/preview/*.test.mjs",
     "validate": "npm run test:platform && npm run test:artwork && node src/modules/validation/run-validation.mjs",

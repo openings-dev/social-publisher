@@ -241,6 +241,75 @@ async function waitUntilContainerReady({
   throw publicationError('instagram_container', 'Instagram media preparation timed out');
 }
 
+export async function publishImageToInstagram({
+  job,
+  post,
+  imageUrl,
+  accessToken,
+  userId,
+  apiVersion,
+  reconciliationMarker,
+  apiOrigin = INSTAGRAM_API_ORIGIN,
+  fetchImpl = globalThis.fetch,
+  sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)),
+  containerPollAttempts = 24,
+  containerPollDelayMs = 5_000,
+}) {
+  assertCredentials(accessToken, userId);
+  const marker = normalizeReconciliationMarker(reconciliationMarker);
+  const publicImage = publicMediaUrl(imageUrl, {
+    extension: '.jpg',
+    label: 'Instagram image',
+  });
+  const base = apiBase(apiOrigin, apiVersion);
+  const baseCaption = formatInstagramCaption(job, post);
+  const caption = validateCaption(marker === null || baseCaption.includes(marker)
+    ? baseCaption
+    : `${baseCaption}\n\n${marker}`);
+  const existing = await findRecentMedia({
+    base,
+    userId,
+    canonicalUrl: post.canonicalUrl,
+    reconciliationMarker: marker,
+    accessToken,
+    fetchImpl,
+  });
+  if (existing) return normalizedResult(existing, 'reconciled');
+
+  const container = await createMediaContainer({
+    base,
+    userId,
+    accessToken,
+    fetchImpl,
+    parameters: { image_url: publicImage, caption },
+    errorCode: 'instagram_container',
+  });
+  await waitUntilContainerReady({
+    base,
+    containerId: container.id,
+    accessToken,
+    fetchImpl,
+    sleep,
+    ...pollingOptions({ containerPollAttempts, containerPollDelayMs }),
+  });
+  return publishMediaContainer({
+    base,
+    userId,
+    containerId: container.id,
+    accessToken,
+    fetchImpl,
+    errorCode: 'instagram_publication',
+    reconcile: () => findRecentMedia({
+      base,
+      userId,
+      canonicalUrl: post.canonicalUrl,
+      reconciliationMarker: marker,
+      accessToken,
+      fetchImpl,
+    }).catch(() => null),
+  });
+}
+
 export async function publishToInstagram({
   job,
   post,
