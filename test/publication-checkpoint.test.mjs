@@ -1001,6 +1001,7 @@ test('the CLI atomically saves each queue transition before its injected durable
     BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
     BLUESKY_APP_PASSWORD: 'bluesky-secret',
     MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+    MASTODON_AUTO_PUBLISH: 'true',
     BUFFER_API_KEY: 'buffer-secret',
     BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
     BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',

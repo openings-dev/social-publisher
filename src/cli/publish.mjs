@@ -293,6 +293,7 @@ export async function runPublication({
     publishInstagram,
     publishLinkedIn,
     enabledChannels: config.enabledChannels,
+    disabledChannels: config.disabledChannels,
     instagramStoryEnabled: config.instagramStoryEnabled,
     jobId: parsed.jobId ?? undefined,
     checkpoint,

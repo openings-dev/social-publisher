@@ -92,6 +92,7 @@ jobs:
       BUFFER_LINKEDIN_CHANNEL_ID: ${{ secrets.BUFFER_LINKEDIN_CHANNEL_ID }}
       BUFFER_TWITTER_CHANNEL_ID: ${{ secrets.BUFFER_TWITTER_CHANNEL_ID }}
       SOCIAL_AUTO_PUBLISH: ${{ secrets.SOCIAL_AUTO_PUBLISH }}
+      MASTODON_AUTO_PUBLISH: ${{ secrets.MASTODON_AUTO_PUBLISH }}
       PUBLISHING_SOCIAL_SHADOW_ENABLED: ${{ secrets.PUBLISHING_SOCIAL_SHADOW_ENABLED }}
       PUBLISHING_MASTODON_ENABLED: ${{ secrets.PUBLISHING_MASTODON_ENABLED }}
       PUBLISHING_ENDPOINT: ${{ secrets.PUBLISHING_ENDPOINT }}
@@ -244,7 +245,7 @@ jobs:
           --state state
 
       - name: Checkpoint Cloudflare Mastodon ownership before any provider request
-        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.PUBLISHING_MASTODON_ENABLED == 'true'
+        if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.MASTODON_AUTO_PUBLISH == 'true' && env.PUBLISHING_MASTODON_ENABLED == 'true'
         run: |
           node src/cli/claim-platform-mastodon.mjs
           git add -- state/queue.json

@@ -9,6 +9,7 @@ import { formatSocialPost } from '../render/format-job.mjs';
 import {
   enqueueBridgeWork,
   enqueueJob,
+  retireQueueChannels,
   queuedArtworkDirection,
   reservePublicationArtwork,
   markJobClosed,
@@ -632,13 +633,14 @@ export async function processOnePublication({
   publishInstagram,
   publishLinkedIn,
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
+  disabledChannels = [],
   instagramStoryEnabled = false,
   preparePublicationJob = (job) => job,
   now = new Date().toISOString(),
   jobId,
   checkpoint = async () => {},
 }) {
-  let nextQueue = validateQueueState(queueState);
+  let nextQueue = retireQueueChannels(validateQueueState(queueState), disabledChannels, now);
   const validatedPublications = validatePublicationsState(publicationsState);
   const repairJobIds = missingCompletedPublicationJobIds(nextQueue, validatedPublications);
   let nextPublications = repairCompletedPublications(validatedPublications, nextQueue);

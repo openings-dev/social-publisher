@@ -173,6 +173,24 @@ export function enqueueJob(queueState, {
   return validateQueueState({ ...queueState, items: [...queueState.items, item] });
 }
 
+export function retireQueueChannels(queueState, disabledChannels, at = new Date().toISOString()) {
+  validateQueueState(queueState);
+  assertIsoDate(at, 'channel disable timestamp');
+  const disabled = new Set(disabledChannels);
+  const retireable = new Set(['pending', 'retryable', 'failed']);
+  return validateQueueState({
+    ...queueState,
+    items: queueState.items.map((item) => ({
+      ...item,
+      ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => {
+        const stage = item[channel];
+        if (!disabled.has(channel) || !retireable.has(stage.status)) return [channel, stage];
+        return [channel, { ...stage, status: 'skipped_disabled', updatedAt: at }];
+      })),
+    })),
+  });
+}
+
 export function enqueueBridgeWork(intakeState, { job, snapshot, reason }) {
   validateIntakeState(intakeState);
   const bridge = {

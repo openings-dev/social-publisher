@@ -1779,13 +1779,13 @@ validation('enables Meta channels independently and requires only their own cred
     BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
   };
   const disabled = readEnvironment({ env: base, mode: 'scheduled' });
-  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'mastodon', 'twitter']);
+  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'twitter']);
 
   const threads = readEnvironment({
     env: { ...base, THREADS_AUTO_PUBLISH: 'true', THREADS_ACCESS_TOKEN: 'threads-secret' },
     mode: 'scheduled',
   });
-  assert.deepEqual(threads.enabledChannels, ['bluesky', 'mastodon', 'twitter', 'threads']);
+  assert.deepEqual(threads.enabledChannels, ['bluesky', 'twitter', 'threads']);
   assert.throws(
     () => readEnvironment({ env: { ...base, THREADS_AUTO_PUBLISH: 'true' }, mode: 'scheduled' }),
     /THREADS_ACCESS_TOKEN/u,
@@ -1801,7 +1801,7 @@ validation('enables Meta channels independently and requires only their own cred
     },
     mode: 'scheduled',
   });
-  assert.deepEqual(instagram.enabledChannels, ['bluesky', 'mastodon', 'twitter', 'instagram']);
+  assert.deepEqual(instagram.enabledChannels, ['bluesky', 'twitter', 'instagram']);
   assert.equal(instagram.instagram.userId, '17841400000000000');
   assert.equal(instagram.instagram.apiVersion, 'v23.0');
 });
@@ -1819,7 +1819,7 @@ validation('enables LinkedIn independently with bounded organization configurati
   };
   const disabled = readEnvironment({ env: base, mode: 'scheduled' });
   assert.equal(disabled.linkedin, null);
-  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'mastodon', 'twitter']);
+  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'twitter']);
 
   const enabled = readEnvironment({
     env: {
@@ -1831,7 +1831,7 @@ validation('enables LinkedIn independently with bounded organization configurati
     },
     mode: 'scheduled',
   });
-  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'mastodon', 'twitter', 'linkedin']);
+  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'twitter', 'linkedin']);
   assert.deepEqual(enabled.linkedin, {
     provider: 'direct',
     accessToken: 'linkedin-secret',
@@ -1875,7 +1875,7 @@ validation('selects Buffer for LinkedIn without requiring direct LinkedIn creden
     BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
   };
   const enabled = readEnvironment({ env: base, mode: 'scheduled' });
-  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'mastodon', 'twitter', 'linkedin']);
+  assert.deepEqual(enabled.enabledChannels, ['bluesky', 'twitter', 'linkedin']);
   assert.deepEqual(enabled.linkedin, {
     provider: 'buffer',
     apiKey: 'buffer-secret',
