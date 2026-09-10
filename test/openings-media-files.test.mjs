@@ -21,7 +21,7 @@ test('inspects real PNG, JPEG, and MP4 bytes before declaring owner media', asyn
   await Promise.all([
     sharp({ create: { width: 1200, height: 630, channels: 3, background: '#112233' } }).png().toFile(pngPath),
     sharp({ create: { width: 1080, height: 1350, channels: 3, background: '#eeeeee' } }).jpeg().toFile(jpegPath),
-    execFile('/opt/homebrew/bin/ffmpeg', [
+    execFile('ffmpeg', [
       '-v', 'error', '-f', 'lavfi', '-i', 'color=c=black:s=1080x1920:d=0.04',
       '-frames:v', '1', '-pix_fmt', 'yuv420p', videoPath,
     ], { timeout: 10_000, maxBuffer: 64 * 1024 }),
