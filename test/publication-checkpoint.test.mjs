@@ -5,6 +5,7 @@ import { join } from 'node:path';
 import test from 'node:test';
 
 import { runPublication } from '../src/cli/publish.mjs';
+import { runPreflight } from '../src/cli/preflight.mjs';
 import { publishImageToInstagram } from '../src/modules/networks/instagram-client.mjs';
 import { processOnePublication } from '../src/modules/publishing/orchestrator.mjs';
 import { decideScheduledWork } from '../src/modules/publishing/scheduled-work.mjs';
@@ -457,7 +458,7 @@ test('repairs a missing ledger entry from durable completed queue receipts witho
     publicationsState: publications({ [existingId]: existing }),
   }));
 
-  assert.equal(result.outcome, 'idle');
+  assert.equal(result.outcome, 'ledger_repaired');
   assert.strictEqual(result.publicationsState.jobs[existingId], existing);
   assert.equal(result.publicationsState.jobs[job.id].bluesky.id, 'bsky-durable');
 });
@@ -572,6 +573,7 @@ test('scheduled preflight runs for a lone interrupted image without making publi
     publishEnabled: true,
     intakeState,
     queueState: queue,
+    publicationsState: publications(),
     currentDataHash: snapshot.dataHash,
   }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
 
@@ -580,8 +582,186 @@ test('scheduled preflight runs for a lone interrupted image without making publi
     publishEnabled: true,
     intakeState,
     queueState: queue,
+    publicationsState: publications(),
     currentDataHash: snapshot.dataHash,
   }), { shouldRun: false, reason: 'up_to_date', queueDepth: 0 });
+});
+
+test('generic interrupted publication stages report bounded review work without becoming runnable', async () => {
+  const queue = queued(['mastodon']);
+  queue.items[0].mastodon = {
+    ...queue.items[0].mastodon,
+    status: 'publishing',
+    attempts: 1,
+    updatedAt: now,
+    result: { executionOwner: 'cloudflare', platformPublicationId: 'accepted-review' },
+  };
+  const durableQueue = JSON.parse(JSON.stringify(queue));
+  const stateDirectory = await mkdtemp(join(tmpdir(), 'openings-generic-review-'));
+  await Promise.all([
+    writeFile(join(stateDirectory, 'intake.json'), JSON.stringify({
+      schemaVersion: 3,
+      processedSnapshot: {
+        commit: snapshot.commit,
+        generatedAt: snapshot.generatedAt,
+        dataHash: snapshot.dataHash,
+      },
+      pendingBridges: [],
+      removedJobs: [],
+    })),
+    writeFile(join(stateDirectory, 'queue.json'), JSON.stringify(queue)),
+    writeFile(join(stateDirectory, 'publications.json'), JSON.stringify(publications())),
+  ]);
+
+  let manifestReads = 0;
+  const preflight = await runPreflight({
+    eventName: 'schedule',
+    publishEnabled: true,
+    stateDirectory,
+    fetchManifest: async () => {
+      manifestReads += 1;
+      return { dataHash: snapshot.dataHash };
+    },
+    log: () => {},
+  });
+  assert.deepEqual(preflight, {
+    shouldRun: false,
+    reason: 'review_required',
+    queueDepth: 0,
+    reviewRequiredCount: 1,
+    reviewRequired: [{ jobId: job.id, stage: 'mastodon' }],
+  });
+  assert.equal(manifestReads, 1);
+
+  const changed = await runPreflight({
+    eventName: 'schedule',
+    publishEnabled: true,
+    stateDirectory,
+    fetchManifest: async () => ({ dataHash: 'f'.repeat(64) }),
+    log: () => {},
+  });
+  assert.deepEqual(changed, {
+    shouldRun: true,
+    reason: 'snapshot_changed',
+    queueDepth: 0,
+    reviewRequiredCount: 1,
+    reviewRequired: [{ jobId: job.id, stage: 'mastodon' }],
+  });
+
+  const direct = await processOnePublication(baseInput(queue));
+  assert.equal(direct.outcome, 'review_required');
+  assert.deepEqual(direct.reviewRequired, [{ jobId: job.id, stage: 'mastodon' }]);
+  assert.deepEqual(direct.queueState, durableQueue);
+});
+
+test('generic interrupted stages do not block an unrelated ready channel on the selected job', async () => {
+  const queue = queued(['bluesky', 'mastodon']);
+  queue.items[0].mastodon = {
+    ...queue.items[0].mastodon,
+    status: 'publishing',
+    attempts: 1,
+    updatedAt: now,
+    result: { executionOwner: 'cloudflare', platformPublicationId: 'accepted-review' },
+  };
+  const durableMastodon = structuredClone(queue.items[0].mastodon);
+  let blueskyCalls = 0;
+  const result = await processOnePublication(baseInput(queue, {
+    publishBluesky: async () => { blueskyCalls += 1; return { id: 'bsky-ready' }; },
+    checkpoint: async () => {},
+  }));
+  assert.equal(result.outcome, 'partial');
+  assert.equal(blueskyCalls, 1);
+  assert.deepEqual(result.queueState.items[0].mastodon, durableMastodon);
+});
+
+test('scheduled preflight selects ledger-repair-only work and the normal CLI persists it with zero providers', async () => {
+  const queue = queued(['bluesky']);
+  queue.items[0].bluesky = {
+    ...queue.items[0].bluesky,
+    status: 'published',
+    attempts: 1,
+    updatedAt: now,
+    result: { id: 'bsky-ledger-repair' },
+  };
+  const stateDirectory = await mkdtemp(join(tmpdir(), 'openings-ledger-preflight-'));
+  const intakeState = {
+    schemaVersion: 3,
+    processedSnapshot: {
+      commit: snapshot.commit,
+      generatedAt: snapshot.generatedAt,
+      dataHash: snapshot.dataHash,
+    },
+    pendingBridges: [],
+    removedJobs: [],
+  };
+  await Promise.all([
+    writeFile(join(stateDirectory, 'intake.json'), JSON.stringify(intakeState)),
+    writeFile(join(stateDirectory, 'queue.json'), JSON.stringify(queue)),
+    writeFile(join(stateDirectory, 'publications.json'), JSON.stringify(publications())),
+  ]);
+
+  const preflight = await runPreflight({
+    eventName: 'schedule',
+    publishEnabled: true,
+    stateDirectory,
+    fetchManifest: async () => assert.fail('repair-only work must be selected locally'),
+    log: () => {},
+  });
+  assert.deepEqual(preflight, {
+    shouldRun: true,
+    reason: 'publication_ledger_repair',
+    queueDepth: 0,
+    repairCount: 1,
+  });
+
+  let providerCalls = 0;
+  const forbidden = async () => { providerCalls += 1; throw new Error('provider must not run'); };
+  const result = await runPublication({
+    request: { mode: 'scheduled' },
+    dataRepositoryPath: '/fixture/data',
+    stateDirectory,
+    wordmarkPath: '/fixture/wordmark.svg',
+    outputPath: join(stateDirectory, 'output'),
+    env: {
+      SOCIAL_AUTO_PUBLISH: 'true',
+      WEB_DEPLOY_TOKEN: 'deploy-secret',
+      BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+      BLUESKY_APP_PASSWORD: 'bluesky-secret',
+      MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+      BUFFER_API_KEY: 'buffer-secret',
+      BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+      BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
+    },
+    log: () => {},
+    dependencies: {
+      resolveGitCommit: async () => snapshot.commit,
+      loadCanonicalWordmark: async () => '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
+      loadSnapshot: async () => snapshot,
+      createBridgePublisher: () => forbidden,
+      publishBluesky: forbidden,
+      publishMastodon: forbidden,
+      publishTwitter: forbidden,
+      publishThreads: forbidden,
+      publishInstagram: forbidden,
+      publishLinkedIn: forbidden,
+    },
+  });
+  assert.equal(result.outcome, 'ledger_repaired');
+  assert.equal(providerCalls, 0);
+  assert.equal(
+    JSON.parse(await readFile(join(stateDirectory, 'publications.json'), 'utf8'))
+      .jobs[job.id].bluesky.id,
+    'bsky-ledger-repair',
+  );
+
+  const afterRepair = await runPreflight({
+    eventName: 'schedule',
+    publishEnabled: true,
+    stateDirectory,
+    fetchManifest: async () => ({ dataHash: snapshot.dataHash }),
+    log: () => {},
+  });
+  assert.deepEqual(afterRepair, { shouldRun: false, reason: 'up_to_date', queueDepth: 0 });
 });
 
 test('the CLI atomically saves each queue transition before its injected durable Git checkpoint', async () => {

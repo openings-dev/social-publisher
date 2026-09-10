@@ -15,7 +15,11 @@ import {
   reservePublicationArtwork,
   markJobClosed,
   markMissingJobsClosed,
+  interruptedPublicationReview,
+  isCompletedPublicationQueueItem,
   isInterruptedInstagramImage,
+  isReadyQueueItem,
+  missingCompletedPublicationJobIds,
   selectNextQueueItem,
   transitionPendingBridgeStage,
   transitionQueueStage,
@@ -28,7 +32,6 @@ import {
 } from '../state/state-model.mjs';
 
 const READY_STATUSES = new Set(['pending', 'retryable']);
-const COMPLETED_STATUSES = new Set(['published', 'skipped_disabled', 'skipped_before_activation']);
 
 function snapshotReference(snapshot) {
   return validateSnapshotReference({
@@ -208,7 +211,7 @@ function repairCompletedPublications(publicationsState, queueState) {
   let next = publicationsState;
   for (const item of queueState.items) {
     if (next.jobs[item.jobId] !== undefined) continue;
-    if (!SOCIAL_CHANNELS.every((channel) => COMPLETED_STATUSES.has(item[channel].status))) continue;
+    if (!isCompletedPublicationQueueItem(item)) continue;
     const completedAt = SOCIAL_CHANNELS
       .map((channel) => item[channel].updatedAt)
       .filter((value) => typeof value === 'string' && Number.isFinite(Date.parse(value)))
@@ -467,10 +470,9 @@ export async function processOnePublication({
   checkpoint = async () => {},
 }) {
   let nextQueue = validateQueueState(queueState);
-  let nextPublications = repairCompletedPublications(
-    validatePublicationsState(publicationsState),
-    nextQueue,
-  );
+  const validatedPublications = validatePublicationsState(publicationsState);
+  const repairJobIds = missingCompletedPublicationJobIds(nextQueue, validatedPublications);
+  let nextPublications = repairCompletedPublications(validatedPublications, nextQueue);
   assertSnapshot(currentSnapshot, 'currentSnapshot');
   assertNow(now);
   for (const [label, callback] of Object.entries({ publishBridge, publishBluesky, publishMastodon })) {
@@ -515,12 +517,42 @@ export async function processOnePublication({
 
   let selected = jobId ? findQueueItem(nextQueue, jobId) : selectNextQueueItem(nextQueue, now);
   if (!selected) {
+    if (repairJobIds.length > 0) {
+      return {
+        queueState: nextQueue,
+        publicationsState: nextPublications,
+        outcome: 'ledger_repaired',
+        selectedJobId: null,
+      };
+    }
+    const review = interruptedPublicationReview(nextQueue);
+    if (review.reviewRequiredCount > 0) {
+      return {
+        queueState: nextQueue,
+        publicationsState: nextPublications,
+        outcome: 'review_required',
+        selectedJobId: null,
+        ...review,
+      };
+    }
     return {
       queueState: nextQueue,
       publicationsState: nextPublications,
       outcome: automaticallyClosedJobId ? 'skipped_closed' : 'idle',
       selectedJobId: automaticallyClosedJobId,
     };
+  }
+  if (!isReadyQueueItem(selected)) {
+    const review = interruptedPublicationReview({ ...nextQueue, items: [selected] });
+    if (review.reviewRequiredCount > 0) {
+      return {
+        queueState: nextQueue,
+        publicationsState: nextPublications,
+        outcome: 'review_required',
+        selectedJobId: selected.jobId,
+        ...review,
+      };
+    }
   }
   const selectedJobId = selected.jobId;
   let job = currentSnapshot.jobsById.get(selected.jobId);
@@ -546,7 +578,7 @@ export async function processOnePublication({
       reconcileOnly: true,
     });
     selected = findQueueItem(nextQueue, selected.jobId);
-    if (SOCIAL_CHANNELS.every((channel) => COMPLETED_STATUSES.has(selected[channel].status))) {
+    if (isCompletedPublicationQueueItem(selected)) {
       nextPublications = completePublication(nextPublications, selected, now);
       return {
         queueState: nextQueue,
@@ -679,7 +711,7 @@ export async function processOnePublication({
   }
 
   selected = findQueueItem(nextQueue, selected.jobId);
-  if (SOCIAL_CHANNELS.every((channel) => COMPLETED_STATUSES.has(selected[channel].status))) {
+  if (isCompletedPublicationQueueItem(selected)) {
     nextPublications = completePublication(nextPublications, selected, now);
     return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'completed', selectedJobId };
   }

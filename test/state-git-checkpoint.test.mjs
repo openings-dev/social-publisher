@@ -42,7 +42,7 @@ test('validates the exact repository, queue path, remote, and state ref before G
   }
 });
 
-test('uses narrow argument arrays and skips commit and push when queue is unchanged', async () => {
+test('uses narrow argument arrays, skips an unchanged commit, and still pushes HEAD', async () => {
   const root = '/tmp/openings-checkpoint-fixture';
   const calls = [];
   const checkpoint = createQueueGitCheckpoint({

@@ -6,8 +6,10 @@ import { decideScheduledWork } from '../modules/publishing/scheduled-work.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import {
   migrateIntakeState,
+  migratePublicationsState,
   migrateQueueState,
   validateIntakeState,
+  validatePublicationsState,
   validateQueueState,
 } from '../modules/state/state-model.mjs';
 
@@ -57,9 +59,14 @@ export async function runPreflight({
     return result;
   }
 
-  const [intakeState, queueState] = await Promise.all([
+  const [intakeState, queueState, publicationsState] = await Promise.all([
     loadStateFile(resolve(stateDirectory, 'intake.json'), validateIntakeState, migrateIntakeState),
     loadStateFile(resolve(stateDirectory, 'queue.json'), validateQueueState, migrateQueueState),
+    loadStateFile(
+      resolve(stateDirectory, 'publications.json'),
+      validatePublicationsState,
+      migratePublicationsState,
+    ),
   ]);
   const knownDataHash = intakeState.processedSnapshot?.dataHash ?? '0'.repeat(64);
   const localDecision = decideScheduledWork({
@@ -67,9 +74,10 @@ export async function runPreflight({
     storyPublishEnabled,
     intakeState,
     queueState,
+    publicationsState,
     currentDataHash: knownDataHash,
   });
-  if (localDecision.reason !== 'up_to_date') {
+  if (!['up_to_date', 'review_required'].includes(localDecision.reason)) {
     log(JSON.stringify(localDecision));
     return localDecision;
   }
@@ -81,6 +89,7 @@ export async function runPreflight({
       storyPublishEnabled,
       intakeState,
       queueState,
+      publicationsState,
       currentDataHash: manifest?.dataHash,
     });
     log(JSON.stringify(result));
@@ -90,6 +99,12 @@ export async function runPreflight({
       shouldRun: true,
       reason: 'preflight_unavailable',
       queueDepth: localDecision.queueDepth,
+      ...(localDecision.reason === 'review_required'
+        ? {
+          reviewRequiredCount: localDecision.reviewRequiredCount,
+          reviewRequired: localDecision.reviewRequired,
+        }
+        : {}),
     };
     log(JSON.stringify(result));
     return result;

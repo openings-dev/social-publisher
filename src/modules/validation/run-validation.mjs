@@ -2413,17 +2413,20 @@ validation('skips disabled and up-to-date schedules before expensive setup', () 
     removedJobs: [],
   };
   const queueState = { schemaVersion: STATE_SCHEMA_VERSION, items: [] };
+  const publicationsState = { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} };
 
   assert.deepEqual(decideScheduledWork({
     publishEnabled: false,
     intakeState,
     queueState,
+    publicationsState,
     currentDataHash: 'b'.repeat(64),
   }), { shouldRun: false, reason: 'disabled', queueDepth: 0 });
   assert.deepEqual(decideScheduledWork({
     publishEnabled: true,
     intakeState,
     queueState,
+    publicationsState,
     currentDataHash: dataHash,
   }), { shouldRun: false, reason: 'up_to_date', queueDepth: 0 });
   assert.deepEqual(decideScheduledWork({
@@ -2431,12 +2434,14 @@ validation('skips disabled and up-to-date schedules before expensive setup', () 
     storyPublishEnabled: true,
     intakeState,
     queueState,
+    publicationsState,
     currentDataHash: dataHash,
   }), { shouldRun: false, reason: 'story_up_to_date', queueDepth: 0 });
   assert.deepEqual(decideScheduledWork({
     publishEnabled: true,
     intakeState,
     queueState,
+    publicationsState,
     currentDataHash: 'b'.repeat(64),
   }), { shouldRun: true, reason: 'snapshot_changed', queueDepth: 0 });
 });
@@ -2465,11 +2470,13 @@ validation('runs schedules while social or bridge work is ready', () => {
     snapshot,
     discoveredAt: '2026-08-23T12:01:00.000Z',
   });
+  const publicationsState = { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} };
 
   assert.deepEqual(decideScheduledWork({
     publishEnabled: true,
     intakeState,
     queueState,
+    publicationsState,
     currentDataHash: dataHash,
   }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
 
@@ -2496,6 +2503,7 @@ validation('runs schedules while social or bridge work is ready', () => {
     storyPublishEnabled: true,
     intakeState,
     queueState: interruptedStory,
+    publicationsState,
     currentDataHash: dataHash,
   }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
   assert.deepEqual(decideScheduledWork({
@@ -2503,6 +2511,7 @@ validation('runs schedules while social or bridge work is ready', () => {
     storyPublishEnabled: true,
     intakeState,
     queueState: interruptedStory,
+    publicationsState,
     currentDataHash: dataHash,
   }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
 
@@ -2511,6 +2520,7 @@ validation('runs schedules while social or bridge work is ready', () => {
     publishEnabled: true,
     intakeState: bridgeState,
     queueState: { schemaVersion: STATE_SCHEMA_VERSION, items: [] },
+    publicationsState,
     currentDataHash: dataHash,
   }), { shouldRun: true, reason: 'bridge_queued', queueDepth: 0 });
 });
@@ -2542,6 +2552,11 @@ validation('preflight avoids remote reads for queued work and fails open on mani
   try {
     await saveStateFile(join(directory, 'intake.json'), intakeState, validateIntakeState);
     await saveStateFile(join(directory, 'queue.json'), queueState, validateQueueState);
+    await saveStateFile(
+      join(directory, 'publications.json'),
+      { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
+      validatePublicationsState,
+    );
     let fetchCalls = 0;
     const queued = await runPreflight({
       eventName: 'schedule',
@@ -3394,6 +3409,7 @@ validation('skips social work blocked by a terminal bridge failure', () => {
       removedJobs: [],
     },
     queueState: queue,
+    publicationsState: { schemaVersion: STATE_SCHEMA_VERSION, jobs: {} },
     currentDataHash: snapshotReference().dataHash,
   }), { shouldRun: true, reason: 'queued', queueDepth: 1 });
 

@@ -5,7 +5,11 @@ import {
   SOCIAL_CHANNELS,
   STARVATION_THRESHOLD_MS,
 } from '../../config/constants.mjs';
-import { validateIntakeState, validateQueueState } from './state-model.mjs';
+import {
+  validateIntakeState,
+  validatePublicationsState,
+  validateQueueState,
+} from './state-model.mjs';
 import { assertValidJobId } from '../../shared/job-id.mjs';
 import { artworkAt, defaultArtworkDirection } from '../render/job-poster-model.mjs';
 
@@ -36,6 +40,12 @@ const TERMINAL_STATUSES = new Set([
   'skipped_disabled',
   'skipped_before_activation',
 ]);
+const COMPLETED_PUBLICATION_STATUSES = new Set([
+  'published',
+  'skipped_disabled',
+  'skipped_before_activation',
+]);
+const REVIEW_REPORT_LIMIT = 20;
 const ALLOWED_TRANSITIONS = Object.freeze({
   pending: new Set(['publishing', 'retryable', 'failed', 'skipped_closed']),
   publishing: new Set(['published', 'retryable', 'failed']),
@@ -294,7 +304,8 @@ export function resetPublishedMetaStages(queueState, jobId, {
 export function markJobClosed(queueState, jobId, at) {
   assertIsoDate(at, 'closed timestamp');
   return replaceItem(queueState, jobId, (item) => {
-    const closeStage = (stage) => TERMINAL_STATUSES.has(stage.status)
+    const closeStage = (stage, { preservePublishing = false } = {}) => TERMINAL_STATUSES.has(stage.status)
+      || (preservePublishing && stage.status === 'publishing')
       ? stage
       : { ...stage, status: 'skipped_closed', updatedAt: at, lastError: null };
     const instagram = isInterruptedInstagramImage(item)
@@ -307,10 +318,11 @@ export function markJobClosed(queueState, jobId, at) {
       : closeStage(item.instagram);
     return {
       ...item,
-      bridge: closeStage(item.bridge),
+      bridge: closeStage(item.bridge, { preservePublishing: true }),
       ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => [
-        channel,
-        channel === 'instagram' ? instagram : closeStage(item[channel]),
+        channel, channel === 'instagram'
+          ? instagram
+          : closeStage(item[channel], { preservePublishing: true }),
       ])),
       instagramStory: closeStage(item.instagramStory),
     };
@@ -337,6 +349,40 @@ export function isInterruptedInstagramImage(item) {
   return item?.instagram?.status === 'publishing'
     && item.instagram.result?.publicationKind === 'image'
     && item.instagram.result?.canonicalUrl === `${OPENINGS_ORIGIN}/jobs/${item.jobId}`;
+}
+
+export function isCompletedPublicationQueueItem(item) {
+  return SOCIAL_CHANNELS.every((channel) => (
+    COMPLETED_PUBLICATION_STATUSES.has(item[channel].status)
+  ));
+}
+
+export function missingCompletedPublicationJobIds(queueState, publicationsState) {
+  validateQueueState(queueState);
+  validatePublicationsState(publicationsState);
+  return queueState.items
+    .filter((item) => publicationsState.jobs[item.jobId] === undefined
+      && isCompletedPublicationQueueItem(item))
+    .map((item) => item.jobId);
+}
+
+export function interruptedPublicationReview(queueState, { limit = REVIEW_REPORT_LIMIT } = {}) {
+  validateQueueState(queueState);
+  if (!Number.isSafeInteger(limit) || limit < 1 || limit > REVIEW_REPORT_LIMIT) {
+    throw new Error(`Review report limit must be between 1 and ${REVIEW_REPORT_LIMIT}`);
+  }
+  const interrupted = [];
+  for (const item of queueState.items) {
+    for (const stage of ['bridge', ...SOCIAL_CHANNELS]) {
+      if (item[stage].status !== 'publishing') continue;
+      if (stage === 'instagram') continue;
+      interrupted.push({ jobId: item.jobId, stage });
+    }
+  }
+  return {
+    reviewRequiredCount: interrupted.length,
+    reviewRequired: interrupted.slice(0, limit),
+  };
 }
 
 function readySocialChannelCount(item) {
