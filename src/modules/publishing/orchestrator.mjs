@@ -433,12 +433,14 @@ async function publishQueueStage({
           platformPublicationId: error.platformPublicationId,
         } } } : entry) });
     }
-    const failureStatus = stage === 'instagram' && error?.code === 'instagram_image_ambiguous'
+    const imageRecoveryHold = stage === 'instagram'
+      && (recoveringImage || error?.code === 'instagram_image_ambiguous');
+    const failureStatus = imageRecoveryHold
       ? 'failed'
       : 'retryable';
     next = transitionQueueStage(next, item.jobId, stage, failureStatus, {
       at: now,
-      errorCode: safeErrorCode(error, stage),
+      errorCode: imageRecoveryHold ? 'instagram_image_ambiguous' : safeErrorCode(error, stage),
     });
     checkpointPhase = 'failure';
   }

@@ -226,6 +226,10 @@ export function resetFailedStage(queueState, jobId, stageName, { at, reason }) {
     if (item[stageName].status !== 'failed') {
       throw new Error('Only a failed stage can be reset');
     }
+    if (stageName === 'instagram'
+      && item.instagram.lastError?.code === 'instagram_image_ambiguous') {
+      throw new Error('Instagram image ambiguity review hold cannot be reset');
+    }
     return {
       ...item,
       [stageName]: {

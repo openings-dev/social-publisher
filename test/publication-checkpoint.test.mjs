@@ -5,9 +5,10 @@ import { join } from 'node:path';
 import test from 'node:test';
 
 import { runPublication } from '../src/cli/publish.mjs';
+import { publishImageToInstagram } from '../src/modules/networks/instagram-client.mjs';
 import { processOnePublication } from '../src/modules/publishing/orchestrator.mjs';
 import { decideScheduledWork } from '../src/modules/publishing/scheduled-work.mjs';
-import { enqueueJob } from '../src/modules/state/queue-operations.mjs';
+import { enqueueJob, resetFailedStage } from '../src/modules/state/queue-operations.mjs';
 
 const now = '2026-09-08T12:00:00.000Z';
 const job = Object.freeze({
@@ -256,7 +257,98 @@ test('an interrupted image recovery error cannot fall through to a fresh attempt
   }));
   assert.deepEqual(modes, [true]);
   assert.equal(result.outcome, 'partial');
-  assert.equal(result.queueState.items[0].instagram.status, 'retryable');
+  assert.equal(result.queueState.items[0].instagram.status, 'failed');
+  assert.equal(result.queueState.items[0].instagram.lastError.code, 'instagram_image_ambiguous');
+});
+
+test('an interrupted real-adapter configuration error remains a terminal hold across JSON reload', async () => {
+  const queue = queued(['instagram']);
+  const priorIntent = { publicationKind: 'image', canonicalUrl };
+  queue.items[0].instagram = {
+    ...queue.items[0].instagram,
+    status: 'publishing',
+    attempts: 1,
+    updatedAt: now,
+    result: priorIntent,
+  };
+  const adapter = ({ job: selectedJob, post, queueItem, reconcileOnly, apiVersion, fetchImpl }) => (
+    publishImageToInstagram({
+      job: selectedJob,
+      post,
+      imageUrl: queueItem.bridge.result.instagramImageUrl,
+      accessToken: 'instagram-secret',
+      userId: '17841400000000000',
+      apiVersion,
+      fetchImpl,
+      reconcileOnly,
+      sleep: async () => {},
+    })
+  );
+
+  const first = await processOnePublication(baseInput(queue, {
+    publishInstagram: (input) => adapter({ ...input, apiVersion: 'invalid-version', fetchImpl: async () => {
+      assert.fail('invalid configuration must fail before provider access');
+    } }),
+    checkpoint: async () => {},
+  }));
+  assert.equal(first.queueState.items[0].instagram.status, 'failed');
+  assert.equal(first.queueState.items[0].instagram.lastError.code, 'instagram_image_ambiguous');
+  assert.deepEqual(first.queueState.items[0].instagram.result, priorIntent);
+
+  const stateDirectory = await mkdtemp(join(tmpdir(), 'openings-image-review-hold-'));
+  const queueBytes = `${JSON.stringify(first.queueState, null, 2)}\n`;
+  await Promise.all([
+    writeFile(join(stateDirectory, 'queue.json'), queueBytes),
+    writeFile(join(stateDirectory, 'publications.json'), `${JSON.stringify(publications(), null, 2)}\n`),
+  ]);
+  await assert.rejects(runPublication({
+    request: {
+      mode: 'retry-stage',
+      jobId: job.id,
+      stage: 'instagram',
+      confirmation: 'RESET_FAILED_STAGE',
+    },
+    stateDirectory,
+    env: {},
+    log: () => {},
+  }), /review hold/u);
+  assert.equal(await readFile(join(stateDirectory, 'queue.json'), 'utf8'), queueBytes);
+
+  const ordinaryFailure = structuredClone(first.queueState);
+  ordinaryFailure.items[0].instagram.lastError.code = 'instagram_provider';
+  const resetOrdinary = resetFailedStage(ordinaryFailure, job.id, 'instagram', {
+    at: '2026-09-08T12:01:00.000Z',
+    reason: 'manual_reset',
+  });
+  assert.equal(resetOrdinary.items[0].instagram.status, 'pending');
+
+  let posts = 0;
+  const reloaded = JSON.parse(await readFile(join(stateDirectory, 'queue.json'), 'utf8'));
+  const second = await processOnePublication(baseInput(reloaded, {
+    publishInstagram: (input) => adapter({
+      ...input,
+      apiVersion: 'v23.0',
+      fetchImpl: async (url, options = {}) => {
+        if (options.method === 'POST') posts += 1;
+        const path = new URL(url).pathname;
+        if (path.endsWith('/media') && options.method !== 'POST') {
+          return Response.json({ data: [] });
+        }
+        if (path.endsWith('/media') && options.method === 'POST') {
+          return Response.json({ id: 'container-one' });
+        }
+        if (path.endsWith('/container-one')) return Response.json({ status_code: 'FINISHED' });
+        if (path.endsWith('/media_publish')) return Response.json({ id: 'published-one' });
+        if (path.endsWith('/published-one')) return Response.json({ id: 'published-one' });
+        throw new Error(`Unexpected request: ${path}`);
+      },
+    }),
+    checkpoint: async () => {},
+  }));
+
+  assert.equal(posts, 0);
+  assert.deepEqual(second.queueState.items[0].instagram.result, priorIntent);
+  assert.equal(second.queueState.items[0].instagram.status, 'failed');
 });
 
 test('successful interrupted image recovery never upgrades source or renders a bridge in that invocation', async () => {
