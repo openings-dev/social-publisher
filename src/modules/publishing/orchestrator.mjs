@@ -15,6 +15,7 @@ import {
   reservePublicationArtwork,
   markJobClosed,
   markMissingJobsClosed,
+  isInterruptedInstagramImage,
   selectNextQueueItem,
   transitionPendingBridgeStage,
   transitionQueueStage,
@@ -203,6 +204,21 @@ function completePublication(publicationsState, item, at) {
   });
 }
 
+function repairCompletedPublications(publicationsState, queueState) {
+  let next = publicationsState;
+  for (const item of queueState.items) {
+    if (next.jobs[item.jobId] !== undefined) continue;
+    if (!SOCIAL_CHANNELS.every((channel) => COMPLETED_STATUSES.has(item[channel].status))) continue;
+    const completedAt = SOCIAL_CHANNELS
+      .map((channel) => item[channel].updatedAt)
+      .filter((value) => typeof value === 'string' && Number.isFinite(Date.parse(value)))
+      .sort((left, right) => Date.parse(right) - Date.parse(left))[0]
+      ?? item.publicationCreatedAt;
+    next = completePublication(next, item, completedAt);
+  }
+  return next;
+}
+
 function findQueueItem(queueState, jobId) {
   return queueState.items.find((item) => item.jobId === jobId) ?? null;
 }
@@ -379,26 +395,53 @@ export async function processIntakeSnapshots({
   };
 }
 
-async function publishQueueStage({ queueState, item, stage, publish, post, job, now }) {
-  if (!READY_STATUSES.has(item[stage].status)) {
+async function publishQueueStage({
+  queueState,
+  item,
+  stage,
+  publish,
+  post,
+  job,
+  now,
+  checkpoint,
+  intent,
+  reconcileOnly = false,
+}) {
+  const recoveringImage = stage === 'instagram' && isInterruptedInstagramImage(item);
+  if (!READY_STATUSES.has(item[stage].status) && !recoveringImage) {
     return queueState;
   }
-  let next = transitionQueueStage(queueState, item.jobId, stage, 'publishing', { at: now });
+  let next = recoveringImage
+    ? queueState
+    : transitionQueueStage(queueState, item.jobId, stage, 'publishing', { at: now, intent });
+  await checkpoint({ phase: 'intent', stage, jobId: item.jobId, queueState: next });
   try {
-    const result = await publish({ job, post, queueItem: findQueueItem(next, item.jobId) });
+    const result = await publish({
+      job,
+      post,
+      queueItem: findQueueItem(next, item.jobId),
+      reconcileOnly: reconcileOnly || recoveringImage,
+    });
     next = transitionQueueStage(next, item.jobId, stage, 'published', { at: now, result });
   } catch (error) {
     if (stage === 'mastodon' && /^[a-zA-Z0-9-]{1,128}$/.test(error?.platformPublicationId ?? '')) {
       next = validateQueueState({ ...next, items: next.items.map(entry => entry.jobId === item.jobId
         ? { ...entry, mastodon: { ...entry.mastodon, result: {
-          executionOwner: 'cloudflare', platformPublicationId: error.platformPublicationId,
+          ...(entry.mastodon.result ?? {}),
+          executionOwner: 'cloudflare',
+          platformPublicationId: error.platformPublicationId,
         } } } : entry) });
     }
-    next = transitionQueueStage(next, item.jobId, stage, 'retryable', {
+    const failureStatus = stage === 'instagram' && error?.code === 'instagram_image_ambiguous'
+      ? 'failed'
+      : 'retryable';
+    next = transitionQueueStage(next, item.jobId, stage, failureStatus, {
       at: now,
       errorCode: safeErrorCode(error, stage),
     });
+    return next;
   }
+  await checkpoint({ phase: 'receipt', stage, jobId: item.jobId, queueState: next });
   return next;
 }
 
@@ -418,15 +461,22 @@ export async function processOnePublication({
   preparePublicationJob = (job) => job,
   now = new Date().toISOString(),
   jobId,
+  checkpoint = async () => {},
 }) {
   let nextQueue = validateQueueState(queueState);
-  let nextPublications = validatePublicationsState(publicationsState);
+  let nextPublications = repairCompletedPublications(
+    validatePublicationsState(publicationsState),
+    nextQueue,
+  );
   assertSnapshot(currentSnapshot, 'currentSnapshot');
   assertNow(now);
   for (const [label, callback] of Object.entries({ publishBridge, publishBluesky, publishMastodon })) {
     if (typeof callback !== 'function') {
       throw new Error(`${label} must be a function`);
     }
+  }
+  if (typeof checkpoint !== 'function') {
+    throw new Error('checkpoint must be a function');
   }
 
   let automaticallyClosedJobId = null;
@@ -476,6 +526,25 @@ export async function processOnePublication({
     return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'skipped_closed', selectedJobId };
   }
 
+  if (isInterruptedInstagramImage(selected)) {
+    const storedCanonicalUrl = selected.instagram.result.canonicalUrl;
+    const recoveryPost = { ...formatSocialPost(job), canonicalUrl: storedCanonicalUrl };
+    nextQueue = await publishQueueStage({
+      queueState: nextQueue,
+      item: selected,
+      stage: 'instagram',
+      publish: publishInstagram ?? (async () => {
+        throw new Error('instagram publisher is unavailable');
+      }),
+      post: recoveryPost,
+      job,
+      now,
+      checkpoint,
+      reconcileOnly: true,
+    });
+    selected = findQueueItem(nextQueue, selected.jobId);
+  }
+
   const started = SOCIAL_CHANNELS.some(channel => selected[channel].attempts > 0 || selected[channel].status === 'published');
   if (started) {
     // Keep already-started publication copy stable, including legacy originals.
@@ -521,6 +590,12 @@ export async function processOnePublication({
   }
   if (READY_STATUSES.has(selected.bridge.status)) {
     nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'publishing', { at: now });
+    await checkpoint({
+      phase: 'intent',
+      stage: 'bridge',
+      jobId: selected.jobId,
+      queueState: nextQueue,
+    });
     try {
       const result = await publishBridge({
         job,
@@ -539,6 +614,12 @@ export async function processOnePublication({
       });
       return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'bridge_retryable', selectedJobId };
     }
+    await checkpoint({
+      phase: 'receipt',
+      stage: 'bridge',
+      jobId: selected.jobId,
+      queueState: nextQueue,
+    });
   }
 
   selected = findQueueItem(nextQueue, selected.jobId);
@@ -568,6 +649,10 @@ export async function processOnePublication({
       post: channel === 'twitter' ? twitterPost : post,
       job,
       now,
+      checkpoint,
+      intent: channel === 'instagram'
+        ? { mediaKind: 'image', canonicalUrl: post.canonicalUrl }
+        : undefined,
     });
   }
 

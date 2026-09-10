@@ -6355,7 +6355,9 @@ validation('keeps validation read-only and production publishing explicitly gate
   const stateCheckout = productionWorkflow.match(
     /- name: Check out social-publisher state and source(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
   )?.groups?.block ?? '';
-  assert.match(stateCheckout, /ref:\s*\$\{\{ github\.ref_name \}\}/u);
+  assert.match(stateCheckout, /ref:\s*\$\{\{ env\.STATE_REF \}\}/u);
+  assert.match(productionWorkflow, /^\s+STATE_REF:\s*main$/mu);
+  assert.match(productionWorkflow, /^\s+STATE_GIT_REMOTE:\s*origin$/mu);
   const intakeStep = productionWorkflow.match(
     /- name: Process and checkpoint bounded snapshot intake(?<block>[\s\S]*?)(?=\n\s+- name:)/u,
   )?.groups?.block ?? '';

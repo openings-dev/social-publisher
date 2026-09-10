@@ -87,7 +87,10 @@ function postCount(calls) {
 
 test('scans the complete bounded history before reconciling one exact legacy Reel', async () => {
   const fixture = pagedFixture({ pages: [
-    { data: [{ id: 'lookalike', caption: `${canonicalUrl}/apply`, permalink: null }], paging: { next: 'https://untrusted.example/leak', cursors: { after: 'cursor-one' } } },
+    { data: [
+      { id: 'lookalike', caption: `${canonicalUrl}/apply`, permalink: null },
+      { id: 'lookalike-prefix', caption: `prefix-${canonicalUrl}`, permalink: null },
+    ], paging: { next: 'https://untrusted.example/leak', cursors: { after: 'cursor-one' } } },
     { data: [exactMedia], paging: { next: 'https://untrusted.example/leak2', cursors: { after: 'cursor-two' } } },
     { data: [{ id: 'other', caption: `${canonicalUrl}?ref=other`, permalink: null }] },
   ] });
@@ -211,6 +214,20 @@ test('a malformed successful publish response reconciles, while an unproven resu
     (error) => error?.code === 'instagram_image_ambiguous',
   );
   assert.equal(ambiguous.calls.filter(({ url, options }) => (
+    url.pathname.endsWith('/media_publish') && options.method === 'POST'
+  )).length, 1);
+
+  const unavailable = pagedFixture({
+    pages: [{ data: [] }, new Error('history unavailable after publish')],
+    publishReply: new Error('publish timed out'),
+  });
+  await assert.rejects(
+    publishImageToInstagram(adapterInput(unavailable.fetch)),
+    (error) => error?.code === 'instagram_image_ambiguous'
+      && !error.message.includes(canonicalUrl)
+      && !error.message.includes('instagram-secret'),
+  );
+  assert.equal(unavailable.calls.filter(({ url, options }) => (
     url.pathname.endsWith('/media_publish') && options.method === 'POST'
   )).length, 1);
 });

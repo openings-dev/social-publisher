@@ -26,6 +26,7 @@ import {
   resetFailedStage,
 } from '../modules/state/queue-operations.mjs';
 import { saveStateFile } from '../modules/state/save-state.mjs';
+import { createQueueGitCheckpoint } from '../modules/state/git-checkpoint.mjs';
 import {
   migrateIntakeState,
   migratePublicationsState,
@@ -78,6 +79,7 @@ export function parsePublicationRequest({ mode = 'scheduled', jobId, stage, conf
 
 export async function runPublication({
   request,
+  repositoryRoot = process.cwd(),
   dataRepositoryPath,
   stateDirectory,
   wordmarkPath,
@@ -123,6 +125,22 @@ export async function runPublication({
     log(JSON.stringify(result));
     return result;
   }
+  if (env.STATE_GIT_CHECKPOINT_ENABLED !== undefined
+    && !['true', 'false'].includes(env.STATE_GIT_CHECKPOINT_ENABLED)) {
+    throw new Error('State Git checkpoint flag is invalid');
+  }
+  const durableQueueCheckpoint = env.STATE_GIT_CHECKPOINT_ENABLED === 'true'
+    ? (dependencies.createQueueGitCheckpoint ?? createQueueGitCheckpoint)({
+      repositoryRoot: resolve(repositoryRoot),
+      queuePath,
+      remote: env.STATE_GIT_REMOTE,
+      stateRef: env.STATE_REF,
+    })
+    : async () => {};
+  const checkpoint = async (event) => {
+    await saveStateFile(queuePath, event.queueState, validateQueueState);
+    await durableQueueCheckpoint(event);
+  };
 
   const [commit, wordmarkSvg] = await Promise.all([
     (dependencies.resolveGitCommit ?? resolveGitCommit)(dataRepositoryPath, dataReference),
@@ -193,7 +211,12 @@ export async function runPublication({
     accessToken: config.threads?.accessToken,
     apiUrl: config.threads?.apiUrl,
   }));
-  const publishInstagram = dependencies.publishInstagram ?? (({ job, post, queueItem }) => (
+  const publishInstagram = dependencies.publishInstagram ?? (({
+    job,
+    post,
+    queueItem,
+    reconcileOnly,
+  }) => (
     dependencies.publishImageToInstagram ?? publishImageToInstagram
   )({
     job,
@@ -203,6 +226,7 @@ export async function runPublication({
     userId: config.instagram?.userId,
     apiVersion: config.instagram?.apiVersion,
     apiOrigin: config.instagram?.apiOrigin,
+    reconcileOnly,
   }));
   const publishLinkedIn = dependencies.publishLinkedIn ?? (async ({ job, post, queueItem }) => {
     const provider = config.linkedin?.provider === 'buffer' ? 'buffer' : 'linkedin';
@@ -253,6 +277,7 @@ export async function runPublication({
     enabledChannels: config.enabledChannels,
     instagramStoryEnabled: config.instagramStoryEnabled,
     jobId: parsed.jobId ?? undefined,
+    checkpoint,
   });
   await saveStateFile(queuePath, result.queueState, validateQueueState);
   await saveStateFile(publicationsPath, result.publicationsState, validatePublicationsState);

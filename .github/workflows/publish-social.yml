@@ -94,6 +94,8 @@ jobs:
       PUBLISHING_MASTODON_ENABLED: ${{ secrets.PUBLISHING_MASTODON_ENABLED }}
       PUBLISHING_ENDPOINT: ${{ secrets.PUBLISHING_ENDPOINT }}
       PUBLISHING_CLIENT_ID: ${{ secrets.PUBLISHING_CLIENT_ID }}
+      STATE_GIT_REMOTE: origin
+      STATE_REF: main
       THREADS_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || secrets.THREADS_AUTO_PUBLISH }}
       INSTAGRAM_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_meta) && 'true' || secrets.INSTAGRAM_AUTO_PUBLISH }}
       LINKEDIN_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled' && inputs.publish_linkedin) && 'true' || secrets.LINKEDIN_AUTO_PUBLISH }}
@@ -103,7 +105,7 @@ jobs:
         # actions/checkout v4.3.1
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
-          ref: ${{ github.ref_name }}
+          ref: ${{ env.STATE_REF }}
           fetch-depth: 0
 
       - name: Mask and export runtime workflow metadata
@@ -153,11 +155,16 @@ jobs:
       - name: Validate the manual gate before any write
         if: steps.preflight.outputs.should_run == 'true' && github.event_name == 'workflow_dispatch' && env.RUN_MODE != 'dry-run'
         env:
+          SOURCE_REF: ${{ github.ref_name }}
           REQUEST_JOB_ID: ${{ inputs.job_id }}
           REQUEST_JOB_IDS: ${{ inputs.job_ids }}
           REQUEST_STAGE: ${{ inputs.stage }}
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
         run: |
+          if [[ "$SOURCE_REF" != "$STATE_REF" ]]; then
+            echo 'Manual publication writes must run from the configured state branch.' >&2
+            exit 1
+          fi
           node --input-type=module - <<'NODE'
           import { parsePublicationRequest } from './src/cli/publish.mjs';
           import { parseMetaMigrationRequest } from './src/modules/publishing/meta-migration.mjs';
@@ -175,6 +182,12 @@ jobs:
             });
           }
           NODE
+
+      - name: Configure state checkpoint Git identity
+        if: steps.preflight.outputs.should_run == 'true'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Render a review artifact without external writes
         if: steps.preflight.outputs.should_run == 'true' && github.event_name == 'workflow_dispatch' && (env.RUN_MODE == 'dry-run' || env.RUN_MODE == 'controlled')
@@ -220,17 +233,16 @@ jobs:
         if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.PUBLISHING_MASTODON_ENABLED == 'true'
         run: |
           node src/cli/claim-platform-mastodon.mjs
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- state/queue.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'chore(state): claim Cloudflare Mastodon ownership [skip ci]'
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:refs/heads/${STATE_REF}"
 
       - name: Publish at most one queued job
         id: publication
         if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled')
         env:
+          STATE_GIT_CHECKPOINT_ENABLED: 'true'
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
           BLUESKY_IDENTIFIER: ${{ secrets.BLUESKY_IDENTIFIER }}
           BLUESKY_APP_PASSWORD: ${{ secrets.BLUESKY_APP_PASSWORD }}
@@ -298,27 +310,19 @@ jobs:
             git add -- state/queue.json state/publications.json
             if ! git diff --cached --quiet; then
               git commit -m "chore(state): migrate Meta publication $job_id [skip ci]"
-              git push origin "HEAD:${GITHUB_REF_NAME}"
+              git push origin "HEAD:refs/heads/${STATE_REF}"
             fi
           done
 
       - name: Commit and push publication or reset state
         if: steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled' || env.RUN_MODE == 'retry-stage')
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- state/intake.json state/queue.json state/publications.json
           if git diff --cached --quiet; then
             exit 0
           fi
           git commit -m 'chore(state): record social publication [skip ci]'
-          if git push origin "HEAD:${GITHUB_REF_NAME}"; then
-            exit 0
-          fi
-          git fetch origin "$GITHUB_REF_NAME"
-          git rebase "origin/$GITHUB_REF_NAME"
-          npm run validate
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:refs/heads/${STATE_REF}"
 
       - name: Prepare Instagram Story publication intent
         id: instagram_story_intent
@@ -333,12 +337,10 @@ jobs:
       - name: Commit and push Instagram Story intent
         if: always() && steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true' && steps.instagram_story_intent.outcome != 'skipped'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- state/queue.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'chore(state): record Instagram Story intent [skip ci]'
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:refs/heads/${STATE_REF}"
 
       - name: Publish Instagram Story for a completed feed post
         id: instagram_story
@@ -354,20 +356,12 @@ jobs:
       - name: Commit and push Instagram Story state
         if: always() && steps.preflight.outputs.should_run == 'true' && (env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'controlled') && env.INSTAGRAM_STORY_AUTO_PUBLISH == 'true' && steps.instagram_story.outcome != 'skipped'
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -- state/queue.json state/publications.json
           if git diff --cached --quiet; then
             exit 0
           fi
           git commit -m 'chore(state): record Instagram story [skip ci]'
-          if git push origin "HEAD:${GITHUB_REF_NAME}"; then
-            exit 0
-          fi
-          git fetch origin "$GITHUB_REF_NAME"
-          git rebase "origin/$GITHUB_REF_NAME"
-          npm run validate
-          git push origin "HEAD:${GITHUB_REF_NAME}"
+          git push origin "HEAD:refs/heads/${STATE_REF}"
 
       - name: Process and checkpoint bounded snapshot intake
         id: intake
@@ -376,8 +370,6 @@ jobs:
           WEB_DEPLOY_TOKEN: ${{ secrets.WEB_DEPLOY_TOKEN }}
           PUBLISHING_CLIENT_SECRET: ${{ secrets.PUBLISHING_CLIENT_SECRET }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           mkdir -p .tmp
           echo 'error=' >> "$GITHUB_OUTPUT"
           for iteration in {1..4}; do
@@ -397,11 +389,11 @@ jobs:
             git add -- state/intake.json state/queue.json
             if ! git diff --cached --quiet; then
               git commit -m 'chore(state): checkpoint social intake [skip ci]'
-              if ! git push origin "HEAD:${GITHUB_REF_NAME}"; then
-                git fetch origin "$GITHUB_REF_NAME"
-                git rebase "origin/$GITHUB_REF_NAME"
+              if ! git push origin "HEAD:refs/heads/${STATE_REF}"; then
+                git fetch origin "$STATE_REF"
+                git rebase "origin/$STATE_REF"
                 npm run validate
-                git push origin "HEAD:${GITHUB_REF_NAME}"
+                git push origin "HEAD:refs/heads/${STATE_REF}"
               fi
             fi
 

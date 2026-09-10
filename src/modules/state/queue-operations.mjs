@@ -1,6 +1,7 @@
 import {
   DEFAULT_SOCIAL_CHANNELS,
   MAX_CHANNEL_ATTEMPTS,
+  OPENINGS_ORIGIN,
   SOCIAL_CHANNELS,
   STARVATION_THRESHOLD_MS,
 } from '../../config/constants.mjs';
@@ -120,9 +121,9 @@ function transitionStage(current, nextStatus, {
       ? { code: sanitizeCode(errorCode), at }
       : null,
     result: effectiveStatus === 'published'
-      ? { ...(result ?? {}) }
+      ? { ...(current.result ?? {}), ...(result ?? {}) }
       : nextStatus === 'publishing' && intent
-        ? { operationKey: intent.operationKey }
+        ? { ...(current.result ?? {}), ...intent }
         : current.result,
   };
 }
@@ -292,10 +293,21 @@ export function markJobClosed(queueState, jobId, at) {
     const closeStage = (stage) => TERMINAL_STATUSES.has(stage.status)
       ? stage
       : { ...stage, status: 'skipped_closed', updatedAt: at, lastError: null };
+    const instagram = isInterruptedInstagramImage(item)
+      ? {
+        ...item.instagram,
+        status: 'failed',
+        updatedAt: at,
+        lastError: { code: 'instagram_image_ambiguous', at },
+      }
+      : closeStage(item.instagram);
     return {
       ...item,
       bridge: closeStage(item.bridge),
-      ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => [channel, closeStage(item[channel])])),
+      ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => [
+        channel,
+        channel === 'instagram' ? instagram : closeStage(item[channel]),
+      ])),
       instagramStory: closeStage(item.instagramStory),
     };
   });
@@ -313,13 +325,21 @@ export function markMissingJobsClosed(queueState, openJobIds, at) {
 export function isReadyQueueItem(item) {
   if (READY_STATUSES.has(item.bridge.status)) return true;
   return item.bridge.status === 'published'
-    && SOCIAL_CHANNELS.some((channel) => READY_STATUSES.has(item[channel].status));
+    && (SOCIAL_CHANNELS.some((channel) => READY_STATUSES.has(item[channel].status))
+      || isInterruptedInstagramImage(item));
+}
+
+export function isInterruptedInstagramImage(item) {
+  return item?.instagram?.status === 'publishing'
+    && item.instagram.result?.mediaKind === 'image'
+    && item.instagram.result?.canonicalUrl === `${OPENINGS_ORIGIN}/jobs/${item.jobId}`;
 }
 
 function readySocialChannelCount(item) {
-  return SOCIAL_CHANNELS
+  const ready = SOCIAL_CHANNELS
     .filter((channel) => READY_STATUSES.has(item[channel].status))
     .length;
+  return ready + (isInterruptedInstagramImage(item) ? 1 : 0);
 }
 
 export function selectNextQueueItem(queueState, now = new Date().toISOString()) {
