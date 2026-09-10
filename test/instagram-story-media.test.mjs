@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import test from 'node:test';
 import { runJobStoryPublication } from '../src/cli/publish-story.mjs';
+import { buildOpeningsR2Manifest } from '../src/modules/publishing/openings-r2-manifest.mjs';
 import { PREVIEW_SAMPLES } from '../src/modules/preview/sample-jobs.mjs';
 import { enqueueJob, selectNextInstagramStory, transitionQueueStage } from '../src/modules/state/queue-operations.mjs';
 import { saveStateFile } from '../src/modules/state/save-state.mjs';
@@ -25,6 +26,20 @@ function append(queue, currentJob, media = null) {
   return publish(queue, currentJob.id, 'instagram', { id: `feed-${currentJob.id}`, url: 'https://instagram.com/p/feed' });
 }
 function fixture(media = null) { return append({ schemaVersion: 3, items: [] }, job, media); }
+function withStoryManifest(queue) {
+  queue.items[0].r2Media = buildOpeningsR2Manifest({
+    mediaOwner: {
+      jobId: job.id, sourceId: job.sourceId, contentHash: job.contentHash,
+      requestDigest: 'd'.repeat(64), preparedAt: now,
+      files: [{ role: 'social-video', fileName: 'social-video.mp4', logicalArtifactId: 'social-video',
+        sha256: 'e'.repeat(64), byteSize: 100, mediaType: 'video/mp4', width: 1080, height: 1920,
+        renderVersion: '8' }],
+    },
+    publicOrigin: 'https://media.openings.dev',
+    consumersByRole: { 'social-video': ['instagramStory'] },
+  });
+  return queue;
+}
 async function stateFixture(t, queue, publications = { schemaVersion: 3, jobs: {} }) {
   const directory = await mkdtemp(join(tmpdir(), 'openings-story-media-'));
   t.after(() => rm(directory, { recursive: true, force: true }));
@@ -82,7 +97,7 @@ for (const mode of ['intent', 'publish']) {
   });
 }
 test('ready Story uses the exact existing video despite a failing channel and is never resubmitted', async t => {
-  let queue = fixture(videoUrl);
+  let queue = withStoryManifest(fixture(videoUrl));
   queue = transitionQueueStage(queue, job.id, 'linkedin', 'publishing', { at: now });
   queue = transitionQueueStage(queue, job.id, 'linkedin', 'retryable', { at: now, errorCode: 'buffer_media' });
   const f = await stateFixture(t, queue);
@@ -93,6 +108,9 @@ test('ready Story uses the exact existing video despite a failing channel and is
   assert.equal(result.outcome, 'published');
   assert.deepEqual(calls, [{ mediaKind: 'video', mediaUrl: videoUrl }]);
   assert.equal(result.publicationsState.jobs[job.id].instagramStory.id, 'story');
+  assert.deepEqual(result.queueState.items[0].r2Media.files[0].consumers[0], {
+    channel: 'instagramStory', state: 'completed', remoteId: 'story', updatedAt: now,
+  });
   assert.equal((await f.run(options)).outcome, 'idle');
   assert.equal(calls.length, 1);
 });

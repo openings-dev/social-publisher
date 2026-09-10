@@ -3,6 +3,7 @@ import { pathToFileURL } from 'node:url';
 
 import { readEnvironment } from '../config/env.mjs';
 import { publishStoryToInstagram } from '../modules/networks/instagram-client.mjs';
+import { updateOpeningsR2Consumer } from '../modules/publishing/openings-r2-manifest.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import {
   hasInstagramStoryMedia,
@@ -86,6 +87,19 @@ export function reconcileJobStoryState(queueState, publicationsState, {
     }
     if (queueId !== null && publicationId !== null && queueId !== publicationId) {
       throw new Error(`Instagram Story state disagrees for job: ${item.jobId}`);
+    }
+    const pendingStoryMedia = item.r2Media?.files.some((file) => file.consumers.some(
+      (consumer) => consumer.channel === 'instagramStory' && consumer.state !== 'completed',
+    ));
+    if (queueId !== null && pendingStoryMedia) {
+      nextQueue = validateQueueState({
+        ...nextQueue,
+        items: nextQueue.items.map((entry) => entry.jobId === item.jobId
+          ? { ...entry, r2Media: updateOpeningsR2Consumer(entry.r2Media, 'instagramStory', {
+            state: 'completed', remoteId: queueId, updatedAt: at,
+          }) }
+          : entry),
+      });
     }
     if (queueId !== null && publicationId === null) {
       nextPublications = withPublicationStory(nextPublications, item.jobId, item.instagramStory.result);
@@ -221,6 +235,14 @@ export async function runJobStoryPublication({
   queueState = transitionQueueStage(queueState, selected.jobId, 'instagramStory', 'published', {
     at: now,
     result: story,
+  });
+  queueState = validateQueueState({
+    ...queueState,
+    items: queueState.items.map((item) => item.jobId === selected.jobId && item.r2Media
+      ? { ...item, r2Media: updateOpeningsR2Consumer(item.r2Media, 'instagramStory', {
+        state: 'completed', remoteId: story.id, updatedAt: now,
+      }) }
+      : item),
   });
   // Persist the queue transition before touching publications.json: the
   // Instagram post above already happened for real, so the queue record of
