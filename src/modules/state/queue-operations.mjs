@@ -1,10 +1,15 @@
 import {
   DEFAULT_SOCIAL_CHANNELS,
   MAX_CHANNEL_ATTEMPTS,
+  OPENINGS_ORIGIN,
   SOCIAL_CHANNELS,
   STARVATION_THRESHOLD_MS,
 } from '../../config/constants.mjs';
-import { validateIntakeState, validateQueueState } from './state-model.mjs';
+import {
+  validateIntakeState,
+  validatePublicationsState,
+  validateQueueState,
+} from './state-model.mjs';
 import { assertValidJobId } from '../../shared/job-id.mjs';
 import { artworkAt, defaultArtworkDirection } from '../render/job-poster-model.mjs';
 
@@ -35,6 +40,12 @@ const TERMINAL_STATUSES = new Set([
   'skipped_disabled',
   'skipped_before_activation',
 ]);
+const COMPLETED_PUBLICATION_STATUSES = new Set([
+  'published',
+  'skipped_disabled',
+  'skipped_before_activation',
+]);
+const REVIEW_REPORT_LIMIT = 20;
 const ALLOWED_TRANSITIONS = Object.freeze({
   pending: new Set(['publishing', 'retryable', 'failed', 'skipped_closed']),
   publishing: new Set(['published', 'retryable', 'failed']),
@@ -120,9 +131,9 @@ function transitionStage(current, nextStatus, {
       ? { code: sanitizeCode(errorCode), at }
       : null,
     result: effectiveStatus === 'published'
-      ? { ...(result ?? {}) }
+      ? { ...(current.result ?? {}), ...(result ?? {}) }
       : nextStatus === 'publishing' && intent
-        ? { operationKey: intent.operationKey }
+        ? { ...(current.result ?? {}), ...intent }
         : current.result,
   };
 }
@@ -225,6 +236,10 @@ export function resetFailedStage(queueState, jobId, stageName, { at, reason }) {
     if (item[stageName].status !== 'failed') {
       throw new Error('Only a failed stage can be reset');
     }
+    if (stageName === 'instagram'
+      && item.instagram.lastError?.code === 'instagram_image_ambiguous') {
+      throw new Error('Instagram image ambiguity review hold cannot be reset');
+    }
     return {
       ...item,
       [stageName]: {
@@ -289,13 +304,26 @@ export function resetPublishedMetaStages(queueState, jobId, {
 export function markJobClosed(queueState, jobId, at) {
   assertIsoDate(at, 'closed timestamp');
   return replaceItem(queueState, jobId, (item) => {
-    const closeStage = (stage) => TERMINAL_STATUSES.has(stage.status)
+    const closeStage = (stage, { preservePublishing = false } = {}) => TERMINAL_STATUSES.has(stage.status)
+      || (preservePublishing && stage.status === 'publishing')
       ? stage
       : { ...stage, status: 'skipped_closed', updatedAt: at, lastError: null };
+    const instagram = isInterruptedInstagramImage(item)
+      ? {
+        ...item.instagram,
+        status: 'failed',
+        updatedAt: at,
+        lastError: { code: 'instagram_image_ambiguous', at },
+      }
+      : closeStage(item.instagram);
     return {
       ...item,
-      bridge: closeStage(item.bridge),
-      ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => [channel, closeStage(item[channel])])),
+      bridge: closeStage(item.bridge, { preservePublishing: true }),
+      ...Object.fromEntries(SOCIAL_CHANNELS.map((channel) => [
+        channel, channel === 'instagram'
+          ? instagram
+          : closeStage(item[channel], { preservePublishing: true }),
+      ])),
       instagramStory: closeStage(item.instagramStory),
     };
   });
@@ -313,13 +341,55 @@ export function markMissingJobsClosed(queueState, openJobIds, at) {
 export function isReadyQueueItem(item) {
   if (READY_STATUSES.has(item.bridge.status)) return true;
   return item.bridge.status === 'published'
-    && SOCIAL_CHANNELS.some((channel) => READY_STATUSES.has(item[channel].status));
+    && (SOCIAL_CHANNELS.some((channel) => READY_STATUSES.has(item[channel].status))
+      || isInterruptedInstagramImage(item));
+}
+
+export function isInterruptedInstagramImage(item) {
+  return item?.instagram?.status === 'publishing'
+    && item.instagram.result?.publicationKind === 'image'
+    && item.instagram.result?.canonicalUrl === `${OPENINGS_ORIGIN}/jobs/${item.jobId}`;
+}
+
+export function isCompletedPublicationQueueItem(item) {
+  return SOCIAL_CHANNELS.every((channel) => (
+    COMPLETED_PUBLICATION_STATUSES.has(item[channel].status)
+  ));
+}
+
+export function missingCompletedPublicationJobIds(queueState, publicationsState) {
+  validateQueueState(queueState);
+  validatePublicationsState(publicationsState);
+  return queueState.items
+    .filter((item) => publicationsState.jobs[item.jobId] === undefined
+      && isCompletedPublicationQueueItem(item))
+    .map((item) => item.jobId);
+}
+
+export function interruptedPublicationReview(queueState, { limit = REVIEW_REPORT_LIMIT } = {}) {
+  validateQueueState(queueState);
+  if (!Number.isSafeInteger(limit) || limit < 1 || limit > REVIEW_REPORT_LIMIT) {
+    throw new Error(`Review report limit must be between 1 and ${REVIEW_REPORT_LIMIT}`);
+  }
+  const interrupted = [];
+  for (const item of queueState.items) {
+    for (const stage of ['bridge', ...SOCIAL_CHANNELS]) {
+      if (item[stage].status !== 'publishing') continue;
+      if (stage === 'instagram') continue;
+      interrupted.push({ jobId: item.jobId, stage });
+    }
+  }
+  return {
+    reviewRequiredCount: interrupted.length,
+    reviewRequired: interrupted.slice(0, limit),
+  };
 }
 
 function readySocialChannelCount(item) {
-  return SOCIAL_CHANNELS
+  const ready = SOCIAL_CHANNELS
     .filter((channel) => READY_STATUSES.has(item[channel].status))
     .length;
+  return ready + (isInterruptedInstagramImage(item) ? 1 : 0);
 }
 
 export function selectNextQueueItem(queueState, now = new Date().toISOString()) {
@@ -343,19 +413,28 @@ export function selectNextQueueItem(queueState, now = new Date().toISOString()) 
     || left.jobId.localeCompare(right.jobId))[0];
 }
 
-export function selectNextInstagramStory(queueState, jobId = null) {
+export function hasInstagramStoryMedia(item) {
+  return item.bridge.status === 'published'
+    && typeof item.bridge.result?.socialVideoUrl === 'string'
+    && item.bridge.result.socialVideoUrl.length > 0;
+}
+
+export function selectNextInstagramStory(queueState, jobId = null, { operationKey } = {}) {
   validateQueueState(queueState);
   if (jobId !== null) assertValidJobId(jobId);
-  return queueState.items
+  const eligible = queueState.items
     .filter((item) => (READY_STATUSES.has(item.instagramStory.status) || item.instagramStory.status === 'publishing')
       && (jobId === null || item.jobId === jobId)
       && item.instagram.status === 'published'
       && typeof item.instagram.result?.id === 'string'
-      && item.instagram.result.id.length > 0
-      && item.bridge.status === 'published'
-      && typeof item.bridge.result?.socialVideoUrl === 'string'
-      && item.bridge.result.socialVideoUrl.length > 0)
+      && item.instagram.result.id.length > 0)
     .sort((left, right) => Date.parse(left.instagram.updatedAt) - Date.parse(right.instagram.updatedAt)
       || Date.parse(left.discoveredAt) - Date.parse(right.discoveredAt)
-      || left.jobId.localeCompare(right.jobId))[0] ?? null;
+      || left.jobId.localeCompare(right.jobId));
+  if (jobId !== null) return eligible[0] ?? null;
+  const interrupted = operationKey === undefined ? null : eligible.find(item => (
+    item.instagramStory.status === 'publishing'
+    && item.instagramStory.result?.operationKey !== operationKey
+  ));
+  return interrupted ?? eligible.find(hasInstagramStoryMedia) ?? eligible[0] ?? null;
 }

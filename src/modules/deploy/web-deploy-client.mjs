@@ -76,6 +76,13 @@ function assertInstagramCardVersion(value) {
   return value;
 }
 
+function assertInstagramFeedMediaKind(value) {
+  if (value !== 'image' && value !== 'reel') {
+    throw new Error('Instagram feed media kind is invalid');
+  }
+  return value;
+}
+
 function toBuffer(value, label) {
   if (Buffer.isBuffer(value)) return value;
   if (typeof value === 'string' || value instanceof Uint8Array) return Buffer.from(value);
@@ -211,12 +218,15 @@ export async function requestIncrementalBridgeDeployment({
   contentHash,
   expectedPngHash,
   expectedInstagramSvgHash,
+  expectedInstagramJpegHash,
+  instagramFeedMediaKind = 'reel',
   expectedInstagramCardVersion = INSTAGRAM_CARD_VERSION,
   expectedSocialVideoVersion = SOCIAL_VIDEO_VERSION,
   forceDeployment = false,
   html,
   image,
   instagramSvg,
+  instagramJpeg,
   repository,
   token,
   origin,
@@ -229,6 +239,7 @@ export async function requestIncrementalBridgeDeployment({
   dispatchRetryDelayMs = DEFAULT_DISPATCH_RETRY_DELAY_MS,
 }) {
   const safeJobId = assertValidJobId(jobId);
+  const safeInstagramFeedMediaKind = assertInstagramFeedMediaKind(instagramFeedMediaKind);
   if (typeof forceDeployment !== 'boolean') {
     throw new Error('Force deployment flag is invalid');
   }
@@ -245,14 +256,31 @@ export async function requestIncrementalBridgeDeployment({
   if (sha256(instagramSvgBuffer) !== safeExpectedInstagramSvgHash) {
     throw new Error('Expected Instagram SVG hash does not match the Instagram SVG artifact');
   }
+  let safeExpectedInstagramJpegHash;
+  if (safeInstagramFeedMediaKind === 'image') {
+    safeExpectedInstagramJpegHash = assertHash(
+      expectedInstagramJpegHash,
+      'Expected Instagram JPEG hash',
+    );
+    const instagramJpegBuffer = toBuffer(instagramJpeg, 'Instagram JPEG');
+    if (sha256(instagramJpegBuffer) !== safeExpectedInstagramJpegHash) {
+      throw new Error('Expected Instagram JPEG hash does not match the Instagram JPEG artifact');
+    }
+  }
 
   const verificationInput = {
     jobId: safeJobId,
     contentHash: assertHash(contentHash, 'Bridge content hash'),
     expectedPngHash: safeExpectedPngHash,
     expectedInstagramSvgHash: safeExpectedInstagramSvgHash,
+    ...(safeInstagramFeedMediaKind === 'image'
+      ? { expectedInstagramJpegHash: safeExpectedInstagramJpegHash }
+      : {}),
+    instagramFeedMediaKind: safeInstagramFeedMediaKind,
     expectedInstagramCardVersion: assertInstagramCardVersion(expectedInstagramCardVersion),
-    expectedSocialVideoVersion: assertInstagramCardVersion(expectedSocialVideoVersion),
+    ...(safeInstagramFeedMediaKind === 'reel'
+      ? { expectedSocialVideoVersion: assertInstagramCardVersion(expectedSocialVideoVersion) }
+      : {}),
     origin,
     fetchImpl,
   };

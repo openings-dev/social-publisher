@@ -486,6 +486,8 @@ export async function publishToLinkedInViaBuffer({
   pollAttempts = 12,
   pollDelayMs = 5_000,
   sleep = (delay) => new Promise((resolve) => setTimeout(resolve, delay)),
+  acceptedPostId = null,
+  onAccepted = async () => {},
 }) {
   const publication = validatePublication(job, post);
   const publicImageUrl = validatePublicMedia(imageUrl, publicSiteOrigin);
@@ -498,6 +500,10 @@ export async function publishToLinkedInViaBuffer({
     fetchImpl,
   });
   await loadLinkedInChannel(configuration);
+  if (acceptedPostId !== null) {
+    requiredIdentifier(acceptedPostId, 'accepted post ID');
+    return pollPost(configuration, acceptedPostId, polling, 'reconciled');
+  }
   const existing = await reconcileExisting(configuration, publication, publicImageUrl, polling);
   if (existing) return existing;
   let created;
@@ -515,6 +521,7 @@ export async function publishToLinkedInViaBuffer({
     }
     throw error;
   }
+  await onAccepted({ id: created.id, provider: 'buffer', status: created.status });
   if (created.status === 'sent') return completedResult(created);
   if (created.status !== 'sending' && created.status !== 'scheduled') {
     if (created.status === 'error') {

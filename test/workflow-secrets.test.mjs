@@ -60,6 +60,8 @@ test('preserves manual overrides, triggers, concurrency, and the editorial job g
     assert.match(workflow, /group: social-publisher-publication/u);
     assert.match(workflow, /cancel-in-progress: false/u);
   }
+  assert.match(socialWorkflow, /repository_dispatch:\s*\n\s*types:\s*\[openings_source_committed_v1\]/u);
+  assert.match(step(socialWorkflow, 'Check out immutable data history'), /ref: \$\{\{ env\.SOURCE_EVENT_COMMIT \|\| 'main' \}\}/u);
 });
 
 test('documents fixed workflow configuration as individually named repository secrets', () => {
@@ -100,9 +102,32 @@ test('scopes the platform client secret only to platform web transport steps', (
   assert.doesNotMatch(step(socialWorkflow, 'Render a review artifact without external writes'), /PUBLISHING_CLIENT_SECRET/u);
 });
 
+test('scopes direct R2 credentials to the publisher and does not archive durable R2 media', () => {
+  const socialEnv = jobEnvironment(socialWorkflow);
+  for (const name of ['OPENINGS_R2_ENABLED', 'OPENINGS_R2_ACCOUNT_ID', 'OPENINGS_R2_BUCKET',
+    'OPENINGS_R2_BUCKET_PURPOSE', 'OPENINGS_R2_PUBLIC_ORIGIN', 'OPENINGS_R2_CAPACITY_JSON']) {
+    assert.match(socialEnv, new RegExp(`^      ${name}: \\$\\{\\{ secrets\\.${name} \\}\\}$`, 'mu'));
+  }
+  const publisher = step(socialWorkflow, 'Publish at most one queued job');
+  for (const name of ['OPENINGS_R2_ACCESS_KEY_ID', 'OPENINGS_R2_SECRET_ACCESS_KEY']) {
+    assert.match(publisher, new RegExp(`${name}: \\$\\{\\{ secrets\\.${name} \\}\\}`, 'u'));
+    assert.doesNotMatch(socialEnv, new RegExp(name, 'u'));
+  }
+  assert.doesNotMatch(step(socialWorkflow, 'Preserve deferred platform handoff and source media'),
+    /instagram-image\.jpg|social-video\.mp4|openings\/jobs/u);
+});
+
 test('builds exact runtime metadata for every supported event and mode', () => {
   const cases = [
     ['social', 'schedule', {}, 'scheduled', 'STORY_OPERATION_KEY', 'job-story-41-2'],
+    ['social', 'repository_dispatch', { action: 'openings_source_committed_v1', client_payload: {
+      schema_version: 1,
+      source_repository: 'openings-dev/data-pipeline',
+      source_commit: 'a'.repeat(40),
+      previous_commit: 'b'.repeat(40),
+      data_hash: 'c'.repeat(64),
+      event_id: `openings:data:${'a'.repeat(40)}`,
+    } }, 'scheduled', 'STORY_OPERATION_KEY', 'job-story-41-2'],
     ['social', 'workflow_dispatch', { inputs: { mode: 'dry-run' } }, 'dry-run', 'STORY_OPERATION_KEY', 'job-story-41-2'],
     ['social', 'workflow_dispatch', { inputs: { mode: 'controlled' } }, 'controlled', 'STORY_OPERATION_KEY', 'job-story-41-2'],
     ['social', 'workflow_dispatch', { inputs: { mode: 'migrate-meta' } }, 'migrate-meta', 'STORY_OPERATION_KEY', 'job-story-41-2'],
@@ -113,11 +138,41 @@ test('builds exact runtime metadata for every supported event and mode', () => {
     ['editorial', 'workflow_dispatch', { inputs: { mode: 'controlled' } }, 'controlled', 'EDITORIAL_OPERATION_KEY', 'editorial-41-2'],
   ];
   for (const [kind, eventName, event, mode, operationName, operationValue] of cases) {
-    assert.deepEqual(buildRuntimeMetadata({ kind, eventName, event, runId: '41', runAttempt: '2' }), {
+    const expected = {
       RUN_MODE: mode,
       [operationName]: operationValue,
-    });
+    };
+    if (eventName === 'repository_dispatch') {
+      expected.SOURCE_EVENT_COMMIT = 'a'.repeat(40);
+      expected.SOURCE_EVENT_DATA_HASH = 'c'.repeat(64);
+    }
+    assert.deepEqual(buildRuntimeMetadata({ kind, eventName, event, runId: '41', runAttempt: '2' }), expected);
   }
+});
+
+test('rejects malformed or forged source repository dispatch events', () => {
+  const payload = {
+    schema_version: 1,
+    source_repository: 'openings-dev/data-pipeline',
+    source_commit: 'a'.repeat(40),
+    previous_commit: 'b'.repeat(40),
+    data_hash: 'c'.repeat(64),
+    event_id: `openings:data:${'a'.repeat(40)}`,
+  };
+  const valid = { kind: 'social', eventName: 'repository_dispatch', event: {
+    action: 'openings_source_committed_v1', client_payload: payload,
+  }, runId: '41', runAttempt: '2' };
+  for (const event of [
+    {},
+    { action: 'wrong', client_payload: payload },
+    { action: 'openings_source_committed_v1', client_payload: { ...payload, extra: true } },
+    { action: 'openings_source_committed_v1', client_payload: { ...payload, source_repository: 'attacker/repo' } },
+    { action: 'openings_source_committed_v1', client_payload: { ...payload, source_commit: 'not-a-sha' } },
+    { action: 'openings_source_committed_v1', client_payload: { ...payload, event_id: 'openings:data:wrong' } },
+  ]) {
+    assert.throws(() => buildRuntimeMetadata({ ...valid, event }), /invalid workflow runtime metadata/u);
+  }
+  assert.throws(() => buildRuntimeMetadata({ ...valid, kind: 'editorial' }), /invalid workflow runtime metadata/u);
 });
 
 test('rejects missing, unsupported, multiline, and shell-shaped runtime input', () => {

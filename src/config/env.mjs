@@ -19,6 +19,15 @@ const SOCIAL_KEYS = [
   'BUFFER_ORGANIZATION_ID',
   'BUFFER_TWITTER_CHANNEL_ID',
 ];
+const R2_KEYS = [
+  'OPENINGS_R2_ACCOUNT_ID',
+  'OPENINGS_R2_BUCKET',
+  'OPENINGS_R2_BUCKET_PURPOSE',
+  'OPENINGS_R2_PUBLIC_ORIGIN',
+  'OPENINGS_R2_ACCESS_KEY_ID',
+  'OPENINGS_R2_SECRET_ACCESS_KEY',
+  'OPENINGS_R2_CAPACITY_JSON',
+];
 
 function requireKeys(env, keys) {
   const missing = keys.filter((key) => typeof env[key] !== 'string' || env[key].trim() === '');
@@ -69,13 +78,20 @@ function normalizeExactOrigin(value, fallback, key) {
   return normalizeOrigin(candidate, fallback, key);
 }
 
-export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
+export function readEnvironment({ env = process.env, mode = 'dry-run', intakeStrategy = 'legacy' } = {}) {
+  if (intakeStrategy !== 'legacy' && intakeStrategy !== 'selected-media-owner') {
+    throw new Error('Intake strategy is invalid');
+  }
   const automatic = env.SOCIAL_AUTO_PUBLISH === 'true';
   const metaMigration = mode === 'meta-migration';
   const storyMode = mode === 'story';
   const editorialAssetsMode = mode === 'editorial-assets';
   const editorialInstagramMode = mode === 'editorial-feed' || mode === 'editorial-story';
-  const requiresDeploy = mode === 'intake' || mode === 'scheduled' || mode === 'controlled' || metaMigration || editorialAssetsMode;
+  const selectedMediaOwnerIntake = mode === 'intake' && intakeStrategy === 'selected-media-owner';
+  const requiresDeploy = (mode === 'intake' && !selectedMediaOwnerIntake)
+    || mode === 'scheduled' || mode === 'controlled' || metaMigration || editorialAssetsMode;
+  const r2Enabled = requiresDeploy && env.OPENINGS_R2_ENABLED === 'true';
+  const requiresWebDeploy = requiresDeploy && !r2Enabled;
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
   const platformMastodonEnabled = requiresSocial && env.PUBLISHING_MASTODON_ENABLED === 'true';
   const threadsEnabled = env.THREADS_AUTO_PUBLISH === 'true';
@@ -91,9 +107,10 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
     ...(linkedinEnabled ? ['linkedin'] : []),
   ];
 
-  if (requiresDeploy) {
+  if (requiresWebDeploy) {
     requireKeys(env, DEPLOY_KEYS);
   }
+  if (r2Enabled) requireKeys(env, R2_KEYS);
   if (requiresSocial) {
     requireKeys(env, SOCIAL_KEYS.filter(key => !(platformMastodonEnabled && key === 'MASTODON_ACCESS_TOKEN')));
     if (threadsEnabled) requireKeys(env, ['THREADS_ACCESS_TOKEN']);
@@ -145,7 +162,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
     }
   }
 
-  const platformEnabled = requiresDeploy && env.PUBLISHING_SOCIAL_SHADOW_ENABLED === 'true';
+  const platformEnabled = requiresWebDeploy && env.PUBLISHING_SOCIAL_SHADOW_ENABLED === 'true';
   if (platformEnabled || platformMastodonEnabled) requireKeys(env, ['PUBLISHING_ENDPOINT', 'PUBLISHING_CLIENT_ID', 'PUBLISHING_CLIENT_SECRET']);
   return Object.freeze({
     platformMastodon: platformMastodonEnabled ? Object.freeze({
@@ -159,6 +176,11 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
       secret: env.PUBLISHING_CLIENT_SECRET,
     }) : null,
     mode,
+    r2Enabled,
+    r2PublicOrigin: r2Enabled
+      ? normalizeExactOrigin(env.OPENINGS_R2_PUBLIC_ORIGIN, undefined, 'OPENINGS_R2_PUBLIC_ORIGIN')
+      : null,
+    linkedinProvider,
     publishEnabled: mode === 'controlled' || metaMigration || (mode === 'scheduled' && automatic),
     instagramStoryEnabled,
     instagramEditorialEnabled,
@@ -166,7 +188,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
     publicSiteOrigin: normalizeOrigin(env.PUBLIC_SITE_ORIGIN, OPENINGS_ORIGIN, 'PUBLIC_SITE_ORIGIN'),
     mastodonBaseUrl: normalizeOrigin(env.MASTODON_BASE_URL, MASTODON_BASE_URL, 'MASTODON_BASE_URL'),
     blueskyServiceUrl: normalizeOrigin(env.BLUESKY_SERVICE_URL, BLUESKY_SERVICE_URL, 'BLUESKY_SERVICE_URL'),
-    webDeploy: requiresDeploy ? Object.freeze({
+    webDeploy: requiresWebDeploy ? Object.freeze({
       repository: env.WEB_DEPLOY_REPOSITORY?.trim() || WEB_DEPLOY_REPOSITORY,
       token: env.WEB_DEPLOY_TOKEN,
     }) : null,

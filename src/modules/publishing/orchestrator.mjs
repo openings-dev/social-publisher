@@ -1,8 +1,6 @@
 import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
 import {
   DEFAULT_SOCIAL_CHANNELS,
-  INSTAGRAM_CARD_VERSION,
-  SOCIAL_VIDEO_VERSION,
   SOCIAL_CHANNELS,
   TWITTER_POST_MAX_GRAPHEMES,
 } from '../../config/constants.mjs';
@@ -15,6 +13,11 @@ import {
   reservePublicationArtwork,
   markJobClosed,
   markMissingJobsClosed,
+  interruptedPublicationReview,
+  isCompletedPublicationQueueItem,
+  isInterruptedInstagramImage,
+  isReadyQueueItem,
+  missingCompletedPublicationJobIds,
   selectNextQueueItem,
   transitionPendingBridgeStage,
   transitionQueueStage,
@@ -25,9 +28,10 @@ import {
   validateQueueState,
   validateSnapshotReference,
 } from '../state/state-model.mjs';
+import { hasInstagramFeedImage, pendingBridgeMediaResult, retainedStoryMedia } from './instagram-media-provenance.mjs';
+import { updateOpeningsR2Consumer } from './openings-r2-manifest.mjs';
 
 const READY_STATUSES = new Set(['pending', 'retryable']);
-const COMPLETED_STATUSES = new Set(['published', 'skipped_disabled', 'skipped_before_activation']);
 
 function snapshotReference(snapshot) {
   return validateSnapshotReference({
@@ -100,6 +104,20 @@ function assertMaxBridgeAttempts(value) {
   return value;
 }
 
+export function validateIntakeStrategy(value) {
+  if (value !== 'legacy' && value !== 'selected-media-owner') {
+    throw new Error('Intake strategy is invalid');
+  }
+  return value;
+}
+
+export function validateMaxQueueAdditions(value) {
+  if (!Number.isSafeInteger(value) || value < 1) {
+    throw new Error('maxQueueAdditions must be a positive integer');
+  }
+  return value;
+}
+
 function intakeSummary({ baseline = false, bridges = 0, queued = 0, removed = 0, complete, error = null }) {
   return Object.freeze({ baseline, bridges, queued, removed, complete, error });
 }
@@ -130,9 +148,18 @@ function updateQueuedRevision(queueState, job, snapshot) {
   if (current.contentHash === job.contentHash) {
     return queueState;
   }
+  const history = [
+    ...(current.r2MediaHistory ?? []),
+    ...(current.r2Media ? [current.r2Media] : []),
+  ];
+  if (history.length > 16) {
+    throw new Error('R2 media history requires cleanup before another content revision');
+  }
+  const { r2Media: _r2Media, mediaOwner: _mediaOwner, ...revisionBase } = current;
   const items = queueState.items.slice();
   items[index] = {
-    ...current,
+    ...revisionBase,
+    ...(history.length > 0 ? { r2MediaHistory: history } : {}),
     sourceId: job.sourceId,
     contentHash: job.contentHash,
     dataCommit: snapshot.commit,
@@ -143,7 +170,7 @@ function updateQueuedRevision(queueState, job, snapshot) {
       updatedAt: null,
       lastError: null,
       lastReset: null,
-      result: null,
+      result: pendingBridgeMediaResult(current),
     },
   };
   return validateQueueState({ ...queueState, items });
@@ -154,8 +181,7 @@ function needsInstagramBridgeUpgrade(item) {
   const artworkChanged = item.visualDirection !== undefined
     && item.bridge.result?.visualDirection !== item.visualDirection;
   return artworkChanged || (READY_STATUSES.has(item.instagram.status)
-    && (item.bridge.result?.instagramCardVersion !== INSTAGRAM_CARD_VERSION
-      || item.bridge.result?.socialVideoVersion !== SOCIAL_VIDEO_VERSION));
+    && !hasInstagramFeedImage(item.bridge.result));
 }
 
 function invalidateStaleInstagramBridge(queueState, jobId, at) {
@@ -176,7 +202,7 @@ function invalidateStaleInstagramBridge(queueState, jobId, at) {
       updatedAt: at,
       lastError: null,
       lastReset: { at, reason: 'instagram_card_upgrade' },
-      result: null,
+      result: pendingBridgeMediaResult(current),
     },
   };
   return validateQueueState({ ...queueState, items });
@@ -203,8 +229,113 @@ function completePublication(publicationsState, item, at) {
   });
 }
 
+function repairCompletedPublications(publicationsState, queueState) {
+  let next = publicationsState;
+  for (const item of queueState.items) {
+    if (next.jobs[item.jobId] !== undefined) continue;
+    if (!isCompletedPublicationQueueItem(item)) continue;
+    const completedAt = SOCIAL_CHANNELS
+      .map((channel) => item[channel].updatedAt)
+      .filter((value) => typeof value === 'string' && Number.isFinite(Date.parse(value)))
+      .sort((left, right) => Date.parse(right) - Date.parse(left))[0]
+      ?? item.publicationCreatedAt;
+    next = completePublication(next, item, completedAt);
+  }
+  return next;
+}
+
 function findQueueItem(queueState, jobId) {
   return queueState.items.find((item) => item.jobId === jobId) ?? null;
+}
+
+function exactFailedBridgeCheckpoint(intakeState, job, snapshot) {
+  return intakeState.pendingBridges.find((bridge) => bridge.jobId === job.id
+    && bridge.contentHash === job.contentHash
+    && bridge.dataCommit === snapshot.commit
+    && bridge.dataHash === snapshot.dataHash
+    && bridge.reason === 'new'
+    && bridge.stage.status === 'failed') ?? null;
+}
+
+function transferFailedBridgeCheckpoint(queueState, intakeState, job, snapshot, checkpoint) {
+  const itemIndex = queueState.items.findIndex((item) => item.jobId === job.id);
+  if (itemIndex < 0) throw new Error('Transferred bridge queue item is missing');
+  const items = queueState.items.slice();
+  items[itemIndex] = {
+    ...items[itemIndex],
+    bridge: checkpoint.stage,
+    legacyBridgeProvenance: {
+      jobId: job.id,
+      contentHash: job.contentHash,
+      dataCommit: snapshot.commit,
+      dataHash: snapshot.dataHash,
+      reason: 'new',
+    },
+  };
+  return {
+    queueState: validateQueueState({ ...queueState, items }),
+    intakeState: validateIntakeState({
+      ...intakeState,
+      pendingBridges: intakeState.pendingBridges.filter((bridge) => bridge !== checkpoint),
+    }),
+  };
+}
+
+function processSelectedMediaOwnerSnapshots({
+  intakeState,
+  queueState,
+  publicationsState,
+  snapshots,
+  startIndex,
+  enabledChannels,
+  instagramStoryEnabled,
+  maxQueueAdditions,
+  now,
+}) {
+  let nextIntake = intakeState;
+  let nextQueue = queueState;
+  let queuedCount = 0;
+  let removedCount = 0;
+  for (let index = startIndex + 1; index < snapshots.length; index += 1) {
+    const previous = snapshots[index - 1];
+    const current = snapshots[index];
+    const delta = collectDelta(previous, current);
+    for (const job of delta.new) {
+      if (!isEligibleNewJob(job, previous.generatedAt, publicationsState) || findQueueItem(nextQueue, job.id)) continue;
+      if (queuedCount >= maxQueueAdditions) {
+        return {
+          intakeState: nextIntake,
+          queueState: nextQueue,
+          summary: intakeSummary({ queued: queuedCount, removed: removedCount, complete: false }),
+        };
+      }
+      const checkpoint = exactFailedBridgeCheckpoint(nextIntake, job, current);
+      nextQueue = enqueueJob(nextQueue, {
+        job,
+        snapshot: current,
+        discoveredAt: now,
+        enabledChannels,
+        instagramStoryEnabled,
+      });
+      if (checkpoint !== null) {
+        const transferred = transferFailedBridgeCheckpoint(nextQueue, nextIntake, job, current, checkpoint);
+        nextQueue = transferred.queueState;
+        nextIntake = transferred.intakeState;
+      }
+      queuedCount += 1;
+    }
+    nextIntake = recordRemovedJobs(nextIntake, delta.removed);
+    removedCount += delta.removed.length;
+    nextIntake = validateIntakeState({
+      ...nextIntake,
+      processedSnapshot: snapshotReference(current),
+    });
+  }
+  return {
+    intakeState: nextIntake,
+    queueState: nextQueue,
+    summary: intakeSummary({ queued: queuedCount, removed: removedCount, complete: true }),
+  };
 }
 
 export async function processIntakeSnapshots({
@@ -216,8 +347,12 @@ export async function processIntakeSnapshots({
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
   instagramStoryEnabled = false,
   maxBridgeAttempts = Number.POSITIVE_INFINITY,
+  maxQueueAdditions = 25,
+  strategy = 'legacy',
   now = new Date().toISOString(),
 }) {
+  validateIntakeStrategy(strategy);
+  if (strategy === 'selected-media-owner') validateMaxQueueAdditions(maxQueueAdditions);
   let nextIntake = validateIntakeState(intakeState);
   let nextQueue = validateQueueState(queueState);
   const publications = validatePublicationsState(publicationsState);
@@ -227,7 +362,7 @@ export async function processIntakeSnapshots({
     throw new Error('At least one loaded snapshot is required');
   }
   snapshots.forEach((snapshot, index) => assertSnapshot(snapshot, `snapshots[${index}]`));
-  if (typeof publishBridge !== 'function') {
+  if (strategy === 'legacy' && typeof publishBridge !== 'function') {
     throw new Error('publishBridge must be a function');
   }
 
@@ -247,6 +382,20 @@ export async function processIntakeSnapshots({
   const startIndex = snapshots.findIndex((snapshot) => sameSnapshot(snapshot, nextIntake.processedSnapshot));
   if (startIndex < 0) {
     throw new Error('Snapshot sequence does not include the processed watermark');
+  }
+
+  if (strategy === 'selected-media-owner') {
+    return processSelectedMediaOwnerSnapshots({
+      intakeState: nextIntake,
+      queueState: nextQueue,
+      publicationsState: publications,
+      snapshots,
+      startIndex,
+      enabledChannels,
+      instagramStoryEnabled,
+      maxQueueAdditions,
+      now,
+    });
   }
 
   let bridgeCount = 0;
@@ -379,26 +528,95 @@ export async function processIntakeSnapshots({
   };
 }
 
-async function publishQueueStage({ queueState, item, stage, publish, post, job, now }) {
-  if (!READY_STATUSES.has(item[stage].status)) {
+async function publishQueueStage({
+  queueState,
+  item,
+  stage,
+  publish,
+  post,
+  job,
+  now,
+  checkpoint,
+  intent,
+  reconcileOnly = false,
+}) {
+  const recoveringImage = stage === 'instagram' && isInterruptedInstagramImage(item);
+  if (!READY_STATUSES.has(item[stage].status) && !recoveringImage) {
     return queueState;
   }
-  let next = transitionQueueStage(queueState, item.jobId, stage, 'publishing', { at: now });
+  let next = recoveringImage
+    ? queueState
+    : transitionQueueStage(queueState, item.jobId, stage, 'publishing', { at: now, intent });
+  await checkpoint({ phase: 'intent', stage, jobId: item.jobId, queueState: next });
+  let checkpointPhase = 'receipt';
   try {
-    const result = await publish({ job, post, queueItem: findQueueItem(next, item.jobId) });
+    const result = await publish({
+      job,
+      post,
+      queueItem: findQueueItem(next, item.jobId),
+      reconcileOnly: reconcileOnly || recoveringImage,
+      onAccepted: async (accepted) => {
+        if (!accepted || typeof accepted !== 'object' || Array.isArray(accepted)
+          || typeof accepted.id !== 'string' || !/^[A-Za-z0-9_-]{1,128}$/u.test(accepted.id)
+          || typeof accepted.provider !== 'string' || !/^[a-z0-9_-]{1,64}$/u.test(accepted.provider)
+          || typeof accepted.status !== 'string' || !/^[a-z_]{1,32}$/u.test(accepted.status)) {
+          throw new Error('Provider acceptance receipt is invalid');
+        }
+        next = validateQueueState({ ...next, items: next.items.map((entry) => entry.jobId === item.jobId
+          ? {
+            ...entry,
+            [stage]: { ...entry[stage], result: {
+              ...(entry[stage].result ?? {}),
+              acceptedProviderId: accepted.id,
+              acceptedProvider: accepted.provider,
+              acceptedStatus: accepted.status,
+            } },
+            ...(entry.r2Media ? { r2Media: updateOpeningsR2Consumer(entry.r2Media, stage, {
+              state: 'accepted', remoteId: accepted.id, updatedAt: now,
+            }) } : {}),
+          }
+          : entry) });
+        await checkpoint({ phase: 'accepted', stage, jobId: item.jobId, queueState: next });
+      },
+    });
+    next = validateQueueState({ ...next, items: next.items.map((entry) => entry.jobId === item.jobId && entry.r2Media
+      && entry.r2Media.files.some((file) => file.consumers.some((consumer) => consumer.channel === stage))
+      ? { ...entry, r2Media: updateOpeningsR2Consumer(entry.r2Media, stage, {
+        state: 'completed', remoteId: result.id, updatedAt: now,
+      }) }
+      : entry) });
     next = transitionQueueStage(next, item.jobId, stage, 'published', { at: now, result });
   } catch (error) {
     if (stage === 'mastodon' && /^[a-zA-Z0-9-]{1,128}$/.test(error?.platformPublicationId ?? '')) {
       next = validateQueueState({ ...next, items: next.items.map(entry => entry.jobId === item.jobId
         ? { ...entry, mastodon: { ...entry.mastodon, result: {
-          executionOwner: 'cloudflare', platformPublicationId: error.platformPublicationId,
+          ...(entry.mastodon.result ?? {}),
+          executionOwner: 'cloudflare',
+          platformPublicationId: error.platformPublicationId,
         } } } : entry) });
     }
-    next = transitionQueueStage(next, item.jobId, stage, 'retryable', {
+    const imageRecoveryHold = stage === 'instagram'
+      && (recoveringImage || error?.code === 'instagram_image_ambiguous');
+    const failureStatus = imageRecoveryHold
+      ? 'failed'
+      : 'retryable';
+    next = transitionQueueStage(next, item.jobId, stage, failureStatus, {
       at: now,
-      errorCode: safeErrorCode(error, stage),
+      errorCode: imageRecoveryHold ? 'instagram_image_ambiguous' : safeErrorCode(error, stage),
     });
+    next = validateQueueState({ ...next, items: next.items.map((entry) => {
+      if (entry.jobId !== item.jobId || !entry.r2Media
+        || entry.r2Media.files.every((file) => file.consumers.every((consumer) => consumer.channel !== stage))) return entry;
+      const existing = entry.r2Media.files.flatMap((file) => file.consumers)
+        .find((consumer) => consumer.channel === stage);
+      if (existing?.state === 'accepted') return entry;
+      return { ...entry, r2Media: updateOpeningsR2Consumer(entry.r2Media, stage, {
+        state: 'ambiguous', updatedAt: now,
+      }) };
+    }) });
+    checkpointPhase = 'failure';
   }
+  await checkpoint({ phase: checkpointPhase, stage, jobId: item.jobId, queueState: next });
   return next;
 }
 
@@ -418,15 +636,21 @@ export async function processOnePublication({
   preparePublicationJob = (job) => job,
   now = new Date().toISOString(),
   jobId,
+  checkpoint = async () => {},
 }) {
   let nextQueue = validateQueueState(queueState);
-  let nextPublications = validatePublicationsState(publicationsState);
+  const validatedPublications = validatePublicationsState(publicationsState);
+  const repairJobIds = missingCompletedPublicationJobIds(nextQueue, validatedPublications);
+  let nextPublications = repairCompletedPublications(validatedPublications, nextQueue);
   assertSnapshot(currentSnapshot, 'currentSnapshot');
   assertNow(now);
   for (const [label, callback] of Object.entries({ publishBridge, publishBluesky, publishMastodon })) {
     if (typeof callback !== 'function') {
       throw new Error(`${label} must be a function`);
     }
+  }
+  if (typeof checkpoint !== 'function') {
+    throw new Error('checkpoint must be a function');
   }
 
   let automaticallyClosedJobId = null;
@@ -462,6 +686,24 @@ export async function processOnePublication({
 
   let selected = jobId ? findQueueItem(nextQueue, jobId) : selectNextQueueItem(nextQueue, now);
   if (!selected) {
+    if (repairJobIds.length > 0) {
+      return {
+        queueState: nextQueue,
+        publicationsState: nextPublications,
+        outcome: 'ledger_repaired',
+        selectedJobId: null,
+      };
+    }
+    const review = interruptedPublicationReview(nextQueue);
+    if (review.reviewRequiredCount > 0) {
+      return {
+        queueState: nextQueue,
+        publicationsState: nextPublications,
+        outcome: 'review_required',
+        selectedJobId: null,
+        ...review,
+      };
+    }
     return {
       queueState: nextQueue,
       publicationsState: nextPublications,
@@ -469,11 +711,57 @@ export async function processOnePublication({
       selectedJobId: automaticallyClosedJobId,
     };
   }
+  if (!isReadyQueueItem(selected)) {
+    const review = interruptedPublicationReview({ ...nextQueue, items: [selected] });
+    if (review.reviewRequiredCount > 0) {
+      return {
+        queueState: nextQueue,
+        publicationsState: nextPublications,
+        outcome: 'review_required',
+        selectedJobId: selected.jobId,
+        ...review,
+      };
+    }
+  }
   const selectedJobId = selected.jobId;
   let job = currentSnapshot.jobsById.get(selected.jobId);
   if (!job) {
     nextQueue = markJobClosed(nextQueue, selected.jobId, now);
     return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'skipped_closed', selectedJobId };
+  }
+
+  if (isInterruptedInstagramImage(selected)) {
+    const storedCanonicalUrl = selected.instagram.result.canonicalUrl;
+    const recoveryPost = { ...formatSocialPost(job), canonicalUrl: storedCanonicalUrl };
+    nextQueue = await publishQueueStage({
+      queueState: nextQueue,
+      item: selected,
+      stage: 'instagram',
+      publish: publishInstagram ?? (async () => {
+        throw new Error('instagram publisher is unavailable');
+      }),
+      post: recoveryPost,
+      job,
+      now,
+      checkpoint,
+      reconcileOnly: true,
+    });
+    selected = findQueueItem(nextQueue, selected.jobId);
+    if (isCompletedPublicationQueueItem(selected)) {
+      nextPublications = completePublication(nextPublications, selected, now);
+      return {
+        queueState: nextQueue,
+        publicationsState: nextPublications,
+        outcome: 'completed',
+        selectedJobId,
+      };
+    }
+    return {
+      queueState: nextQueue,
+      publicationsState: nextPublications,
+      outcome: 'partial',
+      selectedJobId,
+    };
   }
 
   const started = SOCIAL_CHANNELS.some(channel => selected[channel].attempts > 0 || selected[channel].status === 'published');
@@ -498,7 +786,7 @@ export async function processOnePublication({
 
   if (job.socialTitle && selected.bridge.status === 'published' && selected.bridge.result?.socialTitle !== job.socialTitle) {
     nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map(item => item.jobId !== selected.jobId ? item : {
-      ...item, bridge: { ...item.bridge, status: 'pending', attempts: 0, result: null, lastError: null,
+      ...item, bridge: { ...item.bridge, status: 'pending', attempts: 0, result: pendingBridgeMediaResult(item), lastError: null,
         updatedAt: now, lastReset: { at: now, reason: 'social_title_update' } },
     }) });
     selected = findQueueItem(nextQueue, selected.jobId);
@@ -521,22 +809,58 @@ export async function processOnePublication({
   }
   if (READY_STATUSES.has(selected.bridge.status)) {
     nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'publishing', { at: now });
+    await checkpoint({
+      phase: 'intent',
+      stage: 'bridge',
+      jobId: selected.jobId,
+      queueState: nextQueue,
+    });
+    let bridgeErrorCode = null;
     try {
       const result = await publishBridge({
         job,
+        queueItem: findQueueItem(nextQueue, job.id),
         direction: queuedArtworkDirection(nextQueue, job.id),
         snapshot: currentSnapshot,
         reason: instagramCardUpgrade ? 'instagram_card_upgrade' : (revisionChanged ? 'changed' : 'new'),
+        checkpointMedia: async (r2Media) => {
+          nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map((item) => (
+            item.jobId === selected.jobId ? { ...item, r2Media } : item
+          )) });
+          await checkpoint({ phase: 'media', stage: 'bridge', jobId: selected.jobId, queueState: nextQueue });
+        },
       });
+      const { r2Media, ...bridgeResult } = result;
+      if (r2Media) {
+        nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map((item) => (
+          item.jobId === selected.jobId ? { ...item, r2Media } : item
+        )) });
+      }
+      const direction = queuedArtworkDirection(nextQueue, job.id);
+      const storyMedia = retainedStoryMedia(selected.bridge.result?.storyMediaCandidate, { job, direction, bridge: bridgeResult });
+      // Stage receipts merge with their intent for native provider ownership.
+      // A rebuilt bridge instead replaces its old media/candidate completely.
+      nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map(item => item.jobId !== selected.jobId ? item : {
+        ...item, bridge: { ...item.bridge, result: null },
+      }) });
       nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'published', {
-        at: now, result: { ...result, visualDirection: queuedArtworkDirection(nextQueue, job.id),
+        at: now, result: { ...bridgeResult, ...storyMedia, visualDirection: direction,
           ...(job.socialTitle ? { socialTitle: job.socialTitle } : {}) },
       });
     } catch (error) {
+      bridgeErrorCode = safeErrorCode(error, 'bridge');
       nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'retryable', {
         at: now,
-        errorCode: safeErrorCode(error, 'bridge'),
+        errorCode: bridgeErrorCode,
       });
+    }
+    await checkpoint({
+      phase: bridgeErrorCode === null ? 'receipt' : 'failure',
+      stage: 'bridge',
+      jobId: selected.jobId,
+      queueState: nextQueue,
+    });
+    if (bridgeErrorCode !== null) {
       return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'bridge_retryable', selectedJobId };
     }
   }
@@ -568,11 +892,15 @@ export async function processOnePublication({
       post: channel === 'twitter' ? twitterPost : post,
       job,
       now,
+      checkpoint,
+      intent: channel === 'instagram'
+        ? { publicationKind: 'image', canonicalUrl: post.canonicalUrl }
+        : undefined,
     });
   }
 
   selected = findQueueItem(nextQueue, selected.jobId);
-  if (SOCIAL_CHANNELS.every((channel) => COMPLETED_STATUSES.has(selected[channel].status))) {
+  if (isCompletedPublicationQueueItem(selected)) {
     nextPublications = completePublication(nextPublications, selected, now);
     return { queueState: nextQueue, publicationsState: nextPublications, outcome: 'completed', selectedJobId };
   }

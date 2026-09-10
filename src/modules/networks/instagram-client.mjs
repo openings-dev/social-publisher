@@ -71,6 +71,90 @@ function validateCaption(value) {
   return value;
 }
 
+const IMAGE_HISTORY_PAGE_LIMIT = 5;
+const IMAGE_HISTORY_PAGE_SIZE = '50';
+const PAGING_CURSOR_PATTERN = /^[A-Za-z0-9._~=-]{1,1024}$/u;
+const IMAGE_MEDIA_ID_PATTERN = /^[A-Za-z0-9][A-Za-z0-9_-]{0,255}$/u;
+
+function imageAmbiguous() {
+  return publicationError(
+    'instagram_image_ambiguous',
+    'Instagram image publication requires review',
+  );
+}
+
+function hasExactCanonicalUrlToken(caption, canonicalUrl) {
+  return typeof caption === 'string'
+    && caption.split(/\r?\n/u).some((line) => line === canonicalUrl);
+}
+
+function validImageHistoryEntry(media) {
+  if (media === null || typeof media !== 'object' || Array.isArray(media)) return false;
+  if (typeof media.id !== 'string' || !IMAGE_MEDIA_ID_PATTERN.test(media.id)) return false;
+  if (media.caption !== undefined && media.caption !== null && typeof media.caption !== 'string') return false;
+  if (media.permalink !== undefined && media.permalink !== null && typeof media.permalink !== 'string') return false;
+  if (media.timestamp !== undefined && media.timestamp !== null && typeof media.timestamp !== 'string') return false;
+  return true;
+}
+
+function continuationCursor(paging) {
+  if (paging === undefined || paging === null) return null;
+  if (typeof paging !== 'object' || Array.isArray(paging)) throw imageAmbiguous();
+  if (paging.next !== undefined && typeof paging.next !== 'string') throw imageAmbiguous();
+  if (paging.cursors !== undefined
+    && (paging.cursors === null || typeof paging.cursors !== 'object' || Array.isArray(paging.cursors))) {
+    throw imageAmbiguous();
+  }
+  const after = paging.cursors?.after;
+  if (after === undefined || after === null || after === '') {
+    if (typeof paging.next === 'string' && paging.next.length > 0) throw imageAmbiguous();
+    return null;
+  }
+  if (typeof after !== 'string' || !PAGING_CURSOR_PATTERN.test(after)) throw imageAmbiguous();
+  return after;
+}
+
+async function scanImageHistory({
+  base,
+  userId,
+  canonicalUrl,
+  accessToken,
+  fetchImpl,
+}) {
+  const endpoint = `${base}/${encodeURIComponent(userId)}/media`;
+  const seenCursors = new Set();
+  const matches = [];
+  let after = null;
+  for (let page = 0; page < IMAGE_HISTORY_PAGE_LIMIT; page += 1) {
+    const url = new URL(endpoint);
+    url.searchParams.set('fields', 'id,caption,permalink,timestamp');
+    url.searchParams.set('limit', IMAGE_HISTORY_PAGE_SIZE);
+    if (after !== null) url.searchParams.set('after', after);
+    let response;
+    try {
+      response = await fetchJson(url, {
+        fetchImpl,
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+    } catch {
+      throw imageAmbiguous();
+    }
+    if (!Array.isArray(response?.data) || !response.data.every(validImageHistoryEntry)) {
+      throw imageAmbiguous();
+    }
+    matches.push(...response.data.filter((media) => (
+      hasExactCanonicalUrlToken(media.caption, canonicalUrl)
+    )));
+    if (matches.length > 1) throw imageAmbiguous();
+    const next = continuationCursor(response.paging);
+    if (next === null) return matches[0] ?? null;
+    if (page === IMAGE_HISTORY_PAGE_LIMIT - 1 || seenCursors.has(next)) throw imageAmbiguous();
+    seenCursors.add(next);
+    after = next;
+  }
+  throw imageAmbiguous();
+}
+
 async function findRecentMedia({
   base,
   userId,
@@ -199,6 +283,48 @@ async function publishMediaContainer({
   return normalizedResult(media ?? { id: published.id }, 'published');
 }
 
+async function publishImageMediaContainer({
+  base,
+  userId,
+  containerId,
+  canonicalUrl,
+  accessToken,
+  fetchImpl,
+}) {
+  let published;
+  try {
+    published = await fetchJson(`${base}/${encodeURIComponent(userId)}/media_publish`, {
+      fetchImpl,
+      method: 'POST',
+      headers: headers(accessToken),
+      body: new URLSearchParams({ creation_id: containerId }).toString(),
+    });
+  } catch {
+    published = null;
+  }
+  if (typeof published?.id === 'string' && IMAGE_MEDIA_ID_PATTERN.test(published.id)) {
+    const media = await findMediaById({
+      base,
+      id: published.id,
+      accessToken,
+      fetchImpl,
+    });
+    return normalizedResult(
+      media && IMAGE_MEDIA_ID_PATTERN.test(media.id) ? media : { id: published.id },
+      'published',
+    );
+  }
+  const reconciled = await scanImageHistory({
+    base,
+    userId,
+    canonicalUrl,
+    accessToken,
+    fetchImpl,
+  });
+  if (reconciled) return normalizedResult(reconciled, 'reconciled');
+  throw imageAmbiguous();
+}
+
 function pollingOptions({
   containerPollAttempts = 24,
   containerPollDelayMs = 5_000,
@@ -239,6 +365,71 @@ async function waitUntilContainerReady({
     if (attempt < attempts - 1) await sleep(delayMs);
   }
   throw publicationError('instagram_container', 'Instagram media preparation timed out');
+}
+
+export async function publishImageToInstagram({
+  job,
+  post,
+  imageUrl,
+  accessToken,
+  userId,
+  apiVersion,
+  reconciliationMarker,
+  apiOrigin = INSTAGRAM_API_ORIGIN,
+  fetchImpl = globalThis.fetch,
+  sleep = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds)),
+  containerPollAttempts = 24,
+  containerPollDelayMs = 5_000,
+  reconcileOnly = false,
+}) {
+  assertCredentials(accessToken, userId);
+  if (typeof reconcileOnly !== 'boolean') {
+    throw publicationError('instagram_configuration', 'Instagram image recovery mode is invalid');
+  }
+  const marker = normalizeReconciliationMarker(reconciliationMarker);
+  const publicImage = publicMediaUrl(imageUrl, {
+    extension: '.jpg',
+    label: 'Instagram image',
+  });
+  const base = apiBase(apiOrigin, apiVersion);
+  const baseCaption = formatInstagramCaption(job, post);
+  const caption = validateCaption(marker === null || baseCaption.includes(marker)
+    ? baseCaption
+    : `${baseCaption}\n\n${marker}`);
+  const existing = await scanImageHistory({
+    base,
+    userId,
+    canonicalUrl: post.canonicalUrl,
+    accessToken,
+    fetchImpl,
+  });
+  if (existing) return normalizedResult(existing, 'reconciled');
+  if (reconcileOnly) throw imageAmbiguous();
+
+  const container = await createMediaContainer({
+    base,
+    userId,
+    accessToken,
+    fetchImpl,
+    parameters: { image_url: publicImage, caption },
+    errorCode: 'instagram_container',
+  });
+  await waitUntilContainerReady({
+    base,
+    containerId: container.id,
+    accessToken,
+    fetchImpl,
+    sleep,
+    ...pollingOptions({ containerPollAttempts, containerPollDelayMs }),
+  });
+  return publishImageMediaContainer({
+    base,
+    userId,
+    containerId: container.id,
+    canonicalUrl: post.canonicalUrl,
+    accessToken,
+    fetchImpl,
+  });
 }
 
 export async function publishToInstagram({

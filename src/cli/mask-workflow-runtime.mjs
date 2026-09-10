@@ -15,19 +15,44 @@ function requirePositiveInteger(value) {
   return normalized;
 }
 
+function parseSourceEvent(event) {
+  const payload = event.action === 'openings_source_committed_v1' ? event.client_payload : null;
+  const expectedKeys = [
+    'data_hash', 'event_id', 'previous_commit', 'schema_version', 'source_commit', 'source_repository',
+  ];
+  if (payload === null || typeof payload !== 'object' || Array.isArray(payload)
+    || JSON.stringify(Object.keys(payload).sort()) !== JSON.stringify(expectedKeys)
+    || payload.schema_version !== 1
+    || payload.source_repository !== 'openings-dev/data-pipeline'
+    || !/^[0-9a-f]{40}$/u.test(payload.source_commit)
+    || !/^[0-9a-f]{40}$/u.test(payload.previous_commit)
+    || !/^[0-9a-f]{64}$/u.test(payload.data_hash)
+    || payload.event_id !== `openings:data:${payload.source_commit}`) {
+    throw invalidMetadata();
+  }
+  return payload;
+}
+
 export function buildRuntimeMetadata({ kind, eventName, event, runId, runAttempt }) {
   if (kind !== 'social' && kind !== 'editorial') throw invalidMetadata();
-  if (eventName !== 'schedule' && eventName !== 'workflow_dispatch') throw invalidMetadata();
+  if (!['schedule', 'workflow_dispatch', 'repository_dispatch'].includes(eventName)) throw invalidMetadata();
   if (event === null || typeof event !== 'object' || Array.isArray(event)) throw invalidMetadata();
+  if (eventName === 'repository_dispatch' && kind !== 'social') throw invalidMetadata();
 
   const id = requirePositiveInteger(runId);
   const attempt = requirePositiveInteger(runAttempt);
-  const mode = eventName === 'schedule' ? 'scheduled' : event.inputs?.mode;
+  const mode = eventName === 'workflow_dispatch' ? event.inputs?.mode : 'scheduled';
   const supported = kind === 'social' ? SOCIAL_MODES : EDITORIAL_MANUAL_MODES;
   if (eventName === 'workflow_dispatch' && !supported.has(mode)) throw invalidMetadata();
 
   if (kind === 'social') {
-    return { RUN_MODE: mode, STORY_OPERATION_KEY: `job-story-${id}-${attempt}` };
+    const metadata = { RUN_MODE: mode, STORY_OPERATION_KEY: `job-story-${id}-${attempt}` };
+    if (eventName === 'repository_dispatch') {
+      const payload = parseSourceEvent(event);
+      metadata.SOURCE_EVENT_COMMIT = payload.source_commit;
+      metadata.SOURCE_EVENT_DATA_HASH = payload.data_hash;
+    }
+    return metadata;
   }
   return { RUN_MODE: mode, EDITORIAL_OPERATION_KEY: `editorial-${id}-${attempt}` };
 }
