@@ -839,7 +839,7 @@ test('a generic interrupted job remains intact while a separate ready job publis
     result: {
       ...queue.items[0].bridge.result,
       instagramImageUrl: `https://openings.dev/jobs/${readyJob.id}/instagram-image.jpg?v=7.fixture`,
-      socialTitle: 'Senior Engineer · TypeScript',
+      socialTitle: readyJob.title,
       visualDirection: 'editorial',
     },
   };
