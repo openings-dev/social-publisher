@@ -14472,14 +14472,14 @@
         "result": null
       },
       "threads": {
-        "status": "failed",
+        "status": "pending",
         "attempts": 0,
-        "updatedAt": "2026-09-10T13:15:27.637Z",
-        "lastError": {
-          "code": "social_title_review_required",
-          "at": "2026-09-10T13:15:27.637Z"
+        "updatedAt": "2026-09-10T13:41:16.530Z",
+        "lastError": null,
+        "lastReset": {
+          "at": "2026-09-10T13:41:16.530Z",
+          "reason": "manual_reset"
         },
-        "lastReset": null,
         "result": null
       },
       "instagram": {
