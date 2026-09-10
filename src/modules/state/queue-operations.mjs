@@ -413,19 +413,28 @@ export function selectNextQueueItem(queueState, now = new Date().toISOString()) 
     || left.jobId.localeCompare(right.jobId))[0];
 }
 
-export function selectNextInstagramStory(queueState, jobId = null) {
+export function hasInstagramStoryMedia(item) {
+  return item.bridge.status === 'published'
+    && typeof item.bridge.result?.socialVideoUrl === 'string'
+    && item.bridge.result.socialVideoUrl.length > 0;
+}
+
+export function selectNextInstagramStory(queueState, jobId = null, { operationKey } = {}) {
   validateQueueState(queueState);
   if (jobId !== null) assertValidJobId(jobId);
-  return queueState.items
+  const eligible = queueState.items
     .filter((item) => (READY_STATUSES.has(item.instagramStory.status) || item.instagramStory.status === 'publishing')
       && (jobId === null || item.jobId === jobId)
       && item.instagram.status === 'published'
       && typeof item.instagram.result?.id === 'string'
-      && item.instagram.result.id.length > 0
-      && item.bridge.status === 'published'
-      && typeof item.bridge.result?.socialVideoUrl === 'string'
-      && item.bridge.result.socialVideoUrl.length > 0)
+      && item.instagram.result.id.length > 0)
     .sort((left, right) => Date.parse(left.instagram.updatedAt) - Date.parse(right.instagram.updatedAt)
       || Date.parse(left.discoveredAt) - Date.parse(right.discoveredAt)
-      || left.jobId.localeCompare(right.jobId))[0] ?? null;
+      || left.jobId.localeCompare(right.jobId));
+  if (jobId !== null) return eligible[0] ?? null;
+  const interrupted = operationKey === undefined ? null : eligible.find(item => (
+    item.instagramStory.status === 'publishing'
+    && item.instagramStory.result?.operationKey !== operationKey
+  ));
+  return interrupted ?? eligible.find(hasInstagramStoryMedia) ?? eligible[0] ?? null;
 }

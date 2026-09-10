@@ -5,6 +5,7 @@ import { readEnvironment } from '../config/env.mjs';
 import { publishStoryToInstagram } from '../modules/networks/instagram-client.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import {
+  hasInstagramStoryMedia,
   selectNextInstagramStory,
   transitionQueueStage,
 } from '../modules/state/queue-operations.mjs';
@@ -122,6 +123,17 @@ export async function runJobStoryPublication({
     loadStateFile(publicationsPath, validatePublicationsState, migratePublicationsState),
   ]);
   const reconciled = reconcileJobStoryState(queueState, publicationsState, { at: now });
+  const enabled = env.INSTAGRAM_STORY_AUTO_PUBLISH === 'true';
+  const safeOperationKey = enabled ? assertOperationKey(operationKey) : null;
+  const selected = enabled ? selectNextInstagramStory(reconciled.queueState, jobId, { operationKey: safeOperationKey }) : null;
+  const interrupted = selected?.instagramStory.status === 'publishing'
+    && selected.instagramStory.result?.operationKey !== safeOperationKey;
+  if (selected && !interrupted && !hasInstagramStoryMedia(selected)) {
+    // Even unrelated reconciliation must wait: blocked media is a read-only outcome.
+    const result = { outcome: 'blocked_media', selectedJobId: selected.jobId, queueState, publicationsState };
+    log(JSON.stringify({ outcome: result.outcome, selected: selected.jobId }));
+    return result;
+  }
   if (reconciled.publicationsState !== publicationsState) {
     publicationsState = reconciled.publicationsState;
     await saveStateFile(publicationsPath, publicationsState, validatePublicationsState);
@@ -130,33 +142,31 @@ export async function runJobStoryPublication({
     queueState = reconciled.queueState;
     await saveStateFile(queuePath, queueState, validateQueueState);
   }
-  if (env.INSTAGRAM_STORY_AUTO_PUBLISH !== 'true') {
+  if (!enabled) {
     const result = { outcome: 'disabled', selectedJobId: null, queueState, publicationsState };
     log(JSON.stringify({ outcome: result.outcome, selected: null }));
     return result;
   }
-  const safeOperationKey = assertOperationKey(operationKey);
-  const selected = selectNextInstagramStory(queueState, jobId);
   if (!selected) {
     const result = { outcome: 'idle', selectedJobId: null, queueState, publicationsState };
     log(JSON.stringify({ outcome: result.outcome, selected: null }));
     return result;
   }
   const currentStory = selected.instagramStory;
+  if (interrupted) {
+    queueState = transitionQueueStage(queueState, selected.jobId, 'instagramStory', 'failed', {
+      at: now,
+      errorCode: 'instagram_story_interrupted',
+    });
+    await saveStateFile(queuePath, queueState, validateQueueState);
+    const result = { outcome: 'failed_manual_review', selectedJobId: selected.jobId, queueState, publicationsState };
+    log(JSON.stringify({ outcome: result.outcome, selected: selected.jobId, error: 'instagram_story_interrupted' }));
+    return result;
+  }
   if (mode === 'intent') {
     if (currentStory.status === 'publishing') {
-      if (currentStory.result?.operationKey === safeOperationKey) {
-        const result = { outcome: 'prepared', selectedJobId: selected.jobId, queueState, publicationsState };
-        log(JSON.stringify({ outcome: result.outcome, selected: selected.jobId }));
-        return result;
-      }
-      queueState = transitionQueueStage(queueState, selected.jobId, 'instagramStory', 'failed', {
-        at: now,
-        errorCode: 'instagram_story_interrupted',
-      });
-      await saveStateFile(queuePath, queueState, validateQueueState);
-      const result = { outcome: 'failed_manual_review', selectedJobId: selected.jobId, queueState, publicationsState };
-      log(JSON.stringify({ outcome: result.outcome, selected: selected.jobId, error: 'instagram_story_interrupted' }));
+      const result = { outcome: 'prepared', selectedJobId: selected.jobId, queueState, publicationsState };
+      log(JSON.stringify({ outcome: result.outcome, selected: selected.jobId }));
       return result;
     }
     queueState = transitionQueueStage(queueState, selected.jobId, 'instagramStory', 'publishing', {

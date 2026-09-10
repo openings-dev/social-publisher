@@ -1,8 +1,6 @@
 import { collectBridgeJobs, collectDelta } from '../intake/collect-delta.mjs';
 import {
   DEFAULT_SOCIAL_CHANNELS,
-  INSTAGRAM_CARD_VERSION,
-  SOCIAL_VIDEO_VERSION,
   SOCIAL_CHANNELS,
   TWITTER_POST_MAX_GRAPHEMES,
 } from '../../config/constants.mjs';
@@ -30,6 +28,7 @@ import {
   validateQueueState,
   validateSnapshotReference,
 } from '../state/state-model.mjs';
+import { hasInstagramFeedImage, pendingBridgeMediaResult, retainedStoryMedia } from './instagram-media-provenance.mjs';
 
 const READY_STATUSES = new Set(['pending', 'retryable']);
 
@@ -147,7 +146,7 @@ function updateQueuedRevision(queueState, job, snapshot) {
       updatedAt: null,
       lastError: null,
       lastReset: null,
-      result: null,
+      result: pendingBridgeMediaResult(current),
     },
   };
   return validateQueueState({ ...queueState, items });
@@ -158,8 +157,7 @@ function needsInstagramBridgeUpgrade(item) {
   const artworkChanged = item.visualDirection !== undefined
     && item.bridge.result?.visualDirection !== item.visualDirection;
   return artworkChanged || (READY_STATUSES.has(item.instagram.status)
-    && (item.bridge.result?.instagramCardVersion !== INSTAGRAM_CARD_VERSION
-      || item.bridge.result?.socialVideoVersion !== SOCIAL_VIDEO_VERSION));
+    && !hasInstagramFeedImage(item.bridge.result));
 }
 
 function invalidateStaleInstagramBridge(queueState, jobId, at) {
@@ -180,7 +178,7 @@ function invalidateStaleInstagramBridge(queueState, jobId, at) {
       updatedAt: at,
       lastError: null,
       lastReset: { at, reason: 'instagram_card_upgrade' },
-      result: null,
+      result: pendingBridgeMediaResult(current),
     },
   };
   return validateQueueState({ ...queueState, items });
@@ -617,7 +615,7 @@ export async function processOnePublication({
 
   if (job.socialTitle && selected.bridge.status === 'published' && selected.bridge.result?.socialTitle !== job.socialTitle) {
     nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map(item => item.jobId !== selected.jobId ? item : {
-      ...item, bridge: { ...item.bridge, status: 'pending', attempts: 0, result: null, lastError: null,
+      ...item, bridge: { ...item.bridge, status: 'pending', attempts: 0, result: pendingBridgeMediaResult(item), lastError: null,
         updatedAt: now, lastReset: { at: now, reason: 'social_title_update' } },
     }) });
     selected = findQueueItem(nextQueue, selected.jobId);
@@ -654,8 +652,15 @@ export async function processOnePublication({
         snapshot: currentSnapshot,
         reason: instagramCardUpgrade ? 'instagram_card_upgrade' : (revisionChanged ? 'changed' : 'new'),
       });
+      const direction = queuedArtworkDirection(nextQueue, job.id);
+      const storyMedia = retainedStoryMedia(selected.bridge.result?.storyMediaCandidate, { job, direction, bridge: result });
+      // Stage receipts merge with their intent for native provider ownership.
+      // A rebuilt bridge instead replaces its old media/candidate completely.
+      nextQueue = validateQueueState({ ...nextQueue, items: nextQueue.items.map(item => item.jobId !== selected.jobId ? item : {
+        ...item, bridge: { ...item.bridge, result: null },
+      }) });
       nextQueue = transitionQueueStage(nextQueue, selected.jobId, 'bridge', 'published', {
-        at: now, result: { ...result, visualDirection: queuedArtworkDirection(nextQueue, job.id),
+        at: now, result: { ...result, ...storyMedia, visualDirection: direction,
           ...(job.socialTitle ? { socialTitle: job.socialTitle } : {}) },
       });
     } catch (error) {

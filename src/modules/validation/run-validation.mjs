@@ -5867,7 +5867,10 @@ validation('refreshes a stale queued Instagram card before publication', async (
     });
     return transitionQueueStage(queue, job.id, 'bridge', 'published', {
       at: '2026-08-20T13:01:20.000Z',
-      result: { status: 'deployed', instagramCardVersion, socialVideoVersion, visualDirection: 'night' },
+      result: { status: 'deployed', instagramCardVersion, socialVideoVersion, visualDirection: 'night',
+        instagramFeedMediaKind: 'image', instagramJpegHash: 'a'.repeat(64),
+        instagramImageUrl: `${OPENINGS_ORIGIN}/jobs/${job.id}/instagram-image.jpg`,
+      },
     });
   };
 

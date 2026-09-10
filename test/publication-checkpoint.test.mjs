@@ -57,6 +57,8 @@ function queued(enabledChannels) {
       nested: { preserved: true },
       visualDirection: 'night',
       instagramCardVersion: '7',
+      instagramFeedMediaKind: 'image',
+      instagramJpegHash: '8'.repeat(64),
       socialVideoVersion: '8',
     },
   };
