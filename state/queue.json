@@ -14426,15 +14426,17 @@
       "createdAt": "2026-09-01T00:24:23Z",
       "publicationCreatedAt": "2026-09-04T18:52:09.889Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": "2026-09-10T13:36:55.314Z",
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-10T13:48:13.916Z",
         "lastError": null,
         "lastReset": {
           "at": "2026-09-10T13:36:55.314Z",
           "reason": "manual_reset"
         },
-        "result": null
+        "result": {
+          "socialTitle": "[FULLY REMOTE] Software Engineer (using either Python, Node.js, or Go)- Jobsity"
+        }
       },
       "bluesky": {
         "status": "pending",
