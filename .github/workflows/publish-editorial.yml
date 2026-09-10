@@ -35,15 +35,13 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 60
     env:
-      RUN_MODE: ${{ github.event_name == 'schedule' && 'scheduled' || inputs.mode }}
-      WEB_PATH: dependencies/web
-      PUBLIC_SITE_ORIGIN: ${{ vars.PUBLIC_SITE_ORIGIN || 'https://openings.dev' }}
-      WEB_DEPLOY_REPOSITORY: ${{ vars.WEB_DEPLOY_REPOSITORY || 'openings-dev/web-deploy' }}
-      INSTAGRAM_API_ORIGIN: ${{ vars.INSTAGRAM_API_ORIGIN || 'https://graph.instagram.com' }}
-      META_GRAPH_VERSION: ${{ vars.META_GRAPH_VERSION }}
-      INSTAGRAM_USER_ID: ${{ vars.INSTAGRAM_USER_ID }}
-      INSTAGRAM_EDITORIAL_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled') && 'true' || vars.INSTAGRAM_EDITORIAL_AUTO_PUBLISH || 'false' }}
-      EDITORIAL_OPERATION_KEY: editorial-${{ github.run_id }}-${{ github.run_attempt }}
+      WEB_PATH: ${{ secrets.WEB_PATH }}
+      PUBLIC_SITE_ORIGIN: ${{ secrets.PUBLIC_SITE_ORIGIN }}
+      WEB_DEPLOY_REPOSITORY: ${{ secrets.WEB_DEPLOY_REPOSITORY }}
+      INSTAGRAM_API_ORIGIN: ${{ secrets.INSTAGRAM_API_ORIGIN }}
+      META_GRAPH_VERSION: ${{ secrets.META_GRAPH_VERSION }}
+      INSTAGRAM_USER_ID: ${{ secrets.INSTAGRAM_USER_ID }}
+      INSTAGRAM_EDITORIAL_AUTO_PUBLISH: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'controlled') && 'true' || secrets.INSTAGRAM_EDITORIAL_AUTO_PUBLISH }}
     steps:
       - name: Check out social-publisher state and source
         # actions/checkout v4.3.1
@@ -51,6 +49,9 @@ jobs:
         with:
           ref: ${{ github.ref_name }}
           fetch-depth: 0
+
+      - name: Mask and export runtime workflow metadata
+        run: node src/cli/mask-workflow-runtime.mjs --kind editorial
 
       - name: Check out the canonical openings.dev wordmark
         # actions/checkout v4.3.1

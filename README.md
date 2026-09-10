@@ -131,31 +131,28 @@ Editorial progress is stored in `state/editorial.json`. Job intake, provider res
 
 ## Configuration
 
-Repository variables:
+Store workflow configuration as individual repository secrets so GitHub masks each
+value in logs. Do not combine them into a JSON secret:
 
-- `PUBLIC_SITE_ORIGIN=https://openings.dev`
-- `MASTODON_BASE_URL=https://mastodon.social`
-- `WEB_DEPLOY_REPOSITORY=openings-dev/web-deploy`
-- `SOCIAL_AUTO_PUBLISH=false` until controlled rollout passes
-- `THREADS_AUTO_PUBLISH=true` after the controlled Threads rollout passes
-- `INSTAGRAM_AUTO_PUBLISH=true` after the controlled Instagram rollout passes
-- `LINKEDIN_AUTO_PUBLISH=true` after the controlled LinkedIn rollout passes
-- `INSTAGRAM_STORY_AUTO_PUBLISH=true` after a controlled job feed-plus-Story rollout passes
-- `INSTAGRAM_EDITORIAL_AUTO_PUBLISH=true` after a controlled editorial carousel-plus-Story rollout passes
-- `THREADS_API_URL=https://graph.threads.net/v1.0`
-- `INSTAGRAM_API_ORIGIN=https://graph.instagram.com`
-- `META_GRAPH_VERSION` — the supported Graph API version (`v26.0`)
-- `INSTAGRAM_USER_ID` — the numeric ID returned by Instagram Login
-- `LINKEDIN_API_ORIGIN=https://api.linkedin.com`
-- `LINKEDIN_PROVIDER=buffer` — use Buffer for the production LinkedIn Page; `direct` remains the direct provider fallback
-- `BUFFER_API_ORIGIN=https://api.buffer.com`
-- `BUFFER_ORGANIZATION_ID` — the Buffer ID for the `Openings HQ` organization
-- `BUFFER_LINKEDIN_CHANNEL_ID` — the Buffer channel ID for the official Openings.dev LinkedIn Page
-- `BUFFER_TWITTER_CHANNEL_ID` — the Buffer channel ID for the official Openings.dev Twitter/X account
-- `LINKEDIN_API_VERSION` — required only by the direct provider; the supported LinkedIn REST API version in `YYYYMM` format
-- `LINKEDIN_ORGANIZATION_ID` — required only by the direct provider; the numeric ID of the openings.dev LinkedIn Page
+- Paths and public data: `DATA_PATH`, `WEB_PATH`, `DATA_MANIFEST_URL`,
+  `PUBLIC_SITE_ORIGIN`, and `WEB_DEPLOY_REPOSITORY`
+- Provider configuration: `BLUESKY_SERVICE_URL`, `MASTODON_BASE_URL`,
+  `THREADS_API_URL`, `INSTAGRAM_API_ORIGIN`, `META_GRAPH_VERSION`,
+  `INSTAGRAM_USER_ID`, `LINKEDIN_API_ORIGIN`, `LINKEDIN_API_VERSION`,
+  `LINKEDIN_ORGANIZATION_ID`, `LINKEDIN_PROVIDER` (Buffer or the direct provider fallback), `BUFFER_API_ORIGIN`,
+  `BUFFER_ORGANIZATION_ID`, `BUFFER_LINKEDIN_CHANNEL_ID`,
+  `BUFFER_TWITTER_CHANNEL_ID`, `PUBLISHING_ENDPOINT`, and `PUBLISHING_CLIENT_ID`
+- Rollout flags: `SOCIAL_AUTO_PUBLISH`, `THREADS_AUTO_PUBLISH`,
+  `INSTAGRAM_AUTO_PUBLISH`, `LINKEDIN_AUTO_PUBLISH`,
+  `INSTAGRAM_STORY_AUTO_PUBLISH`, `INSTAGRAM_EDITORIAL_AUTO_PUBLISH`,
+  `PUBLISHING_SOCIAL_SHADOW_ENABLED`, and `PUBLISHING_MASTODON_ENABLED`
 
-Repository secrets:
+Keep the public `INSTAGRAM_EDITORIAL_AUTO_PUBLISH` repository variable only for
+the job-level gate, and ensure it mirrors the same-named secret. GitHub does not
+make secrets available while evaluating that gate. All other values above are
+read from secrets by the workflow.
+
+Also configure these credential secrets:
 
 - `WEB_DEPLOY_TOKEN` — a fine-grained GitHub token limited to `openings-dev/web-deploy`, with repository Contents set to read and write so it can create `repository_dispatch` events
 - `BLUESKY_IDENTIFIER`
@@ -210,9 +207,9 @@ was published to a network.
 
 The regular dry run also writes a private handoff under its output directory.
 The production bridge submits it before deploying its assets when
-`PUBLISHING_SOCIAL_SHADOW_ENABLED=true`. Configure `PUBLISHING_ENDPOINT` and
-`PUBLISHING_CLIENT_ID` as GitHub variables and `PUBLISHING_CLIENT_SECRET` as a
-GitHub secret. Dry runs do not read the credential or make platform requests.
+`PUBLISHING_SOCIAL_SHADOW_ENABLED` is enabled. Configure `PUBLISHING_ENDPOINT`,
+`PUBLISHING_CLIENT_ID`, and `PUBLISHING_CLIENT_SECRET` as individual GitHub
+secrets. Dry runs do not read the credential or make platform requests.
 
 For an explicit local handoff:
 
