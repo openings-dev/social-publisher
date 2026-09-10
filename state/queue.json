@@ -14553,16 +14553,19 @@
         }
       },
       "instagramStory": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-09-10T13:50:15.653Z",
+        "updatedAt": "2026-09-10T13:50:17.346Z",
         "lastError": null,
         "lastReset": {
           "at": "2026-09-10T13:44:26.409Z",
           "reason": "manual_reset"
         },
         "result": {
-          "operationKey": "job-story-34484762576-1"
+          "operationKey": "job-story-34484762576-1",
+          "status": "published",
+          "id": "18106833887462155",
+          "url": "https://www.instagram.com/stories/openingshq/3983147629983840893"
         }
       },
       "visualDirection": "night",
