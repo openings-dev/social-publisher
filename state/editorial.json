@@ -72,12 +72,16 @@
         }
       },
       "feed": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-10T15:56:24.669Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18374364751237258",
+          "url": "https://www.instagram.com/p/DdHNdhlFiAL/"
+        }
       },
       "story": {
         "status": "pending",
