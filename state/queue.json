@@ -7390,13 +7390,10 @@
       "createdAt": "2026-08-27T13:15:43Z",
       "publicationCreatedAt": "2026-09-01T22:23:10.345Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-10T20:56:15.836Z",
-        "lastError": {
-          "code": "validation",
-          "at": "2026-09-10T20:56:15.836Z"
-        },
+        "status": "publishing",
+        "attempts": 2,
+        "updatedAt": "2026-09-10T22:54:36.182Z",
+        "lastError": null,
         "lastReset": {
           "at": "2026-09-10T20:56:15.836Z",
           "reason": "social_title_update"
