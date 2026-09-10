@@ -55,12 +55,29 @@ test('an accepted but unconfirmed publication stays pending without native fallb
 test('Cloudflare ownership removes the legacy token requirement while dry-run ignores credentials', () => {
   const env = { SOCIAL_AUTO_PUBLISH: 'true', WEB_DEPLOY_TOKEN: 'test', BLUESKY_IDENTIFIER: 'test', BLUESKY_APP_PASSWORD: 'test',
     BUFFER_API_KEY: 'test', BUFFER_ORGANIZATION_ID: 'test', BUFFER_TWITTER_CHANNEL_ID: 'test',
-    PUBLISHING_MASTODON_ENABLED: 'true', PUBLISHING_ENDPOINT: transport.baseUrl, PUBLISHING_CLIENT_ID: 'test', PUBLISHING_CLIENT_SECRET: 'test' };
+    MASTODON_AUTO_PUBLISH: 'true', PUBLISHING_MASTODON_ENABLED: 'true', PUBLISHING_ENDPOINT: transport.baseUrl, PUBLISHING_CLIENT_ID: 'test', PUBLISHING_CLIENT_SECRET: 'test' };
   const config = readEnvironment({ env, mode: 'scheduled' });
   assert.ok(config.platformMastodon);
   assert.equal(config.mastodonAccessToken, null);
   assert.equal(readEnvironment({ env, mode: 'dry-run' }).platformMastodon, null);
   assert.throws(() => readEnvironment({ env: { ...env, PUBLISHING_MASTODON_ENABLED: 'false' }, mode: 'scheduled' }), /MASTODON_ACCESS_TOKEN/);
+});
+
+test('Mastodon stays disabled unless its channel flag is explicitly enabled', () => {
+  const env = {
+    SOCIAL_AUTO_PUBLISH: 'true',
+    WEB_DEPLOY_TOKEN: 'test',
+    BLUESKY_IDENTIFIER: 'test',
+    BLUESKY_APP_PASSWORD: 'test',
+    BUFFER_API_KEY: 'test',
+    BUFFER_ORGANIZATION_ID: 'test',
+    BUFFER_TWITTER_CHANNEL_ID: 'test',
+    PUBLISHING_MASTODON_ENABLED: 'true',
+  };
+  const disabled = readEnvironment({ env, mode: 'scheduled' });
+  assert.deepEqual(disabled.enabledChannels, ['bluesky', 'twitter']);
+  assert.equal(disabled.platformMastodon, null);
+  assert.equal(disabled.mastodonAccessToken, null);
 });
 
 test('tracked acceptance resumes with GET only on a new runner', async () => {

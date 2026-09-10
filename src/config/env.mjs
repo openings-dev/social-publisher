@@ -93,7 +93,8 @@ export function readEnvironment({ env = process.env, mode = 'dry-run', intakeStr
   const r2Enabled = requiresDeploy && env.OPENINGS_R2_ENABLED === 'true';
   const requiresWebDeploy = requiresDeploy && !r2Enabled;
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
-  const platformMastodonEnabled = requiresSocial && env.PUBLISHING_MASTODON_ENABLED === 'true';
+  const mastodonEnabled = requiresSocial && env.MASTODON_AUTO_PUBLISH === 'true';
+  const platformMastodonEnabled = mastodonEnabled && env.PUBLISHING_MASTODON_ENABLED === 'true';
   const threadsEnabled = env.THREADS_AUTO_PUBLISH === 'true';
   const instagramEnabled = env.INSTAGRAM_AUTO_PUBLISH === 'true';
   const linkedinEnabled = env.LINKEDIN_AUTO_PUBLISH === 'true';
@@ -101,7 +102,8 @@ export function readEnvironment({ env = process.env, mode = 'dry-run', intakeStr
   const instagramStoryEnabled = env.INSTAGRAM_STORY_AUTO_PUBLISH === 'true';
   const instagramEditorialEnabled = env.INSTAGRAM_EDITORIAL_AUTO_PUBLISH === 'true';
   const enabledChannels = [
-    ...DEFAULT_SOCIAL_CHANNELS,
+    ...DEFAULT_SOCIAL_CHANNELS.filter((channel) => channel !== 'mastodon'),
+    ...(mastodonEnabled ? ['mastodon'] : []),
     ...(threadsEnabled ? ['threads'] : []),
     ...(instagramEnabled ? ['instagram'] : []),
     ...(linkedinEnabled ? ['linkedin'] : []),
@@ -112,7 +114,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run', intakeStr
   }
   if (r2Enabled) requireKeys(env, R2_KEYS);
   if (requiresSocial) {
-    requireKeys(env, SOCIAL_KEYS.filter(key => !(platformMastodonEnabled && key === 'MASTODON_ACCESS_TOKEN')));
+    requireKeys(env, SOCIAL_KEYS.filter(key => key !== 'MASTODON_ACCESS_TOKEN' || (mastodonEnabled && !platformMastodonEnabled)));
     if (threadsEnabled) requireKeys(env, ['THREADS_ACCESS_TOKEN']);
     if (instagramEnabled) {
       requireKeys(env, ['INSTAGRAM_ACCESS_TOKEN', 'INSTAGRAM_USER_ID', 'META_GRAPH_VERSION']);
@@ -185,6 +187,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run', intakeStr
     instagramStoryEnabled,
     instagramEditorialEnabled,
     enabledChannels: Object.freeze(enabledChannels),
+    disabledChannels: Object.freeze(mastodonEnabled ? [] : ['mastodon']),
     publicSiteOrigin: normalizeOrigin(env.PUBLIC_SITE_ORIGIN, OPENINGS_ORIGIN, 'PUBLIC_SITE_ORIGIN'),
     mastodonBaseUrl: normalizeOrigin(env.MASTODON_BASE_URL, MASTODON_BASE_URL, 'MASTODON_BASE_URL'),
     blueskyServiceUrl: normalizeOrigin(env.BLUESKY_SERVICE_URL, BLUESKY_SERVICE_URL, 'BLUESKY_SERVICE_URL'),
@@ -196,7 +199,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run', intakeStr
       identifier: env.BLUESKY_IDENTIFIER,
       appPassword: env.BLUESKY_APP_PASSWORD,
     }) : null,
-    mastodonAccessToken: requiresSocial && !platformMastodonEnabled ? env.MASTODON_ACCESS_TOKEN : null,
+    mastodonAccessToken: mastodonEnabled && !platformMastodonEnabled ? env.MASTODON_ACCESS_TOKEN : null,
     threads: (metaMigration || (requiresSocial && threadsEnabled)) ? Object.freeze({
       accessToken: env.THREADS_ACCESS_TOKEN,
       apiUrl: normalizeApiBase(env.THREADS_API_URL, THREADS_API_URL, 'THREADS_API_URL'),

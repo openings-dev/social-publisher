@@ -1,11 +1,31 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
-import { enqueueJob, selectNextQueueItem, resetFailedStage } from './queue-operations.mjs';
+import { retireQueueChannels, enqueueJob, selectNextQueueItem, resetFailedStage } from './queue-operations.mjs';
 import { processOnePublication } from '../publishing/orchestrator.mjs';
 import { prepareSocialJob } from '../render/social-title.mjs';
 import { PREVIEW_SAMPLES } from '../preview/sample-jobs.mjs';
 
 const now = '2026-09-07T12:00:00.000Z';
+
+test('disabling a channel retires unfinished work while preserving receipts', () => {
+  const input = setup('Original title');
+  input.queueState.items[0].mastodon = {
+    status: 'failed',
+    attempts: 3,
+    updatedAt: now,
+    lastError: { code: 'provider', at: now },
+    lastReset: null,
+    result: { executionOwner: 'cloudflare', platformPublicationId: 'accepted-one' },
+  };
+  const result = retireQueueChannels(input.queueState, ['mastodon'], now);
+  assert.deepEqual(result.items[0].mastodon, {
+    ...input.queueState.items[0].mastodon,
+    status: 'skipped_disabled',
+    updatedAt: now,
+  });
+  assert.equal(result.items[0].bluesky.status, 'pending');
+});
+
 function setup(title) {
   const job = { ...PREVIEW_SAMPLES[0].job, title };
   const snapshot = { commit: 'a'.repeat(40), dataHash: 'b'.repeat(64), generatedAt: now, jobsById: new Map([[job.id, job]]) };

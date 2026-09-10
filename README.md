@@ -1,6 +1,6 @@
 # social-publisher
 
-`social-publisher` turns genuinely new jobs indexed by [openings.dev](https://openings.dev) into useful, source-grounded posts for the official [Bluesky](https://bsky.app/profile/openingshq.bsky.social), [Mastodon](https://mastodon.social/@openingshq), [Threads](https://www.threads.com/@openingshq), [Instagram](https://www.instagram.com/openingshq/), and LinkedIn Page accounts.
+`social-publisher` turns genuinely new jobs indexed by [openings.dev](https://openings.dev) into useful, source-grounded posts for the enabled official social accounts. Mastodon is retired from the Openings rollout and remains disabled unless a future reviewed rollout explicitly sets `MASTODON_AUTO_PUBLISH=true`.
 
 The service is intentionally small and cautious. It publishes at most one queued job every two hours, never backfills older issues added through community discovery, and verifies a job-specific Open Graph page before sending a social post.
 
@@ -142,7 +142,7 @@ value in logs. Do not combine them into a JSON secret:
   `LINKEDIN_ORGANIZATION_ID`, `LINKEDIN_PROVIDER` (Buffer or the direct provider fallback), `BUFFER_API_ORIGIN`,
   `BUFFER_ORGANIZATION_ID`, `BUFFER_LINKEDIN_CHANNEL_ID`,
   `BUFFER_TWITTER_CHANNEL_ID`, `PUBLISHING_ENDPOINT`, and `PUBLISHING_CLIENT_ID`
-- Rollout flags: `SOCIAL_AUTO_PUBLISH`, `THREADS_AUTO_PUBLISH`,
+- Rollout flags: `SOCIAL_AUTO_PUBLISH`, `MASTODON_AUTO_PUBLISH`, `THREADS_AUTO_PUBLISH`,
   `INSTAGRAM_AUTO_PUBLISH`, `LINKEDIN_AUTO_PUBLISH`,
   `INSTAGRAM_STORY_AUTO_PUBLISH`, `INSTAGRAM_EDITORIAL_AUTO_PUBLISH`,
   `PUBLISHING_SOCIAL_SHADOW_ENABLED`, and `PUBLISHING_MASTODON_ENABLED`
@@ -189,7 +189,7 @@ For Twitter/X through Buffer:
 
 1. Connect only the official Openings.dev Twitter/X account to the `Openings HQ` organization.
 2. Reuse the existing `BUFFER_API_KEY` and `BUFFER_ORGANIZATION_ID`; add `BUFFER_TWITTER_CHANNEL_ID` for the new channel.
-3. Twitter/X is enabled by default alongside Bluesky and Mastodon — no separate `*_AUTO_PUBLISH` flag exists for it.
+3. Twitter/X is enabled by default alongside Bluesky; Mastodon is disabled unless explicitly reactivated through its separate reviewed flag.
 4. Run one controlled publication and verify the Buffer result, public tweet URL, canonical link, image, and duplicate reconciliation before relying on the scheduled run.
 5. Before this code reaches production, run `npm run migrate:twitter-state -- --state state --confirmation MIGRATE_TWITTER_STATE` once against the live `state/` directory so existing queue items and publication records gain the new `twitter` field.
 
