@@ -87,12 +87,29 @@ test('publishes an ordinary Instagram feed image with the canonical caption', as
     id: 'media-1',
     url: 'https://www.instagram.com/p/example/',
   });
+  assert.deepEqual(fixture.calls.map(({ url, options }) => {
+    const parsed = new URL(url);
+    return [options.method ?? 'GET', parsed.pathname, parsed.searchParams.toString()];
+  }), [
+    ['GET', `/${apiVersion}/${userId}/media`, 'fields=id%2Ccaption%2Cpermalink%2Ctimestamp&limit=50'],
+    ['POST', `/${apiVersion}/${userId}/media`, ''],
+    ['GET', `/${apiVersion}/container-1`, 'fields=status_code%2Cstatus'],
+    ['POST', `/${apiVersion}/${userId}/media_publish`, ''],
+    ['GET', `/${apiVersion}/media-1`, 'fields=id%2Cpermalink'],
+  ]);
   const create = fixture.calls.find(({ url, options }) => (
     new URL(url).pathname.endsWith(`/${userId}/media`) && options.method === 'POST'
   ));
   const body = new URLSearchParams(create.options.body);
   assert.equal(body.get('image_url'), imageUrl);
-  assert.match(body.get('caption'), new RegExp(post.canonicalUrl));
+  assert.equal(body.get('caption'), [
+    'New opening on openings.dev',
+    'Senior TypeScript Engineer',
+    `Open the full role:\n${canonicalUrl}`,
+    'Know someone who fits? Tag them below.',
+    'Follow @openingshq for more jobs from public communities.',
+    '#TechJobs #OpeningsJobs #Hiring',
+  ].join('\n\n'));
   assert.equal(body.has('video_url'), false);
   assert.equal(body.has('cover_url'), false);
   assert.equal(body.has('share_to_feed'), false);
@@ -108,10 +125,12 @@ test('rejects invalid ordinary feed inputs before any Instagram provider call', 
   const job = makeJob();
   const post = formatSocialPost(job);
   const cases = [
+    { imageUrl: undefined, accessToken: 'instagram-secret', userId, post },
     { imageUrl: imageUrl.replace('https:', 'http:'), accessToken: 'instagram-secret', userId, post },
     { imageUrl: canonicalUrl, accessToken: 'instagram-secret', userId, post },
     { imageUrl, accessToken: '', userId, post },
     { imageUrl, accessToken: 'instagram-secret', userId: '', post },
+    { imageUrl, accessToken: 'instagram-secret', userId, post: undefined },
     {
       imageUrl,
       accessToken: 'instagram-secret',
