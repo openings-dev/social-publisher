@@ -28,6 +28,7 @@ const R2_KEYS = [
   'OPENINGS_R2_SECRET_ACCESS_KEY',
   'OPENINGS_R2_CAPACITY_JSON',
 ];
+const EDITORIAL_R2_KEYS = R2_KEYS.filter((key) => key !== 'OPENINGS_R2_CAPACITY_JSON');
 
 function requireKeys(env, keys) {
   const missing = keys.filter((key) => typeof env[key] !== 'string' || env[key].trim() === '');
@@ -90,6 +91,9 @@ export function readEnvironment({ env = process.env, mode = 'dry-run', intakeStr
   const selectedMediaOwnerIntake = mode === 'intake' && intakeStrategy === 'selected-media-owner';
   const requiresDeploy = (mode === 'intake' && !selectedMediaOwnerIntake)
     || mode === 'scheduled' || mode === 'controlled' || metaMigration || editorialAssetsMode;
+  if (editorialAssetsMode && env.OPENINGS_R2_ENABLED !== 'true') {
+    throw new Error('Missing required configuration: OPENINGS_R2_ENABLED');
+  }
   const r2Enabled = requiresDeploy && env.OPENINGS_R2_ENABLED === 'true';
   const requiresWebDeploy = requiresDeploy && !r2Enabled;
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
@@ -112,7 +116,7 @@ export function readEnvironment({ env = process.env, mode = 'dry-run', intakeStr
   if (requiresWebDeploy) {
     requireKeys(env, DEPLOY_KEYS);
   }
-  if (r2Enabled) requireKeys(env, R2_KEYS);
+  if (r2Enabled) requireKeys(env, editorialAssetsMode ? EDITORIAL_R2_KEYS : R2_KEYS);
   if (requiresSocial) {
     requireKeys(env, SOCIAL_KEYS.filter(key => key !== 'MASTODON_ACCESS_TOKEN' || (mastodonEnabled && !platformMastodonEnabled)));
     if (threadsEnabled) requireKeys(env, ['THREADS_ACCESS_TOKEN']);

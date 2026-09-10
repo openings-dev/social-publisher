@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 import test from 'node:test';
 import sharp from 'sharp';
 import { EDITORIAL_CATALOG } from '../../content/editorial-catalog.mjs';
-import { createEditorialSlideSvg, createEditorialStorySvg, renderEditorialAssets, resolveEditorialTheme } from './editorial-card.mjs';
+import { createEditorialSlideSvg, renderEditorialAssets, resolveEditorialTheme } from './editorial-card.mjs';
 
 const wordmarkSvg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1202 219"><path fill="#21302E" d="M0 0h1202v219H0z"/></svg>';
 const options = { wordmarkSvg };
@@ -21,7 +21,6 @@ test('every editorial slide retains complete guidance in the clean reading guide
   assert.equal(EDITORIAL_CATALOG.length, 36);
   for (const content of EDITORIAL_CATALOG) {
     const svgs = content.slides.map((slide, index) => ({ svg: createEditorialSlideSvg(content, index, options), texts: [decorativeTitles.has(slide.title) ? null : slide.title, slide.body, slide.before, slide.after, ...(slide.items ?? [])].filter(Boolean), story: false, final: index === 6 }));
-    svgs.push({ svg: createEditorialStorySvg(content, options), texts: [content.story.title, content.story.body], story: true, final: true });
     for (const { svg, texts, story, final } of svgs) {
       assert.match(svg, /data-editorial-render-version="5"/u);
       assert.match(svg, /font-family="Figtree/u);
@@ -51,7 +50,7 @@ test('every editorial slide retains complete guidance in the clean reading guide
 test('editorial supports both horizontal alignments with compact vertically centered groups', () => {
   for (const alignment of ['left', 'center']) {
     for (const content of EDITORIAL_CATALOG) {
-      for (const svg of [...content.slides.map((_, i) => createEditorialSlideSvg(content, i, { ...options, alignment })), createEditorialStorySvg(content, { ...options, alignment })]) {
+      for (const svg of content.slides.map((_, i) => createEditorialSlideSvg(content, i, { ...options, alignment }))) {
         assert.match(svg, new RegExp(`data-alignment="${alignment}"`));
         const group = /data-group-top="([\d.]+)" data-group-height="([\d.]+)"/u.exec(svg);
         assert.ok(group, 'Renderer must center a measured stack');
@@ -91,23 +90,23 @@ test('editorial rejects active and external SVG wordmarks', () => {
   }
 });
 
-test('all 36 carousels and Stories render at native dimensions with pixels inside reading guides', async () => {
+test('all 36 carousels render at native dimensions with pixels inside reading guides', async () => {
   for (const alignment of ['left', 'center']) {
   for (const content of EDITORIAL_CATALOG) {
     const alignedOptions = { ...options, alignment };
     const assets = await renderEditorialAssets(content, alignedOptions);
     assert.equal(assets.slides.length, 7);
-    for (const [index, buffer] of [...assets.slides, assets.story].entries()) {
+    for (const [index, buffer] of assets.slides.entries()) {
       const metadata = await sharp(buffer).metadata();
       assert.equal(metadata.format, 'jpeg');
       assert.equal(metadata.width, 1080);
-      assert.equal(metadata.height, index === 7 ? 1920 : 1350);
+      assert.equal(metadata.height, 1350);
       assert.ok(buffer.byteLength < 4 * 1024 * 1024);
-      const svg = index === 7 ? createEditorialStorySvg(content, alignedOptions) : createEditorialSlideSvg(content, index, alignedOptions);
+      const svg = createEditorialSlideSvg(content, index, alignedOptions);
       const { data, info } = await sharp(Buffer.from(svg)).removeAlpha().raw().toBuffer({ resolveWithObject: true });
       const background = /<rect[^>]*fill="(#[A-Fa-f0-9]{6})"/u.exec(svg)[1].slice(1).match(/../gu).map(channel => Number.parseInt(channel, 16));
-      const top = index === 7 ? 280 : 144;
-      const bottom = index === 7 ? 1536 : 1206;
+      const top = 144;
+      const bottom = 1206;
       let outside = 0;
       let inside = 0;
       let first = info.height, last = -1;

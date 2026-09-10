@@ -19,28 +19,9 @@ const files = ['src/modules/render/job-poster.mjs', 'src/modules/render/job-post
 files.push('src/modules/render/job-poster-v4.mjs', 'src/modules/render/job-poster-v6.mjs', 'src/modules/render/job-poster-input.mjs');
 files.push('src/modules/render/soundtrack.mjs', 'assets/audio/README.md', 'assets/audio/funked-up.mp3', 'assets/audio/funky-house.mp3');
 
-test('clean editorial dispatches use a separate render namespace and pass deployment validation', { skip: !available }, async () => {
-  const { EDITORIAL_CATALOG } = await import('../../content/editorial-catalog.mjs');
-  const { createEditorialSlideSvg, createEditorialStorySvg, EDITORIAL_RENDER_VERSION } = await import('./editorial-card.mjs');
-  const { buildEditorialDispatchRequest } = await import('../deploy/web-deploy-client.mjs');
-  const { prepareEditorialAssets } = await import(new URL('scripts/prepare-editorial-assets.mjs', deploy));
-  const directory = await mkdtemp(join(tmpdir(), 'openings-clean-editorial-'));
-  const wordmarkSvg = '<svg viewBox="0 0 1202 219"><rect width="1202" height="219" fill="#21302E"/></svg>';
-  try {
-    for (const content of EDITORIAL_CATALOG) {
-      assert.equal(content.version, '2');
-      const request = buildEditorialDispatchRequest({ contentId: content.id, version: EDITORIAL_RENDER_VERSION,
-        carouselSvgs: content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg })),
-        storySvg: createEditorialStorySvg(content, { wordmarkSvg }), repository: 'openings-dev/web-deploy' });
-      const payload = JSON.parse(request.body).client_payload;
-      assert.equal(payload.content_version, '5');
-      const result = await prepareEditorialAssets({ outputRoot: directory, siteOrigin: 'https://openings.dev', payload: {
-        contentId: payload.content_id, contentVersion: payload.content_version,
-        assets: payload.assets.map(({ name, sha256, svg_gzip_base64 }) => ({ name, sha256, svgGzipBase64: svg_gzip_base64 })),
-      } });
-      assert.ok(result.remoteDirectory.endsWith(`/${content.id}/5`));
-    }
-  } finally { await rm(directory, { recursive: true, force: true }); }
+test('live editorial renderer exposes carousel slides without a dedicated Story renderer', async () => {
+  const editorial = await import('./editorial-card.mjs');
+  assert.equal('createEditorialStorySvg' in editorial, false);
 });
 
 test('legacy poster payloads retain the deployment renderer output', { skip: !available }, async () => {

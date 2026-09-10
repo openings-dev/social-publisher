@@ -6,7 +6,6 @@ import { validateEditorialContent } from '../editorial/editorial-model.mjs';
 import { fitPosterText, textWidth } from './poster-typography.mjs';
 
 const FEED = Object.freeze({ width: 1080, height: 1350 });
-const STORY = Object.freeze({ width: 1080, height: 1920 });
 export const EDITORIAL_RENDER_VERSION = '5';
 const DECORATIVE_TITLES = new Set(['Do it today', 'Try this', 'A useful adjustment', 'Why it matters', 'Quick checklist']);
 const THEMES = Object.freeze([
@@ -28,8 +27,8 @@ function wordmark(wordmarkSvg, theme, y, alignment) {
   return `<image data-editorial-wordmark="true" x="${alignment === 'center' ? 365 : 124}" y="${y}" width="350" height="${350 * 219 / 1202}" preserveAspectRatio="xMinYMid meet" href="data:image/svg+xml;base64,${Buffer.from(svg).toString('base64')}"/>`;
 }
 
-function ctaLabel(story, pillar) {
-  return story || pillar === 'linkedin' ? 'Share this tip →' : 'Save for later →';
+function ctaLabel(pillar) {
+  return pillar === 'linkedin' ? 'Share this tip →' : 'Save for later →';
 }
 
 function slideBlocks(slide, pillar, short) {
@@ -43,13 +42,13 @@ function slideBlocks(slide, pillar, short) {
   } else {
     blocks.push({ value: slide.body, size: blocks.length ? 46 : 56, gap: blocks.length ? 40 : 64 });
   }
-  if (slide.kind === 'cta') blocks.push({ value: short ? 'Save for your next portfolio update →' : ctaLabel(false, pillar), size: 34, gap: 52, cta: true });
+  if (slide.kind === 'cta') blocks.push({ value: short ? 'Save for your next portfolio update →' : ctaLabel(pillar), size: 34, gap: 52, cta: true });
   return blocks;
 }
 
-function stack(blocks, { theme, story, alignment, wordmarkSvg }) {
-  const guideTop = story ? 280 : 144;
-  const guideHeight = story ? 1256 : 1062;
+function stack(blocks, { theme, alignment, wordmarkSvg }) {
+  const guideTop = 144;
+  const guideHeight = 1062;
   const logoHeight = 350 * 219 / 1202;
   let measured, height;
   for (let reduction = 0; reduction <= 40; reduction += 2) {
@@ -91,13 +90,13 @@ function resolveAlignment(alignment, theme) {
   return resolved;
 }
 
-function canvas(content, { theme, story = false, index, blocks, wordmarkSvg, alignment }) {
-  const dimensions = story ? STORY : FEED;
+function canvas(content, { theme, index, blocks, wordmarkSvg, alignment }) {
+  const dimensions = FEED;
   const resolved = resolveAlignment(alignment, theme);
-  const body = stack(blocks, { theme, story, wordmarkSvg, alignment: resolved });
-  return `<svg xmlns="http://www.w3.org/2000/svg" width="${dimensions.width}" height="${dimensions.height}" viewBox="0 0 ${dimensions.width} ${dimensions.height}" data-editorial-render-version="${EDITORIAL_RENDER_VERSION}" ${story ? 'data-editorial-story="true"' : `data-editorial-slide="${index + 1}"`} data-content-id="${escapeHtml(content.id)}" data-theme="${theme.id}" data-alignment="${resolved}">
+  const body = stack(blocks, { theme, wordmarkSvg, alignment: resolved });
+  return `<svg xmlns="http://www.w3.org/2000/svg" width="${dimensions.width}" height="${dimensions.height}" viewBox="0 0 ${dimensions.width} ${dimensions.height}" data-editorial-render-version="${EDITORIAL_RENDER_VERSION}" data-editorial-slide="${index + 1}" data-content-id="${escapeHtml(content.id)}" data-theme="${theme.id}" data-alignment="${resolved}">
     <rect width="${dimensions.width}" height="${dimensions.height}" fill="${theme.background}"/>
-    <g data-essential="true" data-reading-guide="${story ? '108 280 864 1256' : '108 144 864 1062'}">${body}</g>
+    <g data-essential="true" data-reading-guide="108 144 864 1062">${body}</g>
   </svg>`;
 }
 
@@ -107,15 +106,6 @@ export function createEditorialSlideSvg(content, slideIndex, { wordmarkSvg, alig
   const short = content.layout === 'short-guide';
   const theme = short ? THEMES[[0, 1, 1, 2, 1, 1, 0][slideIndex]] : resolveEditorialTheme(content.id);
   return canvas(content, { theme, index: slideIndex, wordmarkSvg, alignment, blocks: slideBlocks(content.slides[slideIndex], content.pillar, short) });
-}
-
-export function createEditorialStorySvg(content, { wordmarkSvg, alignment }) {
-  validateEditorialContent(content);
-  const theme = content.layout === 'short-guide' ? THEMES[0] : resolveEditorialTheme(content.id);
-  const blocks = [{ value: content.story.title, size: 96, minimum: 64, weight: 550, gap: 64, title: true, accent: content.layout === 'short-guide' },
-    { value: content.story.body, size: 46, gap: 40 },
-    { value: ctaLabel(true, content.pillar), size: 34, gap: 52, cta: true }];
-  return canvas(content, { theme, story: true, wordmarkSvg, alignment, blocks });
 }
 
 async function jpeg(svg, dimensions) {
@@ -129,6 +119,5 @@ async function jpeg(svg, dimensions) {
 export async function renderEditorialAssets(content, { wordmarkSvg, alignment }) {
   validateEditorialContent(content);
   const slides = await Promise.all(content.slides.map((_, index) => jpeg(createEditorialSlideSvg(content, index, { wordmarkSvg, alignment }), FEED)));
-  const story = await jpeg(createEditorialStorySvg(content, { wordmarkSvg, alignment }), STORY);
-  return Object.freeze({ slides: Object.freeze(slides), story });
+  return Object.freeze({ slides: Object.freeze(slides) });
 }

@@ -6,7 +6,7 @@ import {
   transitionEditorialStage,
   validateEditorialState,
 } from '../editorial/editorial-state.mjs';
-import { createEditorialSlideSvg, createEditorialStorySvg } from '../render/editorial-card.mjs';
+import { createEditorialSlideSvg } from '../render/editorial-card.mjs';
 import { formatEditorialCaption } from '../render/editorial-caption.mjs';
 
 const READY = new Set(['pending', 'publishing', 'retryable']);
@@ -56,6 +56,22 @@ function assertOperationKey(value) {
     throw new Error('Editorial operation key is required');
   }
   return value;
+}
+
+export function assessEditorialStoryReuse(media) {
+  let url;
+  try { url = new URL(media?.url); } catch { return Object.freeze({ supported: false, reason: 'editorial_story_media_contract_missing' }); }
+  if (url.protocol !== 'https:' || media.mediaType !== 'image/jpeg'
+    || !Number.isSafeInteger(media.width) || !Number.isSafeInteger(media.height)
+    || media.width < 1 || media.height < 1) {
+    return Object.freeze({ supported: false, reason: 'editorial_story_media_contract_missing' });
+  }
+  if (media.width * 16 !== media.height * 9) {
+    return Object.freeze({ supported: false, reason: 'editorial_story_feed_media_compatibility_unverified' });
+  }
+  return Object.freeze({ supported: true, media: Object.freeze({
+    url: url.toString(), mediaType: media.mediaType, width: media.width, height: media.height,
+  }) });
 }
 
 export function prepareEditorialStageIntent({
@@ -131,18 +147,19 @@ export async function processEditorialStage({
     if (stage === 'assets') {
       if (typeof deployAssets !== 'function') throw new Error('Editorial asset deployment is unavailable');
       const carouselSvgs = content.slides.map((_, index) => createEditorialSlideSvg(content, index, { wordmarkSvg }));
-      const storySvg = createEditorialStorySvg(content, { wordmarkSvg });
-      const deployment = await deployAssets({ content, carouselSvgs, storySvg });
+      const deployment = await deployAssets({ content, carouselSvgs });
       const verification = deployment?.verification;
       if (!verification || !Array.isArray(verification.carouselUrls) || verification.carouselUrls.length !== 7
-        || typeof verification.storyUrl !== 'string') {
+        || !Array.isArray(verification.carouselMedia) || verification.carouselMedia.length !== 7
+        || verification.carouselMedia.some((media, index) => media?.url !== verification.carouselUrls[index]
+          || media.mediaType !== 'image/jpeg' || media.width !== 1080 || media.height !== 1350)) {
         throw new Error('Editorial deployment returned invalid public assets');
       }
       result = {
         status: deployment.status,
-        manifestUrl: verification.manifestUrl,
+        ...(typeof verification.manifestUrl === 'string' ? { manifestUrl: verification.manifestUrl } : {}),
         carouselUrls: [...verification.carouselUrls],
-        storyUrl: verification.storyUrl,
+        carouselMedia: verification.carouselMedia.map((media) => ({ ...media })),
       };
     } else if (stage === 'feed') {
       if (typeof publishCarousel !== 'function') throw new Error('Editorial carousel publisher is unavailable');
@@ -155,8 +172,19 @@ export async function processEditorialStage({
         content,
       });
     } else {
+      const candidate = selected.assets.result.carouselMedia?.[0] ?? {
+        url: selected.assets.result.carouselUrls?.[0], mediaType: null, width: null, height: null,
+      };
+      const compatibility = assessEditorialStoryReuse(candidate);
+      if (!compatibility.supported) {
+        result = { status: 'unsupported', reason: compatibility.reason,
+          mediaUrl: candidate.url ?? null, mediaType: candidate.mediaType, width: candidate.width, height: candidate.height };
+        nextState = transitionEditorialStage(nextState, content.id, stage, 'published', { at: now, result });
+        return { outcome: 'unsupported', selectedContentId: content.id, state: nextState, result };
+      }
       if (typeof publishStory !== 'function') throw new Error('Editorial Story publisher is unavailable');
-      result = await publishStory({ mediaUrl: selected.assets.result.storyUrl, mediaKind: 'image', content });
+      result = await publishStory({ mediaUrl: compatibility.media.url, mediaKind: 'image',
+        width: compatibility.media.width, height: compatibility.media.height, content });
     }
     nextState = transitionEditorialStage(nextState, content.id, stage, 'published', { at: now, result });
     return { outcome: 'published', selectedContentId: content.id, state: nextState, result };
