@@ -14426,15 +14426,12 @@
       "createdAt": "2026-09-01T00:24:23Z",
       "publicationCreatedAt": "2026-09-04T18:52:09.889Z",
       "bridge": {
-        "status": "failed",
+        "status": "pending",
         "attempts": 0,
-        "updatedAt": "2026-09-10T13:15:27.637Z",
-        "lastError": {
-          "code": "social_title_review_required",
-          "at": "2026-09-10T13:15:27.637Z"
-        },
+        "updatedAt": "2026-09-10T13:36:55.314Z",
+        "lastError": null,
         "lastReset": {
-          "at": "2026-09-10T13:13:47.458Z",
+          "at": "2026-09-10T13:36:55.314Z",
           "reason": "manual_reset"
         },
         "result": null
