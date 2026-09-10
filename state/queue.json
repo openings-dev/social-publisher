@@ -14466,10 +14466,13 @@
         }
       },
       "mastodon": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 2,
         "updatedAt": "2026-09-10T13:52:48.537Z",
-        "lastError": null,
+        "lastError": {
+          "code": "provider",
+          "at": "2026-09-10T13:52:48.537Z"
+        },
         "lastReset": {
           "at": "2026-09-10T13:38:27.849Z",
           "reason": "manual_reset"
