@@ -392,6 +392,8 @@ jobs:
             npm run intake -- \
               --data "$DATA_PATH" \
               --state state \
+              --strategy selected-media-owner \
+              --max-queue-additions 25 \
               --wordmark "$WEB_PATH/public/openings-wordmark-light.svg" \
               --output ".tmp/intake-$iteration" | tee .tmp/intake-summary.txt
             summary="$(tail -n 1 .tmp/intake-summary.txt)"
