@@ -13030,13 +13030,10 @@
       "createdAt": "2026-09-01T07:09:20Z",
       "publicationCreatedAt": "2026-09-04T00:17:09.017Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-09-10T18:00:49.760Z",
-        "lastError": {
-          "code": "validation",
-          "at": "2026-09-10T18:00:49.760Z"
-        },
+        "status": "publishing",
+        "attempts": 3,
+        "updatedAt": "2026-09-10T20:31:08.284Z",
+        "lastError": null,
         "lastReset": {
           "at": "2026-09-10T17:44:29.352Z",
           "reason": "social_title_update"
