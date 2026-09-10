@@ -35,13 +35,16 @@ export function validateArtworkModel(model) {
 
 export function createArtworkModel(job, { direction = defaultArtworkDirection(job.id) } = {}) {
   const company = useful(job.companyName).slice(0, 220);
-  let title = useful(job.socialTitle ?? job.title).replace(/\s*\|\s*/gu, '—') || 'Open role';
+  const resolvedSocialTitle = useful(job.socialTitle);
+  let title = resolvedSocialTitle || useful(job.title).replace(/\s*\|\s*/gu, '—') || 'Open role';
   const context = [...(Array.isArray(job.tags) ? job.tags : []), job.country, job.region].map(useful).join(' ');
   const mode = /\bhybrid\b|híbrido/iu.test(context) ? 'Hybrid'
     : /\bon[ -]?site\b|presencial|in[ -]?office/iu.test(context) ? 'On-site'
       : /\bremote\b|remoto|worldwide|global/iu.test(context) ? 'Remote' : '';
-  if (mode === 'Remote') title = title.replace(/^\[(?:remoto|remote)\]\s*/iu, '');
-  if (company && title.toLowerCase().endsWith(` - ${company.toLowerCase()}`)) title = title.slice(0, -company.length - 3).trim();
+  if (!resolvedSocialTitle && mode === 'Remote') title = title.replace(/^\[(?:remoto|remote)\]\s*/iu, '');
+  if (!resolvedSocialTitle && company && title.toLowerCase().endsWith(` - ${company.toLowerCase()}`)) {
+    title = title.slice(0, -company.length - 3).trim();
+  }
   const locations = [job.country, job.region].map(useful).filter(value => value && !/^(remote|remoto)$/iu.test(value));
   const place = [...new Map(locations.map(value => [value.toLowerCase(), value])).values()].join(' · ').slice(0, 220);
   const salary = formatSalary(job.salary);

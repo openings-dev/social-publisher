@@ -14,33 +14,32 @@ function setup(title) {
     preparePublicationJob: prepareSocialJob, publishMastodon: async () => { throw Error('disabled'); } };
 }
 
-test('new social publication uses English consistently and refreshes provisional artwork', async () => {
+test('new social publication preserves the source title consistently and refreshes provisional artwork', async () => {
   const input = setup('バックエンドエンジニア募集');
   input.queueState.items[0].bridge = { ...input.queueState.items[0].bridge, status: 'published', attempts: 1, result: { visualDirection: 'night' } };
   input.queueState.items[0].visualDirection = 'night';
   const calls = [];
   const result = await processOnePublication({ ...input,
-    publishBridge: async ({ job }) => { calls.push('bridge'); assert.equal(job.title, input.job.title); assert.equal(job.socialTitle, 'Backend Engineer'); return {}; },
+    publishBridge: async ({ job }) => { calls.push('bridge'); assert.equal(job.title, input.job.title); assert.equal(job.socialTitle, input.job.title); return {}; },
     publishBluesky: async ({ job, post }) => { calls.push('social'); assert.equal(job.socialTitle, post.title); return {}; },
   });
   assert.deepEqual(calls, ['bridge', 'social']);
   assert.equal(result.outcome, 'completed');
-  assert.equal(result.queueState.items[0].bridge.result.socialTitle, 'Backend Engineer');
+  assert.equal(result.queueState.items[0].bridge.result.socialTitle, input.job.title);
   assert.equal(input.job.socialTitle, undefined);
 });
 
-test('uncertain titles are retained for review without network calls or blocking subsequent selection', async () => {
+test('unfamiliar titles publish without editorial review', async () => {
   const input = setup('未知の役職');
-  const forbidden = async () => { assert.fail('Must not publish before title review'); };
-  const result = await processOnePublication({ ...input, publishBridge: forbidden, publishBluesky: forbidden });
-  assert.equal(result.outcome, 'title_review_required');
-  assert.equal(result.queueState.items[0].bluesky.lastError.code, 'social_title_review_required');
-  assert.equal(result.queueState.items[0].bluesky.attempts, 0);
+  const calls = [];
+  const result = await processOnePublication({ ...input,
+    publishBridge: async ({ job }) => { calls.push(['bridge', job.socialTitle]); return {}; },
+    publishBluesky: async ({ job }) => { calls.push(['social', job.socialTitle]); return {}; },
+  });
+  assert.equal(result.outcome, 'completed');
+  assert.deepEqual(calls, [['bridge', input.job.title], ['social', input.job.title]]);
   assert.equal(selectNextQueueItem(result.queueState, now), null);
-  const nextJob = { ...input.job, id: 'gh_' + 'e'.repeat(24), title: 'Software Engineer' };
-  const continued = enqueueJob(result.queueState, { job: nextJob, snapshot: input.currentSnapshot, discoveredAt: now, enabledChannels: ['bluesky'] });
-  assert.equal(selectNextQueueItem(continued, now).jobId, nextJob.id);
-  assert.deepEqual(result.publicationsState.jobs, {});
+  assert.ok(result.publicationsState.jobs[input.job.id]);
 });
 
 test('legacy partial publications do not switch titles or resend published channels', async () => {
@@ -65,7 +64,7 @@ test('retry retains the deployed title even if the title resolver changes', asyn
     publishBridge: async () => ({}), publishBluesky: async ({ post }) => { used = post.title; return {}; },
   });
   assert.equal(second.outcome, 'completed');
-  assert.equal(used, 'Backend Engineer');
+  assert.equal(used, input.job.title);
 });
 
 test('a failed bridge refresh cannot lose the title of an already-started publication', async () => {
@@ -77,8 +76,8 @@ test('a failed bridge refresh cannot lose the title of an already-started public
     now: '2026-09-08T12:00:00.000Z', publishBridge: async () => { throw Error('temporary deployment'); }, publishBluesky: async () => ({}),
   });
   assert.equal(second.outcome, 'bridge_retryable');
-  assert.equal(second.queueState.items[0].bridge.result?.socialTitle, 'Backend Engineer');
+  assert.equal(second.queueState.items[0].bridge.result?.socialTitle, input.job.title);
   second.queueState.items[0].bridge.status = 'failed';
   const reset = resetFailedStage(second.queueState, revised.id, 'bridge', { at: now, reason: 'manual_reset' });
-  assert.equal(reset.items[0].bridge.result.socialTitle, 'Backend Engineer');
+  assert.equal(reset.items[0].bridge.result.socialTitle, input.job.title);
 });
