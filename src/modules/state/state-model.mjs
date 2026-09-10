@@ -98,6 +98,23 @@ function assertUniqueJobIds(items, label) {
   }
 }
 
+function validateLegacyBridgeProvenance(value, item) {
+  const provenance = assertObject(value, 'queue legacyBridgeProvenance');
+  const expectedKeys = ['contentHash', 'dataCommit', 'dataHash', 'jobId', 'reason'];
+  if (Object.keys(provenance).sort().join(',') !== expectedKeys.join(',')) {
+    throw new Error('queue legacyBridgeProvenance keys are invalid');
+  }
+  if (!isValidJobId(provenance.jobId)) throw new Error('queue legacyBridgeProvenance jobId is invalid');
+  assertHash(provenance.contentHash, 'queue legacyBridgeProvenance contentHash');
+  assertHash(provenance.dataHash, 'queue legacyBridgeProvenance dataHash');
+  if (typeof provenance.dataCommit !== 'string' || !/^[0-9a-f]{7,64}$/i.test(provenance.dataCommit)) {
+    throw new Error('queue legacyBridgeProvenance dataCommit is invalid');
+  }
+  if (provenance.reason !== 'new' || provenance.jobId !== item.jobId) {
+    throw new Error('queue legacyBridgeProvenance does not match its queue item');
+  }
+}
+
 export function assertNoSensitiveKeys(value, path = 'state') {
   if (Array.isArray(value)) {
     value.forEach((item, index) => assertNoSensitiveKeys(item, `${path}[${index}]`));
@@ -251,6 +268,9 @@ export function validateQueueState(value) {
     assertIsoDate(item.createdAt, 'queue createdAt');
     assertIsoDate(item.publicationCreatedAt, 'queue publicationCreatedAt');
     validateStageState(item.bridge, 'queue bridge');
+    if (Object.hasOwn(item, 'legacyBridgeProvenance')) {
+      validateLegacyBridgeProvenance(item.legacyBridgeProvenance, item);
+    }
     for (const channel of SOCIAL_CHANNELS) {
       validateStageState(item[channel], `queue ${channel}`);
     }

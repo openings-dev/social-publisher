@@ -30,6 +30,8 @@ test('validates the exact repository, queue path, remote, and state ref before G
     { repositoryRoot: `${root}/../other` },
     { queuePath: `${root}/state/../publications.json` },
     { queuePath: `${root}/state/publications.json` },
+    { intakePath: `${root}/state/publications.json` },
+    { intakePath: `${root}/state/../intake.json` },
     { remote: 'upstream' },
     { remote: 'origin --force' },
     { stateRef: 'refs/heads/main' },
@@ -40,6 +42,34 @@ test('validates the exact repository, queue path, remote, and state ref before G
   ]) {
     assert.throws(() => createQueueGitCheckpoint({ ...valid, ...change }), /checkpoint configuration/u);
   }
+});
+
+test('uses one narrow commit and push for the exact paired queue and intake paths', async () => {
+  const root = '/tmp/openings-checkpoint-fixture'; const calls = [];
+  const checkpoint = createQueueGitCheckpoint({
+    repositoryRoot: root,
+    queuePath: `${root}/state/queue.json`,
+    intakePath: `${root}/state/intake.json`,
+    remote: 'origin',
+    stateRef: 'main',
+    runGit: async (args, options) => {
+      calls.push({ args, options });
+      if (args[0] === 'rev-parse') return { exitCode: 0, stdout: root };
+      if (args[0] === 'branch') return { exitCode: 0, stdout: 'main' };
+      if (args[0] === 'diff') return { exitCode: 1, stdout: '' };
+      return { exitCode: 0, stdout: '' };
+    },
+  });
+  await checkpoint();
+  const paths = ['state/queue.json', 'state/intake.json'];
+  assert.deepEqual(calls.map(({ args }) => args), [
+    ['rev-parse', '--show-toplevel'],
+    ['branch', '--show-current'],
+    ['add', '--', ...paths],
+    ['diff', '--cached', '--quiet', '--', ...paths],
+    ['commit', '--only', '-m', 'chore(state): checkpoint social publication [skip ci]', '--', ...paths],
+    ['push', 'origin', 'HEAD:refs/heads/main'],
+  ]);
 });
 
 test('uses narrow argument arrays, skips an unchanged commit, and still pushes HEAD', async () => {
@@ -167,6 +197,80 @@ test('retries a real failed push without a duplicate commit and makes the prior 
 
   assert.equal((await git(repositoryRoot, ['rev-list', '--count', 'HEAD'])).stdout.trim(), commitsAfterFailure);
   assert.equal((await git(remoteRoot, ['show', 'refs/heads/main:state/queue.json'])).stdout, '{"instagram":"publishing"}\n');
+});
+
+test('commits paired state atomically while preserving unrelated staging', async () => {
+  const directory = await realpath(await mkdtemp(join(tmpdir(), 'openings-paired-checkpoint-')));
+  const repositoryRoot = join(directory, 'publisher'); const remoteRoot = join(directory, 'remote.git');
+  await Promise.all([mkdir(join(repositoryRoot, 'state'), { recursive: true }), mkdir(remoteRoot)]);
+  await git(remoteRoot, ['init', '--bare', '--initial-branch=main']);
+  await git(repositoryRoot, ['init', '--initial-branch=main']);
+  await git(repositoryRoot, ['config', 'user.name', 'Checkpoint Test']);
+  await git(repositoryRoot, ['config', 'user.email', 'checkpoint@example.invalid']);
+  await Promise.all([
+    writeFile(join(repositoryRoot, 'state', 'queue.json'), '{"queue":1}\n'),
+    writeFile(join(repositoryRoot, 'state', 'intake.json'), '{"intake":1}\n'),
+    writeFile(join(repositoryRoot, 'unrelated.txt'), 'initial\n'),
+  ]);
+  await git(repositoryRoot, ['add', '--', 'state/queue.json', 'state/intake.json', 'unrelated.txt']);
+  await git(repositoryRoot, ['commit', '-m', 'initial']);
+  await git(repositoryRoot, ['remote', 'add', 'origin', remoteRoot]);
+  await git(repositoryRoot, ['push', 'origin', 'HEAD:refs/heads/main']);
+  await Promise.all([
+    writeFile(join(repositoryRoot, 'state', 'queue.json'), '{"queue":2}\n'),
+    writeFile(join(repositoryRoot, 'state', 'intake.json'), '{"intake":2}\n'),
+    writeFile(join(repositoryRoot, 'unrelated.txt'), 'staged unrelated\n'),
+  ]);
+  await git(repositoryRoot, ['add', '--', 'unrelated.txt']);
+  const before = Number((await git(repositoryRoot, ['rev-list', '--count', 'HEAD'])).stdout.trim());
+  await createQueueGitCheckpoint({
+    repositoryRoot,
+    queuePath: join(repositoryRoot, 'state', 'queue.json'),
+    intakePath: join(repositoryRoot, 'state', 'intake.json'),
+    remote: 'origin',
+    stateRef: 'main',
+  })();
+  assert.equal(Number((await git(repositoryRoot, ['rev-list', '--count', 'HEAD'])).stdout.trim()), before + 1);
+  assert.deepEqual((await git(repositoryRoot, ['show', '--pretty=', '--name-only', 'HEAD'])).stdout.trim().split('\n'),
+    ['state/intake.json', 'state/queue.json']);
+  assert.equal((await git(repositoryRoot, ['diff', '--cached', '--name-only'])).stdout.trim(), 'unrelated.txt');
+  assert.equal((await git(remoteRoot, ['show', 'refs/heads/main:state/queue.json'])).stdout, '{"queue":2}\n');
+  assert.equal((await git(remoteRoot, ['show', 'refs/heads/main:state/intake.json'])).stdout, '{"intake":2}\n');
+});
+
+test('retries a failed paired push without creating a duplicate commit', async () => {
+  const directory = await realpath(await mkdtemp(join(tmpdir(), 'openings-paired-push-retry-')));
+  const repositoryRoot = join(directory, 'publisher'); const remoteRoot = join(directory, 'remote.git');
+  await Promise.all([mkdir(join(repositoryRoot, 'state'), { recursive: true }), mkdir(remoteRoot)]);
+  await git(remoteRoot, ['init', '--bare', '--initial-branch=main']);
+  await git(repositoryRoot, ['init', '--initial-branch=main']);
+  await git(repositoryRoot, ['config', 'user.name', 'Checkpoint Test']);
+  await git(repositoryRoot, ['config', 'user.email', 'checkpoint@example.invalid']);
+  await Promise.all([
+    writeFile(join(repositoryRoot, 'state', 'queue.json'), '{"queue":1}\n'),
+    writeFile(join(repositoryRoot, 'state', 'intake.json'), '{"intake":1}\n'),
+  ]);
+  await git(repositoryRoot, ['add', '--', 'state/queue.json', 'state/intake.json']);
+  await git(repositoryRoot, ['commit', '-m', 'initial']);
+  await git(repositoryRoot, ['remote', 'add', 'origin', remoteRoot]);
+  await git(repositoryRoot, ['push', 'origin', 'HEAD:refs/heads/main']);
+  await Promise.all([
+    writeFile(join(repositoryRoot, 'state', 'queue.json'), '{"queue":2}\n'),
+    writeFile(join(repositoryRoot, 'state', 'intake.json'), '{"intake":2}\n'),
+  ]);
+  const checkpoint = createQueueGitCheckpoint({ repositoryRoot,
+    queuePath: join(repositoryRoot, 'state', 'queue.json'), intakePath: join(repositoryRoot, 'state', 'intake.json'),
+    remote: 'origin', stateRef: 'main' });
+  await git(repositoryRoot, ['remote', 'set-url', 'origin', join(directory, 'missing.git')]);
+  await assert.rejects(checkpoint());
+  const afterFailure = (await git(repositoryRoot, ['rev-list', '--count', 'HEAD'])).stdout.trim();
+  assert.equal((await git(remoteRoot, ['show', 'refs/heads/main:state/queue.json'])).stdout, '{"queue":1}\n');
+  assert.equal((await git(remoteRoot, ['show', 'refs/heads/main:state/intake.json'])).stdout, '{"intake":1}\n');
+  await git(repositoryRoot, ['remote', 'set-url', 'origin', remoteRoot]);
+  await checkpoint();
+  assert.equal((await git(repositoryRoot, ['rev-list', '--count', 'HEAD'])).stdout.trim(), afterFailure);
+  assert.equal((await git(remoteRoot, ['show', 'refs/heads/main:state/queue.json'])).stdout, '{"queue":2}\n');
+  assert.equal((await git(remoteRoot, ['show', 'refs/heads/main:state/intake.json'])).stdout, '{"intake":2}\n');
 });
 
 test('workflow configures one validated main state ref and enables durable queue checkpoints only for publication', () => {

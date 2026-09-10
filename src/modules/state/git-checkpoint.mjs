@@ -4,6 +4,7 @@ import { promisify } from 'node:util';
 
 const execFile = promisify(execFileCallback);
 const QUEUE_RELATIVE_PATH = 'state/queue.json';
+const INTAKE_RELATIVE_PATH = 'state/intake.json';
 const CHECKPOINT_MESSAGE = 'chore(state): checkpoint social publication [skip ci]';
 
 function configurationError() {
@@ -43,6 +44,7 @@ async function executeGit(args, { cwd, allowExitCodeOne }) {
 export function createQueueGitCheckpoint({
   repositoryRoot,
   queuePath,
+  intakePath,
   remote,
   stateRef,
   runGit = executeGit,
@@ -51,6 +53,7 @@ export function createQueueGitCheckpoint({
     || !isAbsolute(repositoryRoot)
     || resolve(repositoryRoot) !== repositoryRoot
     || queuePath !== join(repositoryRoot, 'state', 'queue.json')
+    || (intakePath !== undefined && intakePath !== join(repositoryRoot, 'state', 'intake.json'))
     || remote !== 'origin'
     || !validBranchName(stateRef)
     || typeof runGit !== 'function') {
@@ -60,15 +63,18 @@ export function createQueueGitCheckpoint({
     cwd: repositoryRoot,
     allowExitCodeOne,
   });
+  const statePaths = intakePath === undefined
+    ? [QUEUE_RELATIVE_PATH]
+    : [QUEUE_RELATIVE_PATH, INTAKE_RELATIVE_PATH];
   return async function checkpointQueue() {
     const root = await runGit(['rev-parse', '--show-toplevel'], options());
     const branch = await runGit(['branch', '--show-current'], options());
     if (root?.stdout !== repositoryRoot || branch?.stdout !== stateRef) {
       throw new Error('State checkpoint repository identity does not match');
     }
-    await runGit(['add', '--', QUEUE_RELATIVE_PATH], options());
+    await runGit(['add', '--', ...statePaths], options());
     const diff = await runGit(
-      ['diff', '--cached', '--quiet', '--', QUEUE_RELATIVE_PATH],
+      ['diff', '--cached', '--quiet', '--', ...statePaths],
       options(true),
     );
     if (diff?.exitCode !== 0 && diff?.exitCode !== 1) {
@@ -81,7 +87,7 @@ export function createQueueGitCheckpoint({
         '-m',
         CHECKPOINT_MESSAGE,
         '--',
-        QUEUE_RELATIVE_PATH,
+        ...statePaths,
       ], options());
     }
     await runGit(['push', remote, `HEAD:refs/heads/${stateRef}`], options());

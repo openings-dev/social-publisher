@@ -69,13 +69,18 @@ function normalizeExactOrigin(value, fallback, key) {
   return normalizeOrigin(candidate, fallback, key);
 }
 
-export function readEnvironment({ env = process.env, mode = 'dry-run' } = {}) {
+export function readEnvironment({ env = process.env, mode = 'dry-run', intakeStrategy = 'legacy' } = {}) {
+  if (intakeStrategy !== 'legacy' && intakeStrategy !== 'selected-media-owner') {
+    throw new Error('Intake strategy is invalid');
+  }
   const automatic = env.SOCIAL_AUTO_PUBLISH === 'true';
   const metaMigration = mode === 'meta-migration';
   const storyMode = mode === 'story';
   const editorialAssetsMode = mode === 'editorial-assets';
   const editorialInstagramMode = mode === 'editorial-feed' || mode === 'editorial-story';
-  const requiresDeploy = mode === 'intake' || mode === 'scheduled' || mode === 'controlled' || metaMigration || editorialAssetsMode;
+  const selectedMediaOwnerIntake = mode === 'intake' && intakeStrategy === 'selected-media-owner';
+  const requiresDeploy = (mode === 'intake' && !selectedMediaOwnerIntake)
+    || mode === 'scheduled' || mode === 'controlled' || metaMigration || editorialAssetsMode;
   const requiresSocial = mode === 'controlled' || (mode === 'scheduled' && automatic);
   const platformMastodonEnabled = requiresSocial && env.PUBLISHING_MASTODON_ENABLED === 'true';
   const threadsEnabled = env.THREADS_AUTO_PUBLISH === 'true';

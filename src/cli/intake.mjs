@@ -9,7 +9,11 @@ import {
   createBridgePublisher,
   loadCanonicalWordmark,
 } from '../modules/publishing/bridge-publisher.mjs';
-import { processIntakeSnapshots } from '../modules/publishing/orchestrator.mjs';
+import {
+  processIntakeSnapshots,
+  validateIntakeStrategy,
+  validateMaxQueueAdditions,
+} from '../modules/publishing/orchestrator.mjs';
 import { loadStateFile } from '../modules/state/load-state.mjs';
 import { saveStateFile } from '../modules/state/save-state.mjs';
 import {
@@ -42,11 +46,17 @@ export async function runIntake({
   dataReference = 'HEAD',
   mode = 'intake',
   maxBridgeAttempts = 1,
+  maxQueueAdditions = 25,
+  strategy = 'legacy',
+  checkpoint = null,
   env = process.env,
   log = console.log,
   dependencies = {},
 }) {
-  const config = readEnvironment({ env, mode });
+  validateIntakeStrategy(strategy);
+  if (strategy === 'selected-media-owner') validateMaxQueueAdditions(maxQueueAdditions);
+  if (checkpoint !== null && typeof checkpoint !== 'function') throw new Error('Intake checkpoint must be a function');
+  const config = readEnvironment({ env, mode, intakeStrategy: strategy });
   const intakePath = resolve(stateDirectory, 'intake.json');
   const queuePath = resolve(stateDirectory, 'queue.json');
   const publicationsPath = resolve(stateDirectory, 'publications.json');
@@ -55,7 +65,9 @@ export async function runIntake({
     loadStateFile(queuePath, validateQueueState, migrateQueueState),
     loadStateFile(publicationsPath, validatePublicationsState, migratePublicationsState),
     (dependencies.resolveGitCommit ?? resolveGitCommit)(dataRepositoryPath, dataReference),
-    (dependencies.loadCanonicalWordmark ?? loadCanonicalWordmark)(wordmarkPath),
+    strategy === 'legacy'
+      ? (dependencies.loadCanonicalWordmark ?? loadCanonicalWordmark)(wordmarkPath)
+      : Promise.resolve(null),
   ]);
   const commits = intakeState.processedSnapshot === null
     ? [currentCommit]
@@ -68,11 +80,13 @@ export async function runIntake({
   for (const commit of commits) {
     snapshots.push(await (dependencies.loadSnapshot ?? loadSnapshot)(dataRepositoryPath, commit));
   }
-  const publishBridge = (dependencies.createBridgePublisher ?? createBridgePublisher)({
-    config,
-    wordmarkSvg,
-    outputRoot: outputPath,
-  });
+  const publishBridge = strategy === 'legacy'
+    ? (dependencies.createBridgePublisher ?? createBridgePublisher)({
+      config,
+      wordmarkSvg,
+      outputRoot: outputPath,
+    })
+    : undefined;
   const result = await processIntakeSnapshots({
     intakeState,
     queueState,
@@ -82,9 +96,18 @@ export async function runIntake({
     enabledChannels: config.enabledChannels,
     instagramStoryEnabled: config.instagramStoryEnabled,
     maxBridgeAttempts,
+    maxQueueAdditions,
+    strategy,
   });
-  await saveStateFile(intakePath, result.intakeState, validateIntakeState);
-  await saveStateFile(queuePath, result.queueState, validateQueueState);
+  const save = dependencies.saveStateFile ?? saveStateFile;
+  if (strategy === 'selected-media-owner') {
+    await save(queuePath, result.queueState, validateQueueState);
+    await save(intakePath, result.intakeState, validateIntakeState);
+  } else {
+    await save(intakePath, result.intakeState, validateIntakeState);
+    await save(queuePath, result.queueState, validateQueueState);
+  }
+  if (checkpoint !== null) await checkpoint();
   log(JSON.stringify({
     snapshot: result.intakeState.processedSnapshot?.commit ?? null,
     ...result.summary,

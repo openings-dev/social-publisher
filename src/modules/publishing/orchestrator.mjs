@@ -103,6 +103,20 @@ function assertMaxBridgeAttempts(value) {
   return value;
 }
 
+export function validateIntakeStrategy(value) {
+  if (value !== 'legacy' && value !== 'selected-media-owner') {
+    throw new Error('Intake strategy is invalid');
+  }
+  return value;
+}
+
+export function validateMaxQueueAdditions(value) {
+  if (!Number.isSafeInteger(value) || value < 1) {
+    throw new Error('maxQueueAdditions must be a positive integer');
+  }
+  return value;
+}
+
 function intakeSummary({ baseline = false, bridges = 0, queued = 0, removed = 0, complete, error = null }) {
   return Object.freeze({ baseline, bridges, queued, removed, complete, error });
 }
@@ -224,6 +238,96 @@ function findQueueItem(queueState, jobId) {
   return queueState.items.find((item) => item.jobId === jobId) ?? null;
 }
 
+function exactFailedBridgeCheckpoint(intakeState, job, snapshot) {
+  return intakeState.pendingBridges.find((bridge) => bridge.jobId === job.id
+    && bridge.contentHash === job.contentHash
+    && bridge.dataCommit === snapshot.commit
+    && bridge.dataHash === snapshot.dataHash
+    && bridge.reason === 'new'
+    && bridge.stage.status === 'failed') ?? null;
+}
+
+function transferFailedBridgeCheckpoint(queueState, intakeState, job, snapshot, checkpoint) {
+  const itemIndex = queueState.items.findIndex((item) => item.jobId === job.id);
+  if (itemIndex < 0) throw new Error('Transferred bridge queue item is missing');
+  const items = queueState.items.slice();
+  items[itemIndex] = {
+    ...items[itemIndex],
+    bridge: checkpoint.stage,
+    legacyBridgeProvenance: {
+      jobId: job.id,
+      contentHash: job.contentHash,
+      dataCommit: snapshot.commit,
+      dataHash: snapshot.dataHash,
+      reason: 'new',
+    },
+  };
+  return {
+    queueState: validateQueueState({ ...queueState, items }),
+    intakeState: validateIntakeState({
+      ...intakeState,
+      pendingBridges: intakeState.pendingBridges.filter((bridge) => bridge !== checkpoint),
+    }),
+  };
+}
+
+function processSelectedMediaOwnerSnapshots({
+  intakeState,
+  queueState,
+  publicationsState,
+  snapshots,
+  startIndex,
+  enabledChannels,
+  instagramStoryEnabled,
+  maxQueueAdditions,
+  now,
+}) {
+  let nextIntake = intakeState;
+  let nextQueue = queueState;
+  let queuedCount = 0;
+  let removedCount = 0;
+  for (let index = startIndex + 1; index < snapshots.length; index += 1) {
+    const previous = snapshots[index - 1];
+    const current = snapshots[index];
+    const delta = collectDelta(previous, current);
+    for (const job of delta.new) {
+      if (!isEligibleNewJob(job, previous.generatedAt, publicationsState) || findQueueItem(nextQueue, job.id)) continue;
+      if (queuedCount >= maxQueueAdditions) {
+        return {
+          intakeState: nextIntake,
+          queueState: nextQueue,
+          summary: intakeSummary({ queued: queuedCount, removed: removedCount, complete: false }),
+        };
+      }
+      const checkpoint = exactFailedBridgeCheckpoint(nextIntake, job, current);
+      nextQueue = enqueueJob(nextQueue, {
+        job,
+        snapshot: current,
+        discoveredAt: now,
+        enabledChannels,
+        instagramStoryEnabled,
+      });
+      if (checkpoint !== null) {
+        const transferred = transferFailedBridgeCheckpoint(nextQueue, nextIntake, job, current, checkpoint);
+        nextQueue = transferred.queueState;
+        nextIntake = transferred.intakeState;
+      }
+      queuedCount += 1;
+    }
+    nextIntake = recordRemovedJobs(nextIntake, delta.removed);
+    removedCount += delta.removed.length;
+    nextIntake = validateIntakeState({
+      ...nextIntake,
+      processedSnapshot: snapshotReference(current),
+    });
+  }
+  return {
+    intakeState: nextIntake,
+    queueState: nextQueue,
+    summary: intakeSummary({ queued: queuedCount, removed: removedCount, complete: true }),
+  };
+}
+
 export async function processIntakeSnapshots({
   intakeState,
   queueState,
@@ -233,8 +337,12 @@ export async function processIntakeSnapshots({
   enabledChannels = DEFAULT_SOCIAL_CHANNELS,
   instagramStoryEnabled = false,
   maxBridgeAttempts = Number.POSITIVE_INFINITY,
+  maxQueueAdditions = 25,
+  strategy = 'legacy',
   now = new Date().toISOString(),
 }) {
+  validateIntakeStrategy(strategy);
+  if (strategy === 'selected-media-owner') validateMaxQueueAdditions(maxQueueAdditions);
   let nextIntake = validateIntakeState(intakeState);
   let nextQueue = validateQueueState(queueState);
   const publications = validatePublicationsState(publicationsState);
@@ -244,7 +352,7 @@ export async function processIntakeSnapshots({
     throw new Error('At least one loaded snapshot is required');
   }
   snapshots.forEach((snapshot, index) => assertSnapshot(snapshot, `snapshots[${index}]`));
-  if (typeof publishBridge !== 'function') {
+  if (strategy === 'legacy' && typeof publishBridge !== 'function') {
     throw new Error('publishBridge must be a function');
   }
 
@@ -264,6 +372,20 @@ export async function processIntakeSnapshots({
   const startIndex = snapshots.findIndex((snapshot) => sameSnapshot(snapshot, nextIntake.processedSnapshot));
   if (startIndex < 0) {
     throw new Error('Snapshot sequence does not include the processed watermark');
+  }
+
+  if (strategy === 'selected-media-owner') {
+    return processSelectedMediaOwnerSnapshots({
+      intakeState: nextIntake,
+      queueState: nextQueue,
+      publicationsState: publications,
+      snapshots,
+      startIndex,
+      enabledChannels,
+      instagramStoryEnabled,
+      maxQueueAdditions,
+      now,
+    });
   }
 
   let bridgeCount = 0;
