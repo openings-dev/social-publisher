@@ -648,13 +648,49 @@ test('generic interrupted publication stages report bounded review work without 
     reviewRequired: [{ jobId: job.id, stage: 'mastodon' }],
   });
 
-  const direct = await processOnePublication(baseInput(queue));
+  let providerCalls = 0;
+  const forbidden = async () => { providerCalls += 1; throw new Error('provider must not run'); };
+  const direct = await runPublication({
+    request: { mode: 'scheduled' },
+    dataRepositoryPath: '/fixture/data',
+    stateDirectory,
+    wordmarkPath: '/fixture/wordmark.svg',
+    outputPath: join(stateDirectory, 'output'),
+    env: {
+      SOCIAL_AUTO_PUBLISH: 'true',
+      WEB_DEPLOY_TOKEN: 'deploy-secret',
+      BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+      BLUESKY_APP_PASSWORD: 'bluesky-secret',
+      MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+      BUFFER_API_KEY: 'buffer-secret',
+      BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+      BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
+    },
+    log: () => {},
+    dependencies: {
+      resolveGitCommit: async () => snapshot.commit,
+      loadCanonicalWordmark: async () => '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
+      loadSnapshot: async () => snapshot,
+      createBridgePublisher: () => forbidden,
+      publishBluesky: forbidden,
+      publishMastodon: forbidden,
+      publishTwitter: forbidden,
+      publishThreads: forbidden,
+      publishInstagram: forbidden,
+      publishLinkedIn: forbidden,
+    },
+  });
   assert.equal(direct.outcome, 'review_required');
   assert.deepEqual(direct.reviewRequired, [{ jobId: job.id, stage: 'mastodon' }]);
+  assert.equal(providerCalls, 0);
   assert.deepEqual(direct.queueState, durableQueue);
+  assert.deepEqual(
+    JSON.parse(await readFile(join(stateDirectory, 'queue.json'), 'utf8')),
+    durableQueue,
+  );
 });
 
-test('generic interrupted stages do not block an unrelated ready channel on the selected job', async () => {
+test('generic interrupted stages do not block an unrelated ready channel on the same job', async () => {
   const queue = queued(['bluesky', 'mastodon']);
   queue.items[0].mastodon = {
     ...queue.items[0].mastodon,
@@ -672,6 +708,96 @@ test('generic interrupted stages do not block an unrelated ready channel on the 
   assert.equal(result.outcome, 'partial');
   assert.equal(blueskyCalls, 1);
   assert.deepEqual(result.queueState.items[0].mastodon, durableMastodon);
+});
+
+test('a generic interrupted job remains intact while a separate ready job publishes', async () => {
+  const readyJob = {
+    ...job,
+    id: 'gh_abcdef0123456789abcdef01',
+    sourceId: 'openings-fixtures/jobs#43',
+    contentHash: '6'.repeat(64),
+    createdAt: '2026-08-21T12:00:00.000Z',
+    updatedAt: '2026-08-21T12:00:00.000Z',
+    url: 'https://github.com/openings-fixtures/jobs/issues/43',
+  };
+  const twoJobSnapshot = {
+    ...snapshot,
+    jobsById: new Map([[job.id, job], [readyJob.id, readyJob]]),
+  };
+  let queue = queued(['mastodon']);
+  queue.items[0].mastodon = {
+    ...queue.items[0].mastodon,
+    status: 'publishing',
+    attempts: 1,
+    updatedAt: now,
+    result: { executionOwner: 'cloudflare', platformPublicationId: 'accepted-separate-job' },
+  };
+  queue = enqueueJob(queue, {
+    job: readyJob,
+    snapshot: twoJobSnapshot,
+    discoveredAt: now,
+    enabledChannels: ['bluesky'],
+  });
+  queue.items[1].bridge = {
+    ...queue.items[0].bridge,
+    result: {
+      ...queue.items[0].bridge.result,
+      instagramImageUrl: `https://openings.dev/jobs/${readyJob.id}/instagram-image.jpg?v=7.fixture`,
+      socialTitle: 'Senior Engineer · TypeScript',
+      visualDirection: 'editorial',
+    },
+  };
+  queue.items[1].visualDirection = 'editorial';
+  queue.items[1].visualSequence = 1;
+  const heldItem = structuredClone(queue.items[0]);
+  const stateDirectory = await mkdtemp(join(tmpdir(), 'openings-separate-ready-'));
+  await Promise.all([
+    writeFile(join(stateDirectory, 'queue.json'), JSON.stringify(queue)),
+    writeFile(join(stateDirectory, 'publications.json'), JSON.stringify(publications())),
+  ]);
+
+  let mastodonCalls = 0;
+  let blueskyCalls = 0;
+  const result = await runPublication({
+    request: { mode: 'scheduled' },
+    dataRepositoryPath: '/fixture/data',
+    stateDirectory,
+    wordmarkPath: '/fixture/wordmark.svg',
+    outputPath: join(stateDirectory, 'output'),
+    env: {
+      SOCIAL_AUTO_PUBLISH: 'true',
+      WEB_DEPLOY_TOKEN: 'deploy-secret',
+      BLUESKY_IDENTIFIER: 'openingshq.bsky.social',
+      BLUESKY_APP_PASSWORD: 'bluesky-secret',
+      MASTODON_ACCESS_TOKEN: 'mastodon-secret',
+      BUFFER_API_KEY: 'buffer-secret',
+      BUFFER_ORGANIZATION_ID: '68b68d3ac159685850cf2b8d',
+      BUFFER_TWITTER_CHANNEL_ID: '68b68e0fc159685850cf2c22',
+    },
+    log: () => {},
+    dependencies: {
+      resolveGitCommit: async () => twoJobSnapshot.commit,
+      loadCanonicalWordmark: async () => '<svg xmlns="http://www.w3.org/2000/svg"></svg>',
+      loadSnapshot: async () => twoJobSnapshot,
+      createBridgePublisher: () => async () => assert.fail('bridge must not run'),
+      publishBluesky: async () => { blueskyCalls += 1; return { id: 'bsky-separate-ready' }; },
+      publishMastodon: async () => { mastodonCalls += 1; return { id: 'must-not-run' }; },
+      publishTwitter: async () => assert.fail('twitter must not run'),
+      publishThreads: async () => assert.fail('threads must not run'),
+      publishInstagram: async () => assert.fail('instagram must not run'),
+      publishLinkedIn: async () => assert.fail('linkedin must not run'),
+    },
+  });
+
+  assert.equal(result.outcome, 'completed');
+  assert.equal(result.selectedJobId, readyJob.id);
+  assert.equal(blueskyCalls, 1);
+  assert.equal(mastodonCalls, 0);
+  assert.deepEqual(result.queueState.items[0], heldItem);
+  assert.deepEqual(
+    JSON.parse(await readFile(join(stateDirectory, 'queue.json'), 'utf8')).items[0],
+    heldItem,
+  );
 });
 
 test('scheduled preflight selects ledger-repair-only work and the normal CLI persists it with zero providers', async () => {
