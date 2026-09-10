@@ -14466,16 +14466,20 @@
         }
       },
       "mastodon": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-09-10T13:48:13.916Z",
-        "lastError": null,
+        "lastError": {
+          "code": "provider",
+          "at": "2026-09-10T13:48:13.916Z"
+        },
         "lastReset": {
           "at": "2026-09-10T13:38:27.849Z",
           "reason": "manual_reset"
         },
         "result": {
-          "executionOwner": "cloudflare"
+          "executionOwner": "cloudflare",
+          "platformPublicationId": "56fe736e-fc60-4093-98fa-1c28b3c371e3"
         }
       },
       "twitter": {
