@@ -88,6 +88,15 @@ test('bootstraps masked runtime metadata after checkout and before conditional w
   }
 });
 
+test('installs locked dependencies before the preflight imports state validators', () => {
+  const setup = socialWorkflow.indexOf('Use Node.js 20');
+  const install = socialWorkflow.indexOf('Install exact dependencies');
+  const preflight = socialWorkflow.indexOf('Decide whether scheduled work exists');
+  assert.ok(setup >= 0 && setup < install && install < preflight);
+  assert.doesNotMatch(step(socialWorkflow, 'Use Node.js 20'), /if: steps\.preflight/u);
+  assert.doesNotMatch(step(socialWorkflow, 'Install exact dependencies'), /if: steps\.preflight/u);
+});
+
 test('scopes the platform client secret only to platform web transport steps', () => {
   const permitted = [
     'Publish at most one queued job',
