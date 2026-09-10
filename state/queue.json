@@ -14502,7 +14502,7 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-10T13:48:13.916Z",
         "lastError": null,
@@ -14510,7 +14510,11 @@
           "at": "2026-09-10T13:41:16.530Z",
           "reason": "manual_reset"
         },
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17918105325439993",
+          "url": "https://www.threads.com/@openingshq/post/DdG-y3xFW0h"
+        }
       },
       "instagram": {
         "status": "pending",
