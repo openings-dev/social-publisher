@@ -14408,16 +14408,13 @@
       "createdAt": "2026-09-01T00:24:23Z",
       "publicationCreatedAt": "2026-09-04T18:52:09.889Z",
       "bridge": {
-        "status": "failed",
-        "attempts": 3,
-        "updatedAt": "2026-09-07T18:43:58.766Z",
-        "lastError": {
-          "code": "bridge_platform_media_pending",
-          "at": "2026-09-07T18:43:58.766Z"
-        },
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": "2026-09-10T13:13:47.458Z",
+        "lastError": null,
         "lastReset": {
-          "at": "2026-09-07T04:38:37.456Z",
-          "reason": "instagram_card_upgrade"
+          "at": "2026-09-10T13:13:47.458Z",
+          "reason": "manual_reset"
         },
         "result": null
       },
