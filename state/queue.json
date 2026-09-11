@@ -7920,10 +7920,13 @@
       "createdAt": "2026-08-27T07:23:38Z",
       "publicationCreatedAt": "2026-09-01T22:23:40.593Z",
       "bridge": {
-        "status": "publishing",
+        "status": "failed",
         "attempts": 3,
         "updatedAt": "2026-09-11T16:34:11.670Z",
-        "lastError": null,
+        "lastError": {
+          "code": "validation",
+          "at": "2026-09-11T16:34:11.670Z"
+        },
         "lastReset": {
           "at": "2026-09-11T11:29:45.738Z",
           "reason": "social_title_update"
