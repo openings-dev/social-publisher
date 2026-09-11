@@ -7570,22 +7570,26 @@
       "createdAt": "2026-08-27T08:28:28Z",
       "publicationCreatedAt": "2026-09-01T22:23:17.876Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-09-01T22:23:17.876Z",
+        "updatedAt": "2026-09-11T02:18:25.926Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-11T02:18:25.926Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "already_current",
-          "canonicalUrl": "https://openings.dev/jobs/gh_7d770c41f00cb6b694825426",
-          "imageUrl": "https://openings.dev/jobs/gh_7d770c41f00cb6b694825426/opengraph-image.png?v=2.0c30734dbcf21191",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_7d770c41f00cb6b694825426/instagram-image.jpg?v=4.ab99a44752609bbd",
-          "socialVideoUrl": "https://openings.dev/jobs/gh_7d770c41f00cb6b694825426/social-video.mp4?v=3.ab99a44752609bbd",
-          "socialVideoCoverUrl": "https://openings.dev/jobs/gh_7d770c41f00cb6b694825426/social-video-cover.jpg?v=3.ab99a44752609bbd",
-          "pngHash": "0c30734dbcf211919d8ce26b89e3063968c97a6092696fc97824881987606782",
-          "instagramSvgHash": "ab99a44752609bbd5e5dc380e21a99b5c1cd6cbbfa1c5766d0869d81ea6f4a0e",
-          "instagramCardVersion": "4",
-          "socialVideoVersion": "3"
+          "storyMediaCandidate": {
+            "contentHash": "99b6753d2dc195d34c770f21d3c4ec2d34d177490607b40cfe9991b3c488cbb8",
+            "socialTitle": null,
+            "visualDirection": null,
+            "pngHash": "0c30734dbcf211919d8ce26b89e3063968c97a6092696fc97824881987606782",
+            "instagramSvgHash": "ab99a44752609bbd5e5dc380e21a99b5c1cd6cbbfa1c5766d0869d81ea6f4a0e",
+            "socialVideoUrl": "https://openings.dev/jobs/gh_7d770c41f00cb6b694825426/social-video.mp4?v=3.ab99a44752609bbd",
+            "socialVideoCoverUrl": "https://openings.dev/jobs/gh_7d770c41f00cb6b694825426/social-video-cover.jpg?v=3.ab99a44752609bbd",
+            "socialVideoVersion": "3"
+          },
+          "socialTitle": "🚀 REMOTE | Cloud Security & ServiceNow Integration Engineer"
         }
       },
       "bluesky": {
@@ -7645,7 +7649,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 5
     },
     {
       "jobId": "gh_d6738e1113039a641675c089",
