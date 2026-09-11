@@ -7570,13 +7570,10 @@
       "createdAt": "2026-08-27T08:28:28Z",
       "publicationCreatedAt": "2026-09-01T22:23:17.876Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-09-11T04:50:17.534Z",
-        "lastError": {
-          "code": "validation",
-          "at": "2026-09-11T04:50:17.534Z"
-        },
+        "status": "publishing",
+        "attempts": 3,
+        "updatedAt": "2026-09-11T07:40:33.071Z",
+        "lastError": null,
         "lastReset": {
           "at": "2026-09-11T02:18:25.926Z",
           "reason": "social_title_update"
