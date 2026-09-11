@@ -3181,13 +3181,10 @@
       "createdAt": "2026-08-23T09:49:38Z",
       "publicationCreatedAt": "2026-08-23T13:00:59.673Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-11T18:04:48.455Z",
-        "lastError": {
-          "code": "validation",
-          "at": "2026-09-11T18:04:48.455Z"
-        },
+        "status": "publishing",
+        "attempts": 2,
+        "updatedAt": "2026-09-11T21:02:27.398Z",
+        "lastError": null,
         "lastReset": {
           "at": "2026-09-11T18:04:48.455Z",
           "reason": "social_title_update"
