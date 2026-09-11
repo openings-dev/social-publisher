@@ -3181,16 +3181,16 @@
       "createdAt": "2026-08-23T09:49:38Z",
       "publicationCreatedAt": "2026-08-23T13:00:59.673Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-23T13:00:59.673Z",
+        "updatedAt": "2026-09-11T18:04:48.455Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-11T18:04:48.455Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_a50de92f39a572b83ad2af68",
-          "imageUrl": "https://openings.dev/jobs/gh_a50de92f39a572b83ad2af68/opengraph-image.png",
-          "pngHash": "7d83aa1e19c3adf990e49e6696ac7d07b0f2fff6ace9974797ba016d94762a4a"
+          "socialTitle": "[HCM] Senior Automation Test Engineer - upto 80M"
         }
       },
       "bluesky": {
@@ -3250,7 +3250,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 7
     },
     {
       "jobId": "gh_65f58ee94e343aa3d39e07d5",
