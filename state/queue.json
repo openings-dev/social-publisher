@@ -4019,16 +4019,16 @@
       "createdAt": "2026-08-24T03:46:07Z",
       "publicationCreatedAt": "2026-08-24T05:00:41.819Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-24T05:00:41.819Z",
+        "updatedAt": "2026-09-12T19:58:38.386Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-12T19:58:38.386Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_3cf698ed43b95b724d93215b",
-          "imageUrl": "https://openings.dev/jobs/gh_3cf698ed43b95b724d93215b/opengraph-image.png",
-          "pngHash": "7f72a20648bc01d1b85becf5a0b8224e487fb9abcbd871405c8cc28d89c33ac9"
+          "socialTitle": "[ $inbox ] Senior AI Engineer - Gen AI [5+ yoe] - HN - Bài toán SOC tự động hoá (JobID: DT-376)"
         }
       },
       "bluesky": {
@@ -4088,7 +4088,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 11
     },
     {
       "jobId": "gh_ca4e399739904e9d2d6ec480",
