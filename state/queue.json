@@ -3351,13 +3351,10 @@
       "createdAt": "2026-08-23T15:00:38Z",
       "publicationCreatedAt": "2026-08-23T16:42:56.029Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-09-12T02:25:10.104Z",
-        "lastError": {
-          "code": "validation",
-          "at": "2026-09-12T02:25:10.104Z"
-        },
+        "status": "publishing",
+        "attempts": 3,
+        "updatedAt": "2026-09-12T07:12:57.187Z",
+        "lastError": null,
         "lastReset": {
           "at": "2026-09-12T00:21:49.675Z",
           "reason": "social_title_update"
