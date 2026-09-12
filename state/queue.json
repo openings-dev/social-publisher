@@ -3521,10 +3521,13 @@
       "createdAt": "2026-08-23T18:00:19Z",
       "publicationCreatedAt": "2026-08-23T18:47:50.572Z",
       "bridge": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-09-12T07:32:52.745Z",
-        "lastError": null,
+        "lastError": {
+          "code": "validation",
+          "at": "2026-09-12T07:32:52.745Z"
+        },
         "lastReset": {
           "at": "2026-09-12T07:32:52.745Z",
           "reason": "social_title_update"
