@@ -3691,10 +3691,13 @@
       "createdAt": "2026-08-23T17:15:29Z",
       "publicationCreatedAt": "2026-08-23T18:47:50.572Z",
       "bridge": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-09-12T15:36:38.554Z",
-        "lastError": null,
+        "lastError": {
+          "code": "validation",
+          "at": "2026-09-12T15:36:38.554Z"
+        },
         "lastReset": {
           "at": "2026-09-12T15:36:38.554Z",
           "reason": "social_title_update"
