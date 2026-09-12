@@ -3521,16 +3521,16 @@
       "createdAt": "2026-08-23T18:00:19Z",
       "publicationCreatedAt": "2026-08-23T18:47:50.572Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-23T18:47:50.572Z",
+        "updatedAt": "2026-09-12T07:32:52.745Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-12T07:32:52.745Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_95d6733bc43f96bf3dc20972",
-          "imageUrl": "https://openings.dev/jobs/gh_95d6733bc43f96bf3dc20972/opengraph-image.png",
-          "pngHash": "bd77c5c0e6b04d682f906099e96b7346a4ff60e661f6ce41e506152e35ca321d"
+          "socialTitle": "[Híbrido] MLOps Pleno na Sylision"
         }
       },
       "bluesky": {
@@ -3590,7 +3590,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 9
     },
     {
       "jobId": "gh_dceb1f77ff2716a161057c7f",
