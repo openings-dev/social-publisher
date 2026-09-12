@@ -4019,13 +4019,10 @@
       "createdAt": "2026-08-24T03:46:07Z",
       "publicationCreatedAt": "2026-08-24T05:00:41.819Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-12T19:58:38.386Z",
-        "lastError": {
-          "code": "validation",
-          "at": "2026-09-12T19:58:38.386Z"
-        },
+        "status": "publishing",
+        "attempts": 2,
+        "updatedAt": "2026-09-12T22:22:26.636Z",
+        "lastError": null,
         "lastReset": {
           "at": "2026-09-12T19:58:38.386Z",
           "reason": "social_title_update"
