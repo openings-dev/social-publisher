@@ -3691,16 +3691,16 @@
       "createdAt": "2026-08-23T17:15:29Z",
       "publicationCreatedAt": "2026-08-23T18:47:50.572Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-23T18:47:50.572Z",
+        "updatedAt": "2026-09-12T15:36:38.554Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-12T15:36:38.554Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_dceb1f77ff2716a161057c7f",
-          "imageUrl": "https://openings.dev/jobs/gh_dceb1f77ff2716a161057c7f/opengraph-image.png",
-          "pngHash": "57053b015787bcc3d1a7eae512b92950967cc6f8cb4ad433cf7d7efdfd60eb17"
+          "socialTitle": "[Híbrido] Machine Learning Pleno na Sylision"
         }
       },
       "bluesky": {
@@ -3760,7 +3760,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 10
     },
     {
       "jobId": "gh_d03dd18104eb5e6a15c3546f",
