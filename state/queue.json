@@ -3351,16 +3351,16 @@
       "createdAt": "2026-08-23T15:00:38Z",
       "publicationCreatedAt": "2026-08-23T16:42:56.029Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-23T16:42:56.029Z",
+        "updatedAt": "2026-09-12T00:21:49.675Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-12T00:21:49.675Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_65f58ee94e343aa3d39e07d5",
-          "imageUrl": "https://openings.dev/jobs/gh_65f58ee94e343aa3d39e07d5/opengraph-image.png",
-          "pngHash": "a64327984233c85fb9348ff6a7de954b0905577eb32cb4625ec502d470d66cd6"
+          "socialTitle": "[Híbrido] Back-End Developer .NET Sênior @ Sylision"
         }
       },
       "bluesky": {
@@ -3420,7 +3420,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 8
     },
     {
       "jobId": "gh_95d6733bc43f96bf3dc20972",
