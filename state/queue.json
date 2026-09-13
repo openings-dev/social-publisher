@@ -5082,16 +5082,16 @@
       "createdAt": "2026-08-24T12:57:28Z",
       "publicationCreatedAt": "2026-08-24T16:54:46.713Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-24T16:54:46.713Z",
+        "updatedAt": "2026-09-13T17:50:23.702Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-13T17:50:23.702Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_114501e3905a42a1cf54fc37",
-          "imageUrl": "https://openings.dev/jobs/gh_114501e3905a42a1cf54fc37/opengraph-image.png",
-          "pngHash": "9545ba81f623311159cf7c72cf80a2f5afdcb3d147ec159993b10d4f2a5d924d"
+          "socialTitle": "[招聘] Senior Solidity Smart Contract Engineer|Remote|$12,000–$15,000/月"
         }
       },
       "bluesky": {
@@ -5151,7 +5151,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 14
     },
     {
       "jobId": "gh_30b97f66567f88075a4f4802",
