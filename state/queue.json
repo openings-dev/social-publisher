@@ -4347,16 +4347,16 @@
       "createdAt": "2026-08-24T02:16:47Z",
       "publicationCreatedAt": "2026-08-24T05:00:41.819Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-24T05:00:41.819Z",
+        "updatedAt": "2026-09-13T02:23:07.938Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-13T02:23:07.938Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_89a7a50e91d976ed49fe5185",
-          "imageUrl": "https://openings.dev/jobs/gh_89a7a50e91d976ed49fe5185/opengraph-image.png",
-          "pngHash": "263e00bae12411479a2988d6b07a517097ae730c06c6e4421980adbdef492ab5"
+          "socialTitle": "[HCM] Cloud Project Manager (upto 120M) - Fluent in English"
         }
       },
       "bluesky": {
@@ -4416,7 +4416,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 12
     },
     {
       "jobId": "gh_35ec4d629120cb36d2a3e0d2",
