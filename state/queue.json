@@ -4754,16 +4754,16 @@
       "createdAt": "2026-08-24T07:50:07Z",
       "publicationCreatedAt": "2026-08-24T10:53:00.337Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-24T10:53:00.337Z",
+        "updatedAt": "2026-09-13T11:59:43.941Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-13T11:59:43.941Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_21bab4de3533c39da00d02f6",
-          "imageUrl": "https://openings.dev/jobs/gh_21bab4de3533c39da00d02f6/opengraph-image.png",
-          "pngHash": "77781ba2d7462dff382de4a888f39de8f107b42ee886df6f00d1a4274297bab3"
+          "socialTitle": "[80tr HCM] MSP LEAD | 5+ năm quản lý team Cloud Operations / Managed Services"
         }
       },
       "bluesky": {
@@ -4823,7 +4823,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 13
     },
     {
       "jobId": "gh_b33dd1dedba3ad02fb5eb1a6",
