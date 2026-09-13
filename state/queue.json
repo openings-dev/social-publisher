@@ -4347,10 +4347,13 @@
       "createdAt": "2026-08-24T02:16:47Z",
       "publicationCreatedAt": "2026-08-24T05:00:41.819Z",
       "bridge": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 2,
         "updatedAt": "2026-09-13T04:55:32.137Z",
-        "lastError": null,
+        "lastError": {
+          "code": "validation",
+          "at": "2026-09-13T04:55:32.137Z"
+        },
         "lastReset": {
           "at": "2026-09-13T02:23:07.938Z",
           "reason": "social_title_update"
