@@ -19659,12 +19659,23 @@
       "createdAt": "2026-09-11T12:56:29Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-14T19:26:34.489Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_3a132b5e1856f9ea8037b5b2",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_3a132b5e1856f9ea8037b5b2/7f5518ab81e28c2693e08d6c4e38f6018c4faab39f739daa5dbfd27bd426ed87/65c6d9851ecc7dad3cf897e078871eb1d75b4b1f0fd43e2f75ebf4342580c1e9/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_3a132b5e1856f9ea8037b5b2/7f5518ab81e28c2693e08d6c4e38f6018c4faab39f739daa5dbfd27bd426ed87/65c6d9851ecc7dad3cf897e078871eb1d75b4b1f0fd43e2f75ebf4342580c1e9/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_3a132b5e1856f9ea8037b5b2/7f5518ab81e28c2693e08d6c4e38f6018c4faab39f739daa5dbfd27bd426ed87/65c6d9851ecc7dad3cf897e078871eb1d75b4b1f0fd43e2f75ebf4342580c1e9/social-video.mp4",
+          "pngHash": "8bfcf7306434974ace36b1454a895df488a734b1041df8f7832f622ab02730a3",
+          "instagramJpegHash": "40247abca96649573e413dff041e96806ab2628b7e5e1e88bdae7674ad6a7f2b",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "Marshall Wace Technology Graduate Programme"
         }
       },
