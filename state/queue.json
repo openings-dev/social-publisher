@@ -20434,12 +20434,14 @@
       "createdAt": "2026-09-14T19:40:30Z",
       "publicationCreatedAt": "2026-09-14T21:18:32.104Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-14T23:11:47.052Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Software Engineer, Rolls Royce, New Grad"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -20496,7 +20498,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 21
     }
   ]
 }
