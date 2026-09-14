@@ -19944,6 +19944,80 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_bb9f0af46fb71bcb401362c9",
+      "sourceId": "rebase-network/who-is-hiring#1290",
+      "dataCommit": "a10fc1077e50f32c7c215dcae43b11e2a21752da",
+      "dataHash": "b3dd38a5a9c2f7400aa96a35d2577fa33666dd7c32791738920c34289289b19a",
+      "contentHash": "f552b9f7e62d76c9372d8615fbdbcf41d5a4e3d8b3dc9d67a7d25c8b45b1f2d5",
+      "discoveredAt": "2026-09-14T15:33:55.622Z",
+      "createdAt": "2026-09-13T18:57:17Z",
+      "publicationCreatedAt": "2026-09-14T15:33:55.622Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
