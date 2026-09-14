@@ -5503,16 +5503,16 @@
       "createdAt": "2026-08-24T18:29:55Z",
       "publicationCreatedAt": "2026-08-24T22:43:30.011Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-24T22:43:30.011Z",
+        "updatedAt": "2026-09-14T05:08:03.997Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-14T05:08:03.997Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_65b5cf71148066c9df7d3454",
-          "imageUrl": "https://openings.dev/jobs/gh_65b5cf71148066c9df7d3454/opengraph-image.png",
-          "pngHash": "1374ef0550cd8b257ab09aca16477075376f60628ec97fa9568bdcc3198cc09e"
+          "socialTitle": "[Híbrido] Desenvolvedor(a) Java/Jakarta EE Sênior na Sylision"
         }
       },
       "bluesky": {
@@ -5572,7 +5572,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 16
     },
     {
       "jobId": "gh_6e07c95eab45586eb1e66f83",
