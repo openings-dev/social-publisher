@@ -19659,12 +19659,14 @@
       "createdAt": "2026-09-11T12:56:29Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-14T19:26:34.489Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Marshall Wace Technology Graduate Programme"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -19721,7 +19723,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 19
     },
     {
       "jobId": "gh_a8dd8982a3db2ecc96d812da",
