@@ -55,10 +55,24 @@ test('fails closed when an existing immutable object conflicts', async () => {
 });
 
 test('fails closed on truncated or malformed bounded listings before HEAD', async () => {
-  for (const listing of [{ IsTruncated: true, Contents: [] }, { IsTruncated: false, Contents: {} }, { IsTruncated: false, Contents: [{ Key: '', Size: 1 }] }, { IsTruncated: false, Contents: [{ Key: 'valid', Size: -1 }] }, { IsTruncated: false, Contents: [{ Key: 'valid', Size: 1.5 }] }]) {
+  const malformed = [
+    ['truncated', { IsTruncated: true, Contents: [] }],
+    ['missing truncation flag', { Contents: [] }],
+    ['non-boolean truncation flag', { IsTruncated: 'false', Contents: [] }],
+    ['non-array contents', { IsTruncated: false, Contents: {} }],
+    ['empty key', { IsTruncated: false, Contents: [{ Key: '', Size: 1 }] }],
+    ['missing size', { IsTruncated: false, Contents: [{ Key: 'valid' }] }],
+    ['negative size', { IsTruncated: false, Contents: [{ Key: 'valid', Size: -1 }] }],
+    ['fractional size', { IsTruncated: false, Contents: [{ Key: 'valid', Size: 1.5 }] }],
+    ['unsafe size', { IsTruncated: false, Contents: [{ Key: 'valid', Size: Number.MAX_SAFE_INTEGER + 1 }] }],
+    ['accumulated overflow', { IsTruncated: false, Contents: [
+      { Key: 'first', Size: Number.MAX_SAFE_INTEGER }, { Key: 'second', Size: 1 },
+    ] }],
+  ];
+  for (const [label, listing] of malformed) {
     const calls = [];
-    await assert.rejects(ensureOpeningsR2Objects({ config: readOpeningsR2Config(configEnv()), manifest: manifest(), preparationDirectory: '/unused', client: { send: async (command) => { calls.push(command.constructor.name); return listing; } } }), /bounded observation/u);
-    assert.deepEqual(calls, ['ListObjectsV2Command']);
+    await assert.rejects(ensureOpeningsR2Objects({ config: readOpeningsR2Config(configEnv()), manifest: manifest(), preparationDirectory: '/unused', client: { send: async (command) => { calls.push(command.constructor.name); return listing; } } }), /bounded observation/u, label);
+    assert.deepEqual(calls, ['ListObjectsV2Command'], label);
   }
 });
 
@@ -100,15 +114,34 @@ test('validates the winner after a conditional PUT race', async (t) => {
   assert.deepEqual(calls, ['ListObjectsV2Command', 'HeadObjectCommand', 'PutObjectCommand', 'HeadObjectCommand']); assert.equal(result.files[0].uploadState, 'uploaded');
 });
 
-test('heads every pending target before admission and stays within ten conservative operations', async () => {
+test('worst-case three-object race uses exactly ten bounded storage operations', async (t) => {
+  const directory = await mkdtemp(join(tmpdir(), 'openings-r2-budget-'));
+  t.after(() => rm(directory, { recursive: true, force: true }));
   const source = mediaOwner().files[0];
+  const bodies = [Buffer.from('opengraph'), Buffer.from('instagram'), Buffer.from('video')];
   const files = [
-    { ...source, byteSize: 21 * 1024 * 1024 },
-    { ...source, role: 'instagram-feed', fileName: 'instagram-feed.jpg', logicalArtifactId: 'instagram-feed', sha256: '1'.repeat(64), byteSize: 21 * 1024 * 1024, mediaType: 'image/jpeg', width: 1080, height: 1350 },
-    { ...source, role: 'social-video', fileName: 'social-video.mp4', logicalArtifactId: 'social-video', sha256: '2'.repeat(64), byteSize: 21 * 1024 * 1024, mediaType: 'video/mp4', width: 1080, height: 1920 },
+    { ...source, sha256: digest(bodies[0]), byteSize: bodies[0].length },
+    { ...source, role: 'instagram-feed', fileName: 'instagram-feed.jpg', logicalArtifactId: 'instagram-feed', sha256: digest(bodies[1]), byteSize: bodies[1].length, mediaType: 'image/jpeg', width: 1080, height: 1350 },
+    { ...source, role: 'social-video', fileName: 'social-video.mp4', logicalArtifactId: 'social-video', sha256: digest(bodies[2]), byteSize: bodies[2].length, mediaType: 'video/mp4', width: 1080, height: 1920 },
   ];
+  await Promise.all(files.map((file, index) => writeFile(join(directory, file.fileName), bodies[index])));
   const three = buildOpeningsR2Manifest({ mediaOwner: { ...mediaOwner(), files }, publicOrigin: 'https://media.openings.dev', consumersByRole: { opengraph: ['twitter'], 'instagram-feed': ['instagram'], 'social-video': ['instagramStory'] } });
   const calls = [];
-  await assert.rejects(ensureOpeningsR2Objects({ config: readOpeningsR2Config(configEnv()), manifest: three, preparationDirectory: '/unused', client: { send: async (command) => { calls.push(command.constructor.name); if (command.constructor.name === 'ListObjectsV2Command') return { IsTruncated: false, Contents: [] }; throw notFound(); } } }), /safe admission limit/u);
-  assert.deepEqual(calls, ['ListObjectsV2Command', 'HeadObjectCommand', 'HeadObjectCommand', 'HeadObjectCommand']); assert.ok(1 + 3 + (3 * 2) <= 10);
+  const headed = new Set();
+  const byKey = new Map(three.files.map((file) => [file.objectKey, file]));
+  const client = { send: async (command) => {
+    calls.push(command.constructor.name);
+    if (command.constructor.name === 'ListObjectsV2Command') return { IsTruncated: false, Contents: [] };
+    if (command.constructor.name === 'PutObjectCommand') throw Object.assign(new Error('race'), { name: 'PreconditionFailed', $metadata: { httpStatusCode: 412 } });
+    if (!headed.has(command.input.Key)) { headed.add(command.input.Key); throw notFound(); }
+    const file = byKey.get(command.input.Key);
+    return { ContentLength: file.byteSize, ContentType: file.mediaType, Metadata: { sha256: file.sha256 } };
+  } };
+  const result = await ensureOpeningsR2Objects({ config: readOpeningsR2Config(configEnv()), manifest: three, preparationDirectory: directory, client });
+  assert.equal(result.files.every((file) => file.uploadState === 'uploaded'), true);
+  assert.deepEqual(calls, ['ListObjectsV2Command',
+    'HeadObjectCommand', 'HeadObjectCommand', 'HeadObjectCommand',
+    'PutObjectCommand', 'HeadObjectCommand',
+    'PutObjectCommand', 'HeadObjectCommand',
+    'PutObjectCommand', 'HeadObjectCommand']);
 });
