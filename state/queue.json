@@ -5422,7 +5422,7 @@
       "createdAt": "2026-08-24T21:02:44Z",
       "publicationCreatedAt": "2026-08-24T22:43:30.011Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-14T15:32:56.202Z",
         "lastError": null,
@@ -5431,6 +5431,17 @@
           "reason": "social_title_update"
         },
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ab25a06d4f65327dff2ce992",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ab25a06d4f65327dff2ce992/bacbd0915b3935ed1bb4d2e51d63e4eab76c058b2efa47c58d20db6d7b15117a/90e33f02e42e95df6f359132f0f3df77861788bcf5db077aa1ae6460a814c997/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ab25a06d4f65327dff2ce992/bacbd0915b3935ed1bb4d2e51d63e4eab76c058b2efa47c58d20db6d7b15117a/90e33f02e42e95df6f359132f0f3df77861788bcf5db077aa1ae6460a814c997/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ab25a06d4f65327dff2ce992/bacbd0915b3935ed1bb4d2e51d63e4eab76c058b2efa47c58d20db6d7b15117a/90e33f02e42e95df6f359132f0f3df77861788bcf5db077aa1ae6460a814c997/social-video.mp4",
+          "pngHash": "b084807af9ae009076fceedc61490b73e0b7b27a1f6b4edde6f35c69a320b994",
+          "instagramJpegHash": "b48d7495b7dd87e2a4fce9f9cf4e813d5f56cd9cceb04cd2f82dd7e38ebc631c",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "[Remoto] Fullstack .NET + Angular Pleno @ Sylision"
         }
       },
