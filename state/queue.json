@@ -19881,12 +19881,23 @@
       "createdAt": "2026-09-13T06:43:54Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-14T18:25:00.904Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4a3335dde2588877cafe8b79",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_4a3335dde2588877cafe8b79/9c0d017b176f5a192d94be8d7f5c050baa892264093be4d88c3c8c291d0ac506/969ad9aac6e15fd2fe085c782bae26f728d8805bfcd537c5de31164f0bf87a22/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_4a3335dde2588877cafe8b79/9c0d017b176f5a192d94be8d7f5c050baa892264093be4d88c3c8c291d0ac506/969ad9aac6e15fd2fe085c782bae26f728d8805bfcd537c5de31164f0bf87a22/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_4a3335dde2588877cafe8b79/9c0d017b176f5a192d94be8d7f5c050baa892264093be4d88c3c8c291d0ac506/969ad9aac6e15fd2fe085c782bae26f728d8805bfcd537c5de31164f0bf87a22/social-video.mp4",
+          "pngHash": "7fdde8d29f7899aad47b2237f016fbee7612933306e632849b458043d0d04f82",
+          "instagramJpegHash": "1f544c72f975a703ba95d5cbb11f8edd80c1abaf6673a5a52b97fa3e4463c20c",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[HN] 🚀 Cần tìm GenAI Engineer / AI Agent Specialist về chung nhà tại Landmark 72 (jobID: DT-376)"
         }
       },
