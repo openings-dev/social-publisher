@@ -5422,16 +5422,16 @@
       "createdAt": "2026-08-24T21:02:44Z",
       "publicationCreatedAt": "2026-08-24T22:43:30.011Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-24T22:43:30.011Z",
+        "updatedAt": "2026-09-14T15:32:56.202Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-14T15:32:56.202Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_ab25a06d4f65327dff2ce992",
-          "imageUrl": "https://openings.dev/jobs/gh_ab25a06d4f65327dff2ce992/opengraph-image.png",
-          "pngHash": "a53bd23a14d85634805afeadfaf6db82a9e986b97f9a4f77ef785ba66d931bdc"
+          "socialTitle": "[Remoto] Fullstack .NET + Angular Pleno @ Sylision"
         }
       },
       "bluesky": {
@@ -5491,7 +5491,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 17
     },
     {
       "jobId": "gh_65b5cf71148066c9df7d3454",
