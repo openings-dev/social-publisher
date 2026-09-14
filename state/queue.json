@@ -5503,10 +5503,13 @@
       "createdAt": "2026-08-24T18:29:55Z",
       "publicationCreatedAt": "2026-08-24T22:43:30.011Z",
       "bridge": {
-        "status": "publishing",
+        "status": "failed",
         "attempts": 3,
         "updatedAt": "2026-09-14T12:57:35.103Z",
-        "lastError": null,
+        "lastError": {
+          "code": "validation",
+          "at": "2026-09-14T12:57:35.103Z"
+        },
         "lastReset": {
           "at": "2026-09-14T05:08:03.997Z",
           "reason": "social_title_update"
