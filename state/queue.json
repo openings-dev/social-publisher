@@ -20434,12 +20434,23 @@
       "createdAt": "2026-09-14T19:40:30Z",
       "publicationCreatedAt": "2026-09-14T21:18:32.104Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-14T23:11:47.052Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_eda7e9f19d68c888f48e9396",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_eda7e9f19d68c888f48e9396/3c37cc9b93163fd2c49e1912acbff5e4894c1c494e7e8ad22cc9450f6daa313e/24dd43df9e3b0a95abf0f1fdebd484bdaab2c70709d37404a5ffd7062aa6c788/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_eda7e9f19d68c888f48e9396/3c37cc9b93163fd2c49e1912acbff5e4894c1c494e7e8ad22cc9450f6daa313e/24dd43df9e3b0a95abf0f1fdebd484bdaab2c70709d37404a5ffd7062aa6c788/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_eda7e9f19d68c888f48e9396/3c37cc9b93163fd2c49e1912acbff5e4894c1c494e7e8ad22cc9450f6daa313e/24dd43df9e3b0a95abf0f1fdebd484bdaab2c70709d37404a5ffd7062aa6c788/social-video.mp4",
+          "pngHash": "5178e72522aca02ae1760896a4105dd3b5248f9eaa6276b604138d802bfdc902",
+          "instagramJpegHash": "f628873ce18af6252b615550a4d336112ff21d345f1750d09073497758627a5e",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "Software Engineer, Rolls Royce, New Grad"
         }
       },
