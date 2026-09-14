@@ -19968,12 +19968,14 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-14T21:17:50.064Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "operationKey": "job-story-34897731796-1"
+        }
       },
       "visualDirection": "night",
       "visualSequence": 20,
