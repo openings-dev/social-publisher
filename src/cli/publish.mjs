@@ -10,7 +10,7 @@ import {
   loadCanonicalWordmark,
 } from '../modules/publishing/bridge-publisher.mjs';
 import { createOpeningsR2BridgePublisher } from '../modules/publishing/openings-r2-publisher.mjs';
-import { readOpeningsR2Capacity, readOpeningsR2Config } from '../modules/publishing/openings-r2-store.mjs';
+import { readOpeningsR2Config } from '../modules/publishing/openings-r2-store.mjs';
 import { processOnePublication } from '../modules/publishing/orchestrator.mjs';
 import { prepareSocialJob } from '../modules/render/social-title.mjs';
 import { publishToBluesky } from '../modules/networks/bluesky-client.mjs';
@@ -158,7 +158,6 @@ export async function runPublication({
       linkedinProvider: config.linkedinProvider,
       storyEnabled: config.instagramStoryEnabled,
       r2Config: (dependencies.readOpeningsR2Config ?? readOpeningsR2Config)(env),
-      capacity: (dependencies.readOpeningsR2Capacity ?? readOpeningsR2Capacity)(env.OPENINGS_R2_CAPACITY_JSON),
       dependencies: dependencies.r2,
     })
     : (dependencies.createBridgePublisher ?? createBridgePublisher)({

@@ -38,7 +38,6 @@ export function createOpeningsR2BridgePublisher({
   linkedinProvider,
   storyEnabled,
   r2Config,
-  capacity,
   now = () => new Date(),
   dependencies = {},
 }) {
@@ -91,8 +90,6 @@ export function createOpeningsR2BridgePublisher({
       config: r2Config,
       manifest,
       preparationDirectory,
-      capacity,
-      now: () => instant,
       checkpoint: checkpointMedia,
     });
     for (const file of manifest.files) {

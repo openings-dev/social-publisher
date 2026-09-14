@@ -18,11 +18,13 @@ test('checkpoints pending, uploaded, and publicly verified media before returnin
   const publish = createOpeningsR2BridgePublisher({
     publicOrigin: 'https://media.openings.dev', outputRoot: '/tmp/output', wordmarkSvg: '<svg/>',
     enabledChannels: ['twitter', 'instagram'], linkedinProvider: 'direct', storyEnabled: false,
-    r2Config: {}, capacity: {},
+    r2Config: {},
     dependencies: {
       renderBridgeArtifacts: async () => ({ imagePath: '/tmp/og.png', instagramJpegPath: '/tmp/feed.jpg' }),
       describeMediaFile: async ({ role }) => descriptors.find((item) => item.role === role),
-      ensureObjects: async ({ manifest, checkpoint }) => {
+      ensureObjects: async (options) => {
+        assert.equal('capacity' in options, false);
+        const { manifest, checkpoint } = options;
         events.push('upload');
         let uploaded = manifest;
         for (const file of manifest.files) uploaded = updateOpeningsR2FileState(uploaded, file.role, 'uploaded');

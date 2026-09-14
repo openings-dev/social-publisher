@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { join } from 'node:path';
 
-import { HeadObjectCommand, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
+import { HeadObjectCommand, ListObjectsV2Command, PutObjectCommand, S3Client } from '@aws-sdk/client-s3';
 
 import { sha256 } from '../../shared/hash.mjs';
 import {
@@ -10,11 +10,10 @@ import {
 } from './openings-r2-manifest.mjs';
 
 const PURPOSE = 'openings-public-social-media-v1';
-const MAX_EVIDENCE_AGE_MS = 15 * 60 * 1000;
 const MAX_RUN_BYTES = 60 * 1024 * 1024;
 const MAX_RETAINED_BYTES = 512 * 1024 * 1024;
 const MAX_ACTIVE_OBJECTS = 1_000;
-const MAX_CLASS_A_OPERATIONS = 100_000;
+const MAX_RUN_STORAGE_OPERATIONS = 10;
 
 function fail(message = 'Openings R2 configuration is invalid') {
   throw new Error(message);
@@ -49,28 +48,33 @@ export function createOpeningsR2Client(config) {
   return new S3Client({ region: config.region, endpoint: config.endpoint, credentials: config.credentials });
 }
 
-export function readOpeningsR2Capacity(value) {
-  let parsed;
-  try { parsed = JSON.parse(value); } catch { fail('Openings R2 capacity evidence is stale or invalid'); }
-  if (!parsed || typeof parsed !== 'object' || Array.isArray(parsed)
-    || Object.keys(parsed).sort().join(',') !== 'activeObjectCount,classAOperations,observedAt,retainedBytes,standardStorageBytes') {
-    fail('Openings R2 capacity evidence is stale or invalid');
+async function observeCapacity(client, bucket) {
+  const result = await client.send(new ListObjectsV2Command({ Bucket: bucket, MaxKeys: MAX_ACTIVE_OBJECTS }));
+  if (!result || result.IsTruncated !== false
+    || (result.Contents !== undefined && !Array.isArray(result.Contents))) {
+    fail('Openings R2 bounded observation could not establish safe capacity');
   }
-  return Object.freeze(parsed);
+  const contents = result.Contents ?? [];
+  let retainedBytes = 0;
+  for (const object of contents) {
+    if (typeof object?.Key !== 'string' || object.Key.length === 0
+      || !Number.isSafeInteger(object.Size) || object.Size < 0) {
+      fail('Openings R2 bounded observation could not establish safe capacity');
+    }
+    retainedBytes += object.Size;
+    if (!Number.isSafeInteger(retainedBytes)) {
+      fail('Openings R2 bounded observation could not establish safe capacity');
+    }
+  }
+  return { activeObjectCount: contents.length, retainedBytes };
 }
 
-function validateCapacity(capacity, instant, files) {
-  if (!capacity || typeof capacity !== 'object' || !Number.isFinite(Date.parse(capacity.observedAt))
-    || Math.abs(instant.getTime() - Date.parse(capacity.observedAt)) > MAX_EVIDENCE_AGE_MS) {
-    fail('Openings R2 capacity evidence is stale or invalid');
-  }
-  for (const key of ['standardStorageBytes', 'classAOperations', 'activeObjectCount', 'retainedBytes']) {
-    if (!Number.isSafeInteger(capacity[key]) || capacity[key] < 0) fail('Openings R2 capacity evidence is stale or invalid');
-  }
+function validateCapacity(capacity, files, pendingCount) {
   const bytes = files.reduce((total, file) => total + file.byteSize, 0);
+  const conservativeOperations = 1 + pendingCount + (files.length * 2);
   if (files.length > 3 || bytes > MAX_RUN_BYTES || capacity.retainedBytes + bytes > MAX_RETAINED_BYTES
     || capacity.activeObjectCount + files.length > MAX_ACTIVE_OBJECTS
-    || capacity.classAOperations + files.length > MAX_CLASS_A_OPERATIONS) {
+    || conservativeOperations > MAX_RUN_STORAGE_OPERATIONS) {
     fail('Openings R2 safe admission limit reached');
   }
 }
@@ -92,16 +96,13 @@ export async function ensureOpeningsR2Objects({
   config,
   manifest,
   preparationDirectory,
-  capacity,
-  now = () => new Date(),
   client = createOpeningsR2Client(config),
   checkpoint = async () => {},
 }) {
   let next = validateOpeningsR2Manifest(manifest, manifest);
-  const instant = now();
-  if (!(instant instanceof Date) || !Number.isFinite(instant.getTime())) fail('Openings R2 capacity evidence is stale or invalid');
   const pending = next.files.filter((file) => file.uploadState === 'pending' || file.uploadState === 'ambiguous');
-  validateCapacity(capacity, instant, pending);
+  const capacity = await observeCapacity(client, config.bucket);
+  const missingFiles = [];
   for (const file of pending) {
     const target = { Bucket: config.bucket, Key: file.objectKey };
     let head;
@@ -110,7 +111,14 @@ export async function ensureOpeningsR2Objects({
     } catch (error) {
       if (!missing(error)) throw error;
     }
-    if (!head) {
+    if (!head) missingFiles.push(file);
+    else if (!matchesHead(head, file)) throw new Error('Existing R2 object conflicts with immutable manifest');
+  }
+  validateCapacity(capacity, missingFiles, pending.length);
+  const missingRoles = new Set(missingFiles.map((file) => file.role));
+  for (const file of pending) {
+    const target = { Bucket: config.bucket, Key: file.objectKey };
+    if (missingRoles.has(file.role)) {
       const body = await readFile(join(preparationDirectory, file.fileName));
       if (body.byteLength !== file.byteSize || sha256(body) !== file.sha256) {
         throw new Error('Prepared R2 media bytes do not match manifest');
@@ -131,11 +139,9 @@ export async function ensureOpeningsR2Objects({
           await checkpoint(next);
           throw error;
         }
-        head = await client.send(new HeadObjectCommand(target));
-        if (!matchesHead(head, file)) throw new Error('Existing R2 object conflicts with immutable manifest');
+        const raceHead = await client.send(new HeadObjectCommand(target));
+        if (!matchesHead(raceHead, file)) throw new Error('Existing R2 object conflicts with immutable manifest');
       }
-    } else if (!matchesHead(head, file)) {
-      throw new Error('Existing R2 object conflicts with immutable manifest');
     }
     next = updateOpeningsR2FileState(next, file.role, 'uploaded');
     await checkpoint(next);

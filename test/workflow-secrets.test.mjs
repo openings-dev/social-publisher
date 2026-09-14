@@ -131,9 +131,10 @@ test('scopes the platform client secret only to platform web transport steps', (
 test('scopes direct R2 credentials to publication while intake transfers ownership only', () => {
   const socialEnv = jobEnvironment(socialWorkflow);
   for (const name of ['OPENINGS_R2_ENABLED', 'OPENINGS_R2_ACCOUNT_ID', 'OPENINGS_R2_BUCKET',
-    'OPENINGS_R2_BUCKET_PURPOSE', 'OPENINGS_R2_PUBLIC_ORIGIN', 'OPENINGS_R2_CAPACITY_JSON']) {
+    'OPENINGS_R2_BUCKET_PURPOSE', 'OPENINGS_R2_PUBLIC_ORIGIN']) {
     assert.match(socialEnv, new RegExp(`^      ${name}: \\$\\{\\{ secrets\\.${name} \\}\\}$`, 'mu'));
   }
+  assert.doesNotMatch(socialWorkflow, /OPENINGS_R2_CAPACITY_JSON/u);
   const publisher = step(socialWorkflow, 'Publish at most one queued job');
   const intake = step(socialWorkflow, 'Process and checkpoint bounded snapshot intake');
   for (const name of ['OPENINGS_R2_ACCESS_KEY_ID', 'OPENINGS_R2_SECRET_ACCESS_KEY']) {

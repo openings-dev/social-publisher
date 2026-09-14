@@ -147,8 +147,7 @@ value in logs. Do not combine them into a JSON secret:
   `PUBLISHING_SOCIAL_SHADOW_ENABLED`, and `PUBLISHING_MASTODON_ENABLED`
 - Direct public media storage: `OPENINGS_R2_ENABLED`, `OPENINGS_R2_ACCOUNT_ID`,
   `OPENINGS_R2_BUCKET`, `OPENINGS_R2_BUCKET_PURPOSE`, and `OPENINGS_R2_PUBLIC_ORIGIN`.
-  Job publishing also uses fresh bounded `OPENINGS_R2_CAPACITY_JSON` evidence; editorial
-  publishing instead reads object count and retained bytes directly with one bounded listing.
+  Job and editorial publishing read object count and retained bytes directly with one bounded listing.
 
 Keep the public `INSTAGRAM_EDITORIAL_AUTO_PUBLISH` repository variable only for
 the job-level gate, and ensure it mirrors the same-named secret. GitHub does not
