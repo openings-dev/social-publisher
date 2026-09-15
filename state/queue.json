@@ -3197,9 +3197,9 @@
         }
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-09-15T08:16:35.317Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -19289,12 +19289,14 @@
       "createdAt": "2026-09-10T16:06:26Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T08:16:35.317Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Híbrido/Curitiba] Front-end Developer React-USD (Jcal)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -19351,7 +19353,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 24
     },
     {
       "jobId": "gh_71777214eda8251069edbc42",
