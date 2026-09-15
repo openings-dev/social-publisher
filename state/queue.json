@@ -20077,12 +20077,14 @@
       "createdAt": "2026-09-11T12:44:53Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T02:43:52.406Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "New Internship"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -20139,7 +20141,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 22
     },
     {
       "jobId": "gh_4a3335dde2588877cafe8b79",
