@@ -17056,12 +17056,14 @@
       "createdAt": "2026-09-03T11:00:57Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T21:27:30.154Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[53tr] REMOTE tìm senior BACKEND dev mạnh Python - giờ Sing - Contract"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -17118,7 +17120,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 29
     },
     {
       "jobId": "gh_423253e9f32ff55698650e74",
