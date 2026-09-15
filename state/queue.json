@@ -19498,12 +19498,23 @@
       "createdAt": "2026-09-10T16:01:43Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-15T14:06:22.771Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_71777214eda8251069edbc42",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_71777214eda8251069edbc42/00213be75138783f832973996370b39bdc7f4bb5c3ad8b6126fcc5f99291b3ce/07963c83213fed9945c35c4f22f877f90278fff3984a2145bc46311236941d57/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_71777214eda8251069edbc42/00213be75138783f832973996370b39bdc7f4bb5c3ad8b6126fcc5f99291b3ce/07963c83213fed9945c35c4f22f877f90278fff3984a2145bc46311236941d57/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_71777214eda8251069edbc42/00213be75138783f832973996370b39bdc7f4bb5c3ad8b6126fcc5f99291b3ce/07963c83213fed9945c35c4f22f877f90278fff3984a2145bc46311236941d57/social-video.mp4",
+          "pngHash": "b17af6b490798f1ab45721d3f5be442b7289f3fda4dd6d7651abfcc707220b56",
+          "instagramJpegHash": "93c7d00e427cd6653cc368fa54a3133eb2695fea77c5dcaeaee85ba6dec8333a",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Híbrido! Curitiba] Tech Lead - USD (Jcal)"
         }
       },
