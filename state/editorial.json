@@ -1,100 +1,7 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [
-    {
-      "contentId": "application-follow-up-profissional",
-      "contentVersion": "2",
-      "pillar": "application",
-      "scheduledDate": "2026-09-15",
-      "createdAt": "2026-09-15T18:44:32.311Z",
-      "assets": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-15T18:44:34.400Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "hosted",
-          "carouselUrls": [
-            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-01.jpg",
-            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-02.jpg",
-            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-03.jpg",
-            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-04.jpg",
-            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-05.jpg",
-            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-06.jpg",
-            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-07.jpg"
-          ],
-          "carouselMedia": [
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-01.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-02.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-03.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-04.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-05.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-06.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-07.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            }
-          ]
-        }
-      },
-      "feed": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-15T18:44:43.419Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "published",
-          "id": "17889928650614986",
-          "url": "https://www.instagram.com/p/DdUYs-MjeCY/"
-        }
-      },
-      "story": {
-        "status": "publishing",
-        "attempts": 1,
-        "updatedAt": "2026-09-15T18:46:03.568Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "operationKey": "editorial-35008982915-1"
-        }
-      }
-    }
-  ],
+  "pending": [],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",
@@ -295,6 +202,83 @@
           "status": "unsupported",
           "reason": "editorial_story_feed_media_compatibility_unverified",
           "mediaUrl": "https://media.openings.dev/openings/editorial/linkedin-atividade-estrategica/2/5/slide-01.jpg",
+          "mediaType": "image/jpeg",
+          "width": 1080,
+          "height": 1350
+        }
+      }
+    },
+    "application-follow-up-profissional": {
+      "lastPublishedAt": "2026-09-15T18:46:05.555Z",
+      "cycles": 1,
+      "lastPublication": {
+        "scheduledDate": "2026-09-15",
+        "contentVersion": "2",
+        "assets": {
+          "status": "hosted",
+          "carouselUrls": [
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-01.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-02.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-03.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-04.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-05.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-06.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-07.jpg"
+          ],
+          "carouselMedia": [
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-01.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-02.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-03.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-04.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-05.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-06.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-07.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            }
+          ]
+        },
+        "feed": {
+          "status": "published",
+          "id": "17889928650614986",
+          "url": "https://www.instagram.com/p/DdUYs-MjeCY/"
+        },
+        "story": {
+          "status": "unsupported",
+          "reason": "editorial_story_feed_media_compatibility_unverified",
+          "mediaUrl": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-01.jpg",
           "mediaType": "image/jpeg",
           "width": 1080,
           "height": 1350
