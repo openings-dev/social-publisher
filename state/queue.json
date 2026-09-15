@@ -18288,12 +18288,23 @@
       "createdAt": "2026-09-08T03:37:49Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-15T23:24:04.632Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_08e0656a92117e84c88baec7",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_08e0656a92117e84c88baec7/2820b381f704aafd07363996b78b3f3bb07370f7d944728571ba8500771a0015/27297e6f5668429e936461e6ec84e4a30566a59c937758fd9b7e33720b04a56c/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_08e0656a92117e84c88baec7/2820b381f704aafd07363996b78b3f3bb07370f7d944728571ba8500771a0015/27297e6f5668429e936461e6ec84e4a30566a59c937758fd9b7e33720b04a56c/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_08e0656a92117e84c88baec7/2820b381f704aafd07363996b78b3f3bb07370f7d944728571ba8500771a0015/27297e6f5668429e936461e6ec84e4a30566a59c937758fd9b7e33720b04a56c/social-video.mp4",
+          "pngHash": "156d2193f7656bc9661d962ea61dc1917b49fe5df04ee7915ba2f84a3e63cbfb",
+          "instagramJpegHash": "1517254595ad90b0427033f1633a19c311b416fd331e679c4bc0e81a492c555a",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Hybrid_HCM] SENIOR SOFTWARE ENGINEER (.NET) - upto 90M - Eng Fluent"
         }
       },
