@@ -19585,12 +19585,23 @@
       "createdAt": "2026-09-11T05:15:09Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-15T05:00:14.219Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4672be006d71ce8cdd604ae2",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_4672be006d71ce8cdd604ae2/1ff7847a72c587a77a4124e5fec562afe6270fe10339301567b8bad533df02a9/bf17ce9ffcd1c488cacee6166a10c75b4b8a651e16653de329e851a9dc6dd974/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_4672be006d71ce8cdd604ae2/1ff7847a72c587a77a4124e5fec562afe6270fe10339301567b8bad533df02a9/bf17ce9ffcd1c488cacee6166a10c75b4b8a651e16653de329e851a9dc6dd974/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_4672be006d71ce8cdd604ae2/1ff7847a72c587a77a4124e5fec562afe6270fe10339301567b8bad533df02a9/bf17ce9ffcd1c488cacee6166a10c75b4b8a651e16653de329e851a9dc6dd974/social-video.mp4",
+          "pngHash": "5360564acf7fa74a396e933371f312f7a05028100edfee14cd0969ae831e168f",
+          "instagramJpegHash": "107bdbf5cd7ce2b28d8c9ce5473d34f19748bdaf47694b048a7ad96ec88ef6ac",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "[30-40tr] Senior FULLSTACK Dev (ReactJS + .NET) 3+ yoe | Hà Nội | Không yc English"
         }
       },
