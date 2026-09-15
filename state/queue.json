@@ -16329,12 +16329,23 @@
       "createdAt": "2026-09-02T00:26:21Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-15T18:41:06.513Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_053d4cac62127636695c6fb4",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_053d4cac62127636695c6fb4/ed7eec45856262e8050dbea2a5094a401a3212889d4cf2d5a70e10e202c0ee4e/dd578516b6585df4b12a7ad01e9f216dd8a831eac9ab2739ec5156c64f1cc805/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_053d4cac62127636695c6fb4/ed7eec45856262e8050dbea2a5094a401a3212889d4cf2d5a70e10e202c0ee4e/dd578516b6585df4b12a7ad01e9f216dd8a831eac9ab2739ec5156c64f1cc805/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_053d4cac62127636695c6fb4/ed7eec45856262e8050dbea2a5094a401a3212889d4cf2d5a70e10e202c0ee4e/dd578516b6585df4b12a7ad01e9f216dd8a831eac9ab2739ec5156c64f1cc805/social-video.mp4",
+          "pngHash": "d225b62989a1f7afbfce9e65beb6b8fadcc0cb1bba5af215da4c8a6ce479bc7b",
+          "instagramJpegHash": "89843b607ab6c92c489d54051ea75d4e0382db4de36bc150ec090021384be7de",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡"
         }
       },
