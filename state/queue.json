@@ -19585,12 +19585,14 @@
       "createdAt": "2026-09-11T05:15:09Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T05:00:14.219Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[30-40tr] Senior FULLSTACK Dev (ReactJS + .NET) 3+ yoe | Hà Nội | Không yc English"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -19647,7 +19649,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 23
     },
     {
       "jobId": "gh_3a132b5e1856f9ea8037b5b2",
