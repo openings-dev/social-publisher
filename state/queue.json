@@ -17156,12 +17156,14 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T21:29:06.684Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "operationKey": "job-story-35025580884-1"
+        }
       },
       "visualDirection": "peach",
       "visualSequence": 29,
