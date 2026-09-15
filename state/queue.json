@@ -19289,12 +19289,23 @@
       "createdAt": "2026-09-10T16:06:26Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-15T08:16:35.317Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_bf73df7999bf22857e69155f",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_bf73df7999bf22857e69155f/c26e469c57f2bb175f8e9b47fa0dc2a81aea969d4314153f429a668ecc809602/15c609ff2c7a516ca6a1908a4e91a028a8944d48621ef3dc81f2692531f65f05/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_bf73df7999bf22857e69155f/c26e469c57f2bb175f8e9b47fa0dc2a81aea969d4314153f429a668ecc809602/15c609ff2c7a516ca6a1908a4e91a028a8944d48621ef3dc81f2692531f65f05/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_bf73df7999bf22857e69155f/c26e469c57f2bb175f8e9b47fa0dc2a81aea969d4314153f429a668ecc809602/15c609ff2c7a516ca6a1908a4e91a028a8944d48621ef3dc81f2692531f65f05/social-video.mp4",
+          "pngHash": "43b48b6491229f7a08ffae4352ce28fd604908a15191439e96724b51329ce498",
+          "instagramJpegHash": "b54441ea9351d3d1cbeeb6144a7d40fa24c78933cc1ef591f6da57b6e4b44c7e",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Híbrido/Curitiba] Front-end Developer React-USD (Jcal)"
         }
       },
