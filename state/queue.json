@@ -17126,12 +17126,15 @@
         }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T21:27:30.154Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "publicationKind": "image",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0612943ebdcc6b121c717472"
+        }
       },
       "linkedin": {
         "status": "pending",
