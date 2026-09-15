@@ -4363,9 +4363,9 @@
         }
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-09-15T18:41:06.513Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -16329,12 +16329,14 @@
       "createdAt": "2026-09-02T00:26:21Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T18:41:06.513Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -16391,7 +16393,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 28
     },
     {
       "jobId": "gh_dcb1722b234cc3d5831e62cc",
