@@ -9,12 +9,67 @@
       "scheduledDate": "2026-09-15",
       "createdAt": "2026-09-15T18:44:32.311Z",
       "assets": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T18:44:34.400Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "hosted",
+          "carouselUrls": [
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-01.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-02.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-03.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-04.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-05.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-06.jpg",
+            "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-07.jpg"
+          ],
+          "carouselMedia": [
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-01.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-02.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-03.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-04.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-05.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-06.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-follow-up-profissional/2/5/slide-07.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            }
+          ]
+        }
       },
       "feed": {
         "status": "pending",
