@@ -72,12 +72,16 @@
         }
       },
       "feed": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T18:44:43.419Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17889928650614986",
+          "url": "https://www.instagram.com/p/DdUYs-MjeCY/"
+        }
       },
       "story": {
         "status": "pending",
