@@ -17587,12 +17587,14 @@
       "createdAt": "2026-09-07T03:40:07Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T17:05:29.894Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "🚀 [REMOTE] CONTRACTOR | GENAI ENGINEER (MID+/SENIOR) | ENG FLUENT"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -17649,7 +17651,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 27
     },
     {
       "jobId": "gh_76007f3ca426a2991eb904e1",
