@@ -18288,12 +18288,14 @@
       "createdAt": "2026-09-08T03:37:49Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T23:24:04.632Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Hybrid_HCM] SENIOR SOFTWARE ENGINEER (.NET) - upto 90M - Eng Fluent"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -18350,7 +18352,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 30
     },
     {
       "jobId": "gh_9b488f2baf77cbbd6dbe6b76",
