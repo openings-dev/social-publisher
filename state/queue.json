@@ -17587,12 +17587,23 @@
       "createdAt": "2026-09-07T03:40:07Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-15T17:05:29.894Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_02bb152066b12fe4c52f9c59",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_02bb152066b12fe4c52f9c59/e7f33edc81587b89b5fd0730f6afe6bd95a6af099829ce2872ca1f89428f9dd2/51ff33b8e1af2470a32cb1227bc19f7d0e5375b1a76904d86e38d0b93cae7315/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_02bb152066b12fe4c52f9c59/e7f33edc81587b89b5fd0730f6afe6bd95a6af099829ce2872ca1f89428f9dd2/51ff33b8e1af2470a32cb1227bc19f7d0e5375b1a76904d86e38d0b93cae7315/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_02bb152066b12fe4c52f9c59/e7f33edc81587b89b5fd0730f6afe6bd95a6af099829ce2872ca1f89428f9dd2/51ff33b8e1af2470a32cb1227bc19f7d0e5375b1a76904d86e38d0b93cae7315/social-video.mp4",
+          "pngHash": "e9a1bf98013790b4cb41f569e2d296125185a9e845212e7ab4936f16aa37e906",
+          "instagramJpegHash": "e7283a8c52159c13b4dd7e5887a9bfe9a9c74a2e95a31a916a7496455ed4c8b0",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "🚀 [REMOTE] CONTRACTOR | GENAI ENGINEER (MID+/SENIOR) | ENG FLUENT"
         }
       },
