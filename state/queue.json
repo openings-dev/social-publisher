@@ -21048,12 +21048,14 @@
       "createdAt": "2026-09-15T05:38:07Z",
       "publicationCreatedAt": "2026-09-15T08:18:31.256Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-15T11:52:14.341Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Onsite HN] Gấp 1 iOS 3+ yoe onsite Vietinbank"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -21110,7 +21112,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 25
     }
   ]
 }
