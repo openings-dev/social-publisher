@@ -18048,12 +18048,14 @@
       "createdAt": "2026-09-05T09:32:34Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-16T07:45:03.974Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[ 73tr ] HCM tìm Tech Lead fullstack java / js 7+ yoe | ENG tự tin (JobID: IT-570)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -18110,7 +18112,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 33
     },
     {
       "jobId": "gh_02bb152066b12fe4c52f9c59",
