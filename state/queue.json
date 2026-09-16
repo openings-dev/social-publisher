@@ -17400,12 +17400,14 @@
       "createdAt": "2026-09-03T19:44:25Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-16T13:34:10.975Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[REMOTO] Desenvolvedor Full Stack SENIOR na [OPIKODE]"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -17462,7 +17464,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 35
     },
     {
       "jobId": "gh_1ba6459bb5469a28d19f2a84",
