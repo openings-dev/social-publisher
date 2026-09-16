@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const SOCIAL_MODES = new Set(['scheduled', 'dry-run', 'controlled', 'migrate-meta', 'retry-stage']);
 const EDITORIAL_MANUAL_MODES = new Set(['dry-run', 'controlled']);
+const PUSH_MANUAL_MODES = new Set(['preflight', 'activate', 'disable', 'canary']);
 
 function invalidMetadata() {
   return new Error('invalid workflow runtime metadata');
@@ -34,19 +35,21 @@ function parseSourceEvent(event) {
 }
 
 export function buildRuntimeMetadata({ kind, eventName, event, runId, runAttempt }) {
-  if (kind !== 'social' && kind !== 'editorial') throw invalidMetadata();
+  if (!['social', 'editorial', 'push'].includes(kind)) throw invalidMetadata();
   if (!['schedule', 'workflow_dispatch', 'repository_dispatch'].includes(eventName)) throw invalidMetadata();
   if (event === null || typeof event !== 'object' || Array.isArray(event)) throw invalidMetadata();
-  if (eventName === 'repository_dispatch' && kind !== 'social') throw invalidMetadata();
+  if (eventName === 'repository_dispatch' && !['social', 'push'].includes(kind)) throw invalidMetadata();
 
   const id = requirePositiveInteger(runId);
   const attempt = requirePositiveInteger(runAttempt);
   const mode = eventName === 'workflow_dispatch' ? event.inputs?.mode : 'scheduled';
-  const supported = kind === 'social' ? SOCIAL_MODES : EDITORIAL_MANUAL_MODES;
+  const supported = kind === 'social' ? SOCIAL_MODES : kind === 'push' ? PUSH_MANUAL_MODES : EDITORIAL_MANUAL_MODES;
   if (eventName === 'workflow_dispatch' && !supported.has(mode)) throw invalidMetadata();
 
-  if (kind === 'social') {
-    const metadata = { RUN_MODE: mode, STORY_OPERATION_KEY: `job-story-${id}-${attempt}` };
+  if (kind === 'social' || kind === 'push') {
+    const metadata = kind === 'social'
+      ? { RUN_MODE: mode, STORY_OPERATION_KEY: `job-story-${id}-${attempt}` }
+      : { RUN_MODE: mode, PUSH_OPERATION_KEY: `job-push-${id}-${attempt}` };
     if (eventName === 'repository_dispatch') {
       const payload = parseSourceEvent(event);
       metadata.SOURCE_EVENT_COMMIT = payload.source_commit;

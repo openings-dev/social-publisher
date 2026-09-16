@@ -1,0 +1,149 @@
+name: Publish new-job push
+
+on:
+  repository_dispatch:
+    types: [openings_source_committed_v1]
+  schedule:
+    - cron: '37 */2 * * *'
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: Push operation
+        required: true
+        default: preflight
+        type: choice
+        options: [preflight, activate, canary, disable]
+      confirmation:
+        description: Exact activation, canary, or disable confirmation phrase
+        required: false
+        type: string
+      subscription_ids:
+        description: Comma-separated owner-controlled Android subscription IDs for canary
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: social-publisher-publication
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  push:
+    if: github.event_name == 'workflow_dispatch' || vars.OPENINGS_PUSH_AUTO_PUBLISH == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      DATA_PATH: dependencies/data-pipeline
+      STATE_REF: main
+      PUSH_AUDIENCE_VERSION: android-consent-v1
+      ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+      ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
+      ONESIGNAL_AUDIENCE_JSON: ${{ secrets.ONESIGNAL_AUDIENCE_JSON }}
+      ONESIGNAL_FREE_ATTESTATION_JSON: ${{ secrets.ONESIGNAL_FREE_ATTESTATION_JSON }}
+    steps:
+      - name: Check out push source and state
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: ${{ env.STATE_REF }}
+          fetch-depth: 0
+
+      - name: Mask and validate runtime metadata
+        run: node src/cli/mask-workflow-runtime.mjs --kind push
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install exact dependencies
+        run: npm ci
+
+      - name: Check out immutable data history
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          repository: openings-dev/data-pipeline
+          ref: ${{ env.SOURCE_EVENT_COMMIT || 'main' }}
+          path: dependencies/data-pipeline
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Verify dispatched source snapshot identity
+        if: github.event_name == 'repository_dispatch'
+        run: >-
+          node src/cli/verify-source-checkout.mjs
+          --data "$DATA_PATH"
+          --commit "$(git -C dependencies/data-pipeline rev-parse HEAD)"
+
+      - name: Configure serialized state writer
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Activate at the current boundary
+        if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'activate'
+        env:
+          REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
+        run: npm run push -- --mode activate --confirmation "$REQUEST_CONFIRMATION" --data "$DATA_PATH" --state state
+
+      - name: Disable fresh push submissions
+        if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'disable'
+        env:
+          REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
+        run: npm run push -- --mode disable --confirmation "$REQUEST_CONFIRMATION" --data "$DATA_PATH" --state state
+
+      - name: Validate canary gate
+        if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'canary'
+        env:
+          REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
+          PUSH_TEST_SUBSCRIPTION_IDS: ${{ inputs.subscription_ids }}
+        run: |
+          test "$REQUEST_CONFIRMATION" = 'SEND_TEST_PUSH'
+          test -n "$PUSH_TEST_SUBSCRIPTION_IDS"
+
+      - name: Intake push-only source events
+        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'canary'
+        run: npm run push -- --mode intake --data "$DATA_PATH" --state state
+
+      - name: Checkpoint push intake
+        if: env.RUN_MODE != 'preflight'
+        run: |
+          git add -- state/push.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(state): checkpoint push intake [skip ci]'
+          git push origin "HEAD:refs/heads/${STATE_REF}"
+
+      - name: Prepare at most one immutable push intent
+        id: prepare
+        if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'canary'
+        run: |
+          npm run push -- --mode prepare --data "$DATA_PATH" --state state
+          job_id=$(node -e "const s=require('./state/push.json'); console.log(s.intents.find(i=>i.status==='submitting')?.jobId||'')")
+          echo "job_id=$job_id" >> "$GITHUB_OUTPUT"
+
+      - name: Checkpoint push intent before the provider request
+        if: steps.prepare.outputs.job_id != ''
+        run: |
+          git add -- state/push.json
+          git commit -m 'chore(state): record push intent [skip ci]'
+          git push origin "HEAD:refs/heads/${STATE_REF}"
+
+      - name: Send one push request
+        if: steps.prepare.outputs.job_id != ''
+        env:
+          PUSH_TEST_SUBSCRIPTION_IDS: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'canary') && inputs.subscription_ids || '' }}
+        run: npm run push -- --mode deliver --data "$DATA_PATH" --state state
+
+      - name: Checkpoint classified provider result
+        if: always() && steps.prepare.outputs.job_id != ''
+        run: |
+          git add -- state/push.json
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m 'chore(state): record push result [skip ci]'
+          git push origin "HEAD:refs/heads/${STATE_REF}"

@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "enabled": false,
+  "activationBoundary": {
+    "commit": "6c812bc01cda2d9312ed81dd3100bf2fb9d57d35",
+    "generatedAt": "2026-09-16T13:58:09.486Z",
+    "dataHash": "6655547542941e0a14031b3d1bf60a0092115ac2f05581e9b5701bc3ddd2c6e5"
+  },
+  "processedSnapshot": {
+    "commit": "6c812bc01cda2d9312ed81dd3100bf2fb9d57d35",
+    "generatedAt": "2026-09-16T13:58:09.486Z",
+    "dataHash": "6655547542941e0a14031b3d1bf60a0092115ac2f05581e9b5701bc3ddd2c6e5"
+  },
+  "activatedAt": "2026-09-16T13:58:09.486Z",
+  "audienceVersion": "android-consent-v1",
+  "policy": {
+    "dailyCap": 10,
+    "maxAgeHours": 24,
+    "idempotencyWindowDays": 30
+  },
+  "paused": null,
+  "intents": []
+}
