@@ -16686,12 +16686,23 @@
       "createdAt": "2026-09-02T19:04:39Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-16T00:26:49.665Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_159d6817943c7fe2ca3e59b2",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_159d6817943c7fe2ca3e59b2/2251c7ec4fde3ba2aeba67a0107ac6982c380336c3faff53ed2f4986aeb633e2/46bef4dc1fb89d8f6d119b9636fc97efdaca7d438a7d24e3ecf737f2f0c5ccdb/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_159d6817943c7fe2ca3e59b2/2251c7ec4fde3ba2aeba67a0107ac6982c380336c3faff53ed2f4986aeb633e2/46bef4dc1fb89d8f6d119b9636fc97efdaca7d438a7d24e3ecf737f2f0c5ccdb/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_159d6817943c7fe2ca3e59b2/2251c7ec4fde3ba2aeba67a0107ac6982c380336c3faff53ed2f4986aeb633e2/46bef4dc1fb89d8f6d119b9636fc97efdaca7d438a7d24e3ecf737f2f0c5ccdb/social-video.mp4",
+          "pngHash": "9ee17125a0858a276420434082a5f343c7b9b77bdb204f44495eb0ee7f3d6ded",
+          "instagramJpegHash": "b0c9ff8f661ffb19279811435eaa247422e4761eb0f55507d03e716496d29fe1",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Remoto] Backend Developer Pleno @Igma"
         }
       },
