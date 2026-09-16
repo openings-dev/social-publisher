@@ -17467,19 +17467,21 @@
     {
       "jobId": "gh_1ba6459bb5469a28d19f2a84",
       "sourceId": "SimplifyJobs/New-Grad-Positions#2964",
-      "dataCommit": "4376d29d3a6062425e3a65b22ae0f5cc5d4faf82",
-      "dataHash": "9a7d5dca5ba61570e535251f409dcea64d56bbaa1e4f5c0ebfb678940f2fba67",
-      "contentHash": "72dda94d7f4ef365ae671e0d5fed2145e2cbd48abb26be0fa3da683813889383",
+      "dataCommit": "752bff54836fb04ef5fc1afbf410417146c92c44",
+      "dataHash": "9fbd238394a424aabe9453f718151929e45b3da5327fe282c09b32b6db76223c",
+      "contentHash": "75d1218ec89625141c4d6c9c9aad96495a8874b16b53a9d4e270422232476636",
       "discoveredAt": "2026-09-14T15:33:42.114Z",
       "createdAt": "2026-09-03T19:15:29Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-16T02:38:54.249Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Update Arch to correct company profile"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -17536,7 +17538,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 32
     },
     {
       "jobId": "gh_61212c2435cd38b5c470216d",
