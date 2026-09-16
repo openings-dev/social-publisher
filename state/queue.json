@@ -16969,12 +16969,23 @@
       "createdAt": "2026-09-03T00:00:29Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-16T13:59:43.466Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_576ba7eaf4dac8a0db6163f3",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_576ba7eaf4dac8a0db6163f3/5766c717986203554d384a41f2f7aada8f8f7fa8efbd3b08b9219c6ac12986ae/a884339e9bda6864f6ca189cf7b3c39218ea10c9818497f4085036e1bbfdace8/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_576ba7eaf4dac8a0db6163f3/5766c717986203554d384a41f2f7aada8f8f7fa8efbd3b08b9219c6ac12986ae/a884339e9bda6864f6ca189cf7b3c39218ea10c9818497f4085036e1bbfdace8/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_576ba7eaf4dac8a0db6163f3/5766c717986203554d384a41f2f7aada8f8f7fa8efbd3b08b9219c6ac12986ae/a884339e9bda6864f6ca189cf7b3c39218ea10c9818497f4085036e1bbfdace8/social-video.mp4",
+          "pngHash": "66a36d552ac506dfea71f7e66d4555c1a5543543eb40ba262d4882b61c7c516d",
+          "instagramJpegHash": "f3ea92dbcf00c9f0be88197902079eb0dc8303218bfdbcde5f948724bb5100f0",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Back-end Engineer Node.js - Strider"
         }
       },
