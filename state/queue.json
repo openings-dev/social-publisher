@@ -16686,12 +16686,14 @@
       "createdAt": "2026-09-02T19:04:39Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-16T00:26:49.665Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Backend Developer Pleno @Igma"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -16748,7 +16750,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 31
     },
     {
       "jobId": "gh_b5423c5508d55cd41037fcce",
