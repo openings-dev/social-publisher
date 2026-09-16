@@ -17474,12 +17474,23 @@
       "createdAt": "2026-09-03T19:15:29Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-16T02:38:54.249Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_1ba6459bb5469a28d19f2a84",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_1ba6459bb5469a28d19f2a84/75d1218ec89625141c4d6c9c9aad96495a8874b16b53a9d4e270422232476636/a2c32f970206624473957994c8e236b1b8a1fa82db9aa4fb90cbce5eb954cff1/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_1ba6459bb5469a28d19f2a84/75d1218ec89625141c4d6c9c9aad96495a8874b16b53a9d4e270422232476636/a2c32f970206624473957994c8e236b1b8a1fa82db9aa4fb90cbce5eb954cff1/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_1ba6459bb5469a28d19f2a84/75d1218ec89625141c4d6c9c9aad96495a8874b16b53a9d4e270422232476636/a2c32f970206624473957994c8e236b1b8a1fa82db9aa4fb90cbce5eb954cff1/social-video.mp4",
+          "pngHash": "999eb9f66a637bf2b56117704bd8d710137206847f77f072b5a1abf2c4ab8fac",
+          "instagramJpegHash": "5e6ab34d0fd89fd7d80c114d6f756fc73611f38320f6f9ae46ea72ca8b1f387b",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Update Arch to correct company profile"
         }
       },
