@@ -18118,14 +18118,17 @@
         }
       },
       "instagram": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-16T07:45:03.974Z",
         "lastError": null,
         "lastReset": null,
         "result": {
           "publicationKind": "image",
-          "canonicalUrl": "https://openings.dev/jobs/gh_25cf5dc022de1ad2231b828d"
+          "canonicalUrl": "https://openings.dev/jobs/gh_25cf5dc022de1ad2231b828d",
+          "status": "published",
+          "id": "17893676460415807",
+          "url": "https://www.instagram.com/p/DdVx-srm-Sr/"
         }
       },
       "linkedin": {
@@ -18199,9 +18202,9 @@
             "consumers": [
               {
                 "channel": "instagram",
-                "state": "pending",
-                "remoteId": null,
-                "updatedAt": null
+                "state": "completed",
+                "remoteId": "17893676460415807",
+                "updatedAt": "2026-09-16T07:45:03.974Z"
               }
             ]
           },
@@ -18228,7 +18231,7 @@
             ]
           }
         ],
-        "manifestDigest": "8a5ed74c6de0ca30727a69677f2e7055afd6816c52fa101ea02609eb05363afb"
+        "manifestDigest": "38babf2954e9b92aad58e09afb68774586e8629745ed0747f489ed7d8870a2d1"
       }
     },
     {
