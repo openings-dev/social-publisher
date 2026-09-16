@@ -19141,12 +19141,14 @@
       "createdAt": "2026-09-07T03:19:26Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-16T21:24:30.907Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[$1.5k] HCM dự án GenAI tìm fullstack SWE 5+ yoe | ENG giao tiếp | môi trường regional (jobID: IT-573)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -19203,7 +19205,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 39
     },
     {
       "jobId": "gh_f42b288f8ed48045e756d848",
