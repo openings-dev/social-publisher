@@ -17245,19 +17245,21 @@
     {
       "jobId": "gh_86cb84e98756a8403eaeaec8",
       "sourceId": "backend-br/vagas#12412",
-      "dataCommit": "e00aab24007c8b0445931eab1596665db09a2627",
-      "dataHash": "d6d34a76e6b2132c0e52966a60fecce78b3a8f2704a5352492005c5a1da91d2c",
-      "contentHash": "5b8a51b66f75b6af7bff16174cb7596e1d536ed38e509ea05124954a285c7f1b",
+      "dataCommit": "4f78f2826111236591628f9d91bc536e4e528502",
+      "dataHash": "ab8069ec26a2d4bae72c37c106569c7ea530fec010fee5bb21e719847702cc76",
+      "contentHash": "a2351dd4f8199aefe37ed8df455eb07ca4793c949b48f558180c767e052075d4",
       "discoveredAt": "2026-09-14T15:33:42.114Z",
       "createdAt": "2026-09-03T11:53:48Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-16T23:30:06.014Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Fullstack Developer - Jazida.com"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -17314,7 +17316,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 40
     },
     {
       "jobId": "gh_0612943ebdcc6b121c717472",
