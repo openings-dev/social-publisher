@@ -4035,9 +4035,9 @@
         }
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-09-16T08:11:31.119Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -17826,12 +17826,14 @@
       "createdAt": "2026-09-04T15:49:04Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-16T08:11:31.119Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Híbrido/Curitiba ] Tech Lead Integrações - USD"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -17888,7 +17890,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 34
     },
     {
       "jobId": "gh_70e6e21759821a59e640879e",
