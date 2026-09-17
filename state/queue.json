@@ -21418,12 +21418,23 @@
       "createdAt": "2026-09-10T00:36:55Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-17T13:34:05.431Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_07684f7ca8d92fa38a4ce3e2",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_07684f7ca8d92fa38a4ce3e2/321cf7035b2d6f146a5cae0f369b6b6dd10675e66b5980d97372bb232eb2feda/41253ff28dad1c9114e7d79369a57d0210c31cc5417d777cc0f746b7ee1051e8/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_07684f7ca8d92fa38a4ce3e2/321cf7035b2d6f146a5cae0f369b6b6dd10675e66b5980d97372bb232eb2feda/41253ff28dad1c9114e7d79369a57d0210c31cc5417d777cc0f746b7ee1051e8/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_07684f7ca8d92fa38a4ce3e2/321cf7035b2d6f146a5cae0f369b6b6dd10675e66b5980d97372bb232eb2feda/41253ff28dad1c9114e7d79369a57d0210c31cc5417d777cc0f746b7ee1051e8/social-video.mp4",
+          "pngHash": "8135fe9b360f191c5365672cef9325e9bf34ade7003b07863d5f8f9aba79629f",
+          "instagramJpegHash": "458eb2cb6388015e8c6a6a05abc24d56d665eaf3434d51429e5c1b5857133bbb",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "Hardware Engineering Hyperlink Issue"
         }
       },
