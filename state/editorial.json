@@ -72,12 +72,16 @@
         }
       },
       "feed": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-09-17T18:49:26.354Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18111882641274185",
+          "url": "https://www.instagram.com/p/DdZizwZFF1z/"
+        }
       },
       "story": {
         "status": "pending",
