@@ -7062,8 +7062,13 @@ validation('keeps push runs from being replaced by the shared publication queue'
   assert.match(workflow, /group:\s*social-publisher-push-state/u);
   assert.doesNotMatch(workflow, /group:\s*social-publisher-publication/u);
   assert.match(workflow, /cancel-in-progress:\s*false/u);
-  assert.equal((workflow.match(/git fetch origin "\$\{STATE_REF\}"/gu) ?? []).length, 3);
-  assert.equal((workflow.match(/git rebase "origin\/\$\{STATE_REF\}"/gu) ?? []).length, 3);
+  assert.match(workflow, /PUSH_STATE_PATH:\s*dependencies\/push-state/u);
+  assert.match(workflow, /PUSH_STATE_REF:\s*push-state/u);
+  assert.match(workflow, /name:\s*Check out isolated push state/u);
+  assert.doesNotMatch(workflow, /STATE_REF:\s*main/u);
+  assert.equal((workflow.match(/git -C "\$PUSH_STATE_PATH" fetch origin "\$\{PUSH_STATE_REF\}"/gu) ?? []).length, 3);
+  assert.equal((workflow.match(/git -C "\$PUSH_STATE_PATH" rebase "origin\/\$\{PUSH_STATE_REF\}"/gu) ?? []).length, 3);
+  assert.equal((workflow.match(/HEAD:refs\/heads\/\$\{PUSH_STATE_REF\}/gu) ?? []).length, 3);
   assert.equal((workflow.match(/for attempt in 1 2 3 4 5/gu) ?? []).length, 3);
 });
 
