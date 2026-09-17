@@ -4770,9 +4770,9 @@
         }
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-09-17T08:17:40.642Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -18919,12 +18919,14 @@
       "createdAt": "2026-09-05T12:04:29Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-17T08:17:40.642Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "<issue> Visa Sponsorship"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -18981,7 +18983,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 44
     },
     {
       "jobId": "gh_25cf5dc022de1ad2231b828d",
