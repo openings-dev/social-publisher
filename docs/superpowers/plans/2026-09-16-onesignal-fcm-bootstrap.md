@@ -475,10 +475,7 @@ jobs:
           ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
           ONESIGNAL_ORGANIZATION_API_KEY: ${{ secrets.ONESIGNAL_ORGANIZATION_API_KEY }}
           ONESIGNAL_FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.ONESIGNAL_FCM_SERVICE_ACCOUNT_JSON }}
-        run: |
-          echo "::add-mask::$ONESIGNAL_ORGANIZATION_API_KEY"
-          echo "::add-mask::$ONESIGNAL_FCM_SERVICE_ACCOUNT_JSON"
-          npm run push:configure-fcm
+        run: npm run push:configure-fcm
 ```
 
 - [ ] **Step 4: Run workflow and complete repository verification**
