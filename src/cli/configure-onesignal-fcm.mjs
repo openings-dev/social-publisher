@@ -16,7 +16,7 @@ export async function runOneSignalFcmBootstrap({
 
   const result = await configure({
     appId: env.ONESIGNAL_APP_ID,
-    organizationApiKey: env.ONESIGNAL_ORGANIZATION_API_KEY?.replace(/[\r\n]+$/u, ''),
+    organizationApiKey: env.ONESIGNAL_ORGANIZATION_API_KEY?.replace(/[\r\n]/gu, ''),
     serviceAccountJson: env.ONESIGNAL_FCM_SERVICE_ACCOUNT_JSON,
   });
 
