@@ -42,7 +42,7 @@ test('removes line wrapping copied with the organization API key', async () => {
   await runOneSignalFcmBootstrap({
     env: {
       ...env,
-      ONESIGNAL_ORGANIZATION_API_KEY: `${key.slice(0, 8)}\r\n${key.slice(8)}\n`,
+      ONESIGNAL_ORGANIZATION_API_KEY: `  ${key.slice(0, 8)} \r\n ${key.slice(8)}\n`,
     },
     log: () => {},
     configure: async (input) => {
