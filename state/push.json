@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "1edc19ae29e34a83cc76b6bdbc78d195ee14c234",
-    "generatedAt": "2026-09-17T18:43:53.607Z",
-    "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
+    "commit": "de629f7dd046129b9e2198884efefc02cf06ed28",
+    "generatedAt": "2026-09-17T23:19:16.460Z",
+    "dataHash": "4818be78f8f6a1b46fadd8c4bf6abf0425c7254a2a06b9824e10cfa027f9b881"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19,5 +19,126 @@
     "idempotencyWindowDays": 30
   },
   "paused": null,
-  "intents": []
+  "intents": [
+    {
+      "jobId": "gh_1d85cf4f9ada763ee8acd566",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9696",
+      "dataCommit": "de629f7dd046129b9e2198884efefc02cf06ed28",
+      "dataHash": "4818be78f8f6a1b46fadd8c4bf6abf0425c7254a2a06b9824e10cfa027f9b881",
+      "contentHash": "1fae3a83854e02d0781bc979d7fb00432adcd0a6a277248d5c94102767a482f5",
+      "sourceCreatedAt": "2026-09-17T20:08:33Z",
+      "createdAt": "2026-09-17T23:19:16.460Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "876b4bb6-874e-4b3d-b141-72d1091c43e7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "<issue>Editing Internship backlog",
+          "pt-BR": "<issue>Editing Internship backlog",
+          "es": "<issue>Editing Internship backlog",
+          "it": "<issue>Editing Internship backlog",
+          "fr": "<issue>Editing Internship backlog",
+          "de": "<issue>Editing Internship backlog"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1d85cf4f9ada763ee8acd566"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_461c2de2accdad3cc973f73e",
+      "sourceId": "frontendbr/vagas#8563",
+      "dataCommit": "de629f7dd046129b9e2198884efefc02cf06ed28",
+      "dataHash": "4818be78f8f6a1b46fadd8c4bf6abf0425c7254a2a06b9824e10cfa027f9b881",
+      "contentHash": "83eafbac137705d45cbaf2bf8c5cd8d74e1a312d04671a9bd99cef01ec1f8f7c",
+      "sourceCreatedAt": "2026-09-17T18:59:30Z",
+      "createdAt": "2026-09-17T23:19:16.460Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "14cb5634-c3c1-4186-b51b-0f1ad912a846",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-end Engineer. Net (USD)",
+          "pt-BR": "[Remoto] Back-end Engineer. Net (USD)",
+          "es": "[Remoto] Back-end Engineer. Net (USD)",
+          "it": "[Remoto] Back-end Engineer. Net (USD)",
+          "fr": "[Remoto] Back-end Engineer. Net (USD)",
+          "de": "[Remoto] Back-end Engineer. Net (USD)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_461c2de2accdad3cc973f73e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ced603df4dd5292b72e7f779",
+      "sourceId": "timqian/open-source-jobs#183",
+      "dataCommit": "de629f7dd046129b9e2198884efefc02cf06ed28",
+      "dataHash": "4818be78f8f6a1b46fadd8c4bf6abf0425c7254a2a06b9824e10cfa027f9b881",
+      "contentHash": "ac96c280d43b49166dcc301c07a3d589ba0bf2c5a7a833959850c00417a3b174",
+      "sourceCreatedAt": "2026-09-17T18:51:29Z",
+      "createdAt": "2026-09-17T23:19:16.460Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6a8b8f86-7ee3-4b54-a839-165297b5a5c3",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Open Source Contributor (GitHub)",
+          "pt-BR": "Open Source Contributor (GitHub)",
+          "es": "Open Source Contributor (GitHub)",
+          "it": "Open Source Contributor (GitHub)",
+          "fr": "Open Source Contributor (GitHub)",
+          "de": "Open Source Contributor (GitHub)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ced603df4dd5292b72e7f779"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    }
+  ]
 }
