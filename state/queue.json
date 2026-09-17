@@ -21755,19 +21755,21 @@
     {
       "jobId": "gh_2bf1364281c72d4aa07b6d73",
       "sourceId": "awesome-jobs/vietnam#5055",
-      "dataCommit": "aa52c6e0211eee30426ed4ab52f6e91b158a3fc7",
-      "dataHash": "036f6e1e7d260f583347d6be329a8e091401c2f8494b85dcc1d884b1725c4079",
-      "contentHash": "de41f9251a7fa64503947572cd92d1c4953a291cb2fd4868c21ccff695299c49",
+      "dataCommit": "1edc19ae29e34a83cc76b6bdbc78d195ee14c234",
+      "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37",
+      "contentHash": "5d82e1ac8f91f0f8053d16acbff2d96ee74025343c83006572e37c77224a7447",
       "discoveredAt": "2026-09-14T15:33:52.186Z",
       "createdAt": "2026-09-10T07:14:37Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-17T18:45:56.996Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Australian marketplace startup - Senior Software Engineer (React / Full-Stack) - Remote/Vietnam - FT"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -21824,7 +21826,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 48
     },
     {
       "jobId": "gh_62238666924b09431d34f20a",
