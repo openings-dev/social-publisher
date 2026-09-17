@@ -43,17 +43,18 @@ jobs:
     timeout-minutes: 15
     env:
       DATA_PATH: dependencies/data-pipeline
-      STATE_REF: main
+      PUSH_STATE_PATH: dependencies/push-state
+      PUSH_STATE_REF: push-state
       PUSH_AUDIENCE_VERSION: android-consent-v1
       ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
       ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
       ONESIGNAL_AUDIENCE_JSON: ${{ secrets.ONESIGNAL_AUDIENCE_JSON }}
       ONESIGNAL_FREE_ATTESTATION_JSON: ${{ secrets.ONESIGNAL_FREE_ATTESTATION_JSON }}
     steps:
-      - name: Check out push source and state
+      - name: Check out push source
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
         with:
-          ref: ${{ env.STATE_REF }}
+          ref: main
           fetch-depth: 0
 
       - name: Mask and validate runtime metadata
@@ -67,6 +68,13 @@ jobs:
 
       - name: Install exact dependencies
         run: npm ci
+
+      - name: Check out isolated push state
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+        with:
+          ref: ${{ env.PUSH_STATE_REF }}
+          path: ${{ env.PUSH_STATE_PATH }}
+          fetch-depth: 0
 
       - name: Check out immutable data history
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
@@ -86,20 +94,20 @@ jobs:
 
       - name: Configure serialized state writer
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git -C "$PUSH_STATE_PATH" config user.name "github-actions[bot]"
+          git -C "$PUSH_STATE_PATH" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
       - name: Activate at the current boundary
         if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'activate'
         env:
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
-        run: npm run push -- --mode activate --confirmation "$REQUEST_CONFIRMATION" --data "$DATA_PATH" --state state
+        run: npm run push -- --mode activate --confirmation "$REQUEST_CONFIRMATION" --data "$DATA_PATH" --state "$PUSH_STATE_PATH/state"
 
       - name: Disable fresh push submissions
         if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'disable'
         env:
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
-        run: npm run push -- --mode disable --confirmation "$REQUEST_CONFIRMATION" --data "$DATA_PATH" --state state
+        run: npm run push -- --mode disable --confirmation "$REQUEST_CONFIRMATION" --data "$DATA_PATH" --state "$PUSH_STATE_PATH/state"
 
       - name: Validate canary gate
         if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'canary'
@@ -112,18 +120,18 @@ jobs:
 
       - name: Intake push-only source events
         if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'canary'
-        run: npm run push -- --mode intake --data "$DATA_PATH" --state state
+        run: npm run push -- --mode intake --data "$DATA_PATH" --state "$PUSH_STATE_PATH/state"
 
       - name: Checkpoint push intake
         if: env.RUN_MODE != 'preflight'
         run: |
-          git add -- state/push.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'chore(state): checkpoint push intake [skip ci]'
+          git -C "$PUSH_STATE_PATH" add -- state/push.json
+          if git -C "$PUSH_STATE_PATH" diff --cached --quiet; then exit 0; fi
+          git -C "$PUSH_STATE_PATH" commit -m 'chore(state): checkpoint push intake [skip ci]'
           for attempt in 1 2 3 4 5; do
-            git fetch origin "${STATE_REF}"
-            git rebase "origin/${STATE_REF}"
-            if git push origin "HEAD:refs/heads/${STATE_REF}"; then exit 0; fi
+            git -C "$PUSH_STATE_PATH" fetch origin "${PUSH_STATE_REF}"
+            git -C "$PUSH_STATE_PATH" rebase "origin/${PUSH_STATE_REF}"
+            if git -C "$PUSH_STATE_PATH" push origin "HEAD:refs/heads/${PUSH_STATE_REF}"; then exit 0; fi
             sleep $((attempt * 2))
           done
           exit 1
@@ -132,19 +140,19 @@ jobs:
         id: prepare
         if: env.RUN_MODE == 'scheduled' || env.RUN_MODE == 'canary'
         run: |
-          npm run push -- --mode prepare --data "$DATA_PATH" --state state
-          job_id=$(node -e "const s=require('./state/push.json'); console.log(s.intents.find(i=>i.status==='submitting')?.jobId||'')")
+          npm run push -- --mode prepare --data "$DATA_PATH" --state "$PUSH_STATE_PATH/state"
+          job_id=$(node -e "const s=require('./$PUSH_STATE_PATH/state/push.json'); console.log(s.intents.find(i=>i.status==='submitting')?.jobId||'')")
           echo "job_id=$job_id" >> "$GITHUB_OUTPUT"
 
       - name: Checkpoint push intent before the provider request
         if: steps.prepare.outputs.job_id != ''
         run: |
-          git add -- state/push.json
-          git commit -m 'chore(state): record push intent [skip ci]'
+          git -C "$PUSH_STATE_PATH" add -- state/push.json
+          git -C "$PUSH_STATE_PATH" commit -m 'chore(state): record push intent [skip ci]'
           for attempt in 1 2 3 4 5; do
-            git fetch origin "${STATE_REF}"
-            git rebase "origin/${STATE_REF}"
-            if git push origin "HEAD:refs/heads/${STATE_REF}"; then exit 0; fi
+            git -C "$PUSH_STATE_PATH" fetch origin "${PUSH_STATE_REF}"
+            git -C "$PUSH_STATE_PATH" rebase "origin/${PUSH_STATE_REF}"
+            if git -C "$PUSH_STATE_PATH" push origin "HEAD:refs/heads/${PUSH_STATE_REF}"; then exit 0; fi
             sleep $((attempt * 2))
           done
           exit 1
@@ -153,18 +161,18 @@ jobs:
         if: steps.prepare.outputs.job_id != ''
         env:
           PUSH_TEST_SUBSCRIPTION_IDS: ${{ (github.event_name == 'workflow_dispatch' && inputs.mode == 'canary') && inputs.subscription_ids || '' }}
-        run: npm run push -- --mode deliver --data "$DATA_PATH" --state state
+        run: npm run push -- --mode deliver --data "$DATA_PATH" --state "$PUSH_STATE_PATH/state"
 
       - name: Checkpoint classified provider result
         if: always() && steps.prepare.outputs.job_id != ''
         run: |
-          git add -- state/push.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m 'chore(state): record push result [skip ci]'
+          git -C "$PUSH_STATE_PATH" add -- state/push.json
+          if git -C "$PUSH_STATE_PATH" diff --cached --quiet; then exit 0; fi
+          git -C "$PUSH_STATE_PATH" commit -m 'chore(state): record push result [skip ci]'
           for attempt in 1 2 3 4 5; do
-            git fetch origin "${STATE_REF}"
-            git rebase "origin/${STATE_REF}"
-            if git push origin "HEAD:refs/heads/${STATE_REF}"; then exit 0; fi
+            git -C "$PUSH_STATE_PATH" fetch origin "${PUSH_STATE_REF}"
+            git -C "$PUSH_STATE_PATH" rebase "origin/${PUSH_STATE_REF}"
+            if git -C "$PUSH_STATE_PATH" push origin "HEAD:refs/heads/${PUSH_STATE_REF}"; then exit 0; fi
             sleep $((attempt * 2))
           done
           exit 1
