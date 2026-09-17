@@ -21122,12 +21122,14 @@
       "createdAt": "2026-09-09T12:38:25Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-17T14:02:28.806Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Híbrido em SP] Fullstack developer Python/React & IA na Evertec 🧡"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -21184,7 +21186,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 46
     },
     {
       "jobId": "gh_5a1ff9c946d4a24594ec28b1",
