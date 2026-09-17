@@ -21122,12 +21122,23 @@
       "createdAt": "2026-09-09T12:38:25Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-17T14:02:28.806Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0e6bd5dbd7f6d69f3e81bc93",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_0e6bd5dbd7f6d69f3e81bc93/d5c0a66d498421de871771436d41f45114a64528c494b19ccd26c432624c494e/178bf94ba7363ead271da066a3470738c409b1506400ed21f36a17b5298d39cf/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_0e6bd5dbd7f6d69f3e81bc93/d5c0a66d498421de871771436d41f45114a64528c494b19ccd26c432624c494e/178bf94ba7363ead271da066a3470738c409b1506400ed21f36a17b5298d39cf/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_0e6bd5dbd7f6d69f3e81bc93/d5c0a66d498421de871771436d41f45114a64528c494b19ccd26c432624c494e/178bf94ba7363ead271da066a3470738c409b1506400ed21f36a17b5298d39cf/social-video.mp4",
+          "pngHash": "cad8d1087326120c09c3a7e9f78aab7bfb820ed08f689ce3d4770f49130ebd09",
+          "instagramJpegHash": "746b586ed15055d76f687c39ce32e6bf3b24673fe78623036087fa145844aa55",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Híbrido em SP] Fullstack developer Python/React & IA na Evertec 🧡"
         }
       },
