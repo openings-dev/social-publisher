@@ -7057,6 +7057,16 @@ validation('checkpoints the automated editorial workflow in dependency order', a
   assert.doesNotMatch(workflow, /^\s{2}(?:push|pull_request):/mu);
 });
 
+validation('keeps push runs from being replaced by the shared publication queue', async () => {
+  const workflow = await readFile(fileURLToPath(new URL('../../../.github/workflows/publish-push.yml', import.meta.url)), 'utf8');
+  assert.match(workflow, /group:\s*social-publisher-push-state/u);
+  assert.doesNotMatch(workflow, /group:\s*social-publisher-publication/u);
+  assert.match(workflow, /cancel-in-progress:\s*false/u);
+  assert.equal((workflow.match(/git fetch origin "\$\{STATE_REF\}"/gu) ?? []).length, 3);
+  assert.equal((workflow.match(/git rebase "origin\/\$\{STATE_REF\}"/gu) ?? []).length, 3);
+  assert.equal((workflow.match(/for attempt in 1 2 3 4 5/gu) ?? []).length, 3);
+});
+
 let passed = 0;
 
 for (const { name, run } of validations) {
