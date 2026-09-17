@@ -18919,12 +18919,23 @@
       "createdAt": "2026-09-05T12:04:29Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-17T08:17:40.642Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_e60ad3426cdccd2670251bf1",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_e60ad3426cdccd2670251bf1/03a366de0cc8fa82fd96cf230daf4dc401a0b22ab7a21dc5ce0583bd56e05a82/37d5c3b9886c9347b6ded30a83e4b47a9faf66ace6acb95acad17be73148e824/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_e60ad3426cdccd2670251bf1/03a366de0cc8fa82fd96cf230daf4dc401a0b22ab7a21dc5ce0583bd56e05a82/37d5c3b9886c9347b6ded30a83e4b47a9faf66ace6acb95acad17be73148e824/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_e60ad3426cdccd2670251bf1/03a366de0cc8fa82fd96cf230daf4dc401a0b22ab7a21dc5ce0583bd56e05a82/37d5c3b9886c9347b6ded30a83e4b47a9faf66ace6acb95acad17be73148e824/social-video.mp4",
+          "pngHash": "b366a3b75806edccbff27d2695528286f6c482c3f210ba5164593eb56c79700a",
+          "instagramJpegHash": "9e582bd2baf643549316689fa1293f2c36328fd79e2d550fda6a6189f4dc101f",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "<issue> Visa Sponsorship"
         }
       },
