@@ -12,7 +12,7 @@ on:
         required: true
         default: preflight
         type: choice
-        options: [preflight, activate, canary, disable]
+        options: [preflight, activate, canary, announce-version, disable]
       confirmation:
         description: Exact activation, canary, or disable confirmation phrase
         required: false
@@ -96,6 +96,12 @@ jobs:
         run: |
           git -C "$PUSH_STATE_PATH" config user.name "github-actions[bot]"
           git -C "$PUSH_STATE_PATH" config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Broadcast version announcement
+        if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'announce-version'
+        env:
+          REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
+        run: npm run push:announce-version -- --confirmation "$REQUEST_CONFIRMATION"
 
       - name: Activate at the current boundary
         if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'activate'
