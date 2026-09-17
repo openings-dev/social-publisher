@@ -1,0 +1,38 @@
+name: Configure OneSignal FCM v1
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirmation:
+        description: Enter CONFIGURE_OPENINGS_FCM_V1 exactly
+        required: true
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  configure:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the trusted bootstrap code
+        uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
+
+      - name: Use Node.js 20
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install exact dependencies
+        run: npm ci
+
+      - name: Configure and verify OneSignal FCM v1
+        env:
+          ONESIGNAL_ORGANIZATION_API_KEY: ${{ secrets.ONESIGNAL_ORGANIZATION_API_KEY }}
+          ONESIGNAL_FCM_SERVICE_ACCOUNT_JSON: ${{ secrets.ONESIGNAL_FCM_SERVICE_ACCOUNT_JSON }}
+          ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
+          REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
+        run: npm run push:configure-fcm
