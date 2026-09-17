@@ -20826,12 +20826,23 @@
       "createdAt": "2026-09-09T04:03:38Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-17T23:31:23.104Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4db408dda673329e8d662de7",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_4db408dda673329e8d662de7/25ad57a6da262bda6f7783795bf9a3696b14389c659ba690a1ce29ea45e3a20d/83c18176dbcc929bf0521aca5df4154ad4230ffe3a1b4d501faa05deb06d9593/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_4db408dda673329e8d662de7/25ad57a6da262bda6f7783795bf9a3696b14389c659ba690a1ce29ea45e3a20d/83c18176dbcc929bf0521aca5df4154ad4230ffe3a1b4d501faa05deb06d9593/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_4db408dda673329e8d662de7/25ad57a6da262bda6f7783795bf9a3696b14389c659ba690a1ce29ea45e3a20d/83c18176dbcc929bf0521aca5df4154ad4230ffe3a1b4d501faa05deb06d9593/social-video.mp4",
+          "pngHash": "a2f2f1a6cd02766f31219671906f8be4f1bb695629459270743195a2ca5eb585",
+          "instagramJpegHash": "81b53ffe8d4f477bdd412146a9de0532b40c28c575913c1032dc8e0afe18c47e",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[REMOTE | HCM OR ĐN] Middle Automation Tester | Eng Good"
         }
       },
