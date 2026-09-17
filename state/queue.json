@@ -21479,12 +21479,23 @@
       "createdAt": "2026-09-10T01:22:47Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-17T22:52:51.059Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4a9e1cd0be22fca7515d714c",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_4a9e1cd0be22fca7515d714c/78d2fc91907fd0fc0358acd2b4bec6c5a5849ed48436242a339b8668a76175b0/41acc5f0be11833c09d197a578958130543c6ebaa3ab6d6c769e45fcc14812a6/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_4a9e1cd0be22fca7515d714c/78d2fc91907fd0fc0358acd2b4bec6c5a5849ed48436242a339b8668a76175b0/41acc5f0be11833c09d197a578958130543c6ebaa3ab6d6c769e45fcc14812a6/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_4a9e1cd0be22fca7515d714c/78d2fc91907fd0fc0358acd2b4bec6c5a5849ed48436242a339b8668a76175b0/41acc5f0be11833c09d197a578958130543c6ebaa3ab6d6c769e45fcc14812a6/social-video.mp4",
+          "pngHash": "78b005e9636f99f556b6b3cbd7959ac82671b3a2714d3d0fdcea39853cc0bcfc",
+          "instagramJpegHash": "95b82690dbae1ecd31c0ed8d2df70b9dfb8f35598ff33bf004e4d8c81ec717cd",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "New Internship"
         }
       },
