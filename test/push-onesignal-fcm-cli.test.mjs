@@ -35,6 +35,24 @@ test('bootstraps FCM with mapped environment values and a safe summary', async (
   assert.equal(logs.join('\n').includes('credential'), false);
 });
 
+test('removes trailing line breaks copied with the organization API key', async () => {
+  const calls = [];
+
+  await runOneSignalFcmBootstrap({
+    env: {
+      ...env,
+      ONESIGNAL_ORGANIZATION_API_KEY: `${env.ONESIGNAL_ORGANIZATION_API_KEY}\r\n`,
+    },
+    log: () => {},
+    configure: async (input) => {
+      calls.push(input);
+      return { appId: env.ONESIGNAL_APP_ID, fcmV1Configured: true };
+    },
+  });
+
+  assert.equal(calls[0].organizationApiKey, env.ONESIGNAL_ORGANIZATION_API_KEY);
+});
+
 test('rejects a non-exact confirmation before calling the configurator', async () => {
   let calls = 0;
 
