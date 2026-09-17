@@ -26,7 +26,10 @@ permissions:
   contents: write
 
 concurrency:
-  group: social-publisher-publication
+  # Push delivery has its own serialized queue. Sharing the publication queue
+  # allowed a newer social/editorial run to replace a pending push run before
+  # GitHub had even created its job.
+  group: social-publisher-push-state
   cancel-in-progress: false
 
 defaults:
@@ -117,7 +120,13 @@ jobs:
           git add -- state/push.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'chore(state): checkpoint push intake [skip ci]'
-          git push origin "HEAD:refs/heads/${STATE_REF}"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${STATE_REF}"
+            git rebase "origin/${STATE_REF}"
+            if git push origin "HEAD:refs/heads/${STATE_REF}"; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
 
       - name: Prepare at most one immutable push intent
         id: prepare
@@ -132,7 +141,13 @@ jobs:
         run: |
           git add -- state/push.json
           git commit -m 'chore(state): record push intent [skip ci]'
-          git push origin "HEAD:refs/heads/${STATE_REF}"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${STATE_REF}"
+            git rebase "origin/${STATE_REF}"
+            if git push origin "HEAD:refs/heads/${STATE_REF}"; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
 
       - name: Send one push request
         if: steps.prepare.outputs.job_id != ''
@@ -146,4 +161,10 @@ jobs:
           git add -- state/push.json
           if git diff --cached --quiet; then exit 0; fi
           git commit -m 'chore(state): record push result [skip ci]'
-          git push origin "HEAD:refs/heads/${STATE_REF}"
+          for attempt in 1 2 3 4 5; do
+            git fetch origin "${STATE_REF}"
+            git rebase "origin/${STATE_REF}"
+            if git push origin "HEAD:refs/heads/${STATE_REF}"; then exit 0; fi
+            sleep $((attempt * 2))
+          done
+          exit 1
