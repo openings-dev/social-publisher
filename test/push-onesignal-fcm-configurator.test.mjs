@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { generateKeyPairSync } from 'node:crypto';
 import test from 'node:test';
 
 import {
@@ -7,11 +8,22 @@ import {
   validateFirebaseServiceAccount,
 } from '../src/modules/push/onesignal-fcm-configurator.mjs';
 
+const { privateKey: rsaPrivateKey } = generateKeyPairSync('rsa', {
+  modulusLength: 2048,
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+});
+const { privateKey: ecPrivateKey } = generateKeyPairSync('ec', {
+  namedCurve: 'prime256v1',
+  privateKeyEncoding: { type: 'pkcs8', format: 'pem' },
+  publicKeyEncoding: { type: 'spki', format: 'pem' },
+});
+
 const credential = {
   type: 'service_account',
   project_id: 'openingshq',
   private_key_id: 'key-id',
-  private_key: '-----BEGIN PRIVATE KEY-----\nsecret\n-----END PRIVATE KEY-----\n',
+  private_key: rsaPrivateKey,
   client_email: 'onesignal-fcm-sender@openingshq.iam.gserviceaccount.com',
   client_id: '1234567890',
   token_uri: 'https://oauth2.googleapis.com/token',
@@ -45,13 +57,22 @@ test('rejects Firebase service accounts with an unexpected identity', () => {
 });
 
 test('rejects Firebase service accounts with an invalid private key', () => {
-  for (const privateKey of [undefined, '', 'secret', '-----BEGIN PRIVATE KEY-----\nsecret\n']) {
+  for (const privateKey of [
+    undefined,
+    '',
+    'secret',
+    '-----BEGIN PRIVATE KEY-----\nsynthetic-body\n-----END PRIVATE KEY-----\n',
+    '-----BEGIN PRIVATE KEY-----\nsecret\n',
+    ecPrivateKey,
+  ]) {
     const candidate = { ...credential };
     if (privateKey === undefined) delete candidate.private_key;
     else candidate.private_key = privateKey;
     assert.throws(
       () => validateFirebaseServiceAccount(JSON.stringify(candidate)),
-      /Firebase service account private key is invalid/u,
+      (error) => error instanceof Error
+        && error.message === 'Firebase service account private key is invalid'
+        && (typeof privateKey !== 'string' || privateKey === '' || !error.message.includes(privateKey)),
     );
   }
 });
