@@ -53,12 +53,15 @@
           "jobId": "gh_1d85cf4f9ada763ee8acd566"
         }
       },
-      "status": "submitting",
+      "status": "failed",
       "attempts": 1,
       "firstSubmittedAt": "2026-09-17T23:20:27.885Z",
-      "updatedAt": "2026-09-17T23:20:27.885Z",
+      "updatedAt": "2026-09-17T23:20:30.000Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "code": "no_recipients",
+        "providerStatus": "no_recipients"
+      }
     },
     {
       "jobId": "gh_461c2de2accdad3cc973f73e",
