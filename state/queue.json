@@ -21222,13 +21222,16 @@
         }
       },
       "instagramStory": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
-        "updatedAt": "2026-09-17T14:04:07.356Z",
+        "updatedAt": "2026-09-17T14:04:11.112Z",
         "lastError": null,
         "lastReset": null,
         "result": {
-          "operationKey": "job-story-35230841866-1"
+          "operationKey": "job-story-35230841866-1",
+          "status": "published",
+          "id": "18101736572296127",
+          "url": "https://www.instagram.com/stories/openingshq/3988228048634035226"
         }
       },
       "visualDirection": "night",
@@ -21308,14 +21311,14 @@
             "consumers": [
               {
                 "channel": "instagramStory",
-                "state": "pending",
-                "remoteId": null,
-                "updatedAt": null
+                "state": "completed",
+                "remoteId": "18101736572296127",
+                "updatedAt": "2026-09-17T14:04:11.112Z"
               }
             ]
           }
         ],
-        "manifestDigest": "c0fa2abf5b981085334eb55c3ac03e67f1286cbd5e5439dbdd518fe79809ae6b"
+        "manifestDigest": "800b2774740bed8ff6fad2147230e9fcd14f11a572fa44a4a9518f4d3fb62a06"
       }
     },
     {
