@@ -21762,12 +21762,23 @@
       "createdAt": "2026-09-10T07:14:37Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-17T18:45:56.996Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2bf1364281c72d4aa07b6d73",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_2bf1364281c72d4aa07b6d73/5d82e1ac8f91f0f8053d16acbff2d96ee74025343c83006572e37c77224a7447/b4cbd9df1f003884246f7edd937ccda9c778927f29930db8cf00c7c1c384727b/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_2bf1364281c72d4aa07b6d73/5d82e1ac8f91f0f8053d16acbff2d96ee74025343c83006572e37c77224a7447/b4cbd9df1f003884246f7edd937ccda9c778927f29930db8cf00c7c1c384727b/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_2bf1364281c72d4aa07b6d73/5d82e1ac8f91f0f8053d16acbff2d96ee74025343c83006572e37c77224a7447/b4cbd9df1f003884246f7edd937ccda9c778927f29930db8cf00c7c1c384727b/social-video.mp4",
+          "pngHash": "e749b7b53a12a1708f9d9e3ad486254c6bb5a2f8941db6e37830e50f5ff4c265",
+          "instagramJpegHash": "21cf08f97c3d70ee950fdbba3a434eca83cf23f81ac4258719953b812f77c723",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Australian marketplace startup - Senior Software Engineer (React / Full-Stack) - Remote/Vietnam - FT"
         }
       },
