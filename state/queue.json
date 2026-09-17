@@ -21418,12 +21418,14 @@
       "createdAt": "2026-09-10T00:36:55Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-17T13:34:05.431Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Hardware Engineering Hyperlink Issue"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -21480,7 +21482,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 45
     },
     {
       "jobId": "gh_2bf1364281c72d4aa07b6d73",
