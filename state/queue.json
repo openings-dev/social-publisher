@@ -20051,12 +20051,23 @@
       "createdAt": "2026-09-08T11:29:19Z",
       "publicationCreatedAt": "2026-09-14T15:33:42.114Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-17T02:43:09.622Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ab7a8bff64dbf3837743eded",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ab7a8bff64dbf3837743eded/36a5cba8a86a315f1b04c7949869e49a7e5a5752d7ec26a1146f1644c078d474/52ca90ecf6103ecf1b4138d389cc8e91d8851fdd6b714c37475e8a3a4654a2dd/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ab7a8bff64dbf3837743eded/36a5cba8a86a315f1b04c7949869e49a7e5a5752d7ec26a1146f1644c078d474/52ca90ecf6103ecf1b4138d389cc8e91d8851fdd6b714c37475e8a3a4654a2dd/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ab7a8bff64dbf3837743eded/36a5cba8a86a315f1b04c7949869e49a7e5a5752d7ec26a1146f1644c078d474/52ca90ecf6103ecf1b4138d389cc8e91d8851fdd6b714c37475e8a3a4654a2dd/social-video.mp4",
+          "pngHash": "8ef5bb94521b62d1e0003484633b0ce78c9d7681fa4fc49ec6235c995190db06",
+          "instagramJpegHash": "dcdc06cb69f7066aea9d0e6e4cd82172f65ece7b1cad4eee5da41c4433355930",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Home Office - Tempo Determinado/5 meses] Desenvolvedor Backend (Java) - BHS"
         }
       },
