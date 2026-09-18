@@ -20739,12 +20739,14 @@
       "createdAt": "2026-09-08T11:03:20Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-18T16:30:24.929Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[67tr HN] Onsite Bank tìm SENIOR DATA SCIENTIST – AI/ML 8+ YOE | DỰ ÁN 12 THÁNG + renew (jobID: DT-380)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -20801,7 +20803,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 56
     },
     {
       "jobId": "gh_0a8b03c6a18ae229dcc0f780",
