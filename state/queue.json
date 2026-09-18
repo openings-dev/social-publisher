@@ -20530,12 +20530,14 @@
       "createdAt": "2026-09-08T11:25:03Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-18T04:50:56.332Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Híbrido - Belo Horizonte] Tech Lead Java - BHS"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -20592,7 +20594,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 52
     },
     {
       "jobId": "gh_5d48c0b9cb02a95410133ea8",
