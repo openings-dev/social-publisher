@@ -25850,12 +25850,14 @@
       "createdAt": "2026-09-15T14:15:00Z",
       "publicationCreatedAt": "2026-09-15T18:43:09.465Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-18T22:58:27.885Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Hiring] Senior Solidity Smart Contract Engineer | Remote | $15K–$18K/month"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -25912,7 +25914,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 60
     },
     {
       "jobId": "gh_1324744245d1055d265b0d16",
