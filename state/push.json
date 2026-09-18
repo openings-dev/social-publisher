@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "68bbca49bf620de1fba65288d8fa745fd8f926e3",
-    "generatedAt": "2026-09-18T20:32:09.870Z",
-    "dataHash": "ab45df03048ee8780c4b5e3a1e6779bc727ee6edf52be07c9ab9d1998e4bc766"
+    "commit": "8af9ecfe7a974a433a092b36743e24a4fb6e852b",
+    "generatedAt": "2026-09-18T22:57:14.122Z",
+    "dataHash": "338e96246807a49d50f37b5c05b381e018c9ee5dd5980560db3bfc71eed1e167"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -561,6 +561,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_2a2ff992a9206cb986867cd4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9a4c4483e3eb079a1e21301f",
+      "sourceId": "DevOps-Brasil/Vagas#504",
+      "dataCommit": "8af9ecfe7a974a433a092b36743e24a4fb6e852b",
+      "dataHash": "338e96246807a49d50f37b5c05b381e018c9ee5dd5980560db3bfc71eed1e167",
+      "contentHash": "6d2d7caca9696450665363a6df5bf0a3a983d31719f0202dc39faec185cb841c",
+      "sourceCreatedAt": "2026-09-18T20:34:30Z",
+      "createdAt": "2026-09-18T22:57:14.122Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0eeedc68-7270-4f9e-a02d-07a623e50116",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Senior Amazon Connect & Customer Experience Engineering Lead] YellowIpe - Remoto",
+          "pt-BR": "[Senior Amazon Connect & Customer Experience Engineering Lead] YellowIpe - Remoto",
+          "es": "[Senior Amazon Connect & Customer Experience Engineering Lead] YellowIpe - Remoto",
+          "it": "[Senior Amazon Connect & Customer Experience Engineering Lead] YellowIpe - Remoto",
+          "fr": "[Senior Amazon Connect & Customer Experience Engineering Lead] YellowIpe - Remoto",
+          "de": "[Senior Amazon Connect & Customer Experience Engineering Lead] YellowIpe - Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9a4c4483e3eb079a1e21301f"
         }
       },
       "status": "pending",
