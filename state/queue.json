@@ -22855,12 +22855,14 @@
       "createdAt": "2026-09-10T11:22:07Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-18T13:19:29.405Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remote & HK/SG] Quant/Web3公司诚聘 Rust量化交易系统工程师/Java/前端/Senior BD/Lead BD(韩国/越南-远程)/做市与对冲负责人/英语 & 欧洲区负责人/华语区市场经理/COO/财务BP/财务经理/HR负责人一号位 薪水 HKD/SGD/RMB/USD"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -22917,7 +22919,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 55
     },
     {
       "jobId": "gh_bf73df7999bf22857e69155f",
