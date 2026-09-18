@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "e33152b7e6bd53c9eb0264b2054533ce3e5f1958",
-    "generatedAt": "2026-09-18T02:29:14.490Z",
-    "dataHash": "94affb81a52fac0252797acb109280b25d55496571251060f94856a97a054108"
+    "commit": "4312c1443ba45246d9be2fc22f03757909008cd7",
+    "generatedAt": "2026-09-18T07:49:50.974Z",
+    "dataHash": "18f72b6646e509ed47bf6b148d11884aba6e9c7913111fe69aa21d701111c45d"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -148,6 +148,126 @@
         "notificationId": "17bdd6b7-9392-4555-aa94-56a783b8207d",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_7b13c76a05e5111545e66a80",
+      "sourceId": "awesome-jobs/jobs#5063",
+      "dataCommit": "4312c1443ba45246d9be2fc22f03757909008cd7",
+      "dataHash": "18f72b6646e509ed47bf6b148d11884aba6e9c7913111fe69aa21d701111c45d",
+      "contentHash": "ec89ce4c35560ab40cdbdbc64afb71cc8614f1b2125754049615e7ca29d4e69d",
+      "sourceCreatedAt": "2026-09-18T04:07:21Z",
+      "createdAt": "2026-09-18T07:49:50.974Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2f1d838a-6698-4701-84b9-038a91e5998f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Tìm người làm tool game nhanh chạy ẩn không ăn tài nguyên máy",
+          "pt-BR": "Tìm người làm tool game nhanh chạy ẩn không ăn tài nguyên máy",
+          "es": "Tìm người làm tool game nhanh chạy ẩn không ăn tài nguyên máy",
+          "it": "Tìm người làm tool game nhanh chạy ẩn không ăn tài nguyên máy",
+          "fr": "Tìm người làm tool game nhanh chạy ẩn không ăn tài nguyên máy",
+          "de": "Tìm người làm tool game nhanh chạy ẩn không ăn tài nguyên máy"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7b13c76a05e5111545e66a80"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b1af9148f987255fce3c6733",
+      "sourceId": "soujava/vagas-java#1916",
+      "dataCommit": "4312c1443ba45246d9be2fc22f03757909008cd7",
+      "dataHash": "18f72b6646e509ed47bf6b148d11884aba6e9c7913111fe69aa21d701111c45d",
+      "contentHash": "624d4c1cbc685a4bf9aab596ab0ca05a14c0d9075a6a4d9794cc9dabc76326f7",
+      "sourceCreatedAt": "2026-07-19T15:24:32Z",
+      "createdAt": "2026-09-18T07:49:50.974Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "508005ce-fd82-4de6-bbd7-4327e58da00d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Desenvolvedor(a) Java/Spring Boot Sênior na Sylision",
+          "pt-BR": "[Híbrido] Desenvolvedor(a) Java/Spring Boot Sênior na Sylision",
+          "es": "[Híbrido] Desenvolvedor(a) Java/Spring Boot Sênior na Sylision",
+          "it": "[Híbrido] Desenvolvedor(a) Java/Spring Boot Sênior na Sylision",
+          "fr": "[Híbrido] Desenvolvedor(a) Java/Spring Boot Sênior na Sylision",
+          "de": "[Híbrido] Desenvolvedor(a) Java/Spring Boot Sênior na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b1af9148f987255fce3c6733"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8352f51acf4192069856c66f",
+      "sourceId": "soujava/vagas-java#1915",
+      "dataCommit": "4312c1443ba45246d9be2fc22f03757909008cd7",
+      "dataHash": "18f72b6646e509ed47bf6b148d11884aba6e9c7913111fe69aa21d701111c45d",
+      "contentHash": "1487e6e1e0fc5c8b04c3c54bf9f040d24264ad32b3339846aaaa94195c8bad58",
+      "sourceCreatedAt": "2026-07-19T15:23:31Z",
+      "createdAt": "2026-09-18T07:49:50.974Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7f4a8bd1-0d07-42e8-af2b-baac7159c362",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Desenvolvedor(a) Java Sênior na Sylision",
+          "pt-BR": "[Híbrido] Desenvolvedor(a) Java Sênior na Sylision",
+          "es": "[Híbrido] Desenvolvedor(a) Java Sênior na Sylision",
+          "it": "[Híbrido] Desenvolvedor(a) Java Sênior na Sylision",
+          "fr": "[Híbrido] Desenvolvedor(a) Java Sênior na Sylision",
+          "de": "[Híbrido] Desenvolvedor(a) Java Sênior na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8352f51acf4192069856c66f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
