@@ -20530,12 +20530,23 @@
       "createdAt": "2026-09-08T11:25:03Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-18T04:50:56.332Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_56aa92352a1e25ea5efb71a5",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_56aa92352a1e25ea5efb71a5/6d29fd9b85513057716f4989d3338b55ad744fb9c8d78d4111845ebc13fc7cd1/f9625139d1f4af096d9438c0cf273317114f86191359f3ae20f7acd6c54c428c/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_56aa92352a1e25ea5efb71a5/6d29fd9b85513057716f4989d3338b55ad744fb9c8d78d4111845ebc13fc7cd1/f9625139d1f4af096d9438c0cf273317114f86191359f3ae20f7acd6c54c428c/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_56aa92352a1e25ea5efb71a5/6d29fd9b85513057716f4989d3338b55ad744fb9c8d78d4111845ebc13fc7cd1/f9625139d1f4af096d9438c0cf273317114f86191359f3ae20f7acd6c54c428c/social-video.mp4",
+          "pngHash": "fcc8078312ab37ae399a17934b7eb12dbbbbd0ef0e776cd530524fff52ae68b7",
+          "instagramJpegHash": "075615ecb5d1f0a63ffca68d32122016466e437befef9a6fcc15e4843391e8a5",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Híbrido - Belo Horizonte] Tech Lead Java - BHS"
         }
       },
