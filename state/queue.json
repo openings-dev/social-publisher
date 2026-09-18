@@ -21588,12 +21588,23 @@
       "createdAt": "2026-09-09T12:46:17Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-18T18:01:20.617Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_f379b4c76548e2cd330b8777",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_f379b4c76548e2cd330b8777/dd9e12e6802991d61388dfd3c306833d5e7696d08c62882f7513c51cd2b9072e/09f3387d8ac8ae0343192c721583e55fefabfa2cbccff7df3edf0f5a40b5b99f/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_f379b4c76548e2cd330b8777/dd9e12e6802991d61388dfd3c306833d5e7696d08c62882f7513c51cd2b9072e/09f3387d8ac8ae0343192c721583e55fefabfa2cbccff7df3edf0f5a40b5b99f/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_f379b4c76548e2cd330b8777/dd9e12e6802991d61388dfd3c306833d5e7696d08c62882f7513c51cd2b9072e/09f3387d8ac8ae0343192c721583e55fefabfa2cbccff7df3edf0f5a40b5b99f/social-video.mp4",
+          "pngHash": "1391c6d974eb700c213c73732b7d53d36434998f44b8f04960085784fa1c2e4a",
+          "instagramJpegHash": "b8a3a72e580bc568cbc3641e34fdd6ac35acbca55f8cdd6fb54f8b4ecc7f4604",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[Híbrido - SP] Back-end developer Cobol- Evertec"
         }
       },
