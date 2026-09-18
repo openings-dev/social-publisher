@@ -25850,12 +25850,23 @@
       "createdAt": "2026-09-15T14:15:00Z",
       "publicationCreatedAt": "2026-09-15T18:43:09.465Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-18T22:58:27.885Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4b03fd2e93475eafb803b38b",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_4b03fd2e93475eafb803b38b/630596e92d7f398e9b8403d5a2edbd975acc253dbb108dcaed0a59c48674d79b/6784f14483ffb1aa2b0d8b0e9ec72a6766876763b02f1f9fccfff81bb25cc7ab/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_4b03fd2e93475eafb803b38b/630596e92d7f398e9b8403d5a2edbd975acc253dbb108dcaed0a59c48674d79b/6784f14483ffb1aa2b0d8b0e9ec72a6766876763b02f1f9fccfff81bb25cc7ab/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_4b03fd2e93475eafb803b38b/630596e92d7f398e9b8403d5a2edbd975acc253dbb108dcaed0a59c48674d79b/6784f14483ffb1aa2b0d8b0e9ec72a6766876763b02f1f9fccfff81bb25cc7ab/social-video.mp4",
+          "pngHash": "bcdd5786d92963b9f10521856fb986412fcbba7ea1f2704b6820ed04194aea2a",
+          "instagramJpegHash": "e6e69f45879432156c4ef8ce296cd25d6d46c7ef0859c2e58808d126f4471155",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Hiring] Senior Solidity Smart Contract Engineer | Remote | $15K–$18K/month"
         }
       },
