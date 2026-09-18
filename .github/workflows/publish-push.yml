@@ -12,13 +12,17 @@ on:
         required: true
         default: preflight
         type: choice
-        options: [preflight, activate, canary, announce-version, disable]
+        options: [preflight, activate, canary, announce-version, audit, disable]
       confirmation:
         description: Exact activation, canary, or disable confirmation phrase
         required: false
         type: string
       subscription_ids:
         description: Comma-separated owner-controlled Android subscription IDs for canary
+        required: false
+        type: string
+      reference_message_id:
+        description: Existing OneSignal message ID for a metadata-only audit
         required: false
         type: string
 
@@ -102,6 +106,12 @@ jobs:
         env:
           REQUEST_CONFIRMATION: ${{ inputs.confirmation }}
         run: npm run push:announce-version -- --confirmation "$REQUEST_CONFIRMATION"
+
+      - name: Audit OneSignal targeting metadata
+        if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'audit'
+        env:
+          REFERENCE_MESSAGE_ID: ${{ inputs.reference_message_id }}
+        run: npm run push:audit
 
       - name: Activate at the current boundary
         if: github.event_name == 'workflow_dispatch' && env.RUN_MODE == 'activate'

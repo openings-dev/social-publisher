@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 
 const SOCIAL_MODES = new Set(['scheduled', 'dry-run', 'controlled', 'migrate-meta', 'retry-stage']);
 const EDITORIAL_MANUAL_MODES = new Set(['dry-run', 'controlled']);
-const PUSH_MANUAL_MODES = new Set(['preflight', 'activate', 'disable', 'canary', 'announce-version']);
+const PUSH_MANUAL_MODES = new Set(['preflight', 'activate', 'disable', 'canary', 'announce-version', 'audit']);
 
 function invalidMetadata() {
   return new Error('invalid workflow runtime metadata');
