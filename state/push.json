@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "4312c1443ba45246d9be2fc22f03757909008cd7",
-    "generatedAt": "2026-09-18T07:49:50.974Z",
-    "dataHash": "18f72b6646e509ed47bf6b148d11884aba6e9c7913111fe69aa21d701111c45d"
+    "commit": "1c10774a72dd84bf73fd193159a98a8b4f544aeb",
+    "generatedAt": "2026-09-18T13:18:14.361Z",
+    "dataHash": "d3d3334f7cf6aa07df0a1ac347d786e1643358772e04a53c42ffba1760ee6a85"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -266,6 +266,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_8352f51acf4192069856c66f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c359c99a610714135ba5548e",
+      "sourceId": "rebase-network/who-is-hiring#1296",
+      "dataCommit": "1c10774a72dd84bf73fd193159a98a8b4f544aeb",
+      "dataHash": "d3d3334f7cf6aa07df0a1ac347d786e1643358772e04a53c42ffba1760ee6a85",
+      "contentHash": "4ab743b633d7921159a5cdad24a97a1c1a4a35335c3320d7f72279db77f647eb",
+      "sourceCreatedAt": "2026-09-18T13:14:36Z",
+      "createdAt": "2026-09-18T13:18:14.361Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "db8d1341-9cb3-4b34-8e7f-640fca922b80",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【远程】高级区块链 / 智能合约工程师｜Solidity / EVM / DeFi",
+          "pt-BR": "【远程】高级区块链 / 智能合约工程师｜Solidity / EVM / DeFi",
+          "es": "【远程】高级区块链 / 智能合约工程师｜Solidity / EVM / DeFi",
+          "it": "【远程】高级区块链 / 智能合约工程师｜Solidity / EVM / DeFi",
+          "fr": "【远程】高级区块链 / 智能合约工程师｜Solidity / EVM / DeFi",
+          "de": "【远程】高级区块链 / 智能合约工程师｜Solidity / EVM / DeFi"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c359c99a610714135ba5548e"
         }
       },
       "status": "pending",
