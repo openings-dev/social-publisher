@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "1c10774a72dd84bf73fd193159a98a8b4f544aeb",
-    "generatedAt": "2026-09-18T13:18:14.361Z",
-    "dataHash": "d3d3334f7cf6aa07df0a1ac347d786e1643358772e04a53c42ffba1760ee6a85"
+    "commit": "36c0b6e936a30a3b18d448ee4716dadcd768d02f",
+    "generatedAt": "2026-09-18T18:00:03.377Z",
+    "dataHash": "20034753115ba9422d15960b34b86ece34abde686eb6c115aa1e64598ed72b56"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -320,6 +320,206 @@
         "notificationId": "3031f05c-b4ca-4f63-a76b-04f389b5cb5b",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_8ac0a429ebaa2ee0a15c7681",
+      "sourceId": "DevOps-Brasil/Vagas#502",
+      "dataCommit": "36c0b6e936a30a3b18d448ee4716dadcd768d02f",
+      "dataHash": "20034753115ba9422d15960b34b86ece34abde686eb6c115aa1e64598ed72b56",
+      "contentHash": "bc94c364900a926d855ff94485e3cde2a87df2898e9b383c62736702e22795e4",
+      "sourceCreatedAt": "2026-09-18T14:51:33Z",
+      "createdAt": "2026-09-18T18:00:03.377Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "321134fa-e9f1-43d9-9f66-d170940f6054",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[DevOps / Cloud Infrastructure Engineer] VTurb - Florianópolis",
+          "pt-BR": "[DevOps / Cloud Infrastructure Engineer] VTurb - Florianópolis",
+          "es": "[DevOps / Cloud Infrastructure Engineer] VTurb - Florianópolis",
+          "it": "[DevOps / Cloud Infrastructure Engineer] VTurb - Florianópolis",
+          "fr": "[DevOps / Cloud Infrastructure Engineer] VTurb - Florianópolis",
+          "de": "[DevOps / Cloud Infrastructure Engineer] VTurb - Florianópolis"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8ac0a429ebaa2ee0a15c7681"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7c7e95c00a6ef2ab493c2e3a",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2976",
+      "dataCommit": "36c0b6e936a30a3b18d448ee4716dadcd768d02f",
+      "dataHash": "20034753115ba9422d15960b34b86ece34abde686eb6c115aa1e64598ed72b56",
+      "contentHash": "f59378ebe1ca6d52c31345074b5f469c567289f8f5a4b01fd86f8593c6a3650d",
+      "sourceCreatedAt": "2026-09-18T13:34:28Z",
+      "createdAt": "2026-09-18T18:00:03.377Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b188fa2d-f619-4dd3-9d47-5cd5f532c8e8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Capital One TDP",
+          "pt-BR": "Capital One TDP",
+          "es": "Capital One TDP",
+          "it": "Capital One TDP",
+          "fr": "Capital One TDP",
+          "de": "Capital One TDP"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7c7e95c00a6ef2ab493c2e3a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_67bda561fc04c76026a0eb66",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2975",
+      "dataCommit": "36c0b6e936a30a3b18d448ee4716dadcd768d02f",
+      "dataHash": "20034753115ba9422d15960b34b86ece34abde686eb6c115aa1e64598ed72b56",
+      "contentHash": "ed80fa3e508e1fb561d812a22dc55e55019614bdc2ba98a45a21451c85f6fe13",
+      "sourceCreatedAt": "2026-09-18T13:31:30Z",
+      "createdAt": "2026-09-18T18:00:03.377Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e56b867d-43cc-4127-8ed8-cb09d0be5b86",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Bloomberg New Grad SWE",
+          "pt-BR": "Bloomberg New Grad SWE",
+          "es": "Bloomberg New Grad SWE",
+          "it": "Bloomberg New Grad SWE",
+          "fr": "Bloomberg New Grad SWE",
+          "de": "Bloomberg New Grad SWE"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_67bda561fc04c76026a0eb66"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_68b7d211aa62ada19f8ff124",
+      "sourceId": "awesome-jobs/jobs#5064",
+      "dataCommit": "36c0b6e936a30a3b18d448ee4716dadcd768d02f",
+      "dataHash": "20034753115ba9422d15960b34b86ece34abde686eb6c115aa1e64598ed72b56",
+      "contentHash": "9c37cdea89fbb7219320cd4429eb469b9c57bd9d1337e1d635da8e4243599237",
+      "sourceCreatedAt": "2026-09-18T13:30:39Z",
+      "createdAt": "2026-09-18T18:00:03.377Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "599e9ca1-160a-4572-bc8d-a1f863d93a7a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HYBRID-HN] Senior Fullstack Developer (Python)",
+          "pt-BR": "[HYBRID-HN] Senior Fullstack Developer (Python)",
+          "es": "[HYBRID-HN] Senior Fullstack Developer (Python)",
+          "it": "[HYBRID-HN] Senior Fullstack Developer (Python)",
+          "fr": "[HYBRID-HN] Senior Fullstack Developer (Python)",
+          "de": "[HYBRID-HN] Senior Fullstack Developer (Python)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_68b7d211aa62ada19f8ff124"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_71e10b291f6b95046c3c84fa",
+      "sourceId": "speedyapply/2026-SWE-College-Jobs#45",
+      "dataCommit": "36c0b6e936a30a3b18d448ee4716dadcd768d02f",
+      "dataHash": "20034753115ba9422d15960b34b86ece34abde686eb6c115aa1e64598ed72b56",
+      "contentHash": "bc36a3975f42b4e14a293be0d57447a9689ed8a922ee416c977130ea7d3e1d30",
+      "sourceCreatedAt": "2026-07-15T13:51:45Z",
+      "createdAt": "2026-09-18T18:00:03.377Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "aca60ae1-d930-4941-a54b-9d8a82f19a31",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Position",
+          "pt-BR": "New Position",
+          "es": "New Position",
+          "it": "New Position",
+          "fr": "New Position",
+          "de": "New Position"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_71e10b291f6b95046c3c84fa"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
