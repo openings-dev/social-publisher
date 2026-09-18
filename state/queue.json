@@ -21736,12 +21736,23 @@
       "createdAt": "2026-09-09T15:04:41Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-18T11:24:12.784Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_5a1ff9c946d4a24594ec28b1",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_5a1ff9c946d4a24594ec28b1/6dd94acb488552eb6e94abec3b2d7bd3a8fb77160bca95ea29fcd0aec90c0372/a0ffc7041642fe44ad618b67a0f9af026e636a78fe5cb08af9000704b592928d/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_5a1ff9c946d4a24594ec28b1/6dd94acb488552eb6e94abec3b2d7bd3a8fb77160bca95ea29fcd0aec90c0372/a0ffc7041642fe44ad618b67a0f9af026e636a78fe5cb08af9000704b592928d/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_5a1ff9c946d4a24594ec28b1/6dd94acb488552eb6e94abec3b2d7bd3a8fb77160bca95ea29fcd0aec90c0372/a0ffc7041642fe44ad618b67a0f9af026e636a78fe5cb08af9000704b592928d/social-video.mp4",
+          "pngHash": "9b18265a4a6204c25318b7116a6e3870984f5d5dc7a13b737aa11f11c4bac158",
+          "instagramJpegHash": "1cf5bc9d3413329219c7f09550912efa8d9f61e141cbff8d26f60e143578c9e1",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[HÍBRIDO - São Paulo | SP] Pessoa Desenvolvedora Sênior | BAU e Modernização | Mercado de Capitais na [Evertec]"
         }
       },
