@@ -25567,12 +25567,23 @@
       "createdAt": "2026-09-15T17:42:40Z",
       "publicationCreatedAt": "2026-09-15T18:43:09.465Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-18T20:33:52.431Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0863d8a0fef2db4fad3eeac3",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_0863d8a0fef2db4fad3eeac3/9e5c9c147abab8ac3a62cd579d5a1e774a088a018e6c7f7a3812d1759cba38e1/b5b30eb32c11ec333b873b48cd4e96006bf6cc9a4e5b194ea661dae2305c3a3e/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_0863d8a0fef2db4fad3eeac3/9e5c9c147abab8ac3a62cd579d5a1e774a088a018e6c7f7a3812d1759cba38e1/b5b30eb32c11ec333b873b48cd4e96006bf6cc9a4e5b194ea661dae2305c3a3e/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_0863d8a0fef2db4fad3eeac3/9e5c9c147abab8ac3a62cd579d5a1e774a088a018e6c7f7a3812d1759cba38e1/b5b30eb32c11ec333b873b48cd4e96006bf6cc9a4e5b194ea661dae2305c3a3e/social-video.mp4",
+          "pngHash": "14f704851c3c627093edb774cd800f8efe77b66df0bca3cbc63b5f6bcc7ce0fe",
+          "instagramJpegHash": "3655c76b454c8efae7b8985d0caf4b3df791e38025a32e1f53a547783ded89fd",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Desenvolvedor(a) Full Stack Pleno (Python / TypeScript / IA) na Ártemis"
         }
       },
