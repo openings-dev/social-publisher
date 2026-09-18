@@ -21736,12 +21736,14 @@
       "createdAt": "2026-09-09T15:04:41Z",
       "publicationCreatedAt": "2026-09-14T15:33:52.186Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-18T11:24:12.784Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HÍBRIDO - São Paulo | SP] Pessoa Desenvolvedora Sênior | BAU e Modernização | Mercado de Capitais na [Evertec]"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -21798,7 +21800,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 54
     },
     {
       "jobId": "gh_50efd974bb132352b1188a9f",
