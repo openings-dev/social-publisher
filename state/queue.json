@@ -20600,14 +20600,17 @@
         }
       },
       "instagram": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-18T04:50:56.332Z",
         "lastError": null,
         "lastReset": null,
         "result": {
           "publicationKind": "image",
-          "canonicalUrl": "https://openings.dev/jobs/gh_56aa92352a1e25ea5efb71a5"
+          "canonicalUrl": "https://openings.dev/jobs/gh_56aa92352a1e25ea5efb71a5",
+          "status": "published",
+          "id": "17866302411660633",
+          "url": "https://www.instagram.com/p/DdanosSDv_O/"
         }
       },
       "linkedin": {
@@ -20681,9 +20684,9 @@
             "consumers": [
               {
                 "channel": "instagram",
-                "state": "pending",
-                "remoteId": null,
-                "updatedAt": null
+                "state": "completed",
+                "remoteId": "17866302411660633",
+                "updatedAt": "2026-09-18T04:50:56.332Z"
               }
             ]
           },
@@ -20710,7 +20713,7 @@
             ]
           }
         ],
-        "manifestDigest": "79a250c0d7b2991702683e98197d8d25ca61b85512787eb8756669348347d621"
+        "manifestDigest": "984ed154a3b556da1e12c846be3e12513313ce7a47e76c1f97947653ed9bc6f5"
       }
     },
     {
