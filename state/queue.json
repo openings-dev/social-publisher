@@ -25871,12 +25871,17 @@
         }
       },
       "bluesky": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-18T22:58:27.885Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mvlbr4ekgw2l",
+          "cid": "bafyreihr6wlg3m4z4kkpwarpg3vxihb5ltmgl6omeae7vto55n5ctmemvi",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mvlbr4ekgw2l"
+        }
       },
       "mastodon": {
         "status": "skipped_disabled",
