@@ -25950,10 +25950,13 @@
         }
       },
       "instagramStory": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
-        "updatedAt": "2026-09-18T23:00:02.545Z",
-        "lastError": null,
+        "updatedAt": "2026-09-18T23:00:04.504Z",
+        "lastError": {
+          "code": "instagram_container",
+          "at": "2026-09-18T23:00:04.504Z"
+        },
         "lastReset": null,
         "result": {
           "operationKey": "job-story-35403756593-1"
