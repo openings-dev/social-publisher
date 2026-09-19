@@ -27037,12 +27037,23 @@
       "createdAt": "2026-09-15T19:38:34Z",
       "publicationCreatedAt": "2026-09-15T23:26:18.676Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-19T07:44:05.256Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_65a9e4d11df0890cd1413d3d",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_65a9e4d11df0890cd1413d3d/2c30db596e1081e3e8296122f4d66fe98838f22000d7aec6daaa0d5f305fcb9b/b8747a82ca5de2fd905c616a0daa578ef1fa050a9a271e18991e2fc6b98d2fa6/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_65a9e4d11df0890cd1413d3d/2c30db596e1081e3e8296122f4d66fe98838f22000d7aec6daaa0d5f305fcb9b/b8747a82ca5de2fd905c616a0daa578ef1fa050a9a271e18991e2fc6b98d2fa6/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_65a9e4d11df0890cd1413d3d/2c30db596e1081e3e8296122f4d66fe98838f22000d7aec6daaa0d5f305fcb9b/b8747a82ca5de2fd905c616a0daa578ef1fa050a9a271e18991e2fc6b98d2fa6/social-video.mp4",
+          "pngHash": "cb367f693308e84fad0c74ec795ae7faef310435022d4ffcd7e66e335e951f5e",
+          "instagramJpegHash": "59f8e35bdc6e439202698fb4816b3de097597f1619ad0a23a44267b7c2d7b55c",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Híbrido - SP] Back-end developer Cobol Pix Orquestrador - Evertec"
         }
       },
