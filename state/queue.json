@@ -28574,12 +28574,23 @@
       "createdAt": "2026-09-17T20:08:33Z",
       "publicationCreatedAt": "2026-09-17T23:33:25.446Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-19T22:38:40.891Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_1d85cf4f9ada763ee8acd566",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_1d85cf4f9ada763ee8acd566/1fae3a83854e02d0781bc979d7fb00432adcd0a6a277248d5c94102767a482f5/235bb3af59b0075e6f7fbf129f0d285c21b5b981f30ebacd0ff6f964cf251af0/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_1d85cf4f9ada763ee8acd566/1fae3a83854e02d0781bc979d7fb00432adcd0a6a277248d5c94102767a482f5/235bb3af59b0075e6f7fbf129f0d285c21b5b981f30ebacd0ff6f964cf251af0/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_1d85cf4f9ada763ee8acd566/1fae3a83854e02d0781bc979d7fb00432adcd0a6a277248d5c94102767a482f5/235bb3af59b0075e6f7fbf129f0d285c21b5b981f30ebacd0ff6f964cf251af0/social-video.mp4",
+          "pngHash": "ffa874d66f3db73d1c76a4048ae1ee8ac497e2f9b4da7df62f9d4ca6fd37576a",
+          "instagramJpegHash": "17c6e73a391e09517a7776838eccc37a4ba7acbf3e3886db2591084707cdd699",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "<issue>Editing Internship backlog"
         }
       },
