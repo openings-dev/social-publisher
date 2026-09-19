@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "2f547a0e9e457ddec2f04163e624875fedbd431a",
-    "generatedAt": "2026-09-19T07:42:40.439Z",
-    "dataHash": "42bfa5637fe5bc2d7c332fd583b2d0a2895f31bdade41287575defec3d6d63f4"
+    "commit": "c2e3820d1afaa7063dd979304db6bf2b1fd6dd23",
+    "generatedAt": "2026-09-19T12:48:50.916Z",
+    "dataHash": "697a8f3c7bc39d4e1a1af30848955df398439827b668cc6bd20f295e18bbe437"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -899,6 +899,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_5fe95c7d04c61e283bf6407f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ec07fc26b3d3475cc24bbd29",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9697",
+      "dataCommit": "c2e3820d1afaa7063dd979304db6bf2b1fd6dd23",
+      "dataHash": "697a8f3c7bc39d4e1a1af30848955df398439827b668cc6bd20f295e18bbe437",
+      "contentHash": "3e9c6fc9fb9369d32b4a427ac68f47958e0c959d78cdd0e373ac381f67d38e86",
+      "sourceCreatedAt": "2026-09-19T10:15:37Z",
+      "createdAt": "2026-09-19T12:48:50.916Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "330ca616-c7a2-40d9-87fa-d0ccd0a338e8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Edit Internship: Nike AI, Data & ML Engineering Undergraduate Internship (term fix)",
+          "pt-BR": "Edit Internship: Nike AI, Data & ML Engineering Undergraduate Internship (term fix)",
+          "es": "Edit Internship: Nike AI, Data & ML Engineering Undergraduate Internship (term fix)",
+          "it": "Edit Internship: Nike AI, Data & ML Engineering Undergraduate Internship (term fix)",
+          "fr": "Edit Internship: Nike AI, Data & ML Engineering Undergraduate Internship (term fix)",
+          "de": "Edit Internship: Nike AI, Data & ML Engineering Undergraduate Internship (term fix)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ec07fc26b3d3475cc24bbd29"
         }
       },
       "status": "pending",
