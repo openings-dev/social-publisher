@@ -26461,12 +26461,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-19T12:50:28.306Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18132708931677599",
+          "url": "https://www.threads.com/@openingshq/post/DdeDR_alAe4"
+        }
       },
       "instagram": {
         "status": "pending",
