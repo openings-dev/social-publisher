@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "c2e3820d1afaa7063dd979304db6bf2b1fd6dd23",
-    "generatedAt": "2026-09-19T12:48:50.916Z",
-    "dataHash": "697a8f3c7bc39d4e1a1af30848955df398439827b668cc6bd20f295e18bbe437"
+    "commit": "499d03359ff287af51ecf54a017aee901d04b9cd",
+    "generatedAt": "2026-09-19T17:38:56.629Z",
+    "dataHash": "9152c2798dcaad14243ef97f8f383dac356aff17469f9cffd39307f25a761956"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -945,6 +945,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_ec07fc26b3d3475cc24bbd29"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_13d45f8cd2e50adab5e7c669",
+      "sourceId": "androiddevbr/vagas#2247",
+      "dataCommit": "499d03359ff287af51ecf54a017aee901d04b9cd",
+      "dataHash": "9152c2798dcaad14243ef97f8f383dac356aff17469f9cffd39307f25a761956",
+      "contentHash": "69122b11c71e529c18aa8fffa4adaf8a95ea562a5943048d64f559c303624386",
+      "sourceCreatedAt": "2026-09-19T13:38:05Z",
+      "createdAt": "2026-09-19T17:38:56.629Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2236b9a4-d428-4353-a49b-1a519055b543",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Mobile Engineer (USD Strider)",
+          "pt-BR": "[Remoto] Mobile Engineer (USD Strider)",
+          "es": "[Remoto] Mobile Engineer (USD Strider)",
+          "it": "[Remoto] Mobile Engineer (USD Strider)",
+          "fr": "[Remoto] Mobile Engineer (USD Strider)",
+          "de": "[Remoto] Mobile Engineer (USD Strider)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_13d45f8cd2e50adab5e7c669"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_809903c2b3eb0261b69cdd76",
+      "sourceId": "backend-br/vagas#12394",
+      "dataCommit": "499d03359ff287af51ecf54a017aee901d04b9cd",
+      "dataHash": "9152c2798dcaad14243ef97f8f383dac356aff17469f9cffd39307f25a761956",
+      "contentHash": "d8f02161aa783280f6f922fa0575d069d24426f4c7543a6b967c6e7f109e0353",
+      "sourceCreatedAt": "2026-08-25T18:01:28Z",
+      "createdAt": "2026-09-19T17:38:56.629Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b64c874e-5d88-487d-8d61-0ff1c8d34bc0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-end Developer Python - Shipwell",
+          "pt-BR": "[Remoto] Back-end Developer Python - Shipwell",
+          "es": "[Remoto] Back-end Developer Python - Shipwell",
+          "it": "[Remoto] Back-end Developer Python - Shipwell",
+          "fr": "[Remoto] Back-end Developer Python - Shipwell",
+          "de": "[Remoto] Back-end Developer Python - Shipwell"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_809903c2b3eb0261b69cdd76"
         }
       },
       "status": "pending",
