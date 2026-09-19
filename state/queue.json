@@ -28574,12 +28574,14 @@
       "createdAt": "2026-09-17T20:08:33Z",
       "publicationCreatedAt": "2026-09-17T23:33:25.446Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-19T22:38:40.891Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "<issue>Editing Internship backlog"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -28636,7 +28638,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 71
     },
     {
       "jobId": "gh_461c2de2accdad3cc973f73e",
