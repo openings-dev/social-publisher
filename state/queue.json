@@ -27669,12 +27669,14 @@
       "createdAt": "2026-09-16T06:21:40Z",
       "publicationCreatedAt": "2026-09-16T08:13:29.223Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-19T17:40:39.137Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[REMOTE 60tr] Tìm DevOps 4+ yoe | Cty Canada | làm giờ VN | Contract 3-6th | ENG tự tin"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -27731,7 +27733,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 68
     },
     {
       "jobId": "gh_2751d49c00c94a1ac2907862",
