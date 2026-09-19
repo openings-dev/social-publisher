@@ -26403,12 +26403,23 @@
       "createdAt": "2026-09-15T20:26:03Z",
       "publicationCreatedAt": "2026-09-15T23:26:18.676Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-19T12:50:28.306Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_d0fd86a6c4d5a2aa3116c45c",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_d0fd86a6c4d5a2aa3116c45c/0bfa4fd49d249747351a241dc7ab54141bfb7343407c6eae9d22ea8227e633fd/063eb42873a0a1b996f8804889480cf6a8cfe11f9f6e78b3ae2fb83daf659fb6/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_d0fd86a6c4d5a2aa3116c45c/0bfa4fd49d249747351a241dc7ab54141bfb7343407c6eae9d22ea8227e633fd/063eb42873a0a1b996f8804889480cf6a8cfe11f9f6e78b3ae2fb83daf659fb6/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_d0fd86a6c4d5a2aa3116c45c/0bfa4fd49d249747351a241dc7ab54141bfb7343407c6eae9d22ea8227e633fd/063eb42873a0a1b996f8804889480cf6a8cfe11f9f6e78b3ae2fb83daf659fb6/social-video.mp4",
+          "pngHash": "b8121b69de4ceac6ac379048781025c52a0a931748f526e555b6dc0b65557b66",
+          "instagramJpegHash": "e84eff33a28faaecf9a34a9c19d8b4d9f169dc525984aa3b446a57101b573e26",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Híbrido -SP] Back-end developer Cobol Boleto e Cobrança - Evertec"
         }
       },
