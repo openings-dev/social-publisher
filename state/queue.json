@@ -28156,12 +28156,14 @@
       "createdAt": "2026-09-17T07:07:10Z",
       "publicationCreatedAt": "2026-09-17T08:20:32.819Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-19T19:52:10.646Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remote 80tr] Senior Solution Architect (C/Linux→AlmaLinux 9, AWS) | 12+ yoe | pv online | jobID: IT-587"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -28218,7 +28220,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 69
     },
     {
       "jobId": "gh_678515f60f1f6b5d76cd09c9",
