@@ -25776,12 +25776,23 @@
       "createdAt": "2026-09-15T14:16:14Z",
       "publicationCreatedAt": "2026-09-15T18:43:09.465Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-19T00:24:42.732Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_884706455e328be2f8acfe12",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_884706455e328be2f8acfe12/c712b3fe1e8d2297ff744555557988b4e637b03e655d4f5ddba7f1893a120d62/f368e7ae87e0cd8be155a126637a2e750bcbcf1ba00c375730ef5b744fc696fa/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_884706455e328be2f8acfe12/c712b3fe1e8d2297ff744555557988b4e637b03e655d4f5ddba7f1893a120d62/f368e7ae87e0cd8be155a126637a2e750bcbcf1ba00c375730ef5b744fc696fa/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_884706455e328be2f8acfe12/c712b3fe1e8d2297ff744555557988b4e637b03e655d4f5ddba7f1893a120d62/f368e7ae87e0cd8be155a126637a2e750bcbcf1ba00c375730ef5b744fc696fa/social-video.mp4",
+          "pngHash": "b59b988736a6224bf2d8ab2f7937299d957b889cd7b156665796d407e831bc52",
+          "instagramJpegHash": "96bcbe9287f02ee650c7aee0e72ca2f75f1358df7f879d87ee917937113b69fd",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[招聘] Senior Solidity Smart Contract Engineer|Remote|$15,000–$18,000/月"
         }
       },
