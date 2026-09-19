@@ -26968,12 +26968,14 @@
       "createdAt": "2026-09-15T19:45:38Z",
       "publicationCreatedAt": "2026-09-15T23:26:18.676Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-19T12:33:17.456Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Híbrido-SP] Back-end developer Cobol Sênior - Evertec"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -27030,7 +27032,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 65
     },
     {
       "jobId": "gh_65a9e4d11df0890cd1413d3d",
