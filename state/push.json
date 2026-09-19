@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "835924f06f927fa99fc20a62f131fa0e9dce82eb",
-    "generatedAt": "2026-09-19T02:28:53.651Z",
-    "dataHash": "2df452b54060db0667b173eb9c6bee2693824eff004b1627463b445a1f9bffdb"
+    "commit": "2f547a0e9e457ddec2f04163e624875fedbd431a",
+    "generatedAt": "2026-09-19T07:42:40.439Z",
+    "dataHash": "42bfa5637fe5bc2d7c332fd583b2d0a2895f31bdade41287575defec3d6d63f4"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -621,6 +621,286 @@
         "notificationId": "b68289b2-ba08-42c9-b30e-ec4ceed8114c",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_a51e625559bcdf5e11bdf737",
+      "sourceId": "backend-br/vagas#12387",
+      "dataCommit": "2f547a0e9e457ddec2f04163e624875fedbd431a",
+      "dataHash": "42bfa5637fe5bc2d7c332fd583b2d0a2895f31bdade41287575defec3d6d63f4",
+      "contentHash": "d645f779351d29dd3a6631b7013ddff653226f4652250e7fc426b4306c844010",
+      "sourceCreatedAt": "2026-08-19T14:35:06Z",
+      "createdAt": "2026-09-19T07:42:40.439Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7eb28953-7f20-40bb-8276-310fe1f865cb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] Java Developer + Oracle/AWS (Seguros)",
+          "pt-BR": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] Java Developer + Oracle/AWS (Seguros)",
+          "es": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] Java Developer + Oracle/AWS (Seguros)",
+          "it": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] Java Developer + Oracle/AWS (Seguros)",
+          "fr": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] Java Developer + Oracle/AWS (Seguros)",
+          "de": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] Java Developer + Oracle/AWS (Seguros)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a51e625559bcdf5e11bdf737"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d423343a5693c4cb5b13bf3e",
+      "sourceId": "backend-br/vagas#12386",
+      "dataCommit": "2f547a0e9e457ddec2f04163e624875fedbd431a",
+      "dataHash": "42bfa5637fe5bc2d7c332fd583b2d0a2895f31bdade41287575defec3d6d63f4",
+      "contentHash": "886bd56ae19af7c1cf3869a9f92a1aa9534aa1c327cbbb09948ab3f69564fa28",
+      "sourceCreatedAt": "2026-08-19T14:35:05Z",
+      "createdAt": "2026-09-19T07:42:40.439Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5c7053e1-67b2-414c-9f25-f3a3f1ff2356",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] AWS Developer (Seguros)",
+          "pt-BR": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] AWS Developer (Seguros)",
+          "es": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] AWS Developer (Seguros)",
+          "it": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] AWS Developer (Seguros)",
+          "fr": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] AWS Developer (Seguros)",
+          "de": "[Av. Nações Unidas, Brooklin, São Paulo] [CLT] AWS Developer (Seguros)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d423343a5693c4cb5b13bf3e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4aadad3762275620d0da8121",
+      "sourceId": "backend-br/vagas#12385",
+      "dataCommit": "2f547a0e9e457ddec2f04163e624875fedbd431a",
+      "dataHash": "42bfa5637fe5bc2d7c332fd583b2d0a2895f31bdade41287575defec3d6d63f4",
+      "contentHash": "0141d0d4805239ce8cddb3e325a04ca253944b3fa6e84ce4ee2a7ab89ca3ee01",
+      "sourceCreatedAt": "2026-08-19T14:35:04Z",
+      "createdAt": "2026-09-19T07:42:40.439Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b3196721-9ab7-4f76-a417-7ea338dc138c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Interlagos / Santo Amaro, SP] [CLT] Analista Mainframe Sênior - Mercado Financeiro",
+          "pt-BR": "[Interlagos / Santo Amaro, SP] [CLT] Analista Mainframe Sênior - Mercado Financeiro",
+          "es": "[Interlagos / Santo Amaro, SP] [CLT] Analista Mainframe Sênior - Mercado Financeiro",
+          "it": "[Interlagos / Santo Amaro, SP] [CLT] Analista Mainframe Sênior - Mercado Financeiro",
+          "fr": "[Interlagos / Santo Amaro, SP] [CLT] Analista Mainframe Sênior - Mercado Financeiro",
+          "de": "[Interlagos / Santo Amaro, SP] [CLT] Analista Mainframe Sênior - Mercado Financeiro"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4aadad3762275620d0da8121"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a1f9ed5b410d7bba54977a36",
+      "sourceId": "backend-br/vagas#12384",
+      "dataCommit": "2f547a0e9e457ddec2f04163e624875fedbd431a",
+      "dataHash": "42bfa5637fe5bc2d7c332fd583b2d0a2895f31bdade41287575defec3d6d63f4",
+      "contentHash": "9fe8cc68a51a07c881ddd6d6bc16842404e3aff71818bfa0b3aa859553af15b9",
+      "sourceCreatedAt": "2026-08-19T14:32:39Z",
+      "createdAt": "2026-09-19T07:42:40.439Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0a578270-9bec-46e7-8d8e-7616d9a6bd1e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Interlagos / Santo Amaro, SP] [CLT] Desenvolvedor(a) .NET - Backend - Mercado Financeiro",
+          "pt-BR": "[Interlagos / Santo Amaro, SP] [CLT] Desenvolvedor(a) .NET - Backend - Mercado Financeiro",
+          "es": "[Interlagos / Santo Amaro, SP] [CLT] Desenvolvedor(a) .NET - Backend - Mercado Financeiro",
+          "it": "[Interlagos / Santo Amaro, SP] [CLT] Desenvolvedor(a) .NET - Backend - Mercado Financeiro",
+          "fr": "[Interlagos / Santo Amaro, SP] [CLT] Desenvolvedor(a) .NET - Backend - Mercado Financeiro",
+          "de": "[Interlagos / Santo Amaro, SP] [CLT] Desenvolvedor(a) .NET - Backend - Mercado Financeiro"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a1f9ed5b410d7bba54977a36"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8e240de0811f263d7a91ffae",
+      "sourceId": "backend-br/vagas#12383",
+      "dataCommit": "2f547a0e9e457ddec2f04163e624875fedbd431a",
+      "dataHash": "42bfa5637fe5bc2d7c332fd583b2d0a2895f31bdade41287575defec3d6d63f4",
+      "contentHash": "aeb63c1ee43d960e94928c9cdb6265f239133edd19906097db88e5445da05d5b",
+      "sourceCreatedAt": "2026-08-19T14:32:38Z",
+      "createdAt": "2026-09-19T07:42:40.439Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bfe245b8-5bdc-4f9f-8532-ee6fd33e42fd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Interlagos / Santo Amaro, SP (Híbrido — 3 dias presencial)] [CLT] Desenvolvedor(a) Backend JAVA - Mercado Financeiro",
+          "pt-BR": "[Interlagos / Santo Amaro, SP (Híbrido — 3 dias presencial)] [CLT] Desenvolvedor(a) Backend JAVA - Mercado Financeiro",
+          "es": "[Interlagos / Santo Amaro, SP (Híbrido — 3 dias presencial)] [CLT] Desenvolvedor(a) Backend JAVA - Mercado Financeiro",
+          "it": "[Interlagos / Santo Amaro, SP (Híbrido — 3 dias presencial)] [CLT] Desenvolvedor(a) Backend JAVA - Mercado Financeiro",
+          "fr": "[Interlagos / Santo Amaro, SP (Híbrido — 3 dias presencial)] [CLT] Desenvolvedor(a) Backend JAVA - Mercado Financeiro",
+          "de": "[Interlagos / Santo Amaro, SP (Híbrido — 3 dias presencial)] [CLT] Desenvolvedor(a) Backend JAVA - Mercado Financeiro"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8e240de0811f263d7a91ffae"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_dbad9055e61f119859a3386b",
+      "sourceId": "backend-br/vagas#12382",
+      "dataCommit": "2f547a0e9e457ddec2f04163e624875fedbd431a",
+      "dataHash": "42bfa5637fe5bc2d7c332fd583b2d0a2895f31bdade41287575defec3d6d63f4",
+      "contentHash": "e075d2561fe6543241f62e966f5a831558af91b2505c46cfd1a6a2f7f42bc3a0",
+      "sourceCreatedAt": "2026-08-19T14:30:23Z",
+      "createdAt": "2026-09-19T07:42:40.439Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "57856829-a085-45d3-a460-b23e927adcf7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Av. Duquesa de Goiás, 716 - 3º andar, Conjunto A - Morumbi, São Paulo - SP] [PJ] Consultor Funcional ERP",
+          "pt-BR": "[Av. Duquesa de Goiás, 716 - 3º andar, Conjunto A - Morumbi, São Paulo - SP] [PJ] Consultor Funcional ERP",
+          "es": "[Av. Duquesa de Goiás, 716 - 3º andar, Conjunto A - Morumbi, São Paulo - SP] [PJ] Consultor Funcional ERP",
+          "it": "[Av. Duquesa de Goiás, 716 - 3º andar, Conjunto A - Morumbi, São Paulo - SP] [PJ] Consultor Funcional ERP",
+          "fr": "[Av. Duquesa de Goiás, 716 - 3º andar, Conjunto A - Morumbi, São Paulo - SP] [PJ] Consultor Funcional ERP",
+          "de": "[Av. Duquesa de Goiás, 716 - 3º andar, Conjunto A - Morumbi, São Paulo - SP] [PJ] Consultor Funcional ERP"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_dbad9055e61f119859a3386b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5fe95c7d04c61e283bf6407f",
+      "sourceId": "backend-br/vagas#12381",
+      "dataCommit": "2f547a0e9e457ddec2f04163e624875fedbd431a",
+      "dataHash": "42bfa5637fe5bc2d7c332fd583b2d0a2895f31bdade41287575defec3d6d63f4",
+      "contentHash": "8520e8f36b2c1585437e31fd42d18f9f275fd8188ededa1807881cd594adf9f3",
+      "sourceCreatedAt": "2026-08-19T14:25:01Z",
+      "createdAt": "2026-09-19T07:42:40.439Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5b35da7a-dac0-473b-af6a-3c427ba6226d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Avenida Paulista, São Paulo, SP] [CLT] Alerta de vaga Valorei  Backend Java Developer - AWS",
+          "pt-BR": "[Avenida Paulista, São Paulo, SP] [CLT] Alerta de vaga Valorei  Backend Java Developer - AWS",
+          "es": "[Avenida Paulista, São Paulo, SP] [CLT] Alerta de vaga Valorei  Backend Java Developer - AWS",
+          "it": "[Avenida Paulista, São Paulo, SP] [CLT] Alerta de vaga Valorei  Backend Java Developer - AWS",
+          "fr": "[Avenida Paulista, São Paulo, SP] [CLT] Alerta de vaga Valorei  Backend Java Developer - AWS",
+          "de": "[Avenida Paulista, São Paulo, SP] [CLT] Alerta de vaga Valorei  Backend Java Developer - AWS"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5fe95c7d04c61e283bf6407f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
