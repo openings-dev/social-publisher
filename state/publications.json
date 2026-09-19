@@ -5179,6 +5179,51 @@
         "provider": "buffer"
       },
       "instagramStory": null
+    },
+    "gh_2ccc8f77bed11bae4584e4f6": {
+      "status": "completed",
+      "contentHash": "0884d3fd30e86a41baf1d4b8d6bb8565cbf7d2494b3a327231fc9fcd4b621c16",
+      "dataCommit": "f39e909a2453193f8b20e2072ce6a88c441b4ca8",
+      "dataHash": "c28b5af4102874765ab7420bd7f5ddadf880559c9ae1f94cb0ea9790f739acbc",
+      "completedAt": "2026-09-19T19:52:10.646Z",
+      "bluesky": {
+        "status": "published",
+        "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mvp7uor6zb2i",
+        "cid": "bafyreigxhrnldkpph4fjjfwnedawvwlodrdrbzkb4iulaytqn2fbya2e4y",
+        "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mvp7uor6zb2i"
+      },
+      "mastodon": null,
+      "threads": {
+        "status": "published",
+        "id": "17891431617436272",
+        "url": "https://www.threads.com/@openingshq/post/DdezilBGh99"
+      },
+      "instagram": {
+        "publicationKind": "image",
+        "canonicalUrl": "https://openings.dev/jobs/gh_2ccc8f77bed11bae4584e4f6",
+        "status": "published",
+        "id": "18134482477734321",
+        "url": "https://www.instagram.com/p/DdezkSZmnvN/"
+      },
+      "linkedin": {
+        "acceptedProviderId": "6aaee827140a3024025e9c26",
+        "acceptedProvider": "buffer",
+        "acceptedStatus": "sending",
+        "status": "published",
+        "id": "6aaee827140a3024025e9c26",
+        "url": "https://www.linkedin.com/feed/update/urn:li:share:7507165001007403008",
+        "provider": "buffer"
+      },
+      "twitter": {
+        "acceptedProviderId": "6aaee803bb86436624a5fea6",
+        "acceptedProvider": "buffer",
+        "acceptedStatus": "sent",
+        "status": "published",
+        "id": "6aaee803bb86436624a5fea6",
+        "url": "https://twitter.com/OpeningsDev/status/2101399076520460334",
+        "provider": "buffer"
+      },
+      "instagramStory": null
     }
   }
 }
