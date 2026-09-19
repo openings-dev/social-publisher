@@ -28365,12 +28365,14 @@
       "createdAt": "2026-09-17T12:18:18Z",
       "publicationCreatedAt": "2026-09-17T14:04:44.938Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-19T20:47:30.526Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[新加坡优先/任意城市] AI 自动化实习生(AI Agent 工作流方向) 日薪20-40USD-远程/混合办公"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -28427,7 +28429,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 70
     },
     {
       "jobId": "gh_1d85cf4f9ada763ee8acd566",
