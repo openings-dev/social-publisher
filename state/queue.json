@@ -26551,12 +26551,14 @@
       "createdAt": "2026-09-15T20:18:28Z",
       "publicationCreatedAt": "2026-09-15T23:26:18.676Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-19T07:23:55.654Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Híbrido-SP] Back-end developer Cobol Pagamento de Fornecedores - Evertec"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -26613,7 +26615,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 63
     },
     {
       "jobId": "gh_193c0346b850436a605cdc8c",
