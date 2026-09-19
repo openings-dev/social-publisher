@@ -28156,12 +28156,23 @@
       "createdAt": "2026-09-17T07:07:10Z",
       "publicationCreatedAt": "2026-09-17T08:20:32.819Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-19T19:52:10.646Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2ccc8f77bed11bae4584e4f6",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_2ccc8f77bed11bae4584e4f6/0884d3fd30e86a41baf1d4b8d6bb8565cbf7d2494b3a327231fc9fcd4b621c16/1d75dbff26d46a823b1dd7df6a47539ccf4496aaf0c57f5f6b2bf84edb8d2017/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_2ccc8f77bed11bae4584e4f6/0884d3fd30e86a41baf1d4b8d6bb8565cbf7d2494b3a327231fc9fcd4b621c16/1d75dbff26d46a823b1dd7df6a47539ccf4496aaf0c57f5f6b2bf84edb8d2017/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_2ccc8f77bed11bae4584e4f6/0884d3fd30e86a41baf1d4b8d6bb8565cbf7d2494b3a327231fc9fcd4b621c16/1d75dbff26d46a823b1dd7df6a47539ccf4496aaf0c57f5f6b2bf84edb8d2017/social-video.mp4",
+          "pngHash": "a919daeedfe93bd655d27f24a5aa6bb13f41ba3efb3a9b62572d94a19c88b3f8",
+          "instagramJpegHash": "d1ce53ca167ea0bc19f2f44cd3ababbc988882a042fa7173f863fa6e49e44b6d",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[Remote 80tr] Senior Solution Architect (C/Linux→AlmaLinux 9, AWS) | 12+ yoe | pv online | jobID: IT-587"
         }
       },
