@@ -26620,12 +26620,14 @@
       "createdAt": "2026-09-15T20:14:49Z",
       "publicationCreatedAt": "2026-09-15T23:26:18.676Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-19T02:30:32.270Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Híbrido-SP] Back-end developer Cobol TED - Evertec"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -26682,7 +26684,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 62
     },
     {
       "jobId": "gh_bcd309f92451b04e03b063be",
