@@ -27738,12 +27738,14 @@
       "createdAt": "2026-09-16T04:08:30Z",
       "publicationCreatedAt": "2026-09-16T08:13:29.223Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-19T17:19:17.139Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "🚀 [Senior Data Engineer 5+ yoe] 60-73tr | HCM | Hands-on AWS & DevOps | Không thử việc (jobID: DT-381)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -27800,7 +27802,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 67
     },
     {
       "jobId": "gh_bcea7b614e7b47f27f0e03d4",
