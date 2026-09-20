@@ -30318,12 +30318,14 @@
       "createdAt": "2026-09-18T20:26:08Z",
       "publicationCreatedAt": "2026-09-18T20:35:56.420Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-20T17:52:07.611Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Senior Amazon Connect & AWS Infrastructure Engineer] YellowIpe - Remoto"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -30380,7 +30382,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 79
     },
     {
       "jobId": "gh_9a4c4483e3eb079a1e21301f",
