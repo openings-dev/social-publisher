@@ -31003,12 +31003,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T22:31:00.744Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18104687921615335",
+          "url": "https://www.threads.com/@openingshq/post/DdhqhY5j4t2"
+        }
       },
       "instagram": {
         "status": "pending",
