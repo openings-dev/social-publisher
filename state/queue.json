@@ -29631,12 +29631,23 @@
       "createdAt": "2026-09-18T13:31:30Z",
       "publicationCreatedAt": "2026-09-18T18:04:19.833Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T08:11:11.618Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_67bda561fc04c76026a0eb66",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_67bda561fc04c76026a0eb66/ed80fa3e508e1fb561d812a22dc55e55019614bdc2ba98a45a21451c85f6fe13/414795c386e321d1583ebbccb14f6c9c011a8469b52786b2ffa2b37a9c973858/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_67bda561fc04c76026a0eb66/ed80fa3e508e1fb561d812a22dc55e55019614bdc2ba98a45a21451c85f6fe13/414795c386e321d1583ebbccb14f6c9c011a8469b52786b2ffa2b37a9c973858/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_67bda561fc04c76026a0eb66/ed80fa3e508e1fb561d812a22dc55e55019614bdc2ba98a45a21451c85f6fe13/414795c386e321d1583ebbccb14f6c9c011a8469b52786b2ffa2b37a9c973858/social-video.mp4",
+          "pngHash": "8e4c229a912ffb8801f5ad92bc06cc7c64fcea9a89cc8ef4a306153a809ec31c",
+          "instagramJpegHash": "5949446ae50b10918c933938b7f9bb5a83e35a238fed976bfbaf845e81db8a41",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "Bloomberg New Grad SWE"
         }
       },
