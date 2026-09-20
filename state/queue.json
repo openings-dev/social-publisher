@@ -28783,12 +28783,23 @@
       "createdAt": "2026-09-17T18:59:30Z",
       "publicationCreatedAt": "2026-09-17T23:33:25.446Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T00:11:09.360Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_461c2de2accdad3cc973f73e",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_461c2de2accdad3cc973f73e/83eafbac137705d45cbaf2bf8c5cd8d74e1a312d04671a9bd99cef01ec1f8f7c/26d2cc20e753793c41a4a3ab0ed8626621509c9984ab7b22a9fe9227e81bc81a/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_461c2de2accdad3cc973f73e/83eafbac137705d45cbaf2bf8c5cd8d74e1a312d04671a9bd99cef01ec1f8f7c/26d2cc20e753793c41a4a3ab0ed8626621509c9984ab7b22a9fe9227e81bc81a/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_461c2de2accdad3cc973f73e/83eafbac137705d45cbaf2bf8c5cd8d74e1a312d04671a9bd99cef01ec1f8f7c/26d2cc20e753793c41a4a3ab0ed8626621509c9984ab7b22a9fe9227e81bc81a/social-video.mp4",
+          "pngHash": "5ed2fb1aef80476feb38984517b14c8eedefeec04c6b0241cf47eb73d53bb24f",
+          "instagramJpegHash": "ec018c1d501bcbfaabf15d0fde8f7f9a4e50c159df324e79c04072678bd39fe1",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Back-end Engineer. Net (USD)"
         }
       },
