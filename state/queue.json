@@ -29562,12 +29562,23 @@
       "createdAt": "2026-09-18T13:34:28Z",
       "publicationCreatedAt": "2026-09-18T18:04:19.833Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T13:25:13.168Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_7c7e95c00a6ef2ab493c2e3a",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_7c7e95c00a6ef2ab493c2e3a/f59378ebe1ca6d52c31345074b5f469c567289f8f5a4b01fd86f8593c6a3650d/d57c37e2d5d8617d7fbf993c6895d96e89f6c125957cd795ac357e49d936d426/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_7c7e95c00a6ef2ab493c2e3a/f59378ebe1ca6d52c31345074b5f469c567289f8f5a4b01fd86f8593c6a3650d/d57c37e2d5d8617d7fbf993c6895d96e89f6c125957cd795ac357e49d936d426/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_7c7e95c00a6ef2ab493c2e3a/f59378ebe1ca6d52c31345074b5f469c567289f8f5a4b01fd86f8593c6a3650d/d57c37e2d5d8617d7fbf993c6895d96e89f6c125957cd795ac357e49d936d426/social-video.mp4",
+          "pngHash": "c1c5e5cedd41311f00af6261408d21c9a600c9eec72aff212cb9a88fa2eab768",
+          "instagramJpegHash": "5eac320948ff984c4f296935748bffaa627f0c0f366f460df8d13fd4182fe9f0",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "Capital One TDP"
         }
       },
