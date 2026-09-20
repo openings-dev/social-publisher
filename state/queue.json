@@ -28867,10 +28867,13 @@
         }
       },
       "linkedin": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-09-20T00:11:09.360Z",
-        "lastError": null,
+        "lastError": {
+          "code": "buffer_response",
+          "at": "2026-09-20T00:11:09.360Z"
+        },
         "lastReset": null,
         "result": {
           "acceptedProviderId": "6aaf24e713d908add209f5ec",
