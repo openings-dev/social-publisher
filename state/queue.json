@@ -30736,12 +30736,14 @@
       "createdAt": "2026-09-19T10:15:37Z",
       "publicationCreatedAt": "2026-09-19T12:52:25.910Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-20T20:05:29.824Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Edit Internship: Nike AI, Data & ML Engineering Undergraduate Internship (term fix)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -30798,7 +30800,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 81
     },
     {
       "jobId": "gh_13d45f8cd2e50adab5e7c669",
