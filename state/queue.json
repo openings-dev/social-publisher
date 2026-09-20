@@ -30376,12 +30376,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T17:52:07.611Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18006307556993344",
+          "url": "https://www.threads.com/@openingshq/post/DdhKmsrmZdc"
+        }
       },
       "instagram": {
         "status": "pending",
