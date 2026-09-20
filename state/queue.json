@@ -30527,12 +30527,23 @@
       "createdAt": "2026-09-18T20:34:30Z",
       "publicationCreatedAt": "2026-09-19T00:26:49.567Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T18:52:06.349Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9a4c4483e3eb079a1e21301f",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_9a4c4483e3eb079a1e21301f/6d2d7caca9696450665363a6df5bf0a3a983d31719f0202dc39faec185cb841c/ce7c617a6d5f778a281cef3fdb8dfcb1cf43b364847da2ba4f499c3e03825eee/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_9a4c4483e3eb079a1e21301f/6d2d7caca9696450665363a6df5bf0a3a983d31719f0202dc39faec185cb841c/ce7c617a6d5f778a281cef3fdb8dfcb1cf43b364847da2ba4f499c3e03825eee/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_9a4c4483e3eb079a1e21301f/6d2d7caca9696450665363a6df5bf0a3a983d31719f0202dc39faec185cb841c/ce7c617a6d5f778a281cef3fdb8dfcb1cf43b364847da2ba4f499c3e03825eee/social-video.mp4",
+          "pngHash": "b55be4850115ed74a8e9c8b7934060563ed94392c24be54727917851f3ec093e",
+          "instagramJpegHash": "81b99d1cc3f76ce78ee2866906a5a0b9f6ceb86880368f036438d811b268b722",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Senior Amazon Connect & Customer Experience Engineering Lead] YellowIpe - Remoto"
         }
       },
