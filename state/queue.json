@@ -29839,12 +29839,23 @@
       "createdAt": "2026-09-18T13:30:39Z",
       "publicationCreatedAt": "2026-09-18T18:04:19.833Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T11:32:31.463Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_68b7d211aa62ada19f8ff124",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_68b7d211aa62ada19f8ff124/9c37cdea89fbb7219320cd4429eb469b9c57bd9d1337e1d635da8e4243599237/52bef114869ad07798144a8ea3965f1d816663d34f8e7594792a3d3c67ea3ac4/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_68b7d211aa62ada19f8ff124/9c37cdea89fbb7219320cd4429eb469b9c57bd9d1337e1d635da8e4243599237/52bef114869ad07798144a8ea3965f1d816663d34f8e7594792a3d3c67ea3ac4/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_68b7d211aa62ada19f8ff124/9c37cdea89fbb7219320cd4429eb469b9c57bd9d1337e1d635da8e4243599237/52bef114869ad07798144a8ea3965f1d816663d34f8e7594792a3d3c67ea3ac4/social-video.mp4",
+          "pngHash": "101a8d65f298e37c941c2b2d3b7688ad08cb876dda61bb34553086276d0efb52",
+          "instagramJpegHash": "c04c6081c0694fb2b53c955a197ce73724b22a3b0580941c345bb09f07290f31",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[HYBRID-HN] Senior Fullstack Developer (Python)"
         }
       },
