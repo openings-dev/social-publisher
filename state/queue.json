@@ -29488,12 +29488,23 @@
       "createdAt": "2026-09-18T14:51:33Z",
       "publicationCreatedAt": "2026-09-18T18:04:19.833Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T16:13:11.881Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_8ac0a429ebaa2ee0a15c7681",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_8ac0a429ebaa2ee0a15c7681/bc94c364900a926d855ff94485e3cde2a87df2898e9b383c62736702e22795e4/792f79054ec05d394880802e22fa747450d8fbbe0aa580b75db38811e94f2a4a/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_8ac0a429ebaa2ee0a15c7681/bc94c364900a926d855ff94485e3cde2a87df2898e9b383c62736702e22795e4/792f79054ec05d394880802e22fa747450d8fbbe0aa580b75db38811e94f2a4a/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_8ac0a429ebaa2ee0a15c7681/bc94c364900a926d855ff94485e3cde2a87df2898e9b383c62736702e22795e4/792f79054ec05d394880802e22fa747450d8fbbe0aa580b75db38811e94f2a4a/social-video.mp4",
+          "pngHash": "f51190111017298b0997ac4b10578d9c1781ecebac3c5ff6e1f0cdd98150268e",
+          "instagramJpegHash": "d16d2405d4ad8ab6f4db1c8fbe20c91569c73bc7b159a7cafbc1d68298904830",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[DevOps / Cloud Infrastructure Engineer] VTurb - Florianópolis"
         }
       },
