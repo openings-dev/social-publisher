@@ -29562,12 +29562,14 @@
       "createdAt": "2026-09-18T13:34:28Z",
       "publicationCreatedAt": "2026-09-18T18:04:19.833Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-20T13:25:13.168Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Capital One TDP"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -29624,7 +29626,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 77
     },
     {
       "jobId": "gh_67bda561fc04c76026a0eb66",
