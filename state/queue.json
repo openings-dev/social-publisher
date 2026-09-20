@@ -29631,12 +29631,14 @@
       "createdAt": "2026-09-18T13:31:30Z",
       "publicationCreatedAt": "2026-09-18T18:04:19.833Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-20T08:11:11.618Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Bloomberg New Grad SWE"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -29693,7 +29695,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 75
     },
     {
       "jobId": "gh_68b7d211aa62ada19f8ff124",
