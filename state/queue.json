@@ -30318,12 +30318,23 @@
       "createdAt": "2026-09-18T20:26:08Z",
       "publicationCreatedAt": "2026-09-18T20:35:56.420Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T17:52:07.611Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2a2ff992a9206cb986867cd4",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_2a2ff992a9206cb986867cd4/c4ca76c7683c65aa83536445a3dcece95f042b48cc7d62834338c8c76c5b9c5f/59430b68195a86895e77e263280742bc0aee9caa48940f9c4c2dc4e01f13deb4/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_2a2ff992a9206cb986867cd4/c4ca76c7683c65aa83536445a3dcece95f042b48cc7d62834338c8c76c5b9c5f/59430b68195a86895e77e263280742bc0aee9caa48940f9c4c2dc4e01f13deb4/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_2a2ff992a9206cb986867cd4/c4ca76c7683c65aa83536445a3dcece95f042b48cc7d62834338c8c76c5b9c5f/59430b68195a86895e77e263280742bc0aee9caa48940f9c4c2dc4e01f13deb4/social-video.mp4",
+          "pngHash": "8322135f89b2abf9c49212afa3a16d59cd0973cd799b290334e0377ffedc97c7",
+          "instagramJpegHash": "914f2f9d04df5740038729016d4fa5fe68d21d6f9b8dd923f4ed3e48a1187405",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Senior Amazon Connect & AWS Infrastructure Engineer] YellowIpe - Remoto"
         }
       },
