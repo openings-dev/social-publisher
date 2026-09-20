@@ -6330,16 +6330,16 @@
       "createdAt": "2026-08-24T22:28:41Z",
       "publicationCreatedAt": "2026-08-25T04:53:07.122Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-25T04:53:07.122Z",
+        "updatedAt": "2026-09-20T22:52:19.850Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-20T22:52:19.850Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_89a9cb1a35c0f6fdac349d34",
-          "imageUrl": "https://openings.dev/jobs/gh_89a9cb1a35c0f6fdac349d34/opengraph-image.png",
-          "pngHash": "f7e7e87be658a068a32c40b9a2330f1d1ccc8fe7177dca8ed05da95502585388"
+          "socialTitle": "New Feature Request"
         }
       },
       "bluesky": {
@@ -6399,7 +6399,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 83
     },
     {
       "jobId": "gh_787d6a13e318df3c5623c284",
