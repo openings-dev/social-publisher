@@ -29200,12 +29200,14 @@
       "createdAt": "2026-09-18T04:07:21Z",
       "publicationCreatedAt": "2026-09-18T07:53:14.441Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-20T04:59:37.844Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Tìm người làm tool game nhanh chạy ẩn không ăn tài nguyên máy"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -29262,7 +29264,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 74
     },
     {
       "jobId": "gh_c359c99a610714135ba5548e",
