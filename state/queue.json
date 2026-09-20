@@ -30527,12 +30527,14 @@
       "createdAt": "2026-09-18T20:34:30Z",
       "publicationCreatedAt": "2026-09-19T00:26:49.567Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-20T18:52:06.349Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Senior Amazon Connect & Customer Experience Engineering Lead] YellowIpe - Remoto"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -30589,7 +30591,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 80
     },
     {
       "jobId": "gh_ec07fc26b3d3475cc24bbd29",
