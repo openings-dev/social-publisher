@@ -29200,12 +29200,23 @@
       "createdAt": "2026-09-18T04:07:21Z",
       "publicationCreatedAt": "2026-09-18T07:53:14.441Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T04:59:37.844Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_7b13c76a05e5111545e66a80",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_7b13c76a05e5111545e66a80/ec89ce4c35560ab40cdbdbc64afb71cc8614f1b2125754049615e7ca29d4e69d/ef9f50be9d39eff3aaff54a821d74162822bb6704363fdfd39beb3ec27dc0ffb/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_7b13c76a05e5111545e66a80/ec89ce4c35560ab40cdbdbc64afb71cc8614f1b2125754049615e7ca29d4e69d/ef9f50be9d39eff3aaff54a821d74162822bb6704363fdfd39beb3ec27dc0ffb/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_7b13c76a05e5111545e66a80/ec89ce4c35560ab40cdbdbc64afb71cc8614f1b2125754049615e7ca29d4e69d/ef9f50be9d39eff3aaff54a821d74162822bb6704363fdfd39beb3ec27dc0ffb/social-video.mp4",
+          "pngHash": "65b92b8787d2f9a0ddaf46ffa2b9805e7609ce5b461eb79419679a8b4285f07b",
+          "instagramJpegHash": "746241023d7a7c4e5096d2a24078a825ff8e4b0b7eb1894c8ed25bb685ab52a7",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Tìm người làm tool game nhanh chạy ẩn không ăn tài nguyên máy"
         }
       },
