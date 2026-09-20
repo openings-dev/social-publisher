@@ -29700,12 +29700,15 @@
         "result": null
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-20T08:11:11.618Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "publicationKind": "image",
+          "canonicalUrl": "https://openings.dev/jobs/gh_67bda561fc04c76026a0eb66"
+        }
       },
       "linkedin": {
         "status": "pending",
