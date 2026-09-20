@@ -28991,12 +28991,23 @@
       "createdAt": "2026-09-17T18:51:29Z",
       "publicationCreatedAt": "2026-09-17T23:33:25.446Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T02:40:38.584Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ced603df4dd5292b72e7f779",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ced603df4dd5292b72e7f779/ac96c280d43b49166dcc301c07a3d589ba0bf2c5a7a833959850c00417a3b174/c77bd09fccfb57de8e26f7419c6daef4ff48c3eb77a3148c10dcaece623c51d5/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ced603df4dd5292b72e7f779/ac96c280d43b49166dcc301c07a3d589ba0bf2c5a7a833959850c00417a3b174/c77bd09fccfb57de8e26f7419c6daef4ff48c3eb77a3148c10dcaece623c51d5/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ced603df4dd5292b72e7f779/ac96c280d43b49166dcc301c07a3d589ba0bf2c5a7a833959850c00417a3b174/c77bd09fccfb57de8e26f7419c6daef4ff48c3eb77a3148c10dcaece623c51d5/social-video.mp4",
+          "pngHash": "3865bbb9946517a71a7bdc1855fe58aefbde7e3bebc7548969fc5e79d9486b91",
+          "instagramJpegHash": "478f77b9a288236ab900560727e85e2cbd01fd1c3a13c360fa0fff0ec6364be6",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "Open Source Contributor (GitHub)"
         }
       },
