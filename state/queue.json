@@ -30736,12 +30736,23 @@
       "createdAt": "2026-09-19T10:15:37Z",
       "publicationCreatedAt": "2026-09-19T12:52:25.910Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-20T20:05:29.824Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ec07fc26b3d3475cc24bbd29",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ec07fc26b3d3475cc24bbd29/3e9c6fc9fb9369d32b4a427ac68f47958e0c959d78cdd0e373ac381f67d38e86/ce94c33bc07bba68c531067a5cf1e705fce814eabe16f291aefbf8a4a64d3394/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ec07fc26b3d3475cc24bbd29/3e9c6fc9fb9369d32b4a427ac68f47958e0c959d78cdd0e373ac381f67d38e86/ce94c33bc07bba68c531067a5cf1e705fce814eabe16f291aefbf8a4a64d3394/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ec07fc26b3d3475cc24bbd29/3e9c6fc9fb9369d32b4a427ac68f47958e0c959d78cdd0e373ac381f67d38e86/ce94c33bc07bba68c531067a5cf1e705fce814eabe16f291aefbf8a4a64d3394/social-video.mp4",
+          "pngHash": "ab847be77bd11b62d1cdc27dfcac59bcb88fa41aec2257ed983033eb64ae5057",
+          "instagramJpegHash": "ce33b53958e66fd80e4f1b6e2fae2e7cb0f1648399ae71e7377d9f7bb9552220",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "Edit Internship: Nike AI, Data & ML Engineering Undergraduate Internship (term fix)"
         }
       },
