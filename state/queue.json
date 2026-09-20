@@ -28783,12 +28783,14 @@
       "createdAt": "2026-09-17T18:59:30Z",
       "publicationCreatedAt": "2026-09-17T23:33:25.446Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-20T00:11:09.360Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Back-end Engineer. Net (USD)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -28845,7 +28847,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 72
     },
     {
       "jobId": "gh_ced603df4dd5292b72e7f779",
