@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "cf7ccfeabc590a00ebb3da90d164a42888107fe6",
-    "generatedAt": "2026-09-20T02:39:19.260Z",
-    "dataHash": "9bc8e9d2f532b4782d44e6257824e9885131481390d6773365263f55269e98bc"
+    "commit": "642ae4ffeec8de1e7facf4aa73f04b877e9c755e",
+    "generatedAt": "2026-09-20T08:09:37.645Z",
+    "dataHash": "60801acc7cb00585df955c99ff26a715cec26947de5fa5ccc2e93c8e05c28464"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -1051,6 +1051,126 @@
         "notificationId": "ea1e7d9f-718c-4f2b-8d6b-4cf2c8ac5a9d",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_1120d3d83f1095a76d02398b",
+      "sourceId": "backend-br/vagas#12388",
+      "dataCommit": "642ae4ffeec8de1e7facf4aa73f04b877e9c755e",
+      "dataHash": "60801acc7cb00585df955c99ff26a715cec26947de5fa5ccc2e93c8e05c28464",
+      "contentHash": "f28621110061e0728e56211535439c24ab2dbe6f8c014af40602f8b0f153d031",
+      "sourceCreatedAt": "2026-08-19T14:37:00Z",
+      "createdAt": "2026-09-20T08:09:37.645Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7453d273-e05e-459a-ba65-f92c48237710",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] [PJ] Senior Python Developer",
+          "pt-BR": "[Remoto] [PJ] Senior Python Developer",
+          "es": "[Remoto] [PJ] Senior Python Developer",
+          "it": "[Remoto] [PJ] Senior Python Developer",
+          "fr": "[Remoto] [PJ] Senior Python Developer",
+          "de": "[Remoto] [PJ] Senior Python Developer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1120d3d83f1095a76d02398b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_39839d9b974ed279482f4d41",
+      "sourceId": "soujava/vagas-java#1919",
+      "dataCommit": "642ae4ffeec8de1e7facf4aa73f04b877e9c755e",
+      "dataHash": "60801acc7cb00585df955c99ff26a715cec26947de5fa5ccc2e93c8e05c28464",
+      "contentHash": "354bbc5da2f7fbf5f661ddb53b159e2203b1a440ff38f3965e1771afa45dcc4e",
+      "sourceCreatedAt": "2026-07-21T17:44:33Z",
+      "createdAt": "2026-09-20T08:09:37.645Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3821ee2e-021b-4844-83fa-4054eac41587",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "es": "[Remoto] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "it": "[Remoto] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "fr": "[Remoto] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "de": "[Remoto] Desenvolvedor(a) Java/Kafka Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_39839d9b974ed279482f4d41"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_82f67eb263925053dbd84dce",
+      "sourceId": "soujava/vagas-java#1918",
+      "dataCommit": "642ae4ffeec8de1e7facf4aa73f04b877e9c755e",
+      "dataHash": "60801acc7cb00585df955c99ff26a715cec26947de5fa5ccc2e93c8e05c28464",
+      "contentHash": "f06736cc06feda91f25b9efbf73e46c4fa6b5e3d74836095ea4e16183c1c2ace",
+      "sourceCreatedAt": "2026-07-21T17:43:32Z",
+      "createdAt": "2026-09-20T08:09:37.645Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5c1cd016-dae3-4119-9347-3cd4541e14c1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "es": "[Remoto] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "it": "[Remoto] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "fr": "[Remoto] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "de": "[Remoto] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_82f67eb263925053dbd84dce"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
