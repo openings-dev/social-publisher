@@ -29689,10 +29689,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-09-20T08:11:11.618Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_publication",
+          "at": "2026-09-20T08:11:11.618Z"
+        },
         "lastReset": null,
         "result": null
       },
