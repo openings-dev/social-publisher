@@ -29488,12 +29488,14 @@
       "createdAt": "2026-09-18T14:51:33Z",
       "publicationCreatedAt": "2026-09-18T18:04:19.833Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-20T16:13:11.881Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[DevOps / Cloud Infrastructure Engineer] VTurb - Florianópolis"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -29550,7 +29552,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 78
     },
     {
       "jobId": "gh_7c7e95c00a6ef2ab493c2e3a",
