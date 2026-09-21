@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "90d981cf665253fa95dbea8aa84a0232747ba87c",
-    "generatedAt": "2026-09-21T08:26:05.317Z",
-    "dataHash": "dd4635b530718ffbfaca238d93ebbcc1c8f78e5eef3225d70d6b63bdb7657f09"
+    "commit": "22527563b5a8d508ebb528f3064baf2a4f92582a",
+    "generatedAt": "2026-09-21T15:32:23.043Z",
+    "dataHash": "1ee1c9b202ee44db02e95db125a215c8ad1ab89396ce63ec3a68e8b1c54a4424"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -1421,6 +1421,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_c16a9b067fa99b03ac968205"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d450ba5b01eda9a9621a176b",
+      "sourceId": "rebase-network/who-is-hiring#1299",
+      "dataCommit": "22527563b5a8d508ebb528f3064baf2a4f92582a",
+      "dataHash": "1ee1c9b202ee44db02e95db125a215c8ad1ab89396ce63ec3a68e8b1c54a4424",
+      "contentHash": "a5395e689c57adb8ca6bce6456dbb602b3292623d305d44d032e71d0d4ec8e45",
+      "sourceCreatedAt": "2026-09-21T14:04:13Z",
+      "createdAt": "2026-09-21T15:32:23.043Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "dffde178-3841-48b4-a419-44880523ca6e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[深圳/上海/北京] 帕西尼（PaXini Tech）公司诚聘 强化学习资深工程师 薪水 75万-150万RMB",
+          "pt-BR": "[深圳/上海/北京] 帕西尼（PaXini Tech）公司诚聘 强化学习资深工程师 薪水 75万-150万RMB",
+          "es": "[深圳/上海/北京] 帕西尼（PaXini Tech）公司诚聘 强化学习资深工程师 薪水 75万-150万RMB",
+          "it": "[深圳/上海/北京] 帕西尼（PaXini Tech）公司诚聘 强化学习资深工程师 薪水 75万-150万RMB",
+          "fr": "[深圳/上海/北京] 帕西尼（PaXini Tech）公司诚聘 强化学习资深工程师 薪水 75万-150万RMB",
+          "de": "[深圳/上海/北京] 帕西尼（PaXini Tech）公司诚聘 强化学习资深工程师 薪水 75万-150万RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d450ba5b01eda9a9621a176b"
         }
       },
       "status": "pending",
