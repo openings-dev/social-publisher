@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "49bb0d56d2485d1a22b564e45eb3b2b96be97c60",
-    "generatedAt": "2026-09-21T02:36:42.524Z",
-    "dataHash": "dab55ddabc42b38d991ef6611cd8d394a621b5499d63de072325dbf0d43a857f"
+    "commit": "90d981cf665253fa95dbea8aa84a0232747ba87c",
+    "generatedAt": "2026-09-21T08:26:05.317Z",
+    "dataHash": "dd4635b530718ffbfaca238d93ebbcc1c8f78e5eef3225d70d6b63bdb7657f09"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -1223,6 +1223,206 @@
         "notificationId": "f2aab4f0-c060-4810-b166-e1e57475a5d2",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_8dcc457448d236630b20ba86",
+      "sourceId": "frontendbr/vagas#8561",
+      "dataCommit": "90d981cf665253fa95dbea8aa84a0232747ba87c",
+      "dataHash": "dd4635b530718ffbfaca238d93ebbcc1c8f78e5eef3225d70d6b63bdb7657f09",
+      "contentHash": "bd194df83a04aed7cc1acab4b27be13efbe58dc3705685aa50fe8f12feba35d9",
+      "sourceCreatedAt": "2026-09-10T16:02:57Z",
+      "createdAt": "2026-09-21T08:26:05.317Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6cd2a671-a511-4e0d-91ba-0c9202c2d12e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido/Curitiba] Tech Lead - USD (Jcal)",
+          "pt-BR": "[Híbrido/Curitiba] Tech Lead - USD (Jcal)",
+          "es": "[Híbrido/Curitiba] Tech Lead - USD (Jcal)",
+          "it": "[Híbrido/Curitiba] Tech Lead - USD (Jcal)",
+          "fr": "[Híbrido/Curitiba] Tech Lead - USD (Jcal)",
+          "de": "[Híbrido/Curitiba] Tech Lead - USD (Jcal)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8dcc457448d236630b20ba86"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_53a184cf8e1d638ba46a534f",
+      "sourceId": "soujava/vagas-java#1924",
+      "dataCommit": "90d981cf665253fa95dbea8aa84a0232747ba87c",
+      "dataHash": "dd4635b530718ffbfaca238d93ebbcc1c8f78e5eef3225d70d6b63bdb7657f09",
+      "contentHash": "0a254cde329f0c062854391e3538c5cab1534b3d175097c95540a1bb501e349f",
+      "sourceCreatedAt": "2026-07-22T11:32:07Z",
+      "createdAt": "2026-09-21T08:26:05.317Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9db25665-db55-40e3-b12d-b745d1065235",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java/Quarkus Pleno na Sylision",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java/Quarkus Pleno na Sylision",
+          "es": "[Remoto] Desenvolvedor(a) Java/Quarkus Pleno na Sylision",
+          "it": "[Remoto] Desenvolvedor(a) Java/Quarkus Pleno na Sylision",
+          "fr": "[Remoto] Desenvolvedor(a) Java/Quarkus Pleno na Sylision",
+          "de": "[Remoto] Desenvolvedor(a) Java/Quarkus Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_53a184cf8e1d638ba46a534f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_cd8926a8d89514d26d0d4d59",
+      "sourceId": "soujava/vagas-java#1923",
+      "dataCommit": "90d981cf665253fa95dbea8aa84a0232747ba87c",
+      "dataHash": "dd4635b530718ffbfaca238d93ebbcc1c8f78e5eef3225d70d6b63bdb7657f09",
+      "contentHash": "a049918d6740aad79f48eae308d6dbd3e9e087f17b5699e9f07845591fee1334",
+      "sourceCreatedAt": "2026-07-22T11:31:07Z",
+      "createdAt": "2026-09-21T08:26:05.317Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7e9f3b74-0c86-4ead-8402-def6307f66d5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Pleno na Sylision",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Pleno na Sylision",
+          "es": "[Remoto] Desenvolvedor(a) Java Pleno na Sylision",
+          "it": "[Remoto] Desenvolvedor(a) Java Pleno na Sylision",
+          "fr": "[Remoto] Desenvolvedor(a) Java Pleno na Sylision",
+          "de": "[Remoto] Desenvolvedor(a) Java Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_cd8926a8d89514d26d0d4d59"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7557e8348cc3ee95670cabc5",
+      "sourceId": "backend-br/vagas#12323",
+      "dataCommit": "90d981cf665253fa95dbea8aa84a0232747ba87c",
+      "dataHash": "dd4635b530718ffbfaca238d93ebbcc1c8f78e5eef3225d70d6b63bdb7657f09",
+      "contentHash": "25265dcfbb891324ce5612e04a8a67a004b8a049eb352bd1a880003ec771d542",
+      "sourceCreatedAt": "2026-07-08T18:36:05Z",
+      "createdAt": "2026-09-21T08:26:05.317Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "94c74c6f-f30d-4340-b66e-67ea55e5ad6d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Full-Stack Sênior (TypeScript/React/Node) - Grupo Apex (EUA)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Full-Stack Sênior (TypeScript/React/Node) - Grupo Apex (EUA)",
+          "es": "[Remoto] Desenvolvedor(a) Full-Stack Sênior (TypeScript/React/Node) - Grupo Apex (EUA)",
+          "it": "[Remoto] Desenvolvedor(a) Full-Stack Sênior (TypeScript/React/Node) - Grupo Apex (EUA)",
+          "fr": "[Remoto] Desenvolvedor(a) Full-Stack Sênior (TypeScript/React/Node) - Grupo Apex (EUA)",
+          "de": "[Remoto] Desenvolvedor(a) Full-Stack Sênior (TypeScript/React/Node) - Grupo Apex (EUA)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7557e8348cc3ee95670cabc5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c16a9b067fa99b03ac968205",
+      "sourceId": "backend-br/vagas#12309",
+      "dataCommit": "90d981cf665253fa95dbea8aa84a0232747ba87c",
+      "dataHash": "dd4635b530718ffbfaca238d93ebbcc1c8f78e5eef3225d70d6b63bdb7657f09",
+      "contentHash": "596dff5d722d9685cff607dc83ba1b9310dc763c638e52ffdbb0cae9152b4c48",
+      "sourceCreatedAt": "2026-07-03T19:01:50Z",
+      "createdAt": "2026-09-21T08:26:05.317Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c186624d-7c74-4c09-8127-d6d122db6f23",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] PHP/Python Software Engineer - F2AI",
+          "pt-BR": "[Remoto] PHP/Python Software Engineer - F2AI",
+          "es": "[Remoto] PHP/Python Software Engineer - F2AI",
+          "it": "[Remoto] PHP/Python Software Engineer - F2AI",
+          "fr": "[Remoto] PHP/Python Software Engineer - F2AI",
+          "de": "[Remoto] PHP/Python Software Engineer - F2AI"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c16a9b067fa99b03ac968205"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
