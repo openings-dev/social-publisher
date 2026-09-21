@@ -29081,13 +29081,10 @@
         }
       },
       "linkedin": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-20T00:11:09.360Z",
-        "lastError": {
-          "code": "buffer_response",
-          "at": "2026-09-20T00:11:09.360Z"
-        },
+        "status": "publishing",
+        "attempts": 2,
+        "updatedAt": "2026-09-21T21:32:32.738Z",
+        "lastError": null,
         "lastReset": null,
         "result": {
           "acceptedProviderId": "6aaf24e713d908add209f5ec",
