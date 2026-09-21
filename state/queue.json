@@ -31463,12 +31463,14 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-21T19:34:33.518Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "operationKey": "job-story-35645397192-1"
+        }
       },
       "visualDirection": "editorial",
       "visualSequence": 85,
