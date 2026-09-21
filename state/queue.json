@@ -26952,12 +26952,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 2,
         "updatedAt": "2026-09-21T15:35:22.472Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18103709714360654",
+          "url": "https://www.threads.com/@openingshq/post/Ddjfr8jG0ww"
+        }
       },
       "instagram": {
         "status": "published",
