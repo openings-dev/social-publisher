@@ -18259,13 +18259,10 @@
         "result": null
       },
       "twitter": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-16T02:38:54.249Z",
-        "lastError": {
-          "code": "buffer_response",
-          "at": "2026-09-16T02:38:54.249Z"
-        },
+        "status": "publishing",
+        "attempts": 2,
+        "updatedAt": "2026-09-21T05:04:43.128Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
