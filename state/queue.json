@@ -26952,13 +26952,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-19T07:23:55.654Z",
-        "lastError": {
-          "code": "threads_publication",
-          "at": "2026-09-19T07:23:55.654Z"
-        },
+        "status": "publishing",
+        "attempts": 2,
+        "updatedAt": "2026-09-21T15:35:22.472Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
