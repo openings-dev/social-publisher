@@ -31573,12 +31573,14 @@
       "createdAt": "2026-09-21T20:47:46Z",
       "publicationCreatedAt": "2026-09-21T21:32:39.449Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-21T23:21:20.558Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Computer Vision / ML Engineer"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -31635,7 +31637,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 86
     }
   ]
 }
