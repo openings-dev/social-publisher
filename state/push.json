@@ -1429,12 +1429,15 @@
           "jobId": "gh_c16a9b067fa99b03ac968205"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-09-21T21:31:48.216Z",
-      "updatedAt": "2026-09-21T21:31:48.216Z",
+      "updatedAt": "2026-09-21T21:31:50.425Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "2f6c8d12-b1bb-4457-bf13-115220ee6002",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_d450ba5b01eda9a9621a176b",
