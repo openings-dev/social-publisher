@@ -31562,6 +31562,80 @@
         ],
         "manifestDigest": "52d8e8c80ca8bdc97b8e3f2f258afcb8ad578649d7f0fb9589af46efae719ec0"
       }
+    },
+    {
+      "jobId": "gh_b966e0258e506bd3daf3e811",
+      "sourceId": "pythonjobs/jobs#443",
+      "dataCommit": "ae007ea47af6db0d4f43457e7f1c9783edc11b8d",
+      "dataHash": "8760ffb20f764ae2584c770cd96ab199ef69c8fbc095990858c8171faf3b1690",
+      "contentHash": "f67c0d1087990cb048f1fdba5ecfad411d9947d86c42c1df9be8e0930a069816",
+      "discoveredAt": "2026-09-21T21:32:39.449Z",
+      "createdAt": "2026-09-21T20:47:46Z",
+      "publicationCreatedAt": "2026-09-21T21:32:39.449Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
