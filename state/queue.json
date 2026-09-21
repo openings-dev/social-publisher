@@ -6592,17 +6592,16 @@
       "createdAt": "2026-08-25T13:14:52Z",
       "publicationCreatedAt": "2026-08-25T16:54:33.674Z",
       "bridge": {
-        "status": "published",
+        "status": "publishing",
         "attempts": 1,
-        "updatedAt": "2026-08-25T16:54:33.674Z",
+        "updatedAt": "2026-09-21T02:37:57.714Z",
         "lastError": null,
-        "lastReset": null,
+        "lastReset": {
+          "at": "2026-09-21T02:37:57.714Z",
+          "reason": "social_title_update"
+        },
         "result": {
-          "status": "deployed",
-          "canonicalUrl": "https://openings.dev/jobs/gh_f94a8703a9a2cacb14801ef7",
-          "imageUrl": "https://openings.dev/jobs/gh_f94a8703a9a2cacb14801ef7/opengraph-image.png",
-          "instagramImageUrl": "https://openings.dev/jobs/gh_f94a8703a9a2cacb14801ef7/instagram-image.jpg",
-          "pngHash": "b1fc058630215d61569a08f97a7c0a49d2f0bc666eade49091205a2ebc423439"
+          "socialTitle": "[Híbrido] Desenvolvedor(a) Java/Kafka Sênior na Sylision"
         }
       },
       "bluesky": {
@@ -6662,7 +6661,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 84
     },
     {
       "jobId": "gh_9778e2bda5326d36dc502ed4",
