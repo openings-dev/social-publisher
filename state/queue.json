@@ -31363,12 +31363,14 @@
       "createdAt": "2026-09-21T14:04:13Z",
       "publicationCreatedAt": "2026-09-21T15:35:36.912Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-21T19:32:57.853Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[深圳/上海/北京] 帕西尼(PaXini Tech)公司诚聘 强化学习资深工程师 薪水 75万-150万RMB"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -31425,7 +31427,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 85
     }
   ]
 }
