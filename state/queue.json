@@ -5621,9 +5621,9 @@
         }
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-09-21T08:28:10.091Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -23375,13 +23375,10 @@
         "result": null
       },
       "twitter": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-18T13:19:29.405Z",
-        "lastError": {
-          "code": "buffer_publication",
-          "at": "2026-09-18T13:19:29.405Z"
-        },
+        "status": "publishing",
+        "attempts": 2,
+        "updatedAt": "2026-09-21T08:28:10.091Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
