@@ -5463,9 +5463,50 @@
       }
     },
     "gh_461c2de2accdad3cc973f73e": {
-      "linkedin": null,
-      "twitter": null,
+      "status": "completed",
+      "contentHash": "83eafbac137705d45cbaf2bf8c5cd8d74e1a312d04671a9bd99cef01ec1f8f7c",
+      "dataCommit": "de629f7dd046129b9e2198884efefc02cf06ed28",
+      "dataHash": "4818be78f8f6a1b46fadd8c4bf6abf0425c7254a2a06b9824e10cfa027f9b881",
+      "completedAt": "2026-09-21T21:32:32.738Z",
+      "bluesky": {
+        "status": "published",
+        "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mvqswpy5n326",
+        "cid": "bafyreift3jbimp5tqctlysr3lxedatfwukwgpvnvmd6swynawy7bna5r6a",
+        "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mvqswpy5n326"
+      },
+      "mastodon": null,
+      "threads": {
+        "status": "published",
+        "id": "17964242790183343",
+        "url": "https://www.threads.com/@openingshq/post/DdfRL-rj2PO"
+      },
+      "instagram": {
+        "publicationKind": "image",
+        "canonicalUrl": "https://openings.dev/jobs/gh_461c2de2accdad3cc973f73e",
+        "status": "published",
+        "id": "18482498815128402",
+        "url": "https://www.instagram.com/p/DdfROOmj-oJ/"
+      },
+      "linkedin": {
+        "acceptedProviderId": "6aaf24e713d908add209f5ec",
+        "acceptedProvider": "buffer",
+        "acceptedStatus": "sending",
+        "status": "reconciled",
+        "id": "6aaf24e713d908add209f5ec",
+        "url": "https://www.linkedin.com/feed/update/urn:li:share:7507230233473773568",
+        "provider": "buffer"
+      },
+      "twitter": {
+        "acceptedProviderId": "6aaf24b9bb86436624aba1b1",
+        "acceptedProvider": "buffer",
+        "acceptedStatus": "sent",
+        "status": "published",
+        "id": "6aaf24b9bb86436624aba1b1",
+        "url": "https://twitter.com/OpeningsDev/status/2101464265836151088",
+        "provider": "buffer"
+      },
       "instagramStory": {
+        "operationKey": "job-story-35484557093-1",
         "status": "published",
         "id": "18170368099454832",
         "url": "https://www.instagram.com/stories/openingshq/3990059128785111370"
