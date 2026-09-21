@@ -31573,12 +31573,23 @@
       "createdAt": "2026-09-21T20:47:46Z",
       "publicationCreatedAt": "2026-09-21T21:32:39.449Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-21T23:21:20.558Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_b966e0258e506bd3daf3e811",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_b966e0258e506bd3daf3e811/f67c0d1087990cb048f1fdba5ecfad411d9947d86c42c1df9be8e0930a069816/7872e519a43a66f4628d9a260caa0b4109a6ad87c1ee9c8bcad76f041eb1a865/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_b966e0258e506bd3daf3e811/f67c0d1087990cb048f1fdba5ecfad411d9947d86c42c1df9be8e0930a069816/7872e519a43a66f4628d9a260caa0b4109a6ad87c1ee9c8bcad76f041eb1a865/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_b966e0258e506bd3daf3e811/f67c0d1087990cb048f1fdba5ecfad411d9947d86c42c1df9be8e0930a069816/7872e519a43a66f4628d9a260caa0b4109a6ad87c1ee9c8bcad76f041eb1a865/social-video.mp4",
+          "pngHash": "81073e1f8d7011b0915bcc1dc218e7df39a5f59e6f27aa79a7dcc80c5cd9336a",
+          "instagramJpegHash": "c4a0301dfbe7c3e6be5fe99579cdb07f495b349662f55c2de385142dc0cc4120",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Computer Vision / ML Engineer"
         }
       },
