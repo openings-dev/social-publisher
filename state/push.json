@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "22527563b5a8d508ebb528f3064baf2a4f92582a",
-    "generatedAt": "2026-09-21T15:32:23.043Z",
-    "dataHash": "1ee1c9b202ee44db02e95db125a215c8ad1ab89396ce63ec3a68e8b1c54a4424"
+    "commit": "ae007ea47af6db0d4f43457e7f1c9783edc11b8d",
+    "generatedAt": "2026-09-21T21:30:33.536Z",
+    "dataHash": "8760ffb20f764ae2584c770cd96ab199ef69c8fbc095990858c8171faf3b1690"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -1467,6 +1467,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_d450ba5b01eda9a9621a176b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b966e0258e506bd3daf3e811",
+      "sourceId": "pythonjobs/jobs#443",
+      "dataCommit": "ae007ea47af6db0d4f43457e7f1c9783edc11b8d",
+      "dataHash": "8760ffb20f764ae2584c770cd96ab199ef69c8fbc095990858c8171faf3b1690",
+      "contentHash": "f67c0d1087990cb048f1fdba5ecfad411d9947d86c42c1df9be8e0930a069816",
+      "sourceCreatedAt": "2026-09-21T20:47:46Z",
+      "createdAt": "2026-09-21T21:30:33.536Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e452a174-6bc3-41f2-a094-bca507d8e1a2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Computer Vision / ML Engineer",
+          "pt-BR": "Computer Vision / ML Engineer",
+          "es": "Computer Vision / ML Engineer",
+          "it": "Computer Vision / ML Engineer",
+          "fr": "Computer Vision / ML Engineer",
+          "de": "Computer Vision / ML Engineer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b966e0258e506bd3daf3e811"
         }
       },
       "status": "pending",
