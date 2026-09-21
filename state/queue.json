@@ -23375,10 +23375,13 @@
         "result": null
       },
       "twitter": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 2,
         "updatedAt": "2026-09-21T08:28:10.091Z",
-        "lastError": null,
+        "lastError": {
+          "code": "buffer_publication",
+          "at": "2026-09-21T08:28:10.091Z"
+        },
         "lastReset": null,
         "result": null
       },
@@ -23466,7 +23469,7 @@
                 "channel": "twitter",
                 "state": "ambiguous",
                 "remoteId": null,
-                "updatedAt": "2026-09-18T13:19:29.405Z"
+                "updatedAt": "2026-09-21T08:28:10.091Z"
               },
               {
                 "channel": "linkedin",
@@ -23521,7 +23524,7 @@
             ]
           }
         ],
-        "manifestDigest": "37572182c536d0c54d72b7d547f5c5929e042542aac3ddb1933a538fd9fc689c"
+        "manifestDigest": "873ffc716948d76791fe6a07a22e94f102264d8f8b186309d30942d47e453728"
       }
     },
     {
