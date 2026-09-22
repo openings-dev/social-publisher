@@ -30174,12 +30174,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 2,
         "updatedAt": "2026-09-22T02:40:53.002Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17986411562874366",
+          "url": "https://www.threads.com/@openingshq/post/Ddkr2RBIBAl"
+        }
       },
       "instagram": {
         "status": "published",
