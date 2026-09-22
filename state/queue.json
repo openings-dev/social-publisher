@@ -30174,13 +30174,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-09-20T08:11:11.618Z",
-        "lastError": {
-          "code": "threads_publication",
-          "at": "2026-09-20T08:11:11.618Z"
-        },
+        "status": "publishing",
+        "attempts": 2,
+        "updatedAt": "2026-09-22T02:40:53.002Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
