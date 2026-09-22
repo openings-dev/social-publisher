@@ -31788,12 +31788,14 @@
       "createdAt": "2026-09-22T04:39:16Z",
       "publicationCreatedAt": "2026-09-22T08:09:17.954Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-22T11:46:55.428Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Cần Thơ 18tr] Tìm 1 Mobile Dev (1+ yoe) và 1 Fullstack Dev (2+ yoe) - Lộ trình thăng tiến - Trao quyền định hướng"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -31850,7 +31852,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 87
     }
   ]
 }
