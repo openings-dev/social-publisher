@@ -30634,12 +30634,14 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-22T05:06:14.028Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "operationKey": "job-story-35689324743-1"
+        }
       },
       "visualDirection": "editorial",
       "visualSequence": 79,
