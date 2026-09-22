@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "6f92ff52698e15c57cbde7541d6379430d7303b0",
-    "generatedAt": "2026-09-22T08:07:32.633Z",
-    "dataHash": "be70147138851050c90a70d39282a7b9246e60a07ba2aa50fd88a832ae05a655"
+    "commit": "1b3e52411c317e3a41fe64c7e310dce9afa26ff8",
+    "generatedAt": "2026-09-22T13:49:17.117Z",
+    "dataHash": "6f31b58713d561c2f527e65b3e30489dfba72024ee190cad073490c3128bb4d1"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -1725,6 +1725,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_95dfaec90b828a0dcf2308fe"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6f45233b99747b64f192566e",
+      "sourceId": "awesome-jobs/vietnam#5066",
+      "dataCommit": "1b3e52411c317e3a41fe64c7e310dce9afa26ff8",
+      "dataHash": "6f31b58713d561c2f527e65b3e30489dfba72024ee190cad073490c3128bb4d1",
+      "contentHash": "44d6defddc926d8003b71d6f6407ed89ab14dea91ff4920c1974672df70b1e6f",
+      "sourceCreatedAt": "2026-09-22T08:08:02Z",
+      "createdAt": "2026-09-22T13:49:17.117Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8ca2ba56-154f-4877-bfdc-12b3e18f765a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🔹[Remote 2nd job] Dự án UK tìm Fullstack AI-Native Developer 7+ yoe",
+          "pt-BR": "🔹[Remote 2nd job] Dự án UK tìm Fullstack AI-Native Developer 7+ yoe",
+          "es": "🔹[Remote 2nd job] Dự án UK tìm Fullstack AI-Native Developer 7+ yoe",
+          "it": "🔹[Remote 2nd job] Dự án UK tìm Fullstack AI-Native Developer 7+ yoe",
+          "fr": "🔹[Remote 2nd job] Dự án UK tìm Fullstack AI-Native Developer 7+ yoe",
+          "de": "🔹[Remote 2nd job] Dự án UK tìm Fullstack AI-Native Developer 7+ yoe"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6f45233b99747b64f192566e"
         }
       },
       "status": "pending",
