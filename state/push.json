@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "d548377623e7ae90c45380eb2741d6fbb250d9a6",
-    "generatedAt": "2026-09-22T02:39:13.113Z",
-    "dataHash": "a46b6a5153b9f1aa9d9c02e8754708a545807e3da5d2b3c35f44f2359b0214ac"
+    "commit": "6f92ff52698e15c57cbde7541d6379430d7303b0",
+    "generatedAt": "2026-09-22T08:07:32.633Z",
+    "dataHash": "be70147138851050c90a70d39282a7b9246e60a07ba2aa50fd88a832ae05a655"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -1567,6 +1567,166 @@
         "notificationId": "b7268a94-ef99-4b08-8a73-1cf2441f604d",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_a46069ea14b72cc4d37999b6",
+      "sourceId": "awesome-jobs/vietnam#5065",
+      "dataCommit": "6f92ff52698e15c57cbde7541d6379430d7303b0",
+      "dataHash": "be70147138851050c90a70d39282a7b9246e60a07ba2aa50fd88a832ae05a655",
+      "contentHash": "70d0453e2be2cdd6b37a02905d44ade2e771c6f1214587de3ed35495d1b9338c",
+      "sourceCreatedAt": "2026-09-22T04:39:16Z",
+      "createdAt": "2026-09-22T08:07:32.633Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8aa76303-4d4f-4219-b05e-5026abfc4a3c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cần Thơ 18tr] Tìm 1 Mobile Dev (1+ yoe) và 1 Fullstack Dev (2+ yoe) - Lộ trình thăng tiến - Trao quyền định hướng",
+          "pt-BR": "[Cần Thơ 18tr] Tìm 1 Mobile Dev (1+ yoe) và 1 Fullstack Dev (2+ yoe) - Lộ trình thăng tiến - Trao quyền định hướng",
+          "es": "[Cần Thơ 18tr] Tìm 1 Mobile Dev (1+ yoe) và 1 Fullstack Dev (2+ yoe) - Lộ trình thăng tiến - Trao quyền định hướng",
+          "it": "[Cần Thơ 18tr] Tìm 1 Mobile Dev (1+ yoe) và 1 Fullstack Dev (2+ yoe) - Lộ trình thăng tiến - Trao quyền định hướng",
+          "fr": "[Cần Thơ 18tr] Tìm 1 Mobile Dev (1+ yoe) và 1 Fullstack Dev (2+ yoe) - Lộ trình thăng tiến - Trao quyền định hướng",
+          "de": "[Cần Thơ 18tr] Tìm 1 Mobile Dev (1+ yoe) và 1 Fullstack Dev (2+ yoe) - Lộ trình thăng tiến - Trao quyền định hướng"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a46069ea14b72cc4d37999b6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5e86a7a3e3ddb2f7ca15e43b",
+      "sourceId": "dotnetdevbr/vagas#1074",
+      "dataCommit": "6f92ff52698e15c57cbde7541d6379430d7303b0",
+      "dataHash": "be70147138851050c90a70d39282a7b9246e60a07ba2aa50fd88a832ae05a655",
+      "contentHash": "461c71b4c8e676f665d0e63e875bb140d7fc3e688aba618bb36cd60e76e8cda9",
+      "sourceCreatedAt": "2026-08-17T23:14:12Z",
+      "createdAt": "2026-09-22T08:07:32.633Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c2ea24cc-7eae-4bd8-adec-5eb9a628043d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "pt-BR": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "es": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "it": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "fr": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "de": "[Remoto] Back-End Developer .NET Sênior @ Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5e86a7a3e3ddb2f7ca15e43b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_67e531ccb53702de02d7454c",
+      "sourceId": "soujava/vagas-java#1925",
+      "dataCommit": "6f92ff52698e15c57cbde7541d6379430d7303b0",
+      "dataHash": "be70147138851050c90a70d39282a7b9246e60a07ba2aa50fd88a832ae05a655",
+      "contentHash": "aa0e6b3cc2def46e5639a6b82eda549bbadda3a8e5afa886dc78901c4bfad25a",
+      "sourceCreatedAt": "2026-07-23T17:37:41Z",
+      "createdAt": "2026-09-22T08:07:32.633Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e4e4be6f-3a1b-45fe-ba0d-edd360171ea8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java/Spring Boot Pleno na Sylision",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java/Spring Boot Pleno na Sylision",
+          "es": "[Remoto] Desenvolvedor(a) Java/Spring Boot Pleno na Sylision",
+          "it": "[Remoto] Desenvolvedor(a) Java/Spring Boot Pleno na Sylision",
+          "fr": "[Remoto] Desenvolvedor(a) Java/Spring Boot Pleno na Sylision",
+          "de": "[Remoto] Desenvolvedor(a) Java/Spring Boot Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_67e531ccb53702de02d7454c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_95dfaec90b828a0dcf2308fe",
+      "sourceId": "dotnetdevbr/vagas#1066",
+      "dataCommit": "6f92ff52698e15c57cbde7541d6379430d7303b0",
+      "dataHash": "be70147138851050c90a70d39282a7b9246e60a07ba2aa50fd88a832ae05a655",
+      "contentHash": "f05e71390b3233e4950e78409caf4615dff5c9ecb694faf0289eae46b375c8ee",
+      "sourceCreatedAt": "2026-07-19T15:25:33Z",
+      "createdAt": "2026-09-22T08:07:32.633Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bed8359a-baee-41f8-a555-4eaa142c6a74",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "pt-BR": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "es": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "it": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "fr": "[Remoto] Back-End Developer .NET Sênior @ Sylision",
+          "de": "[Remoto] Back-End Developer .NET Sênior @ Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_95dfaec90b828a0dcf2308fe"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
