@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "d46b502b9df54b5743692db4f1c9c411449281f7",
-    "generatedAt": "2026-09-22T18:27:31.716Z",
-    "dataHash": "71f2c88d3578572d3174d89e15f1e1e76d9ebccafb04962e196fe8d7d3c29fa8"
+    "commit": "faa8870cdfeae92eff4f3600bfa17256d518edd9",
+    "generatedAt": "2026-09-22T23:25:05.116Z",
+    "dataHash": "1fef0a77d1583713fc335252031d7a17f3549c0ea8a320a06cf3e65eb100c5fd"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -1825,6 +1825,126 @@
         "notificationId": "df64e69a-bbd8-4da4-b98a-3a9d8b606338",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_c44d96e1acded35b569295dc",
+      "sourceId": "negarprh/Canadian-Tech-Internships-2026#348",
+      "dataCommit": "faa8870cdfeae92eff4f3600bfa17256d518edd9",
+      "dataHash": "1fef0a77d1583713fc335252031d7a17f3549c0ea8a320a06cf3e65eb100c5fd",
+      "contentHash": "c36de3288218f8b8a22ab715f2bc58baeb56021f6a1fd772645003ea8e02871d",
+      "sourceCreatedAt": "2026-09-22T21:50:42Z",
+      "createdAt": "2026-09-22T23:25:05.116Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a3d5ea6c-ee38-4470-a317-4fc4288072f5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Suggestion",
+          "pt-BR": "Suggestion",
+          "es": "Suggestion",
+          "it": "Suggestion",
+          "fr": "Suggestion",
+          "de": "Suggestion"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c44d96e1acded35b569295dc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_51659470ccf0887616c6cd66",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2977",
+      "dataCommit": "faa8870cdfeae92eff4f3600bfa17256d518edd9",
+      "dataHash": "1fef0a77d1583713fc335252031d7a17f3549c0ea8a320a06cf3e65eb100c5fd",
+      "contentHash": "d61f9dc3bb752754b53efcc0cd11da5a0b5c06b5392f6bea3e3b37e1d813fe8e",
+      "sourceCreatedAt": "2026-09-22T20:55:34Z",
+      "createdAt": "2026-09-22T23:25:05.116Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d156c67f-732c-49c5-aa32-70d0de8a15a0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Misc Issue - Utilizing Repo for School Project",
+          "pt-BR": "Misc Issue - Utilizing Repo for School Project",
+          "es": "Misc Issue - Utilizing Repo for School Project",
+          "it": "Misc Issue - Utilizing Repo for School Project",
+          "fr": "Misc Issue - Utilizing Repo for School Project",
+          "de": "Misc Issue - Utilizing Repo for School Project"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_51659470ccf0887616c6cd66"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b1d7b3a976f64e5cf24ef658",
+      "sourceId": "rebase-network/who-is-hiring#1023",
+      "dataCommit": "faa8870cdfeae92eff4f3600bfa17256d518edd9",
+      "dataHash": "1fef0a77d1583713fc335252031d7a17f3549c0ea8a320a06cf3e65eb100c5fd",
+      "contentHash": "3c698c921704eccd87712acdd7fdbc8b1a40c6e178108a74872825100945b3b2",
+      "sourceCreatedAt": "2026-01-19T14:35:17Z",
+      "createdAt": "2026-09-22T23:25:05.116Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8e964090-8cee-47c0-a294-0a221e276e9f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] 量化团队诚聘 DEX 策略研究员 远程/香港/上海",
+          "pt-BR": "[Remote] 量化团队诚聘 DEX 策略研究员 远程/香港/上海",
+          "es": "[Remote] 量化团队诚聘 DEX 策略研究员 远程/香港/上海",
+          "it": "[Remote] 量化团队诚聘 DEX 策略研究员 远程/香港/上海",
+          "fr": "[Remote] 量化团队诚聘 DEX 策略研究员 远程/香港/上海",
+          "de": "[Remote] 量化团队诚聘 DEX 策略研究员 远程/香港/上海"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b1d7b3a976f64e5cf24ef658"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
