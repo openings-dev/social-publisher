@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "1b3e52411c317e3a41fe64c7e310dce9afa26ff8",
-    "generatedAt": "2026-09-22T13:49:17.117Z",
-    "dataHash": "6f31b58713d561c2f527e65b3e30489dfba72024ee190cad073490c3128bb4d1"
+    "commit": "d46b502b9df54b5743692db4f1c9c411449281f7",
+    "generatedAt": "2026-09-22T18:27:31.716Z",
+    "dataHash": "71f2c88d3578572d3174d89e15f1e1e76d9ebccafb04962e196fe8d7d3c29fa8"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -1771,6 +1771,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_6f45233b99747b64f192566e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_86cb84e98756a8403eaeaec8",
+      "sourceId": "backend-br/vagas#12412",
+      "dataCommit": "d46b502b9df54b5743692db4f1c9c411449281f7",
+      "dataHash": "71f2c88d3578572d3174d89e15f1e1e76d9ebccafb04962e196fe8d7d3c29fa8",
+      "contentHash": "a2351dd4f8199aefe37ed8df455eb07ca4793c949b48f558180c767e052075d4",
+      "sourceCreatedAt": "2026-09-03T11:53:48Z",
+      "createdAt": "2026-09-22T18:27:31.716Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "29555431-25aa-46ff-a291-56d0ad3947c4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Fullstack Developer - Jazida.com",
+          "pt-BR": "[Remoto] Fullstack Developer - Jazida.com",
+          "es": "[Remoto] Fullstack Developer - Jazida.com",
+          "it": "[Remoto] Fullstack Developer - Jazida.com",
+          "fr": "[Remoto] Fullstack Developer - Jazida.com",
+          "de": "[Remoto] Fullstack Developer - Jazida.com"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_86cb84e98756a8403eaeaec8"
         }
       },
       "status": "pending",
