@@ -1,100 +1,7 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [
-    {
-      "contentId": "application-leia-os-requisitos",
-      "contentVersion": "2",
-      "pillar": "application",
-      "scheduledDate": "2026-09-22",
-      "createdAt": "2026-09-22T18:28:52.576Z",
-      "assets": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-22T18:28:54.644Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "hosted",
-          "carouselUrls": [
-            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-01.jpg",
-            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-02.jpg",
-            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-03.jpg",
-            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-04.jpg",
-            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-05.jpg",
-            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-06.jpg",
-            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-07.jpg"
-          ],
-          "carouselMedia": [
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-01.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-02.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-03.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-04.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-05.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-06.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-07.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            }
-          ]
-        }
-      },
-      "feed": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-22T18:29:04.501Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "published",
-          "id": "18120658475486968",
-          "url": "https://www.instagram.com/p/DdmYfZxGYc2/"
-        }
-      },
-      "story": {
-        "status": "publishing",
-        "attempts": 1,
-        "updatedAt": "2026-09-22T18:30:33.447Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "operationKey": "editorial-35767350389-1"
-        }
-      }
-    }
-  ],
+  "pending": [],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",
@@ -449,6 +356,83 @@
           "status": "unsupported",
           "reason": "editorial_story_feed_media_compatibility_unverified",
           "mediaUrl": "https://media.openings.dev/openings/editorial/interview-entrevista-remota/2/5/slide-01.jpg",
+          "mediaType": "image/jpeg",
+          "width": 1080,
+          "height": 1350
+        }
+      }
+    },
+    "application-leia-os-requisitos": {
+      "lastPublishedAt": "2026-09-22T18:30:35.378Z",
+      "cycles": 1,
+      "lastPublication": {
+        "scheduledDate": "2026-09-22",
+        "contentVersion": "2",
+        "assets": {
+          "status": "hosted",
+          "carouselUrls": [
+            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-01.jpg",
+            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-02.jpg",
+            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-03.jpg",
+            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-04.jpg",
+            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-05.jpg",
+            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-06.jpg",
+            "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-07.jpg"
+          ],
+          "carouselMedia": [
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-01.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-02.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-03.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-04.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-05.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-06.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-07.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            }
+          ]
+        },
+        "feed": {
+          "status": "published",
+          "id": "18120658475486968",
+          "url": "https://www.instagram.com/p/DdmYfZxGYc2/"
+        },
+        "story": {
+          "status": "unsupported",
+          "reason": "editorial_story_feed_media_compatibility_unverified",
+          "mediaUrl": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-01.jpg",
           "mediaType": "image/jpeg",
           "width": 1080,
           "height": 1350
