@@ -1558,12 +1558,15 @@
           "jobId": "gh_9778e2bda5326d36dc502ed4"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-09-22T05:17:36.875Z",
-      "updatedAt": "2026-09-22T05:17:36.875Z",
+      "updatedAt": "2026-09-22T05:17:38.766Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "b7268a94-ef99-4b08-8a73-1cf2441f604d",
+        "providerStatus": "accepted"
+      }
     }
   ]
 }
