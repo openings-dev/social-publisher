@@ -84,12 +84,14 @@
         }
       },
       "story": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-22T18:30:33.447Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "operationKey": "editorial-35767350389-1"
+        }
       }
     }
   ],
