@@ -33084,7 +33084,7 @@
         "result": null
       },
       "twitter": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-23T18:48:11.104Z",
         "lastError": null,
@@ -33092,7 +33092,11 @@
         "result": {
           "acceptedProviderId": "6ab41f06a9a34069028c0967",
           "acceptedProvider": "buffer",
-          "acceptedStatus": "sent"
+          "acceptedStatus": "sent",
+          "status": "published",
+          "id": "6ab41f06a9a34069028c0967",
+          "url": "https://twitter.com/OpeningsDev/status/2102832533670855008",
+          "provider": "buffer"
         }
       },
       "threads": {
@@ -33154,7 +33158,7 @@
             "consumers": [
               {
                 "channel": "twitter",
-                "state": "accepted",
+                "state": "completed",
                 "remoteId": "6ab41f06a9a34069028c0967",
                 "updatedAt": "2026-09-23T18:48:11.104Z"
               },
@@ -33211,7 +33215,7 @@
             ]
           }
         ],
-        "manifestDigest": "f729f760699e015fb56e9e55333c056820c266913c375f170ddd7b465d05b395"
+        "manifestDigest": "082145054801dd4ad8e685676b11127e3a1c71848726e1a1af70150796f2aa92"
       }
     },
     {
