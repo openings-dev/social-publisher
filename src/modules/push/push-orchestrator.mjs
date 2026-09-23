@@ -1,9 +1,16 @@
 import { validatePushState } from './push-state.mjs';
 
 const RETRY_DELAY_MS = 100 * 1000;
+const MAX_DAILY_PUSHES = 2;
+const DAILY_LIMIT_DAY = new Intl.DateTimeFormat('en-CA', {
+  timeZone: 'America/Sao_Paulo',
+  year: 'numeric',
+  month: '2-digit',
+  day: '2-digit',
+});
 
 function isoDay(value) {
-  return value.slice(0, 10);
+  return DAILY_LIMIT_DAY.format(new Date(value));
 }
 
 function replaceIntent(state, jobId, update) {
@@ -40,9 +47,11 @@ export function preparePushSubmission(state, currentSnapshot, { now = new Date()
 
   const sentToday = next.intents.filter((intent) => (
     ['submitting', 'accepted', 'uncertain'].includes(intent.status)
-      && intent.updatedAt?.startsWith(isoDay(now))
+      && intent.updatedAt
+      && isoDay(intent.updatedAt) === isoDay(now)
   )).length;
-  if (sentToday >= next.policy.dailyCap) return { state: validatePushState(next), intent: null, reason: 'daily_cap' };
+  const dailyCap = Math.min(next.policy.dailyCap, MAX_DAILY_PUSHES);
+  if (sentToday >= dailyCap) return { state: validatePushState(next), intent: null, reason: 'daily_cap' };
 
   const maximumAgeMs = next.policy.maxAgeHours * 60 * 60 * 1000;
   next.intents = next.intents.map((intent) => (
