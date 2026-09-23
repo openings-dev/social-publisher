@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "1d003ae4c843153fbd7f9bb56e05c814e48f37d9",
-    "generatedAt": "2026-09-23T18:46:29.215Z",
-    "dataHash": "dfc2e627a700badd46e933771db0a7f2814ef9de803739f0543dbed1b35fea9c"
+    "commit": "3b7263ceecb26e7a0e233b633a481f5eff6d819b",
+    "generatedAt": "2026-09-23T23:23:29.976Z",
+    "dataHash": "97d33af2155621a8e84d1a5a969c8d1d2bd5e4b82fcfdd62b1f264b6be141d37"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -2521,6 +2521,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_b4197231ee36d78db1f0e1ba"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_695d9f638d570dbf0370cb8a",
+      "sourceId": "rebase-network/who-is-hiring#1307",
+      "dataCommit": "3b7263ceecb26e7a0e233b633a481f5eff6d819b",
+      "dataHash": "97d33af2155621a8e84d1a5a969c8d1d2bd5e4b82fcfdd62b1f264b6be141d37",
+      "contentHash": "26fb76242e95f38767fb88467f5476c32a64266989896f98a8ac3b181781263a",
+      "sourceCreatedAt": "2026-09-23T23:22:26Z",
+      "createdAt": "2026-09-23T23:23:29.976Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3793765d-3aa5-4c8a-a841-9dbcb4184b12",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Solidity 工程师 | USD10k ~ 14k + token",
+          "pt-BR": "Solidity 工程师 | USD10k ~ 14k + token",
+          "es": "Solidity 工程师 | USD10k ~ 14k + token",
+          "it": "Solidity 工程师 | USD10k ~ 14k + token",
+          "fr": "Solidity 工程师 | USD10k ~ 14k + token",
+          "de": "Solidity 工程师 | USD10k ~ 14k + token"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_695d9f638d570dbf0370cb8a"
         }
       },
       "status": "pending",
