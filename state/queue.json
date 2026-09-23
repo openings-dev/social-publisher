@@ -33954,6 +33954,80 @@
         ],
         "manifestDigest": "c5bdc4b803ba9e1b6db29a3ff86d6746e6bf1401a4623b3763ceea9d5ef9ded3"
       }
+    },
+    {
+      "jobId": "gh_695d9f638d570dbf0370cb8a",
+      "sourceId": "rebase-network/who-is-hiring#1307",
+      "dataCommit": "3b7263ceecb26e7a0e233b633a481f5eff6d819b",
+      "dataHash": "97d33af2155621a8e84d1a5a969c8d1d2bd5e4b82fcfdd62b1f264b6be141d37",
+      "contentHash": "26fb76242e95f38767fb88467f5476c32a64266989896f98a8ac3b181781263a",
+      "discoveredAt": "2026-09-23T23:28:20.677Z",
+      "createdAt": "2026-09-23T23:22:26Z",
+      "publicationCreatedAt": "2026-09-23T23:28:20.677Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
