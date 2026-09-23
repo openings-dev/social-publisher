@@ -33042,12 +33042,23 @@
       "createdAt": "2026-09-23T10:38:10Z",
       "publicationCreatedAt": "2026-09-23T18:28:43.973Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-23T18:48:11.104Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9a209b66f806a0d8049b8e95",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_9a209b66f806a0d8049b8e95/064a5387b529f79026c1cf215bae2dd2df3ed3dcec6f84f140beab2e066ecbec/b8b6f89dcde6aeb75988b786fae28e9d0fdefd0212cd06d4b4838c965bdd015e/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_9a209b66f806a0d8049b8e95/064a5387b529f79026c1cf215bae2dd2df3ed3dcec6f84f140beab2e066ecbec/b8b6f89dcde6aeb75988b786fae28e9d0fdefd0212cd06d4b4838c965bdd015e/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_9a209b66f806a0d8049b8e95/064a5387b529f79026c1cf215bae2dd2df3ed3dcec6f84f140beab2e066ecbec/b8b6f89dcde6aeb75988b786fae28e9d0fdefd0212cd06d4b4838c965bdd015e/social-video.mp4",
+          "pngHash": "bcbba274c6432fcf815e2c77f46b37c01c5d71aacd85209ba4f71db2d507f303",
+          "instagramJpegHash": "6dffa9fb7bf5f0e9d1165cc909266e1e9fc3e92392738472e6122000dd6df933",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[日本横滨] web3交易所 测试工程师 30K RMB"
         }
       },
