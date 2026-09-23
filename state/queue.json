@@ -32624,12 +32624,14 @@
       "createdAt": "2026-09-23T06:56:28Z",
       "publicationCreatedAt": "2026-09-23T08:11:58.851Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-23T13:42:08.252Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Hybrid HCM] US Client tìm Senior FullStack 5+ yoe | RESTful APIs & Database | HTML/CSS/JS | Eng tự tin"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -32686,7 +32688,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 91
     },
     {
       "jobId": "gh_5920044c481a81f4ba029054",
