@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "08c4077f69254a7e1d6162077beb7cca3460d8ce",
-    "generatedAt": "2026-09-23T14:00:50.320Z",
-    "dataHash": "71b32ba81f86a2ac6b69a7c1fdaa7b7dcf9b2c797201058c7eb950f105729d1c"
+    "commit": "1d003ae4c843153fbd7f9bb56e05c814e48f37d9",
+    "generatedAt": "2026-09-23T18:46:29.215Z",
+    "dataHash": "dfc2e627a700badd46e933771db0a7f2814ef9de803739f0543dbed1b35fea9c"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -2478,6 +2478,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_0dd6d2f3bc8549a37164fb89"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b4197231ee36d78db1f0e1ba",
+      "sourceId": "backend-br/vagas#12431",
+      "dataCommit": "1d003ae4c843153fbd7f9bb56e05c814e48f37d9",
+      "dataHash": "dfc2e627a700badd46e933771db0a7f2814ef9de803739f0543dbed1b35fea9c",
+      "contentHash": "7f8bc5666421e7dc9901d01bd5a163bebb3b0d507512481a4da6e3bdc9f825c6",
+      "sourceCreatedAt": "2026-09-23T16:57:25Z",
+      "createdAt": "2026-09-23T18:46:29.215Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b378abfd-9d25-4b1f-959b-587acaed9aed",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Lead Database & Data Platform Engineer (Strider)",
+          "pt-BR": "[Remoto] Lead Database & Data Platform Engineer (Strider)",
+          "es": "[Remoto] Lead Database & Data Platform Engineer (Strider)",
+          "it": "[Remoto] Lead Database & Data Platform Engineer (Strider)",
+          "fr": "[Remoto] Lead Database & Data Platform Engineer (Strider)",
+          "de": "[Remoto] Lead Database & Data Platform Engineer (Strider)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b4197231ee36d78db1f0e1ba"
         }
       },
       "status": "pending",
