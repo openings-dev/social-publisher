@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "234a61b60c9f182d984c454db8293cb151971231",
-    "generatedAt": "2026-09-23T02:39:10.352Z",
-    "dataHash": "ef2c6cec00a0a88cbe220a54b97c81924782240081a5d8c62b951522d7c64c1d"
+    "commit": "880226aeccc4c6e694095e9cd9b7534d3922b502",
+    "generatedAt": "2026-09-23T08:09:59.605Z",
+    "dataHash": "6772bc81c5e86ef5a49a3d6882222aae070c8628f83c6f0c80d9739b6a9799f8"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -1954,6 +1954,286 @@
         "notificationId": "e19c12cc-049e-4c0d-8d00-6d7a0c989e9d",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_73bd85be8db60d28352a6fc2",
+      "sourceId": "awesome-jobs/vietnam#5067",
+      "dataCommit": "880226aeccc4c6e694095e9cd9b7534d3922b502",
+      "dataHash": "6772bc81c5e86ef5a49a3d6882222aae070c8628f83c6f0c80d9739b6a9799f8",
+      "contentHash": "f6fe87983df47c4bb06d00ca3e3e74cba3f5d2222d31e29ed2fda450e543ed65",
+      "sourceCreatedAt": "2026-09-23T06:56:28Z",
+      "createdAt": "2026-09-23T08:09:59.605Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ac9d3cb8-896c-4ff9-8005-746d580dd0d2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Hybrid HCM] US Client tìm Senior FullStack 5+ yoe | RESTful APIs & Database | HTML/CSS/JS | Eng tự tin",
+          "pt-BR": "[Hybrid HCM] US Client tìm Senior FullStack 5+ yoe | RESTful APIs & Database | HTML/CSS/JS | Eng tự tin",
+          "es": "[Hybrid HCM] US Client tìm Senior FullStack 5+ yoe | RESTful APIs & Database | HTML/CSS/JS | Eng tự tin",
+          "it": "[Hybrid HCM] US Client tìm Senior FullStack 5+ yoe | RESTful APIs & Database | HTML/CSS/JS | Eng tự tin",
+          "fr": "[Hybrid HCM] US Client tìm Senior FullStack 5+ yoe | RESTful APIs & Database | HTML/CSS/JS | Eng tự tin",
+          "de": "[Hybrid HCM] US Client tìm Senior FullStack 5+ yoe | RESTful APIs & Database | HTML/CSS/JS | Eng tự tin"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_73bd85be8db60d28352a6fc2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5920044c481a81f4ba029054",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2978",
+      "dataCommit": "880226aeccc4c6e694095e9cd9b7534d3922b502",
+      "dataHash": "6772bc81c5e86ef5a49a3d6882222aae070c8628f83c6f0c80d9739b6a9799f8",
+      "contentHash": "939f80ddeebb88185156a8d2d85fbdd30df17a375d9cc058aa35b8f12c39d7c7",
+      "sourceCreatedAt": "2026-09-23T05:11:27Z",
+      "createdAt": "2026-09-23T08:09:59.605Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6c870084-ccd7-4754-96e9-c10cbfcccccd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Grad Hardware Engineering",
+          "pt-BR": "New Grad Hardware Engineering",
+          "es": "New Grad Hardware Engineering",
+          "it": "New Grad Hardware Engineering",
+          "fr": "New Grad Hardware Engineering",
+          "de": "New Grad Hardware Engineering"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5920044c481a81f4ba029054"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_56f09abec7008337fbc6da45",
+      "sourceId": "backend-br/vagas#12373",
+      "dataCommit": "880226aeccc4c6e694095e9cd9b7534d3922b502",
+      "dataHash": "6772bc81c5e86ef5a49a3d6882222aae070c8628f83c6f0c80d9739b6a9799f8",
+      "contentHash": "d7891f59e60a1eada3d26e1147a6a3fabfe9826d3ac9a346f2070e3d7e237cbc",
+      "sourceCreatedAt": "2026-08-12T17:57:22Z",
+      "createdAt": "2026-09-23T08:09:59.605Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "adc699ae-29fd-41eb-ab43-c3e28722814f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Backend .NET  - JJConsulting",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Backend .NET  - JJConsulting",
+          "es": "[Remoto] Desenvolvedor(a) Backend .NET  - JJConsulting",
+          "it": "[Remoto] Desenvolvedor(a) Backend .NET  - JJConsulting",
+          "fr": "[Remoto] Desenvolvedor(a) Backend .NET  - JJConsulting",
+          "de": "[Remoto] Desenvolvedor(a) Backend .NET  - JJConsulting"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_56f09abec7008337fbc6da45"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fd2c625e7c7fba96face8ed8",
+      "sourceId": "soujava/vagas-java#1928",
+      "dataCommit": "880226aeccc4c6e694095e9cd9b7534d3922b502",
+      "dataHash": "6772bc81c5e86ef5a49a3d6882222aae070c8628f83c6f0c80d9739b6a9799f8",
+      "contentHash": "4363641c75ae020a0aae6ae5ad4a502768b6fdc50fdc6d436019c098cd774806",
+      "sourceCreatedAt": "2026-07-24T17:56:33Z",
+      "createdAt": "2026-09-23T08:09:59.605Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a46e12be-e2ac-4a55-a75c-6ca8d207f754",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Desenvolvedor(a) Java Pleno na Sylision",
+          "pt-BR": "[Híbrido] Desenvolvedor(a) Java Pleno na Sylision",
+          "es": "[Híbrido] Desenvolvedor(a) Java Pleno na Sylision",
+          "it": "[Híbrido] Desenvolvedor(a) Java Pleno na Sylision",
+          "fr": "[Híbrido] Desenvolvedor(a) Java Pleno na Sylision",
+          "de": "[Híbrido] Desenvolvedor(a) Java Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fd2c625e7c7fba96face8ed8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9c260b1b5b1a3282b984c67a",
+      "sourceId": "soujava/vagas-java#1927",
+      "dataCommit": "880226aeccc4c6e694095e9cd9b7534d3922b502",
+      "dataHash": "6772bc81c5e86ef5a49a3d6882222aae070c8628f83c6f0c80d9739b6a9799f8",
+      "contentHash": "804c0df6a7c1f30a18af82bc8f03d59a36af9bf41036b13dd13454bb0f1fff65",
+      "sourceCreatedAt": "2026-07-24T17:55:32Z",
+      "createdAt": "2026-09-23T08:09:59.605Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "178d9a63-3247-4137-a88f-9cc42bc78235",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "pt-BR": "[Híbrido] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "es": "[Híbrido] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "it": "[Híbrido] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "fr": "[Híbrido] Desenvolvedor(a) Java/Kafka Pleno na Sylision",
+          "de": "[Híbrido] Desenvolvedor(a) Java/Kafka Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9c260b1b5b1a3282b984c67a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9edee6feb18bfea0630fef79",
+      "sourceId": "soujava/vagas-java#1926",
+      "dataCommit": "880226aeccc4c6e694095e9cd9b7534d3922b502",
+      "dataHash": "6772bc81c5e86ef5a49a3d6882222aae070c8628f83c6f0c80d9739b6a9799f8",
+      "contentHash": "01e3717efc93b0d65d153936989196e647644c5ca4e307b6a7918d9f16c680c5",
+      "sourceCreatedAt": "2026-07-23T17:38:46Z",
+      "createdAt": "2026-09-23T08:09:59.605Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bf23bcf5-1341-4a8b-97cb-b569f94c14e1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "pt-BR": "[Híbrido] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "es": "[Híbrido] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "it": "[Híbrido] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "fr": "[Híbrido] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision",
+          "de": "[Híbrido] Desenvolvedor(a) Java/Jakarta EE Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9edee6feb18bfea0630fef79"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_cb2ee2711308cdd4a5a45c69",
+      "sourceId": "backend-br/vagas#12292",
+      "dataCommit": "880226aeccc4c6e694095e9cd9b7534d3922b502",
+      "dataHash": "6772bc81c5e86ef5a49a3d6882222aae070c8628f83c6f0c80d9739b6a9799f8",
+      "contentHash": "7c73bd2f6856ab904523ac70af517ad5f81b668a26b398910a866c84b265ead5",
+      "sourceCreatedAt": "2026-06-23T19:07:13Z",
+      "createdAt": "2026-09-23T08:09:59.605Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "84fb2038-d28d-4768-8cdf-a8132f11c3d1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Developer ASP.NET/C# Junior/Pleno - Dimensa",
+          "pt-BR": "[Remoto] Developer ASP.NET/C# Junior/Pleno - Dimensa",
+          "es": "[Remoto] Developer ASP.NET/C# Junior/Pleno - Dimensa",
+          "it": "[Remoto] Developer ASP.NET/C# Junior/Pleno - Dimensa",
+          "fr": "[Remoto] Developer ASP.NET/C# Junior/Pleno - Dimensa",
+          "de": "[Remoto] Developer ASP.NET/C# Junior/Pleno - Dimensa"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_cb2ee2711308cdd4a5a45c69"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
