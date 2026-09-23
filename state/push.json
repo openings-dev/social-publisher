@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "880226aeccc4c6e694095e9cd9b7534d3922b502",
-    "generatedAt": "2026-09-23T08:09:59.605Z",
-    "dataHash": "6772bc81c5e86ef5a49a3d6882222aae070c8628f83c6f0c80d9739b6a9799f8"
+    "commit": "08c4077f69254a7e1d6162077beb7cca3460d8ce",
+    "generatedAt": "2026-09-23T14:00:50.320Z",
+    "dataHash": "71b32ba81f86a2ac6b69a7c1fdaa7b7dcf9b2c797201058c7eb950f105729d1c"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -2232,6 +2232,246 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_cb2ee2711308cdd4a5a45c69"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9a209b66f806a0d8049b8e95",
+      "sourceId": "rebase-network/who-is-hiring#1306",
+      "dataCommit": "08c4077f69254a7e1d6162077beb7cca3460d8ce",
+      "dataHash": "71b32ba81f86a2ac6b69a7c1fdaa7b7dcf9b2c797201058c7eb950f105729d1c",
+      "contentHash": "064a5387b529f79026c1cf215bae2dd2df3ed3dcec6f84f140beab2e066ecbec",
+      "sourceCreatedAt": "2026-09-23T10:38:10Z",
+      "createdAt": "2026-09-23T14:00:50.320Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "88fdcf82-5ddd-433d-9c9e-0586c06dfc47",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[日本横滨] web3交易所 测试工程师 30K RMB",
+          "pt-BR": "[日本横滨] web3交易所 测试工程师 30K RMB",
+          "es": "[日本横滨] web3交易所 测试工程师 30K RMB",
+          "it": "[日本横滨] web3交易所 测试工程师 30K RMB",
+          "fr": "[日本横滨] web3交易所 测试工程师 30K RMB",
+          "de": "[日本横滨] web3交易所 测试工程师 30K RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9a209b66f806a0d8049b8e95"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_81101225f8f8a2c29de5c5b8",
+      "sourceId": "rebase-network/who-is-hiring#1305",
+      "dataCommit": "08c4077f69254a7e1d6162077beb7cca3460d8ce",
+      "dataHash": "71b32ba81f86a2ac6b69a7c1fdaa7b7dcf9b2c797201058c7eb950f105729d1c",
+      "contentHash": "5b8c627feb465c602eec1e722c0868a9bcab4194f7a016fcdae4dc100a2a86c5",
+      "sourceCreatedAt": "2026-09-23T10:36:28Z",
+      "createdAt": "2026-09-23T14:00:50.320Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d6e43e16-611e-4344-889b-21a8b5442eb4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[日本大阪] web3 交易所 高级测试开发工程师（区块链钱包方向） 8000 USD",
+          "pt-BR": "[日本大阪] web3 交易所 高级测试开发工程师（区块链钱包方向） 8000 USD",
+          "es": "[日本大阪] web3 交易所 高级测试开发工程师（区块链钱包方向） 8000 USD",
+          "it": "[日本大阪] web3 交易所 高级测试开发工程师（区块链钱包方向） 8000 USD",
+          "fr": "[日本大阪] web3 交易所 高级测试开发工程师（区块链钱包方向） 8000 USD",
+          "de": "[日本大阪] web3 交易所 高级测试开发工程师（区块链钱包方向） 8000 USD"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_81101225f8f8a2c29de5c5b8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_447cc5783e558f477cf03095",
+      "sourceId": "rebase-network/who-is-hiring#1304",
+      "dataCommit": "08c4077f69254a7e1d6162077beb7cca3460d8ce",
+      "dataHash": "71b32ba81f86a2ac6b69a7c1fdaa7b7dcf9b2c797201058c7eb950f105729d1c",
+      "contentHash": "fc4d9096b7294a5efe8c3fadd8f1be00971848ca8e760e4e43700f79c07e729f",
+      "sourceCreatedAt": "2026-09-23T10:34:47Z",
+      "createdAt": "2026-09-23T14:00:50.320Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d22b64f2-f3e5-47eb-801f-c19d64700798",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[日本大阪] web3交易所  产品经理  30-50K RMB",
+          "pt-BR": "[日本大阪] web3交易所  产品经理  30-50K RMB",
+          "es": "[日本大阪] web3交易所  产品经理  30-50K RMB",
+          "it": "[日本大阪] web3交易所  产品经理  30-50K RMB",
+          "fr": "[日本大阪] web3交易所  产品经理  30-50K RMB",
+          "de": "[日本大阪] web3交易所  产品经理  30-50K RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_447cc5783e558f477cf03095"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f57d60a6e9ecbafe44d2c3d3",
+      "sourceId": "rebase-network/who-is-hiring#1303",
+      "dataCommit": "08c4077f69254a7e1d6162077beb7cca3460d8ce",
+      "dataHash": "71b32ba81f86a2ac6b69a7c1fdaa7b7dcf9b2c797201058c7eb950f105729d1c",
+      "contentHash": "2b4caa35cba669922e3a5718b1c9beebd63c8e9aadbe848e855f5b852aeb42da",
+      "sourceCreatedAt": "2026-09-23T10:28:53Z",
+      "createdAt": "2026-09-23T14:00:50.320Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1efd8b83-88a2-43a4-b155-29da24475129",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[日本大阪] web3 交易所 游戏数据分析师  30K-40K RMB (可无经验18K)",
+          "pt-BR": "[日本大阪] web3 交易所 游戏数据分析师  30K-40K RMB (可无经验18K)",
+          "es": "[日本大阪] web3 交易所 游戏数据分析师  30K-40K RMB (可无经验18K)",
+          "it": "[日本大阪] web3 交易所 游戏数据分析师  30K-40K RMB (可无经验18K)",
+          "fr": "[日本大阪] web3 交易所 游戏数据分析师  30K-40K RMB (可无经验18K)",
+          "de": "[日本大阪] web3 交易所 游戏数据分析师  30K-40K RMB (可无经验18K)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f57d60a6e9ecbafe44d2c3d3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_803be473276db52bc1817412",
+      "sourceId": "rebase-network/who-is-hiring#1302",
+      "dataCommit": "08c4077f69254a7e1d6162077beb7cca3460d8ce",
+      "dataHash": "71b32ba81f86a2ac6b69a7c1fdaa7b7dcf9b2c797201058c7eb950f105729d1c",
+      "contentHash": "ed4179e1f2c5a38799232a7b23087c635aabbc00d36d37d31085047fc6c7d751",
+      "sourceCreatedAt": "2026-09-23T10:23:20Z",
+      "createdAt": "2026-09-23T14:00:50.320Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "92db94fa-1bb2-4ef5-a83c-8dca10102779",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[日本 大阪] 资深 Golang 后端工程师（Web3 方向） 40-70K RMB",
+          "pt-BR": "[日本 大阪] 资深 Golang 后端工程师（Web3 方向） 40-70K RMB",
+          "es": "[日本 大阪] 资深 Golang 后端工程师（Web3 方向） 40-70K RMB",
+          "it": "[日本 大阪] 资深 Golang 后端工程师（Web3 方向） 40-70K RMB",
+          "fr": "[日本 大阪] 资深 Golang 后端工程师（Web3 方向） 40-70K RMB",
+          "de": "[日本 大阪] 资深 Golang 后端工程师（Web3 方向） 40-70K RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_803be473276db52bc1817412"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0dd6d2f3bc8549a37164fb89",
+      "sourceId": "rebase-network/who-is-hiring#1301",
+      "dataCommit": "08c4077f69254a7e1d6162077beb7cca3460d8ce",
+      "dataHash": "71b32ba81f86a2ac6b69a7c1fdaa7b7dcf9b2c797201058c7eb950f105729d1c",
+      "contentHash": "3e25906c167e61a5bef36273dc40ce24f15841682c4b244c0fd409f53ebf22d7",
+      "sourceCreatedAt": "2026-09-23T10:13:17Z",
+      "createdAt": "2026-09-23T14:00:50.320Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "37af1e3e-ba00-4fe2-9d49-f28695762479",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[日本大阪]  营运客服专员 14Krmb",
+          "pt-BR": "[日本大阪]  营运客服专员 14Krmb",
+          "es": "[日本大阪]  营运客服专员 14Krmb",
+          "it": "[日本大阪]  营运客服专员 14Krmb",
+          "fr": "[日本大阪]  营运客服专员 14Krmb",
+          "de": "[日本大阪]  营运客服专员 14Krmb"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0dd6d2f3bc8549a37164fb89"
         }
       },
       "status": "pending",
