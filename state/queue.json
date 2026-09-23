@@ -32206,12 +32206,14 @@
       "createdAt": "2026-09-22T21:50:42Z",
       "publicationCreatedAt": "2026-09-22T23:26:28.162Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-23T00:40:18.772Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Suggestion"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -32268,7 +32270,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 89
     },
     {
       "jobId": "gh_51659470ccf0887616c6cd66",
