@@ -32415,12 +32415,23 @@
       "createdAt": "2026-09-22T20:55:34Z",
       "publicationCreatedAt": "2026-09-22T23:26:28.162Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-23T02:40:17.377Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_51659470ccf0887616c6cd66",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_51659470ccf0887616c6cd66/d61f9dc3bb752754b53efcc0cd11da5a0b5c06b5392f6bea3e3b37e1d813fe8e/19cb71625cc64f8fb71f95843d7883a2fab897693326aaf6669ec2233b9b491b/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_51659470ccf0887616c6cd66/d61f9dc3bb752754b53efcc0cd11da5a0b5c06b5392f6bea3e3b37e1d813fe8e/19cb71625cc64f8fb71f95843d7883a2fab897693326aaf6669ec2233b9b491b/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_51659470ccf0887616c6cd66/d61f9dc3bb752754b53efcc0cd11da5a0b5c06b5392f6bea3e3b37e1d813fe8e/19cb71625cc64f8fb71f95843d7883a2fab897693326aaf6669ec2233b9b491b/social-video.mp4",
+          "pngHash": "3e44d78d5195fdb730115ba1fbb1c70887638f92ab0c76b6bc9cbe7cd177a58e",
+          "instagramJpegHash": "b2bb612e09bf2d7852f8a94041eeedc7ae02c533febc4d0f58838966a2b96f7e",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Misc Issue - Utilizing Repo for School Project"
         }
       },
