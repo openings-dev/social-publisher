@@ -33251,12 +33251,14 @@
       "createdAt": "2026-09-23T10:36:28Z",
       "publicationCreatedAt": "2026-09-23T18:28:43.973Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-23T23:25:32.224Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[日本大阪] web3 交易所 高级测试开发工程师(区块链钱包方向) 8000 USD"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -33313,7 +33315,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 95
     },
     {
       "jobId": "gh_447cc5783e558f477cf03095",
