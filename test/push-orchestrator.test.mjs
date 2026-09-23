@@ -70,6 +70,36 @@ test('limits broadcasts to two per Sao Paulo day even when the stored cap is hig
   assert.equal(deferred.reason, 'daily_cap');
 });
 
+test('resets the daily limit at midnight in Sao Paulo', () => {
+  const { current, state } = queuedState({ dailyCap: 2 });
+  const template = state.intents[0];
+  state.intents.push(
+    {
+      ...template,
+      jobId: 'gh_111111111111111111111111',
+      idempotencyKey: '123e4567-e89b-42d3-a456-426614174001',
+      payload: { ...template.payload, data: { ...template.payload.data, jobId: 'gh_111111111111111111111111' } },
+      status: 'accepted',
+      updatedAt: '2026-09-17T01:30:00.000Z',
+      result: { notificationId: 'first' },
+    },
+    {
+      ...template,
+      jobId: 'gh_222222222222222222222222',
+      idempotencyKey: '123e4567-e89b-42d3-a456-426614174002',
+      payload: { ...template.payload, data: { ...template.payload.data, jobId: 'gh_222222222222222222222222' } },
+      status: 'accepted',
+      updatedAt: '2026-09-17T02:30:00.000Z',
+      result: { notificationId: 'second' },
+    },
+  );
+
+  const prepared = preparePushSubmission(state, current, { now: '2026-09-17T03:30:00.000Z' });
+
+  assert.equal(prepared.reason, 'ready');
+  assert.equal(prepared.intent?.jobId, job.id);
+});
+
 test('persists provider outcomes without claiming delivery and pauses on auth failure', () => {
   const { current, state } = queuedState();
   const prepared = preparePushSubmission(state, current, { now: '2026-09-16T13:05:00.000Z' });
