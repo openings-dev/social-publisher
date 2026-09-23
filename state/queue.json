@@ -32833,12 +32833,23 @@
       "createdAt": "2026-09-23T05:11:27Z",
       "publicationCreatedAt": "2026-09-23T08:11:58.851Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-23T18:26:28.048Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_5920044c481a81f4ba029054",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_5920044c481a81f4ba029054/939f80ddeebb88185156a8d2d85fbdd30df17a375d9cc058aa35b8f12c39d7c7/b7e6ea4724eff8fb0349b601387599f1c90cbeba8d16a0fab625e7bf2fac2e46/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_5920044c481a81f4ba029054/939f80ddeebb88185156a8d2d85fbdd30df17a375d9cc058aa35b8f12c39d7c7/b7e6ea4724eff8fb0349b601387599f1c90cbeba8d16a0fab625e7bf2fac2e46/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_5920044c481a81f4ba029054/939f80ddeebb88185156a8d2d85fbdd30df17a375d9cc058aa35b8f12c39d7c7/b7e6ea4724eff8fb0349b601387599f1c90cbeba8d16a0fab625e7bf2fac2e46/social-video.mp4",
+          "pngHash": "d8c8c111d23a13a6fb7c671237a5794361c418e68ec063ed721e418538806559",
+          "instagramJpegHash": "dec7ef81e459daf5f15c79991b5362bf0458a6b43afa7d8184a97431e303f28a",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "New Grad Hardware Engineering"
         }
       },
