@@ -33621,12 +33621,23 @@
       "createdAt": "2026-09-23T16:57:25Z",
       "publicationCreatedAt": "2026-09-23T18:51:14.888Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-23T22:59:22.584Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_b4197231ee36d78db1f0e1ba",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_b4197231ee36d78db1f0e1ba/7f8bc5666421e7dc9901d01bd5a163bebb3b0d507512481a4da6e3bdc9f825c6/983c3345ad0dad5cf948524a1a5d5bfde9bec84ba7fe530dcbdad3df231d1ccf/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_b4197231ee36d78db1f0e1ba/7f8bc5666421e7dc9901d01bd5a163bebb3b0d507512481a4da6e3bdc9f825c6/983c3345ad0dad5cf948524a1a5d5bfde9bec84ba7fe530dcbdad3df231d1ccf/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_b4197231ee36d78db1f0e1ba/7f8bc5666421e7dc9901d01bd5a163bebb3b0d507512481a4da6e3bdc9f825c6/983c3345ad0dad5cf948524a1a5d5bfde9bec84ba7fe530dcbdad3df231d1ccf/social-video.mp4",
+          "pngHash": "64e0b80e5edbb20f83b0b4466bc6a22cac1c44bfd923da4890e83aedb649144d",
+          "instagramJpegHash": "24086154c83a4eb2ddae5e5dc5fd0d6b16a77c0f49e9abcc3bef09fffc0bda92",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Lead Database & Data Platform Engineer (Strider)"
         }
       },
