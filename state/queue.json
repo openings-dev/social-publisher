@@ -34653,12 +34653,14 @@
       "createdAt": "2026-09-24T02:52:30Z",
       "publicationCreatedAt": "2026-09-24T08:05:40.605Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-24T13:58:48.131Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[日本 横滨] web3 交易所 Cocos 前端工程师 40-55K RMB"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -34715,7 +34717,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 100
     },
     {
       "jobId": "gh_0bce997abd900e64be05d7f3",
