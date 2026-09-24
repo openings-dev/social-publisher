@@ -34444,12 +34444,14 @@
       "createdAt": "2026-09-24T02:54:20Z",
       "publicationCreatedAt": "2026-09-24T08:05:40.605Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-24T11:54:54.058Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[日本 横滨] web3交易所 Rust 工程师 30-45K RMB"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -34506,7 +34508,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 99
     },
     {
       "jobId": "gh_3facc8a3975e165502c9db3f",
