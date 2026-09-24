@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "23f2e387119165c1fe75f2944c30119cadd0cef0",
-    "generatedAt": "2026-09-24T18:47:22.885Z",
-    "dataHash": "a7a5c1a5c4b66f9e8ccece26fb9971f89de1b7e7b21c7e64d7af67608b58c48a"
+    "commit": "1991cd708682dcca8394a3c658727cc15d968581",
+    "generatedAt": "2026-09-24T23:43:26.752Z",
+    "dataHash": "507d236facdc3fb2cd121fb11ed22c2ebe8527aee1c1018f144aa23443ac3782"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -2967,6 +2967,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f731e6b22a1664fd513efea5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a21f2ea34587fe92452e3d29",
+      "sourceId": "Gommunity/vagas#269",
+      "dataCommit": "1991cd708682dcca8394a3c658727cc15d968581",
+      "dataHash": "507d236facdc3fb2cd121fb11ed22c2ebe8527aee1c1018f144aa23443ac3782",
+      "contentHash": "99d9a0331639f3ff4e9aef9dbba572a13d3c6a57e0e26cc766f233fdb346d137",
+      "sourceCreatedAt": "2026-09-24T20:04:29Z",
+      "createdAt": "2026-09-24T23:43:26.752Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e5b1f051-fa6a-4e16-8cba-3e18ca5e5937",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Fully remote - Senior Go Engineer - Jobsity",
+          "pt-BR": "Fully remote - Senior Go Engineer - Jobsity",
+          "es": "Fully remote - Senior Go Engineer - Jobsity",
+          "it": "Fully remote - Senior Go Engineer - Jobsity",
+          "fr": "Fully remote - Senior Go Engineer - Jobsity",
+          "de": "Fully remote - Senior Go Engineer - Jobsity"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a21f2ea34587fe92452e3d29"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_49c83bd51761b2ff7c87ab3a",
+      "sourceId": "backend-br/vagas#12433",
+      "dataCommit": "1991cd708682dcca8394a3c658727cc15d968581",
+      "dataHash": "507d236facdc3fb2cd121fb11ed22c2ebe8527aee1c1018f144aa23443ac3782",
+      "contentHash": "9447be0bdcadc12f394f82fe6b67fcdf0270165686f17e14fdf67fab80b2ff04",
+      "sourceCreatedAt": "2026-09-24T20:03:24Z",
+      "createdAt": "2026-09-24T23:43:26.752Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1ae5252a-8126-4cee-ac86-0fad7cb67ee4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[FULLY REMOTE] Senior Backend Go Engineer - Jobsity",
+          "pt-BR": "[FULLY REMOTE] Senior Backend Go Engineer - Jobsity",
+          "es": "[FULLY REMOTE] Senior Backend Go Engineer - Jobsity",
+          "it": "[FULLY REMOTE] Senior Backend Go Engineer - Jobsity",
+          "fr": "[FULLY REMOTE] Senior Backend Go Engineer - Jobsity",
+          "de": "[FULLY REMOTE] Senior Backend Go Engineer - Jobsity"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_49c83bd51761b2ff7c87ab3a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_506bda03fefcc4bda64c5a95",
+      "sourceId": "negarprh/Canadian-Tech-Internships-2026#280",
+      "dataCommit": "1991cd708682dcca8394a3c658727cc15d968581",
+      "dataHash": "507d236facdc3fb2cd121fb11ed22c2ebe8527aee1c1018f144aa23443ac3782",
+      "contentHash": "25da4f70160f68e43c82ad0e1c4bc0243998db79a2a9a515e0c5c097b9bfaa8f",
+      "sourceCreatedAt": "2026-08-04T14:47:58Z",
+      "createdAt": "2026-09-24T23:43:26.752Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "74b275d1-8827-4f97-8818-57a7801123fb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Adding cohort date",
+          "pt-BR": "Adding cohort date",
+          "es": "Adding cohort date",
+          "it": "Adding cohort date",
+          "fr": "Adding cohort date",
+          "de": "Adding cohort date"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_506bda03fefcc4bda64c5a95"
         }
       },
       "status": "pending",
