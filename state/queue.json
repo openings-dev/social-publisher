@@ -35280,12 +35280,14 @@
       "createdAt": "2026-09-24T16:06:58Z",
       "publicationCreatedAt": "2026-09-24T18:51:29.232Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-24T21:35:33.689Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "New Internship: Meta Production Engineering Intern"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -35342,7 +35344,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 103
     }
   ]
 }
