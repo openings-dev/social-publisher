@@ -34087,12 +34087,14 @@
       "createdAt": "2026-09-23T10:13:17Z",
       "publicationCreatedAt": "2026-09-23T18:28:43.973Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-24T18:49:05.425Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[日本大阪] 营运客服专员 14Krmb"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -34149,7 +34151,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 102
     },
     {
       "jobId": "gh_b4197231ee36d78db1f0e1ba",
