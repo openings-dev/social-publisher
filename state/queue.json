@@ -34444,12 +34444,23 @@
       "createdAt": "2026-09-24T02:54:20Z",
       "publicationCreatedAt": "2026-09-24T08:05:40.605Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-24T11:54:54.058Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_6096c22ce5a05150b15df844",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_6096c22ce5a05150b15df844/c8591d36b2fb3e353e46ff5724633634623c378614b3563fbe099c415cf1aaf0/4eceb6c204cf93460442b692a95b2375189a74e22ac3bbc6533ca8dc9cbf5a85/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_6096c22ce5a05150b15df844/c8591d36b2fb3e353e46ff5724633634623c378614b3563fbe099c415cf1aaf0/4eceb6c204cf93460442b692a95b2375189a74e22ac3bbc6533ca8dc9cbf5a85/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_6096c22ce5a05150b15df844/c8591d36b2fb3e353e46ff5724633634623c378614b3563fbe099c415cf1aaf0/4eceb6c204cf93460442b692a95b2375189a74e22ac3bbc6533ca8dc9cbf5a85/social-video.mp4",
+          "pngHash": "f3e514922952a93149a75eea093c2a467a0c26e236bbad1eef8a582ba36732cb",
+          "instagramJpegHash": "61fa8f5119991c1657b1a7bcadfbd9422fce46339808976cfb34ccf3c347dc44",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[日本 横滨] web3交易所 Rust 工程师 30-45K RMB"
         }
       },
