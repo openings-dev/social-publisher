@@ -33878,12 +33878,14 @@
       "createdAt": "2026-09-23T10:23:20Z",
       "publicationCreatedAt": "2026-09-23T18:28:43.973Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-24T08:02:56.728Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[日本 大阪] 资深 Golang 后端工程师(Web3 方向) 40-70K RMB"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -33940,7 +33942,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 98
     },
     {
       "jobId": "gh_0dd6d2f3bc8549a37164fb89",
