@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "983a74c8e719f5c79554ff4e36ab20942e00d8b2",
-    "generatedAt": "2026-09-24T02:28:34.632Z",
-    "dataHash": "f24482caeaa6ccd34694385d9e854b5cdc14ac8dc7675461bc03615417eb5c42"
+    "commit": "39dfa5885688f906e5b3dd5c5544cc58c5b5829e",
+    "generatedAt": "2026-09-24T08:01:11.350Z",
+    "dataHash": "181e6494c403a5dd90658fd8aedb5670c91c3c12a4090b271bf9dc33e9e1c964"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -2570,6 +2570,206 @@
       "attempts": 0,
       "firstSubmittedAt": null,
       "updatedAt": "2026-09-24T02:28:34.632Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6096c22ce5a05150b15df844",
+      "sourceId": "rebase-network/who-is-hiring#1310",
+      "dataCommit": "39dfa5885688f906e5b3dd5c5544cc58c5b5829e",
+      "dataHash": "181e6494c403a5dd90658fd8aedb5670c91c3c12a4090b271bf9dc33e9e1c964",
+      "contentHash": "c8591d36b2fb3e353e46ff5724633634623c378614b3563fbe099c415cf1aaf0",
+      "sourceCreatedAt": "2026-09-24T02:54:20Z",
+      "createdAt": "2026-09-24T08:01:11.350Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "51e95fa3-0bd8-49a3-b839-87b5b203d178",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[日本 横滨] web3交易所 Rust 工程师 30-45K RMB",
+          "pt-BR": "[日本 横滨] web3交易所 Rust 工程师 30-45K RMB",
+          "es": "[日本 横滨] web3交易所 Rust 工程师 30-45K RMB",
+          "it": "[日本 横滨] web3交易所 Rust 工程师 30-45K RMB",
+          "fr": "[日本 横滨] web3交易所 Rust 工程师 30-45K RMB",
+          "de": "[日本 横滨] web3交易所 Rust 工程师 30-45K RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6096c22ce5a05150b15df844"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3facc8a3975e165502c9db3f",
+      "sourceId": "rebase-network/who-is-hiring#1309",
+      "dataCommit": "39dfa5885688f906e5b3dd5c5544cc58c5b5829e",
+      "dataHash": "181e6494c403a5dd90658fd8aedb5670c91c3c12a4090b271bf9dc33e9e1c964",
+      "contentHash": "212b130c22f968b2e3a8001eed0295b423a1fe94d8e5abd9f4dac789fe5d6eea",
+      "sourceCreatedAt": "2026-09-24T02:52:30Z",
+      "createdAt": "2026-09-24T08:01:11.350Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "54e761c2-4419-42e3-9487-a10ab5bd9493",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[日本 横滨] web3 交易所 Cocos 前端工程师 40-55K RMB",
+          "pt-BR": "[日本 横滨] web3 交易所 Cocos 前端工程师 40-55K RMB",
+          "es": "[日本 横滨] web3 交易所 Cocos 前端工程师 40-55K RMB",
+          "it": "[日本 横滨] web3 交易所 Cocos 前端工程师 40-55K RMB",
+          "fr": "[日本 横滨] web3 交易所 Cocos 前端工程师 40-55K RMB",
+          "de": "[日本 横滨] web3 交易所 Cocos 前端工程师 40-55K RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3facc8a3975e165502c9db3f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0bce997abd900e64be05d7f3",
+      "sourceId": "rebase-network/who-is-hiring#1308",
+      "dataCommit": "39dfa5885688f906e5b3dd5c5544cc58c5b5829e",
+      "dataHash": "181e6494c403a5dd90658fd8aedb5670c91c3c12a4090b271bf9dc33e9e1c964",
+      "contentHash": "0d527d6083a87468c88d4cfe712b787723a0c48748e0176ca91bb5ecb9748ca5",
+      "sourceCreatedAt": "2026-09-24T02:48:34Z",
+      "createdAt": "2026-09-24T08:01:11.350Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5d97def3-28cd-429c-a857-87cdef64d75e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[日本横滨] web3 交易所 产品经理 40000 RMB",
+          "pt-BR": "[日本横滨] web3 交易所 产品经理 40000 RMB",
+          "es": "[日本横滨] web3 交易所 产品经理 40000 RMB",
+          "it": "[日本横滨] web3 交易所 产品经理 40000 RMB",
+          "fr": "[日本横滨] web3 交易所 产品经理 40000 RMB",
+          "de": "[日本横滨] web3 交易所 产品经理 40000 RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0bce997abd900e64be05d7f3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d047b0a9f4c7c6f72e32bc9d",
+      "sourceId": "backend-br/vagas#12393",
+      "dataCommit": "39dfa5885688f906e5b3dd5c5544cc58c5b5829e",
+      "dataHash": "181e6494c403a5dd90658fd8aedb5670c91c3c12a4090b271bf9dc33e9e1c964",
+      "contentHash": "1332e7c1d42fb96438161738315f2cccbc8359a9b5044c5e1d9ff03f43504c03",
+      "sourceCreatedAt": "2026-08-25T00:04:05Z",
+      "createdAt": "2026-09-24T08:01:11.350Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e7fc6658-27ce-4e7c-ba6d-fc87a1cfaafc",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] Web3 Labs Recruitment｜Solidity Engineer ($13,000 - 17,000 / Month)",
+          "pt-BR": "[Remote] Web3 Labs Recruitment｜Solidity Engineer ($13,000 - 17,000 / Month)",
+          "es": "[Remote] Web3 Labs Recruitment｜Solidity Engineer ($13,000 - 17,000 / Month)",
+          "it": "[Remote] Web3 Labs Recruitment｜Solidity Engineer ($13,000 - 17,000 / Month)",
+          "fr": "[Remote] Web3 Labs Recruitment｜Solidity Engineer ($13,000 - 17,000 / Month)",
+          "de": "[Remote] Web3 Labs Recruitment｜Solidity Engineer ($13,000 - 17,000 / Month)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d047b0a9f4c7c6f72e32bc9d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f204918c5e2caa305033c15c",
+      "sourceId": "backend-br/vagas#12389",
+      "dataCommit": "39dfa5885688f906e5b3dd5c5544cc58c5b5829e",
+      "dataHash": "181e6494c403a5dd90658fd8aedb5670c91c3c12a4090b271bf9dc33e9e1c964",
+      "contentHash": "087a0c8940e9fa92163b04bae0f60e74f1d8e25ed2a66a6adb8bbf5a3195d533",
+      "sourceCreatedAt": "2026-08-19T14:37:01Z",
+      "createdAt": "2026-09-24T08:01:11.350Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5d9e946c-0040-4ec7-8107-b8fca6ae9ed9",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] [PJ] Senior Fullstack Software Engineer",
+          "pt-BR": "[Remoto] [PJ] Senior Fullstack Software Engineer",
+          "es": "[Remoto] [PJ] Senior Fullstack Software Engineer",
+          "it": "[Remoto] [PJ] Senior Fullstack Software Engineer",
+          "fr": "[Remoto] [PJ] Senior Fullstack Software Engineer",
+          "de": "[Remoto] [PJ] Senior Fullstack Software Engineer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f204918c5e2caa305033c15c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
       "retryAfter": null,
       "result": null
     }
