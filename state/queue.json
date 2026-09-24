@@ -34653,12 +34653,23 @@
       "createdAt": "2026-09-24T02:52:30Z",
       "publicationCreatedAt": "2026-09-24T08:05:40.605Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-24T13:58:48.131Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_3facc8a3975e165502c9db3f",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_3facc8a3975e165502c9db3f/212b130c22f968b2e3a8001eed0295b423a1fe94d8e5abd9f4dac789fe5d6eea/727a4b56d00d4d3a9823f220d9a2a35fb0be94eca00e6e3e659cb1e77db7088b/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_3facc8a3975e165502c9db3f/212b130c22f968b2e3a8001eed0295b423a1fe94d8e5abd9f4dac789fe5d6eea/727a4b56d00d4d3a9823f220d9a2a35fb0be94eca00e6e3e659cb1e77db7088b/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_3facc8a3975e165502c9db3f/212b130c22f968b2e3a8001eed0295b423a1fe94d8e5abd9f4dac789fe5d6eea/727a4b56d00d4d3a9823f220d9a2a35fb0be94eca00e6e3e659cb1e77db7088b/social-video.mp4",
+          "pngHash": "b2f0f368252343966a47c4a236e9c385a825407a80542eba0bfeb781ee74fb19",
+          "instagramJpegHash": "d9d1b7cf667deadbbfcd89153a24053a05bc9858daffdf3c12af59c259248dd5",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[日本 横滨] web3 交易所 Cocos 前端工程师 40-55K RMB"
         }
       },
