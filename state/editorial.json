@@ -1,100 +1,7 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [
-    {
-      "contentId": "interview-metodo-star",
-      "contentVersion": "2",
-      "pillar": "interview",
-      "scheduledDate": "2026-09-24",
-      "createdAt": "2026-09-24T18:52:24.682Z",
-      "assets": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-24T18:52:26.911Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "hosted",
-          "carouselUrls": [
-            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-01.jpg",
-            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-02.jpg",
-            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-03.jpg",
-            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-04.jpg",
-            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-05.jpg",
-            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-06.jpg",
-            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-07.jpg"
-          ],
-          "carouselMedia": [
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-01.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-02.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-03.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-04.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-05.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-06.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-07.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            }
-          ]
-        }
-      },
-      "feed": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-09-24T18:52:36.168Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "published",
-          "id": "18098334287065028",
-          "url": "https://www.instagram.com/p/DdrkxZqmXpM/"
-        }
-      },
-      "story": {
-        "status": "publishing",
-        "attempts": 1,
-        "updatedAt": "2026-09-24T18:54:04.344Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "operationKey": "editorial-36043802089-1"
-        }
-      }
-    }
-  ],
+  "pending": [],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",
@@ -526,6 +433,83 @@
           "status": "unsupported",
           "reason": "editorial_story_feed_media_compatibility_unverified",
           "mediaUrl": "https://media.openings.dev/openings/editorial/application-leia-os-requisitos/2/5/slide-01.jpg",
+          "mediaType": "image/jpeg",
+          "width": 1080,
+          "height": 1350
+        }
+      }
+    },
+    "interview-metodo-star": {
+      "lastPublishedAt": "2026-09-24T18:54:06.212Z",
+      "cycles": 1,
+      "lastPublication": {
+        "scheduledDate": "2026-09-24",
+        "contentVersion": "2",
+        "assets": {
+          "status": "hosted",
+          "carouselUrls": [
+            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-01.jpg",
+            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-02.jpg",
+            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-03.jpg",
+            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-04.jpg",
+            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-05.jpg",
+            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-06.jpg",
+            "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-07.jpg"
+          ],
+          "carouselMedia": [
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-01.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-02.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-03.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-04.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-05.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-06.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-07.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            }
+          ]
+        },
+        "feed": {
+          "status": "published",
+          "id": "18098334287065028",
+          "url": "https://www.instagram.com/p/DdrkxZqmXpM/"
+        },
+        "story": {
+          "status": "unsupported",
+          "reason": "editorial_story_feed_media_compatibility_unverified",
+          "mediaUrl": "https://media.openings.dev/openings/editorial/interview-metodo-star/2/5/slide-01.jpg",
           "mediaType": "image/jpeg",
           "width": 1080,
           "height": 1350
