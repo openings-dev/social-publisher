@@ -35280,12 +35280,23 @@
       "createdAt": "2026-09-24T16:06:58Z",
       "publicationCreatedAt": "2026-09-24T18:51:29.232Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-24T21:35:33.689Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_f731e6b22a1664fd513efea5",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_f731e6b22a1664fd513efea5/4f5e6c36c845a38bd8e41d9200dab5627a7f00437c1dd77d26a2deaaa24e3fd1/7795251c1165207587c8d696550e6413cc6a33ed2deda36f9fd750794cae8f0e/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_f731e6b22a1664fd513efea5/4f5e6c36c845a38bd8e41d9200dab5627a7f00437c1dd77d26a2deaaa24e3fd1/7795251c1165207587c8d696550e6413cc6a33ed2deda36f9fd750794cae8f0e/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_f731e6b22a1664fd513efea5/4f5e6c36c845a38bd8e41d9200dab5627a7f00437c1dd77d26a2deaaa24e3fd1/7795251c1165207587c8d696550e6413cc6a33ed2deda36f9fd750794cae8f0e/social-video.mp4",
+          "pngHash": "3fc56df586c4f5930fa040503be95e7ee1e06d3a233b2e24e94279c5f6a7f79d",
+          "instagramJpegHash": "c86c6f3d31affb5f4e9549173b3bfd7582ea8830159a24c3ced5a6cbb1ca9cc7",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "New Internship: Meta Production Engineering Intern"
         }
       },
