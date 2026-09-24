@@ -33460,12 +33460,23 @@
       "createdAt": "2026-09-23T10:34:47Z",
       "publicationCreatedAt": "2026-09-23T18:28:43.973Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-24T02:30:54.147Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_447cc5783e558f477cf03095",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_447cc5783e558f477cf03095/fc4d9096b7294a5efe8c3fadd8f1be00971848ca8e760e4e43700f79c07e729f/17f96bf40ff7e77c05cafbe0aa53c1d2bc9bf01795230b109e5bea9e480e09a2/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_447cc5783e558f477cf03095/fc4d9096b7294a5efe8c3fadd8f1be00971848ca8e760e4e43700f79c07e729f/17f96bf40ff7e77c05cafbe0aa53c1d2bc9bf01795230b109e5bea9e480e09a2/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_447cc5783e558f477cf03095/fc4d9096b7294a5efe8c3fadd8f1be00971848ca8e760e4e43700f79c07e729f/17f96bf40ff7e77c05cafbe0aa53c1d2bc9bf01795230b109e5bea9e480e09a2/social-video.mp4",
+          "pngHash": "06a8a57266d3cf5e418b6e5ec1c88feac932e1064019654f005fa9ae649a5844",
+          "instagramJpegHash": "c7bde03c04d38c5dee4e9fb288ba9b8ec75a1dcd5e0ed04e69854e835d366998",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[日本大阪] web3交易所 产品经理 30-50K RMB"
         }
       },
