@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "39dfa5885688f906e5b3dd5c5544cc58c5b5829e",
-    "generatedAt": "2026-09-24T08:01:11.350Z",
-    "dataHash": "181e6494c403a5dd90658fd8aedb5670c91c3c12a4090b271bf9dc33e9e1c964"
+    "commit": "8a88e7c0d3f91142899de98de8169acae49b832b",
+    "generatedAt": "2026-09-24T13:57:15.336Z",
+    "dataHash": "38aa2c10d8d5a49ce11211a11ae11c014b9bd1f088d0f45ae4aaf1233c9c7622"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -2767,6 +2767,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f204918c5e2caa305033c15c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2225650e80acfb4546882b42",
+      "sourceId": "awesome-jobs/jobs#5068",
+      "dataCommit": "8a88e7c0d3f91142899de98de8169acae49b832b",
+      "dataHash": "38aa2c10d8d5a49ce11211a11ae11c014b9bd1f088d0f45ae4aaf1233c9c7622",
+      "contentHash": "8ca6b3680485f03d1d98801da8df6757c9fbbc942d60936cb8b8e56def0acc13",
+      "sourceCreatedAt": "2026-09-24T10:59:51Z",
+      "createdAt": "2026-09-24T13:57:15.336Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5ecbd9a8-bb88-4e08-9984-7f9342444895",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "58tr REMOTE 2nd job cho .NET API 8+ yoe mà làm khung giờ tới midnight lận | UK client | Có ai nhận kèo ko hen?",
+          "pt-BR": "58tr REMOTE 2nd job cho .NET API 8+ yoe mà làm khung giờ tới midnight lận | UK client | Có ai nhận kèo ko hen?",
+          "es": "58tr REMOTE 2nd job cho .NET API 8+ yoe mà làm khung giờ tới midnight lận | UK client | Có ai nhận kèo ko hen?",
+          "it": "58tr REMOTE 2nd job cho .NET API 8+ yoe mà làm khung giờ tới midnight lận | UK client | Có ai nhận kèo ko hen?",
+          "fr": "58tr REMOTE 2nd job cho .NET API 8+ yoe mà làm khung giờ tới midnight lận | UK client | Có ai nhận kèo ko hen?",
+          "de": "58tr REMOTE 2nd job cho .NET API 8+ yoe mà làm khung giờ tới midnight lận | UK client | Có ai nhận kèo ko hen?"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2225650e80acfb4546882b42"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bee25d48c1d08bdb89cd3956",
+      "sourceId": "ambicuity/New-Grad-Jobs#355",
+      "dataCommit": "8a88e7c0d3f91142899de98de8169acae49b832b",
+      "dataHash": "38aa2c10d8d5a49ce11211a11ae11c014b9bd1f088d0f45ae4aaf1233c9c7622",
+      "contentHash": "83815e373955ef2f1aab329bdda15a216073b42b68ebfe92234d14b5cb0b6255",
+      "sourceCreatedAt": "2026-08-09T21:31:45Z",
+      "createdAt": "2026-09-24T13:57:15.336Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1541018d-f119-4e9d-bc21-495c7bc68227",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Sponsors] How sponsorship works here — current sponsors, hard limits, and how to propose a README CTA placement",
+          "pt-BR": "[Sponsors] How sponsorship works here — current sponsors, hard limits, and how to propose a README CTA placement",
+          "es": "[Sponsors] How sponsorship works here — current sponsors, hard limits, and how to propose a README CTA placement",
+          "it": "[Sponsors] How sponsorship works here — current sponsors, hard limits, and how to propose a README CTA placement",
+          "fr": "[Sponsors] How sponsorship works here — current sponsors, hard limits, and how to propose a README CTA placement",
+          "de": "[Sponsors] How sponsorship works here — current sponsors, hard limits, and how to propose a README CTA placement"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bee25d48c1d08bdb89cd3956"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e178ee2363a4eb2ca10d3d06",
+      "sourceId": "ambicuity/New-Grad-Jobs#318",
+      "dataCommit": "8a88e7c0d3f91142899de98de8169acae49b832b",
+      "dataHash": "38aa2c10d8d5a49ce11211a11ae11c014b9bd1f088d0f45ae4aaf1233c9c7622",
+      "contentHash": "f1fe25908c8fa71c42fa8d42a5ac87a09f78feead80f465f809b2eb863678808",
+      "sourceCreatedAt": "2026-06-01T12:56:16Z",
+      "createdAt": "2026-09-24T13:57:15.336Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bebaad58-0618-483f-9416-dd9a2cf47fbb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Consider Hanzilla Jobs as a Canada-specific new-grad companion resource",
+          "pt-BR": "Consider Hanzilla Jobs as a Canada-specific new-grad companion resource",
+          "es": "Consider Hanzilla Jobs as a Canada-specific new-grad companion resource",
+          "it": "Consider Hanzilla Jobs as a Canada-specific new-grad companion resource",
+          "fr": "Consider Hanzilla Jobs as a Canada-specific new-grad companion resource",
+          "de": "Consider Hanzilla Jobs as a Canada-specific new-grad companion resource"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e178ee2363a4eb2ca10d3d06"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6bd2ea87cfb4bbe49569241c",
+      "sourceId": "ambicuity/New-Grad-Jobs#316",
+      "dataCommit": "8a88e7c0d3f91142899de98de8169acae49b832b",
+      "dataHash": "38aa2c10d8d5a49ce11211a11ae11c014b9bd1f088d0f45ae4aaf1233c9c7622",
+      "contentHash": "9dbc30e311e1ce44614e0ce628edb4d89c70df9f08cacdec11198141b4fa7ba7",
+      "sourceCreatedAt": "2026-05-26T23:52:14Z",
+      "createdAt": "2026-09-24T13:57:15.336Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b316b28b-b41b-4fa1-9fdf-3afe03165483",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[ROADMAP] Help us expand job data — all suggestions welcome!",
+          "pt-BR": "[ROADMAP] Help us expand job data — all suggestions welcome!",
+          "es": "[ROADMAP] Help us expand job data — all suggestions welcome!",
+          "it": "[ROADMAP] Help us expand job data — all suggestions welcome!",
+          "fr": "[ROADMAP] Help us expand job data — all suggestions welcome!",
+          "de": "[ROADMAP] Help us expand job data — all suggestions welcome!"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6bd2ea87cfb4bbe49569241c"
         }
       },
       "status": "pending",
