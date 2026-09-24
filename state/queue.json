@@ -35338,12 +35338,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-24T21:35:33.689Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18148896763480599",
+          "url": "https://www.threads.com/@openingshq/post/Ddr3W_Pgbce"
+        }
       },
       "instagram": {
         "status": "pending",
