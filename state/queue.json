@@ -34997,12 +34997,14 @@
       "createdAt": "2026-09-24T02:48:34Z",
       "publicationCreatedAt": "2026-09-24T08:05:40.605Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-24T23:45:18.939Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[日本横滨] web3 交易所 产品经理 40000 RMB"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -35059,7 +35061,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 104
     },
     {
       "jobId": "gh_2225650e80acfb4546882b42",
