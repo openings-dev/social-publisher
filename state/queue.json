@@ -33669,12 +33669,14 @@
       "createdAt": "2026-09-23T10:28:53Z",
       "publicationCreatedAt": "2026-09-23T18:28:43.973Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-24T04:59:48.374Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[日本大阪] web3 交易所 游戏数据分析师 30K-40K RMB (可无经验18K)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -33731,7 +33733,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 97
     },
     {
       "jobId": "gh_803be473276db52bc1817412",
