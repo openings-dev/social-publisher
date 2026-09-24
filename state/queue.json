@@ -34936,12 +34936,14 @@
       "createdAt": "2026-09-24T10:59:51Z",
       "publicationCreatedAt": "2026-09-24T14:01:01.820Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-24T17:17:38.558Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "58tr REMOTE 2nd job cho .NET API 8+ yoe mà làm khung giờ tới midnight lận | UK client | Có ai nhận kèo ko hen?"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -34998,7 +35000,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 101
     }
   ]
 }
