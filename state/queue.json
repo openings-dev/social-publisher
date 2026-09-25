@@ -36739,14 +36739,17 @@
         }
       },
       "instagram": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-25T23:20:38.720Z",
         "lastError": null,
         "lastReset": null,
         "result": {
           "publicationKind": "image",
-          "canonicalUrl": "https://openings.dev/jobs/gh_db999290471cf301e6e682fa"
+          "canonicalUrl": "https://openings.dev/jobs/gh_db999290471cf301e6e682fa",
+          "status": "published",
+          "id": "18116512856282195",
+          "url": "https://www.instagram.com/p/DduoMidlrML/"
         }
       },
       "linkedin": {
@@ -36820,9 +36823,9 @@
             "consumers": [
               {
                 "channel": "instagram",
-                "state": "pending",
-                "remoteId": null,
-                "updatedAt": null
+                "state": "completed",
+                "remoteId": "18116512856282195",
+                "updatedAt": "2026-09-25T23:20:38.720Z"
               }
             ]
           },
@@ -36849,7 +36852,7 @@
             ]
           }
         ],
-        "manifestDigest": "d0451dad2960f9358089d6d91276b5289a3879f72a892cc3b3f498db548bb9b5"
+        "manifestDigest": "47d88b9424d48c8a1efd8de0ce367141bf118d73c1f81f499e3025654fa3eb5d"
       }
     }
   ]
