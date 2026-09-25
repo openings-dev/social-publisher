@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "f3f199082e80fd9b84723146fd1c5ae471f673b5",
-    "generatedAt": "2026-09-25T02:45:20.504Z",
-    "dataHash": "fc658e40206456e9a1a599ec3117680b9b4832886cf42d949de50c08839aa26d"
+    "commit": "a6a3206e035197421146a8195df504a0fe559002",
+    "generatedAt": "2026-09-25T08:24:46.593Z",
+    "dataHash": "52da9d35d372ee55b872f68548ef27642b67afd7662d9f2058d4a7b21341eeb8"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3087,6 +3087,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_506bda03fefcc4bda64c5a95"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_af13796ff8c941761dcb75e0",
+      "sourceId": "ambicuity/New-Grad-Jobs#363",
+      "dataCommit": "a6a3206e035197421146a8195df504a0fe559002",
+      "dataHash": "52da9d35d372ee55b872f68548ef27642b67afd7662d9f2058d4a7b21341eeb8",
+      "contentHash": "0d3f00f1797b886032342dc379755d010440c53b0221a0c6c22001f62cb0cc7c",
+      "sourceCreatedAt": "2026-09-25T05:03:54Z",
+      "createdAt": "2026-09-25T08:24:46.593Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "67bf730a-bf28-4fbc-9fe6-cffdacbd8ed6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-09-25T01:26:43.548358Z",
+          "pt-BR": "Job data is stale: last scrape 2026-09-25T01:26:43.548358Z",
+          "es": "Job data is stale: last scrape 2026-09-25T01:26:43.548358Z",
+          "it": "Job data is stale: last scrape 2026-09-25T01:26:43.548358Z",
+          "fr": "Job data is stale: last scrape 2026-09-25T01:26:43.548358Z",
+          "de": "Job data is stale: last scrape 2026-09-25T01:26:43.548358Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_af13796ff8c941761dcb75e0"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9f91cca173864103e1a5724f",
+      "sourceId": "backend-br/vagas#12396",
+      "dataCommit": "a6a3206e035197421146a8195df504a0fe559002",
+      "dataHash": "52da9d35d372ee55b872f68548ef27642b67afd7662d9f2058d4a7b21341eeb8",
+      "contentHash": "ac68c3175c994b1488f34761246dc673d261d9ed1ca6d3157f953fc6dc92d7f0",
+      "sourceCreatedAt": "2026-08-25T20:46:46Z",
+      "createdAt": "2026-09-25T08:24:46.593Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5e393758-6668-454a-bffc-638217c4423b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-end developer (PHP + SABRE/GDS) - PlanitEasy",
+          "pt-BR": "[Remoto] Back-end developer (PHP + SABRE/GDS) - PlanitEasy",
+          "es": "[Remoto] Back-end developer (PHP + SABRE/GDS) - PlanitEasy",
+          "it": "[Remoto] Back-end developer (PHP + SABRE/GDS) - PlanitEasy",
+          "fr": "[Remoto] Back-end developer (PHP + SABRE/GDS) - PlanitEasy",
+          "de": "[Remoto] Back-end developer (PHP + SABRE/GDS) - PlanitEasy"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9f91cca173864103e1a5724f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_732daedfd16d16d890d24f35",
+      "sourceId": "soujava/vagas-java#1929",
+      "dataCommit": "a6a3206e035197421146a8195df504a0fe559002",
+      "dataHash": "52da9d35d372ee55b872f68548ef27642b67afd7662d9f2058d4a7b21341eeb8",
+      "contentHash": "eab372086f7d383db0976881022177ad0d11051abc416d8233ce05e9c963bbbf",
+      "sourceCreatedAt": "2026-07-25T15:57:49Z",
+      "createdAt": "2026-09-25T08:24:46.593Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7031ebb6-2d66-47ff-ad6b-d6f29af80f2a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Java Staff Engineer [Mercado Bitcoin]",
+          "pt-BR": "[Híbrido] Java Staff Engineer [Mercado Bitcoin]",
+          "es": "[Híbrido] Java Staff Engineer [Mercado Bitcoin]",
+          "it": "[Híbrido] Java Staff Engineer [Mercado Bitcoin]",
+          "fr": "[Híbrido] Java Staff Engineer [Mercado Bitcoin]",
+          "de": "[Híbrido] Java Staff Engineer [Mercado Bitcoin]"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_732daedfd16d16d890d24f35"
         }
       },
       "status": "pending",
