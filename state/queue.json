@@ -36460,12 +36460,23 @@
       "createdAt": "2026-09-25T13:02:57Z",
       "publicationCreatedAt": "2026-09-25T14:23:36.090Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-25T19:06:13.272Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_b09d79dd41c1009014b9e0ee",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_b09d79dd41c1009014b9e0ee/11bc2bcc9b626fc888ee9718cc91c2a6fbe89ac9e1476d90cf7356f583783de5/087568521eaffc366c8d22d3e08f41e3396140f87092e247fa2fedb4bb109b7e/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_b09d79dd41c1009014b9e0ee/11bc2bcc9b626fc888ee9718cc91c2a6fbe89ac9e1476d90cf7356f583783de5/087568521eaffc366c8d22d3e08f41e3396140f87092e247fa2fedb4bb109b7e/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_b09d79dd41c1009014b9e0ee/11bc2bcc9b626fc888ee9718cc91c2a6fbe89ac9e1476d90cf7356f583783de5/087568521eaffc366c8d22d3e08f41e3396140f87092e247fa2fedb4bb109b7e/social-video.mp4",
+          "pngHash": "6c12ec651c6e363702c94b0e853000672dfef6a7cdd12608e12b46461884a1d7",
+          "instagramJpegHash": "6d8862c00311579c1a39afeb89029b8f3a61f1fe117e2b88201877e95448a952",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "🌐 [Onboard ngay giữa T10] Nền Tảng AI-First SaaS B2B2C Top #1 Cho Thị Trường US/EU | 1 ML Eng & 1 Applied AI Eng"
         }
       },
