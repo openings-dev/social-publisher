@@ -35624,12 +35624,23 @@
       "createdAt": "2026-09-24T20:04:29Z",
       "publicationCreatedAt": "2026-09-24T23:48:15.867Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-25T00:35:37.987Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_a21f2ea34587fe92452e3d29",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_a21f2ea34587fe92452e3d29/99d9a0331639f3ff4e9aef9dbba572a13d3c6a57e0e26cc766f233fdb346d137/752a01bc98ea8799380f468c92dc980768007e4dc5ddde6565611b9a74c21c6b/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_a21f2ea34587fe92452e3d29/99d9a0331639f3ff4e9aef9dbba572a13d3c6a57e0e26cc766f233fdb346d137/752a01bc98ea8799380f468c92dc980768007e4dc5ddde6565611b9a74c21c6b/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_a21f2ea34587fe92452e3d29/99d9a0331639f3ff4e9aef9dbba572a13d3c6a57e0e26cc766f233fdb346d137/752a01bc98ea8799380f468c92dc980768007e4dc5ddde6565611b9a74c21c6b/social-video.mp4",
+          "pngHash": "94529b20f9bf1f1ea3f4686ec83d1482b01095b54ff09d15b35477fb6da22fa6",
+          "instagramJpegHash": "f5d3074d0e30d6a63249fc95b39fe2dfa1854cf5813f2de9bbaa625d2b60b62b",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "Fully remote - Senior Go Engineer - Jobsity"
         }
       },
