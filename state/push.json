@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "a6a3206e035197421146a8195df504a0fe559002",
-    "generatedAt": "2026-09-25T08:24:46.593Z",
-    "dataHash": "52da9d35d372ee55b872f68548ef27642b67afd7662d9f2058d4a7b21341eeb8"
+    "commit": "1b9ec88f0a3c0a384a863a3e212d73b27f796824",
+    "generatedAt": "2026-09-25T14:21:33.127Z",
+    "dataHash": "25275662ec2228c3d6890fbd09598a7d2d6e70a1e0b27dd538c437baf7de8f8d"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3210,6 +3210,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_732daedfd16d16d890d24f35"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bf11ac27c78c19485c3ac9f0",
+      "sourceId": "lukasz-madon/awesome-remote-job#1162",
+      "dataCommit": "1b9ec88f0a3c0a384a863a3e212d73b27f796824",
+      "dataHash": "25275662ec2228c3d6890fbd09598a7d2d6e70a1e0b27dd538c437baf7de8f8d",
+      "contentHash": "a8d9e9901b3759cd096ab37c10f57219bf11c3de02bbd3fd96ef5d7531a33817",
+      "sourceCreatedAt": "2026-09-25T13:03:01Z",
+      "createdAt": "2026-09-25T14:21:33.127Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "92147d69-841e-41d1-b096-ae95a40d3b29",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Does a remote job board with limited free access fit the list?",
+          "pt-BR": "Does a remote job board with limited free access fit the list?",
+          "es": "Does a remote job board with limited free access fit the list?",
+          "it": "Does a remote job board with limited free access fit the list?",
+          "fr": "Does a remote job board with limited free access fit the list?",
+          "de": "Does a remote job board with limited free access fit the list?"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bf11ac27c78c19485c3ac9f0"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b09d79dd41c1009014b9e0ee",
+      "sourceId": "awesome-jobs/jobs#5069",
+      "dataCommit": "1b9ec88f0a3c0a384a863a3e212d73b27f796824",
+      "dataHash": "25275662ec2228c3d6890fbd09598a7d2d6e70a1e0b27dd538c437baf7de8f8d",
+      "contentHash": "11bc2bcc9b626fc888ee9718cc91c2a6fbe89ac9e1476d90cf7356f583783de5",
+      "sourceCreatedAt": "2026-09-25T13:02:57Z",
+      "createdAt": "2026-09-25T14:21:33.127Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "50883c22-bcf7-4cd0-924a-1a59b357b1bb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🌐 [Onboard ngay giữa T10] Nền Tảng AI-First SaaS B2B2C Top #1 Cho Thị Trường US/EU | 1 ML Eng & 1 Applied AI Eng",
+          "pt-BR": "🌐 [Onboard ngay giữa T10] Nền Tảng AI-First SaaS B2B2C Top #1 Cho Thị Trường US/EU | 1 ML Eng & 1 Applied AI Eng",
+          "es": "🌐 [Onboard ngay giữa T10] Nền Tảng AI-First SaaS B2B2C Top #1 Cho Thị Trường US/EU | 1 ML Eng & 1 Applied AI Eng",
+          "it": "🌐 [Onboard ngay giữa T10] Nền Tảng AI-First SaaS B2B2C Top #1 Cho Thị Trường US/EU | 1 ML Eng & 1 Applied AI Eng",
+          "fr": "🌐 [Onboard ngay giữa T10] Nền Tảng AI-First SaaS B2B2C Top #1 Cho Thị Trường US/EU | 1 ML Eng & 1 Applied AI Eng",
+          "de": "🌐 [Onboard ngay giữa T10] Nền Tảng AI-First SaaS B2B2C Top #1 Cho Thị Trường US/EU | 1 ML Eng & 1 Applied AI Eng"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b09d79dd41c1009014b9e0ee"
         }
       },
       "status": "pending",
