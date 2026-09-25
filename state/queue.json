@@ -36669,12 +36669,14 @@
       "createdAt": "2026-09-25T17:30:55Z",
       "publicationCreatedAt": "2026-09-25T19:08:22.006Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-25T23:20:38.720Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HÍBRIDO] [São Paulo] Tech Lead | Data Foundation"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -36731,7 +36733,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 110
     }
   ]
 }
