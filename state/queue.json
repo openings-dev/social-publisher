@@ -35833,12 +35833,14 @@
       "createdAt": "2026-09-24T20:03:24Z",
       "publicationCreatedAt": "2026-09-24T23:48:15.867Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-25T02:46:36.897Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[FULLY REMOTE] Senior Backend Go Engineer - Jobsity"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -35895,7 +35897,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 106
     }
   ]
 }
