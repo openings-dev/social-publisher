@@ -36669,12 +36669,23 @@
       "createdAt": "2026-09-25T17:30:55Z",
       "publicationCreatedAt": "2026-09-25T19:08:22.006Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-25T23:20:38.720Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_db999290471cf301e6e682fa",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_db999290471cf301e6e682fa/b9db47945da4c071051cd6c25171464a0f50b37081a045e1f68232624b5f18f9/b4547115e51bd82111ad900cbcc8856c09274bef3488d353a082e5fd1059f54a/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_db999290471cf301e6e682fa/b9db47945da4c071051cd6c25171464a0f50b37081a045e1f68232624b5f18f9/b4547115e51bd82111ad900cbcc8856c09274bef3488d353a082e5fd1059f54a/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_db999290471cf301e6e682fa/b9db47945da4c071051cd6c25171464a0f50b37081a045e1f68232624b5f18f9/b4547115e51bd82111ad900cbcc8856c09274bef3488d353a082e5fd1059f54a/social-video.mp4",
+          "pngHash": "de3a79586984b31b7636c5a21ea20cf4f08b730ba43eb1e7510c5b17ab36455e",
+          "instagramJpegHash": "9e1131fda70eac3f4b2d24e8693a3ba91d801519cff4d8070a80b384124365cc",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[HÍBRIDO] [São Paulo] Tech Lead | Data Foundation"
         }
       },
