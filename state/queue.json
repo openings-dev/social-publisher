@@ -36251,12 +36251,14 @@
       "createdAt": "2026-09-25T13:03:01Z",
       "publicationCreatedAt": "2026-09-25T14:23:36.090Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-25T18:42:03.705Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Does a remote job board with limited free access fit the list?"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -36313,7 +36315,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 108
     },
     {
       "jobId": "gh_b09d79dd41c1009014b9e0ee",
