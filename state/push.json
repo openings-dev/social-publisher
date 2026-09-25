@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "1b9ec88f0a3c0a384a863a3e212d73b27f796824",
-    "generatedAt": "2026-09-25T14:21:33.127Z",
-    "dataHash": "25275662ec2228c3d6890fbd09598a7d2d6e70a1e0b27dd538c437baf7de8f8d"
+    "commit": "14b7ebca7717c41967dc83b748aabddafbc5802a",
+    "generatedAt": "2026-09-25T19:04:45.085Z",
+    "dataHash": "6ff2a6a256fcdb111bae300888e249ef4c74d7d94181509c0e1db1b915920140"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3135,10 +3135,10 @@
           "jobId": "gh_af13796ff8c941761dcb75e0"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-09-25T19:04:45.085Z",
       "retryAfter": null,
       "result": null
     },
@@ -3293,6 +3293,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_b09d79dd41c1009014b9e0ee"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_db999290471cf301e6e682fa",
+      "sourceId": "qa-brasil/vagas#1284",
+      "dataCommit": "14b7ebca7717c41967dc83b748aabddafbc5802a",
+      "dataHash": "6ff2a6a256fcdb111bae300888e249ef4c74d7d94181509c0e1db1b915920140",
+      "contentHash": "b9db47945da4c071051cd6c25171464a0f50b37081a045e1f68232624b5f18f9",
+      "sourceCreatedAt": "2026-09-25T17:30:55Z",
+      "createdAt": "2026-09-25T19:04:45.085Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4d08b1d0-2f5b-4649-9ec3-3caa2910bd1b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HÍBRIDO] [São Paulo] Tech Lead | Data Foundation",
+          "pt-BR": "[HÍBRIDO] [São Paulo] Tech Lead | Data Foundation",
+          "es": "[HÍBRIDO] [São Paulo] Tech Lead | Data Foundation",
+          "it": "[HÍBRIDO] [São Paulo] Tech Lead | Data Foundation",
+          "fr": "[HÍBRIDO] [São Paulo] Tech Lead | Data Foundation",
+          "de": "[HÍBRIDO] [São Paulo] Tech Lead | Data Foundation"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_db999290471cf301e6e682fa"
         }
       },
       "status": "pending",
