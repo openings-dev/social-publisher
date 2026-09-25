@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "14b7ebca7717c41967dc83b748aabddafbc5802a",
-    "generatedAt": "2026-09-25T19:04:45.085Z",
-    "dataHash": "6ff2a6a256fcdb111bae300888e249ef4c74d7d94181509c0e1db1b915920140"
+    "commit": "a85e919729ab5d0fb50ebe5864a784094d805c7a",
+    "generatedAt": "2026-09-25T23:45:18.368Z",
+    "dataHash": "6cd4e600f8b7a990cebac39c13139ccaee1b097ab8af79759a40ca5a72954c49"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3095,10 +3095,10 @@
           "jobId": "gh_506bda03fefcc4bda64c5a95"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-09-25T23:45:18.368Z",
       "retryAfter": null,
       "result": null
     },
