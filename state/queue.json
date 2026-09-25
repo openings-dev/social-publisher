@@ -36042,12 +36042,14 @@
       "createdAt": "2026-09-25T05:03:54Z",
       "publicationCreatedAt": "2026-09-25T08:26:11.376Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-25T13:54:20.547Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Job data is stale: last scrape 2026-09-25T01:26:43.548358Z"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -36104,7 +36106,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 107
     }
   ]
 }
