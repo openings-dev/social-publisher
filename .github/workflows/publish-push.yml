@@ -164,6 +164,7 @@ jobs:
         if: steps.prepare.outputs.job_id != ''
         run: |
           git -C "$PUSH_STATE_PATH" add -- state/push.json
+          if git -C "$PUSH_STATE_PATH" diff --cached --quiet; then exit 0; fi
           git -C "$PUSH_STATE_PATH" commit -m 'chore(state): record push intent [skip ci]'
           for attempt in 1 2 3 4 5; do
             git -C "$PUSH_STATE_PATH" fetch origin "${PUSH_STATE_REF}"
