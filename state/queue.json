@@ -35833,12 +35833,23 @@
       "createdAt": "2026-09-24T20:03:24Z",
       "publicationCreatedAt": "2026-09-24T23:48:15.867Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-25T02:46:36.897Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_49c83bd51761b2ff7c87ab3a",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_49c83bd51761b2ff7c87ab3a/9447be0bdcadc12f394f82fe6b67fcdf0270165686f17e14fdf67fab80b2ff04/caec65da3abdfcfaad191d734fe65b3e1353a03e043b610436a3bffd4f5505c9/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_49c83bd51761b2ff7c87ab3a/9447be0bdcadc12f394f82fe6b67fcdf0270165686f17e14fdf67fab80b2ff04/caec65da3abdfcfaad191d734fe65b3e1353a03e043b610436a3bffd4f5505c9/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_49c83bd51761b2ff7c87ab3a/9447be0bdcadc12f394f82fe6b67fcdf0270165686f17e14fdf67fab80b2ff04/caec65da3abdfcfaad191d734fe65b3e1353a03e043b610436a3bffd4f5505c9/social-video.mp4",
+          "pngHash": "96f35c903f71b388cef6ac8306652dfe0db52642b15f1b51c5db5d67e71982c9",
+          "instagramJpegHash": "15bd17c1c36ec6e0dd17f2638f13c4f42810f894ccc914d4ac6f7abae23283e0",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[FULLY REMOTE] Senior Backend Go Engineer - Jobsity"
         }
       },
