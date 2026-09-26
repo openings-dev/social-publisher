@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "3dae05311729e4090e9c77dae534faa34f0a4a38",
-    "generatedAt": "2026-09-26T02:48:14.830Z",
-    "dataHash": "50a5787aeebf476ca3048850cc5fe0ce18918c6adb3d20e483d08e9d824d61fb"
+    "commit": "ca70285e95bcdbd04582558931f7ebad91325576",
+    "generatedAt": "2026-09-26T08:11:21.623Z",
+    "dataHash": "dd3ecd5bbce294ed67e24280c4c83c91be66b1dc454d8a7987cd5b09b3b27fc5"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3416,6 +3416,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_27e4bd243da08f40a67fcf29"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_00f12f8090b3e56bccda0b4f",
+      "sourceId": "backend-br/vagas#12395",
+      "dataCommit": "ca70285e95bcdbd04582558931f7ebad91325576",
+      "dataHash": "dd3ecd5bbce294ed67e24280c4c83c91be66b1dc454d8a7987cd5b09b3b27fc5",
+      "contentHash": "441ce94ab392595e79914fbafcd227a0a8f38d6f9016c126aee93a00b50af89b",
+      "sourceCreatedAt": "2026-08-25T19:19:39Z",
+      "createdAt": "2026-09-26T08:11:21.623Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "147920ff-f1c1-4fac-abf4-d819ca663641",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Desenvolvedor(a) Full Stack Python AI/LLM - Convolut",
+          "pt-BR": "Desenvolvedor(a) Full Stack Python AI/LLM - Convolut",
+          "es": "Desenvolvedor(a) Full Stack Python AI/LLM - Convolut",
+          "it": "Desenvolvedor(a) Full Stack Python AI/LLM - Convolut",
+          "fr": "Desenvolvedor(a) Full Stack Python AI/LLM - Convolut",
+          "de": "Desenvolvedor(a) Full Stack Python AI/LLM - Convolut"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_00f12f8090b3e56bccda0b4f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3e1b125cdac06aaff57ade17",
+      "sourceId": "backend-pt/vagas#159",
+      "dataCommit": "ca70285e95bcdbd04582558931f7ebad91325576",
+      "dataHash": "dd3ecd5bbce294ed67e24280c4c83c91be66b1dc454d8a7987cd5b09b3b27fc5",
+      "contentHash": "a56265d60b11cba03b429f8610419420fac9f4af1a4252b10dd8b0889700c9fc",
+      "sourceCreatedAt": "2026-08-11T18:00:12Z",
+      "createdAt": "2026-09-26T08:11:21.623Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a20e9e19-6ad4-4acf-b1d1-70e58da8500b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] C#/.NET Backend Developer Pleno @ Sylision",
+          "pt-BR": "[Remoto] C#/.NET Backend Developer Pleno @ Sylision",
+          "es": "[Remoto] C#/.NET Backend Developer Pleno @ Sylision",
+          "it": "[Remoto] C#/.NET Backend Developer Pleno @ Sylision",
+          "fr": "[Remoto] C#/.NET Backend Developer Pleno @ Sylision",
+          "de": "[Remoto] C#/.NET Backend Developer Pleno @ Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3e1b125cdac06aaff57ade17"
         }
       },
       "status": "pending",
