@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "9a24d1f603358281e70b418da50c5d87a95c2ef5",
-    "generatedAt": "2026-09-26T18:12:34.402Z",
-    "dataHash": "19cd18ce0e5c7b877e33b6740bf60dc22feeb17169d7a87ed11445cde24e74c4"
+    "commit": "d15c6143235d4c6b574f04e22386325ab6055709",
+    "generatedAt": "2026-09-26T23:18:02.228Z",
+    "dataHash": "8af394cd7c6d411d8445ab69bbaa15315d9e29138fbd78a6c763db84376b63c2"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3539,6 +3539,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_131bcc65a23629aa68bf5503"
+        }
+      },
+      "status": "skipped_closed",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": "2026-09-26T23:18:02.228Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a005a7b8b54bdcc1233e7263",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2979",
+      "dataCommit": "d15c6143235d4c6b574f04e22386325ab6055709",
+      "dataHash": "8af394cd7c6d411d8445ab69bbaa15315d9e29138fbd78a6c763db84376b63c2",
+      "contentHash": "d7b9995752ff59472c1682655084f3e9a8d04736201b7d3fe6ffefd62a4b8489",
+      "sourceCreatedAt": "2026-09-26T18:34:27Z",
+      "createdAt": "2026-09-26T23:18:02.228Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "83d47c02-e2d4-42db-9fd3-3ca6aceacc87",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Editing Role",
+          "pt-BR": "Editing Role",
+          "es": "Editing Role",
+          "it": "Editing Role",
+          "fr": "Editing Role",
+          "de": "Editing Role"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a005a7b8b54bdcc1233e7263"
         }
       },
       "status": "pending",
