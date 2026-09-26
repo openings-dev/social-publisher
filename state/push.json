@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "a85e919729ab5d0fb50ebe5864a784094d805c7a",
-    "generatedAt": "2026-09-25T23:45:18.368Z",
-    "dataHash": "6cd4e600f8b7a990cebac39c13139ccaee1b097ab8af79759a40ca5a72954c49"
+    "commit": "3dae05311729e4090e9c77dae534faa34f0a4a38",
+    "generatedAt": "2026-09-26T02:48:14.830Z",
+    "dataHash": "50a5787aeebf476ca3048850cc5fe0ce18918c6adb3d20e483d08e9d824d61fb"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3333,6 +3333,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_db999290471cf301e6e682fa"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_51d2fb43dc419042667c2a9b",
+      "sourceId": "frontendbr/vagas#8528",
+      "dataCommit": "3dae05311729e4090e9c77dae534faa34f0a4a38",
+      "dataHash": "50a5787aeebf476ca3048850cc5fe0ce18918c6adb3d20e483d08e9d824d61fb",
+      "contentHash": "d58a70c5560c38a9665e38659940371c5c1bbdac446a23a945a0ab1223d25781",
+      "sourceCreatedAt": "2026-07-27T15:08:54Z",
+      "createdAt": "2026-09-26T02:48:14.830Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1c6f98ef-c9f1-4682-b9f1-457e132a61d9",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Vue.js Front-End Developer Sênior na Sylision",
+          "pt-BR": "[Híbrido] Vue.js Front-End Developer Sênior na Sylision",
+          "es": "[Híbrido] Vue.js Front-End Developer Sênior na Sylision",
+          "it": "[Híbrido] Vue.js Front-End Developer Sênior na Sylision",
+          "fr": "[Híbrido] Vue.js Front-End Developer Sênior na Sylision",
+          "de": "[Híbrido] Vue.js Front-End Developer Sênior na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_51d2fb43dc419042667c2a9b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_27e4bd243da08f40a67fcf29",
+      "sourceId": "frontendbr/vagas#8527",
+      "dataCommit": "3dae05311729e4090e9c77dae534faa34f0a4a38",
+      "dataHash": "50a5787aeebf476ca3048850cc5fe0ce18918c6adb3d20e483d08e9d824d61fb",
+      "contentHash": "362d93544311bea4b949a12db7ed1d178dca76c9d89eecc0621366c84a138ed2",
+      "sourceCreatedAt": "2026-07-27T12:28:20Z",
+      "createdAt": "2026-09-26T02:48:14.830Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f9cdba52-110c-4e60-a161-00688c07f6a6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] TypeScript Front-End Developer Sênior na Sylision",
+          "pt-BR": "[Híbrido] TypeScript Front-End Developer Sênior na Sylision",
+          "es": "[Híbrido] TypeScript Front-End Developer Sênior na Sylision",
+          "it": "[Híbrido] TypeScript Front-End Developer Sênior na Sylision",
+          "fr": "[Híbrido] TypeScript Front-End Developer Sênior na Sylision",
+          "de": "[Híbrido] TypeScript Front-End Developer Sênior na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_27e4bd243da08f40a67fcf29"
         }
       },
       "status": "pending",
