@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "d15c6143235d4c6b574f04e22386325ab6055709",
-    "generatedAt": "2026-09-26T23:18:02.228Z",
-    "dataHash": "8af394cd7c6d411d8445ab69bbaa15315d9e29138fbd78a6c763db84376b63c2"
+    "commit": "0cab5ec156cfabff09761e1830866c23856db530",
+    "generatedAt": "2026-09-27T02:49:06.911Z",
+    "dataHash": "64876c34b77200a0919f600667f1b3b9337a9863156987f930608a1124bc0100"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3579,6 +3579,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_a005a7b8b54bdcc1233e7263"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_02639b5d30624af5760b16e1",
+      "sourceId": "frontendbr/vagas#8532",
+      "dataCommit": "0cab5ec156cfabff09761e1830866c23856db530",
+      "dataHash": "64876c34b77200a0919f600667f1b3b9337a9863156987f930608a1124bc0100",
+      "contentHash": "f381875faf5ba7c99d78f4492933fa6576b2336f3f829c421b8a4adf811645ae",
+      "sourceCreatedAt": "2026-07-28T21:22:53Z",
+      "createdAt": "2026-09-27T02:49:06.911Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7e3f6318-19bb-4b2c-8e00-e444132f6c94",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Vue.js Front-End Developer Pleno na Sylision",
+          "pt-BR": "[Remoto] Vue.js Front-End Developer Pleno na Sylision",
+          "es": "[Remoto] Vue.js Front-End Developer Pleno na Sylision",
+          "it": "[Remoto] Vue.js Front-End Developer Pleno na Sylision",
+          "fr": "[Remoto] Vue.js Front-End Developer Pleno na Sylision",
+          "de": "[Remoto] Vue.js Front-End Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_02639b5d30624af5760b16e1"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_db9c6f7fe477c4d3161b5714",
+      "sourceId": "frontendbr/vagas#8530",
+      "dataCommit": "0cab5ec156cfabff09761e1830866c23856db530",
+      "dataHash": "64876c34b77200a0919f600667f1b3b9337a9863156987f930608a1124bc0100",
+      "contentHash": "39e0b6b59f6abd51c1f0cb856578a10ce919e68c32fb8692a2987fb692861390",
+      "sourceCreatedAt": "2026-07-28T12:01:55Z",
+      "createdAt": "2026-09-27T02:49:06.911Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8e431ae4-cc66-488c-9970-c0f3b2090da6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] React Front-End Developer Pleno na Sylision",
+          "pt-BR": "[Remoto] React Front-End Developer Pleno na Sylision",
+          "es": "[Remoto] React Front-End Developer Pleno na Sylision",
+          "it": "[Remoto] React Front-End Developer Pleno na Sylision",
+          "fr": "[Remoto] React Front-End Developer Pleno na Sylision",
+          "de": "[Remoto] React Front-End Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_db9c6f7fe477c4d3161b5714"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_931b3e0eeae90dadfad24f39",
+      "sourceId": "frontendbr/vagas#8529",
+      "dataCommit": "0cab5ec156cfabff09761e1830866c23856db530",
+      "dataHash": "64876c34b77200a0919f600667f1b3b9337a9863156987f930608a1124bc0100",
+      "contentHash": "0acbb788a84957133fa2d662e235fd8f96f0124929dfcbe56c1b6a2b0ea67a56",
+      "sourceCreatedAt": "2026-07-27T21:43:39Z",
+      "createdAt": "2026-09-27T02:49:06.911Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1583be54-da91-4251-8e9a-a63603dc347d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Next.js Front-End Developer Pleno na Sylision",
+          "pt-BR": "[Remoto] Next.js Front-End Developer Pleno na Sylision",
+          "es": "[Remoto] Next.js Front-End Developer Pleno na Sylision",
+          "it": "[Remoto] Next.js Front-End Developer Pleno na Sylision",
+          "fr": "[Remoto] Next.js Front-End Developer Pleno na Sylision",
+          "de": "[Remoto] Next.js Front-End Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_931b3e0eeae90dadfad24f39"
         }
       },
       "status": "pending",
