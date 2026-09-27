@@ -3581,12 +3581,15 @@
           "jobId": "gh_a005a7b8b54bdcc1233e7263"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-09-27T08:30:20.062Z",
-      "updatedAt": "2026-09-27T08:30:20.062Z",
+      "updatedAt": "2026-09-27T08:30:22.334Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "a693e4da-71e5-440a-bb44-1343b9b1b9f2",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_02639b5d30624af5760b16e1",
