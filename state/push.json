@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "0cab5ec156cfabff09761e1830866c23856db530",
-    "generatedAt": "2026-09-27T02:49:06.911Z",
-    "dataHash": "64876c34b77200a0919f600667f1b3b9337a9863156987f930608a1124bc0100"
+    "commit": "ddd3f60a5df8049f48be00de0d24f30608ef5f0b",
+    "generatedAt": "2026-09-27T08:47:55.685Z",
+    "dataHash": "56d39696a5de2279a9321a2b5d93de899b0a5f6c047a2e8c0046c632f9eb1939"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3702,6 +3702,286 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_931b3e0eeae90dadfad24f39"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6e4a15bd708ba95332fb79bc",
+      "sourceId": "frontendbr/vagas#8559",
+      "dataCommit": "ddd3f60a5df8049f48be00de0d24f30608ef5f0b",
+      "dataHash": "56d39696a5de2279a9321a2b5d93de899b0a5f6c047a2e8c0046c632f9eb1939",
+      "contentHash": "0a95f6535e1bde37d166bafe3a2dbf70e90a8c16684364da9fdd615e34ebce1a",
+      "sourceCreatedAt": "2026-09-09T14:14:58Z",
+      "createdAt": "2026-09-27T08:47:55.685Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4aed0251-323d-4c14-b1cd-bbe03ce8c797",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido-SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "pt-BR": "[Híbrido-SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "es": "[Híbrido-SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "it": "[Híbrido-SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "fr": "[Híbrido-SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "de": "[Híbrido-SP] Fullstack developer Python/React & IA na Evertec 🧡"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6e4a15bd708ba95332fb79bc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_450bc52dcc8bb6da9c87a9c5",
+      "sourceId": "backend-br/vagas#12402",
+      "dataCommit": "ddd3f60a5df8049f48be00de0d24f30608ef5f0b",
+      "dataHash": "56d39696a5de2279a9321a2b5d93de899b0a5f6c047a2e8c0046c632f9eb1939",
+      "contentHash": "8ed42564dc0aff421483fb2ef0784b7ae48314cec0cdb925e40d6eb3ca755777",
+      "sourceCreatedAt": "2026-08-28T01:53:20Z",
+      "createdAt": "2026-09-27T08:47:55.685Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "644397d6-bb6c-4b3a-83ec-83b213f18b83",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remota] ] Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React)-USD - Strider",
+          "pt-BR": "[Remota] ] Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React)-USD - Strider",
+          "es": "[Remota] ] Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React)-USD - Strider",
+          "it": "[Remota] ] Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React)-USD - Strider",
+          "fr": "[Remota] ] Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React)-USD - Strider",
+          "de": "[Remota] ] Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React)-USD - Strider"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_450bc52dcc8bb6da9c87a9c5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_cf66cfb845e2671803c3365b",
+      "sourceId": "backend-br/vagas#12400",
+      "dataCommit": "ddd3f60a5df8049f48be00de0d24f30608ef5f0b",
+      "dataHash": "56d39696a5de2279a9321a2b5d93de899b0a5f6c047a2e8c0046c632f9eb1939",
+      "contentHash": "3fbf1debcabc1701dee216a0bda4cd1f59a9c566d5a9ea5b16fe703b0455cfc2",
+      "sourceCreatedAt": "2026-08-28T01:39:00Z",
+      "createdAt": "2026-09-27T08:47:55.685Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "48ea7eaa-2031-464b-915d-a3c9633d3766",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full-stack Engineer (UX-focused) Strider",
+          "pt-BR": "[Remoto] Full-stack Engineer (UX-focused) Strider",
+          "es": "[Remoto] Full-stack Engineer (UX-focused) Strider",
+          "it": "[Remoto] Full-stack Engineer (UX-focused) Strider",
+          "fr": "[Remoto] Full-stack Engineer (UX-focused) Strider",
+          "de": "[Remoto] Full-stack Engineer (UX-focused) Strider"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_cf66cfb845e2671803c3365b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4c6cf37982168e2e29fee61c",
+      "sourceId": "backend-br/vagas#12399",
+      "dataCommit": "ddd3f60a5df8049f48be00de0d24f30608ef5f0b",
+      "dataHash": "56d39696a5de2279a9321a2b5d93de899b0a5f6c047a2e8c0046c632f9eb1939",
+      "contentHash": "44217db24edc0d09b3814a07c3b39a226f8ef37ffa697a3230877b840257d3bb",
+      "sourceCreatedAt": "2026-08-27T22:12:05Z",
+      "createdAt": "2026-09-27T08:47:55.685Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "88e16caa-7822-48ac-ad30-f9e68e1e7c38",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full-stack Engineer (Java/Kotlin|Golang) USD (Strider) - NomeDaEmpresa",
+          "pt-BR": "[Remoto] Full-stack Engineer (Java/Kotlin|Golang) USD (Strider) - NomeDaEmpresa",
+          "es": "[Remoto] Full-stack Engineer (Java/Kotlin|Golang) USD (Strider) - NomeDaEmpresa",
+          "it": "[Remoto] Full-stack Engineer (Java/Kotlin|Golang) USD (Strider) - NomeDaEmpresa",
+          "fr": "[Remoto] Full-stack Engineer (Java/Kotlin|Golang) USD (Strider) - NomeDaEmpresa",
+          "de": "[Remoto] Full-stack Engineer (Java/Kotlin|Golang) USD (Strider) - NomeDaEmpresa"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4c6cf37982168e2e29fee61c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9f4bcfdf00b9c0943d544fad",
+      "sourceId": "backend-br/vagas#12398",
+      "dataCommit": "ddd3f60a5df8049f48be00de0d24f30608ef5f0b",
+      "dataHash": "56d39696a5de2279a9321a2b5d93de899b0a5f6c047a2e8c0046c632f9eb1939",
+      "contentHash": "25d891bd07760ab52b49d9e0f5331fe2ee6dccfaf83ddf2dd8b0ecf66b84bdbb",
+      "sourceCreatedAt": "2026-08-27T16:56:58Z",
+      "createdAt": "2026-09-27T08:47:55.685Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5894678b-65f8-4b81-9909-c8ef1c21986c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido/Curitiba] Senior Back-end Python (USD) - Jcal Consultoria",
+          "pt-BR": "[Híbrido/Curitiba] Senior Back-end Python (USD) - Jcal Consultoria",
+          "es": "[Híbrido/Curitiba] Senior Back-end Python (USD) - Jcal Consultoria",
+          "it": "[Híbrido/Curitiba] Senior Back-end Python (USD) - Jcal Consultoria",
+          "fr": "[Híbrido/Curitiba] Senior Back-end Python (USD) - Jcal Consultoria",
+          "de": "[Híbrido/Curitiba] Senior Back-end Python (USD) - Jcal Consultoria"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9f4bcfdf00b9c0943d544fad"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_42bf102c156fbdce471069b8",
+      "sourceId": "phpdevbr/vagas#1330",
+      "dataCommit": "ddd3f60a5df8049f48be00de0d24f30608ef5f0b",
+      "dataHash": "56d39696a5de2279a9321a2b5d93de899b0a5f6c047a2e8c0046c632f9eb1939",
+      "contentHash": "4fb84fd53439f20285f86d687f534e38e159d2a41092230a03ebc744cd1f43c3",
+      "sourceCreatedAt": "2026-08-25T20:47:26Z",
+      "createdAt": "2026-09-27T08:47:55.685Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5d884d3b-afd9-418a-bf8b-aac7fbfbd954",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Senior Backend Engineer PHP + SABRE/GDS na PlanitEasy (PJ, LATAM)",
+          "pt-BR": "[Remoto] Senior Backend Engineer PHP + SABRE/GDS na PlanitEasy (PJ, LATAM)",
+          "es": "[Remoto] Senior Backend Engineer PHP + SABRE/GDS na PlanitEasy (PJ, LATAM)",
+          "it": "[Remoto] Senior Backend Engineer PHP + SABRE/GDS na PlanitEasy (PJ, LATAM)",
+          "fr": "[Remoto] Senior Backend Engineer PHP + SABRE/GDS na PlanitEasy (PJ, LATAM)",
+          "de": "[Remoto] Senior Backend Engineer PHP + SABRE/GDS na PlanitEasy (PJ, LATAM)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_42bf102c156fbdce471069b8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_621c4dbabb026520e36eb8b9",
+      "sourceId": "backend-br/vagas#12378",
+      "dataCommit": "ddd3f60a5df8049f48be00de0d24f30608ef5f0b",
+      "dataHash": "56d39696a5de2279a9321a2b5d93de899b0a5f6c047a2e8c0046c632f9eb1939",
+      "contentHash": "105e7545d7c8b5fde3a2ff964ad49841417e35f73fb7c4e6add58e468338e666",
+      "sourceCreatedAt": "2026-08-13T15:33:53Z",
+      "createdAt": "2026-09-27T08:47:55.685Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "54571e60-f349-4414-baff-f986f7555ff1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTO] EQUANIMUS TECNOLOGIA - FullStack Developer -",
+          "pt-BR": "[REMOTO] EQUANIMUS TECNOLOGIA - FullStack Developer -",
+          "es": "[REMOTO] EQUANIMUS TECNOLOGIA - FullStack Developer -",
+          "it": "[REMOTO] EQUANIMUS TECNOLOGIA - FullStack Developer -",
+          "fr": "[REMOTO] EQUANIMUS TECNOLOGIA - FullStack Developer -",
+          "de": "[REMOTO] EQUANIMUS TECNOLOGIA - FullStack Developer -"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_621c4dbabb026520e36eb8b9"
         }
       },
       "status": "pending",
