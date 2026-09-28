@@ -37714,12 +37714,14 @@
       "createdAt": "2026-09-28T10:12:40Z",
       "publicationCreatedAt": "2026-09-28T19:05:26.711Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-28T20:36:05.223Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[REMOTE 2nd job] Tìm Data QA (7+ yrs) 45tr net. Stack: Auto, Fabric, ETL testing, Azure DevOps | Eng tự tin"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -37776,7 +37778,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 115
     }
   ]
 }
