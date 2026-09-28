@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "d12e05ecd523b55f0cf863e89b1e21881a398735",
-    "generatedAt": "2026-09-28T09:12:41.413Z",
-    "dataHash": "a23b5cd4bead47ed858d405c31035cf29f953842486c88ed20fc6039015141aa"
+    "commit": "770491f0bdf8d5705144943ae88b8e8fd5e57ef2",
+    "generatedAt": "2026-09-28T19:02:45.001Z",
+    "dataHash": "7b7f32c274e6de7fb88b4a658858ca80777a6089abb7c573fe716047a7f8a5c6"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -4351,6 +4351,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_48287227a834ca08ad94e18e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2b4556255b2af8b4faf1aa9a",
+      "sourceId": "awesome-jobs/jobs#5070",
+      "dataCommit": "770491f0bdf8d5705144943ae88b8e8fd5e57ef2",
+      "dataHash": "7b7f32c274e6de7fb88b4a658858ca80777a6089abb7c573fe716047a7f8a5c6",
+      "contentHash": "421a4fb1d893ae0c7332ac3f8a8f0a5d818f5fb32d4be13f14a95cfec4bd5d39",
+      "sourceCreatedAt": "2026-09-28T10:12:40Z",
+      "createdAt": "2026-09-28T19:02:45.001Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cc02af5c-4716-495e-b7a3-fe694b82e613",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTE 2nd job] Tìm Data QA (7+ yrs) 45tr net. Stack: Auto, Fabric, ETL testing, Azure DevOps | Eng tự tin",
+          "pt-BR": "[REMOTE 2nd job] Tìm Data QA (7+ yrs) 45tr net. Stack: Auto, Fabric, ETL testing, Azure DevOps | Eng tự tin",
+          "es": "[REMOTE 2nd job] Tìm Data QA (7+ yrs) 45tr net. Stack: Auto, Fabric, ETL testing, Azure DevOps | Eng tự tin",
+          "it": "[REMOTE 2nd job] Tìm Data QA (7+ yrs) 45tr net. Stack: Auto, Fabric, ETL testing, Azure DevOps | Eng tự tin",
+          "fr": "[REMOTE 2nd job] Tìm Data QA (7+ yrs) 45tr net. Stack: Auto, Fabric, ETL testing, Azure DevOps | Eng tự tin",
+          "de": "[REMOTE 2nd job] Tìm Data QA (7+ yrs) 45tr net. Stack: Auto, Fabric, ETL testing, Azure DevOps | Eng tự tin"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2b4556255b2af8b4faf1aa9a"
         }
       },
       "status": "pending",
