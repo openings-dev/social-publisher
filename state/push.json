@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "c91d23673f8ee231ab23bc6ad7dbb1776ee1cd24",
-    "generatedAt": "2026-09-27T23:32:26.872Z",
-    "dataHash": "a6a66a51afc267670cf393cca3446b070ab4ac328696517402a275b3f82a9cd4"
+    "commit": "f1723aacbaed2cfdea428f978ec13a18fc4a1156",
+    "generatedAt": "2026-09-28T02:50:07.738Z",
+    "dataHash": "9a0a8d79995cf3b84305a2189b4bd4eaad88c6b840ec5c09314482a3754d1a31"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -3985,6 +3985,246 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_621c4dbabb026520e36eb8b9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ea595cfd3331c8561fa42c4f",
+      "sourceId": "backend-br/vagas#12434",
+      "dataCommit": "f1723aacbaed2cfdea428f978ec13a18fc4a1156",
+      "dataHash": "9a0a8d79995cf3b84305a2189b4bd4eaad88c6b840ec5c09314482a3754d1a31",
+      "contentHash": "dff3da3868f80535c624ba9207ac6ad5059dd59c2ff3614dbcb85f9ce88f48d0",
+      "sourceCreatedAt": "2026-09-28T00:45:22Z",
+      "createdAt": "2026-09-28T02:50:07.738Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "47c4b84e-0f6a-4bb4-acd6-f9d42bd00ad7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Desenvolvedor / Engenheiro de IA (AI Stack) - Programa AI Stack - Rio de Janeiro - RJ",
+          "pt-BR": "Desenvolvedor / Engenheiro de IA (AI Stack) - Programa AI Stack - Rio de Janeiro - RJ",
+          "es": "Desenvolvedor / Engenheiro de IA (AI Stack) - Programa AI Stack - Rio de Janeiro - RJ",
+          "it": "Desenvolvedor / Engenheiro de IA (AI Stack) - Programa AI Stack - Rio de Janeiro - RJ",
+          "fr": "Desenvolvedor / Engenheiro de IA (AI Stack) - Programa AI Stack - Rio de Janeiro - RJ",
+          "de": "Desenvolvedor / Engenheiro de IA (AI Stack) - Programa AI Stack - Rio de Janeiro - RJ"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ea595cfd3331c8561fa42c4f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9d1ded79575ba545aa439df9",
+      "sourceId": "frontendbr/vagas#8535",
+      "dataCommit": "f1723aacbaed2cfdea428f978ec13a18fc4a1156",
+      "dataHash": "9a0a8d79995cf3b84305a2189b4bd4eaad88c6b840ec5c09314482a3754d1a31",
+      "contentHash": "d64ce5b94044e0145df8de772ecdb69a26fb284c83641dbc17179958247e4b9e",
+      "sourceCreatedAt": "2026-07-29T15:00:17Z",
+      "createdAt": "2026-09-28T02:50:07.738Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "67eaf153-c8e7-4e97-9d88-0216251da397",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] TypeScript Front-End Developer Pleno na Sylision",
+          "pt-BR": "[Híbrido] TypeScript Front-End Developer Pleno na Sylision",
+          "es": "[Híbrido] TypeScript Front-End Developer Pleno na Sylision",
+          "it": "[Híbrido] TypeScript Front-End Developer Pleno na Sylision",
+          "fr": "[Híbrido] TypeScript Front-End Developer Pleno na Sylision",
+          "de": "[Híbrido] TypeScript Front-End Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9d1ded79575ba545aa439df9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_55e50bbaef4368d65063642c",
+      "sourceId": "frontendbr/vagas#8534",
+      "dataCommit": "f1723aacbaed2cfdea428f978ec13a18fc4a1156",
+      "dataHash": "9a0a8d79995cf3b84305a2189b4bd4eaad88c6b840ec5c09314482a3754d1a31",
+      "contentHash": "25f0ff0ebf5d3bed1657e4fc93e9b9632c60b94d38ca2318195acb7d27751357",
+      "sourceCreatedAt": "2026-07-29T12:06:41Z",
+      "createdAt": "2026-09-28T02:50:07.738Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f4d4804e-432b-48a7-b113-3aa8f6caf586",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] React Front-End Developer Pleno na Sylision",
+          "pt-BR": "[Híbrido] React Front-End Developer Pleno na Sylision",
+          "es": "[Híbrido] React Front-End Developer Pleno na Sylision",
+          "it": "[Híbrido] React Front-End Developer Pleno na Sylision",
+          "fr": "[Híbrido] React Front-End Developer Pleno na Sylision",
+          "de": "[Híbrido] React Front-End Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_55e50bbaef4368d65063642c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_dcf7962ffd9d9e87a9c0d0d3",
+      "sourceId": "frontendbr/vagas#8533",
+      "dataCommit": "f1723aacbaed2cfdea428f978ec13a18fc4a1156",
+      "dataHash": "9a0a8d79995cf3b84305a2189b4bd4eaad88c6b840ec5c09314482a3754d1a31",
+      "contentHash": "ab2c6f572fcf9304acc000e157bb2c0d590b40ef91b7e6df5a6d0526beeeb2f3",
+      "sourceCreatedAt": "2026-07-29T12:00:32Z",
+      "createdAt": "2026-09-28T02:50:07.738Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "65cae90b-b32d-425b-9c31-b1eec06dcdbf",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Next.js Front-End Developer Pleno na Sylision",
+          "pt-BR": "[Híbrido] Next.js Front-End Developer Pleno na Sylision",
+          "es": "[Híbrido] Next.js Front-End Developer Pleno na Sylision",
+          "it": "[Híbrido] Next.js Front-End Developer Pleno na Sylision",
+          "fr": "[Híbrido] Next.js Front-End Developer Pleno na Sylision",
+          "de": "[Híbrido] Next.js Front-End Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_dcf7962ffd9d9e87a9c0d0d3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e0be42313695863a7be771d3",
+      "sourceId": "frontendbr/vagas#8531",
+      "dataCommit": "f1723aacbaed2cfdea428f978ec13a18fc4a1156",
+      "dataHash": "9a0a8d79995cf3b84305a2189b4bd4eaad88c6b840ec5c09314482a3754d1a31",
+      "contentHash": "d76438dac52192c6dc66dc1d267b8054153d591ce7e1e4cc493870ba8bf7e5f6",
+      "sourceCreatedAt": "2026-07-28T18:19:52Z",
+      "createdAt": "2026-09-28T02:50:07.738Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f8f37b52-8ff5-4a47-94c7-c42c41fb77fd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] TypeScript Front-End Developer Pleno na Sylision",
+          "pt-BR": "[Remoto] TypeScript Front-End Developer Pleno na Sylision",
+          "es": "[Remoto] TypeScript Front-End Developer Pleno na Sylision",
+          "it": "[Remoto] TypeScript Front-End Developer Pleno na Sylision",
+          "fr": "[Remoto] TypeScript Front-End Developer Pleno na Sylision",
+          "de": "[Remoto] TypeScript Front-End Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e0be42313695863a7be771d3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0871ca1a0ecc002bf7e9c19a",
+      "sourceId": "frontendbr/vagas#8510",
+      "dataCommit": "f1723aacbaed2cfdea428f978ec13a18fc4a1156",
+      "dataHash": "9a0a8d79995cf3b84305a2189b4bd4eaad88c6b840ec5c09314482a3754d1a31",
+      "contentHash": "62c09c789b3db1c3efa9cef55aa755d805fb859a38873a307e80dc4fd3d7b736",
+      "sourceCreatedAt": "2026-06-18T08:32:24Z",
+      "createdAt": "2026-09-28T02:50:07.738Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "776bed4f-9ec2-4554-9341-c8976a2d95cb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full-stack Developer (Next.js & Claude Code) - USD-Strider",
+          "pt-BR": "[Remoto] Full-stack Developer (Next.js & Claude Code) - USD-Strider",
+          "es": "[Remoto] Full-stack Developer (Next.js & Claude Code) - USD-Strider",
+          "it": "[Remoto] Full-stack Developer (Next.js & Claude Code) - USD-Strider",
+          "fr": "[Remoto] Full-stack Developer (Next.js & Claude Code) - USD-Strider",
+          "de": "[Remoto] Full-stack Developer (Next.js & Claude Code) - USD-Strider"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0871ca1a0ecc002bf7e9c19a"
         }
       },
       "status": "pending",
