@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "f1723aacbaed2cfdea428f978ec13a18fc4a1156",
-    "generatedAt": "2026-09-28T02:50:07.738Z",
-    "dataHash": "9a0a8d79995cf3b84305a2189b4bd4eaad88c6b840ec5c09314482a3754d1a31"
+    "commit": "d12e05ecd523b55f0cf863e89b1e21881a398735",
+    "generatedAt": "2026-09-28T09:12:41.413Z",
+    "dataHash": "a23b5cd4bead47ed858d405c31035cf29f953842486c88ed20fc6039015141aa"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -4228,6 +4228,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_0871ca1a0ecc002bf7e9c19a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_007e557e3cce1342e00affb2",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2980",
+      "dataCommit": "d12e05ecd523b55f0cf863e89b1e21881a398735",
+      "dataHash": "a23b5cd4bead47ed858d405c31035cf29f953842486c88ed20fc6039015141aa",
+      "contentHash": "11ba2ee52e2cd9bc9ee85fe87fe11cdd582f754f0aa3b38b529c1b7716cf0a83",
+      "sourceCreatedAt": "2026-09-28T07:33:11Z",
+      "createdAt": "2026-09-28T09:12:41.413Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "29923568-7ffe-40f3-a502-89c1eb1e5074",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Role — HHMI AI Fellow",
+          "pt-BR": "New Role — HHMI AI Fellow",
+          "es": "New Role — HHMI AI Fellow",
+          "it": "New Role — HHMI AI Fellow",
+          "fr": "New Role — HHMI AI Fellow",
+          "de": "New Role — HHMI AI Fellow"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_007e557e3cce1342e00affb2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b45dffa30b18b04bbb4d85ce",
+      "sourceId": "DevOps-Brasil/Vagas#470",
+      "dataCommit": "d12e05ecd523b55f0cf863e89b1e21881a398735",
+      "dataHash": "a23b5cd4bead47ed858d405c31035cf29f953842486c88ed20fc6039015141aa",
+      "contentHash": "dd20a4a61c7604df66f4f746ebe16c44ba1e418cc2c68b6643a9900cb09d2797",
+      "sourceCreatedAt": "2026-07-30T00:42:39Z",
+      "createdAt": "2026-09-28T09:12:41.413Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "565a3346-35c3-4f37-b8ce-7e07000a2704",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[DevOps Engineer (Kubernetes) Sênior] Sylision - Remoto",
+          "pt-BR": "[DevOps Engineer (Kubernetes) Sênior] Sylision - Remoto",
+          "es": "[DevOps Engineer (Kubernetes) Sênior] Sylision - Remoto",
+          "it": "[DevOps Engineer (Kubernetes) Sênior] Sylision - Remoto",
+          "fr": "[DevOps Engineer (Kubernetes) Sênior] Sylision - Remoto",
+          "de": "[DevOps Engineer (Kubernetes) Sênior] Sylision - Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b45dffa30b18b04bbb4d85ce"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_48287227a834ca08ad94e18e",
+      "sourceId": "soujava/vagas-java#1813",
+      "dataCommit": "d12e05ecd523b55f0cf863e89b1e21881a398735",
+      "dataHash": "a23b5cd4bead47ed858d405c31035cf29f953842486c88ed20fc6039015141aa",
+      "contentHash": "cfd09aadc8c95bc312fc17af59c29980f8e9964b0e1edc8127b170d8bdbd9ebf",
+      "sourceCreatedAt": "2025-03-26T18:43:49Z",
+      "createdAt": "2026-09-28T09:12:41.413Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b5e4037a-30a0-4103-a3e6-2b9f95416291",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Florianópolis, SC] Cargo em Empresa de Tecnologia",
+          "pt-BR": "[Florianópolis, SC] Cargo em Empresa de Tecnologia",
+          "es": "[Florianópolis, SC] Cargo em Empresa de Tecnologia",
+          "it": "[Florianópolis, SC] Cargo em Empresa de Tecnologia",
+          "fr": "[Florianópolis, SC] Cargo em Empresa de Tecnologia",
+          "de": "[Florianópolis, SC] Cargo em Empresa de Tecnologia"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_48287227a834ca08ad94e18e"
         }
       },
       "status": "pending",
