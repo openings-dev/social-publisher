@@ -37505,12 +37505,14 @@
       "createdAt": "2026-09-28T07:33:11Z",
       "publicationCreatedAt": "2026-09-28T09:14:09.056Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-28T14:05:56.203Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "New Role — HHMI AI Fellow"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -37567,7 +37569,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 114
     }
   ]
 }
