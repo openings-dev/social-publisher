@@ -37505,12 +37505,23 @@
       "createdAt": "2026-09-28T07:33:11Z",
       "publicationCreatedAt": "2026-09-28T09:14:09.056Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-28T14:05:56.203Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_007e557e3cce1342e00affb2",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_007e557e3cce1342e00affb2/11ba2ee52e2cd9bc9ee85fe87fe11cdd582f754f0aa3b38b529c1b7716cf0a83/a176597978d06832996901b2f3596551709f8df4c60eb1ee18040918428ccb50/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_007e557e3cce1342e00affb2/11ba2ee52e2cd9bc9ee85fe87fe11cdd582f754f0aa3b38b529c1b7716cf0a83/a176597978d06832996901b2f3596551709f8df4c60eb1ee18040918428ccb50/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_007e557e3cce1342e00affb2/11ba2ee52e2cd9bc9ee85fe87fe11cdd582f754f0aa3b38b529c1b7716cf0a83/a176597978d06832996901b2f3596551709f8df4c60eb1ee18040918428ccb50/social-video.mp4",
+          "pngHash": "314ec54e9e6ec37afa22fe5c6a483b9854060dcb5f930bc8a8ae2f8ef4dbf733",
+          "instagramJpegHash": "840ce37421b407e3f72da04aecc0d8f246cc6025c1aeb2da4f7f9e539f3bab8a",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "New Role — HHMI AI Fellow"
         }
       },
