@@ -37296,12 +37296,14 @@
       "createdAt": "2026-09-28T00:45:22Z",
       "publicationCreatedAt": "2026-09-28T02:51:20.621Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-28T05:31:45.779Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Desenvolvedor / Engenheiro de IA (AI Stack) - Programa AI Stack - Rio de Janeiro - RJ"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -37358,7 +37360,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 113
     }
   ]
 }
