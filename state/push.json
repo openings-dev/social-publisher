@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "9ba626fb1d76d5a95cd32461107cb323f2856821",
-    "generatedAt": "2026-09-29T17:23:43.663Z",
-    "dataHash": "4c73158404e4ba1fe36901c42a456aec66570317dcd3c8d74cd74ed27d5012ba"
+    "commit": "0c52bfe69b1d7ba453119996046caefe7ea2061b",
+    "generatedAt": "2026-09-29T21:43:44.805Z",
+    "dataHash": "148ccb7cab391d7e997d2a5fc7d01b9549ebce9d072dcc413429cb1452891b66"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -4757,6 +4757,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_2848a7e637d48621b5ae7e26"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a1647bfa438d985a5a959c58",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9699",
+      "dataCommit": "0c52bfe69b1d7ba453119996046caefe7ea2061b",
+      "dataHash": "148ccb7cab391d7e997d2a5fc7d01b9549ebce9d072dcc413429cb1452891b66",
+      "contentHash": "d27f52af173311cda0ec655673251c5a3101705a5de608f73d35ef59b8dd8aa2",
+      "sourceCreatedAt": "2026-09-29T19:44:12Z",
+      "createdAt": "2026-09-29T21:43:44.805Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "de34466a-e85c-4c88-9e08-5fda6f239e97",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Student Learning Coach - Coding",
+          "pt-BR": "Student Learning Coach - Coding",
+          "es": "Student Learning Coach - Coding",
+          "it": "Student Learning Coach - Coding",
+          "fr": "Student Learning Coach - Coding",
+          "de": "Student Learning Coach - Coding"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a1647bfa438d985a5a959c58"
         }
       },
       "status": "pending",
