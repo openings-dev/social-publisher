@@ -38132,12 +38132,23 @@
       "createdAt": "2026-09-28T20:01:27Z",
       "publicationCreatedAt": "2026-09-29T00:48:45.125Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-29T08:38:58.768Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_719f224c7806dc02e6dd9cd2",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_719f224c7806dc02e6dd9cd2/e2026df358ce770a21d58c4a164be20fba1acc506659c34e993b9043fdaf337e/23ec4c4d09acf3d2ae26a6656978fd2135f0ccb945de8e33db7dfcac6f25e97b/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_719f224c7806dc02e6dd9cd2/e2026df358ce770a21d58c4a164be20fba1acc506659c34e993b9043fdaf337e/23ec4c4d09acf3d2ae26a6656978fd2135f0ccb945de8e33db7dfcac6f25e97b/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_719f224c7806dc02e6dd9cd2/e2026df358ce770a21d58c4a164be20fba1acc506659c34e993b9043fdaf337e/23ec4c4d09acf3d2ae26a6656978fd2135f0ccb945de8e33db7dfcac6f25e97b/social-video.mp4",
+          "pngHash": "dad793e04c06c0ee6a308d4b55ed85962531cf43389b32605100e6cb13a3ac90",
+          "instagramJpegHash": "76d4d6d84401836d1cd43b513b79b0cd1accc0facfca30e11b8e0ef0f85fa2f5",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[Remoto] Engenheiro(a) Sênior de Infraestrutura / Backend (GCP, Python) - Turing (via AYAN)"
         }
       },
