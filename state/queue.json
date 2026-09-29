@@ -37923,12 +37923,14 @@
       "createdAt": "2026-09-28T20:02:31Z",
       "publicationCreatedAt": "2026-09-29T00:48:45.125Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-29T02:02:47.504Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto - somente EUA/Canadá] Engenheiro(a) de Software Sênior (Python / TypeScript) - Turing (via AYAN)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -37985,7 +37987,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 116
     },
     {
       "jobId": "gh_719f224c7806dc02e6dd9cd2",
