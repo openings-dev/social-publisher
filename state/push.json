@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "c50dd33a05d5407f8658de36a6b2d475dfd2e75b",
-    "generatedAt": "2026-09-29T00:46:56.071Z",
-    "dataHash": "ce2772785623aae9df56534e29ce1ce268595346bba7ec60b1af3dc3edaa4ed7"
+    "commit": "3c910aa17a5a2ac37f14be77115f9d8c4cbac710",
+    "generatedAt": "2026-09-29T09:21:45.138Z",
+    "dataHash": "0eaaee75fce98dc2093afd776cd5459ddb0ed91fad3fadf55283a57d61f671e3"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -4474,6 +4474,206 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_719f224c7806dc02e6dd9cd2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5e9389b1f39a95d222e2ade5",
+      "sourceId": "frontendbr/vagas#8554",
+      "dataCommit": "3c910aa17a5a2ac37f14be77115f9d8c4cbac710",
+      "dataHash": "0eaaee75fce98dc2093afd776cd5459ddb0ed91fad3fadf55283a57d61f671e3",
+      "contentHash": "436d39d3233876fa61077bea458d5d6c55521abd166b56732f242374e738ad61",
+      "sourceCreatedAt": "2026-08-28T01:56:23Z",
+      "createdAt": "2026-09-29T09:21:45.138Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "df622fc8-cad3-4115-a2f3-cd1801e8621d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto ]  Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React) USD - Strider",
+          "pt-BR": "[Remoto ]  Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React) USD - Strider",
+          "es": "[Remoto ]  Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React) USD - Strider",
+          "it": "[Remoto ]  Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React) USD - Strider",
+          "fr": "[Remoto ]  Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React) USD - Strider",
+          "de": "[Remoto ]  Full-stack Engineer (HealthTech, EHR/EMR, Terraform, React) USD - Strider"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5e9389b1f39a95d222e2ade5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e20c87ec9b8a84e4069f865e",
+      "sourceId": "frontendbr/vagas#8552",
+      "dataCommit": "3c910aa17a5a2ac37f14be77115f9d8c4cbac710",
+      "dataHash": "0eaaee75fce98dc2093afd776cd5459ddb0ed91fad3fadf55283a57d61f671e3",
+      "contentHash": "78f2f2083f8be6d10866c81c9be286d74f713a0aaa5f0b8ef8852e2fb50593a1",
+      "sourceCreatedAt": "2026-08-28T01:40:18Z",
+      "createdAt": "2026-09-29T09:21:45.138Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9b006a06-6143-43de-a585-9430f63e26e6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full-stack Engineer (UX (focused) Strider",
+          "pt-BR": "[Remoto] Full-stack Engineer (UX (focused) Strider",
+          "es": "[Remoto] Full-stack Engineer (UX (focused) Strider",
+          "it": "[Remoto] Full-stack Engineer (UX (focused) Strider",
+          "fr": "[Remoto] Full-stack Engineer (UX (focused) Strider",
+          "de": "[Remoto] Full-stack Engineer (UX (focused) Strider"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e20c87ec9b8a84e4069f865e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2536c3c612236cf113d6f054",
+      "sourceId": "DevOps-Brasil/Vagas#472",
+      "dataCommit": "3c910aa17a5a2ac37f14be77115f9d8c4cbac710",
+      "dataHash": "0eaaee75fce98dc2093afd776cd5459ddb0ed91fad3fadf55283a57d61f671e3",
+      "contentHash": "3be16261c9b2bdeec749f4f64de0a0a9856c105bdae8879ba49a8325ff3e6f58",
+      "sourceCreatedAt": "2026-07-30T21:12:45Z",
+      "createdAt": "2026-09-29T09:21:45.138Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bccf6c92-53ab-4547-9a4e-d60f41635440",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[DevOps Engineer (AWS) Sênior] Sylision - Híbrido",
+          "pt-BR": "[DevOps Engineer (AWS) Sênior] Sylision - Híbrido",
+          "es": "[DevOps Engineer (AWS) Sênior] Sylision - Híbrido",
+          "it": "[DevOps Engineer (AWS) Sênior] Sylision - Híbrido",
+          "fr": "[DevOps Engineer (AWS) Sênior] Sylision - Híbrido",
+          "de": "[DevOps Engineer (AWS) Sênior] Sylision - Híbrido"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2536c3c612236cf113d6f054"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d153714a4675d0e9559fe5e0",
+      "sourceId": "DevOps-Brasil/Vagas#471",
+      "dataCommit": "3c910aa17a5a2ac37f14be77115f9d8c4cbac710",
+      "dataHash": "0eaaee75fce98dc2093afd776cd5459ddb0ed91fad3fadf55283a57d61f671e3",
+      "contentHash": "7bb87866da34edbee643fabb901e676614fbeb5c39d217db8453e298189a3def",
+      "sourceCreatedAt": "2026-07-30T12:18:24Z",
+      "createdAt": "2026-09-29T09:21:45.138Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0d351fb5-66a6-4ff4-9958-8af7efe9fb79",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Site Reliability Engineer Sênior] Sylision - Remoto",
+          "pt-BR": "[Site Reliability Engineer Sênior] Sylision - Remoto",
+          "es": "[Site Reliability Engineer Sênior] Sylision - Remoto",
+          "it": "[Site Reliability Engineer Sênior] Sylision - Remoto",
+          "fr": "[Site Reliability Engineer Sênior] Sylision - Remoto",
+          "de": "[Site Reliability Engineer Sênior] Sylision - Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d153714a4675d0e9559fe5e0"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a0b79bcbb61d3dbab86b9dba",
+      "sourceId": "frontendbr/vagas#8536",
+      "dataCommit": "3c910aa17a5a2ac37f14be77115f9d8c4cbac710",
+      "dataHash": "0eaaee75fce98dc2093afd776cd5459ddb0ed91fad3fadf55283a57d61f671e3",
+      "contentHash": "f85e35001a95b941fa39f305681e10b64038133fafb6dbdfac0817eb7aa0f865",
+      "sourceCreatedAt": "2026-07-30T12:04:23Z",
+      "createdAt": "2026-09-29T09:21:45.138Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a3a4d85d-0947-42a1-9189-36cfe297d164",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Vue.js Front-End Developer Pleno na Sylision",
+          "pt-BR": "[Híbrido] Vue.js Front-End Developer Pleno na Sylision",
+          "es": "[Híbrido] Vue.js Front-End Developer Pleno na Sylision",
+          "it": "[Híbrido] Vue.js Front-End Developer Pleno na Sylision",
+          "fr": "[Híbrido] Vue.js Front-End Developer Pleno na Sylision",
+          "de": "[Híbrido] Vue.js Front-End Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a0b79bcbb61d3dbab86b9dba"
         }
       },
       "status": "pending",
