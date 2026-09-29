@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "3c910aa17a5a2ac37f14be77115f9d8c4cbac710",
-    "generatedAt": "2026-09-29T09:21:45.138Z",
-    "dataHash": "0eaaee75fce98dc2093afd776cd5459ddb0ed91fad3fadf55283a57d61f671e3"
+    "commit": "9ba626fb1d76d5a95cd32461107cb323f2856821",
+    "generatedAt": "2026-09-29T17:23:43.663Z",
+    "dataHash": "4c73158404e4ba1fe36901c42a456aec66570317dcd3c8d74cd74ed27d5012ba"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -4677,6 +4677,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_a0b79bcbb61d3dbab86b9dba"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4c4120b9a6b8f881f1515c70",
+      "sourceId": "ambicuity/New-Grad-Jobs#370",
+      "dataCommit": "9ba626fb1d76d5a95cd32461107cb323f2856821",
+      "dataHash": "4c73158404e4ba1fe36901c42a456aec66570317dcd3c8d74cd74ed27d5012ba",
+      "contentHash": "227a988dc8ea18b47dc57bc6edfa953ae410e2aa733e8c365bb230adb0c6daf5",
+      "sourceCreatedAt": "2026-09-29T16:32:45Z",
+      "createdAt": "2026-09-29T17:23:43.663Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a46c9899-f49c-4e78-97da-327eb2a4372f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-09-29T11:35:38.271415Z",
+          "pt-BR": "Job data is stale: last scrape 2026-09-29T11:35:38.271415Z",
+          "es": "Job data is stale: last scrape 2026-09-29T11:35:38.271415Z",
+          "it": "Job data is stale: last scrape 2026-09-29T11:35:38.271415Z",
+          "fr": "Job data is stale: last scrape 2026-09-29T11:35:38.271415Z",
+          "de": "Job data is stale: last scrape 2026-09-29T11:35:38.271415Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4c4120b9a6b8f881f1515c70"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2848a7e637d48621b5ae7e26",
+      "sourceId": "cncf/gitjobs#390",
+      "dataCommit": "9ba626fb1d76d5a95cd32461107cb323f2856821",
+      "dataHash": "4c73158404e4ba1fe36901c42a456aec66570317dcd3c8d74cd74ed27d5012ba",
+      "contentHash": "c58fa3cdab18f569a9e21e2333ed9951643518695baaca0577c35ecb447a4801",
+      "sourceCreatedAt": "2026-09-29T11:32:19Z",
+      "createdAt": "2026-09-29T17:23:43.663Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b1188d85-d4fc-47a2-8ebe-35ddaf83b0f7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Member unable to select a different foundation",
+          "pt-BR": "Member unable to select a different foundation",
+          "es": "Member unable to select a different foundation",
+          "it": "Member unable to select a different foundation",
+          "fr": "Member unable to select a different foundation",
+          "de": "Member unable to select a different foundation"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2848a7e637d48621b5ae7e26"
         }
       },
       "status": "pending",
