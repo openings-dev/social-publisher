@@ -38132,12 +38132,14 @@
       "createdAt": "2026-09-28T20:01:27Z",
       "publicationCreatedAt": "2026-09-29T00:48:45.125Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-29T08:38:58.768Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Engenheiro(a) Sênior de Infraestrutura / Backend (GCP, Python) - Turing (via AYAN)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -38194,7 +38196,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 117
     }
   ]
 }
