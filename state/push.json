@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "770491f0bdf8d5705144943ae88b8e8fd5e57ef2",
-    "generatedAt": "2026-09-28T19:02:45.001Z",
-    "dataHash": "7b7f32c274e6de7fb88b4a658858ca80777a6089abb7c573fe716047a7f8a5c6"
+    "commit": "c50dd33a05d5407f8658de36a6b2d475dfd2e75b",
+    "generatedAt": "2026-09-29T00:46:56.071Z",
+    "dataHash": "ce2772785623aae9df56534e29ce1ce268595346bba7ec60b1af3dc3edaa4ed7"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -4391,6 +4391,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_2b4556255b2af8b4faf1aa9a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bb98d5e4d31818054eb7ac4c",
+      "sourceId": "backend-br/vagas#12436",
+      "dataCommit": "c50dd33a05d5407f8658de36a6b2d475dfd2e75b",
+      "dataHash": "ce2772785623aae9df56534e29ce1ce268595346bba7ec60b1af3dc3edaa4ed7",
+      "contentHash": "b08cd7baf7733d43f136950974c15a445bdae06c5235544f4391b9327ec8184f",
+      "sourceCreatedAt": "2026-09-28T20:02:31Z",
+      "createdAt": "2026-09-29T00:46:56.071Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "12e7686b-b620-4651-894b-93e682cfeb15",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto - somente EUA/Canadá] Engenheiro(a) de Software Sênior (Python / TypeScript) - Turing (via AYAN)",
+          "pt-BR": "[Remoto - somente EUA/Canadá] Engenheiro(a) de Software Sênior (Python / TypeScript) - Turing (via AYAN)",
+          "es": "[Remoto - somente EUA/Canadá] Engenheiro(a) de Software Sênior (Python / TypeScript) - Turing (via AYAN)",
+          "it": "[Remoto - somente EUA/Canadá] Engenheiro(a) de Software Sênior (Python / TypeScript) - Turing (via AYAN)",
+          "fr": "[Remoto - somente EUA/Canadá] Engenheiro(a) de Software Sênior (Python / TypeScript) - Turing (via AYAN)",
+          "de": "[Remoto - somente EUA/Canadá] Engenheiro(a) de Software Sênior (Python / TypeScript) - Turing (via AYAN)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bb98d5e4d31818054eb7ac4c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_719f224c7806dc02e6dd9cd2",
+      "sourceId": "backend-br/vagas#12435",
+      "dataCommit": "c50dd33a05d5407f8658de36a6b2d475dfd2e75b",
+      "dataHash": "ce2772785623aae9df56534e29ce1ce268595346bba7ec60b1af3dc3edaa4ed7",
+      "contentHash": "e2026df358ce770a21d58c4a164be20fba1acc506659c34e993b9043fdaf337e",
+      "sourceCreatedAt": "2026-09-28T20:01:27Z",
+      "createdAt": "2026-09-29T00:46:56.071Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5576bf45-5f84-41b2-b50a-4f8e7acaec57",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Engenheiro(a) Sênior de Infraestrutura / Backend (GCP, Python) - Turing (via AYAN)",
+          "pt-BR": "[Remoto] Engenheiro(a) Sênior de Infraestrutura / Backend (GCP, Python) - Turing (via AYAN)",
+          "es": "[Remoto] Engenheiro(a) Sênior de Infraestrutura / Backend (GCP, Python) - Turing (via AYAN)",
+          "it": "[Remoto] Engenheiro(a) Sênior de Infraestrutura / Backend (GCP, Python) - Turing (via AYAN)",
+          "fr": "[Remoto] Engenheiro(a) Sênior de Infraestrutura / Backend (GCP, Python) - Turing (via AYAN)",
+          "de": "[Remoto] Engenheiro(a) Sênior de Infraestrutura / Backend (GCP, Python) - Turing (via AYAN)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_719f224c7806dc02e6dd9cd2"
         }
       },
       "status": "pending",
