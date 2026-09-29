@@ -38399,12 +38399,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-29T21:45:12.349Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18444708472131935",
+          "url": "https://www.threads.com/@openingshq/post/Dd4wbe-FCK_"
+        }
       },
       "instagram": {
         "status": "pending",
