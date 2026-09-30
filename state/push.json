@@ -4519,12 +4519,15 @@
           "jobId": "gh_5e9389b1f39a95d222e2ade5"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-09-30T03:17:01.431Z",
-      "updatedAt": "2026-09-30T03:17:01.431Z",
+      "updatedAt": "2026-09-30T03:17:03.736Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "a9269853-f648-4bd7-a2a4-4b813d1c840e",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_e20c87ec9b8a84e4069f865e",
