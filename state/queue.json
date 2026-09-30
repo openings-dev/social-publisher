@@ -40536,12 +40536,23 @@
       "createdAt": "2026-09-30T11:43:48Z",
       "publicationCreatedAt": "2026-09-30T17:25:44.880Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-30T23:56:12.419Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_62dd90fe5fc8ef9fb41715bd",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_62dd90fe5fc8ef9fb41715bd/d87bb2b07de484c4df95a4a320b2dc39aaa6790a51c89a3ef5ab23ee14983b4a/e7c4d25d69cd21b127c4c4ac0b38507066292e29cfc1eda5ee182eb4e69276d5/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_62dd90fe5fc8ef9fb41715bd/d87bb2b07de484c4df95a4a320b2dc39aaa6790a51c89a3ef5ab23ee14983b4a/e7c4d25d69cd21b127c4c4ac0b38507066292e29cfc1eda5ee182eb4e69276d5/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_62dd90fe5fc8ef9fb41715bd/d87bb2b07de484c4df95a4a320b2dc39aaa6790a51c89a3ef5ab23ee14983b4a/e7c4d25d69cd21b127c4c4ac0b38507066292e29cfc1eda5ee182eb4e69276d5/social-video.mp4",
+          "pngHash": "49f186994ea276c90b3ff49c77c801d9b592bc9c550f0c89275e49984a6f8597",
+          "instagramJpegHash": "d1523142b86382cc591e4dc274c0d707890ceef3070b251c1db2bbfccf529f69",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "SENWORKS - - SECURITY ENGINEER - [REMOTE] - Up to USD3200 - Good English"
         }
       },
