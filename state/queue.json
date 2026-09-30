@@ -38542,12 +38542,23 @@
       "createdAt": "2026-09-29T11:32:19Z",
       "publicationCreatedAt": "2026-09-29T17:25:25.413Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-30T03:18:00.098Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2848a7e637d48621b5ae7e26",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_2848a7e637d48621b5ae7e26/c58fa3cdab18f569a9e21e2333ed9951643518695baaca0577c35ecb447a4801/7e0d526568cb70b181d2e4d61c5cf7829e433999248c10eb3f2ff786ea38fb56/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_2848a7e637d48621b5ae7e26/c58fa3cdab18f569a9e21e2333ed9951643518695baaca0577c35ecb447a4801/7e0d526568cb70b181d2e4d61c5cf7829e433999248c10eb3f2ff786ea38fb56/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_2848a7e637d48621b5ae7e26/c58fa3cdab18f569a9e21e2333ed9951643518695baaca0577c35ecb447a4801/7e0d526568cb70b181d2e4d61c5cf7829e433999248c10eb3f2ff786ea38fb56/social-video.mp4",
+          "pngHash": "d3df60d438e9aa6a50ff34d24764b7abe65f7b45f2e896c94a50b105d3f4fbd1",
+          "instagramJpegHash": "3be0d4d675d45049fb162700a5a66b0f356bd14a959dcef01cc7426e8adf63b9",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Member unable to select a different foundation"
         }
       },
