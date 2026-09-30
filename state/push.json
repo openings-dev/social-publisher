@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "be981812cc78595b4fcb8b6e104e66172b8962a9",
-    "generatedAt": "2026-09-30T11:41:05.852Z",
-    "dataHash": "7b289c9b6ad29b47af860567fd5783678ba60bb543d7b317b6a28148a4f6b1a0"
+    "commit": "f3e6491f2e2fba36599eff5ce001d2d8b7f6adc6",
+    "generatedAt": "2026-09-30T17:21:53.278Z",
+    "dataHash": "baafc05be9a30e20a524f756d8e5b1b10ce4f5bf08365c3772ab2c8d5a9987ff"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -5443,6 +5443,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_018e3ae4ec92fe680b283c84"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_dfe2c19e791285c22fdd4896",
+      "sourceId": "ambicuity/New-Grad-Jobs#371",
+      "dataCommit": "f3e6491f2e2fba36599eff5ce001d2d8b7f6adc6",
+      "dataHash": "baafc05be9a30e20a524f756d8e5b1b10ce4f5bf08365c3772ab2c8d5a9987ff",
+      "contentHash": "326987d25fb6b80ddec2dc4af3352ac9843a26d9e966e26da9a5ad3fe5274d61",
+      "sourceCreatedAt": "2026-09-30T16:26:04Z",
+      "createdAt": "2026-09-30T17:21:53.278Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "48734312-b7fa-4a69-96c2-bca2fe3d9c4e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-09-30T13:02:10.861624Z",
+          "pt-BR": "Job data is stale: last scrape 2026-09-30T13:02:10.861624Z",
+          "es": "Job data is stale: last scrape 2026-09-30T13:02:10.861624Z",
+          "it": "Job data is stale: last scrape 2026-09-30T13:02:10.861624Z",
+          "fr": "Job data is stale: last scrape 2026-09-30T13:02:10.861624Z",
+          "de": "Job data is stale: last scrape 2026-09-30T13:02:10.861624Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_dfe2c19e791285c22fdd4896"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c99e3a932f7fe533fc8d11db",
+      "sourceId": "frontendbr/vagas#8564",
+      "dataCommit": "f3e6491f2e2fba36599eff5ce001d2d8b7f6adc6",
+      "dataHash": "baafc05be9a30e20a524f756d8e5b1b10ce4f5bf08365c3772ab2c8d5a9987ff",
+      "contentHash": "129f0a147d53b57ff7a94bc303aeecedb35bbca0ce3eb40ecf6760666eb2ce3b",
+      "sourceCreatedAt": "2026-09-30T12:47:56Z",
+      "createdAt": "2026-09-30T17:21:53.278Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "08fa8248-8533-46a9-9b1d-22d26e0d26a9",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Software Developer Front-end Pleno na Coodesh",
+          "pt-BR": "[Remoto] Software Developer Front-end Pleno na Coodesh",
+          "es": "[Remoto] Software Developer Front-end Pleno na Coodesh",
+          "it": "[Remoto] Software Developer Front-end Pleno na Coodesh",
+          "fr": "[Remoto] Software Developer Front-end Pleno na Coodesh",
+          "de": "[Remoto] Software Developer Front-end Pleno na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c99e3a932f7fe533fc8d11db"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_62dd90fe5fc8ef9fb41715bd",
+      "sourceId": "awesome-jobs/jobs#5075",
+      "dataCommit": "f3e6491f2e2fba36599eff5ce001d2d8b7f6adc6",
+      "dataHash": "baafc05be9a30e20a524f756d8e5b1b10ce4f5bf08365c3772ab2c8d5a9987ff",
+      "contentHash": "d87bb2b07de484c4df95a4a320b2dc39aaa6790a51c89a3ef5ab23ee14983b4a",
+      "sourceCreatedAt": "2026-09-30T11:43:48Z",
+      "createdAt": "2026-09-30T17:21:53.278Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "25a3a43c-da50-4776-b090-3eb8011431b6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "SENWORKS -  - SECURITY ENGINEER - [REMOTE] - Up to USD3200 - Good English",
+          "pt-BR": "SENWORKS -  - SECURITY ENGINEER - [REMOTE] - Up to USD3200 - Good English",
+          "es": "SENWORKS -  - SECURITY ENGINEER - [REMOTE] - Up to USD3200 - Good English",
+          "it": "SENWORKS -  - SECURITY ENGINEER - [REMOTE] - Up to USD3200 - Good English",
+          "fr": "SENWORKS -  - SECURITY ENGINEER - [REMOTE] - Up to USD3200 - Good English",
+          "de": "SENWORKS -  - SECURITY ENGINEER - [REMOTE] - Up to USD3200 - Good English"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_62dd90fe5fc8ef9fb41715bd"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_83b66ce2daefa84016b71185",
+      "sourceId": "programadores-br/geral#3077",
+      "dataCommit": "f3e6491f2e2fba36599eff5ce001d2d8b7f6adc6",
+      "dataHash": "baafc05be9a30e20a524f756d8e5b1b10ce4f5bf08365c3772ab2c8d5a9987ff",
+      "contentHash": "b7aa86b86300c1f28e068bd2a2f0a7941b2fc6ef18a04c941e366c0f3d951c7d",
+      "sourceCreatedAt": "2026-06-03T17:57:21Z",
+      "createdAt": "2026-09-30T17:21:53.278Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "26485cfc-86d2-4b4c-b406-7de2f8205db4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full Cycle Developer (Júnior) na Coodesh",
+          "pt-BR": "[Remoto] Full Cycle Developer (Júnior) na Coodesh",
+          "es": "[Remoto] Full Cycle Developer (Júnior) na Coodesh",
+          "it": "[Remoto] Full Cycle Developer (Júnior) na Coodesh",
+          "fr": "[Remoto] Full Cycle Developer (Júnior) na Coodesh",
+          "de": "[Remoto] Full Cycle Developer (Júnior) na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_83b66ce2daefa84016b71185"
         }
       },
       "status": "pending",
