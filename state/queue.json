@@ -39169,12 +39169,23 @@
       "createdAt": "2026-09-30T10:27:41Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-30T17:23:22.566Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_fd7b255c451891ac112f8e82",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_fd7b255c451891ac112f8e82/1204f52283c9dafcf88669cda5927bf88586c9ffbebc72ffe3bf2de8ec65789d/fe5fd96ce4e396f6c4e9ba5df98c0460db3ea0e451f0d5dce25c06cd01abea9b/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_fd7b255c451891ac112f8e82/1204f52283c9dafcf88669cda5927bf88586c9ffbebc72ffe3bf2de8ec65789d/fe5fd96ce4e396f6c4e9ba5df98c0460db3ea0e451f0d5dce25c06cd01abea9b/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_fd7b255c451891ac112f8e82/1204f52283c9dafcf88669cda5927bf88586c9ffbebc72ffe3bf2de8ec65789d/fe5fd96ce4e396f6c4e9ba5df98c0460db3ea0e451f0d5dce25c06cd01abea9b/social-video.mp4",
+          "pngHash": "7ac491d7f4ba41a84f9996fe3bdc1c2e7e859296af8a9fb03044d8dbae1f85ee",
+          "instagramJpegHash": "8b66c6ab1c8d8a2bb8235a71533f39f00268bb7b3f02c48e1ab5292d997c7b63",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Question about reading public listings on Europe Tech Internships 2026 (personal final-year project)"
         }
       },
