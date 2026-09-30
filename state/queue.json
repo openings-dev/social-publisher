@@ -40536,12 +40536,14 @@
       "createdAt": "2026-09-30T11:43:48Z",
       "publicationCreatedAt": "2026-09-30T17:25:44.880Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-30T23:56:12.419Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "SENWORKS - - SECURITY ENGINEER - [REMOTE] - Up to USD3200 - Good English"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -40598,7 +40600,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 125
     }
   ]
 }
