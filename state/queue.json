@@ -40327,12 +40327,14 @@
       "createdAt": "2026-09-30T12:47:56Z",
       "publicationCreatedAt": "2026-09-30T17:25:44.880Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-30T21:45:15.031Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Software Developer Front-end Pleno na Coodesh"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -40389,7 +40391,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 124
     },
     {
       "jobId": "gh_62dd90fe5fc8ef9fb41715bd",
