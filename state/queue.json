@@ -38411,13 +38411,10 @@
         }
       },
       "instagram": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-09-29T21:45:12.349Z",
-        "lastError": {
-          "code": "instagram_container",
-          "at": "2026-09-29T21:45:12.349Z"
-        },
+        "updatedAt": "2026-09-30T03:18:00.098Z",
+        "lastError": null,
         "lastReset": null,
         "result": {
           "publicationKind": "image",
@@ -38441,9 +38438,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-09-30T03:18:00.098Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -38545,12 +38542,14 @@
       "createdAt": "2026-09-29T11:32:19Z",
       "publicationCreatedAt": "2026-09-29T17:25:25.413Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-09-30T03:18:00.098Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Member unable to select a different foundation"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -38607,7 +38606,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 120
     },
     {
       "jobId": "gh_a1647bfa438d985a5a959c58",
