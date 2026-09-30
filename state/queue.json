@@ -38960,12 +38960,23 @@
       "createdAt": "2026-09-30T11:35:49Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-09-30T12:43:41.909Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_01a0a1ad79a225ed23493c50",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_01a0a1ad79a225ed23493c50/1f22bedc46a3dc52a68c5dc374b71eae4f0ffcad25f59616ee2441554a84f9aa/7d66e2c9cd6b9a20af4f54af81312e687eadc1b2aaf5534511837db4e2b125a0/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_01a0a1ad79a225ed23493c50/1f22bedc46a3dc52a68c5dc374b71eae4f0ffcad25f59616ee2441554a84f9aa/7d66e2c9cd6b9a20af4f54af81312e687eadc1b2aaf5534511837db4e2b125a0/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_01a0a1ad79a225ed23493c50/1f22bedc46a3dc52a68c5dc374b71eae4f0ffcad25f59616ee2441554a84f9aa/7d66e2c9cd6b9a20af4f54af81312e687eadc1b2aaf5534511837db4e2b125a0/social-video.mp4",
+          "pngHash": "a48329bb61aafd97f2c925cf4e4a02a414eeb02db399ba3170129f2d64a4fc67",
+          "instagramJpegHash": "4addb95c2d520c0e35fe7e5bcb542eab8b9bd6f4267eb87817ddb2df6fc55a73",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[REMOTE] - CLOUD ENGINEER (Azure Platform / IaC) - USD3000"
         }
       },
