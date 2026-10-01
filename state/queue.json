@@ -40079,12 +40079,23 @@
       "createdAt": "2026-09-30T10:27:16Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-01T19:36:54.754Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2f36944fe3030097352d176e",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_2f36944fe3030097352d176e/3c9d234e2ac5fcda2136f9b2820c1ff7bec4e92bda404057a4f9e78bed55c98b/166d39505851e8bfa1093d16e6cb565f95cd71645760f079e4586b4969bbfb3f/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_2f36944fe3030097352d176e/3c9d234e2ac5fcda2136f9b2820c1ff7bec4e92bda404057a4f9e78bed55c98b/166d39505851e8bfa1093d16e6cb565f95cd71645760f079e4586b4969bbfb3f/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_2f36944fe3030097352d176e/3c9d234e2ac5fcda2136f9b2820c1ff7bec4e92bda404057a4f9e78bed55c98b/166d39505851e8bfa1093d16e6cb565f95cd71645760f079e4586b4969bbfb3f/social-video.mp4",
+          "pngHash": "1ba9bbcca9c2d55f63e9fecbd848292b519010b179303bfbd8460f0d139cc07b",
+          "instagramJpegHash": "c72dd5e112d789cd41e74a9e92d956e1bc98ef742b95a4e1f2bd802ff72c5b54",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Question about reading public listings on SimplifyJobs (personal final-year project)"
         }
       },
