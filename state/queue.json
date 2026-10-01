@@ -40375,12 +40375,14 @@
       "createdAt": "2026-09-30T03:59:10Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-01T13:31:18.797Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LINE Pay Vietnam - Backend Engineer - Saigon, District 10"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -40437,7 +40439,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 129
     },
     {
       "jobId": "gh_d4c7dfe0cf934a1a36146713",
