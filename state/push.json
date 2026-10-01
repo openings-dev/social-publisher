@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "dd1bf651796c8329b87d6d8656506f5fb8d39887",
-    "generatedAt": "2026-10-01T03:22:32.274Z",
-    "dataHash": "5bf5aebc2ff3a20778b7d5c18831caffca9842f1e531cda17d0b5c817df22a08"
+    "commit": "a956baae8cf8d67f15e53e6ea9745de483ced35f",
+    "generatedAt": "2026-10-01T12:09:50.381Z",
+    "dataHash": "98e089791f4b9a19ebdda641885dd18af4ee478ac5ffde2b38f7d35231d8e697"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -5609,6 +5609,206 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_83b66ce2daefa84016b71185"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_20aceb464738bcb46da14811",
+      "sourceId": "awesome-jobs/jobs#5076",
+      "dataCommit": "a956baae8cf8d67f15e53e6ea9745de483ced35f",
+      "dataHash": "98e089791f4b9a19ebdda641885dd18af4ee478ac5ffde2b38f7d35231d8e697",
+      "contentHash": "56a8cdf8fa92b65b7aab6e25f41200a7931dfd04139773942224e659595e6f2f",
+      "sourceCreatedAt": "2026-10-01T09:30:04Z",
+      "createdAt": "2026-10-01T12:09:50.381Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cb75dfb3-7838-44c1-8223-bc3c6ac0b458",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote 53tr] Lead GOLANG Engineer, 7+YoE BE (3+ years yoe Golang in prod, 2+Yoe Leader, fluent English",
+          "pt-BR": "[Remote 53tr] Lead GOLANG Engineer, 7+YoE BE (3+ years yoe Golang in prod, 2+Yoe Leader, fluent English",
+          "es": "[Remote 53tr] Lead GOLANG Engineer, 7+YoE BE (3+ years yoe Golang in prod, 2+Yoe Leader, fluent English",
+          "it": "[Remote 53tr] Lead GOLANG Engineer, 7+YoE BE (3+ years yoe Golang in prod, 2+Yoe Leader, fluent English",
+          "fr": "[Remote 53tr] Lead GOLANG Engineer, 7+YoE BE (3+ years yoe Golang in prod, 2+Yoe Leader, fluent English",
+          "de": "[Remote 53tr] Lead GOLANG Engineer, 7+YoE BE (3+ years yoe Golang in prod, 2+Yoe Leader, fluent English"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_20aceb464738bcb46da14811"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c9dbe8c3245224e55d772ee5",
+      "sourceId": "jobright-ai/2026-Software-Engineer-New-Grad#8",
+      "dataCommit": "a956baae8cf8d67f15e53e6ea9745de483ced35f",
+      "dataHash": "98e089791f4b9a19ebdda641885dd18af4ee478ac5ffde2b38f7d35231d8e697",
+      "contentHash": "bfc98df4fa468990e5bde9265c165b2dc1a13a1a57b5644b6d76b1772d5f5389",
+      "sourceCreatedAt": "2026-10-01T05:16:11Z",
+      "createdAt": "2026-10-01T12:09:50.381Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c2fd804c-d8c3-46c2-bd77-5e9e3492d013",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Add an \"Updated At\" timestamp column so readers can spot new roles",
+          "pt-BR": "Add an \"Updated At\" timestamp column so readers can spot new roles",
+          "es": "Add an \"Updated At\" timestamp column so readers can spot new roles",
+          "it": "Add an \"Updated At\" timestamp column so readers can spot new roles",
+          "fr": "Add an \"Updated At\" timestamp column so readers can spot new roles",
+          "de": "Add an \"Updated At\" timestamp column so readers can spot new roles"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c9dbe8c3245224e55d772ee5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_1c2b57871a734db05f971bcd",
+      "sourceId": "backend-br/vagas#12404",
+      "dataCommit": "a956baae8cf8d67f15e53e6ea9745de483ced35f",
+      "dataHash": "98e089791f4b9a19ebdda641885dd18af4ee478ac5ffde2b38f7d35231d8e697",
+      "contentHash": "2888897ec61ee8bbaecb944eecfd1b8c786a504426405151b78b6e9a40d639d3",
+      "sourceCreatedAt": "2026-08-31T12:52:43Z",
+      "createdAt": "2026-10-01T12:09:50.381Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "284ec96f-2ada-4ac9-bcd4-a1fc8c210835",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-end C#/Net - Micro1",
+          "pt-BR": "[Remoto] Back-end C#/Net - Micro1",
+          "es": "[Remoto] Back-end C#/Net - Micro1",
+          "it": "[Remoto] Back-end C#/Net - Micro1",
+          "fr": "[Remoto] Back-end C#/Net - Micro1",
+          "de": "[Remoto] Back-end C#/Net - Micro1"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1c2b57871a734db05f971bcd"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_322e43c52c4dc474b9de092d",
+      "sourceId": "DevOps-Brasil/Vagas#476",
+      "dataCommit": "a956baae8cf8d67f15e53e6ea9745de483ced35f",
+      "dataHash": "98e089791f4b9a19ebdda641885dd18af4ee478ac5ffde2b38f7d35231d8e697",
+      "contentHash": "c74c7b302b528878bea1d29f8e33c4e1fb9c3deb1ac6b1d705f6f27b814113e1",
+      "sourceCreatedAt": "2026-08-01T12:11:57Z",
+      "createdAt": "2026-10-01T12:09:50.381Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d1f38057-99cc-4ea3-8107-56d811c89875",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[DevOps Engineer (AWS) Pleno] Sylision - Remoto",
+          "pt-BR": "[DevOps Engineer (AWS) Pleno] Sylision - Remoto",
+          "es": "[DevOps Engineer (AWS) Pleno] Sylision - Remoto",
+          "it": "[DevOps Engineer (AWS) Pleno] Sylision - Remoto",
+          "fr": "[DevOps Engineer (AWS) Pleno] Sylision - Remoto",
+          "de": "[DevOps Engineer (AWS) Pleno] Sylision - Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_322e43c52c4dc474b9de092d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8037478966ad64b0fcc09260",
+      "sourceId": "DevOps-Brasil/Vagas#475",
+      "dataCommit": "a956baae8cf8d67f15e53e6ea9745de483ced35f",
+      "dataHash": "98e089791f4b9a19ebdda641885dd18af4ee478ac5ffde2b38f7d35231d8e697",
+      "contentHash": "ed68ea454926cc655ff361d5ded85b096f5972a802cd4dde8b3ba341d2036df7",
+      "sourceCreatedAt": "2026-08-01T12:06:36Z",
+      "createdAt": "2026-10-01T12:09:50.381Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0c5eb7dd-a72b-41fc-baca-ff3269a81016",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Site Reliability Engineer Sênior] Sylision - Híbrido",
+          "pt-BR": "[Site Reliability Engineer Sênior] Sylision - Híbrido",
+          "es": "[Site Reliability Engineer Sênior] Sylision - Híbrido",
+          "it": "[Site Reliability Engineer Sênior] Sylision - Híbrido",
+          "fr": "[Site Reliability Engineer Sênior] Sylision - Híbrido",
+          "de": "[Site Reliability Engineer Sênior] Sylision - Híbrido"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8037478966ad64b0fcc09260"
         }
       },
       "status": "pending",
