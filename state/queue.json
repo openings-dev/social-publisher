@@ -40475,12 +40475,14 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-01T13:32:51.349Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "operationKey": "job-story-36868698835-1"
+        }
       },
       "visualDirection": "lavender",
       "visualSequence": 129,
