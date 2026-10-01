@@ -40362,12 +40362,23 @@
       "createdAt": "2026-09-30T10:26:56Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-01T23:56:54.081Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_6f9fd79e1626999457c55a32",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_6f9fd79e1626999457c55a32/f6b74beb1b1a1a34b99442d8c4f0435a9bff1fc9df724de9b4e2fca55d1f41a1/77440d5f0972bd2956a46f73f91140611955eef78344e5b17e10cd73140589fb/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_6f9fd79e1626999457c55a32/f6b74beb1b1a1a34b99442d8c4f0435a9bff1fc9df724de9b4e2fca55d1f41a1/77440d5f0972bd2956a46f73f91140611955eef78344e5b17e10cd73140589fb/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_6f9fd79e1626999457c55a32/f6b74beb1b1a1a34b99442d8c4f0435a9bff1fc9df724de9b4e2fca55d1f41a1/77440d5f0972bd2956a46f73f91140611955eef78344e5b17e10cd73140589fb/social-video.mp4",
+          "pngHash": "f3236ee2261962162275996eb17ea210c36713772dc6856c7640873a81ecf98e",
+          "instagramJpegHash": "832715ac4350c51eddb6120cc19409d3cd3d80450522415ac2221c3a0f539cbf",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Question about reading public listings on Canadian Tech Internships 2027 (personal final-year project)"
         }
       },
