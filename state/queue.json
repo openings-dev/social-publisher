@@ -39587,12 +39587,14 @@
       "createdAt": "2026-09-30T10:27:37Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-01T06:04:52.681Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Question about reading public listings on Visa-Sponsored Jobs List (personal final-year project)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -39649,7 +39651,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 127
     },
     {
       "jobId": "gh_04527d7aee2622a060d30425",
