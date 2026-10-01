@@ -40436,12 +40436,14 @@
       "createdAt": "2026-09-30T04:05:24Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-01T20:09:32.440Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LINE Pay Vietnam - QA - Saigon, District 10"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -40498,7 +40500,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 131
     },
     {
       "jobId": "gh_2053fcbed89f4b0a9f16deab",
