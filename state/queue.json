@@ -39796,12 +39796,14 @@
       "createdAt": "2026-09-30T10:27:34Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-01T12:11:13.054Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Question about reading public listings on SpeedyApply INTL (personal final-year project)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -39858,7 +39860,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 128
     },
     {
       "jobId": "gh_b6aefab5452b32ee8687841b",
