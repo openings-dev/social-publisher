@@ -40436,12 +40436,23 @@
       "createdAt": "2026-09-30T04:05:24Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-01T20:09:32.440Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4cb39f6675d3a84f550bc860",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_4cb39f6675d3a84f550bc860/c177172dc7d369d270800f1feb434f6a254e6c3b625b53c311594f7583138ec6/57ff8e309901c8b3455ee65f556df44ad0edb795a27247b9e97250312321239d/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_4cb39f6675d3a84f550bc860/c177172dc7d369d270800f1feb434f6a254e6c3b625b53c311594f7583138ec6/57ff8e309901c8b3455ee65f556df44ad0edb795a27247b9e97250312321239d/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_4cb39f6675d3a84f550bc860/c177172dc7d369d270800f1feb434f6a254e6c3b625b53c311594f7583138ec6/57ff8e309901c8b3455ee65f556df44ad0edb795a27247b9e97250312321239d/social-video.mp4",
+          "pngHash": "09d27c63158d2755c268e02ba6b9a10db040957c498fce278e2bee8b432fd879",
+          "instagramJpegHash": "da4b33e956c7145649d299608a4ffaf64e4688aec41dcf2cf0f8b1cdb4194077",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "LINE Pay Vietnam - QA - Saigon, District 10"
         }
       },
