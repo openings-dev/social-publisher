@@ -39587,12 +39587,23 @@
       "createdAt": "2026-09-30T10:27:37Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-01T06:04:52.681Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_5cf43af7adf0bacb68e0bed4",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_5cf43af7adf0bacb68e0bed4/f0e78fc6414fac89a44b935b06b775730c5b42ee157473332aba7e40c581eb76/e5fed4de7c6a8e282e09b7bab26788f696b19f0aa400b982196a81bfe3ab5d3f/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_5cf43af7adf0bacb68e0bed4/f0e78fc6414fac89a44b935b06b775730c5b42ee157473332aba7e40c581eb76/e5fed4de7c6a8e282e09b7bab26788f696b19f0aa400b982196a81bfe3ab5d3f/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_5cf43af7adf0bacb68e0bed4/f0e78fc6414fac89a44b935b06b775730c5b42ee157473332aba7e40c581eb76/e5fed4de7c6a8e282e09b7bab26788f696b19f0aa400b982196a81bfe3ab5d3f/social-video.mp4",
+          "pngHash": "962edf0af1bdf8b14a10a52a1fd3496f606321e9369032dbeda38dadf50798b4",
+          "instagramJpegHash": "4a4005f804ae7fe0436cc2363066818327bde065ce0441739b990d87eb69b582",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "Question about reading public listings on Visa-Sponsored Jobs List (personal final-year project)"
         }
       },
