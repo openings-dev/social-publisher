@@ -39378,12 +39378,23 @@
       "createdAt": "2026-09-30T10:27:39Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-01T03:23:54.382Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_1c5328af78cf355f775290f3",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_1c5328af78cf355f775290f3/c6965d5877f075281e4b98c621bf33bd6eb4b3809506ec5d9d5f0f7e6395ecee/efd77bf36f4634910d56b125e9efc5f3ed16f0c33e2c60479136f7871ebba903/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_1c5328af78cf355f775290f3/c6965d5877f075281e4b98c621bf33bd6eb4b3809506ec5d9d5f0f7e6395ecee/efd77bf36f4634910d56b125e9efc5f3ed16f0c33e2c60479136f7871ebba903/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_1c5328af78cf355f775290f3/c6965d5877f075281e4b98c621bf33bd6eb4b3809506ec5d9d5f0f7e6395ecee/efd77bf36f4634910d56b125e9efc5f3ed16f0c33e2c60479136f7871ebba903/social-video.mp4",
+          "pngHash": "23ac8f3d6a904868c151ad240703770307551e3532bd7afec867a567851c34f9",
+          "instagramJpegHash": "6181a862d330b440deb44857e5fea9a5e404a796f62213c258f63874ecb012b1",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Question about reading public listings on ZApply Underclassmen (personal final-year project)"
         }
       },
