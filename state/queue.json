@@ -40079,12 +40079,14 @@
       "createdAt": "2026-09-30T10:27:16Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-01T19:36:54.754Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Question about reading public listings on SimplifyJobs (personal final-year project)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -40141,7 +40143,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 130
     },
     {
       "jobId": "gh_89dcbc79e38c36bf725d0c43",
