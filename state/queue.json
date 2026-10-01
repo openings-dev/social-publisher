@@ -39796,12 +39796,23 @@
       "createdAt": "2026-09-30T10:27:34Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-01T12:11:13.054Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_04527d7aee2622a060d30425",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_04527d7aee2622a060d30425/fdf1398f91efa9eb099d3b6c3bc33948403e464c9a710ce891cd2780df6ede95/efd60d7e0f3608b60a70551655a4d563db56b7f7ab7863e69d5d588f4ba7319f/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_04527d7aee2622a060d30425/fdf1398f91efa9eb099d3b6c3bc33948403e464c9a710ce891cd2780df6ede95/efd60d7e0f3608b60a70551655a4d563db56b7f7ab7863e69d5d588f4ba7319f/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_04527d7aee2622a060d30425/fdf1398f91efa9eb099d3b6c3bc33948403e464c9a710ce891cd2780df6ede95/efd60d7e0f3608b60a70551655a4d563db56b7f7ab7863e69d5d588f4ba7319f/social-video.mp4",
+          "pngHash": "83c596b48fabbf5d8c303a99ae14197b1e12699f50661365fa154280ad972d70",
+          "instagramJpegHash": "c00b193b15c742e1155217c8d4bc37bb58bf06c956bd269961be1178378616d0",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Question about reading public listings on SpeedyApply INTL (personal final-year project)"
         }
       },
