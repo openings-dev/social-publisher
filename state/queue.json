@@ -40375,12 +40375,23 @@
       "createdAt": "2026-09-30T03:59:10Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-01T13:31:18.797Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2053fcbed89f4b0a9f16deab",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_2053fcbed89f4b0a9f16deab/88e7a060667d391654411bbc147acfac123753bb6e7cf17a6ba14e096c786cf0/e2114c0380ae9edadf48bdeee3c79ac1bfd4ec60a3d6e11c3ec2229247187179/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_2053fcbed89f4b0a9f16deab/88e7a060667d391654411bbc147acfac123753bb6e7cf17a6ba14e096c786cf0/e2114c0380ae9edadf48bdeee3c79ac1bfd4ec60a3d6e11c3ec2229247187179/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_2053fcbed89f4b0a9f16deab/88e7a060667d391654411bbc147acfac123753bb6e7cf17a6ba14e096c786cf0/e2114c0380ae9edadf48bdeee3c79ac1bfd4ec60a3d6e11c3ec2229247187179/social-video.mp4",
+          "pngHash": "4484f94a30620a179670227a58b49a9608abb17045a76e6bdf6d908fa82e9c97",
+          "instagramJpegHash": "cf99a4770102556df000bb7ee1be71166ea8ab7967473c6ed1368e6f1569d0bd",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "LINE Pay Vietnam - Backend Engineer - Saigon, District 10"
         }
       },
