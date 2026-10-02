@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "b57d6c56cbddf862f14c7504e408b0bbf4053857",
-    "generatedAt": "2026-10-02T17:09:35.452Z",
-    "dataHash": "e6327b9167e8014f47e0eb7f2f421157650b112ce1ea2a364ad6c41ccc5db44b"
+    "commit": "4d116d6fa357a4eea6134bb0d3c61ce4347511da",
+    "generatedAt": "2026-10-02T21:40:10.936Z",
+    "dataHash": "0f4e4dff12f1c10e4687a7a173744655d5cb09a36341286f48f4c2cf86a21edc"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -6535,6 +6535,246 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_ab7a8bff64dbf3837743eded"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_dcc3699070be130fcf1efda5",
+      "sourceId": "vanshb03/Summer2026-Internships#4595",
+      "dataCommit": "4d116d6fa357a4eea6134bb0d3c61ce4347511da",
+      "dataHash": "0f4e4dff12f1c10e4687a7a173744655d5cb09a36341286f48f4c2cf86a21edc",
+      "contentHash": "6c46cecc3e1d88077e95ae93a966f82b3049d40be6e0b4e1b66284363c124388",
+      "sourceCreatedAt": "2026-10-02T19:36:07Z",
+      "createdAt": "2026-10-02T21:40:10.936Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a7655ae3-9573-4d58-b9d9-d10c8b6b59c6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_dcc3699070be130fcf1efda5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4ec91f598ecbce2754fde105",
+      "sourceId": "vanshb03/Summer2027-Internships#4595",
+      "dataCommit": "4d116d6fa357a4eea6134bb0d3c61ce4347511da",
+      "dataHash": "0f4e4dff12f1c10e4687a7a173744655d5cb09a36341286f48f4c2cf86a21edc",
+      "contentHash": "6c46cecc3e1d88077e95ae93a966f82b3049d40be6e0b4e1b66284363c124388",
+      "sourceCreatedAt": "2026-10-02T19:36:07Z",
+      "createdAt": "2026-10-02T21:40:10.936Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "eaafb540-2520-4c5b-a87a-246edf7f4bf7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4ec91f598ecbce2754fde105"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_73905fc690371fda6c8f011e",
+      "sourceId": "negarprh/Canadian-Tech-Internships-2026#368",
+      "dataCommit": "4d116d6fa357a4eea6134bb0d3c61ce4347511da",
+      "dataHash": "0f4e4dff12f1c10e4687a7a173744655d5cb09a36341286f48f4c2cf86a21edc",
+      "contentHash": "b93ff8ffc69181a424fc348e425aa736c8983a1db10898aae0e3d7fda6185801",
+      "sourceCreatedAt": "2026-10-02T19:11:52Z",
+      "createdAt": "2026-10-02T21:40:10.936Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9dcb159a-ffdf-4742-9ecf-0f9804fdf176",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Add internship: Physical Reasoning - Software Engineering Intern",
+          "pt-BR": "Add internship: Physical Reasoning - Software Engineering Intern",
+          "es": "Add internship: Physical Reasoning - Software Engineering Intern",
+          "it": "Add internship: Physical Reasoning - Software Engineering Intern",
+          "fr": "Add internship: Physical Reasoning - Software Engineering Intern",
+          "de": "Add internship: Physical Reasoning - Software Engineering Intern"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_73905fc690371fda6c8f011e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b69c178802ca1f80cb167848",
+      "sourceId": "pydevbr/vagas#50",
+      "dataCommit": "4d116d6fa357a4eea6134bb0d3c61ce4347511da",
+      "dataHash": "0f4e4dff12f1c10e4687a7a173744655d5cb09a36341286f48f4c2cf86a21edc",
+      "contentHash": "e0059825fbdadeea8bce9eaf08bdd4988c29a47e44cf8ae9fbc3a3bdea71adf0",
+      "sourceCreatedAt": "2026-10-02T18:49:52Z",
+      "createdAt": "2026-10-02T21:40:10.936Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "74c321d7-0642-4383-82ff-507d36d5c6cb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "(fully-remote) Senior Embedded Engineer - Jobsity",
+          "pt-BR": "(fully-remote) Senior Embedded Engineer - Jobsity",
+          "es": "(fully-remote) Senior Embedded Engineer - Jobsity",
+          "it": "(fully-remote) Senior Embedded Engineer - Jobsity",
+          "fr": "(fully-remote) Senior Embedded Engineer - Jobsity",
+          "de": "(fully-remote) Senior Embedded Engineer - Jobsity"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b69c178802ca1f80cb167848"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ede060fe5da659d9f89f93ef",
+      "sourceId": "backend-br/vagas#12438",
+      "dataCommit": "4d116d6fa357a4eea6134bb0d3c61ce4347511da",
+      "dataHash": "0f4e4dff12f1c10e4687a7a173744655d5cb09a36341286f48f4c2cf86a21edc",
+      "contentHash": "7deb90d71f678a69e012c90f6ce9289331e04d03550307e089741771b6b470c3",
+      "sourceCreatedAt": "2026-10-02T18:48:38Z",
+      "createdAt": "2026-10-02T21:40:10.936Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "27e9a136-5ea6-4e43-9229-d92dba69e01c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "(Full-remote) Senior Embedded Engineer - Jobsity",
+          "pt-BR": "(Full-remote) Senior Embedded Engineer - Jobsity",
+          "es": "(Full-remote) Senior Embedded Engineer - Jobsity",
+          "it": "(Full-remote) Senior Embedded Engineer - Jobsity",
+          "fr": "(Full-remote) Senior Embedded Engineer - Jobsity",
+          "de": "(Full-remote) Senior Embedded Engineer - Jobsity"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ede060fe5da659d9f89f93ef"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fc1605fc2911311918d775d7",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9701",
+      "dataCommit": "4d116d6fa357a4eea6134bb0d3c61ce4347511da",
+      "dataHash": "0f4e4dff12f1c10e4687a7a173744655d5cb09a36341286f48f4c2cf86a21edc",
+      "contentHash": "77fbb8214a07b05f502532ef5cfb40c646f9bb867615754e4a947a9999815038",
+      "sourceCreatedAt": "2026-10-02T18:14:11Z",
+      "createdAt": "2026-10-02T21:40:10.936Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6390467b-9b85-4461-9a74-159728bceab8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fc1605fc2911311918d775d7"
         }
       },
       "status": "pending",
