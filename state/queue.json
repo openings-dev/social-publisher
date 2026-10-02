@@ -42095,12 +42095,23 @@
       "createdAt": "2026-10-01T09:30:04Z",
       "publicationCreatedAt": "2026-10-01T12:13:56.138Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-02T12:45:50.012Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_20aceb464738bcb46da14811",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_20aceb464738bcb46da14811/56a8cdf8fa92b65b7aab6e25f41200a7931dfd04139773942224e659595e6f2f/071887ea0638d371c4fc59d6db3179a532adadb60a0caf8046b45a21fc3373f4/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_20aceb464738bcb46da14811/56a8cdf8fa92b65b7aab6e25f41200a7931dfd04139773942224e659595e6f2f/071887ea0638d371c4fc59d6db3179a532adadb60a0caf8046b45a21fc3373f4/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_20aceb464738bcb46da14811/56a8cdf8fa92b65b7aab6e25f41200a7931dfd04139773942224e659595e6f2f/071887ea0638d371c4fc59d6db3179a532adadb60a0caf8046b45a21fc3373f4/social-video.mp4",
+          "pngHash": "6aa630d4c6c0f2b9574e686fd1113ab33471e0bafa13d87269eead865365c12a",
+          "instagramJpegHash": "fbdb9709ff591759b32d0e906fc9d963beb6c0d23db86fb8f876aefe49183b8d",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remote 53tr] Lead GOLANG Engineer, 7+YoE BE (3+ years yoe Golang in prod, 2+Yoe Leader, fluent English"
         }
       },
