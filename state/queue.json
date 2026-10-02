@@ -42095,12 +42095,14 @@
       "createdAt": "2026-10-01T09:30:04Z",
       "publicationCreatedAt": "2026-10-01T12:13:56.138Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-02T12:45:50.012Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remote 53tr] Lead GOLANG Engineer, 7+YoE BE (3+ years yoe Golang in prod, 2+Yoe Leader, fluent English"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -42157,7 +42159,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 136
     },
     {
       "jobId": "gh_c9dbe8c3245224e55d772ee5",
