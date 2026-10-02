@@ -41259,12 +41259,14 @@
       "createdAt": "2026-09-30T03:56:50Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-02T09:14:56.193Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LINE Pay Vietnam - Frontend Engineer - Saigon, District 10"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -41321,7 +41323,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 135
     },
     {
       "jobId": "gh_dfe2c19e791285c22fdd4896",
