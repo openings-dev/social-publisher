@@ -40005,12 +40005,23 @@
       "createdAt": "2026-09-30T10:27:18Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-02T05:47:42.025Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_b6aefab5452b32ee8687841b",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_b6aefab5452b32ee8687841b/84422d8dbf49e22c0e602cc7089815c276468d3783d2bfbe029f41eaccb8937c/febed2c451a28afb39ce3d4fc0827d285f1be142732030ce26556853ca6bbe9f/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_b6aefab5452b32ee8687841b/84422d8dbf49e22c0e602cc7089815c276468d3783d2bfbe029f41eaccb8937c/febed2c451a28afb39ce3d4fc0827d285f1be142732030ce26556853ca6bbe9f/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_b6aefab5452b32ee8687841b/84422d8dbf49e22c0e602cc7089815c276468d3783d2bfbe029f41eaccb8937c/febed2c451a28afb39ce3d4fc0827d285f1be142732030ce26556853ca6bbe9f/social-video.mp4",
+          "pngHash": "df518f9924e68fdc9adf311120a9914ee7cebfafa666abae902f74b3f22ad146",
+          "instagramJpegHash": "36ba715d67b65c5d0f4a9edf2f19b5e34b42ec3ddf2fd79c93b4b6c232f685ab",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Question about reading public listings on soujava/vagas-java (personal final-year project)"
         }
       },
