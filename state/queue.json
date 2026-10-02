@@ -42571,12 +42571,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-02T21:42:38.848Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18116672716798587",
+          "url": "https://www.threads.com/@openingshq/post/DeAeh-OgX1x"
+        }
       },
       "instagram": {
         "status": "pending",
