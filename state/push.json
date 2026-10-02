@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "a5671d4370b13f7410c799aee9a6aa0d69d02c62",
-    "generatedAt": "2026-10-01T20:01:49.562Z",
-    "dataHash": "b35d18643d38f37c0b0ae6390c47304b711cb46444d147c64112e47b797cc270"
+    "commit": "52e936a563c8400c07e2cda85db1bf6aa9eb248d",
+    "generatedAt": "2026-10-02T00:23:18.735Z",
+    "dataHash": "a413afbfab5b0d8f4e5c53c16f3aeee380e4c20dae699e790e1d57a89910cc4b"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -5849,6 +5849,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f599c06e5d8f2eadf0fb40ca"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bfd88116fb1031805d20e111",
+      "sourceId": "negarprh/Canadian-Tech-Internships-2026#363",
+      "dataCommit": "52e936a563c8400c07e2cda85db1bf6aa9eb248d",
+      "dataHash": "a413afbfab5b0d8f4e5c53c16f3aeee380e4c20dae699e790e1d57a89910cc4b",
+      "contentHash": "58492161395c9d76d498f6e69ef9f9f6e3b2536a63a43fb3184a75e8a309ba14",
+      "sourceCreatedAt": "2026-10-01T22:30:30Z",
+      "createdAt": "2026-10-02T00:23:18.735Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "41fb048c-a18f-4f5a-828c-a65c2250f69a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Add internship: <Company> - <Role>",
+          "pt-BR": "Add internship: <Company> - <Role>",
+          "es": "Add internship: <Company> - <Role>",
+          "it": "Add internship: <Company> - <Role>",
+          "fr": "Add internship: <Company> - <Role>",
+          "de": "Add internship: <Company> - <Role>"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bfd88116fb1031805d20e111"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e8b9bf5abce069669f50ccbe",
+      "sourceId": "backend-br/vagas#12437",
+      "dataCommit": "52e936a563c8400c07e2cda85db1bf6aa9eb248d",
+      "dataHash": "a413afbfab5b0d8f4e5c53c16f3aeee380e4c20dae699e790e1d57a89910cc4b",
+      "contentHash": "4bc7355fe7e553d284ccebc4eeddbd2e88ac907a84effc4af0dc79d369a8320f",
+      "sourceCreatedAt": "2026-10-01T21:09:15Z",
+      "createdAt": "2026-10-02T00:23:18.735Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5a6d9644-1e1f-4b94-a183-4e8b775837b2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Engenheiro(a) de Software Sênior – Code Quality (Python, JS/TS, Java, Go) - Turing (via AYAN)",
+          "pt-BR": "[Remoto] Engenheiro(a) de Software Sênior – Code Quality (Python, JS/TS, Java, Go) - Turing (via AYAN)",
+          "es": "[Remoto] Engenheiro(a) de Software Sênior – Code Quality (Python, JS/TS, Java, Go) - Turing (via AYAN)",
+          "it": "[Remoto] Engenheiro(a) de Software Sênior – Code Quality (Python, JS/TS, Java, Go) - Turing (via AYAN)",
+          "fr": "[Remoto] Engenheiro(a) de Software Sênior – Code Quality (Python, JS/TS, Java, Go) - Turing (via AYAN)",
+          "de": "[Remoto] Engenheiro(a) de Software Sênior – Code Quality (Python, JS/TS, Java, Go) - Turing (via AYAN)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e8b9bf5abce069669f50ccbe"
         }
       },
       "status": "pending",
