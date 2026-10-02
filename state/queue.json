@@ -40288,12 +40288,23 @@
       "createdAt": "2026-09-30T10:27:11Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-02T00:25:19.141Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_89dcbc79e38c36bf725d0c43",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_89dcbc79e38c36bf725d0c43/e031e799c5d109a89ba59b61985b2187e6bd72a7e9840397927aad953ba11406/c2effdda21a975f72d9de7700dfea9b3ee8a96285f7425cdf0d43761f673ccf6/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_89dcbc79e38c36bf725d0c43/e031e799c5d109a89ba59b61985b2187e6bd72a7e9840397927aad953ba11406/c2effdda21a975f72d9de7700dfea9b3ee8a96285f7425cdf0d43761f673ccf6/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_89dcbc79e38c36bf725d0c43/e031e799c5d109a89ba59b61985b2187e6bd72a7e9840397927aad953ba11406/c2effdda21a975f72d9de7700dfea9b3ee8a96285f7425cdf0d43761f673ccf6/social-video.mp4",
+          "pngHash": "5d64f9b9880858b29697c7ed6a0f35a246777d9b4974e118adeba5b822309c40",
+          "instagramJpegHash": "ac438450cd9afd89876f3224ba7fb7472b00bd2ee43f81a5fe6a182cf3bce474",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "Question about reading public listings on didtheyghostme Singapore (personal final-year project)"
         }
       },
