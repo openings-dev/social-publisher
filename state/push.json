@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "52e936a563c8400c07e2cda85db1bf6aa9eb248d",
-    "generatedAt": "2026-10-02T00:23:18.735Z",
-    "dataHash": "a413afbfab5b0d8f4e5c53c16f3aeee380e4c20dae699e790e1d57a89910cc4b"
+    "commit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+    "generatedAt": "2026-10-02T09:13:29.163Z",
+    "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -5932,6 +5932,486 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_e8b9bf5abce069669f50ccbe"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d0a55334501f812ebde83f2c",
+      "sourceId": "ambicuity/New-Grad-Jobs#376",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "da275c70f7c07b82f2666b68b5899154f97f7ae846a250124746e378ee380732",
+      "sourceCreatedAt": "2026-10-02T05:47:42Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0c0a3260-c50d-4fc2-a239-e0f6a1513beb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-02T00:10:29.520638Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-02T00:10:29.520638Z",
+          "es": "Job data is stale: last scrape 2026-10-02T00:10:29.520638Z",
+          "it": "Job data is stale: last scrape 2026-10-02T00:10:29.520638Z",
+          "fr": "Job data is stale: last scrape 2026-10-02T00:10:29.520638Z",
+          "de": "Job data is stale: last scrape 2026-10-02T00:10:29.520638Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d0a55334501f812ebde83f2c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_735dbeff671f017ea4d1a2de",
+      "sourceId": "awesome-jobs/vietnam#5080",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "f7a019d9e2c5a76a15401e9b70d7371d73268f583901f89bdd701d3d70ce750a",
+      "sourceCreatedAt": "2026-10-02T04:35:32Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b6001ceb-2ce5-4695-94e6-8b3aad466e25",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (PYTHON) - PRODUCT COMPANY - OPEN SALARY",
+          "pt-BR": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (PYTHON) - PRODUCT COMPANY - OPEN SALARY",
+          "es": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (PYTHON) - PRODUCT COMPANY - OPEN SALARY",
+          "it": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (PYTHON) - PRODUCT COMPANY - OPEN SALARY",
+          "fr": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (PYTHON) - PRODUCT COMPANY - OPEN SALARY",
+          "de": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (PYTHON) - PRODUCT COMPANY - OPEN SALARY"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_735dbeff671f017ea4d1a2de"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_806b64f2950fea9d5b673d14",
+      "sourceId": "awesome-jobs/jobs#5079",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "c90458e14d2d72068e352b1cc23a5a33707f0833391c1f8b2c8bbf32d3ec7dbd",
+      "sourceCreatedAt": "2026-10-02T04:32:54Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6132844c-7e00-4809-a910-cc4bfd174fdb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (JAVASCRIPT) - PRODUCT COMPANY - OPEN SALARY",
+          "pt-BR": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (JAVASCRIPT) - PRODUCT COMPANY - OPEN SALARY",
+          "es": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (JAVASCRIPT) - PRODUCT COMPANY - OPEN SALARY",
+          "it": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (JAVASCRIPT) - PRODUCT COMPANY - OPEN SALARY",
+          "fr": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (JAVASCRIPT) - PRODUCT COMPANY - OPEN SALARY",
+          "de": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (JAVASCRIPT) - PRODUCT COMPANY - OPEN SALARY"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_806b64f2950fea9d5b673d14"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6bd4163903234b0bf8e2d437",
+      "sourceId": "awesome-jobs/vietnam#5078",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "521a5c5d06eee9896c753cc65d461810d2181b46da94897aa776961e3b8cd682",
+      "sourceCreatedAt": "2026-10-02T04:16:01Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2ad6d9de-2b96-4eae-8a27-f1d91153e1b0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTE or Hybrid HCM/Danang] Senior Data Engineer 5+ yoe, có kn BE với Node.js/NestJS/Python (70% Data, 30% BE)",
+          "pt-BR": "[REMOTE or Hybrid HCM/Danang] Senior Data Engineer 5+ yoe, có kn BE với Node.js/NestJS/Python (70% Data, 30% BE)",
+          "es": "[REMOTE or Hybrid HCM/Danang] Senior Data Engineer 5+ yoe, có kn BE với Node.js/NestJS/Python (70% Data, 30% BE)",
+          "it": "[REMOTE or Hybrid HCM/Danang] Senior Data Engineer 5+ yoe, có kn BE với Node.js/NestJS/Python (70% Data, 30% BE)",
+          "fr": "[REMOTE or Hybrid HCM/Danang] Senior Data Engineer 5+ yoe, có kn BE với Node.js/NestJS/Python (70% Data, 30% BE)",
+          "de": "[REMOTE or Hybrid HCM/Danang] Senior Data Engineer 5+ yoe, có kn BE với Node.js/NestJS/Python (70% Data, 30% BE)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6bd4163903234b0bf8e2d437"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0a7a3c6e002a0928c26b439d",
+      "sourceId": "awesome-jobs/jobs#5077",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "7e71edcafc8e9b73938f55b930ec709010fa003dc3600235f442d0ee9f996957",
+      "sourceCreatedAt": "2026-10-02T03:38:14Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8abcb472-12d3-4be3-91f0-4826ae9e15ac",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HYBRID] SENIOR QA ENGINEER/ SDET - PRODUCT COMPANY - OPEN SALARY",
+          "pt-BR": "[HYBRID] SENIOR QA ENGINEER/ SDET - PRODUCT COMPANY - OPEN SALARY",
+          "es": "[HYBRID] SENIOR QA ENGINEER/ SDET - PRODUCT COMPANY - OPEN SALARY",
+          "it": "[HYBRID] SENIOR QA ENGINEER/ SDET - PRODUCT COMPANY - OPEN SALARY",
+          "fr": "[HYBRID] SENIOR QA ENGINEER/ SDET - PRODUCT COMPANY - OPEN SALARY",
+          "de": "[HYBRID] SENIOR QA ENGINEER/ SDET - PRODUCT COMPANY - OPEN SALARY"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0a7a3c6e002a0928c26b439d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_48e926f9a8f8a6d7fcfe7d62",
+      "sourceId": "backend-br/vagas#12409",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "ed7eec45856262e8050dbea2a5094a401a3212889d4cf2d5a70e10e202c0ee4e",
+      "sourceCreatedAt": "2026-09-02T00:26:57Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2f5bf855-f98b-446b-bba5-ce1dadd09369",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "pt-BR": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "es": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "it": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "fr": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "de": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_48e926f9a8f8a6d7fcfe7d62"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9da8f7f2ea6553053f4e06b2",
+      "sourceId": "backend-br/vagas#12408",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "2e3de066abc10de2a07644501b5a34743aa7ab850a4b61d45851374a98b0ece0",
+      "sourceCreatedAt": "2026-09-01T20:12:02Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bcef2fbd-dacf-4969-b477-55efcb36b44d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-end Java  developer - USD",
+          "pt-BR": "[Remoto] Back-end Java  developer - USD",
+          "es": "[Remoto] Back-end Java  developer - USD",
+          "it": "[Remoto] Back-end Java  developer - USD",
+          "fr": "[Remoto] Back-end Java  developer - USD",
+          "de": "[Remoto] Back-end Java  developer - USD"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9da8f7f2ea6553053f4e06b2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5443fcb70a855509a645e783",
+      "sourceId": "backend-br/vagas#12405",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "8ae6eb2ca3f7381277f6efb500125071941c9e111d5ac43a5923ee4c069cdc40",
+      "sourceCreatedAt": "2026-08-31T19:20:40Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5ab3975a-eb20-479c-8a55-1a8a5f907d28",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] PL Software Engineer - GitTalent",
+          "pt-BR": "[Remoto] PL Software Engineer - GitTalent",
+          "es": "[Remoto] PL Software Engineer - GitTalent",
+          "it": "[Remoto] PL Software Engineer - GitTalent",
+          "fr": "[Remoto] PL Software Engineer - GitTalent",
+          "de": "[Remoto] PL Software Engineer - GitTalent"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5443fcb70a855509a645e783"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d5ce5a5c2fe2c54164720b3b",
+      "sourceId": "frontend-pt/vagas#109",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "fcbd300247832e05fdbbfc0cb1df311ec1e4d245aee20485c0d45b6ddd7b16f7",
+      "sourceCreatedAt": "2026-08-06T00:16:53Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0f501408-bdc8-419b-a9f0-eb84248cfb16",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Next.js Frontend Developer Pleno @ Sylision",
+          "pt-BR": "[Remoto] Next.js Frontend Developer Pleno @ Sylision",
+          "es": "[Remoto] Next.js Frontend Developer Pleno @ Sylision",
+          "it": "[Remoto] Next.js Frontend Developer Pleno @ Sylision",
+          "fr": "[Remoto] Next.js Frontend Developer Pleno @ Sylision",
+          "de": "[Remoto] Next.js Frontend Developer Pleno @ Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d5ce5a5c2fe2c54164720b3b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ef964aaf7c8c71d4f70be82b",
+      "sourceId": "DevOps-Brasil/Vagas#478",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "7cfe3b7049cc45cabdde14e98619a06ac9d346b7cf67e0eea989af95d4dc8a9d",
+      "sourceCreatedAt": "2026-08-02T12:11:22Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "86473a93-16b0-4344-a01c-24993412a7c5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[DevOps Engineer (Kubernetes) Pleno] Sylision - Remoto",
+          "pt-BR": "[DevOps Engineer (Kubernetes) Pleno] Sylision - Remoto",
+          "es": "[DevOps Engineer (Kubernetes) Pleno] Sylision - Remoto",
+          "it": "[DevOps Engineer (Kubernetes) Pleno] Sylision - Remoto",
+          "fr": "[DevOps Engineer (Kubernetes) Pleno] Sylision - Remoto",
+          "de": "[DevOps Engineer (Kubernetes) Pleno] Sylision - Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ef964aaf7c8c71d4f70be82b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b9919d6cdd70f93f43792161",
+      "sourceId": "DevOps-Brasil/Vagas#477",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "7559816e3bbe97901e1ae7cfdcca3ef9cd146998602b3c893bb29074c00a5b57",
+      "sourceCreatedAt": "2026-08-02T12:05:43Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "48a29cf3-cf78-424c-ad35-25fede3d46ae",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[DevOps Engineer (Azure) Pleno] Sylision - Remoto",
+          "pt-BR": "[DevOps Engineer (Azure) Pleno] Sylision - Remoto",
+          "es": "[DevOps Engineer (Azure) Pleno] Sylision - Remoto",
+          "it": "[DevOps Engineer (Azure) Pleno] Sylision - Remoto",
+          "fr": "[DevOps Engineer (Azure) Pleno] Sylision - Remoto",
+          "de": "[DevOps Engineer (Azure) Pleno] Sylision - Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b9919d6cdd70f93f43792161"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fe5757fbad33016053bd30eb",
+      "sourceId": "react-brasil/vagas#3023",
+      "dataCommit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
+      "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3",
+      "contentHash": "387453e1b65cc3676847cece16107bb1495d507bfc778e97751700747463cf13",
+      "sourceCreatedAt": "2026-07-29T21:00:07Z",
+      "createdAt": "2026-10-02T09:13:29.163Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ee417278-02c0-4e0f-a33c-9c09fbd14b40",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] React Developer Pleno na Sylision",
+          "pt-BR": "[Remoto] React Developer Pleno na Sylision",
+          "es": "[Remoto] React Developer Pleno na Sylision",
+          "it": "[Remoto] React Developer Pleno na Sylision",
+          "fr": "[Remoto] React Developer Pleno na Sylision",
+          "de": "[Remoto] React Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fe5757fbad33016053bd30eb"
         }
       },
       "status": "pending",
