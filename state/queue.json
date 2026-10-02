@@ -40288,12 +40288,14 @@
       "createdAt": "2026-09-30T10:27:11Z",
       "publicationCreatedAt": "2026-09-30T11:42:32.029Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-02T00:25:19.141Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Question about reading public listings on didtheyghostme Singapore (personal final-year project)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -40350,7 +40352,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 133
     },
     {
       "jobId": "gh_6f9fd79e1626999457c55a32",
