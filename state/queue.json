@@ -43105,12 +43105,23 @@
       "createdAt": "2026-10-02T15:10:18Z",
       "publicationCreatedAt": "2026-10-02T17:13:39.951Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-02T19:23:41.661Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ddb16eea15c54f0fdc9e0a4d",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ddb16eea15c54f0fdc9e0a4d/19f322f3f2326a91a9bf1d81c96a518ec51b94176d82f85853478fcee3399a9a/eeedd84ac053998ad38e54ea7b20665eb3a5c8d515155c1e8555d3e8821cc501/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ddb16eea15c54f0fdc9e0a4d/19f322f3f2326a91a9bf1d81c96a518ec51b94176d82f85853478fcee3399a9a/eeedd84ac053998ad38e54ea7b20665eb3a5c8d515155c1e8555d3e8821cc501/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ddb16eea15c54f0fdc9e0a4d/19f322f3f2326a91a9bf1d81c96a518ec51b94176d82f85853478fcee3399a9a/eeedd84ac053998ad38e54ea7b20665eb3a5c8d515155c1e8555d3e8821cc501/social-video.mp4",
+          "pngHash": "22e6a7128c4946d2a878b4ba5a57cabac0f27689f7b5eb0ea57e17bfaa58f3ce",
+          "instagramJpegHash": "2de63d59e421779b459bcdaf5adaeb9fdae8663e16f58cca31aacf913bfa2f26",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Add internship: <Pinterest> - <Software Engineering Intern>"
         }
       },
