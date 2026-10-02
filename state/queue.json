@@ -42304,12 +42304,23 @@
       "createdAt": "2026-10-01T05:16:11Z",
       "publicationCreatedAt": "2026-10-01T12:13:56.138Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-02T17:11:27.262Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_c9dbe8c3245224e55d772ee5",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_c9dbe8c3245224e55d772ee5/bfc98df4fa468990e5bde9265c165b2dc1a13a1a57b5644b6d76b1772d5f5389/2e68843d8071872125dbf0e3ba76bbf44588cd8670061fccc21a6f910ef26bf8/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_c9dbe8c3245224e55d772ee5/bfc98df4fa468990e5bde9265c165b2dc1a13a1a57b5644b6d76b1772d5f5389/2e68843d8071872125dbf0e3ba76bbf44588cd8670061fccc21a6f910ef26bf8/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_c9dbe8c3245224e55d772ee5/bfc98df4fa468990e5bde9265c165b2dc1a13a1a57b5644b6d76b1772d5f5389/2e68843d8071872125dbf0e3ba76bbf44588cd8670061fccc21a6f910ef26bf8/social-video.mp4",
+          "pngHash": "d5b1e8622a8b954ab02ff3d0e8550a6dc5f29d9a80207817a3a653e057f60624",
+          "instagramJpegHash": "06e4d247e1874f6d6e7b2d3de6bf64b083998aed90d3689c73b3b67773bb303e",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "Add an \"Updated At\" timestamp column so readers can spot new roles"
         }
       },
