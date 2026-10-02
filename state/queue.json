@@ -42513,12 +42513,14 @@
       "createdAt": "2026-10-01T12:48:43Z",
       "publicationCreatedAt": "2026-10-01T20:11:41.132Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-02T21:42:38.848Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Add internship: <Kinaxis> - <Intern Developer, AI Solutions>"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -42575,7 +42577,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 139
     },
     {
       "jobId": "gh_bfd88116fb1031805d20e111",
