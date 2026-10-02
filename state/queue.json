@@ -42304,12 +42304,14 @@
       "createdAt": "2026-10-01T05:16:11Z",
       "publicationCreatedAt": "2026-10-01T12:13:56.138Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-02T17:11:27.262Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Add an \"Updated At\" timestamp column so readers can spot new roles"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -42366,7 +42368,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 137
     },
     {
       "jobId": "gh_f599c06e5d8f2eadf0fb40ca",
@@ -42600,17 +42604,17 @@
       "createdAt": "2026-10-02T05:47:42Z",
       "publicationCreatedAt": "2026-10-02T09:17:00.267Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-02T17:11:27.262Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-02T17:11:27.262Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -42624,41 +42628,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-02T17:11:27.262Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-02T17:11:27.262Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-02T17:11:27.262Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-02T17:11:27.262Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-02T17:11:27.262Z",
         "lastError": null,
         "lastReset": null,
         "result": null
