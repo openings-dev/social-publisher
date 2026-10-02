@@ -43655,12 +43655,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-02T23:50:39.776Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17977431509918004",
+          "url": "https://www.threads.com/@openingshq/post/DeAtLOJD2oL"
+        }
       },
       "instagram": {
         "status": "pending",
