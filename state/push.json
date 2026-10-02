@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "2d602a86a9cd67cfa8856b7775f9f060d1c2320f",
-    "generatedAt": "2026-10-02T09:13:29.163Z",
-    "dataHash": "aac8e072966268b28006faea279550387949a7f29bf2af3b7cd76274a91ce4a3"
+    "commit": "b57d6c56cbddf862f14c7504e408b0bbf4053857",
+    "generatedAt": "2026-10-02T17:09:35.452Z",
+    "dataHash": "e6327b9167e8014f47e0eb7f2f421157650b112ce1ea2a364ad6c41ccc5db44b"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -5977,10 +5977,10 @@
           "jobId": "gh_d0a55334501f812ebde83f2c"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-02T17:09:35.452Z",
       "retryAfter": null,
       "result": null
     },
@@ -6415,6 +6415,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_fe5757fbad33016053bd30eb"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ddb16eea15c54f0fdc9e0a4d",
+      "sourceId": "negarprh/Canadian-Tech-Internships-2026#366",
+      "dataCommit": "b57d6c56cbddf862f14c7504e408b0bbf4053857",
+      "dataHash": "e6327b9167e8014f47e0eb7f2f421157650b112ce1ea2a364ad6c41ccc5db44b",
+      "contentHash": "19f322f3f2326a91a9bf1d81c96a518ec51b94176d82f85853478fcee3399a9a",
+      "sourceCreatedAt": "2026-10-02T15:10:18Z",
+      "createdAt": "2026-10-02T17:09:35.452Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e58c6b9f-d02f-4ca1-b35e-2d7777afcf83",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Add internship: <Pinterest> - <Software Engineering Intern>",
+          "pt-BR": "Add internship: <Pinterest> - <Software Engineering Intern>",
+          "es": "Add internship: <Pinterest> - <Software Engineering Intern>",
+          "it": "Add internship: <Pinterest> - <Software Engineering Intern>",
+          "fr": "Add internship: <Pinterest> - <Software Engineering Intern>",
+          "de": "Add internship: <Pinterest> - <Software Engineering Intern>"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ddb16eea15c54f0fdc9e0a4d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_754b560c2107ee490c35d7d6",
+      "sourceId": "junminhong/jobs#4",
+      "dataCommit": "b57d6c56cbddf862f14c7504e408b0bbf4053857",
+      "dataHash": "e6327b9167e8014f47e0eb7f2f421157650b112ce1ea2a364ad6c41ccc5db44b",
+      "contentHash": "639990b4c3b7cf7f7750869122205a7ec196a51c1c660b38b7ecab9c6c13777c",
+      "sourceCreatedAt": "2026-10-02T11:01:27Z",
+      "createdAt": "2026-10-02T17:09:35.452Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "73a39c3b-a73d-4992-bb71-48a3e2d20992",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "邀请 jobs 加入 GithubStarMate，让更多人发现你的作品",
+          "pt-BR": "邀请 jobs 加入 GithubStarMate，让更多人发现你的作品",
+          "es": "邀请 jobs 加入 GithubStarMate，让更多人发现你的作品",
+          "it": "邀请 jobs 加入 GithubStarMate，让更多人发现你的作品",
+          "fr": "邀请 jobs 加入 GithubStarMate，让更多人发现你的作品",
+          "de": "邀请 jobs 加入 GithubStarMate，让更多人发现你的作品"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_754b560c2107ee490c35d7d6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ab7a8bff64dbf3837743eded",
+      "sourceId": "backend-br/vagas#12416",
+      "dataCommit": "b57d6c56cbddf862f14c7504e408b0bbf4053857",
+      "dataHash": "e6327b9167e8014f47e0eb7f2f421157650b112ce1ea2a364ad6c41ccc5db44b",
+      "contentHash": "36a5cba8a86a315f1b04c7949869e49a7e5a5752d7ec26a1146f1644c078d474",
+      "sourceCreatedAt": "2026-09-08T11:29:19Z",
+      "createdAt": "2026-10-02T17:09:35.452Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "02eb1e8d-02e6-46ea-b9a4-8f82b7162b0d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Home Office - Tempo Determinado/5 meses] Desenvolvedor Backend (Java) - BHS",
+          "pt-BR": "[Home Office - Tempo Determinado/5 meses] Desenvolvedor Backend (Java) - BHS",
+          "es": "[Home Office - Tempo Determinado/5 meses] Desenvolvedor Backend (Java) - BHS",
+          "it": "[Home Office - Tempo Determinado/5 meses] Desenvolvedor Backend (Java) - BHS",
+          "fr": "[Home Office - Tempo Determinado/5 meses] Desenvolvedor Backend (Java) - BHS",
+          "de": "[Home Office - Tempo Determinado/5 meses] Desenvolvedor Backend (Java) - BHS"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ab7a8bff64dbf3837743eded"
         }
       },
       "status": "pending",
