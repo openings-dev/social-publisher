@@ -43214,12 +43214,14 @@
       "createdAt": "2026-10-02T04:35:32Z",
       "publicationCreatedAt": "2026-10-02T09:17:00.267Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-03T11:46:02.568Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (PYTHON) - PRODUCT COMPANY - OPEN SALARY"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -43276,7 +43278,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 145
     },
     {
       "jobId": "gh_806b64f2950fea9d5b673d14",
