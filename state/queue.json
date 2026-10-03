@@ -43436,12 +43436,23 @@
       "createdAt": "2026-10-02T03:38:14Z",
       "publicationCreatedAt": "2026-10-02T09:17:00.267Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-03T10:56:33.029Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0a7a3c6e002a0928c26b439d",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_0a7a3c6e002a0928c26b439d/7e71edcafc8e9b73938f55b930ec709010fa003dc3600235f442d0ee9f996957/0d5776eca1182518f0ac9bc7a8c9b6682bbe771fb798c707772d9d7f9b23d82b/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_0a7a3c6e002a0928c26b439d/7e71edcafc8e9b73938f55b930ec709010fa003dc3600235f442d0ee9f996957/0d5776eca1182518f0ac9bc7a8c9b6682bbe771fb798c707772d9d7f9b23d82b/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_0a7a3c6e002a0928c26b439d/7e71edcafc8e9b73938f55b930ec709010fa003dc3600235f442d0ee9f996957/0d5776eca1182518f0ac9bc7a8c9b6682bbe771fb798c707772d9d7f9b23d82b/social-video.mp4",
+          "pngHash": "5d0c92126ea0460e74d6f62eb87c680e00887f7303c261e31932bfdc3c0d8f79",
+          "instagramJpegHash": "395ac26776c315f96942e2601e14e2f12716c7bfa7bfa21d83dd623775ee0cfb",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "[HYBRID] SENIOR QA ENGINEER/ SDET - PRODUCT COMPANY - OPEN SALARY"
         }
       },
