@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "4d116d6fa357a4eea6134bb0d3c61ce4347511da",
-    "generatedAt": "2026-10-02T21:40:10.936Z",
-    "dataHash": "0f4e4dff12f1c10e4687a7a173744655d5cb09a36341286f48f4c2cf86a21edc"
+    "commit": "1465d9c9520d8c0e47a4e3cacd3b223a0b2a4342",
+    "generatedAt": "2026-10-03T03:08:21.432Z",
+    "dataHash": "f09ea879190366e72bb8a4f52d1eec401a281363d02e3e5bf7157a190ac53c58"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -6775,6 +6775,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_fc1605fc2911311918d775d7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6c28935610c9ad061c668c9f",
+      "sourceId": "frontend-pt/vagas#111",
+      "dataCommit": "1465d9c9520d8c0e47a4e3cacd3b223a0b2a4342",
+      "dataHash": "f09ea879190366e72bb8a4f52d1eec401a281363d02e3e5bf7157a190ac53c58",
+      "contentHash": "8d16df639ac3a8d30f61c8ada575b29f5b9973cd0b628ab0952f8a26d61a948d",
+      "sourceCreatedAt": "2026-08-11T21:00:13Z",
+      "createdAt": "2026-10-03T03:08:21.432Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7a4e8eb5-6f5b-4368-8b84-9d9028e2fdd0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] TypeScript Frontend Developer Pleno @ Sylision",
+          "pt-BR": "[Remoto] TypeScript Frontend Developer Pleno @ Sylision",
+          "es": "[Remoto] TypeScript Frontend Developer Pleno @ Sylision",
+          "it": "[Remoto] TypeScript Frontend Developer Pleno @ Sylision",
+          "fr": "[Remoto] TypeScript Frontend Developer Pleno @ Sylision",
+          "de": "[Remoto] TypeScript Frontend Developer Pleno @ Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6c28935610c9ad061c668c9f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0efcf8a825dff70e78cfe9bc",
+      "sourceId": "react-brasil/vagas#3025",
+      "dataCommit": "1465d9c9520d8c0e47a4e3cacd3b223a0b2a4342",
+      "dataHash": "f09ea879190366e72bb8a4f52d1eec401a281363d02e3e5bf7157a190ac53c58",
+      "contentHash": "2778be271d1df17809304087d057ec82adea72f32d6a3ccd43d3af599499cedf",
+      "sourceCreatedAt": "2026-07-30T21:08:56Z",
+      "createdAt": "2026-10-03T03:08:21.432Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "062a7102-191f-4861-919c-17ec3490f68a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] React Developer Pleno na Sylision",
+          "pt-BR": "[Híbrido] React Developer Pleno na Sylision",
+          "es": "[Híbrido] React Developer Pleno na Sylision",
+          "it": "[Híbrido] React Developer Pleno na Sylision",
+          "fr": "[Híbrido] React Developer Pleno na Sylision",
+          "de": "[Híbrido] React Developer Pleno na Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0efcf8a825dff70e78cfe9bc"
         }
       },
       "status": "pending",
