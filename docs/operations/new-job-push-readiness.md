@@ -14,11 +14,12 @@ UUID before the request, reuses it for every retry within OneSignal's 30-day
 window, honors `Retry-After`, and treats a successful response without an `id` as
 no recipients. An API acceptance is recorded as `accepted`, never as delivered.
 
-The conservative release policy is ten new-job notifications per UTC day, a
-24-hour maximum age for an unsent alert, three provider attempts, and automatic
-pause on authentication or invalid-request failures. A fresh organization-wide
-Free-plan attestation is required every seven days. Sending is blocked at 900 MAU
-to leave headroom below the documented 1,000-MAU Free limit.
+The conservative release policy is one new-job notification per São Paulo civil
+day, a 24-hour maximum age for an unsent alert, three provider attempts, and
+automatic pause on authentication or invalid-request failures. OneSignal's Free
+plan pauses organization-wide mobile sending above its 1,000-MAU limit, so the
+publisher does not add a separate weekly assertion that can expire and interrupt
+otherwise valid sends.
 
 ## Sender ownership audit
 

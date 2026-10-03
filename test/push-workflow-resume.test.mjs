@@ -24,3 +24,7 @@ test('resuming a pending push does not fail when its intent is already saved', (
 
   assert.ok(add >= 0 && add < noChangeGuard && noChangeGuard < commit);
 });
+
+test('does not depend on a weekly Free-plan assertion secret', () => {
+  assert.doesNotMatch(workflow, /ONESIGNAL_FREE_ATTESTATION_JSON/u);
+});

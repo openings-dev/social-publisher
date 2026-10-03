@@ -53,7 +53,6 @@ jobs:
       ONESIGNAL_APP_ID: ${{ secrets.ONESIGNAL_APP_ID }}
       ONESIGNAL_API_KEY: ${{ secrets.ONESIGNAL_API_KEY }}
       ONESIGNAL_AUDIENCE_JSON: ${{ secrets.ONESIGNAL_AUDIENCE_JSON }}
-      ONESIGNAL_FREE_ATTESTATION_JSON: ${{ secrets.ONESIGNAL_FREE_ATTESTATION_JSON }}
     steps:
       - name: Check out push source
         uses: actions/checkout@34e114876b0b11c390a56381ad16ebd13914f8d5
