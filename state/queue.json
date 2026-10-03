@@ -43362,12 +43362,23 @@
       "createdAt": "2026-10-02T04:16:01Z",
       "publicationCreatedAt": "2026-10-02T09:17:00.267Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-03T11:19:24.931Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_6bd4163903234b0bf8e2d437",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_6bd4163903234b0bf8e2d437/521a5c5d06eee9896c753cc65d461810d2181b46da94897aa776961e3b8cd682/3626de85facf1a76f0c46977910d6cc3acd0ca02f94e1dbca233f2db272728b7/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_6bd4163903234b0bf8e2d437/521a5c5d06eee9896c753cc65d461810d2181b46da94897aa776961e3b8cd682/3626de85facf1a76f0c46977910d6cc3acd0ca02f94e1dbca233f2db272728b7/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_6bd4163903234b0bf8e2d437/521a5c5d06eee9896c753cc65d461810d2181b46da94897aa776961e3b8cd682/3626de85facf1a76f0c46977910d6cc3acd0ca02f94e1dbca233f2db272728b7/social-video.mp4",
+          "pngHash": "8165473f5154c39248b75721d076d1db7167f8d5e41242444e1005fd80daf834",
+          "instagramJpegHash": "03e676f92e576d5ea1734ca46d4ca44f5c9c9167b54fa58527f9f9005bce6f2d",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[REMOTE or Hybrid HCM/Danang] Senior Data Engineer 5+ yoe, có kn BE với Node.js/NestJS/Python (70% Data, 30% BE)"
         }
       },
