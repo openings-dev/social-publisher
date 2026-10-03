@@ -42792,14 +42792,17 @@
         }
       },
       "instagram": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-03T03:09:49.163Z",
         "lastError": null,
         "lastReset": null,
         "result": {
           "publicationKind": "image",
-          "canonicalUrl": "https://openings.dev/jobs/gh_bfd88116fb1031805d20e111"
+          "canonicalUrl": "https://openings.dev/jobs/gh_bfd88116fb1031805d20e111",
+          "status": "published",
+          "id": "18095396156661553",
+          "url": "https://www.instagram.com/p/DeBD_ccFXoI/"
         }
       },
       "linkedin": {
@@ -42873,9 +42876,9 @@
             "consumers": [
               {
                 "channel": "instagram",
-                "state": "pending",
-                "remoteId": null,
-                "updatedAt": null
+                "state": "completed",
+                "remoteId": "18095396156661553",
+                "updatedAt": "2026-10-03T03:09:49.163Z"
               }
             ]
           },
@@ -42902,7 +42905,7 @@
             ]
           }
         ],
-        "manifestDigest": "dc26815f3ff2e3e5707b63ac329f0a15d6c5055299ba02a659fceb0279a2c6dd"
+        "manifestDigest": "f2633aeac9f401f7596dae268bad66de623a8a121f48d265984b2ddbdb6d0c15"
       }
     },
     {
