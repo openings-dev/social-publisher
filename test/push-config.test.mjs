@@ -8,14 +8,21 @@ const base = {
   ONESIGNAL_API_KEY: 'api-key',
   PUSH_AUDIENCE_VERSION: 'android-consent-v1',
   ONESIGNAL_AUDIENCE_JSON: JSON.stringify({ included_segments: ['reviewed-android-new-job-consent'] }),
-  ONESIGNAL_FREE_ATTESTATION_JSON: JSON.stringify({ checkedAt: '2026-09-16T12:00:00.000Z', mobileMau: 100, plan: 'free', scope: 'organization', overLimitBehavior: 'pause' }),
 };
 
-test('requires a fresh account-wide Free attestation below the conservative threshold', () => {
-  const config = readPushConfig(base, { now: '2026-09-16T13:00:00.000Z' });
-  assert.equal(config.attestation.mobileMau, 100);
-  assert.throws(() => readPushConfig({ ...base, ONESIGNAL_FREE_ATTESTATION_JSON: JSON.stringify({ checkedAt: '2026-09-01T12:00:00.000Z', mobileMau: 100, plan: 'free', scope: 'organization', overLimitBehavior: 'pause' }) }, { now: '2026-09-16T13:00:00.000Z' }), /stale/u);
-  assert.throws(() => readPushConfig({ ...base, ONESIGNAL_FREE_ATTESTATION_JSON: JSON.stringify({ checkedAt: '2026-09-16T12:00:00.000Z', mobileMau: 900, plan: 'free', scope: 'organization', overLimitBehavior: 'pause' }) }, { now: '2026-09-16T13:00:00.000Z' }), /threshold/u);
+test('does not require a weekly Free-plan assertion to send', () => {
+  const config = readPushConfig(base);
+  assert.equal(Object.hasOwn(config, 'attestation'), false);
+  assert.doesNotThrow(() => readPushConfig({
+    ...base,
+    ONESIGNAL_FREE_ATTESTATION_JSON: JSON.stringify({
+      checkedAt: '2026-09-01T12:00:00.000Z',
+      mobileMau: 900,
+      plan: 'free',
+      scope: 'organization',
+      overLimitBehavior: 'pause',
+    }),
+  }));
 });
 
 test('uses only explicit owner-controlled canary subscription IDs', () => {

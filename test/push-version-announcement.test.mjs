@@ -7,7 +7,6 @@ const env = {
   ONESIGNAL_APP_ID: 'app-id',
   ONESIGNAL_API_KEY: 'api-key',
   ONESIGNAL_AUDIENCE_JSON: '{"included_segments":["Subscribed Users"]}',
-  ONESIGNAL_FREE_ATTESTATION_JSON: '{"plan":"free","scope":"organization","overLimitBehavior":"pause","mobileMau":1,"checkedAt":"2026-09-17T20:20:00.000Z"}',
   PUSH_AUDIENCE_VERSION: 'android-consent-v1',
 };
 
