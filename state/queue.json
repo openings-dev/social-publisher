@@ -44825,12 +44825,14 @@
       "createdAt": "2026-10-02T18:49:52Z",
       "publicationCreatedAt": "2026-10-02T21:44:50.880Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-03T23:30:29.387Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "(fully-remote) Senior Embedded Engineer - Jobsity"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -44887,7 +44889,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 150
     },
     {
       "jobId": "gh_ede060fe5da659d9f89f93ef",
