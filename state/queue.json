@@ -43423,12 +43423,14 @@
       "createdAt": "2026-10-02T04:32:54Z",
       "publicationCreatedAt": "2026-10-02T09:17:00.267Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-03T15:33:06.075Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (JAVASCRIPT) - PRODUCT COMPANY - OPEN SALARY"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -43485,7 +43487,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 146
     },
     {
       "jobId": "gh_6bd4163903234b0bf8e2d437",
