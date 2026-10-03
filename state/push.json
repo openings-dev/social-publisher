@@ -6017,12 +6017,15 @@
           "jobId": "gh_735dbeff671f017ea4d1a2de"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-10-03T03:09:25.609Z",
-      "updatedAt": "2026-10-03T03:09:25.609Z",
+      "updatedAt": "2026-10-03T11:18:53.492Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "79b02c2d-d2dc-4b54-99dc-5ccb7f65a3dd",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_806b64f2950fea9d5b673d14",
