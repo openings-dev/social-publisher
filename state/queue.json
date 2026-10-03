@@ -42931,12 +42931,14 @@
       "createdAt": "2026-10-01T21:09:15Z",
       "publicationCreatedAt": "2026-10-02T00:27:40.697Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-03T05:24:57.370Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Engenheiro(a) de Software Sênior – Code Quality (Python, JS/TS, Java, Go) - Turing (via AYAN)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -42993,7 +42995,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 142
     },
     {
       "jobId": "gh_d0a55334501f812ebde83f2c",
