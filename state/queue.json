@@ -44259,12 +44259,23 @@
       "createdAt": "2026-10-02T11:01:27Z",
       "publicationCreatedAt": "2026-10-02T17:13:39.951Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-03T20:27:48.106Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_754b560c2107ee490c35d7d6",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_754b560c2107ee490c35d7d6/639990b4c3b7cf7f7750869122205a7ec196a51c1c660b38b7ecab9c6c13777c/90fbb785cf2f3bd8465ae4030338ed5d4e8f662c0fc00ed5460aa8e4b9284caa/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_754b560c2107ee490c35d7d6/639990b4c3b7cf7f7750869122205a7ec196a51c1c660b38b7ecab9c6c13777c/90fbb785cf2f3bd8465ae4030338ed5d4e8f662c0fc00ed5460aa8e4b9284caa/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_754b560c2107ee490c35d7d6/639990b4c3b7cf7f7750869122205a7ec196a51c1c660b38b7ecab9c6c13777c/90fbb785cf2f3bd8465ae4030338ed5d4e8f662c0fc00ed5460aa8e4b9284caa/social-video.mp4",
+          "pngHash": "399b036706798c56c4bbe5292cac6ca743225f6f44e16c563b541ca9e70ab0ef",
+          "instagramJpegHash": "6c66ba68f641cdb77933ae029090bf380576dc820dd23348ab34efa17a7b4621",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "邀请 jobs 加入 GithubStarMate,让更多人发现你的作品"
         }
       },
