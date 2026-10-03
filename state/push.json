@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "1465d9c9520d8c0e47a4e3cacd3b223a0b2a4342",
-    "generatedAt": "2026-10-03T03:08:21.432Z",
-    "dataHash": "f09ea879190366e72bb8a4f52d1eec401a281363d02e3e5bf7157a190ac53c58"
+    "commit": "b3a140583d02ea4ee33601d30f58635239138972",
+    "generatedAt": "2026-10-03T10:54:07.998Z",
+    "dataHash": "1e05bb10eaeccfa1b0986ac517b229fbd16dcbfe31702f322a059974c012321b"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -6855,6 +6855,206 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_0efcf8a825dff70e78cfe9bc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bfc02976c19c5a4835721791",
+      "sourceId": "awesome-jobs/vietnam#5081",
+      "dataCommit": "b3a140583d02ea4ee33601d30f58635239138972",
+      "dataHash": "1e05bb10eaeccfa1b0986ac517b229fbd16dcbfe31702f322a059974c012321b",
+      "contentHash": "db5d8e3acde237f3a310b75af752791deba6807586e82dfe933b87795abc916d",
+      "sourceCreatedAt": "2026-10-03T05:37:07Z",
+      "createdAt": "2026-10-03T10:54:07.998Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e2245fc1-97d7-4aae-afda-189ea93a68e2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HN] 🚀 B2B SaaS Global tuyển Senior AI ENGINEER 5+ yoe (CV, Multi-agent) | Eng đọc hiểu, process 1 vòng iv gọn lẹ",
+          "pt-BR": "[HN] 🚀 B2B SaaS Global tuyển Senior AI ENGINEER 5+ yoe (CV, Multi-agent) | Eng đọc hiểu, process 1 vòng iv gọn lẹ",
+          "es": "[HN] 🚀 B2B SaaS Global tuyển Senior AI ENGINEER 5+ yoe (CV, Multi-agent) | Eng đọc hiểu, process 1 vòng iv gọn lẹ",
+          "it": "[HN] 🚀 B2B SaaS Global tuyển Senior AI ENGINEER 5+ yoe (CV, Multi-agent) | Eng đọc hiểu, process 1 vòng iv gọn lẹ",
+          "fr": "[HN] 🚀 B2B SaaS Global tuyển Senior AI ENGINEER 5+ yoe (CV, Multi-agent) | Eng đọc hiểu, process 1 vòng iv gọn lẹ",
+          "de": "[HN] 🚀 B2B SaaS Global tuyển Senior AI ENGINEER 5+ yoe (CV, Multi-agent) | Eng đọc hiểu, process 1 vòng iv gọn lẹ"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bfc02976c19c5a4835721791"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_064d8d44d5caf9b4157f4e8e",
+      "sourceId": "ambicuity/New-Grad-Jobs#377",
+      "dataCommit": "b3a140583d02ea4ee33601d30f58635239138972",
+      "dataHash": "1e05bb10eaeccfa1b0986ac517b229fbd16dcbfe31702f322a059974c012321b",
+      "contentHash": "225ee0d2913fc800baabf5bd03057058fb02e864988508db4d9f9f3ec95225be",
+      "sourceCreatedAt": "2026-10-03T05:24:31Z",
+      "createdAt": "2026-10-03T10:54:07.998Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1245d34b-a84d-40bd-ac8b-c44a1e6aeea6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-03T01:11:08.913505Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-03T01:11:08.913505Z",
+          "es": "Job data is stale: last scrape 2026-10-03T01:11:08.913505Z",
+          "it": "Job data is stale: last scrape 2026-10-03T01:11:08.913505Z",
+          "fr": "Job data is stale: last scrape 2026-10-03T01:11:08.913505Z",
+          "de": "Job data is stale: last scrape 2026-10-03T01:11:08.913505Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_064d8d44d5caf9b4157f4e8e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_576ba7eaf4dac8a0db6163f3",
+      "sourceId": "backend-br/vagas#12411",
+      "dataCommit": "b3a140583d02ea4ee33601d30f58635239138972",
+      "dataHash": "1e05bb10eaeccfa1b0986ac517b229fbd16dcbfe31702f322a059974c012321b",
+      "contentHash": "5766c717986203554d384a41f2f7aada8f8f7fa8efbd3b08b9219c6ac12986ae",
+      "sourceCreatedAt": "2026-09-03T00:00:29Z",
+      "createdAt": "2026-10-03T10:54:07.998Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6357a383-65c6-4338-a46d-278801d5f39d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-end Engineer Node.js - Strider",
+          "pt-BR": "[Remoto] Back-end Engineer Node.js - Strider",
+          "es": "[Remoto] Back-end Engineer Node.js - Strider",
+          "it": "[Remoto] Back-end Engineer Node.js - Strider",
+          "fr": "[Remoto] Back-end Engineer Node.js - Strider",
+          "de": "[Remoto] Back-end Engineer Node.js - Strider"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_576ba7eaf4dac8a0db6163f3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d439e5c9e3a0db2c1db310e7",
+      "sourceId": "DevOps-Brasil/Vagas#480",
+      "dataCommit": "b3a140583d02ea4ee33601d30f58635239138972",
+      "dataHash": "1e05bb10eaeccfa1b0986ac517b229fbd16dcbfe31702f322a059974c012321b",
+      "contentHash": "cf1fd0acf3da723da6c0515c2884719b4d6b089c27395a14c7f484a937ef3326",
+      "sourceCreatedAt": "2026-08-03T12:10:16Z",
+      "createdAt": "2026-10-03T10:54:07.998Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "05c2966d-f3f7-4709-8e82-79d7d62ecaa0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[DevOps Engineer (AWS) Pleno] Sylision - Híbrido",
+          "pt-BR": "[DevOps Engineer (AWS) Pleno] Sylision - Híbrido",
+          "es": "[DevOps Engineer (AWS) Pleno] Sylision - Híbrido",
+          "it": "[DevOps Engineer (AWS) Pleno] Sylision - Híbrido",
+          "fr": "[DevOps Engineer (AWS) Pleno] Sylision - Híbrido",
+          "de": "[DevOps Engineer (AWS) Pleno] Sylision - Híbrido"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d439e5c9e3a0db2c1db310e7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f20a6d2a5cd4d0963ee3848c",
+      "sourceId": "DevOps-Brasil/Vagas#479",
+      "dataCommit": "b3a140583d02ea4ee33601d30f58635239138972",
+      "dataHash": "1e05bb10eaeccfa1b0986ac517b229fbd16dcbfe31702f322a059974c012321b",
+      "contentHash": "80417ba09ffa12097091de33b5ded817eb61ebaaadbd936dc68f15090ad1708f",
+      "sourceCreatedAt": "2026-08-03T12:06:04Z",
+      "createdAt": "2026-10-03T10:54:07.998Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8281dad5-1a67-4e9d-afe5-3722cc8040ca",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Site Reliability Engineer Pleno] Sylision - Remoto",
+          "pt-BR": "[Site Reliability Engineer Pleno] Sylision - Remoto",
+          "es": "[Site Reliability Engineer Pleno] Sylision - Remoto",
+          "it": "[Site Reliability Engineer Pleno] Sylision - Remoto",
+          "fr": "[Site Reliability Engineer Pleno] Sylision - Remoto",
+          "de": "[Site Reliability Engineer Pleno] Sylision - Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f20a6d2a5cd4d0963ee3848c"
         }
       },
       "status": "pending",
