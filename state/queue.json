@@ -43031,12 +43031,14 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-03T05:26:22.337Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "operationKey": "job-story-37099693140-1"
+        }
       },
       "visualDirection": "night",
       "visualSequence": 142,
