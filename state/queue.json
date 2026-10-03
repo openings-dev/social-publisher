@@ -43436,12 +43436,14 @@
       "createdAt": "2026-10-02T03:38:14Z",
       "publicationCreatedAt": "2026-10-02T09:17:00.267Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-03T10:56:33.029Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HYBRID] SENIOR QA ENGINEER/ SDET - PRODUCT COMPANY - OPEN SALARY"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -43498,7 +43500,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 143
     },
     {
       "jobId": "gh_ddb16eea15c54f0fdc9e0a4d",
