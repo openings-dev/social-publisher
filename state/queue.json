@@ -43423,12 +43423,23 @@
       "createdAt": "2026-10-02T04:32:54Z",
       "publicationCreatedAt": "2026-10-02T09:17:00.267Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-03T15:33:06.075Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_806b64f2950fea9d5b673d14",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_806b64f2950fea9d5b673d14/c90458e14d2d72068e352b1cc23a5a33707f0833391c1f8b2c8bbf32d3ec7dbd/98f9775b6802c7a3b23c3315a8e2c2d8ca5203d103c2388619fe72626e49b8c7/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_806b64f2950fea9d5b673d14/c90458e14d2d72068e352b1cc23a5a33707f0833391c1f8b2c8bbf32d3ec7dbd/98f9775b6802c7a3b23c3315a8e2c2d8ca5203d103c2388619fe72626e49b8c7/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_806b64f2950fea9d5b673d14/c90458e14d2d72068e352b1cc23a5a33707f0833391c1f8b2c8bbf32d3ec7dbd/98f9775b6802c7a3b23c3315a8e2c2d8ca5203d103c2388619fe72626e49b8c7/social-video.mp4",
+          "pngHash": "790ac37ed7c32ee3805cea8bd1336d7018592a5337d16ff3c1e6a9d8992aed91",
+          "instagramJpegHash": "12a097ced727e5d5c92765f978457755aee673ead93dc84b948b4e8dd1413126",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[HYBRID] SENIOR/ STAFF SOFTWARE ENGINEER (JAVASCRIPT) - PRODUCT COMPANY - OPEN SALARY"
         }
       },
