@@ -42722,12 +42722,14 @@
       "createdAt": "2026-10-01T22:30:30Z",
       "publicationCreatedAt": "2026-10-02T00:27:40.697Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-03T03:09:49.163Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Add internship: <Company> - <Role>"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -42784,7 +42786,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 141
     },
     {
       "jobId": "gh_e8b9bf5abce069669f50ccbe",
