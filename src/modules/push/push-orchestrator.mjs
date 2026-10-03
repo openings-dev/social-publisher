@@ -1,7 +1,7 @@
 import { validatePushState } from './push-state.mjs';
 
 const RETRY_DELAY_MS = 100 * 1000;
-const MAX_DAILY_PUSHES = 2;
+const MAX_DAILY_PUSHES = 1;
 const DAILY_LIMIT_DAY = new Intl.DateTimeFormat('en-CA', {
   timeZone: 'America/Sao_Paulo',
   year: 'numeric',

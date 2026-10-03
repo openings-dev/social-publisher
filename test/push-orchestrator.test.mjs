@@ -40,7 +40,7 @@ test('skips stale unsent alerts and defers at the daily cap', () => {
   assert.equal(deferred.reason, 'daily_cap');
 });
 
-test('limits broadcasts to two per Sao Paulo day even when the stored cap is higher', () => {
+test('limits broadcasts to one per Sao Paulo day even when the stored cap is higher', () => {
   const { current, state } = queuedState({ dailyCap: 10 });
   const template = state.intents[0];
   state.intents.push(
@@ -52,15 +52,6 @@ test('limits broadcasts to two per Sao Paulo day even when the stored cap is hig
       status: 'accepted',
       updatedAt: '2026-09-16T23:30:00.000Z',
       result: { notificationId: 'first' },
-    },
-    {
-      ...template,
-      jobId: 'gh_222222222222222222222222',
-      idempotencyKey: '123e4567-e89b-42d3-a456-426614174002',
-      payload: { ...template.payload, data: { ...template.payload.data, jobId: 'gh_222222222222222222222222' } },
-      status: 'accepted',
-      updatedAt: '2026-09-17T01:30:00.000Z',
-      result: { notificationId: 'second' },
     },
   );
 
