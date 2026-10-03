@@ -44359,12 +44359,14 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-03T20:29:25.638Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "operationKey": "job-story-37151567806-1"
+        }
       },
       "visualDirection": "night",
       "visualSequence": 148,
