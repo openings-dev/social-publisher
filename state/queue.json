@@ -42931,12 +42931,23 @@
       "createdAt": "2026-10-01T21:09:15Z",
       "publicationCreatedAt": "2026-10-02T00:27:40.697Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-03T05:24:57.370Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_e8b9bf5abce069669f50ccbe",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_e8b9bf5abce069669f50ccbe/4bc7355fe7e553d284ccebc4eeddbd2e88ac907a84effc4af0dc79d369a8320f/6e8860743a715c10f3e34a14bb3a7c3fa97ab3bf86ad81eaf8feaf1a4c629500/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_e8b9bf5abce069669f50ccbe/4bc7355fe7e553d284ccebc4eeddbd2e88ac907a84effc4af0dc79d369a8320f/6e8860743a715c10f3e34a14bb3a7c3fa97ab3bf86ad81eaf8feaf1a4c629500/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_e8b9bf5abce069669f50ccbe/4bc7355fe7e553d284ccebc4eeddbd2e88ac907a84effc4af0dc79d369a8320f/6e8860743a715c10f3e34a14bb3a7c3fa97ab3bf86ad81eaf8feaf1a4c629500/social-video.mp4",
+          "pngHash": "2387fb34c876c975af47e6d86fd34d4f578aee4f69bd78e6e594ca1375b4bdec",
+          "instagramJpegHash": "71021f145cc5575c7a407c6f2ae5a2e45f56c46dc24e66a84505125f660f4856",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Engenheiro(a) de Software Sênior – Code Quality (Python, JS/TS, Java, Go) - Turing (via AYAN)"
         }
       },
