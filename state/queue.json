@@ -44912,12 +44912,14 @@
       "createdAt": "2026-10-03T05:37:07Z",
       "publicationCreatedAt": "2026-10-03T10:58:53.290Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-03T16:27:40.702Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HN] 🚀 B2B SaaS Global tuyển Senior AI ENGINEER 5+ yoe (CV, Multi-agent) | Eng đọc hiểu, process 1 vòng iv gọn lẹ"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -44974,7 +44976,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 147
     },
     {
       "jobId": "gh_064d8d44d5caf9b4157f4e8e",
