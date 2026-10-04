@@ -46005,12 +46005,23 @@
       "createdAt": "2026-10-04T08:30:39Z",
       "publicationCreatedAt": "2026-10-04T11:38:47.570Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-04T15:24:46.389Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9ad63cd5fc5a62fc12646e90",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_9ad63cd5fc5a62fc12646e90/ae6e119ecb12d3c8acc5ab48ea6b5733f7e29fc32ccada8cd242c03637991c3a/5089665b9886c4ab0c1e527f71303d7b4287aa7daed8b0acd253167e01b2e760/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_9ad63cd5fc5a62fc12646e90/ae6e119ecb12d3c8acc5ab48ea6b5733f7e29fc32ccada8cd242c03637991c3a/5089665b9886c4ab0c1e527f71303d7b4287aa7daed8b0acd253167e01b2e760/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_9ad63cd5fc5a62fc12646e90/ae6e119ecb12d3c8acc5ab48ea6b5733f7e29fc32ccada8cd242c03637991c3a/5089665b9886c4ab0c1e527f71303d7b4287aa7daed8b0acd253167e01b2e760/social-video.mp4",
+          "pngHash": "e476be981795327142a8c3e8686daa20640b64413d2bc74bae97e874b9912e56",
+          "instagramJpegHash": "ef6682ba458beb07e956f775a92fd070741eacb4032f282292e1d9ce9e5b8daf",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Job data is stale: last scrape 2026-10-04T02:34:26.559583Z"
         }
       },
