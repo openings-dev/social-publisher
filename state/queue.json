@@ -45169,12 +45169,23 @@
       "createdAt": "2026-10-02T18:48:38Z",
       "publicationCreatedAt": "2026-10-02T21:44:50.880Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-04T03:38:00.284Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ede060fe5da659d9f89f93ef",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ede060fe5da659d9f89f93ef/7deb90d71f678a69e012c90f6ce9289331e04d03550307e089741771b6b470c3/74899da1ff6252a31c4f57368ad78e54f4f24f78ef09294026e4b87869de69f9/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ede060fe5da659d9f89f93ef/7deb90d71f678a69e012c90f6ce9289331e04d03550307e089741771b6b470c3/74899da1ff6252a31c4f57368ad78e54f4f24f78ef09294026e4b87869de69f9/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ede060fe5da659d9f89f93ef/7deb90d71f678a69e012c90f6ce9289331e04d03550307e089741771b6b470c3/74899da1ff6252a31c4f57368ad78e54f4f24f78ef09294026e4b87869de69f9/social-video.mp4",
+          "pngHash": "4271a66540baed0065dab5e33fd29f77381887d0fb54f8e6435734c3784ab4e0",
+          "instagramJpegHash": "552d796cbf5e8f1b539318a58e5b5d6ae9f15c91fad5dbfdff4b71aeaede2c66",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "(Full-remote) Senior Embedded Engineer - Jobsity"
         }
       },
