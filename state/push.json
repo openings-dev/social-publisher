@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "52247088ac016f11e7614294bfbfac154ba1a2c2",
-    "generatedAt": "2026-10-04T03:36:38.613Z",
-    "dataHash": "0d543886e4d5cff1de8523a6bed1fbae7762e40b7a321b5c63d1f6840afde8dc"
+    "commit": "58c5f5a08b5e7ff504799c930560bcf0d074c7d7",
+    "generatedAt": "2026-10-04T11:36:30.368Z",
+    "dataHash": "4beb7457fb80f58ca2ff9183ccf3638c9955454423f1ca00c1587e11ccbbc8b7"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -7061,6 +7061,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f20a6d2a5cd4d0963ee3848c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9ad63cd5fc5a62fc12646e90",
+      "sourceId": "ambicuity/New-Grad-Jobs#378",
+      "dataCommit": "58c5f5a08b5e7ff504799c930560bcf0d074c7d7",
+      "dataHash": "4beb7457fb80f58ca2ff9183ccf3638c9955454423f1ca00c1587e11ccbbc8b7",
+      "contentHash": "ae6e119ecb12d3c8acc5ab48ea6b5733f7e29fc32ccada8cd242c03637991c3a",
+      "sourceCreatedAt": "2026-10-04T08:30:39Z",
+      "createdAt": "2026-10-04T11:36:30.368Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d8380195-9db5-4dd2-bd8b-5ecf15b85d87",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-04T02:34:26.559583Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-04T02:34:26.559583Z",
+          "es": "Job data is stale: last scrape 2026-10-04T02:34:26.559583Z",
+          "it": "Job data is stale: last scrape 2026-10-04T02:34:26.559583Z",
+          "fr": "Job data is stale: last scrape 2026-10-04T02:34:26.559583Z",
+          "de": "Job data is stale: last scrape 2026-10-04T02:34:26.559583Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9ad63cd5fc5a62fc12646e90"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b0364c3e5754459ec018dcc6",
+      "sourceId": "DevOps-Brasil/Vagas#481",
+      "dataCommit": "58c5f5a08b5e7ff504799c930560bcf0d074c7d7",
+      "dataHash": "4beb7457fb80f58ca2ff9183ccf3638c9955454423f1ca00c1587e11ccbbc8b7",
+      "contentHash": "bdeeb0c17af61aa55563eaef9000deef2c7a5ecec8af49f762a543c2dc46acd6",
+      "sourceCreatedAt": "2026-08-04T12:20:53Z",
+      "createdAt": "2026-10-04T11:36:30.368Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "22212c96-240a-46e8-b4b7-dc8afec3cfc9",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[DevOps Engineer (Azure) Pleno] Sylision - Híbrido",
+          "pt-BR": "[DevOps Engineer (Azure) Pleno] Sylision - Híbrido",
+          "es": "[DevOps Engineer (Azure) Pleno] Sylision - Híbrido",
+          "it": "[DevOps Engineer (Azure) Pleno] Sylision - Híbrido",
+          "fr": "[DevOps Engineer (Azure) Pleno] Sylision - Híbrido",
+          "de": "[DevOps Engineer (Azure) Pleno] Sylision - Híbrido"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b0364c3e5754459ec018dcc6"
         }
       },
       "status": "pending",
