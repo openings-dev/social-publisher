@@ -45994,6 +45994,80 @@
         ],
         "manifestDigest": "dd7af45af6851edb559b8eeb53ea132c99515ddf6fc606f856bb8af2d41bbf9a"
       }
+    },
+    {
+      "jobId": "gh_9ad63cd5fc5a62fc12646e90",
+      "sourceId": "ambicuity/New-Grad-Jobs#378",
+      "dataCommit": "58c5f5a08b5e7ff504799c930560bcf0d074c7d7",
+      "dataHash": "4beb7457fb80f58ca2ff9183ccf3638c9955454423f1ca00c1587e11ccbbc8b7",
+      "contentHash": "ae6e119ecb12d3c8acc5ab48ea6b5733f7e29fc32ccada8cd242c03637991c3a",
+      "discoveredAt": "2026-10-04T11:38:47.570Z",
+      "createdAt": "2026-10-04T08:30:39Z",
+      "publicationCreatedAt": "2026-10-04T11:38:47.570Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
