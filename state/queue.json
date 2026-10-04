@@ -45436,12 +45436,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 2,
         "updatedAt": "2026-10-04T11:38:32.043Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18132666367706977",
+          "url": "https://www.threads.com/@openingshq/post/DeEi6z4Gy1h"
+        }
       },
       "instagram": {
         "status": "published",
