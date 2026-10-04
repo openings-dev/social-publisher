@@ -45436,10 +45436,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-10-04T08:31:30.493Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_publication",
+          "at": "2026-10-04T08:31:30.493Z"
+        },
         "lastReset": null,
         "result": null
       },
