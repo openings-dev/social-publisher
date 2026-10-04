@@ -45239,12 +45239,15 @@
         }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-04T03:38:00.284Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "publicationKind": "image",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ede060fe5da659d9f89f93ef"
+        }
       },
       "linkedin": {
         "status": "pending",
