@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "c76837c75ae27d7f78fe23d8fd76ba243f05ee6a",
-    "generatedAt": "2026-10-05T13:11:11.264Z",
-    "dataHash": "e07deeada7c96be853d0c36649f219e27cf4b1aa2f75b8b27569b77a38fed0fd"
+    "commit": "a8216f5c2a69f5b173331a7d264e491927ba2a97",
+    "generatedAt": "2026-10-05T21:46:08.126Z",
+    "dataHash": "a70b26e58a4e97acadebb097aa257ef7a956cd5cacac4b08a625d1d7c94a5f7f"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -7464,6 +7464,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_55bdc13f810aaec74877d2c8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_878c818f3bab42b66032d2c9",
+      "sourceId": "developersRJ/vagas#512",
+      "dataCommit": "a8216f5c2a69f5b173331a7d264e491927ba2a97",
+      "dataHash": "a70b26e58a4e97acadebb097aa257ef7a956cd5cacac4b08a625d1d7c94a5f7f",
+      "contentHash": "3ef2a0d72e462fa405c6df0bd9fe4f05e0227bc3e10858778099f0bb0adb1162",
+      "sourceCreatedAt": "2024-07-08T16:19:47Z",
+      "createdAt": "2026-10-05T21:46:08.126Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b214ddb0-b0ed-46c4-8bff-767c898409a8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Pessoa Engenheira de Software Backend Sênior - Ruby on Rails/Node - RD Station",
+          "pt-BR": "[Remoto] Pessoa Engenheira de Software Backend Sênior - Ruby on Rails/Node - RD Station",
+          "es": "[Remoto] Pessoa Engenheira de Software Backend Sênior - Ruby on Rails/Node - RD Station",
+          "it": "[Remoto] Pessoa Engenheira de Software Backend Sênior - Ruby on Rails/Node - RD Station",
+          "fr": "[Remoto] Pessoa Engenheira de Software Backend Sênior - Ruby on Rails/Node - RD Station",
+          "de": "[Remoto] Pessoa Engenheira de Software Backend Sênior - Ruby on Rails/Node - RD Station"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_878c818f3bab42b66032d2c9"
         }
       },
       "status": "pending",
