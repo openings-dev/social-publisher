@@ -47197,10 +47197,13 @@
         }
       },
       "instagram": {
-        "status": "publishing",
+        "status": "failed",
         "attempts": 1,
         "updatedAt": "2026-10-06T15:16:28.908Z",
-        "lastError": null,
+        "lastError": {
+          "code": "instagram_image_ambiguous",
+          "at": "2026-10-06T15:16:28.908Z"
+        },
         "lastReset": null,
         "result": {
           "publicationKind": "image",
@@ -47278,9 +47281,9 @@
             "consumers": [
               {
                 "channel": "instagram",
-                "state": "pending",
+                "state": "ambiguous",
                 "remoteId": null,
-                "updatedAt": null
+                "updatedAt": "2026-10-06T15:16:28.908Z"
               }
             ]
           },
@@ -47307,7 +47310,7 @@
             ]
           }
         ],
-        "manifestDigest": "084a9952634d78c935b03c435419786dedcec0a6409f3559c76a05901b8cdfd8"
+        "manifestDigest": "d204555d135cfbe9f8a083fa6f6b065865876f4346bad3af253669fe2d47b17a"
       }
     }
   ]
