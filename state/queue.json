@@ -46423,12 +46423,23 @@
       "createdAt": "2026-10-06T01:51:07Z",
       "publicationCreatedAt": "2026-10-06T04:08:06.723Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-06T06:29:19.588Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0138775bd7dca9cd205df2ba",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_0138775bd7dca9cd205df2ba/83794dcd29f991c2f62ec635e8a072a1db48675299678b62d4e54f903e258c49/ffb9ad06fe0ddbd3f53efdbbe3f282309ac017e32d2b5560731b5d305dbef070/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_0138775bd7dca9cd205df2ba/83794dcd29f991c2f62ec635e8a072a1db48675299678b62d4e54f903e258c49/ffb9ad06fe0ddbd3f53efdbbe3f282309ac017e32d2b5560731b5d305dbef070/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_0138775bd7dca9cd205df2ba/83794dcd29f991c2f62ec635e8a072a1db48675299678b62d4e54f903e258c49/ffb9ad06fe0ddbd3f53efdbbe3f282309ac017e32d2b5560731b5d305dbef070/social-video.mp4",
+          "pngHash": "4481ea48a8fa25866eedb30d9dcc266fbcb2ff71deaed6bbad267ca6d8f19386",
+          "instagramJpegHash": "56f3a615d7e5839f452dc5e0ebdc38f750106dca453a08f6a2c5a95c354ad412",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Job submission: Nirva — Research Scientist Intern (San Francisco, CA)"
         }
       },
