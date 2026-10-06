@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "d98c67ab6b2cd4b3c995b245eaaddfbd1f320d7f",
-    "generatedAt": "2026-10-06T04:06:03.180Z",
-    "dataHash": "060ea7237fe62a9bb07a2798f2451cc0bd076ef68266b2afc1f37260c6f2820d"
+    "commit": "2ba48efcb5e28c5bbe2176f6087404499a000beb",
+    "generatedAt": "2026-10-06T12:32:51.638Z",
+    "dataHash": "630ebe47391c0fae82cc5ee3f693b053a0efad948eaee7212f69265630023522"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -7747,6 +7747,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f28f751aba191a8d493eb5be"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5d55b099376a84af0d2f7222",
+      "sourceId": "ambicuity/New-Grad-Jobs#380",
+      "dataCommit": "2ba48efcb5e28c5bbe2176f6087404499a000beb",
+      "dataHash": "630ebe47391c0fae82cc5ee3f693b053a0efad948eaee7212f69265630023522",
+      "contentHash": "24185ca1fcf2dd54eb60f053fe50ddb8e7c3a61dcd8a1a23e76a28740534ac52",
+      "sourceCreatedAt": "2026-10-06T06:28:54Z",
+      "createdAt": "2026-10-06T12:32:51.638Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ce585af9-1543-44ec-ab8c-363a2cc728f4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-06T02:30:57.751475Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-06T02:30:57.751475Z",
+          "es": "Job data is stale: last scrape 2026-10-06T02:30:57.751475Z",
+          "it": "Job data is stale: last scrape 2026-10-06T02:30:57.751475Z",
+          "fr": "Job data is stale: last scrape 2026-10-06T02:30:57.751475Z",
+          "de": "Job data is stale: last scrape 2026-10-06T02:30:57.751475Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5d55b099376a84af0d2f7222"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ce1cd59127258c1d67f5ef96",
+      "sourceId": "backend-pt/vagas#152",
+      "dataCommit": "2ba48efcb5e28c5bbe2176f6087404499a000beb",
+      "dataHash": "630ebe47391c0fae82cc5ee3f693b053a0efad948eaee7212f69265630023522",
+      "contentHash": "aa9d293c0a6faef8126c55bf531f032546f216ef2a1d0227ee1e6806025f9b5b",
+      "sourceCreatedAt": "2026-08-04T15:24:39Z",
+      "createdAt": "2026-10-06T12:32:51.638Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d6f6f512-c5af-4f6d-b685-1ca690a97797",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Node.js Backend Developer Sênior @ Sylision",
+          "pt-BR": "[Remoto] Node.js Backend Developer Sênior @ Sylision",
+          "es": "[Remoto] Node.js Backend Developer Sênior @ Sylision",
+          "it": "[Remoto] Node.js Backend Developer Sênior @ Sylision",
+          "fr": "[Remoto] Node.js Backend Developer Sênior @ Sylision",
+          "de": "[Remoto] Node.js Backend Developer Sênior @ Sylision"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ce1cd59127258c1d67f5ef96"
         }
       },
       "status": "pending",
