@@ -47053,12 +47053,23 @@
       "createdAt": "2026-10-06T01:05:40Z",
       "publicationCreatedAt": "2026-10-06T04:08:06.723Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-06T20:00:42.808Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_f28f751aba191a8d493eb5be",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_f28f751aba191a8d493eb5be/2bde04dae82357dbf7ccc10ae441fb7472b5ce597fb97d97594329a57614e173/9ed5405cb2e9a7739a17006a93e2e166e2e1ca56a81aa64ccba98bcb10908a23/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_f28f751aba191a8d493eb5be/2bde04dae82357dbf7ccc10ae441fb7472b5ce597fb97d97594329a57614e173/9ed5405cb2e9a7739a17006a93e2e166e2e1ca56a81aa64ccba98bcb10908a23/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_f28f751aba191a8d493eb5be/2bde04dae82357dbf7ccc10ae441fb7472b5ce597fb97d97594329a57614e173/9ed5405cb2e9a7739a17006a93e2e166e2e1ca56a81aa64ccba98bcb10908a23/social-video.mp4",
+          "pngHash": "d1a524d722dcf9d1357991b950e328c6c909a02ea5870c4fd06c54f15234a585",
+          "instagramJpegHash": "ba4430aebaf9c76654ec31ac2850b0e17bd6df6aea0c0d1a147e73bdb5481698",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "New Internship"
         }
       },
