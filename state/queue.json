@@ -46423,12 +46423,14 @@
       "createdAt": "2026-10-06T01:51:07Z",
       "publicationCreatedAt": "2026-10-06T04:08:06.723Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-06T06:29:19.588Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Job submission: Nirva — Research Scientist Intern (San Francisco, CA)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -46485,7 +46487,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 156
     },
     {
       "jobId": "gh_f540f273a0b6741a3b624327",
