@@ -47461,12 +47461,23 @@
       "createdAt": "2026-10-06T12:49:47Z",
       "publicationCreatedAt": "2026-10-06T20:02:07.472Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-06T21:02:26.576Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_6ee5c31976b58995be8b656a",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_6ee5c31976b58995be8b656a/d23e713bf5f6526900dbd54a0cff71c15969d183d35bc2ae1a8c9937287baff2/ee4802d27e1157d19bc125da3331a505e84992d5cfb7570ec03c42d2004365d4/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_6ee5c31976b58995be8b656a/d23e713bf5f6526900dbd54a0cff71c15969d183d35bc2ae1a8c9937287baff2/ee4802d27e1157d19bc125da3331a505e84992d5cfb7570ec03c42d2004365d4/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_6ee5c31976b58995be8b656a/d23e713bf5f6526900dbd54a0cff71c15969d183d35bc2ae1a8c9937287baff2/ee4802d27e1157d19bc125da3331a505e84992d5cfb7570ec03c42d2004365d4/social-video.mp4",
+          "pngHash": "146146327cf240bb20bd51f42c56e618f35720859e9dcdacc8631c5c9d1ccd8e",
+          "instagramJpegHash": "d77c3c734bd52b72fd66314d75b4305a7352ebf83c7eadb5090be7f6902618e5",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Senior Full-stack Engineer - React.js, Nest.js, Kafka(Strider))"
         }
       },
