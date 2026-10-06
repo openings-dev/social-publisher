@@ -47111,12 +47111,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-06T20:00:42.808Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18134306521661324",
+          "url": "https://www.threads.com/@openingshq/post/DeKmDBeEta-"
+        }
       },
       "instagram": {
         "status": "pending",
