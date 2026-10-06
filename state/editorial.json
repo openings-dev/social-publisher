@@ -1,100 +1,7 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [
-    {
-      "contentId": "linkedin-contato-profissional",
-      "contentVersion": "2",
-      "pillar": "linkedin",
-      "scheduledDate": "2026-10-06",
-      "createdAt": "2026-10-06T19:57:57.050Z",
-      "assets": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-10-06T19:57:58.884Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "hosted",
-          "carouselUrls": [
-            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-01.jpg",
-            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-02.jpg",
-            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-03.jpg",
-            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-04.jpg",
-            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-05.jpg",
-            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-06.jpg",
-            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-07.jpg"
-          ],
-          "carouselMedia": [
-            {
-              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-01.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-02.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-03.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-04.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-05.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-06.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-07.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            }
-          ]
-        }
-      },
-      "feed": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-10-06T19:58:05.857Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "published",
-          "id": "17927580777185919",
-          "url": "https://www.instagram.com/p/DeKly_foBY2/"
-        }
-      },
-      "story": {
-        "status": "publishing",
-        "attempts": 1,
-        "updatedAt": "2026-10-06T19:59:29.368Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "operationKey": "editorial-37522749922-1"
-        }
-      }
-    }
-  ],
+  "pending": [],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",
@@ -757,6 +664,83 @@
           "status": "unsupported",
           "reason": "editorial_story_feed_media_compatibility_unverified",
           "mediaUrl": "https://media.openings.dev/openings/editorial/interview-perguntas-ao-entrevistador/2/5/slide-01.jpg",
+          "mediaType": "image/jpeg",
+          "width": 1080,
+          "height": 1350
+        }
+      }
+    },
+    "linkedin-contato-profissional": {
+      "lastPublishedAt": "2026-10-06T19:59:30.971Z",
+      "cycles": 1,
+      "lastPublication": {
+        "scheduledDate": "2026-10-06",
+        "contentVersion": "2",
+        "assets": {
+          "status": "hosted",
+          "carouselUrls": [
+            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-01.jpg",
+            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-02.jpg",
+            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-03.jpg",
+            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-04.jpg",
+            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-05.jpg",
+            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-06.jpg",
+            "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-07.jpg"
+          ],
+          "carouselMedia": [
+            {
+              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-01.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-02.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-03.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-04.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-05.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-06.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-07.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            }
+          ]
+        },
+        "feed": {
+          "status": "published",
+          "id": "17927580777185919",
+          "url": "https://www.instagram.com/p/DeKly_foBY2/"
+        },
+        "story": {
+          "status": "unsupported",
+          "reason": "editorial_story_feed_media_compatibility_unverified",
+          "mediaUrl": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-01.jpg",
           "mediaType": "image/jpeg",
           "width": 1080,
           "height": 1350
