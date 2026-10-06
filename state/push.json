@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "a8216f5c2a69f5b173331a7d264e491927ba2a97",
-    "generatedAt": "2026-10-05T21:46:08.126Z",
-    "dataHash": "a70b26e58a4e97acadebb097aa257ef7a956cd5cacac4b08a625d1d7c94a5f7f"
+    "commit": "d98c67ab6b2cd4b3c995b245eaaddfbd1f320d7f",
+    "generatedAt": "2026-10-06T04:06:03.180Z",
+    "dataHash": "060ea7237fe62a9bb07a2798f2451cc0bd076ef68266b2afc1f37260c6f2820d"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -7306,10 +7306,10 @@
           "jobId": "gh_f300e7f8e94de6f897e55324"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-06T04:06:03.180Z",
       "retryAfter": null,
       "result": null
     },
@@ -7504,6 +7504,246 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_878c818f3bab42b66032d2c9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0138775bd7dca9cd205df2ba",
+      "sourceId": "zapplyjobs/Internships-2026#122",
+      "dataCommit": "d98c67ab6b2cd4b3c995b245eaaddfbd1f320d7f",
+      "dataHash": "060ea7237fe62a9bb07a2798f2451cc0bd076ef68266b2afc1f37260c6f2820d",
+      "contentHash": "83794dcd29f991c2f62ec635e8a072a1db48675299678b62d4e54f903e258c49",
+      "sourceCreatedAt": "2026-10-06T01:51:07Z",
+      "createdAt": "2026-10-06T04:06:03.180Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8eb65661-336d-4963-9be1-80f6fa18245e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job submission: Nirva — Research Scientist Intern (San Francisco, CA)",
+          "pt-BR": "Job submission: Nirva — Research Scientist Intern (San Francisco, CA)",
+          "es": "Job submission: Nirva — Research Scientist Intern (San Francisco, CA)",
+          "it": "Job submission: Nirva — Research Scientist Intern (San Francisco, CA)",
+          "fr": "Job submission: Nirva — Research Scientist Intern (San Francisco, CA)",
+          "de": "Job submission: Nirva — Research Scientist Intern (San Francisco, CA)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0138775bd7dca9cd205df2ba"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f540f273a0b6741a3b624327",
+      "sourceId": "speedyapply/2026-AI-College-Jobs#14",
+      "dataCommit": "d98c67ab6b2cd4b3c995b245eaaddfbd1f320d7f",
+      "dataHash": "060ea7237fe62a9bb07a2798f2451cc0bd076ef68266b2afc1f37260c6f2820d",
+      "contentHash": "3d78b0b311a5654615ec56ca03846b1ab551d78b7d08eb9b6d9ab58063ea5deb",
+      "sourceCreatedAt": "2026-10-06T01:07:01Z",
+      "createdAt": "2026-10-06T04:06:03.180Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9d4c7cd7-8b15-4ed9-9466-8e1fce60e5f1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Position",
+          "pt-BR": "New Position",
+          "es": "New Position",
+          "it": "New Position",
+          "fr": "New Position",
+          "de": "New Position"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f540f273a0b6741a3b624327"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c794c6d6a01da3f79c490560",
+      "sourceId": "speedyapply/2027-AI-College-Jobs#14",
+      "dataCommit": "d98c67ab6b2cd4b3c995b245eaaddfbd1f320d7f",
+      "dataHash": "060ea7237fe62a9bb07a2798f2451cc0bd076ef68266b2afc1f37260c6f2820d",
+      "contentHash": "3d78b0b311a5654615ec56ca03846b1ab551d78b7d08eb9b6d9ab58063ea5deb",
+      "sourceCreatedAt": "2026-10-06T01:07:01Z",
+      "createdAt": "2026-10-06T04:06:03.180Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f29e9c5f-87e7-4ba6-b856-b19f1be823f1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Position",
+          "pt-BR": "New Position",
+          "es": "New Position",
+          "it": "New Position",
+          "fr": "New Position",
+          "de": "New Position"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c794c6d6a01da3f79c490560"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b8f065fcc6e9dc714b797025",
+      "sourceId": "vanshb03/Summer2026-Internships#4596",
+      "dataCommit": "d98c67ab6b2cd4b3c995b245eaaddfbd1f320d7f",
+      "dataHash": "060ea7237fe62a9bb07a2798f2451cc0bd076ef68266b2afc1f37260c6f2820d",
+      "contentHash": "327d5705e4f18b5f6b2cde2f165cb2a88ec80490906a86acc91695859dc23ac2",
+      "sourceCreatedAt": "2026-10-06T01:06:16Z",
+      "createdAt": "2026-10-06T04:06:03.180Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c71e72e0-b9c7-41ec-965f-c926ca58560f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b8f065fcc6e9dc714b797025"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6d24529a08a0a3521788fd1f",
+      "sourceId": "vanshb03/Summer2027-Internships#4596",
+      "dataCommit": "d98c67ab6b2cd4b3c995b245eaaddfbd1f320d7f",
+      "dataHash": "060ea7237fe62a9bb07a2798f2451cc0bd076ef68266b2afc1f37260c6f2820d",
+      "contentHash": "327d5705e4f18b5f6b2cde2f165cb2a88ec80490906a86acc91695859dc23ac2",
+      "sourceCreatedAt": "2026-10-06T01:06:16Z",
+      "createdAt": "2026-10-06T04:06:03.180Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b7680ada-9516-438d-9e23-5d38f7fe6fb4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6d24529a08a0a3521788fd1f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f28f751aba191a8d493eb5be",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9702",
+      "dataCommit": "d98c67ab6b2cd4b3c995b245eaaddfbd1f320d7f",
+      "dataHash": "060ea7237fe62a9bb07a2798f2451cc0bd076ef68266b2afc1f37260c6f2820d",
+      "contentHash": "164e38d0ad2b765588c55102de932e704999f47aa464b8843384acb2ae03363d",
+      "sourceCreatedAt": "2026-10-06T01:05:40Z",
+      "createdAt": "2026-10-06T04:06:03.180Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "259c64d8-676a-4d17-8416-578bfa098422",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f28f751aba191a8d493eb5be"
         }
       },
       "status": "pending",
