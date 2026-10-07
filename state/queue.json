@@ -47869,12 +47869,14 @@
       "createdAt": "2026-10-06T20:53:25Z",
       "publicationCreatedAt": "2026-10-07T00:19:41.446Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-07T08:47:15.590Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remote & SG] Ekvahlabs 正在招聘区块链开发人员"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -47931,7 +47933,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 162
     }
   ]
 }
