@@ -48277,12 +48277,23 @@
       "createdAt": "2026-10-07T14:02:31Z",
       "publicationCreatedAt": "2026-10-07T18:17:31.990Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-07T23:09:57.562Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_f12187a6f9db3fd08703be81",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_f12187a6f9db3fd08703be81/743c66cefff5d4a0c7b76a4719a33e873486f74d5d93a68d8c7fe99bcd6514cb/15871118be2bdecddc48cf0aeec2723d68c9daf00b5940484a22ec180bc57d51/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_f12187a6f9db3fd08703be81/743c66cefff5d4a0c7b76a4719a33e873486f74d5d93a68d8c7fe99bcd6514cb/15871118be2bdecddc48cf0aeec2723d68c9daf00b5940484a22ec180bc57d51/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_f12187a6f9db3fd08703be81/743c66cefff5d4a0c7b76a4719a33e873486f74d5d93a68d8c7fe99bcd6514cb/15871118be2bdecddc48cf0aeec2723d68c9daf00b5940484a22ec180bc57d51/social-video.mp4",
+          "pngHash": "a99b12c5a3aaa4bcdfb1582f0aad46a73df9b63ca4a00c9eeae66ae6962e3538",
+          "instagramJpegHash": "d90b564207d9f8ad9b5a872417484b898c1eb572562bb3d721f7871720f719fd",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js (Strider)"
         }
       },
