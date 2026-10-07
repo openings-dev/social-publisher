@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "a57f1d818a3f8bee17365eaeed7bb820e798f877",
-    "generatedAt": "2026-10-07T09:36:38.452Z",
-    "dataHash": "1a296f88070a62d38c03ae59ac76195cd14398f12d7f7a9b84f945693634f363"
+    "commit": "462b23ecaaf8b934e299677806f14e6089594a5e",
+    "generatedAt": "2026-10-07T18:13:29.129Z",
+    "dataHash": "d24f6786de832e7155ba3f98825c1583316d7f745dcfd78cd4361d6c698966bc"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -7990,6 +7990,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_26b612b8a876401de18363ae"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f12187a6f9db3fd08703be81",
+      "sourceId": "backend-br/vagas#12440",
+      "dataCommit": "462b23ecaaf8b934e299677806f14e6089594a5e",
+      "dataHash": "d24f6786de832e7155ba3f98825c1583316d7f745dcfd78cd4361d6c698966bc",
+      "contentHash": "743c66cefff5d4a0c7b76a4719a33e873486f74d5d93a68d8c7fe99bcd6514cb",
+      "sourceCreatedAt": "2026-10-07T14:02:31Z",
+      "createdAt": "2026-10-07T18:13:29.129Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "83750d5d-436d-4ba4-9a1c-e8dba94fd37d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js (Strider)",
+          "pt-BR": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js (Strider)",
+          "es": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js (Strider)",
+          "it": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js (Strider)",
+          "fr": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js (Strider)",
+          "de": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js (Strider)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f12187a6f9db3fd08703be81"
         }
       },
       "status": "pending",
