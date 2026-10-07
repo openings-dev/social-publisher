@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "0da74b869a74714bc3d323138dc49b96a595f218",
-    "generatedAt": "2026-10-06T19:57:00.630Z",
-    "dataHash": "d6469469f473cb5e3c5d24a7040680f688df4b1c888a9e526041ea509fbc00b8"
+    "commit": "560fe1efcc86f42e36fd0a5b8d6548097fd85d73",
+    "generatedAt": "2026-10-07T00:17:43.242Z",
+    "dataHash": "52aa7316b6fc695b7e0e918cda1d75b1717e98cf95ccff99bc6e0deaf5802458"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -7429,10 +7429,10 @@
           "jobId": "gh_ae83435fb98f57eb1f4b8182"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-07T00:17:43.242Z",
       "retryAfter": null,
       "result": null
     },
@@ -7469,10 +7469,10 @@
           "jobId": "gh_55bdc13f810aaec74877d2c8"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-07T00:17:43.242Z",
       "retryAfter": null,
       "result": null
     },
@@ -7829,10 +7829,10 @@
           "jobId": "gh_ce1cd59127258c1d67f5ef96"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-07T00:17:43.242Z",
       "retryAfter": null,
       "result": null
     },
@@ -7867,6 +7867,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_6ee5c31976b58995be8b656a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5402fbb42413034211d27217",
+      "sourceId": "rebase-network/who-is-hiring#1313",
+      "dataCommit": "560fe1efcc86f42e36fd0a5b8d6548097fd85d73",
+      "dataHash": "52aa7316b6fc695b7e0e918cda1d75b1717e98cf95ccff99bc6e0deaf5802458",
+      "contentHash": "666fea5110ea68b506e4b0aa7cffa61d4c85ae3108c11bb30013b5674ef0bc68",
+      "sourceCreatedAt": "2026-10-06T21:46:56Z",
+      "createdAt": "2026-10-07T00:17:43.242Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2b3422be-a2e5-422d-955e-03b7809dcfe2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【招聘】区块链后端工程师｜Go / EVM / Solana / DEX / Meme｜$6,000–8,000/月",
+          "pt-BR": "【招聘】区块链后端工程师｜Go / EVM / Solana / DEX / Meme｜$6,000–8,000/月",
+          "es": "【招聘】区块链后端工程师｜Go / EVM / Solana / DEX / Meme｜$6,000–8,000/月",
+          "it": "【招聘】区块链后端工程师｜Go / EVM / Solana / DEX / Meme｜$6,000–8,000/月",
+          "fr": "【招聘】区块链后端工程师｜Go / EVM / Solana / DEX / Meme｜$6,000–8,000/月",
+          "de": "【招聘】区块链后端工程师｜Go / EVM / Solana / DEX / Meme｜$6,000–8,000/月"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5402fbb42413034211d27217"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_744abbbd1a93e4f8c3761e83",
+      "sourceId": "rebase-network/who-is-hiring#1312",
+      "dataCommit": "560fe1efcc86f42e36fd0a5b8d6548097fd85d73",
+      "dataHash": "52aa7316b6fc695b7e0e918cda1d75b1717e98cf95ccff99bc6e0deaf5802458",
+      "contentHash": "6f8f686fac4d89b6b4ae8dbaa9e20371cbcdcce645d64ae62995337ba22fd835",
+      "sourceCreatedAt": "2026-10-06T20:53:25Z",
+      "createdAt": "2026-10-07T00:17:43.242Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cfc30e08-978d-4c15-941a-7c6b4595d1b5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote & SG] Ekvahlabs 正在招聘区块链开发人员",
+          "pt-BR": "[Remote & SG] Ekvahlabs 正在招聘区块链开发人员",
+          "es": "[Remote & SG] Ekvahlabs 正在招聘区块链开发人员",
+          "it": "[Remote & SG] Ekvahlabs 正在招聘区块链开发人员",
+          "fr": "[Remote & SG] Ekvahlabs 正在招聘区块链开发人员",
+          "de": "[Remote & SG] Ekvahlabs 正在招聘区块链开发人员"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_744abbbd1a93e4f8c3761e83"
         }
       },
       "status": "pending",
