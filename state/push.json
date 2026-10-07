@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "560fe1efcc86f42e36fd0a5b8d6548097fd85d73",
-    "generatedAt": "2026-10-07T00:17:43.242Z",
-    "dataHash": "52aa7316b6fc695b7e0e918cda1d75b1717e98cf95ccff99bc6e0deaf5802458"
+    "commit": "a57f1d818a3f8bee17365eaeed7bb820e798f877",
+    "generatedAt": "2026-10-07T09:36:38.452Z",
+    "dataHash": "1a296f88070a62d38c03ae59ac76195cd14398f12d7f7a9b84f945693634f363"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -7950,6 +7950,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_744abbbd1a93e4f8c3761e83"
+        }
+      },
+      "status": "skipped_closed",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": "2026-10-07T09:36:38.452Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_26b612b8a876401de18363ae",
+      "sourceId": "awesome-jobs/jobs#5082",
+      "dataCommit": "a57f1d818a3f8bee17365eaeed7bb820e798f877",
+      "dataHash": "1a296f88070a62d38c03ae59ac76195cd14398f12d7f7a9b84f945693634f363",
+      "contentHash": "b2951530b0b234b1f907d66383036a3396cf228f1bd25ed4a8ad0652acaabe0f",
+      "sourceCreatedAt": "2026-10-07T07:37:51Z",
+      "createdAt": "2026-10-07T09:36:38.452Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8778d6bf-3323-4aa7-ade2-e0688428ac4e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[90tr Hybrid HCM] Data Engineer 5+ yoe | ký HĐ dài hạn | Eng tự tin",
+          "pt-BR": "[90tr Hybrid HCM] Data Engineer 5+ yoe | ký HĐ dài hạn | Eng tự tin",
+          "es": "[90tr Hybrid HCM] Data Engineer 5+ yoe | ký HĐ dài hạn | Eng tự tin",
+          "it": "[90tr Hybrid HCM] Data Engineer 5+ yoe | ký HĐ dài hạn | Eng tự tin",
+          "fr": "[90tr Hybrid HCM] Data Engineer 5+ yoe | ký HĐ dài hạn | Eng tự tin",
+          "de": "[90tr Hybrid HCM] Data Engineer 5+ yoe | ký HĐ dài hạn | Eng tự tin"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_26b612b8a876401de18363ae"
         }
       },
       "status": "pending",
