@@ -47665,12 +47665,23 @@
       "createdAt": "2026-10-06T21:46:56Z",
       "publicationCreatedAt": "2026-10-07T00:19:41.446Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-07T01:37:46.432Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_5402fbb42413034211d27217",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_5402fbb42413034211d27217/666fea5110ea68b506e4b0aa7cffa61d4c85ae3108c11bb30013b5674ef0bc68/36c7f91a216ec1b589c58855ae183d0298c325018a8ba299dfa7e98bf9791e79/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_5402fbb42413034211d27217/666fea5110ea68b506e4b0aa7cffa61d4c85ae3108c11bb30013b5674ef0bc68/36c7f91a216ec1b589c58855ae183d0298c325018a8ba299dfa7e98bf9791e79/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_5402fbb42413034211d27217/666fea5110ea68b506e4b0aa7cffa61d4c85ae3108c11bb30013b5674ef0bc68/36c7f91a216ec1b589c58855ae183d0298c325018a8ba299dfa7e98bf9791e79/social-video.mp4",
+          "pngHash": "188d03ee686aeb6ef291ac24fd7a6fa255b89f671cda599acbc513c117c25afc",
+          "instagramJpegHash": "d69c2f4c94b8ce707962492cfe6024eef40779673730d58cdbabd05eb81566dd",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "【招聘】区块链后端工程师|Go / EVM / Solana / DEX / Meme|$6,000–8,000/月"
         }
       },
