@@ -47665,12 +47665,14 @@
       "createdAt": "2026-10-06T21:46:56Z",
       "publicationCreatedAt": "2026-10-07T00:19:41.446Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-07T01:37:46.432Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "【招聘】区块链后端工程师|Go / EVM / Solana / DEX / Meme|$6,000–8,000/月"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -47727,7 +47729,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 161
     },
     {
       "jobId": "gh_744abbbd1a93e4f8c3761e83",
