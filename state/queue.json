@@ -48277,12 +48277,14 @@
       "createdAt": "2026-10-07T14:02:31Z",
       "publicationCreatedAt": "2026-10-07T18:17:31.990Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-07T23:09:57.562Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js (Strider)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -48339,7 +48341,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 164
     }
   ]
 }
