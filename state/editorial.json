@@ -1,100 +1,7 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [
-    {
-      "contentId": "interview-prepare-historias",
-      "contentVersion": "2",
-      "pillar": "interview",
-      "scheduledDate": "2026-10-08",
-      "createdAt": "2026-10-08T20:28:51.529Z",
-      "assets": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-10-08T20:28:53.432Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "hosted",
-          "carouselUrls": [
-            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-01.jpg",
-            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-02.jpg",
-            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-03.jpg",
-            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-04.jpg",
-            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-05.jpg",
-            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-06.jpg",
-            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-07.jpg"
-          ],
-          "carouselMedia": [
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-01.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-02.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-03.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-04.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-05.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-06.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-07.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            }
-          ]
-        }
-      },
-      "feed": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-10-08T20:28:59.781Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "published",
-          "id": "18392812219163994",
-          "url": "https://www.instagram.com/p/DePy6ZTnYlU/"
-        }
-      },
-      "story": {
-        "status": "publishing",
-        "attempts": 1,
-        "updatedAt": "2026-10-08T20:30:14.732Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "operationKey": "editorial-37839678501-1"
-        }
-      }
-    }
-  ],
+  "pending": [],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",
@@ -834,6 +741,83 @@
           "status": "unsupported",
           "reason": "editorial_story_feed_media_compatibility_unverified",
           "mediaUrl": "https://media.openings.dev/openings/editorial/linkedin-contato-profissional/2/5/slide-01.jpg",
+          "mediaType": "image/jpeg",
+          "width": 1080,
+          "height": 1350
+        }
+      }
+    },
+    "interview-prepare-historias": {
+      "lastPublishedAt": "2026-10-08T20:30:16.661Z",
+      "cycles": 1,
+      "lastPublication": {
+        "scheduledDate": "2026-10-08",
+        "contentVersion": "2",
+        "assets": {
+          "status": "hosted",
+          "carouselUrls": [
+            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-01.jpg",
+            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-02.jpg",
+            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-03.jpg",
+            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-04.jpg",
+            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-05.jpg",
+            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-06.jpg",
+            "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-07.jpg"
+          ],
+          "carouselMedia": [
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-01.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-02.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-03.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-04.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-05.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-06.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-07.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            }
+          ]
+        },
+        "feed": {
+          "status": "published",
+          "id": "18392812219163994",
+          "url": "https://www.instagram.com/p/DePy6ZTnYlU/"
+        },
+        "story": {
+          "status": "unsupported",
+          "reason": "editorial_story_feed_media_compatibility_unverified",
+          "mediaUrl": "https://media.openings.dev/openings/editorial/interview-prepare-historias/2/5/slide-01.jpg",
           "mediaType": "image/jpeg",
           "width": 1080,
           "height": 1350
