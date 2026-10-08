@@ -48481,12 +48481,14 @@
       "createdAt": "2026-10-08T07:09:07Z",
       "publicationCreatedAt": "2026-10-08T09:49:09.113Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-08T13:41:07.706Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "🔥 HIRING | SMART CONTRACT ENGINEER | REMOTE"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -48543,7 +48545,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 165
     },
     {
       "jobId": "gh_f785315171392d456e6aa75b",
