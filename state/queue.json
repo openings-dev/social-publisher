@@ -48481,12 +48481,23 @@
       "createdAt": "2026-10-08T07:09:07Z",
       "publicationCreatedAt": "2026-10-08T09:49:09.113Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-08T13:41:07.706Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4d807f1015114f3e8c3686cf",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_4d807f1015114f3e8c3686cf/76a2c08d244392a6e0b366246ccb938f7e9e3f411f00d7667609e779d2031bb8/bacf1f87e72a18e702ec7e4fee7ae213346b1ddd89f28aad57c2ff6feda31380/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_4d807f1015114f3e8c3686cf/76a2c08d244392a6e0b366246ccb938f7e9e3f411f00d7667609e779d2031bb8/bacf1f87e72a18e702ec7e4fee7ae213346b1ddd89f28aad57c2ff6feda31380/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_4d807f1015114f3e8c3686cf/76a2c08d244392a6e0b366246ccb938f7e9e3f411f00d7667609e779d2031bb8/bacf1f87e72a18e702ec7e4fee7ae213346b1ddd89f28aad57c2ff6feda31380/social-video.mp4",
+          "pngHash": "00c3ea3f30468023aaf6b6f8dd6252e89e0eb2326299e83cbffd2c69313890ba",
+          "instagramJpegHash": "9f8ada0ef7f756e24dcac43c1d9c7be277416a54a2ee69c3ec1fd61ab9b62f10",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "🔥 HIRING | SMART CONTRACT ENGINEER | REMOTE"
         }
       },
