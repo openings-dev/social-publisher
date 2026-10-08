@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "2a99a9167de58bdbe288056fceeae7e8b9d24487",
-    "generatedAt": "2026-10-08T00:39:21.689Z",
-    "dataHash": "39c23b79d0f3d089d2c5086690b345c398dc02789c587ec9efeeee040d4bd4ee"
+    "commit": "eefeb865cd9927a7dc2bce19977eeff2fa59aaa0",
+    "generatedAt": "2026-10-08T09:47:43.971Z",
+    "dataHash": "79323707d23c684361745fa57fc4ac0ed6ce878348613f3390d6080605d707ff"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -8033,6 +8033,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f12187a6f9db3fd08703be81"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4d807f1015114f3e8c3686cf",
+      "sourceId": "awesome-jobs/jobs#5083",
+      "dataCommit": "eefeb865cd9927a7dc2bce19977eeff2fa59aaa0",
+      "dataHash": "79323707d23c684361745fa57fc4ac0ed6ce878348613f3390d6080605d707ff",
+      "contentHash": "76a2c08d244392a6e0b366246ccb938f7e9e3f411f00d7667609e779d2031bb8",
+      "sourceCreatedAt": "2026-10-08T07:09:07Z",
+      "createdAt": "2026-10-08T09:47:43.971Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0358ee9a-786d-4245-ac5d-f3839309ccef",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🔥 𝐇𝐈𝐑𝐈𝐍𝐆 | 𝐒𝐌𝐀𝐑𝐓 𝐂𝐎𝐍𝐓𝐑𝐀𝐂𝐓 𝐄𝐍𝐆𝐈𝐍𝐄𝐄𝐑 | 𝐑𝐄𝐌𝐎𝐓𝐄",
+          "pt-BR": "🔥 𝐇𝐈𝐑𝐈𝐍𝐆 | 𝐒𝐌𝐀𝐑𝐓 𝐂𝐎𝐍𝐓𝐑𝐀𝐂𝐓 𝐄𝐍𝐆𝐈𝐍𝐄𝐄𝐑 | 𝐑𝐄𝐌𝐎𝐓𝐄",
+          "es": "🔥 𝐇𝐈𝐑𝐈𝐍𝐆 | 𝐒𝐌𝐀𝐑𝐓 𝐂𝐎𝐍𝐓𝐑𝐀𝐂𝐓 𝐄𝐍𝐆𝐈𝐍𝐄𝐄𝐑 | 𝐑𝐄𝐌𝐎𝐓𝐄",
+          "it": "🔥 𝐇𝐈𝐑𝐈𝐍𝐆 | 𝐒𝐌𝐀𝐑𝐓 𝐂𝐎𝐍𝐓𝐑𝐀𝐂𝐓 𝐄𝐍𝐆𝐈𝐍𝐄𝐄𝐑 | 𝐑𝐄𝐌𝐎𝐓𝐄",
+          "fr": "🔥 𝐇𝐈𝐑𝐈𝐍𝐆 | 𝐒𝐌𝐀𝐑𝐓 𝐂𝐎𝐍𝐓𝐑𝐀𝐂𝐓 𝐄𝐍𝐆𝐈𝐍𝐄𝐄𝐑 | 𝐑𝐄𝐌𝐎𝐓𝐄",
+          "de": "🔥 𝐇𝐈𝐑𝐈𝐍𝐆 | 𝐒𝐌𝐀𝐑𝐓 𝐂𝐎𝐍𝐓𝐑𝐀𝐂𝐓 𝐄𝐍𝐆𝐈𝐍𝐄𝐄𝐑 | 𝐑𝐄𝐌𝐎𝐓𝐄"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4d807f1015114f3e8c3686cf"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f785315171392d456e6aa75b",
+      "sourceId": "ambicuity/New-Grad-Jobs#381",
+      "dataCommit": "eefeb865cd9927a7dc2bce19977eeff2fa59aaa0",
+      "dataHash": "79323707d23c684361745fa57fc4ac0ed6ce878348613f3390d6080605d707ff",
+      "contentHash": "6a749e32c610e42d2f7144992627a05a33ba5105ed77b95ebff50609dae8268f",
+      "sourceCreatedAt": "2026-10-08T06:13:40Z",
+      "createdAt": "2026-10-08T09:47:43.971Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "83d5c3a5-2f45-4e3e-a74b-6fa14cbf7638",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-08T00:24:58.497394Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-08T00:24:58.497394Z",
+          "es": "Job data is stale: last scrape 2026-10-08T00:24:58.497394Z",
+          "it": "Job data is stale: last scrape 2026-10-08T00:24:58.497394Z",
+          "fr": "Job data is stale: last scrape 2026-10-08T00:24:58.497394Z",
+          "de": "Job data is stale: last scrape 2026-10-08T00:24:58.497394Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f785315171392d456e6aa75b"
         }
       },
       "status": "pending",
