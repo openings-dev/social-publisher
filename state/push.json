@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "eefeb865cd9927a7dc2bce19977eeff2fa59aaa0",
-    "generatedAt": "2026-10-08T09:47:43.971Z",
-    "dataHash": "79323707d23c684361745fa57fc4ac0ed6ce878348613f3390d6080605d707ff"
+    "commit": "babbc962709c4d36e4ce43c19d61a1c0840816b1",
+    "generatedAt": "2026-10-08T18:15:30.249Z",
+    "dataHash": "236beae07e81fc1b08a3add1a6ff49be907f16c9ba8739658d3b5ac2680e0f70"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -8113,6 +8113,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f785315171392d456e6aa75b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d4d167f732334aca336677fd",
+      "sourceId": "awesome-jobs/vietnam#4958",
+      "dataCommit": "babbc962709c4d36e4ce43c19d61a1c0840816b1",
+      "dataHash": "236beae07e81fc1b08a3add1a6ff49be907f16c9ba8739658d3b5ac2680e0f70",
+      "contentHash": "8f61f1eeffb8636b6b9ddfd64d2219ba08f76b2e54e25cacf51216f496711226",
+      "sourceCreatedAt": "2026-07-09T11:04:37Z",
+      "createdAt": "2026-10-08T18:15:30.249Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e7fae0c1-7885-4fbc-803a-7ecb7be8e2de",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HCM - Quận 7] Hiring Senior Backend Developer (Contractor)",
+          "pt-BR": "[HCM - Quận 7] Hiring Senior Backend Developer (Contractor)",
+          "es": "[HCM - Quận 7] Hiring Senior Backend Developer (Contractor)",
+          "it": "[HCM - Quận 7] Hiring Senior Backend Developer (Contractor)",
+          "fr": "[HCM - Quận 7] Hiring Senior Backend Developer (Contractor)",
+          "de": "[HCM - Quận 7] Hiring Senior Backend Developer (Contractor)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d4d167f732334aca336677fd"
         }
       },
       "status": "pending",
