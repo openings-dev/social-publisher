@@ -49093,12 +49093,23 @@
       "createdAt": "2026-10-09T02:57:12Z",
       "publicationCreatedAt": "2026-10-09T09:54:14.079Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-09T17:50:49.718Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ddf507c5962323f283ba816e",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ddf507c5962323f283ba816e/be6f8ea331445cdd7b6a7d472319e799cbf4ffcb8b23e96242ea301ad08031e3/7a17850b39aa605718463727d7f0e76c0682690b659870ff3da912e1fc1cb4c1/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ddf507c5962323f283ba816e/be6f8ea331445cdd7b6a7d472319e799cbf4ffcb8b23e96242ea301ad08031e3/7a17850b39aa605718463727d7f0e76c0682690b659870ff3da912e1fc1cb4c1/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ddf507c5962323f283ba816e/be6f8ea331445cdd7b6a7d472319e799cbf4ffcb8b23e96242ea301ad08031e3/7a17850b39aa605718463727d7f0e76c0682690b659870ff3da912e1fc1cb4c1/social-video.mp4",
+          "pngHash": "83265b608fe108f981ffa372fc191b02fd4d625a8e14ec13abaab6799c057bbd",
+          "instagramJpegHash": "aeeeb1749ea964f206608e5ee2f76a3148cfbfe79cc6a482adefddd6aff447e7",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "【招聘】区块链协议工程师|Go / Rust / Consensus / P2P / EVM / Solana|$7,000–9,000/月"
         }
       },
