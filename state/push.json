@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "9b7543823e5f8b2a8ecd6ebd2476ca7f228bca69",
-    "generatedAt": "2026-10-09T00:54:17.071Z",
-    "dataHash": "81865b057321a5286da1b632e56e6ec4096eec2a0e1d67b0b3ade654700f34fa"
+    "commit": "3d46ca1c997af26410d3c4b9d4f0c82bce6b9145",
+    "generatedAt": "2026-10-09T09:52:19.684Z",
+    "dataHash": "58123ffb23337b4147843ba4ba485c184c498eab57f24cc41ed9efe9f46d9779"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -8156,6 +8156,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_d4d167f732334aca336677fd"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_22adb1265e1e9cfbf651ca15",
+      "sourceId": "awesome-jobs/jobs#5085",
+      "dataCommit": "3d46ca1c997af26410d3c4b9d4f0c82bce6b9145",
+      "dataHash": "58123ffb23337b4147843ba4ba485c184c498eab57f24cc41ed9efe9f46d9779",
+      "contentHash": "bfe1d5af10a5633ac2d59c8837dba2329df96fbdfb4079e2ce68fa328f6b09a7",
+      "sourceCreatedAt": "2026-10-09T03:04:06Z",
+      "createdAt": "2026-10-09T09:52:19.684Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "22590e3b-ccdd-4a6e-a4c3-faac9d6931e8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[𝗛𝗖𝗠] Tìm Middle/Senior/𝗟𝗲𝗮𝗱 FULLSTACK mạnh 𝗕𝗮𝗰𝗸𝗲𝗻𝗱 (ưu tiên 𝗥𝘂𝗯𝘆) | Lương rất cạnh tranh",
+          "pt-BR": "[𝗛𝗖𝗠] Tìm Middle/Senior/𝗟𝗲𝗮𝗱 FULLSTACK mạnh 𝗕𝗮𝗰𝗸𝗲𝗻𝗱 (ưu tiên 𝗥𝘂𝗯𝘆) | Lương rất cạnh tranh",
+          "es": "[𝗛𝗖𝗠] Tìm Middle/Senior/𝗟𝗲𝗮𝗱 FULLSTACK mạnh 𝗕𝗮𝗰𝗸𝗲𝗻𝗱 (ưu tiên 𝗥𝘂𝗯𝘆) | Lương rất cạnh tranh",
+          "it": "[𝗛𝗖𝗠] Tìm Middle/Senior/𝗟𝗲𝗮𝗱 FULLSTACK mạnh 𝗕𝗮𝗰𝗸𝗲𝗻𝗱 (ưu tiên 𝗥𝘂𝗯𝘆) | Lương rất cạnh tranh",
+          "fr": "[𝗛𝗖𝗠] Tìm Middle/Senior/𝗟𝗲𝗮𝗱 FULLSTACK mạnh 𝗕𝗮𝗰𝗸𝗲𝗻𝗱 (ưu tiên 𝗥𝘂𝗯𝘆) | Lương rất cạnh tranh",
+          "de": "[𝗛𝗖𝗠] Tìm Middle/Senior/𝗟𝗲𝗮𝗱 FULLSTACK mạnh 𝗕𝗮𝗰𝗸𝗲𝗻𝗱 (ưu tiên 𝗥𝘂𝗯𝘆) | Lương rất cạnh tranh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_22adb1265e1e9cfbf651ca15"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ddf507c5962323f283ba816e",
+      "sourceId": "rebase-network/who-is-hiring#1314",
+      "dataCommit": "3d46ca1c997af26410d3c4b9d4f0c82bce6b9145",
+      "dataHash": "58123ffb23337b4147843ba4ba485c184c498eab57f24cc41ed9efe9f46d9779",
+      "contentHash": "be6f8ea331445cdd7b6a7d472319e799cbf4ffcb8b23e96242ea301ad08031e3",
+      "sourceCreatedAt": "2026-10-09T02:57:12Z",
+      "createdAt": "2026-10-09T09:52:19.684Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ea2c54c9-357f-44b6-86f0-80457f42d1d6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【招聘】区块链协议工程师｜Go / Rust / Consensus / P2P / EVM / Solana｜$7,000–9,000/月",
+          "pt-BR": "【招聘】区块链协议工程师｜Go / Rust / Consensus / P2P / EVM / Solana｜$7,000–9,000/月",
+          "es": "【招聘】区块链协议工程师｜Go / Rust / Consensus / P2P / EVM / Solana｜$7,000–9,000/月",
+          "it": "【招聘】区块链协议工程师｜Go / Rust / Consensus / P2P / EVM / Solana｜$7,000–9,000/月",
+          "fr": "【招聘】区块链协议工程师｜Go / Rust / Consensus / P2P / EVM / Solana｜$7,000–9,000/月",
+          "de": "【招聘】区块链协议工程师｜Go / Rust / Consensus / P2P / EVM / Solana｜$7,000–9,000/月"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ddf507c5962323f283ba816e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_087d885731246159d14ac233",
+      "sourceId": "awesome-jobs/jobs#5084",
+      "dataCommit": "3d46ca1c997af26410d3c4b9d4f0c82bce6b9145",
+      "dataHash": "58123ffb23337b4147843ba4ba485c184c498eab57f24cc41ed9efe9f46d9779",
+      "contentHash": "e7b548557fc617681a4ee8c38ca234afc35b025906d703cf5bab0aebefdce421",
+      "sourceCreatedAt": "2026-10-09T01:49:55Z",
+      "createdAt": "2026-10-09T09:52:19.684Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b63b48c3-f60d-4f5f-b1b1-b7f32e629ad3",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTE 50tr nego] Senior JAVA Dev 7+ yoe | Spring Boot | Giờ EU | Eng tự tin | o332.o22.o55",
+          "pt-BR": "[REMOTE 50tr nego] Senior JAVA Dev 7+ yoe | Spring Boot | Giờ EU | Eng tự tin | o332.o22.o55",
+          "es": "[REMOTE 50tr nego] Senior JAVA Dev 7+ yoe | Spring Boot | Giờ EU | Eng tự tin | o332.o22.o55",
+          "it": "[REMOTE 50tr nego] Senior JAVA Dev 7+ yoe | Spring Boot | Giờ EU | Eng tự tin | o332.o22.o55",
+          "fr": "[REMOTE 50tr nego] Senior JAVA Dev 7+ yoe | Spring Boot | Giờ EU | Eng tự tin | o332.o22.o55",
+          "de": "[REMOTE 50tr nego] Senior JAVA Dev 7+ yoe | Spring Boot | Giờ EU | Eng tự tin | o332.o22.o55"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_087d885731246159d14ac233"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_56aa92352a1e25ea5efb71a5",
+      "sourceId": "backend-br/vagas#12415",
+      "dataCommit": "3d46ca1c997af26410d3c4b9d4f0c82bce6b9145",
+      "dataHash": "58123ffb23337b4147843ba4ba485c184c498eab57f24cc41ed9efe9f46d9779",
+      "contentHash": "6d29fd9b85513057716f4989d3338b55ad744fb9c8d78d4111845ebc13fc7cd1",
+      "sourceCreatedAt": "2026-09-08T11:25:03Z",
+      "createdAt": "2026-10-09T09:52:19.684Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "afd1feb9-e1db-4734-b0da-30b632044c66",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido - Belo Horizonte] Tech Lead Java - BHS",
+          "pt-BR": "[Híbrido - Belo Horizonte] Tech Lead Java - BHS",
+          "es": "[Híbrido - Belo Horizonte] Tech Lead Java - BHS",
+          "it": "[Híbrido - Belo Horizonte] Tech Lead Java - BHS",
+          "fr": "[Híbrido - Belo Horizonte] Tech Lead Java - BHS",
+          "de": "[Híbrido - Belo Horizonte] Tech Lead Java - BHS"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_56aa92352a1e25ea5efb71a5"
         }
       },
       "status": "pending",
