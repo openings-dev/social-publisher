@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "e1ebf59af04fa823b96b6535f3c206cb6d3f0e15",
-    "generatedAt": "2026-10-09T17:48:37.815Z",
-    "dataHash": "1969d0bc9fcb9535325f51d93d8b6a2099d6e9c866d86092ea20dc55937fc1d3"
+    "commit": "ee25186260f178328dde13ec7b3730b92a6eaa14",
+    "generatedAt": "2026-10-09T22:05:06.135Z",
+    "dataHash": "788afeb33f94c496282675e8c45a8fb419edc8db5fd8ccd276e2de4d3a090e6b"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -8556,6 +8556,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_046e40a5a4aaffa9b0373703"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ba5bd2250dfdfeaed6de206e",
+      "sourceId": "remoteintech/remote-jobs#2268",
+      "dataCommit": "ee25186260f178328dde13ec7b3730b92a6eaa14",
+      "dataHash": "788afeb33f94c496282675e8c45a8fb419edc8db5fd8ccd276e2de4d3a090e6b",
+      "contentHash": "e19dd6c4bec2e3fd0ddb3c1b9b20ccbb8bd7dc67a6458ac5ef7489b785d11de3",
+      "sourceCreatedAt": "2026-10-09T18:01:42Z",
+      "createdAt": "2026-10-09T22:05:06.135Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "baea3a1a-cb44-42f5-85f6-bc1908a6f2f5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Bug] Changelog page: change descriptions shatter into columns and overflow underneath the Carbon ad",
+          "pt-BR": "[Bug] Changelog page: change descriptions shatter into columns and overflow underneath the Carbon ad",
+          "es": "[Bug] Changelog page: change descriptions shatter into columns and overflow underneath the Carbon ad",
+          "it": "[Bug] Changelog page: change descriptions shatter into columns and overflow underneath the Carbon ad",
+          "fr": "[Bug] Changelog page: change descriptions shatter into columns and overflow underneath the Carbon ad",
+          "de": "[Bug] Changelog page: change descriptions shatter into columns and overflow underneath the Carbon ad"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ba5bd2250dfdfeaed6de206e"
         }
       },
       "status": "pending",
