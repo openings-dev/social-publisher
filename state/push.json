@@ -8035,10 +8035,10 @@
           "jobId": "gh_f12187a6f9db3fd08703be81"
         }
       },
-      "status": "pending",
+      "status": "skipped_stale",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-09T06:37:11.349Z",
       "retryAfter": null,
       "result": null
     },
@@ -8075,10 +8075,10 @@
           "jobId": "gh_4d807f1015114f3e8c3686cf"
         }
       },
-      "status": "pending",
-      "attempts": 0,
-      "firstSubmittedAt": null,
-      "updatedAt": null,
+      "status": "submitting",
+      "attempts": 1,
+      "firstSubmittedAt": "2026-10-09T06:37:11.349Z",
+      "updatedAt": "2026-10-09T06:37:11.349Z",
       "retryAfter": null,
       "result": null
     },
