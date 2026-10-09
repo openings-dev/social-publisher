@@ -49553,12 +49553,23 @@
       "createdAt": "2026-10-09T15:07:16Z",
       "publicationCreatedAt": "2026-10-09T17:52:11.259Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-09T22:43:47.396Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_1cc381ec57be0517e8d9243b",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_1cc381ec57be0517e8d9243b/9947085edd3101c354f8ed6e3058f232007ca6f68df3669308f77946650b5d27/953405f1d64018a269fe9d761829c40830d556869a6e13516f2c0697b45d3351/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_1cc381ec57be0517e8d9243b/9947085edd3101c354f8ed6e3058f232007ca6f68df3669308f77946650b5d27/953405f1d64018a269fe9d761829c40830d556869a6e13516f2c0697b45d3351/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_1cc381ec57be0517e8d9243b/9947085edd3101c354f8ed6e3058f232007ca6f68df3669308f77946650b5d27/953405f1d64018a269fe9d761829c40830d556869a6e13516f2c0697b45d3351/social-video.mp4",
+          "pngHash": "23d0e294fa1b72b80d3754bb1270622af55e1c746adafe7a14bff3b72d89289c",
+          "instagramJpegHash": "bdb6b42ead0e3292e48ce590a68f3d3aba0a6185275d46b6df1097717d94d86b",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto ou Híbrido - São Paulo/SP] Full Stack Developer - Cogfy"
         }
       },
