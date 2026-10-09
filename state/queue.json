@@ -49371,12 +49371,14 @@
       "createdAt": "2026-10-09T17:01:40Z",
       "publicationCreatedAt": "2026-10-09T17:52:11.259Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-09T22:07:18.130Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Job data is stale: last scrape 2026-10-09T13:46:11.108600Z"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -49433,7 +49435,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 169
     },
     {
       "jobId": "gh_1cc381ec57be0517e8d9243b",
