@@ -8075,12 +8075,15 @@
           "jobId": "gh_4d807f1015114f3e8c3686cf"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-10-09T06:37:11.349Z",
-      "updatedAt": "2026-10-09T06:37:11.349Z",
+      "updatedAt": "2026-10-09T06:37:13.386Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "af855f1c-1521-4ede-984f-01a3d85e0cca",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_f785315171392d456e6aa75b",
