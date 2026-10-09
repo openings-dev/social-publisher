@@ -49553,12 +49553,14 @@
       "createdAt": "2026-10-09T15:07:16Z",
       "publicationCreatedAt": "2026-10-09T17:52:11.259Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-09T22:43:47.396Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto ou Híbrido - São Paulo/SP] Full Stack Developer - Cogfy"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -49615,7 +49617,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 170
     },
     {
       "jobId": "gh_849717642034c6ac92924f14",
