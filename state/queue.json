@@ -49757,12 +49757,14 @@
       "createdAt": "2026-10-09T13:19:01Z",
       "publicationCreatedAt": "2026-10-09T17:52:11.259Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-10T06:00:11.602Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "【全球远程 FineStar】AIGC视频生成师 视频剪辑 新媒体运营 编辑专员 短剧学徒 AI短剧 AI生成师- 10-50k/RMB"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -49819,7 +49821,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 172
     },
     {
       "jobId": "gh_ba5bd2250dfdfeaed6de206e",
