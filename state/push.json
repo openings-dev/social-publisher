@@ -8198,12 +8198,15 @@
           "jobId": "gh_22adb1265e1e9cfbf651ca15"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-10-10T03:38:39.515Z",
-      "updatedAt": "2026-10-10T03:38:39.515Z",
+      "updatedAt": "2026-10-10T03:38:41.124Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "953a0e68-ffde-468c-9f56-861845a4b21f",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_ddf507c5962323f283ba816e",
