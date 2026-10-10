@@ -49831,12 +49831,23 @@
       "createdAt": "2026-10-09T18:01:42Z",
       "publicationCreatedAt": "2026-10-09T22:45:02.551Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-10T03:39:08.558Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ba5bd2250dfdfeaed6de206e",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ba5bd2250dfdfeaed6de206e/e19dd6c4bec2e3fd0ddb3c1b9b20ccbb8bd7dc67a6458ac5ef7489b785d11de3/34b559168628d4b2b0a333f4263e3b6848a58a02c0100d72291010c91325af50/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ba5bd2250dfdfeaed6de206e/e19dd6c4bec2e3fd0ddb3c1b9b20ccbb8bd7dc67a6458ac5ef7489b785d11de3/34b559168628d4b2b0a333f4263e3b6848a58a02c0100d72291010c91325af50/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ba5bd2250dfdfeaed6de206e/e19dd6c4bec2e3fd0ddb3c1b9b20ccbb8bd7dc67a6458ac5ef7489b785d11de3/34b559168628d4b2b0a333f4263e3b6848a58a02c0100d72291010c91325af50/social-video.mp4",
+          "pngHash": "a8a29c80161c88504ca9e8cda5debea92d0b28b5930835e494ef17e87a71fa31",
+          "instagramJpegHash": "1a021ba6a3919a8f4d524888127769b05119ee43cab64378ba1ff4de6fbc8137",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[Bug] Changelog page: change descriptions shatter into columns and overflow underneath the Carbon ad"
         }
       },
