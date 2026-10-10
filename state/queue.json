@@ -49831,12 +49831,14 @@
       "createdAt": "2026-10-09T18:01:42Z",
       "publicationCreatedAt": "2026-10-09T22:45:02.551Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-10T03:39:08.558Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Bug] Changelog page: change descriptions shatter into columns and overflow underneath the Carbon ad"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -49893,7 +49895,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 171
     }
   ]
 }
