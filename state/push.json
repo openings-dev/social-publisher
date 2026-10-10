@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "8d17f69149f03a14755a916ef179b9e3bacad3de",
-    "generatedAt": "2026-10-10T16:42:22.573Z",
-    "dataHash": "706f41dac94ecb43d3b233c66af72d79570a3c888e7626b676271f40e7dbe981"
+    "commit": "06e32af81160ca5010a8a896c45e92c0ed2c11d9",
+    "generatedAt": "2026-10-10T20:58:19.061Z",
+    "dataHash": "5f680988b6ee60926b550e9843a9d89824bec62d8c74042089f612733f0d4c7a"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -8679,6 +8679,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f379b4c76548e2cd330b8777"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_584abed0049e3bbac72854c5",
+      "sourceId": "backend-br/vagas#12442",
+      "dataCommit": "06e32af81160ca5010a8a896c45e92c0ed2c11d9",
+      "dataHash": "5f680988b6ee60926b550e9843a9d89824bec62d8c74042089f612733f0d4c7a",
+      "contentHash": "9e95223f49fdc163cfedda9ef463d3c4107dec903226492af9576a3790c3af4e",
+      "sourceCreatedAt": "2026-10-10T19:44:18Z",
+      "createdAt": "2026-10-10T20:58:19.061Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "76361fea-de3c-4d23-8340-868d4bc54389",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-end Software Engineer  - USD (Micro1)",
+          "pt-BR": "[Remoto] Back-end Software Engineer  - USD (Micro1)",
+          "es": "[Remoto] Back-end Software Engineer  - USD (Micro1)",
+          "it": "[Remoto] Back-end Software Engineer  - USD (Micro1)",
+          "fr": "[Remoto] Back-end Software Engineer  - USD (Micro1)",
+          "de": "[Remoto] Back-end Software Engineer  - USD (Micro1)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_584abed0049e3bbac72854c5"
         }
       },
       "status": "pending",
