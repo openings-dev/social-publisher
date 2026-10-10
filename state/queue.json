@@ -50488,6 +50488,80 @@
         ],
         "manifestDigest": "dff4cdbf3e019141b5916430f86a2a828e9df817cccb6a1beeca4304d70562da"
       }
+    },
+    {
+      "jobId": "gh_584abed0049e3bbac72854c5",
+      "sourceId": "backend-br/vagas#12442",
+      "dataCommit": "06e32af81160ca5010a8a896c45e92c0ed2c11d9",
+      "dataHash": "5f680988b6ee60926b550e9843a9d89824bec62d8c74042089f612733f0d4c7a",
+      "contentHash": "9e95223f49fdc163cfedda9ef463d3c4107dec903226492af9576a3790c3af4e",
+      "discoveredAt": "2026-10-10T23:37:40.968Z",
+      "createdAt": "2026-10-10T19:44:18Z",
+      "publicationCreatedAt": "2026-10-10T23:37:40.968Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
