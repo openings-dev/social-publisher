@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "a69fd0f5fff7af1c69650c07b88f5d5a2b4c3573",
-    "generatedAt": "2026-10-11T00:05:37.082Z",
-    "dataHash": "22dcb131592c67b16d81855d26429d19194dc6d047cb5b89f32ec4379d70cf47"
+    "commit": "86cd39ac0238b59275c8c4b5cb716b7a4ff96ff3",
+    "generatedAt": "2026-10-11T09:33:09.709Z",
+    "dataHash": "c7a1d28e6b3c24158e121b8e36fd66ef51aa2f77a3d9d9a74bbd1168e462596f"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -8722,6 +8722,206 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_584abed0049e3bbac72854c5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7adffa257c85b69872e047c3",
+      "sourceId": "ambicuity/New-Grad-Jobs#384",
+      "dataCommit": "86cd39ac0238b59275c8c4b5cb716b7a4ff96ff3",
+      "dataHash": "c7a1d28e6b3c24158e121b8e36fd66ef51aa2f77a3d9d9a74bbd1168e462596f",
+      "contentHash": "0c8cdcb66814532e77b4270351305a597282f6086bddb718cd9654b2b8d76ebb",
+      "sourceCreatedAt": "2026-10-11T05:55:52Z",
+      "createdAt": "2026-10-11T09:33:09.709Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b0afe630-5d9d-44a3-bd42-3ef779cb2cc7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-11T02:10:15.914636Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-11T02:10:15.914636Z",
+          "es": "Job data is stale: last scrape 2026-10-11T02:10:15.914636Z",
+          "it": "Job data is stale: last scrape 2026-10-11T02:10:15.914636Z",
+          "fr": "Job data is stale: last scrape 2026-10-11T02:10:15.914636Z",
+          "de": "Job data is stale: last scrape 2026-10-11T02:10:15.914636Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7adffa257c85b69872e047c3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d89e1cc41b9d704400c8843b",
+      "sourceId": "ambicuity/New-Grad-Jobs#383",
+      "dataCommit": "86cd39ac0238b59275c8c4b5cb716b7a4ff96ff3",
+      "dataHash": "c7a1d28e6b3c24158e121b8e36fd66ef51aa2f77a3d9d9a74bbd1168e462596f",
+      "contentHash": "960980490e860c09f91c2e3cc85516f0f0bdd5b23f68e5622a081043a4846e0e",
+      "sourceCreatedAt": "2026-10-11T04:41:00Z",
+      "createdAt": "2026-10-11T09:33:09.709Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "47dd8e4a-45f5-4cf6-a003-1f1535dcc083",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Bug]: Workday tenants that null locationsText publish out-of-region jobs and lose JobPosting JSON-LD",
+          "pt-BR": "[Bug]: Workday tenants that null locationsText publish out-of-region jobs and lose JobPosting JSON-LD",
+          "es": "[Bug]: Workday tenants that null locationsText publish out-of-region jobs and lose JobPosting JSON-LD",
+          "it": "[Bug]: Workday tenants that null locationsText publish out-of-region jobs and lose JobPosting JSON-LD",
+          "fr": "[Bug]: Workday tenants that null locationsText publish out-of-region jobs and lose JobPosting JSON-LD",
+          "de": "[Bug]: Workday tenants that null locationsText publish out-of-region jobs and lose JobPosting JSON-LD"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d89e1cc41b9d704400c8843b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_71777214eda8251069edbc42",
+      "sourceId": "backend-br/vagas#12420",
+      "dataCommit": "86cd39ac0238b59275c8c4b5cb716b7a4ff96ff3",
+      "dataHash": "c7a1d28e6b3c24158e121b8e36fd66ef51aa2f77a3d9d9a74bbd1168e462596f",
+      "contentHash": "00213be75138783f832973996370b39bdc7f4bb5c3ad8b6126fcc5f99291b3ce",
+      "sourceCreatedAt": "2026-09-10T16:01:43Z",
+      "createdAt": "2026-10-11T09:33:09.709Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "210a095e-e7d9-484b-a095-914a32342985",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido! Curitiba] Tech Lead - USD (Jcal)",
+          "pt-BR": "[Híbrido! Curitiba] Tech Lead - USD (Jcal)",
+          "es": "[Híbrido! Curitiba] Tech Lead - USD (Jcal)",
+          "it": "[Híbrido! Curitiba] Tech Lead - USD (Jcal)",
+          "fr": "[Híbrido! Curitiba] Tech Lead - USD (Jcal)",
+          "de": "[Híbrido! Curitiba] Tech Lead - USD (Jcal)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_71777214eda8251069edbc42"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2425b55ecadf59465ec1e50b",
+      "sourceId": "backend-br/vagas#12419",
+      "dataCommit": "86cd39ac0238b59275c8c4b5cb716b7a4ff96ff3",
+      "dataHash": "c7a1d28e6b3c24158e121b8e36fd66ef51aa2f77a3d9d9a74bbd1168e462596f",
+      "contentHash": "f747248f1d548bea485b2365177a4ef9baf3a1230b4e7c6dcab3025e13b0a2f0",
+      "sourceCreatedAt": "2026-09-10T15:58:12Z",
+      "createdAt": "2026-10-11T09:33:09.709Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "faaff233-650a-42ac-8fce-93232aeb4ad2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido/Curitiba ] Back-end Engineer developer Python - USD (Jcal Consultoria)",
+          "pt-BR": "[Híbrido/Curitiba ] Back-end Engineer developer Python - USD (Jcal Consultoria)",
+          "es": "[Híbrido/Curitiba ] Back-end Engineer developer Python - USD (Jcal Consultoria)",
+          "it": "[Híbrido/Curitiba ] Back-end Engineer developer Python - USD (Jcal Consultoria)",
+          "fr": "[Híbrido/Curitiba ] Back-end Engineer developer Python - USD (Jcal Consultoria)",
+          "de": "[Híbrido/Curitiba ] Back-end Engineer developer Python - USD (Jcal Consultoria)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2425b55ecadf59465ec1e50b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_237d354ae3994e01bd1b16e8",
+      "sourceId": "soujava/vagas-java#1938",
+      "dataCommit": "86cd39ac0238b59275c8c4b5cb716b7a4ff96ff3",
+      "dataHash": "c7a1d28e6b3c24158e121b8e36fd66ef51aa2f77a3d9d9a74bbd1168e462596f",
+      "contentHash": "5c166faa135b43153be25eb65918249ee5d87695cda6236336f198717a3e233a",
+      "sourceCreatedAt": "2026-08-11T20:31:19Z",
+      "createdAt": "2026-10-11T09:33:09.709Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b2ebd4f5-5fcc-4833-8886-1c655f904c05",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Java Backend Sênior + Python (Foco em IA) - Evertec 🧡",
+          "pt-BR": "[Remoto] Java Backend Sênior + Python (Foco em IA) - Evertec 🧡",
+          "es": "[Remoto] Java Backend Sênior + Python (Foco em IA) - Evertec 🧡",
+          "it": "[Remoto] Java Backend Sênior + Python (Foco em IA) - Evertec 🧡",
+          "fr": "[Remoto] Java Backend Sênior + Python (Foco em IA) - Evertec 🧡",
+          "de": "[Remoto] Java Backend Sênior + Python (Foco em IA) - Evertec 🧡"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_237d354ae3994e01bd1b16e8"
         }
       },
       "status": "pending",
