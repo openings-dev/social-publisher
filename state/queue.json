@@ -50803,9 +50803,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-11T23:43:49.536Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -50981,12 +50981,14 @@
       "createdAt": "2026-10-11T13:29:49Z",
       "publicationCreatedAt": "2026-10-11T19:00:57.933Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-11T23:43:49.536Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "9 company profiles whose domains no longer exist"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -51043,7 +51045,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 177
     }
   ]
 }
