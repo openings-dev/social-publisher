@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "57c4db0a0b42509e78785f31ab1a957600d52d1a",
-    "generatedAt": "2026-10-11T17:08:17.738Z",
-    "dataHash": "2d7bc17db623f786f52df4c1e08b9eef16c2efb4632a2d5370c98f9325746441"
+    "commit": "daed6d4218115e2cefe59ac1e1563dfed3002ece",
+    "generatedAt": "2026-10-11T21:19:22.080Z",
+    "dataHash": "6b3e21ceef77fb529dfc7883bf4d3d582dc6f2985452269bc3df108915170d5c"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -8764,10 +8764,10 @@
           "jobId": "gh_7adffa257c85b69872e047c3"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-11T21:19:22.080Z",
       "retryAfter": null,
       "result": null
     },
@@ -8962,6 +8962,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_64aa16d7a09022b86ee0040c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0863d8a0fef2db4fad3eeac3",
+      "sourceId": "backend-br/vagas#12422",
+      "dataCommit": "daed6d4218115e2cefe59ac1e1563dfed3002ece",
+      "dataHash": "6b3e21ceef77fb529dfc7883bf4d3d582dc6f2985452269bc3df108915170d5c",
+      "contentHash": "9e5c9c147abab8ac3a62cd579d5a1e774a088a018e6c7f7a3812d1759cba38e1",
+      "sourceCreatedAt": "2026-09-15T17:42:40Z",
+      "createdAt": "2026-10-11T21:19:22.080Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9acce82d-7dee-4da8-8d7e-5959da05b4cd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Full Stack Pleno (Python / TypeScript / IA) na Ártemis",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Full Stack Pleno (Python / TypeScript / IA) na Ártemis",
+          "es": "[Remoto] Desenvolvedor(a) Full Stack Pleno (Python / TypeScript / IA) na Ártemis",
+          "it": "[Remoto] Desenvolvedor(a) Full Stack Pleno (Python / TypeScript / IA) na Ártemis",
+          "fr": "[Remoto] Desenvolvedor(a) Full Stack Pleno (Python / TypeScript / IA) na Ártemis",
+          "de": "[Remoto] Desenvolvedor(a) Full Stack Pleno (Python / TypeScript / IA) na Ártemis"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0863d8a0fef2db4fad3eeac3"
         }
       },
       "status": "pending",
