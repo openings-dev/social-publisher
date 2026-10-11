@@ -50761,12 +50761,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-11T18:59:29.495Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17978555531921464",
+          "url": "https://www.threads.com/@openingshq/post/DeXXBP_DyRj"
+        }
       },
       "instagram": {
         "status": "pending",
