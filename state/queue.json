@@ -50499,12 +50499,23 @@
       "createdAt": "2026-10-10T19:44:18Z",
       "publicationCreatedAt": "2026-10-10T23:37:40.968Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-11T05:56:00.140Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_584abed0049e3bbac72854c5",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_584abed0049e3bbac72854c5/9e95223f49fdc163cfedda9ef463d3c4107dec903226492af9576a3790c3af4e/f5481870aab03fe3591edaee81e6c37feee07e840ebf554fce38eea48d39380d/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_584abed0049e3bbac72854c5/9e95223f49fdc163cfedda9ef463d3c4107dec903226492af9576a3790c3af4e/f5481870aab03fe3591edaee81e6c37feee07e840ebf554fce38eea48d39380d/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_584abed0049e3bbac72854c5/9e95223f49fdc163cfedda9ef463d3c4107dec903226492af9576a3790c3af4e/f5481870aab03fe3591edaee81e6c37feee07e840ebf554fce38eea48d39380d/social-video.mp4",
+          "pngHash": "c44fdac9a95cd28072f22857aa5224145161a1b154b2e2f5b9bb536fa696250f",
+          "instagramJpegHash": "1872e35e20152de3d3dda148550e9782a3309cb3b2472b779d0373f9a61f5401",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Remoto] Back-end Software Engineer - USD (Micro1)"
         }
       },
