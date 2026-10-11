@@ -50981,12 +50981,23 @@
       "createdAt": "2026-10-11T13:29:49Z",
       "publicationCreatedAt": "2026-10-11T19:00:57.933Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-11T23:43:49.536Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_64aa16d7a09022b86ee0040c",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_64aa16d7a09022b86ee0040c/9cd29dc4c8fcba780246dbadc0570a450c61a1fc619d41ba095622fe9347e7b7/98d74a7e1315732a05d71999119daf8d31379b94ffcbe49f1782a86b8bc061c1/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_64aa16d7a09022b86ee0040c/9cd29dc4c8fcba780246dbadc0570a450c61a1fc619d41ba095622fe9347e7b7/98d74a7e1315732a05d71999119daf8d31379b94ffcbe49f1782a86b8bc061c1/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_64aa16d7a09022b86ee0040c/9cd29dc4c8fcba780246dbadc0570a450c61a1fc619d41ba095622fe9347e7b7/98d74a7e1315732a05d71999119daf8d31379b94ffcbe49f1782a86b8bc061c1/social-video.mp4",
+          "pngHash": "acaafd7a06d7bbaa51307eabb024c0bd4f921f62883cf08d82ea9d5110ae3fd1",
+          "instagramJpegHash": "8e635a0232deaa3feae40bbeeb712ef4264592c052879d561f4ffa5fd8049c85",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "9 company profiles whose domains no longer exist"
         }
       },
