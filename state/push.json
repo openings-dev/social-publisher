@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "86cd39ac0238b59275c8c4b5cb716b7a4ff96ff3",
-    "generatedAt": "2026-10-11T09:33:09.709Z",
-    "dataHash": "c7a1d28e6b3c24158e121b8e36fd66ef51aa2f77a3d9d9a74bbd1168e462596f"
+    "commit": "57c4db0a0b42509e78785f31ab1a957600d52d1a",
+    "generatedAt": "2026-10-11T17:08:17.738Z",
+    "dataHash": "2d7bc17db623f786f52df4c1e08b9eef16c2efb4632a2d5370c98f9325746441"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -8922,6 +8922,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_237d354ae3994e01bd1b16e8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_64aa16d7a09022b86ee0040c",
+      "sourceId": "remoteintech/remote-jobs#2271",
+      "dataCommit": "57c4db0a0b42509e78785f31ab1a957600d52d1a",
+      "dataHash": "2d7bc17db623f786f52df4c1e08b9eef16c2efb4632a2d5370c98f9325746441",
+      "contentHash": "9cd29dc4c8fcba780246dbadc0570a450c61a1fc619d41ba095622fe9347e7b7",
+      "sourceCreatedAt": "2026-10-11T13:29:49Z",
+      "createdAt": "2026-10-11T17:08:17.738Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3f19dbc9-3b5a-4720-a0f1-1667d3a52961",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "9 company profiles whose domains no longer exist",
+          "pt-BR": "9 company profiles whose domains no longer exist",
+          "es": "9 company profiles whose domains no longer exist",
+          "it": "9 company profiles whose domains no longer exist",
+          "fr": "9 company profiles whose domains no longer exist",
+          "de": "9 company profiles whose domains no longer exist"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_64aa16d7a09022b86ee0040c"
         }
       },
       "status": "pending",
