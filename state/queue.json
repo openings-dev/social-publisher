@@ -50907,12 +50907,23 @@
       "createdAt": "2026-10-11T04:41:00Z",
       "publicationCreatedAt": "2026-10-11T13:00:19.015Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-12T06:16:03.493Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_d89e1cc41b9d704400c8843b",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_d89e1cc41b9d704400c8843b/960980490e860c09f91c2e3cc85516f0f0bdd5b23f68e5622a081043a4846e0e/66d7ce2f3e3fb292818ba238e032a75c01bad973b37b3c89aa2aebba02121b12/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_d89e1cc41b9d704400c8843b/960980490e860c09f91c2e3cc85516f0f0bdd5b23f68e5622a081043a4846e0e/66d7ce2f3e3fb292818ba238e032a75c01bad973b37b3c89aa2aebba02121b12/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_d89e1cc41b9d704400c8843b/960980490e860c09f91c2e3cc85516f0f0bdd5b23f68e5622a081043a4846e0e/66d7ce2f3e3fb292818ba238e032a75c01bad973b37b3c89aa2aebba02121b12/social-video.mp4",
+          "pngHash": "92bacbfab2a6eb711a01897e5d6bf3099c4e773da3b23a2a4359865050213125",
+          "instagramJpegHash": "c5231a060a069bdf57b5fea7a7c1a3f8f4de2c56f754d9df18fe210262fe2531",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Bug]: Workday tenants that null locationsText publish out-of-region jobs and lose JobPosting JSON-LD"
         }
       },
