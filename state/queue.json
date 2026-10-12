@@ -51389,12 +51389,23 @@
       "createdAt": "2026-10-12T05:05:20Z",
       "publicationCreatedAt": "2026-10-12T15:38:29.163Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-12T23:02:52.573Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_a4a7d7b8ea3a77260256bf62",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_a4a7d7b8ea3a77260256bf62/804d6324575c7187eed7b98afb25ade1def4772b7010c1f586175315750699b6/e7d4d1a9d37943274faf94b05aaecfb178b5dcf99075328f28fb46dc62115ba4/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_a4a7d7b8ea3a77260256bf62/804d6324575c7187eed7b98afb25ade1def4772b7010c1f586175315750699b6/e7d4d1a9d37943274faf94b05aaecfb178b5dcf99075328f28fb46dc62115ba4/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_a4a7d7b8ea3a77260256bf62/804d6324575c7187eed7b98afb25ade1def4772b7010c1f586175315750699b6/e7d4d1a9d37943274faf94b05aaecfb178b5dcf99075328f28fb46dc62115ba4/social-video.mp4",
+          "pngHash": "55fcbc54ff9c67776391ffaab96b39b4afe3a571eb23ff1a5226ce7d182ab49c",
+          "instagramJpegHash": "de285e6ab13639082a328721e58e8098a7dea0c1296859decf5e07e54420bfa4",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "New Feature Request: Graduation-year and academic-standing filtering"
         }
       },
