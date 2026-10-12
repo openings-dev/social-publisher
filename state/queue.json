@@ -50907,12 +50907,14 @@
       "createdAt": "2026-10-11T04:41:00Z",
       "publicationCreatedAt": "2026-10-11T13:00:19.015Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-12T06:16:03.493Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Bug]: Workday tenants that null locationsText publish out-of-region jobs and lose JobPosting JSON-LD"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -50969,7 +50971,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 178
     },
     {
       "jobId": "gh_64aa16d7a09022b86ee0040c",
