@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "91a79dccd2f8bfaa603ae8d3d2302874fc17b57e",
-    "generatedAt": "2026-10-12T03:33:31.071Z",
-    "dataHash": "c6d1b9155baaf88c43b427eba4083bb53ede02c998dbcceaef77b649dc8d6db2"
+    "commit": "3382315e2bdf01bb289b0f30c52e19e136b616a4",
+    "generatedAt": "2026-10-12T14:02:17.880Z",
+    "dataHash": "affcbc93bd97329768b0225221106464db4926b40176459dbada8eac3dc639d7"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -9045,6 +9045,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_8fd42d6b7cc786322bb03c29"
+        }
+      },
+      "status": "skipped_closed",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": "2026-10-12T10:37:38.202Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a4a7d7b8ea3a77260256bf62",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9704",
+      "dataCommit": "09bce9cf3c2097dc459525a0a66f0934bb028fa7",
+      "dataHash": "d1b2d5972fd4370bdc008062dbcb4ee19f0bfd69423fb4517be309aa822535e3",
+      "contentHash": "804d6324575c7187eed7b98afb25ade1def4772b7010c1f586175315750699b6",
+      "sourceCreatedAt": "2026-10-12T05:05:20Z",
+      "createdAt": "2026-10-12T10:37:38.202Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "65cba47d-f62c-453e-b6b5-3c9e60dd91de",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Feature Request: Graduation-year and academic-standing filtering",
+          "pt-BR": "New Feature Request: Graduation-year and academic-standing filtering",
+          "es": "New Feature Request: Graduation-year and academic-standing filtering",
+          "it": "New Feature Request: Graduation-year and academic-standing filtering",
+          "fr": "New Feature Request: Graduation-year and academic-standing filtering",
+          "de": "New Feature Request: Graduation-year and academic-standing filtering"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a4a7d7b8ea3a77260256bf62"
         }
       },
       "status": "pending",
