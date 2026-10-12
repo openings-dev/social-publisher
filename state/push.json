@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "daed6d4218115e2cefe59ac1e1563dfed3002ece",
-    "generatedAt": "2026-10-11T21:19:22.080Z",
-    "dataHash": "6b3e21ceef77fb529dfc7883bf4d3d582dc6f2985452269bc3df108915170d5c"
+    "commit": "91a79dccd2f8bfaa603ae8d3d2302874fc17b57e",
+    "generatedAt": "2026-10-12T03:33:31.071Z",
+    "dataHash": "c6d1b9155baaf88c43b427eba4083bb53ede02c998dbcceaef77b649dc8d6db2"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -9002,6 +9002,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_0863d8a0fef2db4fad3eeac3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8fd42d6b7cc786322bb03c29",
+      "sourceId": "ambicuity/New-Grad-Jobs#386",
+      "dataCommit": "91a79dccd2f8bfaa603ae8d3d2302874fc17b57e",
+      "dataHash": "c6d1b9155baaf88c43b427eba4083bb53ede02c998dbcceaef77b649dc8d6db2",
+      "contentHash": "461cae1cda48b9356d9307bb6779952262b4977779eaf65029cd28213525e2f8",
+      "sourceCreatedAt": "2026-10-11T23:43:30Z",
+      "createdAt": "2026-10-12T03:33:31.071Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5f782800-53b5-40d7-9978-7f4b69fc226b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-11T20:13:43.452889Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-11T20:13:43.452889Z",
+          "es": "Job data is stale: last scrape 2026-10-11T20:13:43.452889Z",
+          "it": "Job data is stale: last scrape 2026-10-11T20:13:43.452889Z",
+          "fr": "Job data is stale: last scrape 2026-10-11T20:13:43.452889Z",
+          "de": "Job data is stale: last scrape 2026-10-11T20:13:43.452889Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8fd42d6b7cc786322bb03c29"
         }
       },
       "status": "pending",
