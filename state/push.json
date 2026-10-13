@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "028bb1244f62c7f9aebb3510c4fb1c7bd44d0f24",
-    "generatedAt": "2026-10-13T13:17:09.287Z",
-    "dataHash": "c23f62ceff488b6f1ba6c8ec2e354187d950528bc122cafd4db23273ff3ade79"
+    "commit": "019366b8ebb8ddedb3e16f3ece24004a8ee403ee",
+    "generatedAt": "2026-10-13T20:28:34.168Z",
+    "dataHash": "1d2915b3621bf701ea3cc4353b1a9a16d719fb9eb4a80607d996c2fdb4de7ba5"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -9248,6 +9248,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_ae1b35ddc559819229a19373"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7c17d41a11070d7781299515",
+      "sourceId": "backend-br/vagas#12445",
+      "dataCommit": "019366b8ebb8ddedb3e16f3ece24004a8ee403ee",
+      "dataHash": "1d2915b3621bf701ea3cc4353b1a9a16d719fb9eb4a80607d996c2fdb4de7ba5",
+      "contentHash": "0f56bbd728c2f954ca1e9f2d6a98ee8495280e116c9ff0a3b9e06d6afd798432",
+      "sourceCreatedAt": "2026-10-13T19:54:17Z",
+      "createdAt": "2026-10-13T20:28:34.168Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f5e6ee1c-d84f-4a48-a30f-639264c9803e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTO] Desenvolvedor Fullstack Pleno - Java & Angular - DB1",
+          "pt-BR": "[REMOTO] Desenvolvedor Fullstack Pleno - Java & Angular - DB1",
+          "es": "[REMOTO] Desenvolvedor Fullstack Pleno - Java & Angular - DB1",
+          "it": "[REMOTO] Desenvolvedor Fullstack Pleno - Java & Angular - DB1",
+          "fr": "[REMOTO] Desenvolvedor Fullstack Pleno - Java & Angular - DB1",
+          "de": "[REMOTO] Desenvolvedor Fullstack Pleno - Java & Angular - DB1"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7c17d41a11070d7781299515"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_14809edc1bee697bfd43f43f",
+      "sourceId": "soujava/vagas-java#1962",
+      "dataCommit": "019366b8ebb8ddedb3e16f3ece24004a8ee403ee",
+      "dataHash": "1d2915b3621bf701ea3cc4353b1a9a16d719fb9eb4a80607d996c2fdb4de7ba5",
+      "contentHash": "c1f982577654bdc63fb59b297ddf5aaa4ca3c91cfddbfb531dec222ceb067c83",
+      "sourceCreatedAt": "2026-10-13T19:47:00Z",
+      "createdAt": "2026-10-13T20:28:34.168Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "dcb09db8-dbba-4de2-b3fb-8c22177fb259",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTO] Desenvolvedor Java Junior na DB1/ANYMARKET",
+          "pt-BR": "[REMOTO] Desenvolvedor Java Junior na DB1/ANYMARKET",
+          "es": "[REMOTO] Desenvolvedor Java Junior na DB1/ANYMARKET",
+          "it": "[REMOTO] Desenvolvedor Java Junior na DB1/ANYMARKET",
+          "fr": "[REMOTO] Desenvolvedor Java Junior na DB1/ANYMARKET",
+          "de": "[REMOTO] Desenvolvedor Java Junior na DB1/ANYMARKET"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_14809edc1bee697bfd43f43f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7d2ddd4299e54af674ed129e",
+      "sourceId": "soujava/vagas-java#1961",
+      "dataCommit": "019366b8ebb8ddedb3e16f3ece24004a8ee403ee",
+      "dataHash": "1d2915b3621bf701ea3cc4353b1a9a16d719fb9eb4a80607d996c2fdb4de7ba5",
+      "contentHash": "d5d07d1b22034e59b09a7445b3eba78d47207bc3c5d65e7ba44844de21a95e39",
+      "sourceCreatedAt": "2026-10-13T19:39:25Z",
+      "createdAt": "2026-10-13T20:28:34.168Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b77621af-1104-4938-a9f3-54244fcc4080",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTO] Desenvolvedor Java Pleno na DB1/ANYMARKET",
+          "pt-BR": "[REMOTO] Desenvolvedor Java Pleno na DB1/ANYMARKET",
+          "es": "[REMOTO] Desenvolvedor Java Pleno na DB1/ANYMARKET",
+          "it": "[REMOTO] Desenvolvedor Java Pleno na DB1/ANYMARKET",
+          "fr": "[REMOTO] Desenvolvedor Java Pleno na DB1/ANYMARKET",
+          "de": "[REMOTO] Desenvolvedor Java Pleno na DB1/ANYMARKET"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7d2ddd4299e54af674ed129e"
         }
       },
       "status": "pending",
