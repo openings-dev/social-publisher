@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "f3ed957835775515c92f25b3fa8a734512993e9d",
-    "generatedAt": "2026-10-13T04:47:40.770Z",
-    "dataHash": "e2134b6377a78feada81bd6a9d094d90f95442dac56853a5f8d2808d14cf5929"
+    "commit": "028bb1244f62c7f9aebb3510c4fb1c7bd44d0f24",
+    "generatedAt": "2026-10-13T13:17:09.287Z",
+    "dataHash": "c23f62ceff488b6f1ba6c8ec2e354187d950528bc122cafd4db23273ff3ade79"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -9096,6 +9096,166 @@
         "notificationId": "3620c9c2-8fc4-469c-beba-6aa977e8c3b4",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_415a5be86a5a7600cee60f6b",
+      "sourceId": "ambicuity/New-Grad-Jobs#387",
+      "dataCommit": "028bb1244f62c7f9aebb3510c4fb1c7bd44d0f24",
+      "dataHash": "c23f62ceff488b6f1ba6c8ec2e354187d950528bc122cafd4db23273ff3ade79",
+      "contentHash": "c16d74a4bbeb1a09bc944c39951f07f4bfa56d96e6b29c5661b3cd76f34ba414",
+      "sourceCreatedAt": "2026-10-13T06:51:53Z",
+      "createdAt": "2026-10-13T13:17:09.287Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "901f45f0-857f-4afd-911e-3a1bf7c04ce6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-13T03:11:24.384003Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-13T03:11:24.384003Z",
+          "es": "Job data is stale: last scrape 2026-10-13T03:11:24.384003Z",
+          "it": "Job data is stale: last scrape 2026-10-13T03:11:24.384003Z",
+          "fr": "Job data is stale: last scrape 2026-10-13T03:11:24.384003Z",
+          "de": "Job data is stale: last scrape 2026-10-13T03:11:24.384003Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_415a5be86a5a7600cee60f6b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a179e2d835c745927900656e",
+      "sourceId": "web3br/vagas#7",
+      "dataCommit": "028bb1244f62c7f9aebb3510c4fb1c7bd44d0f24",
+      "dataHash": "c23f62ceff488b6f1ba6c8ec2e354187d950528bc122cafd4db23273ff3ade79",
+      "contentHash": "98ae201c8f2cce5b2288b2322d86a06a397413852b570ea7ee3af9400b01759d",
+      "sourceCreatedAt": "2024-05-07T19:29:54Z",
+      "createdAt": "2026-10-13T13:17:09.287Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3abff223-fe97-4003-b5e2-5d9ab0766842",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTO]Front-end Developer @Weath99",
+          "pt-BR": "[REMOTO]Front-end Developer @Weath99",
+          "es": "[REMOTO]Front-end Developer @Weath99",
+          "it": "[REMOTO]Front-end Developer @Weath99",
+          "fr": "[REMOTO]Front-end Developer @Weath99",
+          "de": "[REMOTO]Front-end Developer @Weath99"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a179e2d835c745927900656e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f732212830b495158f8fc1d6",
+      "sourceId": "web3br/vagas#5",
+      "dataCommit": "028bb1244f62c7f9aebb3510c4fb1c7bd44d0f24",
+      "dataHash": "c23f62ceff488b6f1ba6c8ec2e354187d950528bc122cafd4db23273ff3ade79",
+      "contentHash": "849639a501460677ab03e4bdfbd979dffa15c35f89ad6c473a1a8a57aff2fa47",
+      "sourceCreatedAt": "2023-11-07T16:39:32Z",
+      "createdAt": "2026-10-13T13:17:09.287Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "112f4179-88f2-4033-bf45-b3a4d6954cca",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[PRESENCIAL] Application Support Analyst - Truppe",
+          "pt-BR": "[PRESENCIAL] Application Support Analyst - Truppe",
+          "es": "[PRESENCIAL] Application Support Analyst - Truppe",
+          "it": "[PRESENCIAL] Application Support Analyst - Truppe",
+          "fr": "[PRESENCIAL] Application Support Analyst - Truppe",
+          "de": "[PRESENCIAL] Application Support Analyst - Truppe"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f732212830b495158f8fc1d6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ae1b35ddc559819229a19373",
+      "sourceId": "web3br/vagas#4",
+      "dataCommit": "028bb1244f62c7f9aebb3510c4fb1c7bd44d0f24",
+      "dataHash": "c23f62ceff488b6f1ba6c8ec2e354187d950528bc122cafd4db23273ff3ade79",
+      "contentHash": "22aef6c90bbef1c24c7d312a007a68da789bbd218dfa8aeda9f72df6e7fb8e99",
+      "sourceCreatedAt": "2023-11-01T19:37:05Z",
+      "createdAt": "2026-10-13T13:17:09.287Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "77ff2f3e-4134-414a-b2bf-3f69e8b519c5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[PRESENCIAL] Desenvolvedor Java SR - Truppe",
+          "pt-BR": "[PRESENCIAL] Desenvolvedor Java SR - Truppe",
+          "es": "[PRESENCIAL] Desenvolvedor Java SR - Truppe",
+          "it": "[PRESENCIAL] Desenvolvedor Java SR - Truppe",
+          "fr": "[PRESENCIAL] Desenvolvedor Java SR - Truppe",
+          "de": "[PRESENCIAL] Desenvolvedor Java SR - Truppe"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ae1b35ddc559819229a19373"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
