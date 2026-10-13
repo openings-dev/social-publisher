@@ -51431,13 +51431,10 @@
         "result": null
       },
       "twitter": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-10-13T06:52:14.340Z",
-        "lastError": {
-          "code": "buffer_publication",
-          "at": "2026-10-13T06:52:14.340Z"
-        },
+        "status": "publishing",
+        "attempts": 3,
+        "updatedAt": "2026-10-13T16:05:05.838Z",
+        "lastError": null,
         "lastReset": null,
         "result": {
           "acceptedProviderId": "6acd67395229b40e8685b4cb",
