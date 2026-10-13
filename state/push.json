@@ -9087,12 +9087,15 @@
           "jobId": "gh_a4a7d7b8ea3a77260256bf62"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-10-13T07:01:34.456Z",
-      "updatedAt": "2026-10-13T07:01:34.456Z",
+      "updatedAt": "2026-10-13T07:01:36.535Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "3620c9c2-8fc4-469c-beba-6aa977e8c3b4",
+        "providerStatus": "accepted"
+      }
     }
   ]
 }
