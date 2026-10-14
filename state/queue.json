@@ -52408,12 +52408,14 @@
       "createdAt": "2026-10-14T07:43:25Z",
       "publicationCreatedAt": "2026-10-14T13:50:05.294Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-14T18:41:44.929Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "HN/HCM - Hybrid - Senior Backend Engineer (English) - 120M Gross"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -52470,7 +52472,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 184
     }
   ]
 }
