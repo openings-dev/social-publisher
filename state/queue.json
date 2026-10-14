@@ -52466,12 +52466,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-14T18:41:44.929Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18134902453657036",
+          "url": "https://www.threads.com/@openingshq/post/DefDX09ozHH"
+        }
       },
       "instagram": {
         "status": "pending",
