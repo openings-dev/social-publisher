@@ -51796,12 +51796,23 @@
       "createdAt": "2026-10-13T19:54:17Z",
       "publicationCreatedAt": "2026-10-13T21:22:14.694Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-14T01:16:43.655Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_7c17d41a11070d7781299515",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_7c17d41a11070d7781299515/0f56bbd728c2f954ca1e9f2d6a98ee8495280e116c9ff0a3b9e06d6afd798432/63152cf3c7b1706b2ac5f1a5dd287123769a666374febcbac1df59675f8992e6/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_7c17d41a11070d7781299515/0f56bbd728c2f954ca1e9f2d6a98ee8495280e116c9ff0a3b9e06d6afd798432/63152cf3c7b1706b2ac5f1a5dd287123769a666374febcbac1df59675f8992e6/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_7c17d41a11070d7781299515/0f56bbd728c2f954ca1e9f2d6a98ee8495280e116c9ff0a3b9e06d6afd798432/63152cf3c7b1706b2ac5f1a5dd287123769a666374febcbac1df59675f8992e6/social-video.mp4",
+          "pngHash": "574f7b9e4905063c43f9edb476646c0f9fd7763e72ab947dbcda88c8eb2b3fa9",
+          "instagramJpegHash": "cd0fd004a1ee048a0486284e9bc13d6c8d0fcf5ec849b969d38be86e64b5b86b",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[REMOTO] Desenvolvedor Fullstack Pleno - Java & Angular - DB1"
         }
       },
