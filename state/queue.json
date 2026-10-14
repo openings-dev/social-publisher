@@ -52000,12 +52000,14 @@
       "createdAt": "2026-10-13T19:47:00Z",
       "publicationCreatedAt": "2026-10-13T21:22:14.694Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-14T07:44:21.474Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[REMOTO] Desenvolvedor Java Junior na DB1/ANYMARKET"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -52062,7 +52064,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 182
     },
     {
       "jobId": "gh_7d2ddd4299e54af674ed129e",
