@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "fbf09cd4bd620f0edb69c23127ae1aa148ba36ca",
-    "generatedAt": "2026-10-14T14:15:40.465Z",
-    "dataHash": "6f857b57ff1004d1a8d57eec15f33451a3f16dd7bb1d37bee8cce72938765df2"
+    "commit": "b836942868c0b3a68544f4c807bebe76251796ea",
+    "generatedAt": "2026-10-14T19:07:15.671Z",
+    "dataHash": "7375648d37675d1b101faee9516bd0d5535490a766f1d4286085684c640718fb"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -9411,6 +9411,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_0065133926adf9a786c1f458"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b256c39c80fcfe7ea8df79e4",
+      "sourceId": "ambicuity/New-Grad-Jobs#399",
+      "dataCommit": "b836942868c0b3a68544f4c807bebe76251796ea",
+      "dataHash": "7375648d37675d1b101faee9516bd0d5535490a766f1d4286085684c640718fb",
+      "contentHash": "3213e09a388646144ebadaac8ee4735435036e5d883393caed1e71939a2f4b16",
+      "sourceCreatedAt": "2026-10-14T19:06:19Z",
+      "createdAt": "2026-10-14T19:07:15.671Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8b3c465b-8389-429b-8c11-c506b5a4b0bd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Add a UKG Pro Recruiting (UltiPro) source adapter (19 verified job boards)",
+          "pt-BR": "Add a UKG Pro Recruiting (UltiPro) source adapter (19 verified job boards)",
+          "es": "Add a UKG Pro Recruiting (UltiPro) source adapter (19 verified job boards)",
+          "it": "Add a UKG Pro Recruiting (UltiPro) source adapter (19 verified job boards)",
+          "fr": "Add a UKG Pro Recruiting (UltiPro) source adapter (19 verified job boards)",
+          "de": "Add a UKG Pro Recruiting (UltiPro) source adapter (19 verified job boards)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b256c39c80fcfe7ea8df79e4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_37868d2da89017c43383f5f3",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2983",
+      "dataCommit": "b836942868c0b3a68544f4c807bebe76251796ea",
+      "dataHash": "7375648d37675d1b101faee9516bd0d5535490a766f1d4286085684c640718fb",
+      "contentHash": "4868027c0604aa9fe8e656bdd77a27c5b82ebb07ca639496f46d351c69c292f5",
+      "sourceCreatedAt": "2026-10-14T14:54:45Z",
+      "createdAt": "2026-10-14T19:07:15.671Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "29d37d26-4963-4ded-b55a-9b8d93be33ae",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Software Developer",
+          "pt-BR": "Software Developer",
+          "es": "Software Developer",
+          "it": "Software Developer",
+          "fr": "Software Developer",
+          "de": "Software Developer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_37868d2da89017c43383f5f3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b29f7d5bd90361353b30b563",
+      "sourceId": "ambicuity/New-Grad-Jobs#173",
+      "dataCommit": "b836942868c0b3a68544f4c807bebe76251796ea",
+      "dataHash": "7375648d37675d1b101faee9516bd0d5535490a766f1d4286085684c640718fb",
+      "contentHash": "17425b134c9d469abcb69957f04a1c66b27b5fc282997ba3704f0223c4ce761f",
+      "sourceCreatedAt": "2026-03-14T05:28:12Z",
+      "createdAt": "2026-10-14T19:07:15.671Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f550867a-4a71-420b-8525-48e219a83307",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Advanced]: add iCIMS ingestion support to recover enterprise networking and infrastructure coverage",
+          "pt-BR": "[Advanced]: add iCIMS ingestion support to recover enterprise networking and infrastructure coverage",
+          "es": "[Advanced]: add iCIMS ingestion support to recover enterprise networking and infrastructure coverage",
+          "it": "[Advanced]: add iCIMS ingestion support to recover enterprise networking and infrastructure coverage",
+          "fr": "[Advanced]: add iCIMS ingestion support to recover enterprise networking and infrastructure coverage",
+          "de": "[Advanced]: add iCIMS ingestion support to recover enterprise networking and infrastructure coverage"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b29f7d5bd90361353b30b563"
         }
       },
       "status": "pending",
