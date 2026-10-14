@@ -51692,9 +51692,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-14T13:48:37.212Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -52204,12 +52204,14 @@
       "createdAt": "2026-10-13T19:39:25Z",
       "publicationCreatedAt": "2026-10-13T21:22:14.694Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-14T13:48:37.212Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[REMOTO] Desenvolvedor Java Pleno na DB1/ANYMARKET"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -52266,7 +52268,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 183
     }
   ]
 }
