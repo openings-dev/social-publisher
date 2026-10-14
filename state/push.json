@@ -9130,12 +9130,15 @@
           "jobId": "gh_415a5be86a5a7600cee60f6b"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-10-14T07:57:09.328Z",
-      "updatedAt": "2026-10-14T07:57:09.328Z",
+      "updatedAt": "2026-10-14T07:57:11.087Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "1b3437de-061d-4ff3-a3fc-343e6a486f48",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_a179e2d835c745927900656e",
