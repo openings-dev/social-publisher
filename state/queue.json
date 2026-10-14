@@ -52204,12 +52204,23 @@
       "createdAt": "2026-10-13T19:39:25Z",
       "publicationCreatedAt": "2026-10-13T21:22:14.694Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-14T13:48:37.212Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_7d2ddd4299e54af674ed129e",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_7d2ddd4299e54af674ed129e/d5d07d1b22034e59b09a7445b3eba78d47207bc3c5d65e7ba44844de21a95e39/2860d5fbe2fc9aa8b115b3cc0358f70880c4faf64420b83a8601748788c57234/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_7d2ddd4299e54af674ed129e/d5d07d1b22034e59b09a7445b3eba78d47207bc3c5d65e7ba44844de21a95e39/2860d5fbe2fc9aa8b115b3cc0358f70880c4faf64420b83a8601748788c57234/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_7d2ddd4299e54af674ed129e/d5d07d1b22034e59b09a7445b3eba78d47207bc3c5d65e7ba44844de21a95e39/2860d5fbe2fc9aa8b115b3cc0358f70880c4faf64420b83a8601748788c57234/social-video.mp4",
+          "pngHash": "d5ac49b824eaf6c48fbfc0f39854db0312f418dcb4031be1f3261206f1785c45",
+          "instagramJpegHash": "6beb27c7bac9dc035dfe66e092267657478557a7e15b3d9465e61b49b52f0338",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[REMOTO] Desenvolvedor Java Pleno na DB1/ANYMARKET"
         }
       },
