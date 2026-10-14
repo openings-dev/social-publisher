@@ -52408,12 +52408,23 @@
       "createdAt": "2026-10-14T07:43:25Z",
       "publicationCreatedAt": "2026-10-14T13:50:05.294Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-14T18:41:44.929Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0065133926adf9a786c1f458",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_0065133926adf9a786c1f458/005ca709761f068146654581f24cb8abf9d92e947867392a5a0b6deee721c1e4/298cd633bbe56c1b55dffd9f6044280918b9e5271f718acc3f3dfe0d7f6f7416/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_0065133926adf9a786c1f458/005ca709761f068146654581f24cb8abf9d92e947867392a5a0b6deee721c1e4/298cd633bbe56c1b55dffd9f6044280918b9e5271f718acc3f3dfe0d7f6f7416/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_0065133926adf9a786c1f458/005ca709761f068146654581f24cb8abf9d92e947867392a5a0b6deee721c1e4/298cd633bbe56c1b55dffd9f6044280918b9e5271f718acc3f3dfe0d7f6f7416/social-video.mp4",
+          "pngHash": "559645f6bb106a71c9c3d05eb2a8289e43e3e8581f7f65bd69d9756ba930f3a3",
+          "instagramJpegHash": "6dc4d3ea86e28016131d581bcfc6bfb5434730cf41fde6a17fd16ad2bf676bd4",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "HN/HCM - Hybrid - Senior Backend Engineer (English) - 120M Gross"
         }
       },
