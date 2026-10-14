@@ -51796,12 +51796,14 @@
       "createdAt": "2026-10-13T19:54:17Z",
       "publicationCreatedAt": "2026-10-13T21:22:14.694Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-14T01:16:43.655Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[REMOTO] Desenvolvedor Fullstack Pleno - Java & Angular - DB1"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -51858,7 +51860,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 181
     },
     {
       "jobId": "gh_14809edc1bee697bfd43f43f",
