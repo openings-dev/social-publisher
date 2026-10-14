@@ -52397,6 +52397,80 @@
         ],
         "manifestDigest": "0800647c8525dc67f0cd133356923d54c14fba1c888ea12f1c4e70319ecd9ff4"
       }
+    },
+    {
+      "jobId": "gh_0065133926adf9a786c1f458",
+      "sourceId": "awesome-jobs/vietnam#5086",
+      "dataCommit": "979548bb4e5cd3b555f32879aafda347d20e74ab",
+      "dataHash": "ffc5202dd2586a0062cd1a715f7d360ae42ade6634fac35dff78ac67570da25f",
+      "contentHash": "005ca709761f068146654581f24cb8abf9d92e947867392a5a0b6deee721c1e4",
+      "discoveredAt": "2026-10-14T13:50:05.294Z",
+      "createdAt": "2026-10-14T07:43:25Z",
+      "publicationCreatedAt": "2026-10-14T13:50:05.294Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
