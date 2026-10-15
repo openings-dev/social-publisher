@@ -1,100 +1,7 @@
 {
   "schemaVersion": 1,
   "catalogVersion": "2",
-  "pending": [
-    {
-      "contentId": "interview-revisao-pos-entrevista",
-      "contentVersion": "2",
-      "pillar": "interview",
-      "scheduledDate": "2026-10-15",
-      "createdAt": "2026-10-15T18:52:07.539Z",
-      "assets": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-10-15T18:52:09.655Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "hosted",
-          "carouselUrls": [
-            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-01.jpg",
-            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-02.jpg",
-            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-03.jpg",
-            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-04.jpg",
-            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-05.jpg",
-            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-06.jpg",
-            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-07.jpg"
-          ],
-          "carouselMedia": [
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-01.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-02.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-03.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-04.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-05.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-06.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            },
-            {
-              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-07.jpg",
-              "mediaType": "image/jpeg",
-              "width": 1080,
-              "height": 1350
-            }
-          ]
-        }
-      },
-      "feed": {
-        "status": "published",
-        "attempts": 1,
-        "updatedAt": "2026-10-15T18:52:17.140Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "status": "published",
-          "id": "18130308463695622",
-          "url": "https://www.instagram.com/p/DehpazJG6qq/"
-        }
-      },
-      "story": {
-        "status": "publishing",
-        "attempts": 1,
-        "updatedAt": "2026-10-15T18:53:36.684Z",
-        "lastError": null,
-        "lastReset": null,
-        "result": {
-          "operationKey": "editorial-38789078034-1"
-        }
-      }
-    }
-  ],
+  "pending": [],
   "history": {
     "linkedin-headline-clara": {
       "lastPublishedAt": "2026-09-01T16:39:54.884Z",
@@ -988,6 +895,83 @@
           "status": "unsupported",
           "reason": "editorial_story_feed_media_compatibility_unverified",
           "mediaUrl": "https://media.openings.dev/openings/editorial/linkedin-contexto-remoto/2/5/slide-01.jpg",
+          "mediaType": "image/jpeg",
+          "width": 1080,
+          "height": 1350
+        }
+      }
+    },
+    "interview-revisao-pos-entrevista": {
+      "lastPublishedAt": "2026-10-15T18:53:38.594Z",
+      "cycles": 1,
+      "lastPublication": {
+        "scheduledDate": "2026-10-15",
+        "contentVersion": "2",
+        "assets": {
+          "status": "hosted",
+          "carouselUrls": [
+            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-01.jpg",
+            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-02.jpg",
+            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-03.jpg",
+            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-04.jpg",
+            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-05.jpg",
+            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-06.jpg",
+            "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-07.jpg"
+          ],
+          "carouselMedia": [
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-01.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-02.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-03.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-04.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-05.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-06.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            },
+            {
+              "url": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-07.jpg",
+              "mediaType": "image/jpeg",
+              "width": 1080,
+              "height": 1350
+            }
+          ]
+        },
+        "feed": {
+          "status": "published",
+          "id": "18130308463695622",
+          "url": "https://www.instagram.com/p/DehpazJG6qq/"
+        },
+        "story": {
+          "status": "unsupported",
+          "reason": "editorial_story_feed_media_compatibility_unverified",
+          "mediaUrl": "https://media.openings.dev/openings/editorial/interview-revisao-pos-entrevista/2/5/slide-01.jpg",
           "mediaType": "image/jpeg",
           "width": 1080,
           "height": 1350
