@@ -55803,6 +55803,154 @@
         ],
         "manifestDigest": "66c15df9bccfdcf26c49661316fc7092fbdcfba0a70424ab69491efaef564218"
       }
+    },
+    {
+      "jobId": "gh_8d2476b1965d80a6141c7e7a",
+      "sourceId": "rebase-network/who-is-hiring#1318",
+      "dataCommit": "06c2560cb855fedf9f604e60608cf7188167f7ea",
+      "dataHash": "5648f92fb880c4134a336460d745a601c3191855e620b5bfefd94aa76531518a",
+      "contentHash": "113b196edf946b4cde7370a859c7669bb1f2d4031d41fcbc08f7866de08f788b",
+      "discoveredAt": "2026-10-15T17:08:57.064Z",
+      "createdAt": "2026-10-15T10:27:14Z",
+      "publicationCreatedAt": "2026-10-15T17:08:57.064Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_fef871b26ead5d7e5c70bd4e",
+      "sourceId": "rebase-network/who-is-hiring#1317",
+      "dataCommit": "06c2560cb855fedf9f604e60608cf7188167f7ea",
+      "dataHash": "5648f92fb880c4134a336460d745a601c3191855e620b5bfefd94aa76531518a",
+      "contentHash": "f06a589a59f27617a51066d11326b0f51b7de220a3a9902192056407f41b323f",
+      "discoveredAt": "2026-10-15T17:08:57.064Z",
+      "createdAt": "2026-10-15T09:59:57Z",
+      "publicationCreatedAt": "2026-10-15T17:08:57.064Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
