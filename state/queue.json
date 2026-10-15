@@ -52686,12 +52686,23 @@
       "createdAt": "2026-10-14T14:54:45Z",
       "publicationCreatedAt": "2026-10-14T23:18:05.672Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_37868d2da89017c43383f5f3",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_37868d2da89017c43383f5f3/4868027c0604aa9fe8e656bdd77a27c5b82ebb07ca639496f46d351c69c292f5/9316f9a1e1874d22ad5bfc5b1215dbf99896aecdf4d992628d28dde25604c088/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_37868d2da89017c43383f5f3/4868027c0604aa9fe8e656bdd77a27c5b82ebb07ca639496f46d351c69c292f5/9316f9a1e1874d22ad5bfc5b1215dbf99896aecdf4d992628d28dde25604c088/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_37868d2da89017c43383f5f3/4868027c0604aa9fe8e656bdd77a27c5b82ebb07ca639496f46d351c69c292f5/9316f9a1e1874d22ad5bfc5b1215dbf99896aecdf4d992628d28dde25604c088/social-video.mp4",
+          "pngHash": "06a934267c97352d0bf102fbc9b986a277c4aff2a6d2ae2e96ac9d803ba8fd9d",
+          "instagramJpegHash": "d08e66f6a7e588807e5d782331047068e8cc72beab7bf55b891e23e071e42d67",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "Software Developer"
         }
       },
