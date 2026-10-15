@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "b836942868c0b3a68544f4c807bebe76251796ea",
-    "generatedAt": "2026-10-14T19:07:15.671Z",
-    "dataHash": "7375648d37675d1b101faee9516bd0d5535490a766f1d4286085684c640718fb"
+    "commit": "6d819613476fc94a421a8ae614c53062876fa0ca",
+    "generatedAt": "2026-10-15T02:35:06.332Z",
+    "dataHash": "34fffe0017cf9340056a1800f69d0c0496c87f4665dc0088a7d35d1e649dcd60"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -9453,10 +9453,10 @@
           "jobId": "gh_b256c39c80fcfe7ea8df79e4"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-14T23:35:25.961Z",
       "retryAfter": null,
       "result": null
     },
@@ -9531,6 +9531,1526 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_b29f7d5bd90361353b30b563"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f854256c35a417d8933cfcfe",
+      "sourceId": "backend-br/vagas#12468",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "9063b37b54126de9944af172b8b4a50e84ed2eb091ae5563c64b961f676ae9c0",
+      "sourceCreatedAt": "2026-10-14T21:02:00Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "18579e01-2658-4009-b9f1-ceb027d01ebf",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "pt-BR": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "es": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "it": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "fr": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "de": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f854256c35a417d8933cfcfe"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_359763f2428002617dd25011",
+      "sourceId": "programadores-br/geral#3124",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370",
+      "sourceCreatedAt": "2026-10-14T21:01:42Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "357d2481-de89-4762-9869-38fa4627cc93",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México, México / Santiago, Chile + 2 cidades] AI Outcome Customer Engineer, Google Cloud (English, Spanish) na Google",
+          "pt-BR": "[Cidade do México, México / Santiago, Chile + 2 cidades] AI Outcome Customer Engineer, Google Cloud (English, Spanish) na Google",
+          "es": "[Cidade do México, México / Santiago, Chile + 2 cidades] AI Outcome Customer Engineer, Google Cloud (English, Spanish) na Google",
+          "it": "[Cidade do México, México / Santiago, Chile + 2 cidades] AI Outcome Customer Engineer, Google Cloud (English, Spanish) na Google",
+          "fr": "[Cidade do México, México / Santiago, Chile + 2 cidades] AI Outcome Customer Engineer, Google Cloud (English, Spanish) na Google",
+          "de": "[Cidade do México, México / Santiago, Chile + 2 cidades] AI Outcome Customer Engineer, Google Cloud (English, Spanish) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_359763f2428002617dd25011"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e0e7c31465468a5b2331082b",
+      "sourceId": "programadores-br/geral#3123",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "888724d586da612b819778b18aa6a29aca1d25dbf270fcd45b12bf0ae1bdc86b",
+      "sourceCreatedAt": "2026-10-14T21:01:25Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4de62b68-adde-4de2-b444-fbc3a4c212fd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México ou Remoto, México] Senior Remediation Architect, Security Transformation Services, Mandiant na Google",
+          "pt-BR": "[Cidade do México ou Remoto, México] Senior Remediation Architect, Security Transformation Services, Mandiant na Google",
+          "es": "[Cidade do México ou Remoto, México] Senior Remediation Architect, Security Transformation Services, Mandiant na Google",
+          "it": "[Cidade do México ou Remoto, México] Senior Remediation Architect, Security Transformation Services, Mandiant na Google",
+          "fr": "[Cidade do México ou Remoto, México] Senior Remediation Architect, Security Transformation Services, Mandiant na Google",
+          "de": "[Cidade do México ou Remoto, México] Senior Remediation Architect, Security Transformation Services, Mandiant na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e0e7c31465468a5b2331082b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_559beb0dbd220ca8b9dd95e0",
+      "sourceId": "backend-br/vagas#12467",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "9764b1bfafcf1f4405fe2b5774755a63beccc23b417f680081378fde54aca41c",
+      "sourceCreatedAt": "2026-10-14T21:00:19Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "564729e1-f0a4-408f-be3a-f02a0d54e608",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México, México / Buenos Aires, Argentina] Senior Cloud AI Engineer, Google Cloud (English) na Google",
+          "pt-BR": "[Cidade do México, México / Buenos Aires, Argentina] Senior Cloud AI Engineer, Google Cloud (English) na Google",
+          "es": "[Cidade do México, México / Buenos Aires, Argentina] Senior Cloud AI Engineer, Google Cloud (English) na Google",
+          "it": "[Cidade do México, México / Buenos Aires, Argentina] Senior Cloud AI Engineer, Google Cloud (English) na Google",
+          "fr": "[Cidade do México, México / Buenos Aires, Argentina] Senior Cloud AI Engineer, Google Cloud (English) na Google",
+          "de": "[Cidade do México, México / Buenos Aires, Argentina] Senior Cloud AI Engineer, Google Cloud (English) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_559beb0dbd220ca8b9dd95e0"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_376143f18c1c757c4fe196f9",
+      "sourceId": "backend-br/vagas#12466",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "5fbfb378df9944917c6dc5ae398a5cc06ab122af96b3da2b3102f416f2259341",
+      "sourceCreatedAt": "2026-10-14T20:58:44Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0978a49e-43a9-49fa-9865-a3d78aa765f2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer, Google Cloud (English) na Google",
+          "pt-BR": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer, Google Cloud (English) na Google",
+          "es": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer, Google Cloud (English) na Google",
+          "it": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer, Google Cloud (English) na Google",
+          "fr": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer, Google Cloud (English) na Google",
+          "de": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer, Google Cloud (English) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_376143f18c1c757c4fe196f9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4001ce1c357ee7446bc58419",
+      "sourceId": "backend-br/vagas#12465",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "96d7f7393ab38d3c40db7793fd976f16b20b6c8b8d507229b50ca38409d1798d",
+      "sourceCreatedAt": "2026-10-14T20:57:10Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "16ea0b0b-fc08-4f00-a2ef-8452152bec5a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México, México / Buenos Aires, Argentina] Cloud AI Engineer, Google Cloud (English) na Google",
+          "pt-BR": "[Cidade do México, México / Buenos Aires, Argentina] Cloud AI Engineer, Google Cloud (English) na Google",
+          "es": "[Cidade do México, México / Buenos Aires, Argentina] Cloud AI Engineer, Google Cloud (English) na Google",
+          "it": "[Cidade do México, México / Buenos Aires, Argentina] Cloud AI Engineer, Google Cloud (English) na Google",
+          "fr": "[Cidade do México, México / Buenos Aires, Argentina] Cloud AI Engineer, Google Cloud (English) na Google",
+          "de": "[Cidade do México, México / Buenos Aires, Argentina] Cloud AI Engineer, Google Cloud (English) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4001ce1c357ee7446bc58419"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d9f69df508a70f1bd67af284",
+      "sourceId": "backend-br/vagas#12464",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "4a0e332e9e042bf7429b33d0a78d9a30c76db0ec55a07f98a3514f6224c6f950",
+      "sourceCreatedAt": "2026-10-14T20:56:12Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "19183296-95ab-48d4-8495-98fa9f424842",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer IV, Google Cloud (English) na Google",
+          "pt-BR": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer IV, Google Cloud (English) na Google",
+          "es": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer IV, Google Cloud (English) na Google",
+          "it": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer IV, Google Cloud (English) na Google",
+          "fr": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer IV, Google Cloud (English) na Google",
+          "de": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer IV, Google Cloud (English) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d9f69df508a70f1bd67af284"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_34417202d0a35257d6811c40",
+      "sourceId": "androiddevbr/vagas#2249",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "8b307757575ed96201a9d2de01af4eb3eb02aecd191f7e4f299bc136ac3e93f5",
+      "sourceCreatedAt": "2026-10-14T20:54:09Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "73ecfff6-0afb-4a39-a848-99e3b0ac2c07",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México, México] Mobile Software Engineer, Multiplatform, Early Careers na Google",
+          "pt-BR": "[Cidade do México, México] Mobile Software Engineer, Multiplatform, Early Careers na Google",
+          "es": "[Cidade do México, México] Mobile Software Engineer, Multiplatform, Early Careers na Google",
+          "it": "[Cidade do México, México] Mobile Software Engineer, Multiplatform, Early Careers na Google",
+          "fr": "[Cidade do México, México] Mobile Software Engineer, Multiplatform, Early Careers na Google",
+          "de": "[Cidade do México, México] Mobile Software Engineer, Multiplatform, Early Careers na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_34417202d0a35257d6811c40"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_029af2b880506194635d23b8",
+      "sourceId": "qa-brasil/vagas#1285",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "d65233f3b7c6f9db44de6af761df8c167c156f77b0a27649d83431b2f8b2cd5c",
+      "sourceCreatedAt": "2026-10-14T20:51:10Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2de917b3-94ab-471a-9e7f-fb316d4f5d2b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México, México] Senior Software Engineer, Chrome Test Infrastructure na Google",
+          "pt-BR": "[Cidade do México, México] Senior Software Engineer, Chrome Test Infrastructure na Google",
+          "es": "[Cidade do México, México] Senior Software Engineer, Chrome Test Infrastructure na Google",
+          "it": "[Cidade do México, México] Senior Software Engineer, Chrome Test Infrastructure na Google",
+          "fr": "[Cidade do México, México] Senior Software Engineer, Chrome Test Infrastructure na Google",
+          "de": "[Cidade do México, México] Senior Software Engineer, Chrome Test Infrastructure na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_029af2b880506194635d23b8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_81e63edc3ac406661d00088f",
+      "sourceId": "programadores-br/geral#3116",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "4bca67ea6888e014a82576751599fb10dce9a5d674864e9429e6bde07839d3ec",
+      "sourceCreatedAt": "2026-10-14T20:50:20Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5f8bbf72-15dd-4cbd-82a0-13aa53598370",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México, México / Bengaluru, Índia] Business Intelligence Developer I, Google Cloud na Google",
+          "pt-BR": "[Cidade do México, México / Bengaluru, Índia] Business Intelligence Developer I, Google Cloud na Google",
+          "es": "[Cidade do México, México / Bengaluru, Índia] Business Intelligence Developer I, Google Cloud na Google",
+          "it": "[Cidade do México, México / Bengaluru, Índia] Business Intelligence Developer I, Google Cloud na Google",
+          "fr": "[Cidade do México, México / Bengaluru, Índia] Business Intelligence Developer I, Google Cloud na Google",
+          "de": "[Cidade do México, México / Bengaluru, Índia] Business Intelligence Developer I, Google Cloud na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_81e63edc3ac406661d00088f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ea7def3477890f265af9646f",
+      "sourceId": "backend-br/vagas#12462",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "77d23d5305de9f688fc5bc3a73b17e91fbbaaf3d252b6bb33a01c91f13e35751",
+      "sourceCreatedAt": "2026-10-14T20:49:12Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "71476111-3dec-4513-9e20-8cfa9f2f8c54",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México, México] Software Engineer, Compilers, Runtimes and Toolchains, Early Career na Google",
+          "pt-BR": "[Cidade do México, México] Software Engineer, Compilers, Runtimes and Toolchains, Early Career na Google",
+          "es": "[Cidade do México, México] Software Engineer, Compilers, Runtimes and Toolchains, Early Career na Google",
+          "it": "[Cidade do México, México] Software Engineer, Compilers, Runtimes and Toolchains, Early Career na Google",
+          "fr": "[Cidade do México, México] Software Engineer, Compilers, Runtimes and Toolchains, Early Career na Google",
+          "de": "[Cidade do México, México] Software Engineer, Compilers, Runtimes and Toolchains, Early Career na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ea7def3477890f265af9646f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_dd3839af7bc25daf172c8c87",
+      "sourceId": "programadores-br/geral#3114",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "0a338c7348216506c1e390f8af3c6be2a2699f302a2954481c9d9e0235d151a7",
+      "sourceCreatedAt": "2026-10-14T20:48:08Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b3e80e8f-9049-4fad-98ba-d8f1218dc6b5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México, México] Business Intelligence Analyst, Global YouTube Marketing na Google",
+          "pt-BR": "[Cidade do México, México] Business Intelligence Analyst, Global YouTube Marketing na Google",
+          "es": "[Cidade do México, México] Business Intelligence Analyst, Global YouTube Marketing na Google",
+          "it": "[Cidade do México, México] Business Intelligence Analyst, Global YouTube Marketing na Google",
+          "fr": "[Cidade do México, México] Business Intelligence Analyst, Global YouTube Marketing na Google",
+          "de": "[Cidade do México, México] Business Intelligence Analyst, Global YouTube Marketing na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_dd3839af7bc25daf172c8c87"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_db1fad49e16a46bf47a89e3d",
+      "sourceId": "backend-br/vagas#12461",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "c629f8aa5ebc74b22264c20862a8bc4ab142daf545dddc886af6082629e916f9",
+      "sourceCreatedAt": "2026-10-14T20:46:23Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7053c01c-8fa1-433f-a067-c97753c2fc44",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Cidade do México, México] Data Engineer, YouTube Marketing na Google",
+          "pt-BR": "[Cidade do México, México] Data Engineer, YouTube Marketing na Google",
+          "es": "[Cidade do México, México] Data Engineer, YouTube Marketing na Google",
+          "it": "[Cidade do México, México] Data Engineer, YouTube Marketing na Google",
+          "fr": "[Cidade do México, México] Data Engineer, YouTube Marketing na Google",
+          "de": "[Cidade do México, México] Data Engineer, YouTube Marketing na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_db1fad49e16a46bf47a89e3d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_500c764f030a9b5690785ecc",
+      "sourceId": "backend-br/vagas#12460",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "7cb5d74e04edfa01efe28baa65dd988a83d10510dd1a6b2250c7cd7398daf3b7",
+      "sourceCreatedAt": "2026-10-14T20:44:39Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9b2adc04-cf85-496c-aa3d-884309dfba74",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_500c764f030a9b5690785ecc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a7b043212f3ac3f03f2b2440",
+      "sourceId": "backend-br/vagas#12459",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "aa212aa1e7a05dbff639d5e0f6d367512ec30527053ae0add2212073fffe85c4",
+      "sourceCreatedAt": "2026-10-14T20:43:09Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7797eb0d-c8a3-4f7e-9980-3979f84b1a09",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "pt-BR": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "es": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "it": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "fr": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "de": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a7b043212f3ac3f03f2b2440"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c7d25cfe83e14b757aa7cc06",
+      "sourceId": "backend-br/vagas#12458",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "d10a2838399aec82c752293e52e92143fceb0b02842166015e98a1a9bab1ae9f",
+      "sourceCreatedAt": "2026-10-14T20:41:18Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1ae9014e-fc3f-436f-aedc-3a47e8e8ecc2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c7d25cfe83e14b757aa7cc06"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ff38ee957029058ae9544a7c",
+      "sourceId": "backend-br/vagas#12457",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "62cc7606055967d38feb94558b6f7651260fb6eac83c74d3c5ba5dabf14ffde9",
+      "sourceCreatedAt": "2026-10-14T20:39:26Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a4222915-b838-497b-a672-0ffd5c137d4a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ff38ee957029058ae9544a7c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3f4dd25df83e57f5eacf604a",
+      "sourceId": "backend-br/vagas#12456",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "d4cb45a292a45f065b8e3a2fb5d678e10af67969b66944c4bcb79c3cbdca11bb",
+      "sourceCreatedAt": "2026-10-14T20:37:33Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "767180e0-0379-413c-8ad8-2697f94a9f3b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3f4dd25df83e57f5eacf604a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6328d3e6c1b2d143814658ba",
+      "sourceId": "backend-br/vagas#12455",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "032274a92d50c59b21a441addea2e018bc1466353277b7a9465e4f97114f0dd8",
+      "sourceCreatedAt": "2026-10-14T20:36:23Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ef6f3d9b-fea3-44e2-ab07-575dac4c2219",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6328d3e6c1b2d143814658ba"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ba6a0a263cfc528310b60343",
+      "sourceId": "backend-br/vagas#12454",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "c74b094b99f8c58f65fcf42327424f7fefd7c7f2b34b377a52c3cfcef499ad93",
+      "sourceCreatedAt": "2026-10-14T20:35:32Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ccc900a3-69d4-4906-baed-dac8845a5ba1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ba6a0a263cfc528310b60343"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0bd7e2d96ac3105066d51818",
+      "sourceId": "backend-br/vagas#12453",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "6c37a2ed0a1ea3c90b7b12488981d068d0ecda3f69ec70c83f25e9201f26ef62",
+      "sourceCreatedAt": "2026-10-14T20:34:32Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7e0585a0-47bf-4cbe-b567-cd5e7170bc16",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0bd7e2d96ac3105066d51818"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bbe751f6f0df5a01c69e19f1",
+      "sourceId": "programadores-br/geral#3104",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "5da0bf8815b7911e129945060bdf51cd7140c41b60423715cd4b205e34014b56",
+      "sourceCreatedAt": "2026-10-14T20:33:46Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "018a34f2-0ef3-412e-9a88-5a840ac3f035",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil] Business Data Scientist, gTech Ads (English, Portuguese) na Google",
+          "pt-BR": "[São Paulo, Brasil] Business Data Scientist, gTech Ads (English, Portuguese) na Google",
+          "es": "[São Paulo, Brasil] Business Data Scientist, gTech Ads (English, Portuguese) na Google",
+          "it": "[São Paulo, Brasil] Business Data Scientist, gTech Ads (English, Portuguese) na Google",
+          "fr": "[São Paulo, Brasil] Business Data Scientist, gTech Ads (English, Portuguese) na Google",
+          "de": "[São Paulo, Brasil] Business Data Scientist, gTech Ads (English, Portuguese) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bbe751f6f0df5a01c69e19f1"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0f906a6d5d4321cccc2e3353",
+      "sourceId": "programadores-br/geral#3103",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "04d0fe6abb108a6ff410da191ec53e4fabfa45fa24ded0b05a2420930466ee2d",
+      "sourceCreatedAt": "2026-10-14T20:32:46Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2c776fe3-5639-468d-b3d5-919ddd6c513f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil] Technical Solutions Consultant, gTech Ads Sellside (English, Portuguese) na Google",
+          "pt-BR": "[São Paulo, Brasil] Technical Solutions Consultant, gTech Ads Sellside (English, Portuguese) na Google",
+          "es": "[São Paulo, Brasil] Technical Solutions Consultant, gTech Ads Sellside (English, Portuguese) na Google",
+          "it": "[São Paulo, Brasil] Technical Solutions Consultant, gTech Ads Sellside (English, Portuguese) na Google",
+          "fr": "[São Paulo, Brasil] Technical Solutions Consultant, gTech Ads Sellside (English, Portuguese) na Google",
+          "de": "[São Paulo, Brasil] Technical Solutions Consultant, gTech Ads Sellside (English, Portuguese) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0f906a6d5d4321cccc2e3353"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_cdf437a2d394f98429960918",
+      "sourceId": "programadores-br/geral#3102",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "a6163320f68c4c4466fd3e9eb4df4e32542bee1e3c1a41897ba6bd3afebc9903",
+      "sourceCreatedAt": "2026-10-14T20:32:19Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e549ce05-6cb1-4d77-80c4-a65896b285aa",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil] Customer Engineer, Google Workspace and Gemini Enterprise (English, Portuguese) na Google",
+          "pt-BR": "[São Paulo, Brasil] Customer Engineer, Google Workspace and Gemini Enterprise (English, Portuguese) na Google",
+          "es": "[São Paulo, Brasil] Customer Engineer, Google Workspace and Gemini Enterprise (English, Portuguese) na Google",
+          "it": "[São Paulo, Brasil] Customer Engineer, Google Workspace and Gemini Enterprise (English, Portuguese) na Google",
+          "fr": "[São Paulo, Brasil] Customer Engineer, Google Workspace and Gemini Enterprise (English, Portuguese) na Google",
+          "de": "[São Paulo, Brasil] Customer Engineer, Google Workspace and Gemini Enterprise (English, Portuguese) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_cdf437a2d394f98429960918"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6d7d12d74cea2fbb69d40cfd",
+      "sourceId": "programadores-br/geral#3101",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "940b2bb33709b09c8bc606b4eba81df8a186475c98e3cd8f61ec91e421938d66",
+      "sourceCreatedAt": "2026-10-14T20:31:20Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1d9ead74-46a6-4abc-8354-855cab10d4bd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil] AI Outcome Customer Engineer, Google Cloud (English, Portuguese) na Google",
+          "pt-BR": "[São Paulo, Brasil] AI Outcome Customer Engineer, Google Cloud (English, Portuguese) na Google",
+          "es": "[São Paulo, Brasil] AI Outcome Customer Engineer, Google Cloud (English, Portuguese) na Google",
+          "it": "[São Paulo, Brasil] AI Outcome Customer Engineer, Google Cloud (English, Portuguese) na Google",
+          "fr": "[São Paulo, Brasil] AI Outcome Customer Engineer, Google Cloud (English, Portuguese) na Google",
+          "de": "[São Paulo, Brasil] AI Outcome Customer Engineer, Google Cloud (English, Portuguese) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6d7d12d74cea2fbb69d40cfd"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9fabe83b67749b5acf675586",
+      "sourceId": "backend-br/vagas#12452",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "c51cf0a9943ed8ceae4c7afc1e1ade7fe143813269ecf8dd4412c3e8d5b02b5b",
+      "sourceCreatedAt": "2026-10-14T20:30:15Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "38b3f83b-dc9a-47eb-be41-ada438622ce9",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "pt-BR": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "es": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "it": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "fr": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "de": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9fabe83b67749b5acf675586"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_1b9b279adeb52f1eba70f4b7",
+      "sourceId": "programadores-br/geral#3099",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "242fbbd388ddb7a76925e34b680de46c28e2c8df76457d6e253efb67798a9435",
+      "sourceCreatedAt": "2026-10-14T20:29:36Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "80ac1103-4241-44b5-9896-a70de807ec92",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil] Customer Engineer I, Platform, Google Cloud na Google",
+          "pt-BR": "[São Paulo, Brasil] Customer Engineer I, Platform, Google Cloud na Google",
+          "es": "[São Paulo, Brasil] Customer Engineer I, Platform, Google Cloud na Google",
+          "it": "[São Paulo, Brasil] Customer Engineer I, Platform, Google Cloud na Google",
+          "fr": "[São Paulo, Brasil] Customer Engineer I, Platform, Google Cloud na Google",
+          "de": "[São Paulo, Brasil] Customer Engineer I, Platform, Google Cloud na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1b9b279adeb52f1eba70f4b7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ad87146a84bbf4a39b5f49b4",
+      "sourceId": "backend-br/vagas#12451",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "bc20f703401238e226e1f337d492d3a67202bf045ddc705b01df717bd634c980",
+      "sourceCreatedAt": "2026-10-14T20:28:54Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c8baa26d-33fa-43a4-85ec-c789ed2ec429",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "pt-BR": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "es": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "it": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "fr": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "de": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ad87146a84bbf4a39b5f49b4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f806a9484b4d439100a45dab",
+      "sourceId": "frontendbr/vagas#8568",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "0ba0c0050625ff3db224f9166e0cd597b10c8bce075d9b3fe28df95b533787d6",
+      "sourceCreatedAt": "2026-10-14T20:26:00Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "46a1fb60-9f23-4145-a3fa-78172488d961",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte, Brasil] Senior Software Engineer, Full Stack, Kids and Families na Google",
+          "pt-BR": "[Belo Horizonte, Brasil] Senior Software Engineer, Full Stack, Kids and Families na Google",
+          "es": "[Belo Horizonte, Brasil] Senior Software Engineer, Full Stack, Kids and Families na Google",
+          "it": "[Belo Horizonte, Brasil] Senior Software Engineer, Full Stack, Kids and Families na Google",
+          "fr": "[Belo Horizonte, Brasil] Senior Software Engineer, Full Stack, Kids and Families na Google",
+          "de": "[Belo Horizonte, Brasil] Senior Software Engineer, Full Stack, Kids and Families na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f806a9484b4d439100a45dab"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9198146b9940c3a578e19f82",
+      "sourceId": "backend-br/vagas#12449",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "e2a0f69fcc867b6f4dbb69398dbb19376f9166bd97ffbf686d490ab9b53de31e",
+      "sourceCreatedAt": "2026-10-14T20:23:52Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "17044031-0390-42cb-953f-bf54b7f546bb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "pt-BR": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "es": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "it": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "fr": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "de": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9198146b9940c3a578e19f82"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_655fc164c7da8f68845e9203",
+      "sourceId": "frontendbr/vagas#8567",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "03659a83dac067b5fead5b2030ff76cbeceb9c58bdb2f2dd5120ce70d20202ee",
+      "sourceCreatedAt": "2026-10-14T20:23:04Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4f4668eb-eefc-493f-98a1-01ff319b9221",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil] Senior UX Engineer, Search AI na Google",
+          "pt-BR": "[São Paulo, Brasil] Senior UX Engineer, Search AI na Google",
+          "es": "[São Paulo, Brasil] Senior UX Engineer, Search AI na Google",
+          "it": "[São Paulo, Brasil] Senior UX Engineer, Search AI na Google",
+          "fr": "[São Paulo, Brasil] Senior UX Engineer, Search AI na Google",
+          "de": "[São Paulo, Brasil] Senior UX Engineer, Search AI na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_655fc164c7da8f68845e9203"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c4b6f80dde15b4f131273b58",
+      "sourceId": "backend-br/vagas#12448",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "a64ab4ac200850c1375a1876fd77f244f754a1178a7320771f1a853fc9924909",
+      "sourceCreatedAt": "2026-10-14T20:06:22Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "21967d7d-f649-4c7b-b37b-92aec4d6622d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte, Brasil] Senior Software Engineer, AI/ML, Agentic Ecosystem na Google",
+          "pt-BR": "[Belo Horizonte, Brasil] Senior Software Engineer, AI/ML, Agentic Ecosystem na Google",
+          "es": "[Belo Horizonte, Brasil] Senior Software Engineer, AI/ML, Agentic Ecosystem na Google",
+          "it": "[Belo Horizonte, Brasil] Senior Software Engineer, AI/ML, Agentic Ecosystem na Google",
+          "fr": "[Belo Horizonte, Brasil] Senior Software Engineer, AI/ML, Agentic Ecosystem na Google",
+          "de": "[Belo Horizonte, Brasil] Senior Software Engineer, AI/ML, Agentic Ecosystem na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c4b6f80dde15b4f131273b58"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3de1c4071e0e2cdcb4fd4d37",
+      "sourceId": "backend-br/vagas#12447",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "21adde3d6d9fb510d42256e417297e9e09315d96f7442112e9d277bbb18824a1",
+      "sourceCreatedAt": "2026-10-14T19:52:10Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "055f514f-253b-4a4f-9eaa-36d28d0d5d68",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte, Brasil] Senior Software Engineer, Localization on AI Answers na Google",
+          "pt-BR": "[Belo Horizonte, Brasil] Senior Software Engineer, Localization on AI Answers na Google",
+          "es": "[Belo Horizonte, Brasil] Senior Software Engineer, Localization on AI Answers na Google",
+          "it": "[Belo Horizonte, Brasil] Senior Software Engineer, Localization on AI Answers na Google",
+          "fr": "[Belo Horizonte, Brasil] Senior Software Engineer, Localization on AI Answers na Google",
+          "de": "[Belo Horizonte, Brasil] Senior Software Engineer, Localization on AI Answers na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3de1c4071e0e2cdcb4fd4d37"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_50c831231bc251ac5d3c74d1",
+      "sourceId": "CangaceirosDevels/vagas_de_emprego#2804",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "760fd853853353a6b4ead8e70e04a0a3376868a2d5ae65d5a97bc00189fccdf9",
+      "sourceCreatedAt": "2026-10-14T19:41:30Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a34d79bd-05d0-4810-8a97-c8ec78f1c31a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil] Product Account Manager SA360, LCS (English, Portuguese) na Google",
+          "pt-BR": "[São Paulo, Brasil] Product Account Manager SA360, LCS (English, Portuguese) na Google",
+          "es": "[São Paulo, Brasil] Product Account Manager SA360, LCS (English, Portuguese) na Google",
+          "it": "[São Paulo, Brasil] Product Account Manager SA360, LCS (English, Portuguese) na Google",
+          "fr": "[São Paulo, Brasil] Product Account Manager SA360, LCS (English, Portuguese) na Google",
+          "de": "[São Paulo, Brasil] Product Account Manager SA360, LCS (English, Portuguese) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_50c831231bc251ac5d3c74d1"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_84a6ddeb8d3c3bc45031ccc6",
+      "sourceId": "devfsa/vagas#2835",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "c824b5466caa901e5886ae758e59e8a3d1125c5908740068f0c4718fd7d7aa41",
+      "sourceCreatedAt": "2026-10-14T19:34:10Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ae86b9c0-7fd4-4e5d-ad20-43a2b65ecf43",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil] Ads Solutions Engineering Manager (English, Portuguese) na Google",
+          "pt-BR": "[São Paulo, Brasil] Ads Solutions Engineering Manager (English, Portuguese) na Google",
+          "es": "[São Paulo, Brasil] Ads Solutions Engineering Manager (English, Portuguese) na Google",
+          "it": "[São Paulo, Brasil] Ads Solutions Engineering Manager (English, Portuguese) na Google",
+          "fr": "[São Paulo, Brasil] Ads Solutions Engineering Manager (English, Portuguese) na Google",
+          "de": "[São Paulo, Brasil] Ads Solutions Engineering Manager (English, Portuguese) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_84a6ddeb8d3c3bc45031ccc6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_287c589db6e25b670a056e55",
+      "sourceId": "frontendbr/vagas#8566",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "32b13795f564fa91a8f147d1b8bff4470e5ed8fb63ab66de6c218c2d0ac7c001",
+      "sourceCreatedAt": "2026-10-07T14:03:28Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "825c8b78-17cf-41b7-8343-030e3fc7ef55",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js(Strider)",
+          "pt-BR": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js(Strider)",
+          "es": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js(Strider)",
+          "it": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js(Strider)",
+          "fr": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js(Strider)",
+          "de": "[Remoto] Full-stack Engineer React.js • UX Design • Node.js(Strider)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_287c589db6e25b670a056e55"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_cdfa2de024dbb8a4cb735734",
+      "sourceId": "devfsa/vagas#2830",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "75cfb637e34e2263cbaf3c80ca09536300d868f700ab90dbdbd5fd94be29dc28",
+      "sourceCreatedAt": "2026-08-18T13:10:36Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8143380c-8e9b-499c-abb8-f2cb01491888",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Software Developer (Sênior) na Coodesh",
+          "pt-BR": "[Remoto] Software Developer (Sênior) na Coodesh",
+          "es": "[Remoto] Software Developer (Sênior) na Coodesh",
+          "it": "[Remoto] Software Developer (Sênior) na Coodesh",
+          "fr": "[Remoto] Software Developer (Sênior) na Coodesh",
+          "de": "[Remoto] Software Developer (Sênior) na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_cdfa2de024dbb8a4cb735734"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5708c7b7c69bc276f6fb8941",
+      "sourceId": "devfsa/vagas#2826",
+      "dataCommit": "433924a185029e98901fd2610f6ea54c6c2629af",
+      "dataHash": "1e954471b0b114abec7161ed3f0f6e9dad54b22eb879f76b83fad2eb578eaccc",
+      "contentHash": "f8f3a16683727307f26ddbdb648ba18b87033152ddef69a62354f87b7415ef3c",
+      "sourceCreatedAt": "2026-05-25T18:56:54Z",
+      "createdAt": "2026-10-14T23:35:25.961Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e01b248e-745f-4592-bfe5-278bc952dcaf",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Analista de Suporte ao Produto na Coodesh",
+          "pt-BR": "[Remoto] Analista de Suporte ao Produto na Coodesh",
+          "es": "[Remoto] Analista de Suporte ao Produto na Coodesh",
+          "it": "[Remoto] Analista de Suporte ao Produto na Coodesh",
+          "fr": "[Remoto] Analista de Suporte ao Produto na Coodesh",
+          "de": "[Remoto] Analista de Suporte ao Produto na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5708c7b7c69bc276f6fb8941"
         }
       },
       "status": "pending",
