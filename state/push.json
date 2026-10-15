@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "115c495fea093d6f052ac7413431c74799f02638",
-    "generatedAt": "2026-10-15T07:53:53.434Z",
-    "dataHash": "c6f6587564de7c758ebd4537539b95bdbbeb7eac9e0dd9cbc8687c0af1c93b43"
+    "commit": "06c2560cb855fedf9f604e60608cf7188167f7ea",
+    "generatedAt": "2026-10-15T13:50:46.065Z",
+    "dataHash": "5648f92fb880c4134a336460d745a601c3191855e620b5bfefd94aa76531518a"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -11094,6 +11094,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_776da6cd16a3878a7aa6c3ac"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8d2476b1965d80a6141c7e7a",
+      "sourceId": "rebase-network/who-is-hiring#1318",
+      "dataCommit": "06c2560cb855fedf9f604e60608cf7188167f7ea",
+      "dataHash": "5648f92fb880c4134a336460d745a601c3191855e620b5bfefd94aa76531518a",
+      "contentHash": "113b196edf946b4cde7370a859c7669bb1f2d4031d41fcbc08f7866de08f788b",
+      "sourceCreatedAt": "2026-10-15T10:27:14Z",
+      "createdAt": "2026-10-15T13:50:46.065Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "834c1ddc-c3d2-4efd-92e0-9a77907434bc",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[上海/北京] 百亿量化 诚聘 C++工程师 薪资不做限制",
+          "pt-BR": "[上海/北京] 百亿量化 诚聘 C++工程师 薪资不做限制",
+          "es": "[上海/北京] 百亿量化 诚聘 C++工程师 薪资不做限制",
+          "it": "[上海/北京] 百亿量化 诚聘 C++工程师 薪资不做限制",
+          "fr": "[上海/北京] 百亿量化 诚聘 C++工程师 薪资不做限制",
+          "de": "[上海/北京] 百亿量化 诚聘 C++工程师 薪资不做限制"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8d2476b1965d80a6141c7e7a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fef871b26ead5d7e5c70bd4e",
+      "sourceId": "rebase-network/who-is-hiring#1317",
+      "dataCommit": "06c2560cb855fedf9f604e60608cf7188167f7ea",
+      "dataHash": "5648f92fb880c4134a336460d745a601c3191855e620b5bfefd94aa76531518a",
+      "contentHash": "f06a589a59f27617a51066d11326b0f51b7de220a3a9902192056407f41b323f",
+      "sourceCreatedAt": "2026-10-15T09:59:57Z",
+      "createdAt": "2026-10-15T13:50:46.065Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "16a1bd57-60ca-41cb-ab28-e9bd41d88c15",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验20年以内",
+          "pt-BR": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验20年以内",
+          "es": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验20年以内",
+          "it": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验20年以内",
+          "fr": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验20年以内",
+          "de": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验20年以内"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fef871b26ead5d7e5c70bd4e"
         }
       },
       "status": "pending",
