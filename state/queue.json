@@ -52890,12 +52890,23 @@
       "createdAt": "2026-10-14T21:02:00Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-15T11:38:57.931Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_f854256c35a417d8933cfcfe",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_f854256c35a417d8933cfcfe/9063b37b54126de9944af172b8b4a50e84ed2eb091ae5563c64b961f676ae9c0/7f062f25e89669e853a88f206c6d44d21229e308514ba0012ae7ec3556302d9d/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_f854256c35a417d8933cfcfe/9063b37b54126de9944af172b8b4a50e84ed2eb091ae5563c64b961f676ae9c0/7f062f25e89669e853a88f206c6d44d21229e308514ba0012ae7ec3556302d9d/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_f854256c35a417d8933cfcfe/9063b37b54126de9944af172b8b4a50e84ed2eb091ae5563c64b961f676ae9c0/7f062f25e89669e853a88f206c6d44d21229e308514ba0012ae7ec3556302d9d/social-video.mp4",
+          "pngHash": "a4d7381c1731b44445796e4db7817d83665903ba143dc0a8b0fca77613b46abd",
+          "instagramJpegHash": "a90c9961177111e5c0fcfc8eeaeac87ef85b7eb6100edd9c3fa878d37d001bce",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google"
         }
       },
