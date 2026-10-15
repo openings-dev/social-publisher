@@ -9413,12 +9413,15 @@
           "jobId": "gh_0065133926adf9a786c1f458"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-10-15T05:03:34.138Z",
-      "updatedAt": "2026-10-15T05:03:34.138Z",
+      "updatedAt": "2026-10-15T05:03:35.927Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "5d8bbd0c-ec05-4260-b625-79b94c36f6d7",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_b256c39c80fcfe7ea8df79e4",
