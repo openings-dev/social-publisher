@@ -55814,12 +55814,14 @@
       "createdAt": "2026-10-15T10:27:14Z",
       "publicationCreatedAt": "2026-10-15T17:08:57.064Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-15T21:29:43.087Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[上海/北京] 百亿量化 诚聘 C++工程师 薪资不做限制"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -55876,7 +55878,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 188
     },
     {
       "jobId": "gh_fef871b26ead5d7e5c70bd4e",
