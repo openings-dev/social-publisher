@@ -52890,12 +52890,14 @@
       "createdAt": "2026-10-14T21:02:00Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-15T11:38:57.931Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -52952,7 +52954,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 186
     },
     {
       "jobId": "gh_359763f2428002617dd25011",
