@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "06c2560cb855fedf9f604e60608cf7188167f7ea",
-    "generatedAt": "2026-10-15T13:50:46.065Z",
-    "dataHash": "5648f92fb880c4134a336460d745a601c3191855e620b5bfefd94aa76531518a"
+    "commit": "40e04e286d62c728c5d1619375ee96c34d7eb0a8",
+    "generatedAt": "2026-10-15T18:49:17.487Z",
+    "dataHash": "507fefd70d4d81bd205fe6da27b7ea95630da75ece0fb9819350dfe71b6127b6"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -11174,6 +11174,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_fef871b26ead5d7e5c70bd4e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c2ca6e47f2a8e232fc4150d6",
+      "sourceId": "backend-br/vagas#12470",
+      "dataCommit": "40e04e286d62c728c5d1619375ee96c34d7eb0a8",
+      "dataHash": "507fefd70d4d81bd205fe6da27b7ea95630da75ece0fb9819350dfe71b6127b6",
+      "contentHash": "01a070728af1f09cd631d6984ea8c8fe4bbed351c0c10230ceec5fe9664bfb27",
+      "sourceCreatedAt": "2026-10-15T14:33:24Z",
+      "createdAt": "2026-10-15T18:49:17.487Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4ea133f1-feab-46cc-b5c6-1412fa0e4d09",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Engenheiro (a) de Software-Github /Micro 1",
+          "pt-BR": "[Remoto] Engenheiro (a) de Software-Github /Micro 1",
+          "es": "[Remoto] Engenheiro (a) de Software-Github /Micro 1",
+          "it": "[Remoto] Engenheiro (a) de Software-Github /Micro 1",
+          "fr": "[Remoto] Engenheiro (a) de Software-Github /Micro 1",
+          "de": "[Remoto] Engenheiro (a) de Software-Github /Micro 1"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c2ca6e47f2a8e232fc4150d6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f0549aba345734555903a748",
+      "sourceId": "backend-br/vagas#12469",
+      "dataCommit": "40e04e286d62c728c5d1619375ee96c34d7eb0a8",
+      "dataHash": "507fefd70d4d81bd205fe6da27b7ea95630da75ece0fb9819350dfe71b6127b6",
+      "contentHash": "89d0428b2e247f8372c11bb801e2390c2451a055a53633c527fc92611346622d",
+      "sourceCreatedAt": "2026-10-15T14:31:11Z",
+      "createdAt": "2026-10-15T18:49:17.487Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d4db51bd-fa53-4dfc-9a40-6251c3994e6c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Engenheiro de Software- Micro 1",
+          "pt-BR": "[Remoto] Engenheiro de Software- Micro 1",
+          "es": "[Remoto] Engenheiro de Software- Micro 1",
+          "it": "[Remoto] Engenheiro de Software- Micro 1",
+          "fr": "[Remoto] Engenheiro de Software- Micro 1",
+          "de": "[Remoto] Engenheiro de Software- Micro 1"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f0549aba345734555903a748"
         }
       },
       "status": "pending",
