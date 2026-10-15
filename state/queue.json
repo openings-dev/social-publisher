@@ -47561,9 +47561,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -48377,9 +48377,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -51007,9 +51007,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -52612,17 +52612,17 @@
       "createdAt": "2026-10-14T19:06:19Z",
       "publicationCreatedAt": "2026-10-14T23:18:05.672Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -52636,41 +52636,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -52686,12 +52686,14 @@
       "createdAt": "2026-10-14T14:54:45Z",
       "publicationCreatedAt": "2026-10-14T23:18:05.672Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-15T04:49:50.286Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Software Developer"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -52748,7 +52750,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 185
     }
   ]
 }
