@@ -55610,12 +55610,23 @@
       "createdAt": "2026-10-15T05:00:09Z",
       "publicationCreatedAt": "2026-10-15T11:40:21.889Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-15T17:07:31.986Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_776da6cd16a3878a7aa6c3ac",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_776da6cd16a3878a7aa6c3ac/0f241cd4ea2fc847321536d0774de9082ba0e4dd51c3f29091d95808d4d2c1a5/48778761fe8c2583ead1b3540dc0788c4a0457341e4eac647b4def7993213450/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_776da6cd16a3878a7aa6c3ac/0f241cd4ea2fc847321536d0774de9082ba0e4dd51c3f29091d95808d4d2c1a5/48778761fe8c2583ead1b3540dc0788c4a0457341e4eac647b4def7993213450/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_776da6cd16a3878a7aa6c3ac/0f241cd4ea2fc847321536d0774de9082ba0e4dd51c3f29091d95808d4d2c1a5/48778761fe8c2583ead1b3540dc0788c4a0457341e4eac647b4def7993213450/social-video.mp4",
+          "pngHash": "87803a82fd5e923be8a76ab05ed506a6e86d8a82ffd567a245982f6e028434c6",
+          "instagramJpegHash": "ad2afbfc9041c85cacaf5a4440b67543cc4cad544898397bda4eb326bcc399b9",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "Doesn't show Hardware engineering jobs"
         }
       },
