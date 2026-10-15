@@ -55814,12 +55814,23 @@
       "createdAt": "2026-10-15T10:27:14Z",
       "publicationCreatedAt": "2026-10-15T17:08:57.064Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-15T21:29:43.087Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_8d2476b1965d80a6141c7e7a",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_8d2476b1965d80a6141c7e7a/113b196edf946b4cde7370a859c7669bb1f2d4031d41fcbc08f7866de08f788b/a7bad312db30d930d1294ef331c035ad5b0d578d12bf64e19b2ff621cbbaa0c5/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_8d2476b1965d80a6141c7e7a/113b196edf946b4cde7370a859c7669bb1f2d4031d41fcbc08f7866de08f788b/a7bad312db30d930d1294ef331c035ad5b0d578d12bf64e19b2ff621cbbaa0c5/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_8d2476b1965d80a6141c7e7a/113b196edf946b4cde7370a859c7669bb1f2d4031d41fcbc08f7866de08f788b/a7bad312db30d930d1294ef331c035ad5b0d578d12bf64e19b2ff621cbbaa0c5/social-video.mp4",
+          "pngHash": "9cb942d46a267d7d666d3b219bc3855f671c5a3342c7439bfbbcdc06453ad4cf",
+          "instagramJpegHash": "d8f94f0aa269d6a329d080004a4ce1a911e71af2a179a75d6748c9963a263243",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[上海/北京] 百亿量化 诚聘 C++工程师 薪资不做限制"
         }
       },
