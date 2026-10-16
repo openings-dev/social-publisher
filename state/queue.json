@@ -53670,12 +53670,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-16T07:17:31.540Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18177325057450504",
+          "url": "https://www.threads.com/@openingshq/post/Dei-pkGFSnI"
+        }
       },
       "instagram": {
         "status": "pending",
