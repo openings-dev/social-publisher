@@ -56150,12 +56150,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-16T00:28:06.369Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18015133616986110",
+          "url": "https://www.threads.com/@openingshq/post/DeiPy3flDUT"
+        }
       },
       "instagram": {
         "status": "pending",
