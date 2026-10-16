@@ -53612,12 +53612,23 @@
       "createdAt": "2026-10-14T20:51:10Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-16T07:17:31.540Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_029af2b880506194635d23b8",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_029af2b880506194635d23b8/d65233f3b7c6f9db44de6af761df8c167c156f77b0a27649d83431b2f8b2cd5c/70515711755a561a86fb5767b6af43dce734d025eae04f7f70452abb199415be/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_029af2b880506194635d23b8/d65233f3b7c6f9db44de6af761df8c167c156f77b0a27649d83431b2f8b2cd5c/70515711755a561a86fb5767b6af43dce734d025eae04f7f70452abb199415be/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_029af2b880506194635d23b8/d65233f3b7c6f9db44de6af761df8c167c156f77b0a27649d83431b2f8b2cd5c/70515711755a561a86fb5767b6af43dce734d025eae04f7f70452abb199415be/social-video.mp4",
+          "pngHash": "bdec13cdc2062986318ef49db8abdaf2b5abcb46815d47f118764751e823eed2",
+          "instagramJpegHash": "033485e459778c30cee5baf3df538e40f16e5a0d1f3c847056af599a676220c9",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Cidade do México, México] Senior Software Engineer, Chrome Test Infrastructure na Google"
         }
       },
