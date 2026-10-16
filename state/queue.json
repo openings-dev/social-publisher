@@ -53538,12 +53538,23 @@
       "createdAt": "2026-10-14T20:54:09Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-16T21:18:11.177Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_34417202d0a35257d6811c40",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_34417202d0a35257d6811c40/8b307757575ed96201a9d2de01af4eb3eb02aecd191f7e4f299bc136ac3e93f5/0fea9bcc04234e8fa787e4c856a29f0f87553eb8bcecd9e10966d316388d38ca/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_34417202d0a35257d6811c40/8b307757575ed96201a9d2de01af4eb3eb02aecd191f7e4f299bc136ac3e93f5/0fea9bcc04234e8fa787e4c856a29f0f87553eb8bcecd9e10966d316388d38ca/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_34417202d0a35257d6811c40/8b307757575ed96201a9d2de01af4eb3eb02aecd191f7e4f299bc136ac3e93f5/0fea9bcc04234e8fa787e4c856a29f0f87553eb8bcecd9e10966d316388d38ca/social-video.mp4",
+          "pngHash": "690b852b7c1f5f93092730f4b10ad38b72314bd08e772209bd5d79864955ad00",
+          "instagramJpegHash": "8b9e3ad3762231922ffa30c8e76aed00c4e97584bb84f37111e594c7b7b83e39",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Cidade do México, México] Mobile Software Engineer, Multiplatform, Early Careers na Google"
         }
       },
