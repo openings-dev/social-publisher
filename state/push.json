@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "804c776e36110f47054c448b35b2e50836e42113",
-    "generatedAt": "2026-10-15T23:29:49.835Z",
-    "dataHash": "285a812e1855e06c880cf268153c915690ca4da5736f7c8f7643326c03dfe9eb"
+    "commit": "a7504b21e8340ccd49d1ec3cb6c17c1f1343bc71",
+    "generatedAt": "2026-10-16T02:29:52.912Z",
+    "dataHash": "ef0ae79eb613e0766f95f5c045bde66b5c2d515419c675e0d7507ce3f9b678de"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -11294,6 +11294,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_a03853fce961d78f26781f71"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f9423a44dfa4c405cd352a84",
+      "sourceId": "ambicuity/New-Grad-Jobs#445",
+      "dataCommit": "a7504b21e8340ccd49d1ec3cb6c17c1f1343bc71",
+      "dataHash": "ef0ae79eb613e0766f95f5c045bde66b5c2d515419c675e0d7507ce3f9b678de",
+      "contentHash": "34926e66663ba9a70b5927e979485628be4a8a704dd03fe6b9358f2cba6a500d",
+      "sourceCreatedAt": "2026-10-16T01:47:20Z",
+      "createdAt": "2026-10-16T02:29:52.912Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0cf085a5-a55a-477f-a8f0-6b70583fa030",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Privacy policy: Cloudflare proxies the site but is not disclosed",
+          "pt-BR": "Privacy policy: Cloudflare proxies the site but is not disclosed",
+          "es": "Privacy policy: Cloudflare proxies the site but is not disclosed",
+          "it": "Privacy policy: Cloudflare proxies the site but is not disclosed",
+          "fr": "Privacy policy: Cloudflare proxies the site but is not disclosed",
+          "de": "Privacy policy: Cloudflare proxies the site but is not disclosed"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f9423a44dfa4c405cd352a84"
         }
       },
       "status": "pending",
