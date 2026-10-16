@@ -53612,12 +53612,14 @@
       "createdAt": "2026-10-14T20:51:10Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-16T07:17:31.540Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Cidade do México, México] Senior Software Engineer, Chrome Test Infrastructure na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -53674,7 +53676,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 190
     },
     {
       "jobId": "gh_81e63edc3ac406661d00088f",
