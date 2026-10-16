@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "a7504b21e8340ccd49d1ec3cb6c17c1f1343bc71",
-    "generatedAt": "2026-10-16T02:29:52.912Z",
-    "dataHash": "ef0ae79eb613e0766f95f5c045bde66b5c2d515419c675e0d7507ce3f9b678de"
+    "commit": "f046303313055a7f65f83650aa036c7f879f53e3",
+    "generatedAt": "2026-10-16T07:45:54.872Z",
+    "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -11337,6 +11337,366 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f9423a44dfa4c405cd352a84"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2f90b160baee5d09b0165e89",
+      "sourceId": "rebase-network/who-is-hiring#1320",
+      "dataCommit": "f046303313055a7f65f83650aa036c7f879f53e3",
+      "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd",
+      "contentHash": "f1859c2110ced5731c7c4c42694aaac2ba37bb1da458fdcd310f5627de750642",
+      "sourceCreatedAt": "2026-10-16T02:41:02Z",
+      "createdAt": "2026-10-16T07:45:54.872Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6753eb39-31fe-40ab-a8f5-4d491fbf0bb6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[远程] CEX公司诚聘 项目经理/财务经理/资深量化风险专家/资深量化交易专家",
+          "pt-BR": "[远程] CEX公司诚聘 项目经理/财务经理/资深量化风险专家/资深量化交易专家",
+          "es": "[远程] CEX公司诚聘 项目经理/财务经理/资深量化风险专家/资深量化交易专家",
+          "it": "[远程] CEX公司诚聘 项目经理/财务经理/资深量化风险专家/资深量化交易专家",
+          "fr": "[远程] CEX公司诚聘 项目经理/财务经理/资深量化风险专家/资深量化交易专家",
+          "de": "[远程] CEX公司诚聘 项目经理/财务经理/资深量化风险专家/资深量化交易专家"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2f90b160baee5d09b0165e89"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_14ddee933b9b152d7875ef0c",
+      "sourceId": "rebase-network/who-is-hiring#1319",
+      "dataCommit": "f046303313055a7f65f83650aa036c7f879f53e3",
+      "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd",
+      "contentHash": "f33af77a53aaaac898c65cdfabe464d81ec544d2bfcff01161ddfc29cd4b7de3",
+      "sourceCreatedAt": "2026-10-16T02:36:17Z",
+      "createdAt": "2026-10-16T07:45:54.872Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "70811934-de06-4af0-8975-e99d0d0dc0f8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[香港] Web3金融科技公司诚聘C++/Rust/量化策略研究/机构BD,港币发薪",
+          "pt-BR": "[香港] Web3金融科技公司诚聘C++/Rust/量化策略研究/机构BD,港币发薪",
+          "es": "[香港] Web3金融科技公司诚聘C++/Rust/量化策略研究/机构BD,港币发薪",
+          "it": "[香港] Web3金融科技公司诚聘C++/Rust/量化策略研究/机构BD,港币发薪",
+          "fr": "[香港] Web3金融科技公司诚聘C++/Rust/量化策略研究/机构BD,港币发薪",
+          "de": "[香港] Web3金融科技公司诚聘C++/Rust/量化策略研究/机构BD,港币发薪"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_14ddee933b9b152d7875ef0c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d0fd86a6c4d5a2aa3116c45c",
+      "sourceId": "backend-br/vagas#12427",
+      "dataCommit": "f046303313055a7f65f83650aa036c7f879f53e3",
+      "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd",
+      "contentHash": "0bfa4fd49d249747351a241dc7ab54141bfb7343407c6eae9d22ea8227e633fd",
+      "sourceCreatedAt": "2026-09-15T20:26:03Z",
+      "createdAt": "2026-10-16T07:45:54.872Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6e81e0fe-7bc4-45fa-9123-7e0d84c91335",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido -SP] Back-end developer Cobol Boleto e Cobrança - Evertec",
+          "pt-BR": "[Híbrido -SP] Back-end developer Cobol Boleto e Cobrança - Evertec",
+          "es": "[Híbrido -SP] Back-end developer Cobol Boleto e Cobrança - Evertec",
+          "it": "[Híbrido -SP] Back-end developer Cobol Boleto e Cobrança - Evertec",
+          "fr": "[Híbrido -SP] Back-end developer Cobol Boleto e Cobrança - Evertec",
+          "de": "[Híbrido -SP] Back-end developer Cobol Boleto e Cobrança - Evertec"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d0fd86a6c4d5a2aa3116c45c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_468c8cf49b5f3cd53e602f52",
+      "sourceId": "backend-br/vagas#12426",
+      "dataCommit": "f046303313055a7f65f83650aa036c7f879f53e3",
+      "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd",
+      "contentHash": "ae20fce104b2b75df80b29a26831fd83363ce7d057070467c77121440cac16b2",
+      "sourceCreatedAt": "2026-09-15T20:18:28Z",
+      "createdAt": "2026-10-16T07:45:54.872Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2b565de1-fd58-4447-98cf-1dd8d06c9c68",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido-SP] Back-end developer Cobol Pagamento de Fornecedores - Evertec",
+          "pt-BR": "[Híbrido-SP] Back-end developer Cobol Pagamento de Fornecedores - Evertec",
+          "es": "[Híbrido-SP] Back-end developer Cobol Pagamento de Fornecedores - Evertec",
+          "it": "[Híbrido-SP] Back-end developer Cobol Pagamento de Fornecedores - Evertec",
+          "fr": "[Híbrido-SP] Back-end developer Cobol Pagamento de Fornecedores - Evertec",
+          "de": "[Híbrido-SP] Back-end developer Cobol Pagamento de Fornecedores - Evertec"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_468c8cf49b5f3cd53e602f52"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_193c0346b850436a605cdc8c",
+      "sourceId": "backend-br/vagas#12425",
+      "dataCommit": "f046303313055a7f65f83650aa036c7f879f53e3",
+      "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd",
+      "contentHash": "c9d28810883cbd41b8ff9664fdc7f3ac7e3a5ed23aef5d70c41508f58be35c50",
+      "sourceCreatedAt": "2026-09-15T20:14:49Z",
+      "createdAt": "2026-10-16T07:45:54.872Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "421e7115-0504-4434-9e25-4fe84ce3d1d4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido-SP] Back-end developer Cobol TED - Evertec",
+          "pt-BR": "[Híbrido-SP] Back-end developer Cobol TED - Evertec",
+          "es": "[Híbrido-SP] Back-end developer Cobol TED - Evertec",
+          "it": "[Híbrido-SP] Back-end developer Cobol TED - Evertec",
+          "fr": "[Híbrido-SP] Back-end developer Cobol TED - Evertec",
+          "de": "[Híbrido-SP] Back-end developer Cobol TED - Evertec"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_193c0346b850436a605cdc8c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bcd309f92451b04e03b063be",
+      "sourceId": "backend-br/vagas#12424",
+      "dataCommit": "f046303313055a7f65f83650aa036c7f879f53e3",
+      "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd",
+      "contentHash": "c6ea1283c53fa07b2155ac7152167f4de991d0fd56e478fe7f16eb5af86ca4ad",
+      "sourceCreatedAt": "2026-09-15T19:45:38Z",
+      "createdAt": "2026-10-16T07:45:54.872Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "78a9ca50-d1ed-4fed-aa28-7bb6d091014c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido-SP] Back-end developer Cobol Sênior - Evertec",
+          "pt-BR": "[Híbrido-SP] Back-end developer Cobol Sênior - Evertec",
+          "es": "[Híbrido-SP] Back-end developer Cobol Sênior - Evertec",
+          "it": "[Híbrido-SP] Back-end developer Cobol Sênior - Evertec",
+          "fr": "[Híbrido-SP] Back-end developer Cobol Sênior - Evertec",
+          "de": "[Híbrido-SP] Back-end developer Cobol Sênior - Evertec"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bcd309f92451b04e03b063be"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_65a9e4d11df0890cd1413d3d",
+      "sourceId": "backend-br/vagas#12423",
+      "dataCommit": "f046303313055a7f65f83650aa036c7f879f53e3",
+      "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd",
+      "contentHash": "2c30db596e1081e3e8296122f4d66fe98838f22000d7aec6daaa0d5f305fcb9b",
+      "sourceCreatedAt": "2026-09-15T19:38:34Z",
+      "createdAt": "2026-10-16T07:45:54.872Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0e73fd0e-5fcf-472e-8ac7-d1860564a1a3",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido - SP] Back-end developer  Cobol Pix Orquestrador - Evertec",
+          "pt-BR": "[Híbrido - SP] Back-end developer  Cobol Pix Orquestrador - Evertec",
+          "es": "[Híbrido - SP] Back-end developer  Cobol Pix Orquestrador - Evertec",
+          "it": "[Híbrido - SP] Back-end developer  Cobol Pix Orquestrador - Evertec",
+          "fr": "[Híbrido - SP] Back-end developer  Cobol Pix Orquestrador - Evertec",
+          "de": "[Híbrido - SP] Back-end developer  Cobol Pix Orquestrador - Evertec"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_65a9e4d11df0890cd1413d3d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4b03fd2e93475eafb803b38b",
+      "sourceId": "backend-br/vagas#12421",
+      "dataCommit": "f046303313055a7f65f83650aa036c7f879f53e3",
+      "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd",
+      "contentHash": "630596e92d7f398e9b8403d5a2edbd975acc253dbb108dcaed0a59c48674d79b",
+      "sourceCreatedAt": "2026-09-15T14:15:00Z",
+      "createdAt": "2026-10-16T07:45:54.872Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "abe5ea9e-1d54-4272-aadf-2674565425ed",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Hiring] Senior Solidity Smart Contract Engineer | Remote | $15K–$18K/month",
+          "pt-BR": "[Hiring] Senior Solidity Smart Contract Engineer | Remote | $15K–$18K/month",
+          "es": "[Hiring] Senior Solidity Smart Contract Engineer | Remote | $15K–$18K/month",
+          "it": "[Hiring] Senior Solidity Smart Contract Engineer | Remote | $15K–$18K/month",
+          "fr": "[Hiring] Senior Solidity Smart Contract Engineer | Remote | $15K–$18K/month",
+          "de": "[Hiring] Senior Solidity Smart Contract Engineer | Remote | $15K–$18K/month"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4b03fd2e93475eafb803b38b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0e6bd5dbd7f6d69f3e81bc93",
+      "sourceId": "backend-br/vagas#12417",
+      "dataCommit": "f046303313055a7f65f83650aa036c7f879f53e3",
+      "dataHash": "c49503c5e37dfddb295669eb1343a754250e6cf31a1b5dc24b757383fd2cc9bd",
+      "contentHash": "d5c0a66d498421de871771436d41f45114a64528c494b19ccd26c432624c494e",
+      "sourceCreatedAt": "2026-09-09T12:38:25Z",
+      "createdAt": "2026-10-16T07:45:54.872Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7ab66b2d-ef43-4cfc-bca0-2316885ecb4c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido em SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "pt-BR": "[Híbrido em SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "es": "[Híbrido em SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "it": "[Híbrido em SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "fr": "[Híbrido em SP] Fullstack developer Python/React & IA na Evertec 🧡",
+          "de": "[Híbrido em SP] Fullstack developer Python/React & IA na Evertec 🧡"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0e6bd5dbd7f6d69f3e81bc93"
         }
       },
       "status": "pending",
