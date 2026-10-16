@@ -56092,12 +56092,14 @@
       "createdAt": "2026-10-15T14:33:24Z",
       "publicationCreatedAt": "2026-10-15T21:31:08.417Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-16T00:28:06.369Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Engenheiro (a) de Software-Github /Micro 1"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -56154,7 +56156,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 189
     },
     {
       "jobId": "gh_f0549aba345734555903a748",
