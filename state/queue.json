@@ -54905,12 +54905,14 @@
       "createdAt": "2026-10-14T20:32:46Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-16T18:08:25.345Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[São Paulo, Brasil] Technical Solutions Consultant, gTech Ads Sellside (English, Portuguese) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -54967,7 +54969,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 192
     },
     {
       "jobId": "gh_cdf437a2d394f98429960918",
