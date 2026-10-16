@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "40e04e286d62c728c5d1619375ee96c34d7eb0a8",
-    "generatedAt": "2026-10-15T18:49:17.487Z",
-    "dataHash": "507fefd70d4d81bd205fe6da27b7ea95630da75ece0fb9819350dfe71b6127b6"
+    "commit": "804c776e36110f47054c448b35b2e50836e42113",
+    "generatedAt": "2026-10-15T23:29:49.835Z",
+    "dataHash": "285a812e1855e06c880cf268153c915690ca4da5736f7c8f7643326c03dfe9eb"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -11254,6 +11254,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f0549aba345734555903a748"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a03853fce961d78f26781f71",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9705",
+      "dataCommit": "804c776e36110f47054c448b35b2e50836e42113",
+      "dataHash": "285a812e1855e06c880cf268153c915690ca4da5736f7c8f7643326c03dfe9eb",
+      "contentHash": "8adebe0023005be99019dd6a13bd63ed9a0ce1af7db0a3e8e5cc831061594abe",
+      "sourceCreatedAt": "2026-10-15T23:00:19Z",
+      "createdAt": "2026-10-15T23:29:49.835Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "043a013b-7ab7-4c14-beaf-efe1ca7260f7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Duolingo Data Science Internship",
+          "pt-BR": "Duolingo Data Science Internship",
+          "es": "Duolingo Data Science Internship",
+          "it": "Duolingo Data Science Internship",
+          "fr": "Duolingo Data Science Internship",
+          "de": "Duolingo Data Science Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a03853fce961d78f26781f71"
         }
       },
       "status": "pending",
