@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "3ee62a82d95b536727a3f160749e987ea434b35a",
-    "generatedAt": "2026-10-16T18:34:00.073Z",
-    "dataHash": "09fddb85ebd2ddd70cc46e24ae8865a008d6f58b79f3829f864b3942f986c531"
+    "commit": "a881926898d60915f85d4425bd947b91cb52a2e9",
+    "generatedAt": "2026-10-16T23:11:34.994Z",
+    "dataHash": "50026d6452ac30c7df5c0fc7926fd91af8585633857c1b5b1d5c85dcd0447fb6"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -11339,10 +11339,10 @@
           "jobId": "gh_f9423a44dfa4c405cd352a84"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-16T23:11:34.994Z",
       "retryAfter": null,
       "result": null
     },
@@ -11739,10 +11739,10 @@
           "jobId": "gh_320f20971f8b22056109b288"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-16T23:11:34.994Z",
       "retryAfter": null,
       "result": null
     },
@@ -11777,6 +11777,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_0da1549c7daf4a0c09a7d121"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4a700fa8926cbb8edfbdeb95",
+      "sourceId": "ambicuity/New-Grad-Jobs#449",
+      "dataCommit": "a881926898d60915f85d4425bd947b91cb52a2e9",
+      "dataHash": "50026d6452ac30c7df5c0fc7926fd91af8585633857c1b5b1d5c85dcd0447fb6",
+      "contentHash": "0b615e7f62c8083170a457bc160151ca568ed466ed88ac0e70b96404a2b69f3d",
+      "sourceCreatedAt": "2026-10-16T23:03:02Z",
+      "createdAt": "2026-10-16T23:11:34.994Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "140a0aec-2861-4d1f-966e-080a93c8dd46",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Bug]: schema-invalid jobs index prevents fallback to a healthy jobs.json",
+          "pt-BR": "[Bug]: schema-invalid jobs index prevents fallback to a healthy jobs.json",
+          "es": "[Bug]: schema-invalid jobs index prevents fallback to a healthy jobs.json",
+          "it": "[Bug]: schema-invalid jobs index prevents fallback to a healthy jobs.json",
+          "fr": "[Bug]: schema-invalid jobs index prevents fallback to a healthy jobs.json",
+          "de": "[Bug]: schema-invalid jobs index prevents fallback to a healthy jobs.json"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4a700fa8926cbb8edfbdeb95"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_94493c77be84aabfeeabe717",
+      "sourceId": "ambicuity/New-Grad-Jobs#448",
+      "dataCommit": "a881926898d60915f85d4425bd947b91cb52a2e9",
+      "dataHash": "50026d6452ac30c7df5c0fc7926fd91af8585633857c1b5b1d5c85dcd0447fb6",
+      "contentHash": "3aa5259aa3e468658f26704e48ef1a55b6f121fc1ba0ad3604ccb1b02079a5ef",
+      "sourceCreatedAt": "2026-10-16T23:03:00Z",
+      "createdAt": "2026-10-16T23:11:34.994Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5a908a65-9af3-485a-b9e1-5485415d689b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Bug]: near-miss job share links point to static pages that are never generated",
+          "pt-BR": "[Bug]: near-miss job share links point to static pages that are never generated",
+          "es": "[Bug]: near-miss job share links point to static pages that are never generated",
+          "it": "[Bug]: near-miss job share links point to static pages that are never generated",
+          "fr": "[Bug]: near-miss job share links point to static pages that are never generated",
+          "de": "[Bug]: near-miss job share links point to static pages that are never generated"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_94493c77be84aabfeeabe717"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6af86c5878cd128f328f3e33",
+      "sourceId": "rebase-network/who-is-hiring#1321",
+      "dataCommit": "a881926898d60915f85d4425bd947b91cb52a2e9",
+      "dataHash": "50026d6452ac30c7df5c0fc7926fd91af8585633857c1b5b1d5c85dcd0447fb6",
+      "contentHash": "5b5a258f854af200ef93e718373e5e450a1f784f91902168be7778c8807ab7bf",
+      "sourceCreatedAt": "2026-10-16T19:38:33Z",
+      "createdAt": "2026-10-16T23:11:34.994Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e3e66664-4dee-4d4d-84d8-3547dfd99659",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【招聘】高级智能合约工程师｜Solidity / EVM / DeFi / DEX / Solana｜5年以上经验 | $7,000–9,000/月",
+          "pt-BR": "【招聘】高级智能合约工程师｜Solidity / EVM / DeFi / DEX / Solana｜5年以上经验 | $7,000–9,000/月",
+          "es": "【招聘】高级智能合约工程师｜Solidity / EVM / DeFi / DEX / Solana｜5年以上经验 | $7,000–9,000/月",
+          "it": "【招聘】高级智能合约工程师｜Solidity / EVM / DeFi / DEX / Solana｜5年以上经验 | $7,000–9,000/月",
+          "fr": "【招聘】高级智能合约工程师｜Solidity / EVM / DeFi / DEX / Solana｜5年以上经验 | $7,000–9,000/月",
+          "de": "【招聘】高级智能合约工程师｜Solidity / EVM / DeFi / DEX / Solana｜5年以上经验 | $7,000–9,000/月"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6af86c5878cd128f328f3e33"
         }
       },
       "status": "pending",
