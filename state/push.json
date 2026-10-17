@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "87c8f8605b7a9b918e0f837a9ded6653291c4f8f",
-    "generatedAt": "2026-10-17T12:38:00.112Z",
-    "dataHash": "49d88ae3ef25ac97956bb92fb80d5909303f1e123affbac38ba6d7ceb4b88e8f"
+    "commit": "fe183321d1b2b1ac4a495c0c14969228aefc487f",
+    "generatedAt": "2026-10-17T17:41:18.655Z",
+    "dataHash": "2f8c1f20dd4aaa859b5303a1ef9eabc1638ff06c4a813b56ffced2ce09741438"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -11980,6 +11980,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_6fdef060e2fd69df9ca20dcf"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5faeba8dea55606bed60cc61",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9707",
+      "dataCommit": "fe183321d1b2b1ac4a495c0c14969228aefc487f",
+      "dataHash": "2f8c1f20dd4aaa859b5303a1ef9eabc1638ff06c4a813b56ffced2ce09741438",
+      "contentHash": "822e82f9e790110275a6e9fa65413e0cba552bc5fd6d6da5755ac90a5a464baa",
+      "sourceCreatedAt": "2026-10-17T16:45:59Z",
+      "createdAt": "2026-10-17T17:41:18.655Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5c9442d3-88d1-4805-a377-774efa38f365",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5faeba8dea55606bed60cc61"
         }
       },
       "status": "pending",
