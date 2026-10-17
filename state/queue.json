@@ -53650,12 +53650,14 @@
       "createdAt": "2026-10-14T20:57:10Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-17T15:43:51.466Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Cidade do México, México / Buenos Aires, Argentina] Cloud AI Engineer, Google Cloud (English) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -53712,7 +53714,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 197
     },
     {
       "jobId": "gh_d9f69df508a70f1bd67af284",
