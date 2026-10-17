@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "fe183321d1b2b1ac4a495c0c14969228aefc487f",
-    "generatedAt": "2026-10-17T17:41:18.655Z",
-    "dataHash": "2f8c1f20dd4aaa859b5303a1ef9eabc1638ff06c4a813b56ffced2ce09741438"
+    "commit": "9adf5560462d925fbc71b7f621153dd6ece45cce",
+    "generatedAt": "2026-10-17T19:55:58.591Z",
+    "dataHash": "d47197702331795c8d2bb1cbf4cb51021fcd800c841d34a83458c762d5fbe292"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -12020,6 +12020,286 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_5faeba8dea55606bed60cc61"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5e56b10fac2ab210dc81cce4",
+      "sourceId": "react-brasil/vagas#3035",
+      "dataCommit": "9adf5560462d925fbc71b7f621153dd6ece45cce",
+      "dataHash": "d47197702331795c8d2bb1cbf4cb51021fcd800c841d34a83458c762d5fbe292",
+      "contentHash": "d27b9aa1afdcf5a928b330b44e5af8610209356b319ead1aa268d47c83c76f46",
+      "sourceCreatedAt": "2026-10-17T18:46:06Z",
+      "createdAt": "2026-10-17T19:55:58.591Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "002616bd-d2d3-44db-ad77-89508979012e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full Stack Developer (React) Pleno na Rotha IA",
+          "pt-BR": "[Remoto] Full Stack Developer (React) Pleno na Rotha IA",
+          "es": "[Remoto] Full Stack Developer (React) Pleno na Rotha IA",
+          "it": "[Remoto] Full Stack Developer (React) Pleno na Rotha IA",
+          "fr": "[Remoto] Full Stack Developer (React) Pleno na Rotha IA",
+          "de": "[Remoto] Full Stack Developer (React) Pleno na Rotha IA"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5e56b10fac2ab210dc81cce4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2e2c16e29e545779849c1984",
+      "sourceId": "react-brasil/vagas#3034",
+      "dataCommit": "9adf5560462d925fbc71b7f621153dd6ece45cce",
+      "dataHash": "d47197702331795c8d2bb1cbf4cb51021fcd800c841d34a83458c762d5fbe292",
+      "contentHash": "0337af7cbc6c3afbee9c21c734f764f73f17eace49e4314915ee181bbcc4ab79",
+      "sourceCreatedAt": "2026-10-17T18:46:05Z",
+      "createdAt": "2026-10-17T19:55:58.591Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e3c005a8-12dd-4723-a456-2ea841deaffd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full Stack Developer (React) Júnior na Rotha IA",
+          "pt-BR": "[Remoto] Full Stack Developer (React) Júnior na Rotha IA",
+          "es": "[Remoto] Full Stack Developer (React) Júnior na Rotha IA",
+          "it": "[Remoto] Full Stack Developer (React) Júnior na Rotha IA",
+          "fr": "[Remoto] Full Stack Developer (React) Júnior na Rotha IA",
+          "de": "[Remoto] Full Stack Developer (React) Júnior na Rotha IA"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2e2c16e29e545779849c1984"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bd9de7e7149b5af6fc9c5a03",
+      "sourceId": "backend-br/vagas#12472",
+      "dataCommit": "9adf5560462d925fbc71b7f621153dd6ece45cce",
+      "dataHash": "d47197702331795c8d2bb1cbf4cb51021fcd800c841d34a83458c762d5fbe292",
+      "contentHash": "db2dfde30f43e76d597f62d262f13a2e0ac02a395fc3dfe5f9d0fbc574576aac",
+      "sourceCreatedAt": "2026-10-17T18:46:04Z",
+      "createdAt": "2026-10-17T19:55:58.591Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "904275d3-d2e3-4227-8087-e748636b7b6b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full Stack Developer Pleno - Rotha IA",
+          "pt-BR": "[Remoto] Full Stack Developer Pleno - Rotha IA",
+          "es": "[Remoto] Full Stack Developer Pleno - Rotha IA",
+          "it": "[Remoto] Full Stack Developer Pleno - Rotha IA",
+          "fr": "[Remoto] Full Stack Developer Pleno - Rotha IA",
+          "de": "[Remoto] Full Stack Developer Pleno - Rotha IA"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bd9de7e7149b5af6fc9c5a03"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a2cc3d1808580cc665d96114",
+      "sourceId": "backend-br/vagas#12471",
+      "dataCommit": "9adf5560462d925fbc71b7f621153dd6ece45cce",
+      "dataHash": "d47197702331795c8d2bb1cbf4cb51021fcd800c841d34a83458c762d5fbe292",
+      "contentHash": "7b69678a884d70701012980595d440d7dfeb10e660298ead3aa3d91e08981738",
+      "sourceCreatedAt": "2026-10-17T18:46:03Z",
+      "createdAt": "2026-10-17T19:55:58.591Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e6893d86-7993-4d90-a527-289a36a6618f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full Stack Developer Júnior - Rotha IA",
+          "pt-BR": "[Remoto] Full Stack Developer Júnior - Rotha IA",
+          "es": "[Remoto] Full Stack Developer Júnior - Rotha IA",
+          "it": "[Remoto] Full Stack Developer Júnior - Rotha IA",
+          "fr": "[Remoto] Full Stack Developer Júnior - Rotha IA",
+          "de": "[Remoto] Full Stack Developer Júnior - Rotha IA"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a2cc3d1808580cc665d96114"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f36796f3fa0b53477806a278",
+      "sourceId": "frontendbr/vagas#8570",
+      "dataCommit": "9adf5560462d925fbc71b7f621153dd6ece45cce",
+      "dataHash": "d47197702331795c8d2bb1cbf4cb51021fcd800c841d34a83458c762d5fbe292",
+      "contentHash": "8ac26fb077706864a929b83458e019979f8e7e3145787845a21529592c301ae8",
+      "sourceCreatedAt": "2026-10-17T18:46:02Z",
+      "createdAt": "2026-10-17T19:55:58.591Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "10d48a26-02c4-4713-af3c-af3bfef66d39",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full Stack Developer Pleno na Rotha IA",
+          "pt-BR": "[Remoto] Full Stack Developer Pleno na Rotha IA",
+          "es": "[Remoto] Full Stack Developer Pleno na Rotha IA",
+          "it": "[Remoto] Full Stack Developer Pleno na Rotha IA",
+          "fr": "[Remoto] Full Stack Developer Pleno na Rotha IA",
+          "de": "[Remoto] Full Stack Developer Pleno na Rotha IA"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f36796f3fa0b53477806a278"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3bdab4974e8bfb59c157ee13",
+      "sourceId": "frontendbr/vagas#8569",
+      "dataCommit": "9adf5560462d925fbc71b7f621153dd6ece45cce",
+      "dataHash": "d47197702331795c8d2bb1cbf4cb51021fcd800c841d34a83458c762d5fbe292",
+      "contentHash": "67ca3862de2d0926ecd2475081935e644936d04cb0a68fc19dd95d9708cb9d02",
+      "sourceCreatedAt": "2026-10-17T18:46:01Z",
+      "createdAt": "2026-10-17T19:55:58.591Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "515446b4-22fd-4ab5-9491-c876e73e7cde",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full Stack Developer Júnior na Rotha IA",
+          "pt-BR": "[Remoto] Full Stack Developer Júnior na Rotha IA",
+          "es": "[Remoto] Full Stack Developer Júnior na Rotha IA",
+          "it": "[Remoto] Full Stack Developer Júnior na Rotha IA",
+          "fr": "[Remoto] Full Stack Developer Júnior na Rotha IA",
+          "de": "[Remoto] Full Stack Developer Júnior na Rotha IA"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3bdab4974e8bfb59c157ee13"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bbd38bd83c41e2720bc40b24",
+      "sourceId": "soujava/vagas-java#1964",
+      "dataCommit": "9adf5560462d925fbc71b7f621153dd6ece45cce",
+      "dataHash": "d47197702331795c8d2bb1cbf4cb51021fcd800c841d34a83458c762d5fbe292",
+      "contentHash": "c3392b0b64b55232fb21de48e5bb913f9a8492af95bd58065110769ea0821522",
+      "sourceCreatedAt": "2026-10-14T20:24:12Z",
+      "createdAt": "2026-10-17T19:55:58.591Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d13e0eb3-fa2d-47b4-ae89-4004ec0b04ef",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "pt-BR": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "es": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "it": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "fr": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google",
+          "de": "[São Paulo ou Belo Horizonte, Brasil] Senior Software Engineer, Egregious Abuse Protection na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bbd38bd83c41e2720bc40b24"
         }
       },
       "status": "pending",
