@@ -54798,12 +54798,23 @@
       "createdAt": "2026-10-14T20:37:33Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-17T12:15:27.300Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_3f4dd25df83e57f5eacf604a",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_3f4dd25df83e57f5eacf604a/d4cb45a292a45f065b8e3a2fb5d678e10af67969b66944c4bcb79c3cbdca11bb/fb49df9e044ea30ef0665a93399c7513c9fa8f7e2d61f07c248ef34a7ed20144/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_3f4dd25df83e57f5eacf604a/d4cb45a292a45f065b8e3a2fb5d678e10af67969b66944c4bcb79c3cbdca11bb/fb49df9e044ea30ef0665a93399c7513c9fa8f7e2d61f07c248ef34a7ed20144/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_3f4dd25df83e57f5eacf604a/d4cb45a292a45f065b8e3a2fb5d678e10af67969b66944c4bcb79c3cbdca11bb/fb49df9e044ea30ef0665a93399c7513c9fa8f7e2d61f07c248ef34a7ed20144/social-video.mp4",
+          "pngHash": "b2f818218cc3ef91a9644a754c5e1c9246df0e6cc86c47075c231e0dd1c6caa6",
+          "instagramJpegHash": "e643b1becdc23f17174aa7a72588a3e7874bf59f131a93e6d1376b3f6109f812",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google"
         }
       },
