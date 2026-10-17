@@ -54632,12 +54632,23 @@
       "createdAt": "2026-10-14T20:44:39Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-17T18:33:52.069Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_500c764f030a9b5690785ecc",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_500c764f030a9b5690785ecc/7cb5d74e04edfa01efe28baa65dd988a83d10510dd1a6b2250c7cd7398daf3b7/4d49b39a30897d03c1a32ae13bb2235925414c96764a1585291a1afc9f23b033/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_500c764f030a9b5690785ecc/7cb5d74e04edfa01efe28baa65dd988a83d10510dd1a6b2250c7cd7398daf3b7/4d49b39a30897d03c1a32ae13bb2235925414c96764a1585291a1afc9f23b033/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_500c764f030a9b5690785ecc/7cb5d74e04edfa01efe28baa65dd988a83d10510dd1a6b2250c7cd7398daf3b7/4d49b39a30897d03c1a32ae13bb2235925414c96764a1585291a1afc9f23b033/social-video.mp4",
+          "pngHash": "5821729eccb94eaf898b1f10871cae46a03e8d78790e76ef1fe8f91fc085d360",
+          "instagramJpegHash": "b00c55cf65df33798fcf75949862e7dee71b90db3d6c7feeafa260dd928852dc",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google"
         }
       },
