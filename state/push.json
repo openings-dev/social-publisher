@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "75c214853e6a6db37dfbd0c8f359478e3087631d",
-    "generatedAt": "2026-10-17T07:23:43.215Z",
-    "dataHash": "5c621cae5d7f0d7928dfd1612e888cf365c2028a7388fb38bc63d9c53ec58629"
+    "commit": "87c8f8605b7a9b918e0f837a9ded6653291c4f8f",
+    "generatedAt": "2026-10-17T12:38:00.112Z",
+    "dataHash": "49d88ae3ef25ac97956bb92fb80d5909303f1e123affbac38ba6d7ceb4b88e8f"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -11940,6 +11940,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_01af249400b5297948fd5955"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6fdef060e2fd69df9ca20dcf",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9706",
+      "dataCommit": "87c8f8605b7a9b918e0f837a9ded6653291c4f8f",
+      "dataHash": "49d88ae3ef25ac97956bb92fb80d5909303f1e123affbac38ba6d7ceb4b88e8f",
+      "contentHash": "6b1e3c2880c1d71d7ef0d30e230087c1fc6b3e7f3cece7089fe9cbf9e718deab",
+      "sourceCreatedAt": "2026-10-17T11:40:32Z",
+      "createdAt": "2026-10-17T12:38:00.112Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "09dfd82d-c8ee-43ab-9a6b-46a8419c54c6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "improvement",
+          "pt-BR": "improvement",
+          "es": "improvement",
+          "it": "improvement",
+          "fr": "improvement",
+          "de": "improvement"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6fdef060e2fd69df9ca20dcf"
         }
       },
       "status": "pending",
