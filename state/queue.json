@@ -54798,12 +54798,14 @@
       "createdAt": "2026-10-14T20:37:33Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-17T12:15:27.300Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -54860,7 +54862,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 196
     },
     {
       "jobId": "gh_6328d3e6c1b2d143814658ba",
