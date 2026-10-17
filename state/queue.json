@@ -53094,12 +53094,23 @@
       "createdAt": "2026-10-14T21:01:42Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-17T00:33:17.608Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_359763f2428002617dd25011",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_359763f2428002617dd25011/0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370/eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_359763f2428002617dd25011/0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370/eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_359763f2428002617dd25011/0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370/eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21/social-video.mp4",
+          "pngHash": "601a29feba25407091d78fd3aceb988ee73863ad75f6874b2188c128b78f7ad2",
+          "instagramJpegHash": "851b3d69ec2b041a8cc8ea79cb96f6a7e8e33373f5776b178667e15608ef5e7f",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Cidade do México, México / Santiago, Chile + 2 cidades] AI Outcome Customer Engineer, Google Cloud (English, Spanish) na Google"
         }
       },
