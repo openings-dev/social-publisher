@@ -53160,7 +53160,91 @@
         "result": null
       },
       "visualDirection": "night",
-      "visualSequence": 194
+      "visualSequence": 194,
+      "r2Media": {
+        "schemaVersion": 1,
+        "jobId": "gh_359763f2428002617dd25011",
+        "sourceId": "programadores-br/geral#3124",
+        "contentHash": "0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370",
+        "requestDigest": "eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21",
+        "createdAt": "2026-10-17T00:33:22.071Z",
+        "publicOrigin": "https://media.openings.dev",
+        "files": [
+          {
+            "role": "opengraph",
+            "logicalArtifactId": "opengraph",
+            "sha256": "601a29feba25407091d78fd3aceb988ee73863ad75f6874b2188c128b78f7ad2",
+            "byteSize": 15916,
+            "mediaType": "image/png",
+            "width": 1200,
+            "height": 630,
+            "renderVersion": "2",
+            "fileName": "opengraph-image.png",
+            "objectKey": "openings/jobs/gh_359763f2428002617dd25011/0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370/eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21/opengraph-image.png",
+            "url": "https://media.openings.dev/openings/jobs/gh_359763f2428002617dd25011/0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370/eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21/opengraph-image.png",
+            "uploadState": "pending",
+            "consumers": [
+              {
+                "channel": "twitter",
+                "state": "pending",
+                "remoteId": null,
+                "updatedAt": null
+              },
+              {
+                "channel": "linkedin",
+                "state": "pending",
+                "remoteId": null,
+                "updatedAt": null
+              }
+            ]
+          },
+          {
+            "role": "instagram-feed",
+            "logicalArtifactId": "instagram-feed",
+            "sha256": "851b3d69ec2b041a8cc8ea79cb96f6a7e8e33373f5776b178667e15608ef5e7f",
+            "byteSize": 70521,
+            "mediaType": "image/jpeg",
+            "width": 1080,
+            "height": 1350,
+            "renderVersion": "7",
+            "fileName": "instagram-image.jpg",
+            "objectKey": "openings/jobs/gh_359763f2428002617dd25011/0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370/eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21/instagram-image.jpg",
+            "url": "https://media.openings.dev/openings/jobs/gh_359763f2428002617dd25011/0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370/eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21/instagram-image.jpg",
+            "uploadState": "pending",
+            "consumers": [
+              {
+                "channel": "instagram",
+                "state": "pending",
+                "remoteId": null,
+                "updatedAt": null
+              }
+            ]
+          },
+          {
+            "role": "social-video",
+            "logicalArtifactId": "social-video",
+            "sha256": "9774a65061cd169e3c321cdf8e0d64dda1524b9d58b75e259b579e980241f007",
+            "byteSize": 250452,
+            "mediaType": "video/mp4",
+            "width": 1080,
+            "height": 1920,
+            "renderVersion": "8",
+            "fileName": "social-video.mp4",
+            "objectKey": "openings/jobs/gh_359763f2428002617dd25011/0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370/eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21/social-video.mp4",
+            "url": "https://media.openings.dev/openings/jobs/gh_359763f2428002617dd25011/0b6449215fb4277bc7c4545cd8c398ee92875436f0901b20e3de09428eedb370/eabbebdef08433c3605ca6dd450d25ea6cb997a6e60c7373d5881af0f375ac21/social-video.mp4",
+            "uploadState": "pending",
+            "consumers": [
+              {
+                "channel": "instagramStory",
+                "state": "pending",
+                "remoteId": null,
+                "updatedAt": null
+              }
+            ]
+          }
+        ],
+        "manifestDigest": "54abcd921ff62e72c7d5a3f842146573946efc70b180a4f6392b6dea0049ca10"
+      }
     },
     {
       "jobId": "gh_e0e7c31465468a5b2331082b",
