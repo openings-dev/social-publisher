@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "6071689844592cfecf68aa18eedbcc1921ff122b",
-    "generatedAt": "2026-10-17T02:22:27.050Z",
-    "dataHash": "742e251216c21d61639b60b4f5d5867f885062a0b9896563547cb939e1dfd1d7"
+    "commit": "75c214853e6a6db37dfbd0c8f359478e3087631d",
+    "generatedAt": "2026-10-17T07:23:43.215Z",
+    "dataHash": "5c621cae5d7f0d7928dfd1612e888cf365c2028a7388fb38bc63d9c53ec58629"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -11906,6 +11906,46 @@
       "attempts": 0,
       "firstSubmittedAt": null,
       "updatedAt": "2026-10-17T02:22:27.050Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_01af249400b5297948fd5955",
+      "sourceId": "nerdzao/vagas#196",
+      "dataCommit": "75c214853e6a6db37dfbd0c8f359478e3087631d",
+      "dataHash": "5c621cae5d7f0d7928dfd1612e888cf365c2028a7388fb38bc63d9c53ec58629",
+      "contentHash": "f969321a7898ebe70a6a4980c8c74ac139ed29fd96c09f5bc5e9335af9190d12",
+      "sourceCreatedAt": "2026-07-24T14:47:43Z",
+      "createdAt": "2026-10-17T07:23:43.215Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f51225cd-332f-439e-9e54-1557e7f065d8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[INTERLAGOS, SP] QA Sênior - Cypress na Inmetrics",
+          "pt-BR": "[INTERLAGOS, SP] QA Sênior - Cypress na Inmetrics",
+          "es": "[INTERLAGOS, SP] QA Sênior - Cypress na Inmetrics",
+          "it": "[INTERLAGOS, SP] QA Sênior - Cypress na Inmetrics",
+          "fr": "[INTERLAGOS, SP] QA Sênior - Cypress na Inmetrics",
+          "de": "[INTERLAGOS, SP] QA Sênior - Cypress na Inmetrics"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_01af249400b5297948fd5955"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
       "retryAfter": null,
       "result": null
     }
