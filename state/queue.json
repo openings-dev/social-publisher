@@ -53372,12 +53372,23 @@
       "createdAt": "2026-10-14T21:00:19Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-17T22:25:18.861Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_559beb0dbd220ca8b9dd95e0",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_559beb0dbd220ca8b9dd95e0/9764b1bfafcf1f4405fe2b5774755a63beccc23b417f680081378fde54aca41c/b7e6a543e2138135ada25c753e37a74725edcb8fc1d6b560347e7ece44473300/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_559beb0dbd220ca8b9dd95e0/9764b1bfafcf1f4405fe2b5774755a63beccc23b417f680081378fde54aca41c/b7e6a543e2138135ada25c753e37a74725edcb8fc1d6b560347e7ece44473300/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_559beb0dbd220ca8b9dd95e0/9764b1bfafcf1f4405fe2b5774755a63beccc23b417f680081378fde54aca41c/b7e6a543e2138135ada25c753e37a74725edcb8fc1d6b560347e7ece44473300/social-video.mp4",
+          "pngHash": "12a9ee65c254ee1a7abbcede6d75c087537f3de5511d526035c5a5a5cfb9dc57",
+          "instagramJpegHash": "ce6e69596378feecb6e4022880d6c4973fb20d7e539ebd99851b7a956e438513",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Cidade do México, México / Buenos Aires, Argentina] Senior Cloud AI Engineer, Google Cloud (English) na Google"
         }
       },
