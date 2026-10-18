@@ -54466,12 +54466,14 @@
       "createdAt": "2026-10-14T20:50:20Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-18T15:57:16.817Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Cidade do México, México / Bengaluru, Índia] Business Intelligence Developer I, Google Cloud na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -54528,7 +54530,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 202
     },
     {
       "jobId": "gh_ea7def3477890f265af9646f",
