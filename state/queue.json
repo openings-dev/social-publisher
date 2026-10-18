@@ -56223,12 +56223,23 @@
       "createdAt": "2026-10-14T20:31:20Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-18T11:17:24.334Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_6d7d12d74cea2fbb69d40cfd",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_6d7d12d74cea2fbb69d40cfd/940b2bb33709b09c8bc606b4eba81df8a186475c98e3cd8f61ec91e421938d66/8dde035758bf1ae1635d230b269708e4bd83e9abc567aff1e4023eb6059b0045/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_6d7d12d74cea2fbb69d40cfd/940b2bb33709b09c8bc606b4eba81df8a186475c98e3cd8f61ec91e421938d66/8dde035758bf1ae1635d230b269708e4bd83e9abc567aff1e4023eb6059b0045/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_6d7d12d74cea2fbb69d40cfd/940b2bb33709b09c8bc606b4eba81df8a186475c98e3cd8f61ec91e421938d66/8dde035758bf1ae1635d230b269708e4bd83e9abc567aff1e4023eb6059b0045/social-video.mp4",
+          "pngHash": "4a069fb9a584311583f41d33651a94ea29d9e7b05a7eea24acacf0bb9cadf0db",
+          "instagramJpegHash": "0c3d3187d5f3767dc83e1178a8b40df705323ae82332ce11bb18a5dc80518b20",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[São Paulo, Brasil] AI Outcome Customer Engineer, Google Cloud (English, Portuguese) na Google"
         }
       },
