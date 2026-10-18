@@ -55096,12 +55096,14 @@
       "createdAt": "2026-10-14T20:43:09Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-18T18:40:52.346Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -55158,7 +55160,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 203
     },
     {
       "jobId": "gh_c7d25cfe83e14b757aa7cc06",
