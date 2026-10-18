@@ -55096,12 +55096,23 @@
       "createdAt": "2026-10-14T20:43:09Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-18T18:40:52.346Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_a7b043212f3ac3f03f2b2440",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_a7b043212f3ac3f03f2b2440/aa212aa1e7a05dbff639d5e0f6d367512ec30527053ae0add2212073fffe85c4/a2622a1d9f3b51d71794c46475b19a0d154ed15f618171d26b1bc55680948677/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_a7b043212f3ac3f03f2b2440/aa212aa1e7a05dbff639d5e0f6d367512ec30527053ae0add2212073fffe85c4/a2622a1d9f3b51d71794c46475b19a0d154ed15f618171d26b1bc55680948677/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_a7b043212f3ac3f03f2b2440/aa212aa1e7a05dbff639d5e0f6d367512ec30527053ae0add2212073fffe85c4/a2622a1d9f3b51d71794c46475b19a0d154ed15f618171d26b1bc55680948677/social-video.mp4",
+          "pngHash": "291717d12bf58192e9b4f01d3f7a8a5069fe4da7babd8883a39bc8786e460c03",
+          "instagramJpegHash": "2a53d576e24d19f8f59fa4e54cdc3d27b6a2c7f9bab4eda2c389dc13b4e634d5",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google"
         }
       },
