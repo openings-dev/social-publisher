@@ -56223,12 +56223,14 @@
       "createdAt": "2026-10-14T20:31:20Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-18T11:17:24.334Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[São Paulo, Brasil] AI Outcome Customer Engineer, Google Cloud (English, Portuguese) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -56285,7 +56287,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 201
     },
     {
       "jobId": "gh_9fabe83b67749b5acf675586",
