@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "9883fff1d96753249861361cbf691779853c5755",
-    "generatedAt": "2026-10-17T22:49:06.388Z",
-    "dataHash": "4e15adda52adfb968f79ea74dce324a8862026f28895ce033f4e6188891dfae6"
+    "commit": "18ebfb4c56f92f6ab788b2a8742a1781a4a67894",
+    "generatedAt": "2026-10-18T02:22:41.733Z",
+    "dataHash": "20c638affced4e3bc7aa4dba9d1308eedf019c340a3676175bf7928ea673c3f9"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -12380,6 +12380,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_3581a902614d8ec228828bef"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_329c074a852e2b7e5af02130",
+      "sourceId": "awesome-jobs/vietnam#5088",
+      "dataCommit": "18ebfb4c56f92f6ab788b2a8742a1781a4a67894",
+      "dataHash": "20c638affced4e3bc7aa4dba9d1308eedf019c340a3676175bf7928ea673c3f9",
+      "contentHash": "829b2e00d5e46435794e1a9400126f0ea026fef9117d44833387584412d63a2a",
+      "sourceCreatedAt": "2026-10-18T01:54:41Z",
+      "createdAt": "2026-10-18T02:22:41.733Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "de5530f7-616b-4ac5-9a12-955fb509aab7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HCM Hybrid] Engineering Manager - Digital Banking - remote 3 days/week",
+          "pt-BR": "[HCM Hybrid] Engineering Manager - Digital Banking - remote 3 days/week",
+          "es": "[HCM Hybrid] Engineering Manager - Digital Banking - remote 3 days/week",
+          "it": "[HCM Hybrid] Engineering Manager - Digital Banking - remote 3 days/week",
+          "fr": "[HCM Hybrid] Engineering Manager - Digital Banking - remote 3 days/week",
+          "de": "[HCM Hybrid] Engineering Manager - Digital Banking - remote 3 days/week"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_329c074a852e2b7e5af02130"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c53b59ec71315966cafb3139",
+      "sourceId": "awesome-jobs/jobs#5087",
+      "dataCommit": "18ebfb4c56f92f6ab788b2a8742a1781a4a67894",
+      "dataHash": "20c638affced4e3bc7aa4dba9d1308eedf019c340a3676175bf7928ea673c3f9",
+      "contentHash": "1c132f62ab08e62cf047761d399ebe44f69f9cc8cdede3e0a2d16538f08183aa",
+      "sourceCreatedAt": "2026-10-18T01:52:07Z",
+      "createdAt": "2026-10-18T02:22:41.733Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "397983cc-1179-4cb5-b496-f5a33eac38e9",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HCM Hybrid] Principal SWE - ROR & AI | remote 3 days/week",
+          "pt-BR": "[HCM Hybrid] Principal SWE - ROR & AI | remote 3 days/week",
+          "es": "[HCM Hybrid] Principal SWE - ROR & AI | remote 3 days/week",
+          "it": "[HCM Hybrid] Principal SWE - ROR & AI | remote 3 days/week",
+          "fr": "[HCM Hybrid] Principal SWE - ROR & AI | remote 3 days/week",
+          "de": "[HCM Hybrid] Principal SWE - ROR & AI | remote 3 days/week"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c53b59ec71315966cafb3139"
         }
       },
       "status": "pending",
