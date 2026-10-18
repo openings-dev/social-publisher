@@ -54524,12 +54524,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-18T15:57:16.817Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17984619210110428",
+          "url": "https://www.threads.com/@openingshq/post/DepDt9rlDtS"
+        }
       },
       "instagram": {
         "status": "pending",
