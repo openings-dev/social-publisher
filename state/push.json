@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "9adf5560462d925fbc71b7f621153dd6ece45cce",
-    "generatedAt": "2026-10-17T19:55:58.591Z",
-    "dataHash": "d47197702331795c8d2bb1cbf4cb51021fcd800c841d34a83458c762d5fbe292"
+    "commit": "9883fff1d96753249861361cbf691779853c5755",
+    "generatedAt": "2026-10-17T22:49:06.388Z",
+    "dataHash": "4e15adda52adfb968f79ea74dce324a8862026f28895ce033f4e6188891dfae6"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -12300,6 +12300,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_bbd38bd83c41e2720bc40b24"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_29a9972a7f02328d78b930fd",
+      "sourceId": "programadores-br/geral#3100",
+      "dataCommit": "9883fff1d96753249861361cbf691779853c5755",
+      "dataHash": "4e15adda52adfb968f79ea74dce324a8862026f28895ce033f4e6188891dfae6",
+      "contentHash": "fb5b5eeacc1a3eecfb82467f396491ad279113a4324e0f73b44614f08dad2566",
+      "sourceCreatedAt": "2026-10-14T20:30:36Z",
+      "createdAt": "2026-10-17T22:49:06.388Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5f31cc80-6def-41e4-969b-6ce1dad46e0a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "pt-BR": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "es": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "it": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "fr": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google",
+          "de": "[São Paulo, Brasil / Santiago, Chile + 3 cidades] Cloud Data and Analytics Consultant, Professional Services (English, Portuguese, Spanish) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_29a9972a7f02328d78b930fd"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3581a902614d8ec228828bef",
+      "sourceId": "programadores-br/geral#3098",
+      "dataCommit": "9883fff1d96753249861361cbf691779853c5755",
+      "dataHash": "4e15adda52adfb968f79ea74dce324a8862026f28895ce033f4e6188891dfae6",
+      "contentHash": "b308ba1dd243015781eecebc3667efab46e85da06c9800ec0b27a69fea2381d9",
+      "sourceCreatedAt": "2026-10-14T20:29:18Z",
+      "createdAt": "2026-10-17T22:49:06.388Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a2ce7cda-7215-4368-8d0b-5902efd48813",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "pt-BR": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "es": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "it": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "fr": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google",
+          "de": "[São Paulo ou Remoto, Brasil] Forward Deployed Engineer, Gen AI, Google Cloud (English, Portuguese) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3581a902614d8ec228828bef"
         }
       },
       "status": "pending",
