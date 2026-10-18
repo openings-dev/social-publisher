@@ -55856,12 +55856,14 @@
       "createdAt": "2026-10-14T20:35:32Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-18T22:28:14.396Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -55918,7 +55920,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 204
     },
     {
       "jobId": "gh_0bd7e2d96ac3105066d51818",
