@@ -55392,12 +55392,23 @@
       "createdAt": "2026-10-14T20:36:23Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-18T04:42:23.722Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_6328d3e6c1b2d143814658ba",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_6328d3e6c1b2d143814658ba/032274a92d50c59b21a441addea2e018bc1466353277b7a9465e4f97114f0dd8/976ded17b39ff2d73d5ac7a9d0f8f849d2af28c1e3e3abfa55ea5beac939eb37/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_6328d3e6c1b2d143814658ba/032274a92d50c59b21a441addea2e018bc1466353277b7a9465e4f97114f0dd8/976ded17b39ff2d73d5ac7a9d0f8f849d2af28c1e3e3abfa55ea5beac939eb37/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_6328d3e6c1b2d143814658ba/032274a92d50c59b21a441addea2e018bc1466353277b7a9465e4f97114f0dd8/976ded17b39ff2d73d5ac7a9d0f8f849d2af28c1e3e3abfa55ea5beac939eb37/social-video.mp4",
+          "pngHash": "0ee953b547ea34ebbafd5788fcde0beb7fbb0f928a15f0ff2a20f75e428488f2",
+          "instagramJpegHash": "8c0e6824c74cf130303327d05896553ba43a19a3f2b264cca5e013fbc9d838b5",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google"
         }
       },
