@@ -55877,12 +55877,17 @@
         }
       },
       "bluesky": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-18T22:28:14.396Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mxvbaaaj7z2y",
+          "cid": "bafyreiaqb627wlmsu2vbu2wyr7ew3nq6b2llu4ai6fimrpsmdqsvhi2l3m",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mxvbaaaj7z2y"
+        }
       },
       "mastodon": {
         "status": "skipped_disabled",
