@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "261fda5b763ef12c5ba63de03513503fc235b6c4",
-    "generatedAt": "2026-10-18T07:37:49.853Z",
-    "dataHash": "87159b44c274a4c702145a3886cee46ea92cecd221d9c378e710c4b96db0c58d"
+    "commit": "50a4b33af41193285c15727c2c3c9cca4b804e14",
+    "generatedAt": "2026-10-18T12:55:19.663Z",
+    "dataHash": "803d26fe0ae1ef78117a30355def3049c546a90c0579719fffcaf6bdc3ede3bb"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -12463,6 +12463,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_c53b59ec71315966cafb3139"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d7785e300280ee120b9222a2",
+      "sourceId": "rebase-network/who-is-hiring#1322",
+      "dataCommit": "50a4b33af41193285c15727c2c3c9cca4b804e14",
+      "dataHash": "803d26fe0ae1ef78117a30355def3049c546a90c0579719fffcaf6bdc3ede3bb",
+      "contentHash": "f9f939f18c6b1ad4cf92a19e42441cf60dcd9fe5604f8d146c5dfe66476f8539",
+      "sourceCreatedAt": "2026-10-18T10:05:49Z",
+      "createdAt": "2026-10-18T12:55:19.663Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a12dc4ca-da92-4359-bf49-673184c7244e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote/HK] Quant/Web3公司诚聘  Rust量化， C++低延迟，机构BDM，量化策略研究员（高频交易与做市），项目经理/项目总监（PMO），财务经理，斯巴达业务负责人，资深量化风险专家（交易与对冲），资深量化交易专家（对冲策略） 薪水RMB/USD",
+          "pt-BR": "[Remote/HK] Quant/Web3公司诚聘  Rust量化， C++低延迟，机构BDM，量化策略研究员（高频交易与做市），项目经理/项目总监（PMO），财务经理，斯巴达业务负责人，资深量化风险专家（交易与对冲），资深量化交易专家（对冲策略） 薪水RMB/USD",
+          "es": "[Remote/HK] Quant/Web3公司诚聘  Rust量化， C++低延迟，机构BDM，量化策略研究员（高频交易与做市），项目经理/项目总监（PMO），财务经理，斯巴达业务负责人，资深量化风险专家（交易与对冲），资深量化交易专家（对冲策略） 薪水RMB/USD",
+          "it": "[Remote/HK] Quant/Web3公司诚聘  Rust量化， C++低延迟，机构BDM，量化策略研究员（高频交易与做市），项目经理/项目总监（PMO），财务经理，斯巴达业务负责人，资深量化风险专家（交易与对冲），资深量化交易专家（对冲策略） 薪水RMB/USD",
+          "fr": "[Remote/HK] Quant/Web3公司诚聘  Rust量化， C++低延迟，机构BDM，量化策略研究员（高频交易与做市），项目经理/项目总监（PMO），财务经理，斯巴达业务负责人，资深量化风险专家（交易与对冲），资深量化交易专家（对冲策略） 薪水RMB/USD",
+          "de": "[Remote/HK] Quant/Web3公司诚聘  Rust量化， C++低延迟，机构BDM，量化策略研究员（高频交易与做市），项目经理/项目总监（PMO），财务经理，斯巴达业务负责人，资深量化风险专家（交易与对冲），资深量化交易专家（对冲策略） 薪水RMB/USD"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d7785e300280ee120b9222a2"
         }
       },
       "status": "pending",
