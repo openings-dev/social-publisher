@@ -55300,12 +55300,23 @@
       "createdAt": "2026-10-14T20:41:18Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-19T13:29:55.529Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_c7d25cfe83e14b757aa7cc06",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_c7d25cfe83e14b757aa7cc06/d10a2838399aec82c752293e52e92143fceb0b02842166015e98a1a9bab1ae9f/7762346e5c7deba9a00bf2668d7d9f70a2c5752acad6588f74aca71280184135/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_c7d25cfe83e14b757aa7cc06/d10a2838399aec82c752293e52e92143fceb0b02842166015e98a1a9bab1ae9f/7762346e5c7deba9a00bf2668d7d9f70a2c5752acad6588f74aca71280184135/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_c7d25cfe83e14b757aa7cc06/d10a2838399aec82c752293e52e92143fceb0b02842166015e98a1a9bab1ae9f/7762346e5c7deba9a00bf2668d7d9f70a2c5752acad6588f74aca71280184135/social-video.mp4",
+          "pngHash": "b17fb3e138356e4f9db6d82bb7e3905a96517846d026d6c3950163bd9f5b201e",
+          "instagramJpegHash": "b23f55b9ff1b2d429376777f2842b93fa4381a546860bff0effd4268b5492129",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google"
         }
       },
