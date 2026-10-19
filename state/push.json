@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "d7a6be8b4906d9a08d882c34773137283ad766a1",
-    "generatedAt": "2026-10-19T16:04:52.069Z",
-    "dataHash": "24869418acebf06b6d7de1989f777fcac2f529717d44dcaeee21cbfc0a26c826"
+    "commit": "a20ba71b361f6c246c9a7417467d7191353d0168",
+    "generatedAt": "2026-10-19T21:54:31.289Z",
+    "dataHash": "7286fd4ab61c776d62e35e5c13970537873a3c96d94551e03d0d77197edacdea"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -12706,6 +12706,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_00f670a164b634f9d56ebdc4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3af7b7f1cb517a436b702057",
+      "sourceId": "backend-br/vagas#12474",
+      "dataCommit": "a20ba71b361f6c246c9a7417467d7191353d0168",
+      "dataHash": "7286fd4ab61c776d62e35e5c13970537873a3c96d94551e03d0d77197edacdea",
+      "contentHash": "b625516f9f1c9a302466544331b3dc1ef3643cff31dd008b877c5af6ae04d821",
+      "sourceCreatedAt": "2026-10-19T20:18:45Z",
+      "createdAt": "2026-10-19T21:54:31.289Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "55457ef7-d857-45c8-824c-c9dd269235c3",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTO] Back-end Developer JR - PORT LOUIS",
+          "pt-BR": "[REMOTO] Back-end Developer JR - PORT LOUIS",
+          "es": "[REMOTO] Back-end Developer JR - PORT LOUIS",
+          "it": "[REMOTO] Back-end Developer JR - PORT LOUIS",
+          "fr": "[REMOTO] Back-end Developer JR - PORT LOUIS",
+          "de": "[REMOTO] Back-end Developer JR - PORT LOUIS"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3af7b7f1cb517a436b702057"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e71f79f12013d53b7cd0248d",
+      "sourceId": "backend-br/vagas#12473",
+      "dataCommit": "a20ba71b361f6c246c9a7417467d7191353d0168",
+      "dataHash": "7286fd4ab61c776d62e35e5c13970537873a3c96d94551e03d0d77197edacdea",
+      "contentHash": "eb176fce541fb08728d2c3f09bd16c1918405636e9f48273f2681dd5a257b147",
+      "sourceCreatedAt": "2026-10-19T16:46:59Z",
+      "createdAt": "2026-10-19T21:54:31.289Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "847a50ca-c29c-43c3-93d3-2ee1c6dd1bd2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] It Jobs - Strider (Micro 1)",
+          "pt-BR": "[Remoto] It Jobs - Strider (Micro 1)",
+          "es": "[Remoto] It Jobs - Strider (Micro 1)",
+          "it": "[Remoto] It Jobs - Strider (Micro 1)",
+          "fr": "[Remoto] It Jobs - Strider (Micro 1)",
+          "de": "[Remoto] It Jobs - Strider (Micro 1)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e71f79f12013d53b7cd0248d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_aeba4e527eec18e233af2884",
+      "sourceId": "programadores-br/geral#3106",
+      "dataCommit": "a20ba71b361f6c246c9a7417467d7191353d0168",
+      "dataHash": "7286fd4ab61c776d62e35e5c13970537873a3c96d94551e03d0d77197edacdea",
+      "contentHash": "fd8350e8eb6301c637e1157c75f2ceef446a6b171e392aba8a4ea428bdd05fea",
+      "sourceCreatedAt": "2026-10-14T20:36:06Z",
+      "createdAt": "2026-10-19T21:54:31.289Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "63941806-c204-4585-a60b-f62cc0496605",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager (For Women in Tech Candidates) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_aeba4e527eec18e233af2884"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5f672b41028f54bce8e7d010",
+      "sourceId": "programadores-br/geral#3105",
+      "dataCommit": "a20ba71b361f6c246c9a7417467d7191353d0168",
+      "dataHash": "7286fd4ab61c776d62e35e5c13970537873a3c96d94551e03d0d77197edacdea",
+      "contentHash": "6acb946f25a2203d48cccdfecaa61b0ea591d45b7b895e8534f0d559c4035b65",
+      "sourceCreatedAt": "2026-10-14T20:35:01Z",
+      "createdAt": "2026-10-19T21:54:31.289Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0cde3707-7cb1-4abd-8568-14a16d743bb0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, Early Career (For Women in Tech Candidates) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5f672b41028f54bce8e7d010"
         }
       },
       "status": "pending",
