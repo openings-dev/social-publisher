@@ -56799,12 +56799,14 @@
       "createdAt": "2026-10-14T20:32:19Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-19T20:00:02.638Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[São Paulo, Brasil] Customer Engineer, Google Workspace and Gemini Enterprise (English, Portuguese) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -56861,7 +56863,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 207
     },
     {
       "jobId": "gh_6d7d12d74cea2fbb69d40cfd",
@@ -60131,17 +60135,17 @@
       "createdAt": "2026-10-19T04:50:07Z",
       "publicationCreatedAt": "2026-10-19T13:31:28.015Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-19T20:00:02.638Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-19T20:00:02.638Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -60155,41 +60159,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-19T20:00:02.638Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-19T20:00:02.638Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-19T20:00:02.638Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-19T20:00:02.638Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-19T20:00:02.638Z",
         "lastError": null,
         "lastReset": null,
         "result": null
