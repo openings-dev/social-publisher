@@ -56799,12 +56799,23 @@
       "createdAt": "2026-10-14T20:32:19Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-19T20:00:02.638Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_cdf437a2d394f98429960918",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_cdf437a2d394f98429960918/a6163320f68c4c4466fd3e9eb4df4e32542bee1e3c1a41897ba6bd3afebc9903/2f7404afdde10b3ab77d4408f57decf900d96ea4e73887abb34c7e4176b18b87/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_cdf437a2d394f98429960918/a6163320f68c4c4466fd3e9eb4df4e32542bee1e3c1a41897ba6bd3afebc9903/2f7404afdde10b3ab77d4408f57decf900d96ea4e73887abb34c7e4176b18b87/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_cdf437a2d394f98429960918/a6163320f68c4c4466fd3e9eb4df4e32542bee1e3c1a41897ba6bd3afebc9903/2f7404afdde10b3ab77d4408f57decf900d96ea4e73887abb34c7e4176b18b87/social-video.mp4",
+          "pngHash": "5741e6938db87fc89774ec8d6f161a4c0e6a9e773c1125a0ebd6820e76c4971d",
+          "instagramJpegHash": "ca0bb8b051265691f930e96df5ebb1533f8112d6ffa1518cc8572bb017dd1530",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[São Paulo, Brasil] Customer Engineer, Google Workspace and Gemini Enterprise (English, Portuguese) na Google"
         }
       },
