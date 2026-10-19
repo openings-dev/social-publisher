@@ -56282,12 +56282,17 @@
         }
       },
       "bluesky": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-19T04:50:11.076Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mxvbbaexhr2b",
+          "cid": "bafyreidwfek7s76da42bswocktsbnbyag45rzd4h5iu2a3to2eukgfbjtu",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mxvbbaexhr2b"
+        }
       },
       "mastodon": {
         "status": "skipped_disabled",
