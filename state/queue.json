@@ -53984,12 +53984,14 @@
       "createdAt": "2026-10-14T20:56:12Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-19T23:46:32.116Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer IV, Google Cloud (English) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -54046,7 +54048,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 208
     },
     {
       "jobId": "gh_34417202d0a35257d6811c40",
@@ -56086,9 +56090,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-19T23:46:32.116Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -56287,9 +56291,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-19T23:46:32.116Z",
         "lastError": null,
         "lastReset": null,
         "result": null
