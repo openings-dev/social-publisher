@@ -56261,12 +56261,14 @@
       "createdAt": "2026-10-14T20:33:46Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-19T04:50:11.076Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[São Paulo, Brasil] Business Data Scientist, gTech Ads (English, Portuguese) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -56323,7 +56325,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 205
     },
     {
       "jobId": "gh_0f906a6d5d4321cccc2e3353",
