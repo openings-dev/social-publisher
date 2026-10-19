@@ -55300,12 +55300,14 @@
       "createdAt": "2026-10-14T20:41:18Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-19T13:29:55.529Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -55362,7 +55364,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 206
     },
     {
       "jobId": "gh_ff38ee957029058ae9544a7c",
