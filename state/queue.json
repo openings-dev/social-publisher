@@ -53984,12 +53984,23 @@
       "createdAt": "2026-10-14T20:56:12Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-19T23:46:32.116Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_d9f69df508a70f1bd67af284",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_d9f69df508a70f1bd67af284/4a0e332e9e042bf7429b33d0a78d9a30c76db0ec55a07f98a3514f6224c6f950/68cf6b2b59631cef2067405f8f52fd23f3ee18b136c2cd640ff048e5be681908/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_d9f69df508a70f1bd67af284/4a0e332e9e042bf7429b33d0a78d9a30c76db0ec55a07f98a3514f6224c6f950/68cf6b2b59631cef2067405f8f52fd23f3ee18b136c2cd640ff048e5be681908/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_d9f69df508a70f1bd67af284/4a0e332e9e042bf7429b33d0a78d9a30c76db0ec55a07f98a3514f6224c6f950/68cf6b2b59631cef2067405f8f52fd23f3ee18b136c2cd640ff048e5be681908/social-video.mp4",
+          "pngHash": "54456d7f17cf4275faeae09e4ee06b379f07437a8cb343a93e16dea266797373",
+          "instagramJpegHash": "317598ce5b795313b00f2375ad559c1cfc1c29580a008a986d41d8489ad41453",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Buenos Aires, Argentina / Cidade do México, México] Cloud AI Engineer IV, Google Cloud (English) na Google"
         }
       },
