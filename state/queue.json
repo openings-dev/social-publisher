@@ -55358,12 +55358,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-19T13:29:55.529Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18114184742117787",
+          "url": "https://www.threads.com/@openingshq/post/DerXqs_kbC_"
+        }
       },
       "instagram": {
         "status": "pending",
