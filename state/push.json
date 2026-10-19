@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "b4cd1f7292afddb658a4d2c0ec12459b19fa0f64",
-    "generatedAt": "2026-10-19T02:37:18.387Z",
-    "dataHash": "7e40ccf2bab74c5c7dbf39c89681ec0092915a98fc8d51d202179af23d25cd67"
+    "commit": "0185606b25a4043d4067c777207228fa4a94d5ff",
+    "generatedAt": "2026-10-19T08:20:47.777Z",
+    "dataHash": "2c5b218a253e25c3c8fb3f717c73258b4af316cb84b328d8afb31400ea1c5b0c"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -12514,6 +12514,206 @@
         "notificationId": "df9a1543-b64d-47ea-8bf5-dc84d78513ea",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_c7a1ddb11a6488cb46c8e04a",
+      "sourceId": "vanshb03/Summer2027-Internships#4597",
+      "dataCommit": "0185606b25a4043d4067c777207228fa4a94d5ff",
+      "dataHash": "2c5b218a253e25c3c8fb3f717c73258b4af316cb84b328d8afb31400ea1c5b0c",
+      "contentHash": "e82eef91ee001404ee252a30c9ca567922a5e2d91db909f54b2abc4b06d1ab9c",
+      "sourceCreatedAt": "2026-10-19T06:13:03Z",
+      "createdAt": "2026-10-19T08:20:47.777Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f8d40184-fbff-4d10-84af-2f61aba89a28",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship: Nodus Compute — Intern of Research Staff (Remote India, immediate start)",
+          "pt-BR": "New Internship: Nodus Compute — Intern of Research Staff (Remote India, immediate start)",
+          "es": "New Internship: Nodus Compute — Intern of Research Staff (Remote India, immediate start)",
+          "it": "New Internship: Nodus Compute — Intern of Research Staff (Remote India, immediate start)",
+          "fr": "New Internship: Nodus Compute — Intern of Research Staff (Remote India, immediate start)",
+          "de": "New Internship: Nodus Compute — Intern of Research Staff (Remote India, immediate start)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c7a1ddb11a6488cb46c8e04a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8490be623763a6385dbd8094",
+      "sourceId": "ambicuity/New-Grad-Jobs#450",
+      "dataCommit": "0185606b25a4043d4067c777207228fa4a94d5ff",
+      "dataHash": "2c5b218a253e25c3c8fb3f717c73258b4af316cb84b328d8afb31400ea1c5b0c",
+      "contentHash": "986f3ae9147b658e15c1dfd4852088090f6056f56d9c8d3d56313f9735f40d63",
+      "sourceCreatedAt": "2026-10-19T04:50:07Z",
+      "createdAt": "2026-10-19T08:20:47.777Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5709bba4-558f-4073-bee4-30ef03e40ae5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-19T00:13:51.280863Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-19T00:13:51.280863Z",
+          "es": "Job data is stale: last scrape 2026-10-19T00:13:51.280863Z",
+          "it": "Job data is stale: last scrape 2026-10-19T00:13:51.280863Z",
+          "fr": "Job data is stale: last scrape 2026-10-19T00:13:51.280863Z",
+          "de": "Job data is stale: last scrape 2026-10-19T00:13:51.280863Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8490be623763a6385dbd8094"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_78a413808cdd53999da07a59",
+      "sourceId": "DevOps-Brasil/Vagas#497",
+      "dataCommit": "0185606b25a4043d4067c777207228fa4a94d5ff",
+      "dataHash": "2c5b218a253e25c3c8fb3f717c73258b4af316cb84b328d8afb31400ea1c5b0c",
+      "contentHash": "439bf03974c234e4d05699eef3918f1dc232015beabdd53a78218616e283a35a",
+      "sourceCreatedAt": "2026-08-19T14:35:03Z",
+      "createdAt": "2026-10-19T08:20:47.777Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "75ff72b0-4213-4e2e-814e-5ea229ab4500",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Jardim Panorama, São Paulo - SP] [CLT] Analista de Segurança da Informação Sênior",
+          "pt-BR": "[Jardim Panorama, São Paulo - SP] [CLT] Analista de Segurança da Informação Sênior",
+          "es": "[Jardim Panorama, São Paulo - SP] [CLT] Analista de Segurança da Informação Sênior",
+          "it": "[Jardim Panorama, São Paulo - SP] [CLT] Analista de Segurança da Informação Sênior",
+          "fr": "[Jardim Panorama, São Paulo - SP] [CLT] Analista de Segurança da Informação Sênior",
+          "de": "[Jardim Panorama, São Paulo - SP] [CLT] Analista de Segurança da Informação Sênior"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_78a413808cdd53999da07a59"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_11e44c08cb795118dad0b0af",
+      "sourceId": "DevOps-Brasil/Vagas#495",
+      "dataCommit": "0185606b25a4043d4067c777207228fa4a94d5ff",
+      "dataHash": "2c5b218a253e25c3c8fb3f717c73258b4af316cb84b328d8afb31400ea1c5b0c",
+      "contentHash": "dd82905d2ba87bfb4e67ea55d7d0ade2503b822d5cfea2acf58372ea35823152",
+      "sourceCreatedAt": "2026-08-19T14:22:26Z",
+      "createdAt": "2026-10-19T08:20:47.777Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ac13ba29-7544-4e4e-9c04-24006bb5a6d5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, SP / Goiânia, GO] [CLT] Nova vaga na Valorei Analista de Redes e Segurança - Pleno",
+          "pt-BR": "[São Paulo, SP / Goiânia, GO] [CLT] Nova vaga na Valorei Analista de Redes e Segurança - Pleno",
+          "es": "[São Paulo, SP / Goiânia, GO] [CLT] Nova vaga na Valorei Analista de Redes e Segurança - Pleno",
+          "it": "[São Paulo, SP / Goiânia, GO] [CLT] Nova vaga na Valorei Analista de Redes e Segurança - Pleno",
+          "fr": "[São Paulo, SP / Goiânia, GO] [CLT] Nova vaga na Valorei Analista de Redes e Segurança - Pleno",
+          "de": "[São Paulo, SP / Goiânia, GO] [CLT] Nova vaga na Valorei Analista de Redes e Segurança - Pleno"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_11e44c08cb795118dad0b0af"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_00f670a164b634f9d56ebdc4",
+      "sourceId": "DevOps-Brasil/Vagas#494",
+      "dataCommit": "0185606b25a4043d4067c777207228fa4a94d5ff",
+      "dataHash": "2c5b218a253e25c3c8fb3f717c73258b4af316cb84b328d8afb31400ea1c5b0c",
+      "contentHash": "1c408d48f523ba5af9c23e7da8d68055c0685128439b494ee7a8af3c6a0c085a",
+      "sourceCreatedAt": "2026-08-19T14:21:05Z",
+      "createdAt": "2026-10-19T08:20:47.777Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "248007d3-9d15-47bd-8b25-0d690e905ae0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo, SP / Goiânia, GO] [CLT] Analista de Segurança da Informação",
+          "pt-BR": "[São Paulo, SP / Goiânia, GO] [CLT] Analista de Segurança da Informação",
+          "es": "[São Paulo, SP / Goiânia, GO] [CLT] Analista de Segurança da Informação",
+          "it": "[São Paulo, SP / Goiânia, GO] [CLT] Analista de Segurança da Informação",
+          "fr": "[São Paulo, SP / Goiânia, GO] [CLT] Analista de Segurança da Informação",
+          "de": "[São Paulo, SP / Goiânia, GO] [CLT] Analista de Segurança da Informação"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_00f670a164b634f9d56ebdc4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
