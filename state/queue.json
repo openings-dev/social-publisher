@@ -54874,12 +54874,14 @@
       "createdAt": "2026-10-14T20:48:08Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-20T11:47:26.386Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Cidade do México, México] Business Intelligence Analyst, Global YouTube Marketing na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -54936,7 +54938,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 210
     },
     {
       "jobId": "gh_db1fad49e16a46bf47a89e3d",
