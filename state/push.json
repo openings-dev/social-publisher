@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "77990ba12bfc20ae0f374500db5eb70c7f1a869d",
-    "generatedAt": "2026-10-20T14:02:26.394Z",
-    "dataHash": "b25f734268c0ae84e7fd128d62cea9f1ac4e97c03cc59e464a4d1ce6b601b703"
+    "commit": "fc879a900fcc7a5770d58f316576624a7bcc45c4",
+    "generatedAt": "2026-10-20T18:52:13.792Z",
+    "dataHash": "a9d4b6c0df22ed0796a8428213fe6fdba5ef16ac272b1c7680e09ce5f6fe43f6"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -12911,10 +12911,10 @@
           "jobId": "gh_135dc54daa0d7acb783a5145"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-20T18:52:13.792Z",
       "retryAfter": null,
       "result": null
     },
@@ -13029,6 +13029,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_18974c770150b3068ab7a9f6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c60ef7a33b18b363ea274f0e",
+      "sourceId": "backend-br/vagas#12475",
+      "dataCommit": "fc879a900fcc7a5770d58f316576624a7bcc45c4",
+      "dataHash": "a9d4b6c0df22ed0796a8428213fe6fdba5ef16ac272b1c7680e09ce5f6fe43f6",
+      "contentHash": "d208484812919fad1278a76430b7429829f2ba8ed7194ab2d0c9787c07b0b3ca",
+      "sourceCreatedAt": "2026-10-20T16:31:08Z",
+      "createdAt": "2026-10-20T18:52:13.792Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c32180b1-2730-4f19-9baa-7a3897b2f673",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "pt-BR": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "es": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "it": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "fr": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "de": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c60ef7a33b18b363ea274f0e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6b2e192ed41e1fb352903697",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9709",
+      "dataCommit": "fc879a900fcc7a5770d58f316576624a7bcc45c4",
+      "dataHash": "a9d4b6c0df22ed0796a8428213fe6fdba5ef16ac272b1c7680e09ce5f6fe43f6",
+      "contentHash": "149c118a343912a158bd29dce5e7f75d0789694e8751c5c3bfbc3ec7f296b8f6",
+      "sourceCreatedAt": "2026-10-20T16:10:46Z",
+      "createdAt": "2026-10-20T18:52:13.792Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ec3312f0-62c4-490d-ab0d-ce356fba4f06",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6b2e192ed41e1fb352903697"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6fc8345a7ba4d52a19c57989",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9708",
+      "dataCommit": "fc879a900fcc7a5770d58f316576624a7bcc45c4",
+      "dataHash": "a9d4b6c0df22ed0796a8428213fe6fdba5ef16ac272b1c7680e09ce5f6fe43f6",
+      "contentHash": "f60df3575220f1129f6b8ee4e1fff2cdfc7e6cdd02134c65db44767f9ea5fc8b",
+      "sourceCreatedAt": "2026-10-19T06:13:05Z",
+      "createdAt": "2026-10-20T18:52:13.792Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5b40c93b-c6e2-428e-ba6a-d200495ad41e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Employer posting verification: Nodus Compute research internship (remote, immediate start)",
+          "pt-BR": "Employer posting verification: Nodus Compute research internship (remote, immediate start)",
+          "es": "Employer posting verification: Nodus Compute research internship (remote, immediate start)",
+          "it": "Employer posting verification: Nodus Compute research internship (remote, immediate start)",
+          "fr": "Employer posting verification: Nodus Compute research internship (remote, immediate start)",
+          "de": "Employer posting verification: Nodus Compute research internship (remote, immediate start)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6fc8345a7ba4d52a19c57989"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_597bc7a76dc55ce19e871216",
+      "sourceId": "programadores-br/geral#3107",
+      "dataCommit": "fc879a900fcc7a5770d58f316576624a7bcc45c4",
+      "dataHash": "a9d4b6c0df22ed0796a8428213fe6fdba5ef16ac272b1c7680e09ce5f6fe43f6",
+      "contentHash": "7917e24324bb21da92ef13a6780dc55e4e4added7d94574ccd9d163aafd5117a",
+      "sourceCreatedAt": "2026-10-14T20:36:51Z",
+      "createdAt": "2026-10-20T18:52:13.792Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bd27df81-4b2d-4566-a3bc-29cf65c30bee",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Tech Lead, Software Engineering (For Women in Tech Candidates) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_597bc7a76dc55ce19e871216"
         }
       },
       "status": "pending",
