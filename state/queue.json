@@ -53298,12 +53298,23 @@
       "createdAt": "2026-10-14T21:01:25Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-20T17:16:20.142Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_e0e7c31465468a5b2331082b",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_e0e7c31465468a5b2331082b/888724d586da612b819778b18aa6a29aca1d25dbf270fcd45b12bf0ae1bdc86b/4ba376faf9eeddb540bc35ac6b9015d55af1115d54a1cf63187c17a671a48448/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_e0e7c31465468a5b2331082b/888724d586da612b819778b18aa6a29aca1d25dbf270fcd45b12bf0ae1bdc86b/4ba376faf9eeddb540bc35ac6b9015d55af1115d54a1cf63187c17a671a48448/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_e0e7c31465468a5b2331082b/888724d586da612b819778b18aa6a29aca1d25dbf270fcd45b12bf0ae1bdc86b/4ba376faf9eeddb540bc35ac6b9015d55af1115d54a1cf63187c17a671a48448/social-video.mp4",
+          "pngHash": "04b581cc4cd8c41f75d2b292b9502299d6e1227e28bf1ec2696bd8582f464f07",
+          "instagramJpegHash": "a45028bbd3897753be39607768d9f588a0d1ba9ab485bda440391e2d5095219f",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Cidade do México ou Remoto, México] Senior Remediation Architect, Security Transformation Services, Mandiant na Google"
         }
       },
