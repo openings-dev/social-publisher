@@ -55018,12 +55018,15 @@
         }
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-20T04:59:01.147Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "publicationKind": "image",
+          "canonicalUrl": "https://openings.dev/jobs/gh_db1fad49e16a46bf47a89e3d"
+        }
       },
       "linkedin": {
         "status": "pending",
