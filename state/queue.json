@@ -53298,12 +53298,14 @@
       "createdAt": "2026-10-14T21:01:25Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-20T17:16:20.142Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Cidade do México ou Remoto, México] Senior Remediation Architect, Security Transformation Services, Mandiant na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -53360,7 +53362,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 211
     },
     {
       "jobId": "gh_559beb0dbd220ca8b9dd95e0",
