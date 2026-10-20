@@ -12548,12 +12548,15 @@
           "jobId": "gh_c7a1ddb11a6488cb46c8e04a"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-10-20T05:10:33.519Z",
-      "updatedAt": "2026-10-20T05:10:33.519Z",
+      "updatedAt": "2026-10-20T05:10:35.492Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "fb7e5b4e-9bd1-4bce-9f1f-58ac2ab34d25",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_8490be623763a6385dbd8094",
