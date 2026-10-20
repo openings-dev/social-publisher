@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "2c9110e9bde4f3bd6f8a6c885b21f2c6487f4011",
-    "generatedAt": "2026-10-20T02:49:50.591Z",
-    "dataHash": "4ea7ac947e84e3d0699275fd771430f05b4579252c67b304d28fb4e77ec70faa"
+    "commit": "3523523e3c4e48280c69677448cc287ee7188e49",
+    "generatedAt": "2026-10-20T08:05:17.372Z",
+    "dataHash": "333bbb5722d01aa52a93282db7ecbdb7b0fab41a60b15da8555ec00e6983e06e"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -12869,6 +12869,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_5f672b41028f54bce8e7d010"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_135dc54daa0d7acb783a5145",
+      "sourceId": "ambicuity/New-Grad-Jobs#451",
+      "dataCommit": "3523523e3c4e48280c69677448cc287ee7188e49",
+      "dataHash": "333bbb5722d01aa52a93282db7ecbdb7b0fab41a60b15da8555ec00e6983e06e",
+      "contentHash": "1e86c94b0a291fd9899b8601913f228c69c2c1f7b3df1dac24daa9c5921623c1",
+      "sourceCreatedAt": "2026-10-20T04:58:15Z",
+      "createdAt": "2026-10-20T08:05:17.372Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "36030d0a-5851-4f2d-aa34-6e2e928dfa88",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-10-20T01:18:39.537466Z",
+          "pt-BR": "Job data is stale: last scrape 2026-10-20T01:18:39.537466Z",
+          "es": "Job data is stale: last scrape 2026-10-20T01:18:39.537466Z",
+          "it": "Job data is stale: last scrape 2026-10-20T01:18:39.537466Z",
+          "fr": "Job data is stale: last scrape 2026-10-20T01:18:39.537466Z",
+          "de": "Job data is stale: last scrape 2026-10-20T01:18:39.537466Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_135dc54daa0d7acb783a5145"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_087f0ff3ec143b6edd622ee9",
+      "sourceId": "devfsa/vagas#2829",
+      "dataCommit": "3523523e3c4e48280c69677448cc287ee7188e49",
+      "dataHash": "333bbb5722d01aa52a93282db7ecbdb7b0fab41a60b15da8555ec00e6983e06e",
+      "contentHash": "8b4cf1c9faf9d504def58b2b89c93d5e94c9b125d81c11d3a74f2a5cc38e4101",
+      "sourceCreatedAt": "2026-08-12T14:23:07Z",
+      "createdAt": "2026-10-20T08:05:17.372Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a1dbab05-c11a-4c27-bedf-9592c60fc6e1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] GTM Engineer na Coodesh",
+          "pt-BR": "[Remoto] GTM Engineer na Coodesh",
+          "es": "[Remoto] GTM Engineer na Coodesh",
+          "it": "[Remoto] GTM Engineer na Coodesh",
+          "fr": "[Remoto] GTM Engineer na Coodesh",
+          "de": "[Remoto] GTM Engineer na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_087f0ff3ec143b6edd622ee9"
         }
       },
       "status": "pending",
