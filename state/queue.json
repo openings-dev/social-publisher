@@ -53356,12 +53356,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-20T17:16:20.142Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18198328900384771",
+          "url": "https://www.threads.com/@openingshq/post/DeuWYjRG0NZ"
+        }
       },
       "instagram": {
         "status": "pending",
