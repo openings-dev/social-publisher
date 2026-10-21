@@ -56154,12 +56154,14 @@
       "createdAt": "2026-10-14T20:39:26Z",
       "publicationCreatedAt": "2026-10-15T04:51:09.129Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-21T00:40:38.869Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -56216,7 +56218,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 213
     },
     {
       "jobId": "gh_3f4dd25df83e57f5eacf604a",
