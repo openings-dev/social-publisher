@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "4ae8ab05bfea93e6f4f57b6c63842f08530adebd",
-    "generatedAt": "2026-10-21T02:43:34.397Z",
-    "dataHash": "6fead67554a607994235655d232387f3ebc1c849cfd9c1d01b221c867a951899"
+    "commit": "5c3b58d5c20b09f0e54eada9d75f3115fb9b3e67",
+    "generatedAt": "2026-10-21T08:10:32.838Z",
+    "dataHash": "a46fea27f41a2b5174f662b993c633dc6006bb46d4113b92d6da020cfe252de0"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -13632,6 +13632,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_6ce7664107fbc93c43db7e29"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8f25be7dd252badc093e7167",
+      "sourceId": "awesome-jobs/vietnam#5091",
+      "dataCommit": "5c3b58d5c20b09f0e54eada9d75f3115fb9b3e67",
+      "dataHash": "a46fea27f41a2b5174f662b993c633dc6006bb46d4113b92d6da020cfe252de0",
+      "contentHash": "4ab6a0aa0aff998edd2e810e2315aabab0bee640de77d9653ca9532022368460",
+      "sourceCreatedAt": "2026-10-21T06:41:22Z",
+      "createdAt": "2026-10-21T08:10:32.838Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ca58c09f-58c3-4f76-9ba4-01e46cf8ee9e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "GALAXY JOY - Data Engineer - 2 headcounts",
+          "pt-BR": "GALAXY JOY - Data Engineer - 2 headcounts",
+          "es": "GALAXY JOY - Data Engineer - 2 headcounts",
+          "it": "GALAXY JOY - Data Engineer - 2 headcounts",
+          "fr": "GALAXY JOY - Data Engineer - 2 headcounts",
+          "de": "GALAXY JOY - Data Engineer - 2 headcounts"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8f25be7dd252badc093e7167"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a07d697588492bd5752cba67",
+      "sourceId": "awesome-jobs/vietnam#5090",
+      "dataCommit": "5c3b58d5c20b09f0e54eada9d75f3115fb9b3e67",
+      "dataHash": "a46fea27f41a2b5174f662b993c633dc6006bb46d4113b92d6da020cfe252de0",
+      "contentHash": "36d00408a70b2b38b7f3e67923a21e50cb5d80007f013582868fc7dcc4c9d2a9",
+      "sourceCreatedAt": "2026-10-21T06:36:26Z",
+      "createdAt": "2026-10-21T08:10:32.838Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "792836fe-422d-4d6d-9a4a-193ea85447a8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "GALAXY JOY - Middle/Senior Quality Control Engineer (Manual & Automation Testing) - 4 headcounts",
+          "pt-BR": "GALAXY JOY - Middle/Senior Quality Control Engineer (Manual & Automation Testing) - 4 headcounts",
+          "es": "GALAXY JOY - Middle/Senior Quality Control Engineer (Manual & Automation Testing) - 4 headcounts",
+          "it": "GALAXY JOY - Middle/Senior Quality Control Engineer (Manual & Automation Testing) - 4 headcounts",
+          "fr": "GALAXY JOY - Middle/Senior Quality Control Engineer (Manual & Automation Testing) - 4 headcounts",
+          "de": "GALAXY JOY - Middle/Senior Quality Control Engineer (Manual & Automation Testing) - 4 headcounts"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a07d697588492bd5752cba67"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_68fade7cdbb97785d910fefb",
+      "sourceId": "awesome-jobs/jobs#5089",
+      "dataCommit": "5c3b58d5c20b09f0e54eada9d75f3115fb9b3e67",
+      "dataHash": "a46fea27f41a2b5174f662b993c633dc6006bb46d4113b92d6da020cfe252de0",
+      "contentHash": "0325f1c41d90c96e6f5e0221dc07abcf25a43028ad597381367177dcb7fe4448",
+      "sourceCreatedAt": "2026-10-21T04:49:33Z",
+      "createdAt": "2026-10-21T08:10:32.838Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2c76576a-a9ff-4825-856e-5de9536adf29",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "GALAXY JOY - Middle/Senior - Backend Engineer (NodeJS, 4 headcounts)",
+          "pt-BR": "GALAXY JOY - Middle/Senior - Backend Engineer (NodeJS, 4 headcounts)",
+          "es": "GALAXY JOY - Middle/Senior - Backend Engineer (NodeJS, 4 headcounts)",
+          "it": "GALAXY JOY - Middle/Senior - Backend Engineer (NodeJS, 4 headcounts)",
+          "fr": "GALAXY JOY - Middle/Senior - Backend Engineer (NodeJS, 4 headcounts)",
+          "de": "GALAXY JOY - Middle/Senior - Backend Engineer (NodeJS, 4 headcounts)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_68fade7cdbb97785d910fefb"
         }
       },
       "status": "pending",
