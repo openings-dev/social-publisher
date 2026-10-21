@@ -58061,12 +58061,14 @@
       "createdAt": "2026-10-14T20:29:36Z",
       "publicationCreatedAt": "2026-10-15T04:51:11.959Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-21T07:45:47.035Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[São Paulo, Brasil] Customer Engineer I, Platform, Google Cloud na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -58123,7 +58125,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 214
     },
     {
       "jobId": "gh_ad87146a84bbf4a39b5f49b4",
