@@ -58061,12 +58061,23 @@
       "createdAt": "2026-10-14T20:29:36Z",
       "publicationCreatedAt": "2026-10-15T04:51:11.959Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-21T07:45:47.035Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_1b9b279adeb52f1eba70f4b7",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_1b9b279adeb52f1eba70f4b7/242fbbd388ddb7a76925e34b680de46c28e2c8df76457d6e253efb67798a9435/fbce2873b7b80d3dec6eeb853189cfad77b61b96a8f38b047653a5bb5e7c4b0a/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_1b9b279adeb52f1eba70f4b7/242fbbd388ddb7a76925e34b680de46c28e2c8df76457d6e253efb67798a9435/fbce2873b7b80d3dec6eeb853189cfad77b61b96a8f38b047653a5bb5e7c4b0a/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_1b9b279adeb52f1eba70f4b7/242fbbd388ddb7a76925e34b680de46c28e2c8df76457d6e253efb67798a9435/fbce2873b7b80d3dec6eeb853189cfad77b61b96a8f38b047653a5bb5e7c4b0a/social-video.mp4",
+          "pngHash": "856e23bbc2beb3042642499e135f451fe2c389f8521af4d70b9d105b0c417e10",
+          "instagramJpegHash": "73058840dce05607d6c3f97b334e73818a1d6911ce0bec24ad6782c08506b795",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[São Paulo, Brasil] Customer Engineer I, Platform, Google Cloud na Google"
         }
       },
