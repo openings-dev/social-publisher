@@ -58766,12 +58766,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-21T13:53:49.561Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18111123584592947",
+          "url": "https://www.threads.com/@openingshq/post/DewkACYFKGo"
+        }
       },
       "instagram": {
         "status": "pending",
