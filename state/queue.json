@@ -56050,9 +56050,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-21T18:43:04.233Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -56254,9 +56254,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-21T18:43:04.233Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -56458,9 +56458,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-21T18:43:04.233Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -58486,12 +58486,14 @@
       "createdAt": "2026-10-14T20:23:04Z",
       "publicationCreatedAt": "2026-10-15T04:51:11.959Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-21T18:43:04.233Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[São Paulo, Brasil] Senior UX Engineer, Search AI na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -58548,7 +58550,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 216
     },
     {
       "jobId": "gh_c4b6f80dde15b4f131273b58",
