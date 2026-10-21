@@ -59042,12 +59042,23 @@
       "createdAt": "2026-10-14T19:34:10Z",
       "publicationCreatedAt": "2026-10-15T04:51:11.959Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-21T23:25:31.387Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_84a6ddeb8d3c3bc45031ccc6",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_84a6ddeb8d3c3bc45031ccc6/c824b5466caa901e5886ae758e59e8a3d1125c5908740068f0c4718fd7d7aa41/148c41f4187becd13a3f291985e4e6d860b6dd761ced4b7c244af3611a938bb6/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_84a6ddeb8d3c3bc45031ccc6/c824b5466caa901e5886ae758e59e8a3d1125c5908740068f0c4718fd7d7aa41/148c41f4187becd13a3f291985e4e6d860b6dd761ced4b7c244af3611a938bb6/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_84a6ddeb8d3c3bc45031ccc6/c824b5466caa901e5886ae758e59e8a3d1125c5908740068f0c4718fd7d7aa41/148c41f4187becd13a3f291985e4e6d860b6dd761ced4b7c244af3611a938bb6/social-video.mp4",
+          "pngHash": "77f3d1c56f6d3a632e06aa08a449296b8279e2f400acb051dc8c4df925d30bff",
+          "instagramJpegHash": "07ba49c0d1e25ae76f84009005282597c80a0bd6fd18f8b05c7fb7052c4db7ae",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[São Paulo, Brasil] Ads Solutions Engineering Manager (English, Portuguese) na Google"
         }
       },
