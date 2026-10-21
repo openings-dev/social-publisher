@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "fc879a900fcc7a5770d58f316576624a7bcc45c4",
-    "generatedAt": "2026-10-20T18:52:13.792Z",
-    "dataHash": "a9d4b6c0df22ed0796a8428213fe6fdba5ef16ac272b1c7680e09ce5f6fe43f6"
+    "commit": "7718560d81a3109b74da712bc79cc09406512a5d",
+    "generatedAt": "2026-10-20T23:34:49.902Z",
+    "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -13189,6 +13189,326 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_597bc7a76dc55ce19e871216"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_acbf4cc06bdd966cbf7cdeaa",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9717",
+      "dataCommit": "7718560d81a3109b74da712bc79cc09406512a5d",
+      "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab",
+      "contentHash": "f4365deb221a9206b5d2bc483292b708c99193f82c07c086f1c775e51f66e48d",
+      "sourceCreatedAt": "2026-10-20T21:06:23Z",
+      "createdAt": "2026-10-20T23:34:49.902Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b2c060b8-ab14-4763-a738-8b36bb35aa60",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship - Sony",
+          "pt-BR": "New Internship - Sony",
+          "es": "New Internship - Sony",
+          "it": "New Internship - Sony",
+          "fr": "New Internship - Sony",
+          "de": "New Internship - Sony"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_acbf4cc06bdd966cbf7cdeaa"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_998bfcc688411320a9d8e00c",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9716",
+      "dataCommit": "7718560d81a3109b74da712bc79cc09406512a5d",
+      "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab",
+      "contentHash": "160ce00fd07181f2cf8ddb58b53beabf106f73d450e9bb7694a942cf1c07fb84",
+      "sourceCreatedAt": "2026-10-20T21:04:29Z",
+      "createdAt": "2026-10-20T23:34:49.902Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "abe24aab-390c-4f3c-ba67-8afee83e4d38",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship - Sony",
+          "pt-BR": "New Internship - Sony",
+          "es": "New Internship - Sony",
+          "it": "New Internship - Sony",
+          "fr": "New Internship - Sony",
+          "de": "New Internship - Sony"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_998bfcc688411320a9d8e00c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_714048e505d4e5d6a9c46667",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9715",
+      "dataCommit": "7718560d81a3109b74da712bc79cc09406512a5d",
+      "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab",
+      "contentHash": "bcf36840541c8921dba477d009f620850e1ff9a264686421530f3fe7786be88b",
+      "sourceCreatedAt": "2026-10-20T21:03:12Z",
+      "createdAt": "2026-10-20T23:34:49.902Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "55f4638b-dd4b-45f6-ab95-1102035c2b13",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship - Sony",
+          "pt-BR": "New Internship - Sony",
+          "es": "New Internship - Sony",
+          "it": "New Internship - Sony",
+          "fr": "New Internship - Sony",
+          "de": "New Internship - Sony"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_714048e505d4e5d6a9c46667"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2d5547977242c67a29f3654e",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9714",
+      "dataCommit": "7718560d81a3109b74da712bc79cc09406512a5d",
+      "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab",
+      "contentHash": "abf7f3061103cb3b70592c3fde54fe9850c82881817e24d2391d5c09cc7f92f1",
+      "sourceCreatedAt": "2026-10-20T21:01:14Z",
+      "createdAt": "2026-10-20T23:34:49.902Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0d60da24-e074-4502-8985-374ed88ffe30",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship - Sony",
+          "pt-BR": "New Internship - Sony",
+          "es": "New Internship - Sony",
+          "it": "New Internship - Sony",
+          "fr": "New Internship - Sony",
+          "de": "New Internship - Sony"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2d5547977242c67a29f3654e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7a3402808757160d2089dea0",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9713",
+      "dataCommit": "7718560d81a3109b74da712bc79cc09406512a5d",
+      "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab",
+      "contentHash": "f82118580e9888c23e2a703468c06cbdbf6eb8c2d540d1442376f2407b6d2e8e",
+      "sourceCreatedAt": "2026-10-20T20:59:41Z",
+      "createdAt": "2026-10-20T23:34:49.902Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "76fb2ce9-58f0-41bd-929f-771d1d6a63f7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship - Sony",
+          "pt-BR": "New Internship - Sony",
+          "es": "New Internship - Sony",
+          "it": "New Internship - Sony",
+          "fr": "New Internship - Sony",
+          "de": "New Internship - Sony"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7a3402808757160d2089dea0"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6640bba321c74f8b49f9f5a8",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9712",
+      "dataCommit": "7718560d81a3109b74da712bc79cc09406512a5d",
+      "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab",
+      "contentHash": "bc2a0dfb432a3cb6da80546563ff58d6f58ca0f35c651086c88935bb2bf45388",
+      "sourceCreatedAt": "2026-10-20T20:58:04Z",
+      "createdAt": "2026-10-20T23:34:49.902Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d1522a0a-9a2f-4f5b-97cf-fd58ddbc7a64",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship - Sony",
+          "pt-BR": "New Internship - Sony",
+          "es": "New Internship - Sony",
+          "it": "New Internship - Sony",
+          "fr": "New Internship - Sony",
+          "de": "New Internship - Sony"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6640bba321c74f8b49f9f5a8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_42589ddf28f8c9ac5924f9d6",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9711",
+      "dataCommit": "7718560d81a3109b74da712bc79cc09406512a5d",
+      "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab",
+      "contentHash": "9378bdf6b358ce6d3606444e0b1b395aad208a59e986eb2adda793527e27d8eb",
+      "sourceCreatedAt": "2026-10-20T20:56:31Z",
+      "createdAt": "2026-10-20T23:34:49.902Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b52a5860-86a5-47f7-832f-15897eee2938",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship - Sony",
+          "pt-BR": "New Internship - Sony",
+          "es": "New Internship - Sony",
+          "it": "New Internship - Sony",
+          "fr": "New Internship - Sony",
+          "de": "New Internship - Sony"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_42589ddf28f8c9ac5924f9d6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e9a9c8be369f6411bafa4de4",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9710",
+      "dataCommit": "7718560d81a3109b74da712bc79cc09406512a5d",
+      "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab",
+      "contentHash": "e2108fdffe91e143f4e274da420bbb429c21d89743de9ab0bd86944c12f2e335",
+      "sourceCreatedAt": "2026-10-20T20:54:38Z",
+      "createdAt": "2026-10-20T23:34:49.902Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2adad780-877b-4111-b2e3-f43db6ffc90c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship - Sony",
+          "pt-BR": "New Internship - Sony",
+          "es": "New Internship - Sony",
+          "it": "New Internship - Sony",
+          "fr": "New Internship - Sony",
+          "de": "New Internship - Sony"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e9a9c8be369f6411bafa4de4"
         }
       },
       "status": "pending",
