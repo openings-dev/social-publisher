@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "5c3b58d5c20b09f0e54eada9d75f3115fb9b3e67",
-    "generatedAt": "2026-10-21T08:10:32.838Z",
-    "dataHash": "a46fea27f41a2b5174f662b993c633dc6006bb46d4113b92d6da020cfe252de0"
+    "commit": "1ad93b73e19b36464eb590335bedcb4d98f9f270",
+    "generatedAt": "2026-10-21T14:18:28.671Z",
+    "dataHash": "61726e7d74532c0bd805332f447c05d097e811614266819e18dd8ab74a229ea1"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -13752,6 +13752,246 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_68fade7cdbb97785d910fefb"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0b7763c8edb9fe9b843a85a8",
+      "sourceId": "react-brasil/vagas#3036",
+      "dataCommit": "1ad93b73e19b36464eb590335bedcb4d98f9f270",
+      "dataHash": "61726e7d74532c0bd805332f447c05d097e811614266819e18dd8ab74a229ea1",
+      "contentHash": "48beb8c2b0e14dcc21e994691c150e1b585c3f38165dd85daca2a1e75b428110",
+      "sourceCreatedAt": "2026-10-21T13:50:08Z",
+      "createdAt": "2026-10-21T14:18:28.671Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d3972a1b-04e1-4be0-962d-aa35d20cb898",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo] Dev Fullstack React/React Native + Java Pleno na Protege Cash",
+          "pt-BR": "[São Paulo] Dev Fullstack React/React Native + Java Pleno na Protege Cash",
+          "es": "[São Paulo] Dev Fullstack React/React Native + Java Pleno na Protege Cash",
+          "it": "[São Paulo] Dev Fullstack React/React Native + Java Pleno na Protege Cash",
+          "fr": "[São Paulo] Dev Fullstack React/React Native + Java Pleno na Protege Cash",
+          "de": "[São Paulo] Dev Fullstack React/React Native + Java Pleno na Protege Cash"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0b7763c8edb9fe9b843a85a8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_635a2d6c08c44acc444fd7c8",
+      "sourceId": "soujava/vagas-java#1966",
+      "dataCommit": "1ad93b73e19b36464eb590335bedcb4d98f9f270",
+      "dataHash": "61726e7d74532c0bd805332f447c05d097e811614266819e18dd8ab74a229ea1",
+      "contentHash": "d35fa634e61af65f50c084a4b20db90439f885d0707cf5bcb4ec551f402bdc97",
+      "sourceCreatedAt": "2026-10-21T13:09:45Z",
+      "createdAt": "2026-10-21T14:18:28.671Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "48464075-e4db-4547-802c-5d58bcecbedf",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Júnior (Agendamento) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Júnior (Agendamento) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Júnior (Agendamento) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Júnior (Agendamento) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Júnior (Agendamento) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Júnior (Agendamento) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_635a2d6c08c44acc444fd7c8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3c767e88457a3d29d3db1504",
+      "sourceId": "awesome-jobs/vietnam#5092",
+      "dataCommit": "1ad93b73e19b36464eb590335bedcb4d98f9f270",
+      "dataHash": "61726e7d74532c0bd805332f447c05d097e811614266819e18dd8ab74a229ea1",
+      "contentHash": "50f7f80e103032226b9f57c6be9aba58e23183e683ab857ca00f845ca2bfd075",
+      "sourceCreatedAt": "2026-10-21T10:53:38Z",
+      "createdAt": "2026-10-21T14:18:28.671Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "26e3f026-8d0b-4ce2-a84d-c1ff7f9973c5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HCM] Senior Fullstack Developer (Finance/Banking domain)",
+          "pt-BR": "[HCM] Senior Fullstack Developer (Finance/Banking domain)",
+          "es": "[HCM] Senior Fullstack Developer (Finance/Banking domain)",
+          "it": "[HCM] Senior Fullstack Developer (Finance/Banking domain)",
+          "fr": "[HCM] Senior Fullstack Developer (Finance/Banking domain)",
+          "de": "[HCM] Senior Fullstack Developer (Finance/Banking domain)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3c767e88457a3d29d3db1504"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_53904612199cd4d149409a4d",
+      "sourceId": "programadores-br/geral#3110",
+      "dataCommit": "1ad93b73e19b36464eb590335bedcb4d98f9f270",
+      "dataHash": "61726e7d74532c0bd805332f447c05d097e811614266819e18dd8ab74a229ea1",
+      "contentHash": "a5c0eae460313aa6fdee018d9fac688d02e1d2bd4307903f5d9975137bd51a1f",
+      "sourceCreatedAt": "2026-10-14T20:41:52Z",
+      "createdAt": "2026-10-21T14:18:28.671Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "dd3a0551-65a5-4004-92b6-e4e2aaf8bec6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer, People with Disabilities na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_53904612199cd4d149409a4d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_221a6195919fc129e207ca82",
+      "sourceId": "programadores-br/geral#3109",
+      "dataCommit": "1ad93b73e19b36464eb590335bedcb4d98f9f270",
+      "dataHash": "61726e7d74532c0bd805332f447c05d097e811614266819e18dd8ab74a229ea1",
+      "contentHash": "084b39bd26395240c6da43b8beaf53189e0ddee13725d59890754e80ac520ea8",
+      "sourceCreatedAt": "2026-10-14T20:40:36Z",
+      "createdAt": "2026-10-21T14:18:28.671Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "838b243f-1f86-40a7-b0ad-0988a2dd9c83",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineering Manager, People with Disabilities na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_221a6195919fc129e207ca82"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d62bc82adda45ce8abb995f1",
+      "sourceId": "programadores-br/geral#3108",
+      "dataCommit": "1ad93b73e19b36464eb590335bedcb4d98f9f270",
+      "dataHash": "61726e7d74532c0bd805332f447c05d097e811614266819e18dd8ab74a229ea1",
+      "contentHash": "9fe1530c1d7e2b596e9f3beab3a45d93480f41dad2d00d51b60b2492cab02fd0",
+      "sourceCreatedAt": "2026-10-14T20:38:18Z",
+      "createdAt": "2026-10-21T14:18:28.671Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "beeda53e-ad88-44de-8526-6f9845e4556c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Software Engineer (For Women in Tech Candidates) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d62bc82adda45ce8abb995f1"
         }
       },
       "status": "pending",
