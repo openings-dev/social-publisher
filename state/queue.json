@@ -58486,12 +58486,23 @@
       "createdAt": "2026-10-14T20:23:04Z",
       "publicationCreatedAt": "2026-10-15T04:51:11.959Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-21T18:43:04.233Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_655fc164c7da8f68845e9203",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_655fc164c7da8f68845e9203/03659a83dac067b5fead5b2030ff76cbeceb9c58bdb2f2dd5120ce70d20202ee/3b591f320b3bf4cac02f3e3193d1a20df6b18a2308b78e559cf6f67b7051fb51/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_655fc164c7da8f68845e9203/03659a83dac067b5fead5b2030ff76cbeceb9c58bdb2f2dd5120ce70d20202ee/3b591f320b3bf4cac02f3e3193d1a20df6b18a2308b78e559cf6f67b7051fb51/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_655fc164c7da8f68845e9203/03659a83dac067b5fead5b2030ff76cbeceb9c58bdb2f2dd5120ce70d20202ee/3b591f320b3bf4cac02f3e3193d1a20df6b18a2308b78e559cf6f67b7051fb51/social-video.mp4",
+          "pngHash": "941adc099a575abcb504f00b6117b972d7aa9f0edcbd56b0446931a0b5728332",
+          "instagramJpegHash": "7482fb8ba34ad61cb703a76e15f752a999445380e651dcade69be2a0a3affa9c",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[São Paulo, Brasil] Senior UX Engineer, Search AI na Google"
         }
       },
