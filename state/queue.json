@@ -55642,9 +55642,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-21T23:25:31.387Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -55846,9 +55846,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-21T23:25:31.387Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -59042,12 +59042,14 @@
       "createdAt": "2026-10-14T19:34:10Z",
       "publicationCreatedAt": "2026-10-15T04:51:11.959Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-21T23:25:31.387Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[São Paulo, Brasil] Ads Solutions Engineering Manager (English, Portuguese) na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -59104,7 +59106,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 217
     },
     {
       "jobId": "gh_776da6cd16a3878a7aa6c3ac",
