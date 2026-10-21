@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "7718560d81a3109b74da712bc79cc09406512a5d",
-    "generatedAt": "2026-10-20T23:34:49.902Z",
-    "dataHash": "4b76ca7e4494edab87c8d3c1c201071a87a982257a6bf4db35f150ba5ff522ab"
+    "commit": "4ae8ab05bfea93e6f4f57b6c63842f08530adebd",
+    "generatedAt": "2026-10-21T02:43:34.397Z",
+    "dataHash": "6fead67554a607994235655d232387f3ebc1c849cfd9c1d01b221c867a951899"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -13509,6 +13509,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_e9a9c8be369f6411bafa4de4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_baa1cacfe8ac107e10908e71",
+      "sourceId": "rebase-network/who-is-hiring#1325",
+      "dataCommit": "4ae8ab05bfea93e6f4f57b6c63842f08530adebd",
+      "dataHash": "6fead67554a607994235655d232387f3ebc1c849cfd9c1d01b221c867a951899",
+      "contentHash": "4cf2a4624b21abd609494e301088ed37fd9a6072580fcbecf429f6c0d97b1f2c",
+      "sourceCreatedAt": "2026-10-21T01:55:31Z",
+      "createdAt": "2026-10-21T02:43:34.397Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cab15fd3-3db6-479f-a087-48dce6c36d6f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验2-20+年",
+          "pt-BR": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验2-20+年",
+          "es": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验2-20+年",
+          "it": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验2-20+年",
+          "fr": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验2-20+年",
+          "de": "[香港] Crypto量化 诚聘 Rust工程师 薪资不设限制 经验2-20+年"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_baa1cacfe8ac107e10908e71"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a532a250cf3ce443abd223c9",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9719",
+      "dataCommit": "4ae8ab05bfea93e6f4f57b6c63842f08530adebd",
+      "dataHash": "6fead67554a607994235655d232387f3ebc1c849cfd9c1d01b221c867a951899",
+      "contentHash": "61baf56653119cb9fdf22750e3fb1b42d74611233ba414263203424cd3d20060",
+      "sourceCreatedAt": "2026-10-21T01:32:07Z",
+      "createdAt": "2026-10-21T02:43:34.397Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cd2351b8-6f6e-46f5-bd70-d3436608777c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship: Argo — AI Engineer Intern — Winter / Summer 2027",
+          "pt-BR": "New Internship: Argo — AI Engineer Intern — Winter / Summer 2027",
+          "es": "New Internship: Argo — AI Engineer Intern — Winter / Summer 2027",
+          "it": "New Internship: Argo — AI Engineer Intern — Winter / Summer 2027",
+          "fr": "New Internship: Argo — AI Engineer Intern — Winter / Summer 2027",
+          "de": "New Internship: Argo — AI Engineer Intern — Winter / Summer 2027"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a532a250cf3ce443abd223c9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6ce7664107fbc93c43db7e29",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9718",
+      "dataCommit": "4ae8ab05bfea93e6f4f57b6c63842f08530adebd",
+      "dataHash": "6fead67554a607994235655d232387f3ebc1c849cfd9c1d01b221c867a951899",
+      "contentHash": "b230753b4d72b96a68788e4ff7740a3a0fb9f55fe7b3149fd557fd959cd852a1",
+      "sourceCreatedAt": "2026-10-21T01:28:58Z",
+      "createdAt": "2026-10-21T02:43:34.397Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b3ae6f6d-7a57-4c71-a943-a13c505d7470",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship: Argo — Software Engineer Intern — Winter / Summer 2027",
+          "pt-BR": "New Internship: Argo — Software Engineer Intern — Winter / Summer 2027",
+          "es": "New Internship: Argo — Software Engineer Intern — Winter / Summer 2027",
+          "it": "New Internship: Argo — Software Engineer Intern — Winter / Summer 2027",
+          "fr": "New Internship: Argo — Software Engineer Intern — Winter / Summer 2027",
+          "de": "New Internship: Argo — Software Engineer Intern — Winter / Summer 2027"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6ce7664107fbc93c43db7e29"
         }
       },
       "status": "pending",
