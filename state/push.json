@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "1ad93b73e19b36464eb590335bedcb4d98f9f270",
-    "generatedAt": "2026-10-21T14:18:28.671Z",
-    "dataHash": "61726e7d74532c0bd805332f447c05d097e811614266819e18dd8ab74a229ea1"
+    "commit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+    "generatedAt": "2026-10-21T19:04:49.833Z",
+    "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -13992,6 +13992,886 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_d62bc82adda45ce8abb995f1"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9b3e38ebbaf6e3edb0d7728c",
+      "sourceId": "programadores-br/geral#3112",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "8f7f49583d8ae68b86a390d0d01ca55b510a4466a67170bbb0c85978f8952cf6",
+      "sourceCreatedAt": "2026-10-14T20:45:15Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6b84f8d5-5391-42c5-b494-9d7d62bb02e8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "pt-BR": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "es": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "it": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "fr": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google",
+          "de": "[Belo Horizonte ou São Paulo, Brasil] Early Career Software Engineer, People with Disabilities na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9b3e38ebbaf6e3edb0d7728c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c61c16afb3fe5466d411212a",
+      "sourceId": "programadores-br/geral#3111",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "8f6bbd7df8305bf5c8a1bb533dd60a2b6d1968a3be4d063254e016030391afda",
+      "sourceCreatedAt": "2026-10-14T20:43:52Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e98ced01-92e7-4675-9912-7c3d7eb78b3f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "pt-BR": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "es": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "it": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "fr": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google",
+          "de": "[São Paulo ou Belo Horizonte, Brasil] Tech Lead, Software Engineering, People with Disabilities na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c61c16afb3fe5466d411212a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ea253817322c5402dc8c2bc4",
+      "sourceId": "rebase-network/who-is-hiring#1277",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "30b4e6a8e66c76eaddbc95a8e467f78318f2479c1ea02a6b7858996e29f355e1",
+      "sourceCreatedAt": "2026-08-31T07:56:08Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cab537f3-9b7b-46a1-926c-6cabe93a730c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【远程/全职】诚聘资深智能合约工程师 （RWA/Tokenization)",
+          "pt-BR": "【远程/全职】诚聘资深智能合约工程师 （RWA/Tokenization)",
+          "es": "【远程/全职】诚聘资深智能合约工程师 （RWA/Tokenization)",
+          "it": "【远程/全职】诚聘资深智能合约工程师 （RWA/Tokenization)",
+          "fr": "【远程/全职】诚聘资深智能合约工程师 （RWA/Tokenization)",
+          "de": "【远程/全职】诚聘资深智能合约工程师 （RWA/Tokenization)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ea253817322c5402dc8c2bc4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_018090ae0b51c7fe869fe122",
+      "sourceId": "TechnologyMasters/jobs#722",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "8873badd16a5033d22f1d13c655a680775ac67caeb12e018287652cde4ab1496",
+      "sourceCreatedAt": "2026-01-05T22:50:21Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5635de33-2321-4157-af81-f89488c28e0c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Biz-Tech Analytics - DevOps Engineer - India - Rs.1000-1200/hr",
+          "pt-BR": "Biz-Tech Analytics - DevOps Engineer - India - Rs.1000-1200/hr",
+          "es": "Biz-Tech Analytics - DevOps Engineer - India - Rs.1000-1200/hr",
+          "it": "Biz-Tech Analytics - DevOps Engineer - India - Rs.1000-1200/hr",
+          "fr": "Biz-Tech Analytics - DevOps Engineer - India - Rs.1000-1200/hr",
+          "de": "Biz-Tech Analytics - DevOps Engineer - India - Rs.1000-1200/hr"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_018090ae0b51c7fe869fe122"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d9f31b40b046d9fb1c9512c3",
+      "sourceId": "TechnologyMasters/jobs#721",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "3ca3a01661be2c7fac30412750a3fcb06c7c1532ef93b9ccd62d6761c957da02",
+      "sourceCreatedAt": "2025-12-06T16:55:35Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "677716de-59c2-41e8-b330-48935074f44a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "WebBoxes - Sr. AI Engineer - Remote/LatAm - $50,000 USD/Year",
+          "pt-BR": "WebBoxes - Sr. AI Engineer - Remote/LatAm - $50,000 USD/Year",
+          "es": "WebBoxes - Sr. AI Engineer - Remote/LatAm - $50,000 USD/Year",
+          "it": "WebBoxes - Sr. AI Engineer - Remote/LatAm - $50,000 USD/Year",
+          "fr": "WebBoxes - Sr. AI Engineer - Remote/LatAm - $50,000 USD/Year",
+          "de": "WebBoxes - Sr. AI Engineer - Remote/LatAm - $50,000 USD/Year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d9f31b40b046d9fb1c9512c3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7de941f14023985213e7d373",
+      "sourceId": "TechnologyMasters/jobs#720",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "d015502566d9b4004d2c5b9abaad7eeb93511475cade9dc86f767eec4232c64c",
+      "sourceCreatedAt": "2025-11-26T16:02:26Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c0afb583-4278-46c7-988c-8533e3a6d9be",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "TalentedEngineer",
+          "pt-BR": "TalentedEngineer",
+          "es": "TalentedEngineer",
+          "it": "TalentedEngineer",
+          "fr": "TalentedEngineer",
+          "de": "TalentedEngineer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7de941f14023985213e7d373"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_81aa8bfda8cd75209a233f69",
+      "sourceId": "TechnologyMasters/jobs#719",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "60fa8d24fd87f0f7591508b70740e275f0ed5c80be37db4698eb7694f83242dd",
+      "sourceCreatedAt": "2025-08-21T12:47:19Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "99b26fd9-7ce4-4cdf-bc0a-c4f1745d0914",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Sr. Software Engineer",
+          "pt-BR": "Sr. Software Engineer",
+          "es": "Sr. Software Engineer",
+          "it": "Sr. Software Engineer",
+          "fr": "Sr. Software Engineer",
+          "de": "Sr. Software Engineer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_81aa8bfda8cd75209a233f69"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_962eeb5d07c4cee43120e80f",
+      "sourceId": "TechnologyMasters/jobs#718",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "485a0c58c2b323cec4c33955d8c115ed5fad641c6a39964f1aa312d7b2c08c1c",
+      "sourceCreatedAt": "2025-08-01T20:50:49Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "54ede56f-3a3e-4dbe-8de6-174b553d8539",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Lean Analyst",
+          "pt-BR": "Lean Analyst",
+          "es": "Lean Analyst",
+          "it": "Lean Analyst",
+          "fr": "Lean Analyst",
+          "de": "Lean Analyst"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_962eeb5d07c4cee43120e80f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4e61569a5d7ecd89c151cb8a",
+      "sourceId": "TechnologyMasters/jobs#717",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "baf5392df4bf8a9e16e3986d5a43cf4080521d540bdc385d7c0a1ae2f2c9983b",
+      "sourceCreatedAt": "2025-08-01T15:52:12Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "74eff1ae-fb5b-4b3a-9cfe-f8d16325f79f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "AI Solution Architect",
+          "pt-BR": "AI Solution Architect",
+          "es": "AI Solution Architect",
+          "it": "AI Solution Architect",
+          "fr": "AI Solution Architect",
+          "de": "AI Solution Architect"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4e61569a5d7ecd89c151cb8a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4fe43a3256a6d731ae826236",
+      "sourceId": "TechnologyMasters/jobs#716",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "d3b03192b89c3b5bbb51872f2dc2f4d131dae1833b236a1ef85592e6f19bbdb4",
+      "sourceCreatedAt": "2025-08-01T15:04:02Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e0ac71b6-33e1-468c-a02f-c6379c057095",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Electrical Equipment Test Engineer",
+          "pt-BR": "Electrical Equipment Test Engineer",
+          "es": "Electrical Equipment Test Engineer",
+          "it": "Electrical Equipment Test Engineer",
+          "fr": "Electrical Equipment Test Engineer",
+          "de": "Electrical Equipment Test Engineer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4fe43a3256a6d731ae826236"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4c1b622cc6355d609e296837",
+      "sourceId": "TechnologyMasters/jobs#714",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "8855ac78725aa0aaf88523bedba1e7d3d4afae1461411ac6546fffd48bee3fff",
+      "sourceCreatedAt": "2025-07-24T16:33:39Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a83c322a-a3f9-4211-a687-5674d6b455f0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Pitchpoint Solutions - Angular Software Development Engineer - Toronto/Remote - 50,000 to 125,000 CAD/Year",
+          "pt-BR": "Pitchpoint Solutions - Angular Software Development Engineer - Toronto/Remote - 50,000 to 125,000 CAD/Year",
+          "es": "Pitchpoint Solutions - Angular Software Development Engineer - Toronto/Remote - 50,000 to 125,000 CAD/Year",
+          "it": "Pitchpoint Solutions - Angular Software Development Engineer - Toronto/Remote - 50,000 to 125,000 CAD/Year",
+          "fr": "Pitchpoint Solutions - Angular Software Development Engineer - Toronto/Remote - 50,000 to 125,000 CAD/Year",
+          "de": "Pitchpoint Solutions - Angular Software Development Engineer - Toronto/Remote - 50,000 to 125,000 CAD/Year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4c1b622cc6355d609e296837"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0916ca6958d7f404418dfcce",
+      "sourceId": "TechnologyMasters/jobs#713",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "9274200ea2f81ba7e67b00cba98302ae8ad7b1d063c164b9d2b1c80473181c48",
+      "sourceCreatedAt": "2025-06-12T15:12:41Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d35dfcef-1014-43a2-b8b0-26ca140f1d38",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "AI Power Planning App - Machine Learning/Artificial Intelligence Engineer- Brooklyn, NY - $170-225K + Equity",
+          "pt-BR": "AI Power Planning App - Machine Learning/Artificial Intelligence Engineer- Brooklyn, NY - $170-225K + Equity",
+          "es": "AI Power Planning App - Machine Learning/Artificial Intelligence Engineer- Brooklyn, NY - $170-225K + Equity",
+          "it": "AI Power Planning App - Machine Learning/Artificial Intelligence Engineer- Brooklyn, NY - $170-225K + Equity",
+          "fr": "AI Power Planning App - Machine Learning/Artificial Intelligence Engineer- Brooklyn, NY - $170-225K + Equity",
+          "de": "AI Power Planning App - Machine Learning/Artificial Intelligence Engineer- Brooklyn, NY - $170-225K + Equity"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0916ca6958d7f404418dfcce"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_973c31a18c65d62e0c263bcb",
+      "sourceId": "TechnologyMasters/jobs#711",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "42b9a7af80fb53cb5304b96c55715a60b451a74cf887fd26e30d7f37aa18c62e",
+      "sourceCreatedAt": "2024-11-27T11:26:06Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "82b20781-532b-42a6-9f37-c2dfd2c00e18",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "CloudTeamCompany EMEA - SalesForce Developer - Remote/UK/NL - 90,000 EURO/Year",
+          "pt-BR": "CloudTeamCompany EMEA - SalesForce Developer - Remote/UK/NL - 90,000 EURO/Year",
+          "es": "CloudTeamCompany EMEA - SalesForce Developer - Remote/UK/NL - 90,000 EURO/Year",
+          "it": "CloudTeamCompany EMEA - SalesForce Developer - Remote/UK/NL - 90,000 EURO/Year",
+          "fr": "CloudTeamCompany EMEA - SalesForce Developer - Remote/UK/NL - 90,000 EURO/Year",
+          "de": "CloudTeamCompany EMEA - SalesForce Developer - Remote/UK/NL - 90,000 EURO/Year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_973c31a18c65d62e0c263bcb"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_40fdf6f56a3c3ae8f9cb428a",
+      "sourceId": "TechnologyMasters/jobs#710",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "19fb765cd04e502b79bcfede4062e4b3993610ec0cb90e1030e0e97fcacf8ba3",
+      "sourceCreatedAt": "2024-11-27T11:23:18Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b921a6e2-5f80-48cc-8837-c2ce5febb3a6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "CloudTeamCompany EMEA - Solutions Architect - Remote/UK/NL/DE - EUR 80,000 to 110,000 /Year",
+          "pt-BR": "CloudTeamCompany EMEA - Solutions Architect - Remote/UK/NL/DE - EUR 80,000 to 110,000 /Year",
+          "es": "CloudTeamCompany EMEA - Solutions Architect - Remote/UK/NL/DE - EUR 80,000 to 110,000 /Year",
+          "it": "CloudTeamCompany EMEA - Solutions Architect - Remote/UK/NL/DE - EUR 80,000 to 110,000 /Year",
+          "fr": "CloudTeamCompany EMEA - Solutions Architect - Remote/UK/NL/DE - EUR 80,000 to 110,000 /Year",
+          "de": "CloudTeamCompany EMEA - Solutions Architect - Remote/UK/NL/DE - EUR 80,000 to 110,000 /Year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_40fdf6f56a3c3ae8f9cb428a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4ecec9e0e6780f8e377fd4a3",
+      "sourceId": "TechnologyMasters/jobs#709",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "828ead0be6082c8da85feaaa5db3a585c07ef8547411ed88359e5458a73954b8",
+      "sourceCreatedAt": "2024-11-14T21:29:41Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b8180446-9368-4835-9ff4-4c13ea89ebc4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Mathpix is hiring for many different positions",
+          "pt-BR": "Mathpix is hiring for many different positions",
+          "es": "Mathpix is hiring for many different positions",
+          "it": "Mathpix is hiring for many different positions",
+          "fr": "Mathpix is hiring for many different positions",
+          "de": "Mathpix is hiring for many different positions"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4ecec9e0e6780f8e377fd4a3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9dc42750ea29e0514f2c475d",
+      "sourceId": "TechnologyMasters/jobs#708",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "3a3eaaa254af76edd591456927bce37d6e8b9cd3a842a128fd33dcfcf3b439d4",
+      "sourceCreatedAt": "2024-10-29T14:53:05Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bf737d4b-b731-4e75-821e-0a89825f2a01",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "CatchyTechSolutions - Project Manager - Remote/US - $30~40/hr",
+          "pt-BR": "CatchyTechSolutions - Project Manager - Remote/US - $30~40/hr",
+          "es": "CatchyTechSolutions - Project Manager - Remote/US - $30~40/hr",
+          "it": "CatchyTechSolutions - Project Manager - Remote/US - $30~40/hr",
+          "fr": "CatchyTechSolutions - Project Manager - Remote/US - $30~40/hr",
+          "de": "CatchyTechSolutions - Project Manager - Remote/US - $30~40/hr"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9dc42750ea29e0514f2c475d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_accd5f9895a7e30385d01769",
+      "sourceId": "TechnologyMasters/jobs#707",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "191e5bc37a9ddf8e9a59ae2e4a53589e96a186988b876c1dfa4e506197c70d67",
+      "sourceCreatedAt": "2024-07-31T18:12:56Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "47f10841-002c-4905-9dfb-373dd03f7a57",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "OnOrder - Senior Full Stack Developer - Toronto - 180-200 CAD",
+          "pt-BR": "OnOrder - Senior Full Stack Developer - Toronto - 180-200 CAD",
+          "es": "OnOrder - Senior Full Stack Developer - Toronto - 180-200 CAD",
+          "it": "OnOrder - Senior Full Stack Developer - Toronto - 180-200 CAD",
+          "fr": "OnOrder - Senior Full Stack Developer - Toronto - 180-200 CAD",
+          "de": "OnOrder - Senior Full Stack Developer - Toronto - 180-200 CAD"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_accd5f9895a7e30385d01769"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bee6bfa2c8e12bb59f137acc",
+      "sourceId": "TechnologyMasters/jobs#705",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "5f9ea20ca4938d4e93897a59da38d7bba45b9faededf03ba3146bbc548c2f965",
+      "sourceCreatedAt": "2024-04-27T16:46:51Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1d27b4b1-4ec9-4938-9672-12a25dbff592",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Acevedo Dental Group - Graphic Designer / Social Media Associate - USD 1K/month",
+          "pt-BR": "Acevedo Dental Group - Graphic Designer / Social Media Associate - USD 1K/month",
+          "es": "Acevedo Dental Group - Graphic Designer / Social Media Associate - USD 1K/month",
+          "it": "Acevedo Dental Group - Graphic Designer / Social Media Associate - USD 1K/month",
+          "fr": "Acevedo Dental Group - Graphic Designer / Social Media Associate - USD 1K/month",
+          "de": "Acevedo Dental Group - Graphic Designer / Social Media Associate - USD 1K/month"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bee6bfa2c8e12bb59f137acc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e75b4715ed195c7babe01f51",
+      "sourceId": "TechnologyMasters/jobs#704",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "5f09584a69c5670cd26fda78280aef4dcc61b41a0a7bdc60cc898775ebd04c37",
+      "sourceCreatedAt": "2024-04-26T14:40:27Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4b8fa655-3a15-4373-8963-4c84190e9be8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Coordinadora Mercantil SAS - Líder Técnico - Colombia - COP11.2M - 12M/mes",
+          "pt-BR": "Coordinadora Mercantil SAS - Líder Técnico - Colombia - COP11.2M - 12M/mes",
+          "es": "Coordinadora Mercantil SAS - Líder Técnico - Colombia - COP11.2M - 12M/mes",
+          "it": "Coordinadora Mercantil SAS - Líder Técnico - Colombia - COP11.2M - 12M/mes",
+          "fr": "Coordinadora Mercantil SAS - Líder Técnico - Colombia - COP11.2M - 12M/mes",
+          "de": "Coordinadora Mercantil SAS - Líder Técnico - Colombia - COP11.2M - 12M/mes"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e75b4715ed195c7babe01f51"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6ac3f2e8788bb492fb67efff",
+      "sourceId": "TechnologyMasters/jobs#703",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "4797b5d1b9d3ca23335b897081e31c90cd38225d51bf0913961f6652e6e7f347",
+      "sourceCreatedAt": "2024-04-24T18:21:00Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ea3df7d7-dbb5-4e89-a75d-951350ff79d6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Coordinadora Mercantil SAS - Especialista en QA - Automatizador - Colombia - COP3.7M - 4M/mes",
+          "pt-BR": "Coordinadora Mercantil SAS - Especialista en QA - Automatizador - Colombia - COP3.7M - 4M/mes",
+          "es": "Coordinadora Mercantil SAS - Especialista en QA - Automatizador - Colombia - COP3.7M - 4M/mes",
+          "it": "Coordinadora Mercantil SAS - Especialista en QA - Automatizador - Colombia - COP3.7M - 4M/mes",
+          "fr": "Coordinadora Mercantil SAS - Especialista en QA - Automatizador - Colombia - COP3.7M - 4M/mes",
+          "de": "Coordinadora Mercantil SAS - Especialista en QA - Automatizador - Colombia - COP3.7M - 4M/mes"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6ac3f2e8788bb492fb67efff"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2698bafd032165b940c5550e",
+      "sourceId": "TechnologyMasters/jobs#702",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "0b6fa9398ad1997588bb96c607ee31ce1b7c697ced3c3db578f248dec860ff1f",
+      "sourceCreatedAt": "2024-01-21T19:30:25Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "35773bc5-7bd7-41c1-8543-a104e3dbe874",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Human resources Assistant",
+          "pt-BR": "Human resources Assistant",
+          "es": "Human resources Assistant",
+          "it": "Human resources Assistant",
+          "fr": "Human resources Assistant",
+          "de": "Human resources Assistant"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2698bafd032165b940c5550e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e11c3b3f68beb9edaf9375f0",
+      "sourceId": "TechnologyMasters/jobs#701",
+      "dataCommit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
+      "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9",
+      "contentHash": "d0d535356944df949a83f46f2de048c278b3569feebfc58edd435e48c4c54a41",
+      "sourceCreatedAt": "2023-10-31T11:06:30Z",
+      "createdAt": "2026-10-21T19:04:49.833Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "29425e12-0aec-4224-8454-898605527386",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "think-cell - C++ Developer (f/m/d) - Berlin 🇩🇪 or Remote - 130k EUR/year",
+          "pt-BR": "think-cell - C++ Developer (f/m/d) - Berlin 🇩🇪 or Remote - 130k EUR/year",
+          "es": "think-cell - C++ Developer (f/m/d) - Berlin 🇩🇪 or Remote - 130k EUR/year",
+          "it": "think-cell - C++ Developer (f/m/d) - Berlin 🇩🇪 or Remote - 130k EUR/year",
+          "fr": "think-cell - C++ Developer (f/m/d) - Berlin 🇩🇪 or Remote - 130k EUR/year",
+          "de": "think-cell - C++ Developer (f/m/d) - Berlin 🇩🇪 or Remote - 130k EUR/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e11c3b3f68beb9edaf9375f0"
         }
       },
       "status": "pending",
