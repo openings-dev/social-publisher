@@ -58338,12 +58338,14 @@
       "createdAt": "2026-10-14T20:26:00Z",
       "publicationCreatedAt": "2026-10-15T04:51:11.959Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-22T04:58:34.120Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Belo Horizonte, Brasil] Senior Software Engineer, Full Stack, Kids and Families na Google"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -58400,7 +58402,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 218
     },
     {
       "jobId": "gh_9198146b9940c3a578e19f82",
