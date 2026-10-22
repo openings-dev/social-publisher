@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "63d741c3fd7c60a6415872baf4b6cdf787d5ecaf",
-    "generatedAt": "2026-10-21T19:04:49.833Z",
-    "dataHash": "5ad13ca59a2d5c2614c8c090a98d8af42cb5e9f998b6bb74601596606f905bb9"
+    "commit": "4e691f534ec7240ee06c03a69b88a5208d055f2d",
+    "generatedAt": "2026-10-22T02:48:33.103Z",
+    "dataHash": "31581e5a1db2879f64bd377892c6b338843d8ac38c4092677f9bed38c29cfa89"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -14872,6 +14872,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_e11c3b3f68beb9edaf9375f0"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e89ac86ac916c54d8013da27",
+      "sourceId": "phpdevbr/vagas#1332",
+      "dataCommit": "611c00d7bcd92f75c3922d268551b9d0a6bd38c5",
+      "dataHash": "b7d92795574c8eb878539e23373b29eb3281b3004b80429f1b324bc2a57d5e15",
+      "contentHash": "391bbe4a97b837a5d7a5c5ddb328feb004edf181232328906bca0cf196bf7f76",
+      "sourceCreatedAt": "2026-10-21T22:12:52Z",
+      "createdAt": "2026-10-21T23:51:35.496Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6526fe34-f0be-4ec3-996f-29f3c7386f67",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Desenvolvedor(a) Full Stack Pleno (PHP/Laravel backend e Vue.js) - 100% Presencial no Jardim Europa, São Paulo.",
+          "pt-BR": "Desenvolvedor(a) Full Stack Pleno (PHP/Laravel backend e Vue.js) - 100% Presencial no Jardim Europa, São Paulo.",
+          "es": "Desenvolvedor(a) Full Stack Pleno (PHP/Laravel backend e Vue.js) - 100% Presencial no Jardim Europa, São Paulo.",
+          "it": "Desenvolvedor(a) Full Stack Pleno (PHP/Laravel backend e Vue.js) - 100% Presencial no Jardim Europa, São Paulo.",
+          "fr": "Desenvolvedor(a) Full Stack Pleno (PHP/Laravel backend e Vue.js) - 100% Presencial no Jardim Europa, São Paulo.",
+          "de": "Desenvolvedor(a) Full Stack Pleno (PHP/Laravel backend e Vue.js) - 100% Presencial no Jardim Europa, São Paulo."
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e89ac86ac916c54d8013da27"
         }
       },
       "status": "pending",
