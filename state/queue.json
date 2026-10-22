@@ -60618,12 +60618,23 @@
       "createdAt": "2026-10-16T02:36:17Z",
       "publicationCreatedAt": "2026-10-16T13:20:38.266Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-22T21:42:48.253Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_14ddee933b9b152d7875ef0c",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_14ddee933b9b152d7875ef0c/f33af77a53aaaac898c65cdfabe464d81ec544d2bfcff01161ddfc29cd4b7de3/22867ccdf86d33a574fb7695b74f67966692216fe316c3e2836b341c91f937bb/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_14ddee933b9b152d7875ef0c/f33af77a53aaaac898c65cdfabe464d81ec544d2bfcff01161ddfc29cd4b7de3/22867ccdf86d33a574fb7695b74f67966692216fe316c3e2836b341c91f937bb/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_14ddee933b9b152d7875ef0c/f33af77a53aaaac898c65cdfabe464d81ec544d2bfcff01161ddfc29cd4b7de3/22867ccdf86d33a574fb7695b74f67966692216fe316c3e2836b341c91f937bb/social-video.mp4",
+          "pngHash": "1d9c54b6475b51b930a9e6e34da319127c19ccee872a2345feb93b5c1795852a",
+          "instagramJpegHash": "11dbb9c4043ce352f41fed0898d03fb4b08697c2e9f1f1c61cd16868e9d30b17",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "[香港] Web3金融科技公司诚聘C++/Rust/量化策略研究/机构BD,港币发薪"
         }
       },
