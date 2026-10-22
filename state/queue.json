@@ -53602,9 +53602,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-22T12:01:46.711Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -53806,9 +53806,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-22T12:01:46.711Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -54010,9 +54010,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-22T12:01:46.711Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -54214,9 +54214,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-22T12:01:46.711Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -55030,9 +55030,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-22T12:01:46.711Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -55438,9 +55438,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-22T12:01:46.711Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -60062,12 +60062,14 @@
       "createdAt": "2026-10-15T14:31:11Z",
       "publicationCreatedAt": "2026-10-15T21:31:08.417Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-22T12:01:46.711Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Engenheiro de Software- Micro 1"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -60124,7 +60126,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 219
     },
     {
       "jobId": "gh_a03853fce961d78f26781f71",
