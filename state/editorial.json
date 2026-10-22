@@ -72,12 +72,16 @@
         }
       },
       "feed": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "published",
+        "attempts": 1,
+        "updatedAt": "2026-10-22T19:02:37.730Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "17891625297456599",
+          "url": "https://www.instagram.com/p/DezsIokG_r6/"
+        }
       },
       "story": {
         "status": "pending",
