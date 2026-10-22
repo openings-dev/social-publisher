@@ -60676,12 +60676,16 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-22T21:42:48.253Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "id": "18023834342716071",
+          "url": "https://www.threads.com/@openingshq/post/Dez-c4JDwHP"
+        }
       },
       "instagram": {
         "status": "pending",
