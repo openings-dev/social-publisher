@@ -60287,12 +60287,17 @@
         }
       },
       "bluesky": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-22T17:17:16.005Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mxxd2x7f5f2i",
+          "cid": "bafyreih3vu4beual4widcxtqtbkjlxqxwyaloa3sn6vaqfueqkdb2mfiai",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mxxd2x7f5f2i"
+        }
       },
       "mastodon": {
         "status": "skipped_disabled",
