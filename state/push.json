@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "786189ea2ab1c2289269ebbaae264d8589f57588",
-    "generatedAt": "2026-10-22T14:19:29.008Z",
-    "dataHash": "bbe995adc344330087c8b59e9b83715ff33b971f712722126ee8d48842ffa197"
+    "commit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+    "generatedAt": "2026-10-22T19:00:30.903Z",
+    "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -15397,10 +15397,10 @@
           "jobId": "gh_d852d0a0339dc0a139a2ec74"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-22T19:00:30.903Z",
       "retryAfter": null,
       "result": null
     },
@@ -15477,10 +15477,10 @@
           "jobId": "gh_9b716625def7e73fc75a62f1"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-22T19:00:30.903Z",
       "retryAfter": null,
       "result": null
     },
@@ -15517,10 +15517,10 @@
           "jobId": "gh_9fd193a7f8cb447ea081a0cf"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-22T19:00:30.903Z",
       "retryAfter": null,
       "result": null
     },
@@ -15555,6 +15555,2446 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_5c2eaf531f0597de84dc5464"
+        }
+      },
+      "status": "skipped_closed",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": "2026-10-22T19:00:30.903Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_27ad1c5fa6ae31eaf8210333",
+      "sourceId": "PrepAIJobs/Summer2026-Internships#3",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "5bdd63bccf8d7a2f020d13c229f2ce1da1f9557371836f7f964c1b0976ef3035",
+      "sourceCreatedAt": "2026-01-27T03:43:19Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4a161999-151c-4413-a2c0-73971774da39",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Mechanize — Software Engineering Intern",
+          "pt-BR": "Mechanize — Software Engineering Intern",
+          "es": "Mechanize — Software Engineering Intern",
+          "it": "Mechanize — Software Engineering Intern",
+          "fr": "Mechanize — Software Engineering Intern",
+          "de": "Mechanize — Software Engineering Intern"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_27ad1c5fa6ae31eaf8210333"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c68291eef5db5e9cb0e89fc3",
+      "sourceId": "flutterbr/vagas#344",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "8a2c6a7a2e2bfb12dbd57675c8a2e6ab8e45529183ad5a59b4953892f8a4f52f",
+      "sourceCreatedAt": "2025-11-07T20:05:28Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "571d32c5-21b7-4ebf-a013-c0d8445c4947",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo] Flutter Developer na XP Inc",
+          "pt-BR": "[São Paulo] Flutter Developer na XP Inc",
+          "es": "[São Paulo] Flutter Developer na XP Inc",
+          "it": "[São Paulo] Flutter Developer na XP Inc",
+          "fr": "[São Paulo] Flutter Developer na XP Inc",
+          "de": "[São Paulo] Flutter Developer na XP Inc"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c68291eef5db5e9cb0e89fc3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_06719c8cd8772c434625bed6",
+      "sourceId": "Empregos-dev/Vagas-dev#111",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "df2c5ca419c3224801907cd62272d6ae5a37a638f9b96aa48624ed1a6f2591d1",
+      "sourceCreatedAt": "2025-11-07T19:44:32Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8008e0a5-b186-4074-ab1d-af3be9455dc0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Desenvolvedor (a) Sênior Full Stack .NET / JavaScript",
+          "pt-BR": "Desenvolvedor (a) Sênior Full Stack .NET / JavaScript",
+          "es": "Desenvolvedor (a) Sênior Full Stack .NET / JavaScript",
+          "it": "Desenvolvedor (a) Sênior Full Stack .NET / JavaScript",
+          "fr": "Desenvolvedor (a) Sênior Full Stack .NET / JavaScript",
+          "de": "Desenvolvedor (a) Sênior Full Stack .NET / JavaScript"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_06719c8cd8772c434625bed6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e2bf92920267625501ec5bdc",
+      "sourceId": "Empregos-dev/Vagas-dev#110",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "fe314df83701481d55f57c2b91c32ba24ec70ba904504e51a3682f3bb2da68b4",
+      "sourceCreatedAt": "2025-10-13T00:23:24Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "77e4b826-eaf6-4965-8ba6-13f265c3a93c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor(a) Fullstack .NET Sênior 🚀 📍 Híbrido - Av. Paulista - São Paulo/SP 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor(a) Fullstack .NET Sênior 🚀 📍 Híbrido - Av. Paulista - São Paulo/SP 🚀",
+          "es": "🚀 Vaga Desenvolvedor(a) Fullstack .NET Sênior 🚀 📍 Híbrido - Av. Paulista - São Paulo/SP 🚀",
+          "it": "🚀 Vaga Desenvolvedor(a) Fullstack .NET Sênior 🚀 📍 Híbrido - Av. Paulista - São Paulo/SP 🚀",
+          "fr": "🚀 Vaga Desenvolvedor(a) Fullstack .NET Sênior 🚀 📍 Híbrido - Av. Paulista - São Paulo/SP 🚀",
+          "de": "🚀 Vaga Desenvolvedor(a) Fullstack .NET Sênior 🚀 📍 Híbrido - Av. Paulista - São Paulo/SP 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e2bf92920267625501ec5bdc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_926f3c14cae6e82e67bdbdbf",
+      "sourceId": "Empregos-dev/Vagas-dev#109",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "e890e420b4754b2ce2161a83a931226722b3140ff9036bbdb03197e6e61be900",
+      "sourceCreatedAt": "2025-09-08T12:18:17Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6180f716-7db3-4b1a-9cce-e4f2f5adafed",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor Java 👩🏻‍💻 📍 Remoto 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor Java 👩🏻‍💻 📍 Remoto 🚀",
+          "es": "🚀 Vaga Desenvolvedor Java 👩🏻‍💻 📍 Remoto 🚀",
+          "it": "🚀 Vaga Desenvolvedor Java 👩🏻‍💻 📍 Remoto 🚀",
+          "fr": "🚀 Vaga Desenvolvedor Java 👩🏻‍💻 📍 Remoto 🚀",
+          "de": "🚀 Vaga Desenvolvedor Java 👩🏻‍💻 📍 Remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_926f3c14cae6e82e67bdbdbf"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5e7c0ed3e21fb1a527ca77ca",
+      "sourceId": "Empregos-dev/Vagas-dev#108",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "c2d8fe8733f02d6ca8788fa124158bbbe48ccab2129c27ceaae1230f548d891e",
+      "sourceCreatedAt": "2025-08-08T00:46:06Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cb339c37-899e-4944-b392-b2d3f1bb029b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor(a) BackEnd Pleno – C# | JavaScript 🌟 📍 São Paulo - Barueri 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor(a) BackEnd Pleno – C# | JavaScript 🌟 📍 São Paulo - Barueri 🚀",
+          "es": "🚀 Vaga Desenvolvedor(a) BackEnd Pleno – C# | JavaScript 🌟 📍 São Paulo - Barueri 🚀",
+          "it": "🚀 Vaga Desenvolvedor(a) BackEnd Pleno – C# | JavaScript 🌟 📍 São Paulo - Barueri 🚀",
+          "fr": "🚀 Vaga Desenvolvedor(a) BackEnd Pleno – C# | JavaScript 🌟 📍 São Paulo - Barueri 🚀",
+          "de": "🚀 Vaga Desenvolvedor(a) BackEnd Pleno – C# | JavaScript 🌟 📍 São Paulo - Barueri 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5e7c0ed3e21fb1a527ca77ca"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7f94c93b0bdd4341a646243b",
+      "sourceId": "Empregos-dev/Vagas-dev#107",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "77f2ccdc88c1bf94bb1983197a8c311992d0ad96af2f42b8c3cf0c4f1c256366",
+      "sourceCreatedAt": "2025-07-25T21:29:57Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a3b0a6a1-d2e9-47d9-9040-e0470353313d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor(a) Fullstack Presencial Região de São Paulo/Capital ou Rio de Janeiro 🎯 📍 Presencial 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor(a) Fullstack Presencial Região de São Paulo/Capital ou Rio de Janeiro 🎯 📍 Presencial 🚀",
+          "es": "🚀 Vaga Desenvolvedor(a) Fullstack Presencial Região de São Paulo/Capital ou Rio de Janeiro 🎯 📍 Presencial 🚀",
+          "it": "🚀 Vaga Desenvolvedor(a) Fullstack Presencial Região de São Paulo/Capital ou Rio de Janeiro 🎯 📍 Presencial 🚀",
+          "fr": "🚀 Vaga Desenvolvedor(a) Fullstack Presencial Região de São Paulo/Capital ou Rio de Janeiro 🎯 📍 Presencial 🚀",
+          "de": "🚀 Vaga Desenvolvedor(a) Fullstack Presencial Região de São Paulo/Capital ou Rio de Janeiro 🎯 📍 Presencial 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7f94c93b0bdd4341a646243b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_caa5aac79acc6f4ebbd77fe4",
+      "sourceId": "Empregos-dev/Vagas-dev#105",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "7846e74c62aa1a3e0484cea062db942e7ec5cfca2da8b0bce4f6f7a013e75ae5",
+      "sourceCreatedAt": "2025-07-16T19:13:44Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bc03a83a-4231-4aa4-99c5-5eb63cf590a6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor Salesforce 🌐 📍 Remoto 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor Salesforce 🌐 📍 Remoto 🚀",
+          "es": "🚀 Vaga Desenvolvedor Salesforce 🌐 📍 Remoto 🚀",
+          "it": "🚀 Vaga Desenvolvedor Salesforce 🌐 📍 Remoto 🚀",
+          "fr": "🚀 Vaga Desenvolvedor Salesforce 🌐 📍 Remoto 🚀",
+          "de": "🚀 Vaga Desenvolvedor Salesforce 🌐 📍 Remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_caa5aac79acc6f4ebbd77fe4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c1831e0aa28abfdb11f05f3f",
+      "sourceId": "Empregos-dev/Vagas-dev#104",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "e9de458a49997026b98691bd7d3cd279ad088852689d9e65e6d25d5bf78e9546",
+      "sourceCreatedAt": "2025-07-11T23:22:59Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "97416e31-7334-4ede-bd81-4f5220313ecb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Vaga p/ Desenvolvedor Front-end (remoto) 🖥️ 📍 Remoto 🚀",
+          "pt-BR": "🚀 Vaga Vaga p/ Desenvolvedor Front-end (remoto) 🖥️ 📍 Remoto 🚀",
+          "es": "🚀 Vaga Vaga p/ Desenvolvedor Front-end (remoto) 🖥️ 📍 Remoto 🚀",
+          "it": "🚀 Vaga Vaga p/ Desenvolvedor Front-end (remoto) 🖥️ 📍 Remoto 🚀",
+          "fr": "🚀 Vaga Vaga p/ Desenvolvedor Front-end (remoto) 🖥️ 📍 Remoto 🚀",
+          "de": "🚀 Vaga Vaga p/ Desenvolvedor Front-end (remoto) 🖥️ 📍 Remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c1831e0aa28abfdb11f05f3f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a9233bdfb914b0a5d4293e24",
+      "sourceId": "Empregos-dev/Vagas-dev#103",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "054808a2e8742bdea414db88982cb9ac222a1bd4844b6b6151050853db3d2fcc",
+      "sourceCreatedAt": "2025-07-09T23:32:47Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bb7e6006-617e-4280-b294-19bc181bb29e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor Salesforce 🌟 📍 Remoto 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor Salesforce 🌟 📍 Remoto 🚀",
+          "es": "🚀 Vaga Desenvolvedor Salesforce 🌟 📍 Remoto 🚀",
+          "it": "🚀 Vaga Desenvolvedor Salesforce 🌟 📍 Remoto 🚀",
+          "fr": "🚀 Vaga Desenvolvedor Salesforce 🌟 📍 Remoto 🚀",
+          "de": "🚀 Vaga Desenvolvedor Salesforce 🌟 📍 Remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a9233bdfb914b0a5d4293e24"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_1ce4d396bdf950364af4492b",
+      "sourceId": "Empregos-dev/Vagas-dev#102",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "18b41a5b1a4f4914185af7d4b791b88030bf08dc7e2afac7494e30061f65c76d",
+      "sourceCreatedAt": "2025-06-09T21:11:23Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7ef0847a-6f29-4c7e-b997-ec15c15f99af",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor Fullstack Sênior 🚀 📍 Belo Horizonte - MG (Remoto) 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor Fullstack Sênior 🚀 📍 Belo Horizonte - MG (Remoto) 🚀",
+          "es": "🚀 Vaga Desenvolvedor Fullstack Sênior 🚀 📍 Belo Horizonte - MG (Remoto) 🚀",
+          "it": "🚀 Vaga Desenvolvedor Fullstack Sênior 🚀 📍 Belo Horizonte - MG (Remoto) 🚀",
+          "fr": "🚀 Vaga Desenvolvedor Fullstack Sênior 🚀 📍 Belo Horizonte - MG (Remoto) 🚀",
+          "de": "🚀 Vaga Desenvolvedor Fullstack Sênior 🚀 📍 Belo Horizonte - MG (Remoto) 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1ce4d396bdf950364af4492b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2ea031555124df79c56fac00",
+      "sourceId": "Empregos-dev/Vagas-dev#101",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "3990b5ad9022477326288c6872e7268c69f7933bf96b0606264336bfc1c05ba7",
+      "sourceCreatedAt": "2025-05-23T12:00:10Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8a3c21fc-e964-4b11-9147-438152dc2e63",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor Delphi Júnior 👨‍💻 📍 Presencial - Goiânia/GO 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor Delphi Júnior 👨‍💻 📍 Presencial - Goiânia/GO 🚀",
+          "es": "🚀 Vaga Desenvolvedor Delphi Júnior 👨‍💻 📍 Presencial - Goiânia/GO 🚀",
+          "it": "🚀 Vaga Desenvolvedor Delphi Júnior 👨‍💻 📍 Presencial - Goiânia/GO 🚀",
+          "fr": "🚀 Vaga Desenvolvedor Delphi Júnior 👨‍💻 📍 Presencial - Goiânia/GO 🚀",
+          "de": "🚀 Vaga Desenvolvedor Delphi Júnior 👨‍💻 📍 Presencial - Goiânia/GO 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2ea031555124df79c56fac00"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_41c29be6f0ed9aa55bba60f2",
+      "sourceId": "Empregos-dev/Vagas-dev#100",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "1548d1a1da9d00319a968b853b1e00eb2cee056c692c56759f4665598dc93990",
+      "sourceCreatedAt": "2025-05-22T00:28:04Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "aaf1379f-c0e0-4465-9ee8-e1b20fb74302",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Oportunidade para Desenvolvedores Sênior! 🚀 📍 Remoto/Presencial 🚀",
+          "pt-BR": "🚀 Vaga Oportunidade para Desenvolvedores Sênior! 🚀 📍 Remoto/Presencial 🚀",
+          "es": "🚀 Vaga Oportunidade para Desenvolvedores Sênior! 🚀 📍 Remoto/Presencial 🚀",
+          "it": "🚀 Vaga Oportunidade para Desenvolvedores Sênior! 🚀 📍 Remoto/Presencial 🚀",
+          "fr": "🚀 Vaga Oportunidade para Desenvolvedores Sênior! 🚀 📍 Remoto/Presencial 🚀",
+          "de": "🚀 Vaga Oportunidade para Desenvolvedores Sênior! 🚀 📍 Remoto/Presencial 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_41c29be6f0ed9aa55bba60f2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_35675ecd494ba80044916118",
+      "sourceId": "Empregos-dev/Vagas-dev#99",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "dbe498ac48a161782d708ba47e7dd76b5f5c519bd5266d0bae8ea0ff2d192e6b",
+      "sourceCreatedAt": "2025-05-02T12:54:40Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "81d80267-c5f9-41a1-9413-f81a34b25c10",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga DESENVOLVEDOR DE HARDWARE PJ (PORTO ALEGRE) 🖥️ 📍 Presencial - Porto Alegre 🚀",
+          "pt-BR": "🚀 Vaga DESENVOLVEDOR DE HARDWARE PJ (PORTO ALEGRE) 🖥️ 📍 Presencial - Porto Alegre 🚀",
+          "es": "🚀 Vaga DESENVOLVEDOR DE HARDWARE PJ (PORTO ALEGRE) 🖥️ 📍 Presencial - Porto Alegre 🚀",
+          "it": "🚀 Vaga DESENVOLVEDOR DE HARDWARE PJ (PORTO ALEGRE) 🖥️ 📍 Presencial - Porto Alegre 🚀",
+          "fr": "🚀 Vaga DESENVOLVEDOR DE HARDWARE PJ (PORTO ALEGRE) 🖥️ 📍 Presencial - Porto Alegre 🚀",
+          "de": "🚀 Vaga DESENVOLVEDOR DE HARDWARE PJ (PORTO ALEGRE) 🖥️ 📍 Presencial - Porto Alegre 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_35675ecd494ba80044916118"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3bf4a98545b8ef34b0e75c62",
+      "sourceId": "Empregos-dev/Vagas-dev#98",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "c3cbc0501fa098f3188fd0e2a7c7c6d102196e016a07412f804057d7a8f30629",
+      "sourceCreatedAt": "2025-05-01T19:38:03Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5c1b404f-71d5-40e2-8dca-05fc1791e50a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor Microsoft FullStack 📢 📍 Remoto 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor Microsoft FullStack 📢 📍 Remoto 🚀",
+          "es": "🚀 Vaga Desenvolvedor Microsoft FullStack 📢 📍 Remoto 🚀",
+          "it": "🚀 Vaga Desenvolvedor Microsoft FullStack 📢 📍 Remoto 🚀",
+          "fr": "🚀 Vaga Desenvolvedor Microsoft FullStack 📢 📍 Remoto 🚀",
+          "de": "🚀 Vaga Desenvolvedor Microsoft FullStack 📢 📍 Remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3bf4a98545b8ef34b0e75c62"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_37d4fbca63e20e104991a24e",
+      "sourceId": "Empregos-dev/Vagas-dev#97",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "eebf4a4364ca864d94e4cf80e25122dec39022a09fd99e49d5960300f3a7e217",
+      "sourceCreatedAt": "2025-04-13T13:13:26Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "efafa9bc-75cc-495d-9631-4862395b71f3",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor Full-Stack Pleno (Mobile) 📱 📍 Remoto 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor Full-Stack Pleno (Mobile) 📱 📍 Remoto 🚀",
+          "es": "🚀 Vaga Desenvolvedor Full-Stack Pleno (Mobile) 📱 📍 Remoto 🚀",
+          "it": "🚀 Vaga Desenvolvedor Full-Stack Pleno (Mobile) 📱 📍 Remoto 🚀",
+          "fr": "🚀 Vaga Desenvolvedor Full-Stack Pleno (Mobile) 📱 📍 Remoto 🚀",
+          "de": "🚀 Vaga Desenvolvedor Full-Stack Pleno (Mobile) 📱 📍 Remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_37d4fbca63e20e104991a24e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_62458a563a0020a9016b76c8",
+      "sourceId": "Empregos-dev/Vagas-dev#96",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "80c42519f3782d5be13ac3cc7bd9c8a1ab7f36b26d4198f2f6ddac11a178688e",
+      "sourceCreatedAt": "2025-04-11T21:50:30Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7593df6b-178f-4707-96aa-16bc867e6884",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor Analista Desenvolvedor .Net Sênior ou Pleno 🚀 📍 Híbrida - São Paulo ou Rio de Janeiro 🌍 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor Analista Desenvolvedor .Net Sênior ou Pleno 🚀 📍 Híbrida - São Paulo ou Rio de Janeiro 🌍 🚀",
+          "es": "🚀 Vaga Desenvolvedor Analista Desenvolvedor .Net Sênior ou Pleno 🚀 📍 Híbrida - São Paulo ou Rio de Janeiro 🌍 🚀",
+          "it": "🚀 Vaga Desenvolvedor Analista Desenvolvedor .Net Sênior ou Pleno 🚀 📍 Híbrida - São Paulo ou Rio de Janeiro 🌍 🚀",
+          "fr": "🚀 Vaga Desenvolvedor Analista Desenvolvedor .Net Sênior ou Pleno 🚀 📍 Híbrida - São Paulo ou Rio de Janeiro 🌍 🚀",
+          "de": "🚀 Vaga Desenvolvedor Analista Desenvolvedor .Net Sênior ou Pleno 🚀 📍 Híbrida - São Paulo ou Rio de Janeiro 🌍 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_62458a563a0020a9016b76c8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ecedcc6f225b27b1e3721d8a",
+      "sourceId": "Empregos-dev/Vagas-dev#95",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "a3a765db1045e7437178310814dfca933b6e06e94c54b2b010ccf85f758015ec",
+      "sourceCreatedAt": "2025-04-11T02:58:35Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cfa0d8da-b8d6-4eec-adfd-a82f6f4b9b2d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor .NET/Angular 📍 Remoto 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor .NET/Angular 📍 Remoto 🚀",
+          "es": "🚀 Vaga Desenvolvedor .NET/Angular 📍 Remoto 🚀",
+          "it": "🚀 Vaga Desenvolvedor .NET/Angular 📍 Remoto 🚀",
+          "fr": "🚀 Vaga Desenvolvedor .NET/Angular 📍 Remoto 🚀",
+          "de": "🚀 Vaga Desenvolvedor .NET/Angular 📍 Remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ecedcc6f225b27b1e3721d8a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_442cb65d87167357672188d8",
+      "sourceId": "developersRJ/vagas#518",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "f72a15358c9c99869699ffde4bcb0fbcd49048032766e1785cb70082d4f73d0d",
+      "sourceCreatedAt": "2025-03-03T17:50:10Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b593b8e8-1e76-482a-8c74-c358d2a6218c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Pessoa Engenheira de Software - Principal - RD Station",
+          "pt-BR": "[Remoto] Pessoa Engenheira de Software - Principal - RD Station",
+          "es": "[Remoto] Pessoa Engenheira de Software - Principal - RD Station",
+          "it": "[Remoto] Pessoa Engenheira de Software - Principal - RD Station",
+          "fr": "[Remoto] Pessoa Engenheira de Software - Principal - RD Station",
+          "de": "[Remoto] Pessoa Engenheira de Software - Principal - RD Station"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_442cb65d87167357672188d8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f0a399ade124ccb0520bf139",
+      "sourceId": "developersRJ/vagas#516",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "12827d11e9250cb21321d7652d14712b5379d7778608f3a2e0336cfaa5518741",
+      "sourceCreatedAt": "2025-03-03T17:41:18Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5eee6dc3-6be0-4a51-8d37-8ff6c4e8e9cb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Pessoa Engenheira de Software - Tech Lead (Ruby on Rails) - RD Station",
+          "pt-BR": "[Remoto] Pessoa Engenheira de Software - Tech Lead (Ruby on Rails) - RD Station",
+          "es": "[Remoto] Pessoa Engenheira de Software - Tech Lead (Ruby on Rails) - RD Station",
+          "it": "[Remoto] Pessoa Engenheira de Software - Tech Lead (Ruby on Rails) - RD Station",
+          "fr": "[Remoto] Pessoa Engenheira de Software - Tech Lead (Ruby on Rails) - RD Station",
+          "de": "[Remoto] Pessoa Engenheira de Software - Tech Lead (Ruby on Rails) - RD Station"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f0a399ade124ccb0520bf139"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3410d8d834ad83dcb24d8aac",
+      "sourceId": "CangaceirosDevels/vagas#2797",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "8e9c5370c4beafdf3db486b39ae40fed46b17b516470622f786ac4737c64bc17",
+      "sourceCreatedAt": "2025-02-14T18:45:32Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f5758940-2817-42a7-9f76-069c4f7ef40a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] Backend Senior Developer Node.js and Javascript (Fluent English) - Hunter",
+          "pt-BR": "[Remote] Backend Senior Developer Node.js and Javascript (Fluent English) - Hunter",
+          "es": "[Remote] Backend Senior Developer Node.js and Javascript (Fluent English) - Hunter",
+          "it": "[Remote] Backend Senior Developer Node.js and Javascript (Fluent English) - Hunter",
+          "fr": "[Remote] Backend Senior Developer Node.js and Javascript (Fluent English) - Hunter",
+          "de": "[Remote] Backend Senior Developer Node.js and Javascript (Fluent English) - Hunter"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3410d8d834ad83dcb24d8aac"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fd7b159a281de9af79b31d1c",
+      "sourceId": "developersRJ/vagas#515",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "1d4a4ea112a82db47e07afa87b0483272b6392ff1973f02c083282926a4c047e",
+      "sourceCreatedAt": "2025-02-14T18:44:39Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c1c5b541-b62d-46a5-bfb5-afc80c99090b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] [Backend Senior Developer Node.js and Javascript (Fluent English)] na [Hunter]",
+          "pt-BR": "[Remote] [Backend Senior Developer Node.js and Javascript (Fluent English)] na [Hunter]",
+          "es": "[Remote] [Backend Senior Developer Node.js and Javascript (Fluent English)] na [Hunter]",
+          "it": "[Remote] [Backend Senior Developer Node.js and Javascript (Fluent English)] na [Hunter]",
+          "fr": "[Remote] [Backend Senior Developer Node.js and Javascript (Fluent English)] na [Hunter]",
+          "de": "[Remote] [Backend Senior Developer Node.js and Javascript (Fluent English)] na [Hunter]"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fd7b159a281de9af79b31d1c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0a1918ad5c999a150186ba80",
+      "sourceId": "Empregos-dev/Vagas-dev#94",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "e4d1887c3b33c589fd046ee6bc2faf6755ff74aed9ce4a5ece7e34b75c6f93ec",
+      "sourceCreatedAt": "2025-02-14T16:22:38Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9292abf4-97b5-4183-8d11-2984866eb2ae",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[PESSOA DESENVOLVEDORA DE IA - PL/SR] PRESENCIAL EM FLORIANÓPOLIS/SC",
+          "pt-BR": "[PESSOA DESENVOLVEDORA DE IA - PL/SR] PRESENCIAL EM FLORIANÓPOLIS/SC",
+          "es": "[PESSOA DESENVOLVEDORA DE IA - PL/SR] PRESENCIAL EM FLORIANÓPOLIS/SC",
+          "it": "[PESSOA DESENVOLVEDORA DE IA - PL/SR] PRESENCIAL EM FLORIANÓPOLIS/SC",
+          "fr": "[PESSOA DESENVOLVEDORA DE IA - PL/SR] PRESENCIAL EM FLORIANÓPOLIS/SC",
+          "de": "[PESSOA DESENVOLVEDORA DE IA - PL/SR] PRESENCIAL EM FLORIANÓPOLIS/SC"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0a1918ad5c999a150186ba80"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a087c2a7e4c36bd695c90fdc",
+      "sourceId": "Empregos-dev/Vagas-dev#93",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "bee5b293a441710b608a3cb94bef7989ad3d4dfe8a6fcc211d181a1c2045be94",
+      "sourceCreatedAt": "2025-01-21T20:29:10Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d4ddd1f0-242e-4cf3-b809-81b9ba7fce36",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor Full-stack Junior (React.js + Node.js) 📍 remoto 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor Full-stack Junior (React.js + Node.js) 📍 remoto 🚀",
+          "es": "🚀 Vaga Desenvolvedor Full-stack Junior (React.js + Node.js) 📍 remoto 🚀",
+          "it": "🚀 Vaga Desenvolvedor Full-stack Junior (React.js + Node.js) 📍 remoto 🚀",
+          "fr": "🚀 Vaga Desenvolvedor Full-stack Junior (React.js + Node.js) 📍 remoto 🚀",
+          "de": "🚀 Vaga Desenvolvedor Full-stack Junior (React.js + Node.js) 📍 remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a087c2a7e4c36bd695c90fdc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e51f320ccc04057f58acdee4",
+      "sourceId": "Empregos-dev/Vagas-dev#91",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "68ad4ca1582de2c37c78f38646e01e6c5b857d4c3fc5b015e5202c1a0de9bfca",
+      "sourceCreatedAt": "2025-01-10T20:24:28Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "63a2670e-34b2-4423-8232-641ac9f864e0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Full Remoto] Vaga: Desenvolvedor(a) Maker JR/PL",
+          "pt-BR": "[Full Remoto] Vaga: Desenvolvedor(a) Maker JR/PL",
+          "es": "[Full Remoto] Vaga: Desenvolvedor(a) Maker JR/PL",
+          "it": "[Full Remoto] Vaga: Desenvolvedor(a) Maker JR/PL",
+          "fr": "[Full Remoto] Vaga: Desenvolvedor(a) Maker JR/PL",
+          "de": "[Full Remoto] Vaga: Desenvolvedor(a) Maker JR/PL"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e51f320ccc04057f58acdee4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fbcd0549308f93fa2ecbe812",
+      "sourceId": "Empregos-dev/Vagas-dev#90",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "260f9ee7a7dc8039f279fa65d1eafd8f7c53624915529a61f17accf3329a5960",
+      "sourceCreatedAt": "2024-12-27T00:59:41Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cdbd4a55-e8dc-46b5-bd1b-a7fe7c01b1cd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTE] Full-stack Developer Grader at Shaw and Partners",
+          "pt-BR": "[REMOTE] Full-stack Developer Grader at Shaw and Partners",
+          "es": "[REMOTE] Full-stack Developer Grader at Shaw and Partners",
+          "it": "[REMOTE] Full-stack Developer Grader at Shaw and Partners",
+          "fr": "[REMOTE] Full-stack Developer Grader at Shaw and Partners",
+          "de": "[REMOTE] Full-stack Developer Grader at Shaw and Partners"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fbcd0549308f93fa2ecbe812"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e2a0b1deedf7bb946ad695f2",
+      "sourceId": "Empregos-dev/Vagas-dev#89",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "5d0212ad09c5613bbe4224f5a14abb8ca7c1626e296aa8e1845690cc14a9fdf4",
+      "sourceCreatedAt": "2024-12-27T00:55:22Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "339b6ba8-3586-4eb5-bc52-d9d69c396ed9",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTE] DevOps Developer Grader at Shaw and Partners",
+          "pt-BR": "[REMOTE] DevOps Developer Grader at Shaw and Partners",
+          "es": "[REMOTE] DevOps Developer Grader at Shaw and Partners",
+          "it": "[REMOTE] DevOps Developer Grader at Shaw and Partners",
+          "fr": "[REMOTE] DevOps Developer Grader at Shaw and Partners",
+          "de": "[REMOTE] DevOps Developer Grader at Shaw and Partners"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e2a0b1deedf7bb946ad695f2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_44da532f9570a280f1d810c2",
+      "sourceId": "Empregos-dev/Vagas-dev#88",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "d6c755423444cb0b301d45e33abe159a91b89f7366868133cc67ea9512047fbd",
+      "sourceCreatedAt": "2024-12-26T22:32:13Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "60c6384e-447d-44e8-b5ab-685c76021e93",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor(a) Fullstack PL/SR 📍 remoto 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor(a) Fullstack PL/SR 📍 remoto 🚀",
+          "es": "🚀 Vaga Desenvolvedor(a) Fullstack PL/SR 📍 remoto 🚀",
+          "it": "🚀 Vaga Desenvolvedor(a) Fullstack PL/SR 📍 remoto 🚀",
+          "fr": "🚀 Vaga Desenvolvedor(a) Fullstack PL/SR 📍 remoto 🚀",
+          "de": "🚀 Vaga Desenvolvedor(a) Fullstack PL/SR 📍 remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_44da532f9570a280f1d810c2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_03bc63fc3d1aff39070d37ae",
+      "sourceId": "Empregos-dev/Vagas-dev#87",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "43daff400d9db3981be882fd583c612d5debe89d0816294835fd3b1c0543e542",
+      "sourceCreatedAt": "2024-12-12T13:36:01Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8da8d3d4-d039-489e-81a5-425af48da92b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Analista de Desenvolvimento 📍 presencial, MG - belo horizonte 🚀",
+          "pt-BR": "🚀 Vaga Analista de Desenvolvimento 📍 presencial, MG - belo horizonte 🚀",
+          "es": "🚀 Vaga Analista de Desenvolvimento 📍 presencial, MG - belo horizonte 🚀",
+          "it": "🚀 Vaga Analista de Desenvolvimento 📍 presencial, MG - belo horizonte 🚀",
+          "fr": "🚀 Vaga Analista de Desenvolvimento 📍 presencial, MG - belo horizonte 🚀",
+          "de": "🚀 Vaga Analista de Desenvolvimento 📍 presencial, MG - belo horizonte 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_03bc63fc3d1aff39070d37ae"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_1dc658c03916b121dff09e07",
+      "sourceId": "CangaceirosDevels/vagas_de_emprego#2795",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "19ff1e1e9ef627be592d48869e52d05c300f82b0c80082dc61c59248dec499c0",
+      "sourceCreatedAt": "2024-12-11T22:18:11Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "828eb047-e6e8-4b29-bff5-fd7718516132",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - Stay",
+          "pt-BR": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - Stay",
+          "es": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - Stay",
+          "it": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - Stay",
+          "fr": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - Stay",
+          "de": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - Stay"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1dc658c03916b121dff09e07"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d3ea109b7efc37cc7e3d163a",
+      "sourceId": "Empregos-dev/Vagas-dev#86",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "44164f078643d94e1da2e26a59756262b4f6cbffe8550688aec6fb06ba9b5748",
+      "sourceCreatedAt": "2024-12-05T18:59:09Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e4e44e2e-d304-42f6-99df-e314f11685f2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "ANALISTA DE DESENVOLVIMENTO JAVA Jr. Pl. e Sr.",
+          "pt-BR": "ANALISTA DE DESENVOLVIMENTO JAVA Jr. Pl. e Sr.",
+          "es": "ANALISTA DE DESENVOLVIMENTO JAVA Jr. Pl. e Sr.",
+          "it": "ANALISTA DE DESENVOLVIMENTO JAVA Jr. Pl. e Sr.",
+          "fr": "ANALISTA DE DESENVOLVIMENTO JAVA Jr. Pl. e Sr.",
+          "de": "ANALISTA DE DESENVOLVIMENTO JAVA Jr. Pl. e Sr."
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d3ea109b7efc37cc7e3d163a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_08f3bd4c20c7fe00b27026b4",
+      "sourceId": "Empregos-dev/Vagas-dev#85",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "2e1b7732cab1d543314c71146963184cfd6fd019b51a1da7faa83ab54af87ea3",
+      "sourceCreatedAt": "2024-11-18T11:41:30Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c33d09bb-5e8f-4276-a27e-1a1fca228bfb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Analista Desenvolvedor .NET SÊNIOR 👴 📍 Remoto 🚀",
+          "pt-BR": "🚀 Vaga Analista Desenvolvedor .NET SÊNIOR 👴 📍 Remoto 🚀",
+          "es": "🚀 Vaga Analista Desenvolvedor .NET SÊNIOR 👴 📍 Remoto 🚀",
+          "it": "🚀 Vaga Analista Desenvolvedor .NET SÊNIOR 👴 📍 Remoto 🚀",
+          "fr": "🚀 Vaga Analista Desenvolvedor .NET SÊNIOR 👴 📍 Remoto 🚀",
+          "de": "🚀 Vaga Analista Desenvolvedor .NET SÊNIOR 👴 📍 Remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_08f3bd4c20c7fe00b27026b4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_765c52689426865cf1b7436b",
+      "sourceId": "Empregos-dev/Vagas-dev#84",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "40458e151c001cd5b4a8df60620d5fb478d4e1ccebface0c65578c4b3bb3286c",
+      "sourceCreatedAt": "2024-11-15T00:26:33Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4b87b13e-43eb-42a8-9dbe-deb266971c4b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "🚀 Vaga Desenvolvedor(a) Front-end Vue.js 💻✨ 📍 Remoto 🚀",
+          "pt-BR": "🚀 Vaga Desenvolvedor(a) Front-end Vue.js 💻✨ 📍 Remoto 🚀",
+          "es": "🚀 Vaga Desenvolvedor(a) Front-end Vue.js 💻✨ 📍 Remoto 🚀",
+          "it": "🚀 Vaga Desenvolvedor(a) Front-end Vue.js 💻✨ 📍 Remoto 🚀",
+          "fr": "🚀 Vaga Desenvolvedor(a) Front-end Vue.js 💻✨ 📍 Remoto 🚀",
+          "de": "🚀 Vaga Desenvolvedor(a) Front-end Vue.js 💻✨ 📍 Remoto 🚀"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_765c52689426865cf1b7436b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_076b3dbe9f942825463f3d2b",
+      "sourceId": "CangaceirosDevels/vagas#2792",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "06ea86171756a21fb17c72eff9ea9ceb0f2464eacd1d617da2ff140bf797196a",
+      "sourceCreatedAt": "2024-10-28T14:07:40Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6da4e6f2-73f3-4a56-9ed8-2c12cf8a5b99",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] FullStack Developer - Shaw and Partners",
+          "pt-BR": "[Remote] FullStack Developer - Shaw and Partners",
+          "es": "[Remote] FullStack Developer - Shaw and Partners",
+          "it": "[Remote] FullStack Developer - Shaw and Partners",
+          "fr": "[Remote] FullStack Developer - Shaw and Partners",
+          "de": "[Remote] FullStack Developer - Shaw and Partners"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_076b3dbe9f942825463f3d2b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_28be0002df88cf9654b6d52a",
+      "sourceId": "CodeandoMexico/chambas#66",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "c656597b5787a5fd2812d4b06bed5040de41d6afc6035494b8aed5490f9fc2de",
+      "sourceCreatedAt": "2023-10-09T21:46:03Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1f7e8c90-34af-4fa9-b956-5e7f9a765a5f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Vacante para proyecto - Desarrollador full stack con experiencia en visualización de datos usando librerías JavaScript",
+          "pt-BR": "Vacante para proyecto - Desarrollador full stack con experiencia en visualización de datos usando librerías JavaScript",
+          "es": "Vacante para proyecto - Desarrollador full stack con experiencia en visualización de datos usando librerías JavaScript",
+          "it": "Vacante para proyecto - Desarrollador full stack con experiencia en visualización de datos usando librerías JavaScript",
+          "fr": "Vacante para proyecto - Desarrollador full stack con experiencia en visualización de datos usando librerías JavaScript",
+          "de": "Vacante para proyecto - Desarrollador full stack con experiencia en visualización de datos usando librerías JavaScript"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_28be0002df88cf9654b6d52a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_125b0f106af1c8cf28c3a2ae",
+      "sourceId": "FranSTechRecruiter/VagasDevs#10",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "e9f7ab6dcd9770f2654a10306dab1a2ec68b0db2249075fd6806fa37c10329d1",
+      "sourceCreatedAt": "2022-12-13T20:05:09Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8cb2f1c2-a385-4dba-acdd-332a3a785181",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[100% REMOTO-INTERNACIONAL] (Angular,Javascript) Desenvolvedor Frontend Pleno na REVELO NETWORK",
+          "pt-BR": "[100% REMOTO-INTERNACIONAL] (Angular,Javascript) Desenvolvedor Frontend Pleno na REVELO NETWORK",
+          "es": "[100% REMOTO-INTERNACIONAL] (Angular,Javascript) Desenvolvedor Frontend Pleno na REVELO NETWORK",
+          "it": "[100% REMOTO-INTERNACIONAL] (Angular,Javascript) Desenvolvedor Frontend Pleno na REVELO NETWORK",
+          "fr": "[100% REMOTO-INTERNACIONAL] (Angular,Javascript) Desenvolvedor Frontend Pleno na REVELO NETWORK",
+          "de": "[100% REMOTO-INTERNACIONAL] (Angular,Javascript) Desenvolvedor Frontend Pleno na REVELO NETWORK"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_125b0f106af1c8cf28c3a2ae"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_77349f962dfd436d0bafb6a2",
+      "sourceId": "FranSTechRecruiter/VagasDevs#9",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "00d9d9079da8ab3fd2f2b452402e8e1b786f7ef2e6918219e2b161f574439188",
+      "sourceCreatedAt": "2022-12-13T19:59:36Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "fbb17ba0-1822-49db-bf25-c2aa606dd96f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[100% REMOTO-INTERNACIONAL] (React, Cordova, Node.js) Desenvolvedor Mobile Application Pleno na REVELO NETWORK",
+          "pt-BR": "[100% REMOTO-INTERNACIONAL] (React, Cordova, Node.js) Desenvolvedor Mobile Application Pleno na REVELO NETWORK",
+          "es": "[100% REMOTO-INTERNACIONAL] (React, Cordova, Node.js) Desenvolvedor Mobile Application Pleno na REVELO NETWORK",
+          "it": "[100% REMOTO-INTERNACIONAL] (React, Cordova, Node.js) Desenvolvedor Mobile Application Pleno na REVELO NETWORK",
+          "fr": "[100% REMOTO-INTERNACIONAL] (React, Cordova, Node.js) Desenvolvedor Mobile Application Pleno na REVELO NETWORK",
+          "de": "[100% REMOTO-INTERNACIONAL] (React, Cordova, Node.js) Desenvolvedor Mobile Application Pleno na REVELO NETWORK"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_77349f962dfd436d0bafb6a2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f84b19db990853cf72d4dc55",
+      "sourceId": "bafrontend/trabajos#73",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "e2234128cf7a9080a752130ead02d2a57f50227f621dd4dd13daef185a28c74f",
+      "sourceCreatedAt": "2022-12-07T16:39:36Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e6a405af-b1aa-4129-b055-bd0b47cc27ea",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Ingeniero Google Cloud",
+          "pt-BR": "Ingeniero Google Cloud",
+          "es": "Ingeniero Google Cloud",
+          "it": "Ingeniero Google Cloud",
+          "fr": "Ingeniero Google Cloud",
+          "de": "Ingeniero Google Cloud"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f84b19db990853cf72d4dc55"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0fe747d04181cfa149180c80",
+      "sourceId": "bafrontend/trabajos#72",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "7cf19682410539cc01393eff35e8a0f95de537d0db48222a39b47b4e625e205b",
+      "sourceCreatedAt": "2022-09-07T16:28:02Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "90480dfe-1198-4ed5-9d1d-a4a617755155",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Desarrolladores | Mobiik",
+          "pt-BR": "Desarrolladores | Mobiik",
+          "es": "Desarrolladores | Mobiik",
+          "it": "Desarrolladores | Mobiik",
+          "fr": "Desarrolladores | Mobiik",
+          "de": "Desarrolladores | Mobiik"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0fe747d04181cfa149180c80"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0ffd96f002e45ae989391198",
+      "sourceId": "bafrontend/trabajos#71",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "37c9d8013140432d5777e5560152994c27cedeb2e6840d80eb13e4e86a9d52f0",
+      "sourceCreatedAt": "2021-03-08T21:03:09Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e86131ea-cea8-4a84-aa03-e4b3a0d00750",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Scala/Java Developer - Nearsure",
+          "pt-BR": "Scala/Java Developer - Nearsure",
+          "es": "Scala/Java Developer - Nearsure",
+          "it": "Scala/Java Developer - Nearsure",
+          "fr": "Scala/Java Developer - Nearsure",
+          "de": "Scala/Java Developer - Nearsure"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0ffd96f002e45ae989391198"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ded45dbd47e4a593150be100",
+      "sourceId": "bafrontend/trabajos#70",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "30545f15e3c2538b40cf85191936e615446112ae7fda9377a66ff87c06594c9b",
+      "sourceCreatedAt": "2021-02-23T14:56:43Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6241ff86-4645-4aff-8bf5-1552051051c7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Senior Frontend (React) - Bulevip (FULL REMOTE 🏡)",
+          "pt-BR": "Senior Frontend (React) - Bulevip (FULL REMOTE 🏡)",
+          "es": "Senior Frontend (React) - Bulevip (FULL REMOTE 🏡)",
+          "it": "Senior Frontend (React) - Bulevip (FULL REMOTE 🏡)",
+          "fr": "Senior Frontend (React) - Bulevip (FULL REMOTE 🏡)",
+          "de": "Senior Frontend (React) - Bulevip (FULL REMOTE 🏡)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ded45dbd47e4a593150be100"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9784cfb0df093daa7429a806",
+      "sourceId": "bafrontend/trabajos#69",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "b57be200ae9a0ae8eb55831715415e937c436439ec12e4e2c8ccadf480428d0c",
+      "sourceCreatedAt": "2020-10-27T18:45:43Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "50f915b0-6d16-44a3-bd0f-57ef519500f3",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "FRONTEND DEVELOPER SSR/SR",
+          "pt-BR": "FRONTEND DEVELOPER SSR/SR",
+          "es": "FRONTEND DEVELOPER SSR/SR",
+          "it": "FRONTEND DEVELOPER SSR/SR",
+          "fr": "FRONTEND DEVELOPER SSR/SR",
+          "de": "FRONTEND DEVELOPER SSR/SR"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9784cfb0df093daa7429a806"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_abdaf8468e43dd2cbd2197df",
+      "sourceId": "bafrontend/trabajos#68",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "3a6fab754a03c80ed1dccb157205ea70a613b95657d35c6b9341d06d1081c730",
+      "sourceCreatedAt": "2020-01-31T18:18:40Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "83932425-b44d-4bcb-b045-54557356258f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "React Native Developer",
+          "pt-BR": "React Native Developer",
+          "es": "React Native Developer",
+          "it": "React Native Developer",
+          "fr": "React Native Developer",
+          "de": "React Native Developer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_abdaf8468e43dd2cbd2197df"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5bbaf7d837bcf9b67c765091",
+      "sourceId": "bafrontend/trabajos#67",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "822c19cffa8eae34e75bd6a8b67042e0ded39d6b28e494d98c3196073cb118d4",
+      "sourceCreatedAt": "2019-12-11T14:17:14Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4a641e0a-c492-4d8a-9e96-90a6b8087a53",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": ".Net Developer @redarbor - Job Board Group",
+          "pt-BR": ".Net Developer @redarbor - Job Board Group",
+          "es": ".Net Developer @redarbor - Job Board Group",
+          "it": ".Net Developer @redarbor - Job Board Group",
+          "fr": ".Net Developer @redarbor - Job Board Group",
+          "de": ".Net Developer @redarbor - Job Board Group"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5bbaf7d837bcf9b67c765091"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b89aeffde4d26baec1b3dbb0",
+      "sourceId": "bafrontend/trabajos#66",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "96f787f7e14d87ae496deff8ea76be7b9389c61334c04c9bf0f76a5972110794",
+      "sourceCreatedAt": "2019-12-11T14:13:25Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ffb55578-6628-4dbf-9cff-f48703f538da",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Python Developer para @redarbor - Job Board Group",
+          "pt-BR": "Python Developer para @redarbor - Job Board Group",
+          "es": "Python Developer para @redarbor - Job Board Group",
+          "it": "Python Developer para @redarbor - Job Board Group",
+          "fr": "Python Developer para @redarbor - Job Board Group",
+          "de": "Python Developer para @redarbor - Job Board Group"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b89aeffde4d26baec1b3dbb0"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b0d29af154805a59445e08bc",
+      "sourceId": "bafrontend/trabajos#65",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "b4ef403024a5e4c610721a6fa5aa256aa75b125b36f2b141f804f0a60360e83d",
+      "sourceCreatedAt": "2019-10-28T20:50:32Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a48f63e2-f763-40d6-a7a5-36c2c77624be",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Sumate como  Tech Lead ReactJs Web @ Gensoha.",
+          "pt-BR": "Sumate como  Tech Lead ReactJs Web @ Gensoha.",
+          "es": "Sumate como  Tech Lead ReactJs Web @ Gensoha.",
+          "it": "Sumate como  Tech Lead ReactJs Web @ Gensoha.",
+          "fr": "Sumate como  Tech Lead ReactJs Web @ Gensoha.",
+          "de": "Sumate como  Tech Lead ReactJs Web @ Gensoha."
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b0d29af154805a59445e08bc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fdeb16dfb48e023a1841177e",
+      "sourceId": "bafrontend/trabajos#64",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "24b32d2dab9d6f30270d4389fd4e9b63fc0dcfe8b6eaf13de3cec54247787c36",
+      "sourceCreatedAt": "2019-08-23T18:54:02Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "16e6f0ca-9661-4fec-9af9-e390a13d75cf",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "marketplace exclusivo de postventa automotor busca socio desarrollador",
+          "pt-BR": "marketplace exclusivo de postventa automotor busca socio desarrollador",
+          "es": "marketplace exclusivo de postventa automotor busca socio desarrollador",
+          "it": "marketplace exclusivo de postventa automotor busca socio desarrollador",
+          "fr": "marketplace exclusivo de postventa automotor busca socio desarrollador",
+          "de": "marketplace exclusivo de postventa automotor busca socio desarrollador"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fdeb16dfb48e023a1841177e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a1312e3b81b5c366f052b037",
+      "sourceId": "bafrontend/trabajos#63",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "20ccad050e6e7601a6411e4adf0910133d692fd78e0acb016f4cdc294574e03c",
+      "sourceCreatedAt": "2019-08-20T10:02:53Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d3471ca8-8b56-4448-9035-8c413f2979c4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Oferta Empleo Ingeniero de Software .Net --> Empresa TUI",
+          "pt-BR": "Oferta Empleo Ingeniero de Software .Net --> Empresa TUI",
+          "es": "Oferta Empleo Ingeniero de Software .Net --> Empresa TUI",
+          "it": "Oferta Empleo Ingeniero de Software .Net --> Empresa TUI",
+          "fr": "Oferta Empleo Ingeniero de Software .Net --> Empresa TUI",
+          "de": "Oferta Empleo Ingeniero de Software .Net --> Empresa TUI"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a1312e3b81b5c366f052b037"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bd38574e23482c38db87c608",
+      "sourceId": "bafrontend/trabajos#62",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "e98a7a3a2c7f7e1ad579831d70a77a206b72b564ab8ee34a58f74c49f3c30f9a",
+      "sourceCreatedAt": "2019-07-16T12:47:03Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7910338e-f879-471c-adfa-9e2df22d92b1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Senior Front End Engineer",
+          "pt-BR": "Senior Front End Engineer",
+          "es": "Senior Front End Engineer",
+          "it": "Senior Front End Engineer",
+          "fr": "Senior Front End Engineer",
+          "de": "Senior Front End Engineer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bd38574e23482c38db87c608"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_44a401a1dabea4c823b7221d",
+      "sourceId": "bafrontend/trabajos#61",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "fe0d743bb9c4b4e0d35138e12ae447d2d544a5dee8aa84a7f30f0e68c112a5dd",
+      "sourceCreatedAt": "2019-03-25T17:58:08Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "adee3132-5ce7-466a-bba6-24b9b7c4a5ef",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Desarrollador Front End en Increase",
+          "pt-BR": "Desarrollador Front End en Increase",
+          "es": "Desarrollador Front End en Increase",
+          "it": "Desarrollador Front End en Increase",
+          "fr": "Desarrollador Front End en Increase",
+          "de": "Desarrollador Front End en Increase"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_44a401a1dabea4c823b7221d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4e89233f3c73bd785142959d",
+      "sourceId": "bafrontend/trabajos#60",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "146d1ad12998cf436bec921adf66078c808e9dc0494081fb16ed1888b48067dd",
+      "sourceCreatedAt": "2018-12-04T12:38:52Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "495f15ae-a895-419b-ae36-6cf410540332",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Node y react full stack engineer",
+          "pt-BR": "Node y react full stack engineer",
+          "es": "Node y react full stack engineer",
+          "it": "Node y react full stack engineer",
+          "fr": "Node y react full stack engineer",
+          "de": "Node y react full stack engineer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4e89233f3c73bd785142959d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_afdb6ae2b462869bcd4a67fc",
+      "sourceId": "bafrontend/trabajos#58",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "cae8f67b8451ac88478f93d213a5e9e3bee9dfc9abc7cb8496de43ef1189e643",
+      "sourceCreatedAt": "2018-06-22T08:24:13Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f8cf827e-c534-4d61-96b2-83960668a0e7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Frontend Engineer opening @ Zeppelin",
+          "pt-BR": "Frontend Engineer opening @ Zeppelin",
+          "es": "Frontend Engineer opening @ Zeppelin",
+          "it": "Frontend Engineer opening @ Zeppelin",
+          "fr": "Frontend Engineer opening @ Zeppelin",
+          "de": "Frontend Engineer opening @ Zeppelin"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_afdb6ae2b462869bcd4a67fc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3e7d98978729606f67d65a2b",
+      "sourceId": "bafrontend/trabajos#57",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "d6c62c0d281c03a70c8174bb27907ef3d0126dd6f52b5edc21b0bb282fb4f41f",
+      "sourceCreatedAt": "2018-01-16T18:46:57Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "80f86b10-54d7-4ec6-aba2-8506efa2327f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Software Engineer, FrontEnd",
+          "pt-BR": "Software Engineer, FrontEnd",
+          "es": "Software Engineer, FrontEnd",
+          "it": "Software Engineer, FrontEnd",
+          "fr": "Software Engineer, FrontEnd",
+          "de": "Software Engineer, FrontEnd"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3e7d98978729606f67d65a2b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a8c1b34d3a628b2f7b0583bd",
+      "sourceId": "bafrontend/trabajos#56",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "6ad1ddbb5dab72a68078237c41ca28b3f0a6118702eb4be45ea2722010d93677",
+      "sourceCreatedAt": "2018-01-04T12:23:08Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ed3b2066-f296-4a14-870a-4a98615e3efb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Desarrollador Frontend c/exp en ReactJS (NUBI)",
+          "pt-BR": "Desarrollador Frontend c/exp en ReactJS (NUBI)",
+          "es": "Desarrollador Frontend c/exp en ReactJS (NUBI)",
+          "it": "Desarrollador Frontend c/exp en ReactJS (NUBI)",
+          "fr": "Desarrollador Frontend c/exp en ReactJS (NUBI)",
+          "de": "Desarrollador Frontend c/exp en ReactJS (NUBI)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a8c1b34d3a628b2f7b0583bd"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_34e6344b47170c5e046d56b8",
+      "sourceId": "bafrontend/trabajos#54",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "521a7c8c8e9b4848c3641a785d4a6f6eb7ef4783d78990ce990e697ccfc281b7",
+      "sourceCreatedAt": "2017-10-06T14:58:59Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "67d4a143-e2d6-4409-9f7b-2804fdddcb0c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "GraphPath busca Senior Front-End Javascript Developer",
+          "pt-BR": "GraphPath busca Senior Front-End Javascript Developer",
+          "es": "GraphPath busca Senior Front-End Javascript Developer",
+          "it": "GraphPath busca Senior Front-End Javascript Developer",
+          "fr": "GraphPath busca Senior Front-End Javascript Developer",
+          "de": "GraphPath busca Senior Front-End Javascript Developer"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_34e6344b47170c5e046d56b8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_28534352d10b39346d7781c7",
+      "sourceId": "bafrontend/trabajos#53",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "edad9a1c1998713701c9eba06f4977f360f4b2c090f23e3ed8b22755a1d9ebc5",
+      "sourceCreatedAt": "2017-10-05T19:49:29Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1e7ab0cd-abc1-41d7-942e-71fb762c3227",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Taringa! - Desarrollador/a",
+          "pt-BR": "Taringa! - Desarrollador/a",
+          "es": "Taringa! - Desarrollador/a",
+          "it": "Taringa! - Desarrollador/a",
+          "fr": "Taringa! - Desarrollador/a",
+          "de": "Taringa! - Desarrollador/a"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_28534352d10b39346d7781c7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_1a267a9f65e08f6c2e81839f",
+      "sourceId": "bafrontend/trabajos#52",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "855624103a07230715ccf910f2bdf258a0b31b7334034bdd6e9fd4c047e09198",
+      "sourceCreatedAt": "2017-09-29T21:23:42Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "828b86c1-7f1d-491b-83cd-db8f9042a553",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Frontend Developer - Crowder",
+          "pt-BR": "Frontend Developer - Crowder",
+          "es": "Frontend Developer - Crowder",
+          "it": "Frontend Developer - Crowder",
+          "fr": "Frontend Developer - Crowder",
+          "de": "Frontend Developer - Crowder"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1a267a9f65e08f6c2e81839f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_cfdd9eda74fb2458115278bd",
+      "sourceId": "bafrontend/trabajos#51",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "40530e7084be684dcc2cf31f83b3661a4edaf8cfc41e36c92ce07a818c0ead7b",
+      "sourceCreatedAt": "2017-09-26T17:29:58Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "dd01b4e6-3c42-4698-ad01-727a88b2fe82",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Front end en Inclusion",
+          "pt-BR": "Front end en Inclusion",
+          "es": "Front end en Inclusion",
+          "it": "Front end en Inclusion",
+          "fr": "Front end en Inclusion",
+          "de": "Front end en Inclusion"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_cfdd9eda74fb2458115278bd"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5f82ad0a7c81f97e22f72a4b",
+      "sourceId": "bafrontend/trabajos#50",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "cb1a3375a04f1c6c9c85108b3afedf9068ccb527a3dcc8dc627e1f44486c9642",
+      "sourceCreatedAt": "2017-09-19T17:50:54Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "31020012-11c8-4c29-a60d-1b63797016f5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "UI Developer en Aerolab",
+          "pt-BR": "UI Developer en Aerolab",
+          "es": "UI Developer en Aerolab",
+          "it": "UI Developer en Aerolab",
+          "fr": "UI Developer en Aerolab",
+          "de": "UI Developer en Aerolab"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5f82ad0a7c81f97e22f72a4b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_307c2d8865c4c55b7cf135d2",
+      "sourceId": "bafrontend/trabajos#49",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "22369087718d7014c8cc05c88398923d984579e3cdb99780a58505bcfdd46e86",
+      "sourceCreatedAt": "2017-09-18T21:54:33Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7ef41ab8-0e5d-4ba2-9301-1defc7359ccb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "JS Developer en Aerolab",
+          "pt-BR": "JS Developer en Aerolab",
+          "es": "JS Developer en Aerolab",
+          "it": "JS Developer en Aerolab",
+          "fr": "JS Developer en Aerolab",
+          "de": "JS Developer en Aerolab"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_307c2d8865c4c55b7cf135d2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2f73ca9f12bc1c1a984eb4c6",
+      "sourceId": "bafrontend/trabajos#47",
+      "dataCommit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
+      "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516",
+      "contentHash": "d6363c9b819420e70ca796f6dde8918de77bd39ec3001153299631cefc40a6de",
+      "sourceCreatedAt": "2017-03-16T16:22:07Z",
+      "createdAt": "2026-10-22T19:00:30.903Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "15937d37-7991-4fc3-8021-5fceddafce60",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Fullstack en Redbee (Node.js / React)",
+          "pt-BR": "Fullstack en Redbee (Node.js / React)",
+          "es": "Fullstack en Redbee (Node.js / React)",
+          "it": "Fullstack en Redbee (Node.js / React)",
+          "fr": "Fullstack en Redbee (Node.js / React)",
+          "de": "Fullstack en Redbee (Node.js / React)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2f73ca9f12bc1c1a984eb4c6"
         }
       },
       "status": "pending",
