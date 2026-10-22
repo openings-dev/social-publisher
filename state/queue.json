@@ -58338,12 +58338,23 @@
       "createdAt": "2026-10-14T20:26:00Z",
       "publicationCreatedAt": "2026-10-15T04:51:11.959Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-22T04:58:34.120Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_f806a9484b4d439100a45dab",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_f806a9484b4d439100a45dab/0ba0c0050625ff3db224f9166e0cd597b10c8bce075d9b3fe28df95b533787d6/d7e7e413469033313c4ef7bc294394dd32f80ef187b8a57b088f17ece08a1188/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_f806a9484b4d439100a45dab/0ba0c0050625ff3db224f9166e0cd597b10c8bce075d9b3fe28df95b533787d6/d7e7e413469033313c4ef7bc294394dd32f80ef187b8a57b088f17ece08a1188/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_f806a9484b4d439100a45dab/0ba0c0050625ff3db224f9166e0cd597b10c8bce075d9b3fe28df95b533787d6/d7e7e413469033313c4ef7bc294394dd32f80ef187b8a57b088f17ece08a1188/social-video.mp4",
+          "pngHash": "851b3512da9d865d0c69d6512a59eb99b67ae194dab3850f7b91114d9e295751",
+          "instagramJpegHash": "7c6d7c9af2792e33229117778b59a2da0aac201aaeebe43c7ad09f33f1cd0959",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Belo Horizonte, Brasil] Senior Software Engineer, Full Stack, Kids and Families na Google"
         }
       },
