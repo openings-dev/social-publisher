@@ -60266,12 +60266,23 @@
       "createdAt": "2026-10-15T23:00:19Z",
       "publicationCreatedAt": "2026-10-16T00:29:22.633Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-22T17:17:16.005Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_a03853fce961d78f26781f71",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_a03853fce961d78f26781f71/8adebe0023005be99019dd6a13bd63ed9a0ce1af7db0a3e8e5cc831061594abe/0bab553e1ad4298c49bb93b117035571eeed3367a529092b886552254e03e0a9/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_a03853fce961d78f26781f71/8adebe0023005be99019dd6a13bd63ed9a0ce1af7db0a3e8e5cc831061594abe/0bab553e1ad4298c49bb93b117035571eeed3367a529092b886552254e03e0a9/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_a03853fce961d78f26781f71/8adebe0023005be99019dd6a13bd63ed9a0ce1af7db0a3e8e5cc831061594abe/0bab553e1ad4298c49bb93b117035571eeed3367a529092b886552254e03e0a9/social-video.mp4",
+          "pngHash": "6c82a086eec0d04eecb8c433782e6c3d561db558d5a7349b559d0adb524ecc7c",
+          "instagramJpegHash": "c57d2d21ea03f7203eec25939a7c3971b0fb850de2da773f904e40df1b6c5c14",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Duolingo Data Science Internship"
         }
       },
