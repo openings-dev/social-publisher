@@ -60544,12 +60544,14 @@
       "createdAt": "2026-10-16T02:41:02Z",
       "publicationCreatedAt": "2026-10-16T13:20:38.266Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-23T01:09:29.934Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[远程] CEX公司诚聘 项目经理/财务经理/资深量化风险专家/资深量化交易专家"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -60606,7 +60608,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 222
     },
     {
       "jobId": "gh_14ddee933b9b152d7875ef0c",
