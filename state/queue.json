@@ -60544,12 +60544,23 @@
       "createdAt": "2026-10-16T02:41:02Z",
       "publicationCreatedAt": "2026-10-16T13:20:38.266Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-23T01:09:29.934Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2f90b160baee5d09b0165e89",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_2f90b160baee5d09b0165e89/f1859c2110ced5731c7c4c42694aaac2ba37bb1da458fdcd310f5627de750642/2470447cb5eb0bcabc39b3e2bf78f0aec124b53a9095590e7fd4f2dfd96fb5dd/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_2f90b160baee5d09b0165e89/f1859c2110ced5731c7c4c42694aaac2ba37bb1da458fdcd310f5627de750642/2470447cb5eb0bcabc39b3e2bf78f0aec124b53a9095590e7fd4f2dfd96fb5dd/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_2f90b160baee5d09b0165e89/f1859c2110ced5731c7c4c42694aaac2ba37bb1da458fdcd310f5627de750642/2470447cb5eb0bcabc39b3e2bf78f0aec124b53a9095590e7fd4f2dfd96fb5dd/social-video.mp4",
+          "pngHash": "19aabdc63833abcf21035fb08f58a9a6ccad6ceeb1483ff18ec5d41ec57430de",
+          "instagramJpegHash": "1351713b15e3ce10066f175ea6ac4f0957bedfe14fd5f6637717afaeb2775798",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[远程] CEX公司诚聘 项目经理/财务经理/资深量化风险专家/资深量化交易专家"
         }
       },
