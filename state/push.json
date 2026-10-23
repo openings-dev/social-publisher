@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "213db8240a942c2f304f67444c0a9a4b7183eeff",
-    "generatedAt": "2026-10-22T19:00:30.903Z",
-    "dataHash": "e374a57a79b4e8b10502c84e9ccbc421814d00c960a93324d2ce89e5f8903516"
+    "commit": "d4a0d2fda8b1092451f43f11d750174fe4fb6729",
+    "generatedAt": "2026-10-22T23:49:05.103Z",
+    "dataHash": "564f29ca636807f27b6ccabbabd537d406823dcd9bb03bb2b2aa4247b11c32a4"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -17995,6 +17995,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_2f73ca9f12bc1c1a984eb4c6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fd2ef9052402e6b346c451bd",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2986",
+      "dataCommit": "d4a0d2fda8b1092451f43f11d750174fe4fb6729",
+      "dataHash": "564f29ca636807f27b6ccabbabd537d406823dcd9bb03bb2b2aa4247b11c32a4",
+      "contentHash": "e4a6a95ab8f5c6a2bc87b94c860af0384eb31f083284c6b8d6338dd94b998b09",
+      "sourceCreatedAt": "2026-10-22T21:34:21Z",
+      "createdAt": "2026-10-22T23:49:05.103Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a21fbbbd-4859-4a4c-8b85-74be0a5d934f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Hardware enginnering",
+          "pt-BR": "Hardware enginnering",
+          "es": "Hardware enginnering",
+          "it": "Hardware enginnering",
+          "fr": "Hardware enginnering",
+          "de": "Hardware enginnering"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fd2ef9052402e6b346c451bd"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ec38e8ee288f153939773832",
+      "sourceId": "rebase-network/who-is-hiring#1329",
+      "dataCommit": "d4a0d2fda8b1092451f43f11d750174fe4fb6729",
+      "dataHash": "564f29ca636807f27b6ccabbabd537d406823dcd9bb03bb2b2aa4247b11c32a4",
+      "contentHash": "0431996b7c8822756aa4e6f751712cf392522c3c933e3d4e90e4b6ef43e5e1b3",
+      "sourceCreatedAt": "2026-10-22T19:06:31Z",
+      "createdAt": "2026-10-22T23:49:05.103Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "926a1f8a-c5dd-4ac7-b82b-6e514a945b2e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] DBS (DBS | Based on Singapore) is hiring #senior blockchain developer #smart contract developer | Salary : $9000~$14000 USD per month",
+          "pt-BR": "[Remote] DBS (DBS | Based on Singapore) is hiring #senior blockchain developer #smart contract developer | Salary : $9000~$14000 USD per month",
+          "es": "[Remote] DBS (DBS | Based on Singapore) is hiring #senior blockchain developer #smart contract developer | Salary : $9000~$14000 USD per month",
+          "it": "[Remote] DBS (DBS | Based on Singapore) is hiring #senior blockchain developer #smart contract developer | Salary : $9000~$14000 USD per month",
+          "fr": "[Remote] DBS (DBS | Based on Singapore) is hiring #senior blockchain developer #smart contract developer | Salary : $9000~$14000 USD per month",
+          "de": "[Remote] DBS (DBS | Based on Singapore) is hiring #senior blockchain developer #smart contract developer | Salary : $9000~$14000 USD per month"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ec38e8ee288f153939773832"
         }
       },
       "status": "pending",
