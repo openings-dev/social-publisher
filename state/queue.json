@@ -61712,12 +61712,14 @@
       "createdAt": "2026-10-17T11:40:32Z",
       "publicationCreatedAt": "2026-10-17T15:45:07.896Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-23T23:13:07.136Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "improvement"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -61774,7 +61776,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 226
     },
     {
       "jobId": "gh_5faeba8dea55606bed60cc61",
