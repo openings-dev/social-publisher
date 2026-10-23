@@ -61434,12 +61434,14 @@
       "createdAt": "2026-10-16T23:03:00Z",
       "publicationCreatedAt": "2026-10-17T00:34:38.906Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-23T18:56:59.321Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Bug]: near-miss job share links point to static pages that are never generated"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -61496,7 +61498,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 225
     },
     {
       "jobId": "gh_6af86c5878cd128f328f3e33",
