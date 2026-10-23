@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "20848f5630dee8a2aef986090ae2672ede225d13",
-    "generatedAt": "2026-10-23T02:46:04.344Z",
-    "dataHash": "1ca3852ef1e6f0ed6250b6f9322795ab2cb8b7c34690f4a65e3f72f13a2dd6d8"
+    "commit": "833cb35d03a1b1ab53f89882fb1a3b5cad74a47f",
+    "generatedAt": "2026-10-23T08:09:19.794Z",
+    "dataHash": "8c2768d89034ffc4eca6566f3e6ea513e6f78ae5cfae8e9e3e87bc81928e02e1"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18084,6 +18084,46 @@
       "attempts": 0,
       "firstSubmittedAt": null,
       "updatedAt": "2026-10-23T02:46:04.344Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8b62ce9487ea27936068ee44",
+      "sourceId": "programadores-br/geral#3125",
+      "dataCommit": "833cb35d03a1b1ab53f89882fb1a3b5cad74a47f",
+      "dataHash": "8c2768d89034ffc4eca6566f3e6ea513e6f78ae5cfae8e9e3e87bc81928e02e1",
+      "contentHash": "87c826a5870bb689af463345358e5e55907bf01a5312da8c7b224d286b894abd",
+      "sourceCreatedAt": "2026-10-14T21:02:39Z",
+      "createdAt": "2026-10-23T08:09:19.794Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "733bf7d0-b82a-4bec-92db-31a7e9921bbc",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "pt-BR": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "es": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "it": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "fr": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google",
+          "de": "[Buenos Aires, Argentina / Cidade do México, México] Cloud Engineer, Application Modernization, Gemini Enterprise and AI Agents, Google Professional Services ( Spanish, English) na Google"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8b62ce9487ea27936068ee44"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
       "retryAfter": null,
       "result": null
     }
