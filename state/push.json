@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "833cb35d03a1b1ab53f89882fb1a3b5cad74a47f",
-    "generatedAt": "2026-10-23T08:09:19.794Z",
-    "dataHash": "8c2768d89034ffc4eca6566f3e6ea513e6f78ae5cfae8e9e3e87bc81928e02e1"
+    "commit": "2b89e1d900f516be20af24610d98c0047ab2dbd3",
+    "generatedAt": "2026-10-23T14:00:32.004Z",
+    "dataHash": "f945371b608f9c9b152d89b917470861cc8d5344515c8ef01a4fbb33e475317e"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18118,6 +18118,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_8b62ce9487ea27936068ee44"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bd1a02dc4fb9f4d7e001599a",
+      "sourceId": "awesome-jobs/vietnam#5095",
+      "dataCommit": "2b89e1d900f516be20af24610d98c0047ab2dbd3",
+      "dataHash": "f945371b608f9c9b152d89b917470861cc8d5344515c8ef01a4fbb33e475317e",
+      "contentHash": "0dc2cd77f810ef5a54b326d1b70664452dca76b0afb33d34a3bf0391d2caada1",
+      "sourceCreatedAt": "2026-10-23T12:33:38Z",
+      "createdAt": "2026-10-23T14:00:32.004Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "1390964e-28b2-4f8b-9971-408a362c0a7c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HCM/Đà Nẵng] Tuyển 12 bạn junior-senior dev [pv 1 vòng 𝐨𝐧𝐥𝐢𝐧𝐞]",
+          "pt-BR": "[HCM/Đà Nẵng] Tuyển 12 bạn junior-senior dev [pv 1 vòng 𝐨𝐧𝐥𝐢𝐧𝐞]",
+          "es": "[HCM/Đà Nẵng] Tuyển 12 bạn junior-senior dev [pv 1 vòng 𝐨𝐧𝐥𝐢𝐧𝐞]",
+          "it": "[HCM/Đà Nẵng] Tuyển 12 bạn junior-senior dev [pv 1 vòng 𝐨𝐧𝐥𝐢𝐧𝐞]",
+          "fr": "[HCM/Đà Nẵng] Tuyển 12 bạn junior-senior dev [pv 1 vòng 𝐨𝐧𝐥𝐢𝐧𝐞]",
+          "de": "[HCM/Đà Nẵng] Tuyển 12 bạn junior-senior dev [pv 1 vòng 𝐨𝐧𝐥𝐢𝐧𝐞]"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bd1a02dc4fb9f4d7e001599a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_16411c913e420988025158f9",
+      "sourceId": "awesome-jobs/jobs#5094",
+      "dataCommit": "2b89e1d900f516be20af24610d98c0047ab2dbd3",
+      "dataHash": "f945371b608f9c9b152d89b917470861cc8d5344515c8ef01a4fbb33e475317e",
+      "contentHash": "fb601f540d54242518606fd639bb0d70efa7a1a0e5b8259514b5a316517c9e40",
+      "sourceCreatedAt": "2026-10-23T10:36:33Z",
+      "createdAt": "2026-10-23T14:00:32.004Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8934ca06-1f61-46c7-823d-31d598cfaaf2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HCM]  Senior IT Migration Engineer 5+ yoe | migrate 365 -> Google Workspace",
+          "pt-BR": "[HCM]  Senior IT Migration Engineer 5+ yoe | migrate 365 -> Google Workspace",
+          "es": "[HCM]  Senior IT Migration Engineer 5+ yoe | migrate 365 -> Google Workspace",
+          "it": "[HCM]  Senior IT Migration Engineer 5+ yoe | migrate 365 -> Google Workspace",
+          "fr": "[HCM]  Senior IT Migration Engineer 5+ yoe | migrate 365 -> Google Workspace",
+          "de": "[HCM]  Senior IT Migration Engineer 5+ yoe | migrate 365 -> Google Workspace"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_16411c913e420988025158f9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0ed3da8a1427b276a0af5a3b",
+      "sourceId": "lukasz-madon/awesome-remote-job#100",
+      "dataCommit": "2b89e1d900f516be20af24610d98c0047ab2dbd3",
+      "dataHash": "f945371b608f9c9b152d89b917470861cc8d5344515c8ef01a4fbb33e475317e",
+      "contentHash": "a60aa90eac730545e32e7980aade82566b24418a1988d9952261f13b314229a1",
+      "sourceCreatedAt": "2015-02-03T16:53:58Z",
+      "createdAt": "2026-10-23T14:00:32.004Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a6d06f5e-c62b-4838-b555-500296642857",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Remove content",
+          "pt-BR": "Remove content",
+          "es": "Remove content",
+          "it": "Remove content",
+          "fr": "Remove content",
+          "de": "Remove content"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0ed3da8a1427b276a0af5a3b"
         }
       },
       "status": "pending",
