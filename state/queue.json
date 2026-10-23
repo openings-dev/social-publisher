@@ -52990,9 +52990,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-23T14:19:11.483Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -61230,12 +61230,14 @@
       "createdAt": "2026-10-16T23:03:02Z",
       "publicationCreatedAt": "2026-10-17T00:34:38.906Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-23T14:19:11.483Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Bug]: schema-invalid jobs index prevents fallback to a healthy jobs.json"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -61292,7 +61294,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 224
     },
     {
       "jobId": "gh_94493c77be84aabfeeabe717",
