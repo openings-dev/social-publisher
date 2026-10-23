@@ -61026,12 +61026,23 @@
       "createdAt": "2026-10-16T16:34:38Z",
       "publicationCreatedAt": "2026-10-16T21:19:37.663Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-23T08:19:09.892Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0da1549c7daf4a0c09a7d121",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_0da1549c7daf4a0c09a7d121/674740d7d1bb670636a9cd77e3422687bfcf1533e7088e9730959192c1948b0e/bf4febbb0b6a3ed75668ef695a632a038dec4a5c118f4b4a4cace96faceb599a/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_0da1549c7daf4a0c09a7d121/674740d7d1bb670636a9cd77e3422687bfcf1533e7088e9730959192c1948b0e/bf4febbb0b6a3ed75668ef695a632a038dec4a5c118f4b4a4cace96faceb599a/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_0da1549c7daf4a0c09a7d121/674740d7d1bb670636a9cd77e3422687bfcf1533e7088e9730959192c1948b0e/bf4febbb0b6a3ed75668ef695a632a038dec4a5c118f4b4a4cace96faceb599a/social-video.mp4",
+          "pngHash": "3e55fc2053f6a09cb0869e8f7ca4ba35ffb9a1e2c7f82cf0ac73c963670d1088",
+          "instagramJpegHash": "1018edf879cd732224db79719c526dab8e171d01573c0a726855f3053b378300",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Product Bug] Jobs auto-detected as \"Applied\" remain visible in \"Liked\" tab (cross-tab duplication)"
         }
       },
