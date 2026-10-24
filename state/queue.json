@@ -62675,12 +62675,23 @@
       "createdAt": "2026-10-17T18:46:02Z",
       "publicationCreatedAt": "2026-10-17T22:26:41.912Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-24T22:32:47.782Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_f36796f3fa0b53477806a278",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_f36796f3fa0b53477806a278/cdbc8f10e51083aa20ad81416a59c405685b3bfd1f618e6bfccfbe7352dc9442/d4d4512d66114dec907f7093077d00873dcb642d65c6f3ce63ea88d51b9cd7fd/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_f36796f3fa0b53477806a278/cdbc8f10e51083aa20ad81416a59c405685b3bfd1f618e6bfccfbe7352dc9442/d4d4512d66114dec907f7093077d00873dcb642d65c6f3ce63ea88d51b9cd7fd/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_f36796f3fa0b53477806a278/cdbc8f10e51083aa20ad81416a59c405685b3bfd1f618e6bfccfbe7352dc9442/d4d4512d66114dec907f7093077d00873dcb642d65c6f3ce63ea88d51b9cd7fd/social-video.mp4",
+          "pngHash": "f2cd64b12a243583f18fc49907426539cbb334233961b22e1c91e0faa26e0a2b",
+          "instagramJpegHash": "a561b7ee9c09027ef79bfbce0e57831c92f76d867aa726dd360ffaaa387d6896",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[Remoto] Full Stack Developer Pleno na Rotha IA"
         }
       },
