@@ -59958,9 +59958,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-24T11:11:43.902Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -62194,12 +62194,14 @@
       "createdAt": "2026-10-17T18:46:05Z",
       "publicationCreatedAt": "2026-10-17T22:26:41.912Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-24T11:11:43.902Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Full Stack Developer (React) Júnior na Rotha IA"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -62256,7 +62258,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 228
     },
     {
       "jobId": "gh_bd9de7e7149b5af6fc9c5a03",
