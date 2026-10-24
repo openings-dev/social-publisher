@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "2c8db094bf46469b0ec29a09202b052a202b056f",
-    "generatedAt": "2026-10-24T02:43:20.521Z",
-    "dataHash": "189405f2aedef968a5f0043fb7a4aea0a4e91b7ee5437db8e13b7dfeba5edce8"
+    "commit": "89dc9c569d38e45916aaf22d805cc607165b7c4e",
+    "generatedAt": "2026-10-24T07:48:01.189Z",
+    "dataHash": "20e428b478cfa093e5c402d63264ec5c0c4290364215a8e3c43c86a7f755bfb7"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18281,6 +18281,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_7a5fc9ff59c7e6ba5641e90f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_abc18a87f01200a3317a3019",
+      "sourceId": "backend-br/vagas#12432",
+      "dataCommit": "89dc9c569d38e45916aaf22d805cc607165b7c4e",
+      "dataHash": "20e428b478cfa093e5c402d63264ec5c0c4290364215a8e3c43c86a7f755bfb7",
+      "contentHash": "ec6f44b800343d959976b25872a11b0c7c886c2ee5193853454262071c771a13",
+      "sourceCreatedAt": "2026-09-23T17:03:05Z",
+      "createdAt": "2026-10-24T07:48:01.189Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "afb3a1a8-3c1a-4cd0-8138-13feaa51ba76",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Back-end developer Net- (Strider)",
+          "pt-BR": "[Remoto] Back-end developer Net- (Strider)",
+          "es": "[Remoto] Back-end developer Net- (Strider)",
+          "it": "[Remoto] Back-end developer Net- (Strider)",
+          "fr": "[Remoto] Back-end developer Net- (Strider)",
+          "de": "[Remoto] Back-end developer Net- (Strider)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_abc18a87f01200a3317a3019"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_30b97f66567f88075a4f4802",
+      "sourceId": "DevOps-Brasil/Vagas#499",
+      "dataCommit": "89dc9c569d38e45916aaf22d805cc607165b7c4e",
+      "dataHash": "20e428b478cfa093e5c402d63264ec5c0c4290364215a8e3c43c86a7f755bfb7",
+      "contentHash": "61540e1ac43b4ad8705df350f153c821e58cbf52d5e3a1093c11819cc412b218",
+      "sourceCreatedAt": "2026-08-24T12:50:33Z",
+      "createdAt": "2026-10-24T07:48:01.189Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "053c78bd-0ea7-4f03-ad53-cd3c061086c8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Itaim Bibi, São Paulo, SP] [Híbrido] Analista DevOps SRE - Pleno",
+          "pt-BR": "[Itaim Bibi, São Paulo, SP] [Híbrido] Analista DevOps SRE - Pleno",
+          "es": "[Itaim Bibi, São Paulo, SP] [Híbrido] Analista DevOps SRE - Pleno",
+          "it": "[Itaim Bibi, São Paulo, SP] [Híbrido] Analista DevOps SRE - Pleno",
+          "fr": "[Itaim Bibi, São Paulo, SP] [Híbrido] Analista DevOps SRE - Pleno",
+          "de": "[Itaim Bibi, São Paulo, SP] [Híbrido] Analista DevOps SRE - Pleno"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_30b97f66567f88075a4f4802"
         }
       },
       "status": "pending",
