@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "6ca392e8f055ddcd9426fe0f05c67fb255a10f18",
-    "generatedAt": "2026-10-24T13:02:26.857Z",
-    "dataHash": "1e644f95a520439d71303d48553ed344a3e36e12bdeaa57c4e4746b253e5f4a6"
+    "commit": "c14279b562f65902b31db1c0fafc1fdf8abda5b6",
+    "generatedAt": "2026-10-24T17:45:20.646Z",
+    "dataHash": "98ce8a9010f037f16883face0cfc736d20efc5dff5191c6b67b9c6b814ed2f5d"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18441,6 +18441,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_d7f8f3e01de4c5ee55d73b9b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7ce789b1d213071032aedb90",
+      "sourceId": "awesome-jobs/jobs#5096",
+      "dataCommit": "c14279b562f65902b31db1c0fafc1fdf8abda5b6",
+      "dataHash": "98ce8a9010f037f16883face0cfc736d20efc5dff5191c6b67b9c6b814ed2f5d",
+      "contentHash": "9b09a7eaae8409d4dbb620afd3120a1b5027dafef54ca8fbb31a8d859b64059c",
+      "sourceCreatedAt": "2026-10-24T14:35:38Z",
+      "createdAt": "2026-10-24T17:45:20.646Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "13d5ec87-dc81-498a-84ce-df92022b48ad",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HN] Dự án bank tuyển nhiều vị trí middle (Tiếng Anh chỉ cần đọc hiểu): DE + QA + BA + BE",
+          "pt-BR": "[HN] Dự án bank tuyển nhiều vị trí middle (Tiếng Anh chỉ cần đọc hiểu): DE + QA + BA + BE",
+          "es": "[HN] Dự án bank tuyển nhiều vị trí middle (Tiếng Anh chỉ cần đọc hiểu): DE + QA + BA + BE",
+          "it": "[HN] Dự án bank tuyển nhiều vị trí middle (Tiếng Anh chỉ cần đọc hiểu): DE + QA + BA + BE",
+          "fr": "[HN] Dự án bank tuyển nhiều vị trí middle (Tiếng Anh chỉ cần đọc hiểu): DE + QA + BA + BE",
+          "de": "[HN] Dự án bank tuyển nhiều vị trí middle (Tiếng Anh chỉ cần đọc hiểu): DE + QA + BA + BE"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7ce789b1d213071032aedb90"
         }
       },
       "status": "pending",
