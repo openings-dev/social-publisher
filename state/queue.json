@@ -62120,12 +62120,14 @@
       "createdAt": "2026-10-17T18:46:06Z",
       "publicationCreatedAt": "2026-10-17T22:26:41.912Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-24T18:50:32.607Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Full Stack Developer (React) Pleno na Rotha IA"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -62182,7 +62184,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 230
     },
     {
       "jobId": "gh_2e2c16e29e545779849c1984",
