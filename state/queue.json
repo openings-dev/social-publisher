@@ -62194,12 +62194,23 @@
       "createdAt": "2026-10-17T18:46:05Z",
       "publicationCreatedAt": "2026-10-17T22:26:41.912Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-24T11:11:43.902Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2e2c16e29e545779849c1984",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_2e2c16e29e545779849c1984/0337af7cbc6c3afbee9c21c734f764f73f17eace49e4314915ee181bbcc4ab79/28be036dce1ee47980bdea0ba0615b36f8f9f81866b0e11eec6678ab9611f2bd/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_2e2c16e29e545779849c1984/0337af7cbc6c3afbee9c21c734f764f73f17eace49e4314915ee181bbcc4ab79/28be036dce1ee47980bdea0ba0615b36f8f9f81866b0e11eec6678ab9611f2bd/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_2e2c16e29e545779849c1984/0337af7cbc6c3afbee9c21c734f764f73f17eace49e4314915ee181bbcc4ab79/28be036dce1ee47980bdea0ba0615b36f8f9f81866b0e11eec6678ab9611f2bd/social-video.mp4",
+          "pngHash": "5a76f761142ed2008591b4105b3ea019fa663a46531f5390d0db3b11a9f0b2df",
+          "instagramJpegHash": "d74ddef0a01a72ab095f47e123adede3acfd51723d3ca4b7eb4dd0395b63bc26",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Full Stack Developer (React) Júnior na Rotha IA"
         }
       },
