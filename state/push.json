@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "a64c564e10065a67df5a29c581a5a18243444ee8",
-    "generatedAt": "2026-10-23T18:50:16.236Z",
-    "dataHash": "89e179c54fbc9749ef07d116dafa2776a1d0e4dee776e1580067306d58881d90"
+    "commit": "2c8db094bf46469b0ec29a09202b052a202b056f",
+    "generatedAt": "2026-10-24T02:43:20.521Z",
+    "dataHash": "189405f2aedef968a5f0043fb7a4aea0a4e91b7ee5437db8e13b7dfeba5edce8"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18238,6 +18238,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_0ed3da8a1427b276a0af5a3b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7a5fc9ff59c7e6ba5641e90f",
+      "sourceId": "backend-br/vagas#12481",
+      "dataCommit": "037450c7cfb9f070b28c5779c3cb3fd5b95eae86",
+      "dataHash": "e9998fb83462ec8063a95437b2fd5f3b7e7dc56bef9923887947b026f805854a",
+      "contentHash": "c32ecfcb749415b73986b3d9e31eb17052f05ff3057a509ec1d5638a79e8486c",
+      "sourceCreatedAt": "2026-10-23T20:20:43Z",
+      "createdAt": "2026-10-23T23:42:58.006Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "700e871e-cc25-47cc-b93c-68a20ccb2978",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Joinville/SC] Back-end ou Full Stack Developer (Node.s + React)",
+          "pt-BR": "[Joinville/SC] Back-end ou Full Stack Developer (Node.s + React)",
+          "es": "[Joinville/SC] Back-end ou Full Stack Developer (Node.s + React)",
+          "it": "[Joinville/SC] Back-end ou Full Stack Developer (Node.s + React)",
+          "fr": "[Joinville/SC] Back-end ou Full Stack Developer (Node.s + React)",
+          "de": "[Joinville/SC] Back-end ou Full Stack Developer (Node.s + React)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7a5fc9ff59c7e6ba5641e90f"
         }
       },
       "status": "pending",
