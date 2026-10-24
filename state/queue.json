@@ -62620,12 +62620,14 @@
       "createdAt": "2026-10-17T18:46:01Z",
       "publicationCreatedAt": "2026-10-17T22:26:41.912Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-24T16:02:56.853Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Full Stack Developer Júnior na Rotha IA"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -62682,7 +62684,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 229
     },
     {
       "jobId": "gh_329c074a852e2b7e5af02130",
