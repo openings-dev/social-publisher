@@ -18120,12 +18120,15 @@
           "jobId": "gh_8b62ce9487ea27936068ee44"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-10-24T04:56:32.829Z",
-      "updatedAt": "2026-10-24T04:56:32.829Z",
+      "updatedAt": "2026-10-24T04:56:34.622Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "208b0998-85a9-46df-b0e6-abd56a5a3ebb",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_bd1a02dc4fb9f4d7e001599a",
