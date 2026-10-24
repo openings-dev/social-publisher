@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "c14279b562f65902b31db1c0fafc1fdf8abda5b6",
-    "generatedAt": "2026-10-24T17:45:20.646Z",
-    "dataHash": "98ce8a9010f037f16883face0cfc736d20efc5dff5191c6b67b9c6b814ed2f5d"
+    "commit": "a5c13f111a4769080aa189a1d0430e5e4e2b6030",
+    "generatedAt": "2026-10-24T20:02:47.396Z",
+    "dataHash": "2819cd486d622dca6958cb941e43acf52c62d4149c57a81889196422f0b1cae9"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18283,10 +18283,10 @@
           "jobId": "gh_7a5fc9ff59c7e6ba5641e90f"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-24T20:02:47.396Z",
       "retryAfter": null,
       "result": null
     },
@@ -18443,10 +18443,10 @@
           "jobId": "gh_d7f8f3e01de4c5ee55d73b9b"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-24T20:02:47.396Z",
       "retryAfter": null,
       "result": null
     },
@@ -18481,6 +18481,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_7ce789b1d213071032aedb90"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_232854cf2c1e77b7fc81d9bc",
+      "sourceId": "programadores-br/geral#3126",
+      "dataCommit": "a5c13f111a4769080aa189a1d0430e5e4e2b6030",
+      "dataHash": "2819cd486d622dca6958cb941e43acf52c62d4149c57a81889196422f0b1cae9",
+      "contentHash": "f107e7a1d7ec772c93df05c53ff5cbc52ef0bf6a81c73823dcb93851264f24d5",
+      "sourceCreatedAt": "2026-10-20T16:31:28Z",
+      "createdAt": "2026-10-24T20:02:47.396Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bfb46808-a5e1-459d-9929-fb6c063d6daa",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "pt-BR": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "es": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "it": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "fr": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh",
+          "de": "[Híbrido / São Paulo, Brasil] Engenheiro de Software Backend Sênior (Híbrido, São Paulo) na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_232854cf2c1e77b7fc81d9bc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a6c22a0392a2b37a1c75831a",
+      "sourceId": "frontendbr/vagas#8571",
+      "dataCommit": "a5c13f111a4769080aa189a1d0430e5e4e2b6030",
+      "dataHash": "2819cd486d622dca6958cb941e43acf52c62d4149c57a81889196422f0b1cae9",
+      "contentHash": "f0d9843846aab661b0b8e9e9ac866dbc514c47a9c92c07c581592f3beb85f63e",
+      "sourceCreatedAt": "2026-10-19T16:48:53Z",
+      "createdAt": "2026-10-24T20:02:47.396Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "918138ac-d5c4-43c6-93b7-700fccf10f4d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] It Jobs (Strider/ Micro 1)",
+          "pt-BR": "[Remoto] It Jobs (Strider/ Micro 1)",
+          "es": "[Remoto] It Jobs (Strider/ Micro 1)",
+          "it": "[Remoto] It Jobs (Strider/ Micro 1)",
+          "fr": "[Remoto] It Jobs (Strider/ Micro 1)",
+          "de": "[Remoto] It Jobs (Strider/ Micro 1)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a6c22a0392a2b37a1c75831a"
         }
       },
       "status": "pending",
