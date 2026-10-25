@@ -63285,12 +63285,23 @@
       "createdAt": "2026-10-18T01:52:07Z",
       "publicationCreatedAt": "2026-10-18T04:43:47.565Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-25T11:41:19.964Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_c53b59ec71315966cafb3139",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_c53b59ec71315966cafb3139/1c132f62ab08e62cf047761d399ebe44f69f9cc8cdede3e0a2d16538f08183aa/a4a64c4f49ed2dd813bc51d55ccb2b60ed93f101bc65d2e7f0578b0bddc32de4/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_c53b59ec71315966cafb3139/1c132f62ab08e62cf047761d399ebe44f69f9cc8cdede3e0a2d16538f08183aa/a4a64c4f49ed2dd813bc51d55ccb2b60ed93f101bc65d2e7f0578b0bddc32de4/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_c53b59ec71315966cafb3139/1c132f62ab08e62cf047761d399ebe44f69f9cc8cdede3e0a2d16538f08183aa/a4a64c4f49ed2dd813bc51d55ccb2b60ed93f101bc65d2e7f0578b0bddc32de4/social-video.mp4",
+          "pngHash": "f48c09310324b358557b96e0d74e0936c65de3dbd04c76d8d4e1ebc450a253d1",
+          "instagramJpegHash": "e77907eacecbd4cc795cbe4a3e69d492f059a05641e51009324e89fa87f004cb",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "[HCM Hybrid] Principal SWE - ROR & AI | remote 3 days/week"
         }
       },
