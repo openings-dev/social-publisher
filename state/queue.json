@@ -64130,12 +64130,14 @@
       "createdAt": "2026-10-20T08:56:31Z",
       "publicationCreatedAt": "2026-10-20T17:17:56.778Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-25T20:57:01.290Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[香港] Crypto量化 诚聘 C++工程师 薪资不设限制 2-5年经验"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -64192,7 +64194,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 235
     },
     {
       "jobId": "gh_c60ef7a33b18b363ea274f0e",
