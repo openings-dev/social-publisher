@@ -63285,12 +63285,14 @@
       "createdAt": "2026-10-18T01:52:07Z",
       "publicationCreatedAt": "2026-10-18T04:43:47.565Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-25T11:41:19.964Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HCM Hybrid] Principal SWE - ROR & AI | remote 3 days/week"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -63347,7 +63349,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 233
     },
     {
       "jobId": "gh_d7785e300280ee120b9222a2",
