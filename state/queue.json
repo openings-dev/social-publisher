@@ -63488,12 +63488,23 @@
       "createdAt": "2026-10-18T10:05:49Z",
       "publicationCreatedAt": "2026-10-18T15:58:37.620Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-25T16:30:54.003Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_d7785e300280ee120b9222a2",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_d7785e300280ee120b9222a2/f9f939f18c6b1ad4cf92a19e42441cf60dcd9fe5604f8d146c5dfe66476f8539/bf48f35d5ec60f1dba14cb7f5aa6d68ce8eee92d66a0e1443636180cfc378649/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_d7785e300280ee120b9222a2/f9f939f18c6b1ad4cf92a19e42441cf60dcd9fe5604f8d146c5dfe66476f8539/bf48f35d5ec60f1dba14cb7f5aa6d68ce8eee92d66a0e1443636180cfc378649/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_d7785e300280ee120b9222a2/f9f939f18c6b1ad4cf92a19e42441cf60dcd9fe5604f8d146c5dfe66476f8539/bf48f35d5ec60f1dba14cb7f5aa6d68ce8eee92d66a0e1443636180cfc378649/social-video.mp4",
+          "pngHash": "70eea0f355a891d47bf6047d6e708379bff0b2fd4f15cd2ecc6301ad06d51096",
+          "instagramJpegHash": "ece09c2b5ba2ce08c1ed21ca6ebc54381a15ead161a9ec734f7e013cf69cfb8f",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remote/HK] Quant/Web3公司诚聘 Rust量化, C++低延迟,机构BDM,量化策略研究员(高频交易与做市),项目经理/项目总监(PMO),财务经理,斯巴达业务负责人,资深量化风险专家(交易与对冲),资深量化交易专家(对冲策略) 薪水RMB/USD"
         }
       },
