@@ -63082,12 +63082,14 @@
       "createdAt": "2026-10-18T01:54:41Z",
       "publicationCreatedAt": "2026-10-18T04:43:47.565Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-25T04:51:41.658Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HCM Hybrid] Engineering Manager - Digital Banking - remote 3 days/week"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -63144,7 +63146,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 232
     },
     {
       "jobId": "gh_c53b59ec71315966cafb3139",
