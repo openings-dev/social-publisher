@@ -64199,12 +64199,15 @@
         "result": null
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-25T20:57:01.290Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "publicationKind": "image",
+          "canonicalUrl": "https://openings.dev/jobs/gh_18974c770150b3068ab7a9f6"
+        }
       },
       "linkedin": {
         "status": "pending",
