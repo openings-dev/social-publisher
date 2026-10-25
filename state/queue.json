@@ -63140,10 +63140,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-10-25T04:51:41.658Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-10-25T04:51:41.658Z"
+        },
         "lastReset": null,
         "result": null
       },
