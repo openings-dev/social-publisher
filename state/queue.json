@@ -63541,10 +63541,13 @@
         "result": null
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-10-25T16:30:54.003Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-10-25T16:30:54.003Z"
+        },
         "lastReset": null,
         "result": null
       },
