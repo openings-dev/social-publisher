@@ -64188,10 +64188,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-10-25T20:57:01.290Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-10-25T20:57:01.290Z"
+        },
         "lastReset": null,
         "result": null
       },
