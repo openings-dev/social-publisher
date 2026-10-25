@@ -64130,12 +64130,23 @@
       "createdAt": "2026-10-20T08:56:31Z",
       "publicationCreatedAt": "2026-10-20T17:17:56.778Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-25T20:57:01.290Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_18974c770150b3068ab7a9f6",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_18974c770150b3068ab7a9f6/22c55ce9c190c0fbd42e52312c8e1447ad5f1006ea78147290b57e5a59377ca7/914e7d875c81afcbc150d125a29d3027fff6ffdf192c3de45cc989b734b86c76/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_18974c770150b3068ab7a9f6/22c55ce9c190c0fbd42e52312c8e1447ad5f1006ea78147290b57e5a59377ca7/914e7d875c81afcbc150d125a29d3027fff6ffdf192c3de45cc989b734b86c76/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_18974c770150b3068ab7a9f6/22c55ce9c190c0fbd42e52312c8e1447ad5f1006ea78147290b57e5a59377ca7/914e7d875c81afcbc150d125a29d3027fff6ffdf192c3de45cc989b734b86c76/social-video.mp4",
+          "pngHash": "616ad0f54b365d5e652f85758a48d59f6393c917f8402827abdebda58128a1e5",
+          "instagramJpegHash": "b6a7cef5886bbb27e01a6218ccf3ea038a54752200b0d8cad0adadda2d2a1e1c",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[香港] Crypto量化 诚聘 C++工程师 薪资不设限制 2-5年经验"
         }
       },
