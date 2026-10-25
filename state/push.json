@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "73d003ab589de1ca1b3b4cfb5d1bf2a1d65cc6f7",
-    "generatedAt": "2026-10-25T07:58:59.859Z",
-    "dataHash": "7ad9931b7e51cbff94715fa94911fbbc3cd3ea3b3b565644fcd614f95c9ab94f"
+    "commit": "49648c7bfcbb8930cf751e3f21a88ff8200cbba4",
+    "generatedAt": "2026-10-25T13:29:39.816Z",
+    "dataHash": "678b9fb38c322566d70b0a7416f9a0f895b334183bd5eea9c43cb14ebb81a54d"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18604,6 +18604,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_c734e6f23042238380854406"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_87b101214c37821666f13aae",
+      "sourceId": "soujava/vagas-java#1969",
+      "dataCommit": "49648c7bfcbb8930cf751e3f21a88ff8200cbba4",
+      "dataHash": "678b9fb38c322566d70b0a7416f9a0f895b334183bd5eea9c43cb14ebb81a54d",
+      "contentHash": "49388d9753503de97a27d88d715f5446ce37158575b643caa0a5533098e15fd3",
+      "sourceCreatedAt": "2026-10-25T12:26:08Z",
+      "createdAt": "2026-10-25T13:29:39.816Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b6f52f02-bfad-4ec2-9401-5e10a5d54171",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Júnior (Fila de Pedidos) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Júnior (Fila de Pedidos) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Júnior (Fila de Pedidos) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Júnior (Fila de Pedidos) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Júnior (Fila de Pedidos) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Júnior (Fila de Pedidos) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_87b101214c37821666f13aae"
         }
       },
       "status": "pending",
