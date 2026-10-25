@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "a5c13f111a4769080aa189a1d0430e5e4e2b6030",
-    "generatedAt": "2026-10-24T20:02:47.396Z",
-    "dataHash": "2819cd486d622dca6958cb941e43acf52c62d4149c57a81889196422f0b1cae9"
+    "commit": "0ad08d6335bf68f21a781a65e2cdf3b719477db9",
+    "generatedAt": "2026-10-25T02:32:44.801Z",
+    "dataHash": "cd9f3396dab4189bde2d5fc90c33194f0f91bdbf293adcb0790e4fbff9d1788c"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18561,6 +18561,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_a6c22a0392a2b37a1c75831a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_c734e6f23042238380854406",
+      "sourceId": "frontendbr/vagas#8548",
+      "dataCommit": "0ad08d6335bf68f21a781a65e2cdf3b719477db9",
+      "dataHash": "cd9f3396dab4189bde2d5fc90c33194f0f91bdbf293adcb0790e4fbff9d1788c",
+      "contentHash": "b033c5d7bb640916c3fab3eae383f70b779dbae693211b4c4a8b44ec14fbc71f",
+      "sourceCreatedAt": "2026-08-26T01:15:55Z",
+      "createdAt": "2026-10-25T02:32:44.801Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5c4ed0fe-71c1-4107-87ca-018ead1a1099",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Senior Front-end Developer Engineer (Jcal Consultoria)",
+          "pt-BR": "[Híbrido] Senior Front-end Developer Engineer (Jcal Consultoria)",
+          "es": "[Híbrido] Senior Front-end Developer Engineer (Jcal Consultoria)",
+          "it": "[Híbrido] Senior Front-end Developer Engineer (Jcal Consultoria)",
+          "fr": "[Híbrido] Senior Front-end Developer Engineer (Jcal Consultoria)",
+          "de": "[Híbrido] Senior Front-end Developer Engineer (Jcal Consultoria)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_c734e6f23042238380854406"
         }
       },
       "status": "pending",
