@@ -63488,12 +63488,14 @@
       "createdAt": "2026-10-18T10:05:49Z",
       "publicationCreatedAt": "2026-10-18T15:58:37.620Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-25T16:30:54.003Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remote/HK] Quant/Web3公司诚聘 Rust量化, C++低延迟,机构BDM,量化策略研究员(高频交易与做市),项目经理/项目总监(PMO),财务经理,斯巴达业务负责人,资深量化风险专家(交易与对冲),资深量化交易专家(对冲策略) 薪水RMB/USD"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -63550,7 +63552,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 234
     },
     {
       "jobId": "gh_c7a1ddb11a6488cb46c8e04a",
