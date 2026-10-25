@@ -63530,10 +63530,13 @@
         "result": null
       },
       "twitter": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-10-25T16:30:54.003Z",
-        "lastError": null,
+        "lastError": {
+          "code": "buffer_publication",
+          "at": "2026-10-25T16:30:54.003Z"
+        },
         "lastReset": null,
         "result": null
       },
@@ -63596,9 +63599,9 @@
             "consumers": [
               {
                 "channel": "twitter",
-                "state": "pending",
+                "state": "ambiguous",
                 "remoteId": null,
-                "updatedAt": null
+                "updatedAt": "2026-10-25T16:30:54.003Z"
               },
               {
                 "channel": "linkedin",
@@ -63653,7 +63656,7 @@
             ]
           }
         ],
-        "manifestDigest": "cb69de30b7bbd1978fde8ec0bafea549247b661b054fafcda154f56cc41d8683"
+        "manifestDigest": "cd30b9a8db9d43b44a8ba04d8c3d3791a9ebacace9876305b71ee8a3eafb9632"
       }
     },
     {
