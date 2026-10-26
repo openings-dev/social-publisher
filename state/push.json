@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "606e972cd233613287dce25c8c6ebd02cebb70fc",
-    "generatedAt": "2026-10-26T08:21:06.103Z",
-    "dataHash": "d23b34ecb33cc713683d6e635f5fe3558aa5eaa796444acd49af091a50a3fed2"
+    "commit": "b14cebd9e8c0c8027e39309179252182939e0c39",
+    "generatedAt": "2026-10-26T15:41:45.369Z",
+    "dataHash": "469b735732a856ce4809813b2a155121cee2b6b9360e6736db965327f1f0a013"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18655,6 +18655,86 @@
         "notificationId": "b71a18b5-8838-4f51-8947-29a527b11a52",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_bc6d8863701c8bf79e429eba",
+      "sourceId": "backend-br/vagas#12484",
+      "dataCommit": "b14cebd9e8c0c8027e39309179252182939e0c39",
+      "dataHash": "469b735732a856ce4809813b2a155121cee2b6b9360e6736db965327f1f0a013",
+      "contentHash": "c4cbaf9b2912b97fc2081fa626a23a0f2f55be4379dcdcd3cf059bb46b834d07",
+      "sourceCreatedAt": "2026-10-26T14:47:20Z",
+      "createdAt": "2026-10-26T15:41:45.369Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8d0024e5-81e2-4aa4-abeb-049582d139db",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Sr Software Engineer - Stealth",
+          "pt-BR": "[Híbrido] Sr Software Engineer - Stealth",
+          "es": "[Híbrido] Sr Software Engineer - Stealth",
+          "it": "[Híbrido] Sr Software Engineer - Stealth",
+          "fr": "[Híbrido] Sr Software Engineer - Stealth",
+          "de": "[Híbrido] Sr Software Engineer - Stealth"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bc6d8863701c8bf79e429eba"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_eef09d4903316c9e4aa1d5a3",
+      "sourceId": "soujava/vagas-java#1971",
+      "dataCommit": "b14cebd9e8c0c8027e39309179252182939e0c39",
+      "dataHash": "469b735732a856ce4809813b2a155121cee2b6b9360e6736db965327f1f0a013",
+      "contentHash": "a4ae205a3662b78b8b2c4fabf7fc6c417bf559c4231c1f7abc74a062012497e3",
+      "sourceCreatedAt": "2026-10-26T14:08:59Z",
+      "createdAt": "2026-10-26T15:41:45.369Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4f725513-aec1-496c-adaf-6b2838fe8eeb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Júnior (Gestão de Pedidos de Compra) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Júnior (Gestão de Pedidos de Compra) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Júnior (Gestão de Pedidos de Compra) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Júnior (Gestão de Pedidos de Compra) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Júnior (Gestão de Pedidos de Compra) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Júnior (Gestão de Pedidos de Compra) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_eef09d4903316c9e4aa1d5a3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
