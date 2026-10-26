@@ -62178,13 +62178,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-10-24T18:50:32.607Z",
-        "lastError": {
-          "code": "threads_reconciliation",
-          "at": "2026-10-24T18:50:32.607Z"
-        },
+        "updatedAt": "2026-10-26T21:12:37.098Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -62219,9 +62216,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-26T21:12:37.098Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -62423,9 +62420,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-26T21:12:37.098Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -62733,13 +62730,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-10-24T22:32:47.782Z",
-        "lastError": {
-          "code": "threads_reconciliation",
-          "at": "2026-10-24T22:32:47.782Z"
-        },
+        "updatedAt": "2026-10-26T21:12:37.098Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -62774,9 +62768,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-26T21:12:37.098Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -62978,9 +62972,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-26T21:12:37.098Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -65312,12 +65306,14 @@
       "createdAt": "2026-10-20T20:56:31Z",
       "publicationCreatedAt": "2026-10-21T00:42:02.070Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-26T21:12:37.098Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "New Internship - Sony"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -65374,7 +65370,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 239
     },
     {
       "jobId": "gh_e9a9c8be369f6411bafa4de4",
