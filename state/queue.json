@@ -64557,12 +64557,17 @@
         }
       },
       "bluesky": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-26T07:53:13.016Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mydm7jwhoj2y",
+          "cid": "bafyreihru6bwydcwtckypf6ns2vwwcmg5lcwbwwfqcannmw23fyha5ng3u",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mydm7jwhoj2y"
+        }
       },
       "mastodon": {
         "status": "skipped_disabled",
