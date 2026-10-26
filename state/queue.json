@@ -64594,10 +64594,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-10-26T07:53:13.016Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-10-26T07:53:13.016Z"
+        },
         "lastReset": null,
         "result": null
       },
