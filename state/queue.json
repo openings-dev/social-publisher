@@ -64056,12 +64056,14 @@
       "createdAt": "2026-10-20T09:45:47Z",
       "publicationCreatedAt": "2026-10-20T17:17:56.778Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-26T00:27:05.087Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[马来西亚/新加坡] 市场交易实习生 日薪 23-45USD/天-远程办公"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -64118,7 +64120,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 236
     },
     {
       "jobId": "gh_18974c770150b3068ab7a9f6",
