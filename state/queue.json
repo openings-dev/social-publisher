@@ -67348,6 +67348,154 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_bc6d8863701c8bf79e429eba",
+      "sourceId": "backend-br/vagas#12484",
+      "dataCommit": "b14cebd9e8c0c8027e39309179252182939e0c39",
+      "dataHash": "469b735732a856ce4809813b2a155121cee2b6b9360e6736db965327f1f0a013",
+      "contentHash": "c4cbaf9b2912b97fc2081fa626a23a0f2f55be4379dcdcd3cf059bb46b834d07",
+      "discoveredAt": "2026-10-26T21:13:54.526Z",
+      "createdAt": "2026-10-26T14:47:20Z",
+      "publicationCreatedAt": "2026-10-26T21:13:54.526Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_eef09d4903316c9e4aa1d5a3",
+      "sourceId": "soujava/vagas-java#1971",
+      "dataCommit": "b14cebd9e8c0c8027e39309179252182939e0c39",
+      "dataHash": "469b735732a856ce4809813b2a155121cee2b6b9360e6736db965327f1f0a013",
+      "contentHash": "a4ae205a3662b78b8b2c4fabf7fc6c417bf559c4231c1f7abc74a062012497e3",
+      "discoveredAt": "2026-10-26T21:13:54.526Z",
+      "createdAt": "2026-10-26T14:08:59Z",
+      "publicationCreatedAt": "2026-10-26T21:13:54.526Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
