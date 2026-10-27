@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "55a15668bd50959f92aa4f3dabde3142f815e324",
-    "generatedAt": "2026-10-27T11:21:36.557Z",
-    "dataHash": "6f122c172b86df25c6a187187122abcf0c024532ef53bd23473b2e5d36555353"
+    "commit": "788f6d468271456c360edb751c2c2d015ac5931b",
+    "generatedAt": "2026-10-27T17:08:31.104Z",
+    "dataHash": "d523739962f8f390135839b5f9bf793edb41b11a20763edc00eeb2fa3ddf911f"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19010,6 +19010,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_1003e992113d5a32a9efae2b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a4413b38ce8666beb7e0dc7d",
+      "sourceId": "frontendbr/vagas#8572",
+      "dataCommit": "788f6d468271456c360edb751c2c2d015ac5931b",
+      "dataHash": "d523739962f8f390135839b5f9bf793edb41b11a20763edc00eeb2fa3ddf911f",
+      "contentHash": "e53e78ff589f57a65b29359c43d08ef5242d5e5a2dea0526a81eea775c95a163",
+      "sourceCreatedAt": "2026-10-27T16:01:03Z",
+      "createdAt": "2026-10-27T17:08:31.104Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9da324d7-bb17-45a7-845f-6d5dec6b703b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Senior Front-end / Product Engineer na WeatherWise — 4 dias / 32h",
+          "pt-BR": "[Remoto] Senior Front-end / Product Engineer na WeatherWise — 4 dias / 32h",
+          "es": "[Remoto] Senior Front-end / Product Engineer na WeatherWise — 4 dias / 32h",
+          "it": "[Remoto] Senior Front-end / Product Engineer na WeatherWise — 4 dias / 32h",
+          "fr": "[Remoto] Senior Front-end / Product Engineer na WeatherWise — 4 dias / 32h",
+          "de": "[Remoto] Senior Front-end / Product Engineer na WeatherWise — 4 dias / 32h"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a4413b38ce8666beb7e0dc7d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_1de65f6a56a6747d7dc792ff",
+      "sourceId": "backend-br/vagas#12486",
+      "dataCommit": "788f6d468271456c360edb751c2c2d015ac5931b",
+      "dataHash": "d523739962f8f390135839b5f9bf793edb41b11a20763edc00eeb2fa3ddf911f",
+      "contentHash": "dae88db41030b37a590c71348d6d7c805943bb4b28125ad6ee53cbf3d22ffcf8",
+      "sourceCreatedAt": "2026-10-27T15:59:39Z",
+      "createdAt": "2026-10-27T17:08:31.104Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a5540d4a-f708-4bc2-9c98-4526fdc479e8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Full Stack Sênior — AI & Agents na WeatherWise | 4 dias / 32h",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Full Stack Sênior — AI & Agents na WeatherWise | 4 dias / 32h",
+          "es": "[Remoto] Desenvolvedor(a) Full Stack Sênior — AI & Agents na WeatherWise | 4 dias / 32h",
+          "it": "[Remoto] Desenvolvedor(a) Full Stack Sênior — AI & Agents na WeatherWise | 4 dias / 32h",
+          "fr": "[Remoto] Desenvolvedor(a) Full Stack Sênior — AI & Agents na WeatherWise | 4 dias / 32h",
+          "de": "[Remoto] Desenvolvedor(a) Full Stack Sênior — AI & Agents na WeatherWise | 4 dias / 32h"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1de65f6a56a6747d7dc792ff"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e2663887b815fdaa55ecd543",
+      "sourceId": "soujava/vagas-java#1972",
+      "dataCommit": "788f6d468271456c360edb751c2c2d015ac5931b",
+      "dataHash": "d523739962f8f390135839b5f9bf793edb41b11a20763edc00eeb2fa3ddf911f",
+      "contentHash": "512b6261cbbf9794a8feee9cd0d4a6ace757d43c4527c36bbd434b6a58db5b0b",
+      "sourceCreatedAt": "2026-10-27T12:14:47Z",
+      "createdAt": "2026-10-27T17:08:31.104Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "54a788da-7be7-47f3-9b38-4ab50787990d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Júnior (Integração de Pedidos) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Júnior (Integração de Pedidos) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Júnior (Integração de Pedidos) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Júnior (Integração de Pedidos) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Júnior (Integração de Pedidos) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Júnior (Integração de Pedidos) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e2663887b815fdaa55ecd543"
         }
       },
       "status": "pending",
