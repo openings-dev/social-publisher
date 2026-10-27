@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "788f6d468271456c360edb751c2c2d015ac5931b",
-    "generatedAt": "2026-10-27T17:08:31.104Z",
-    "dataHash": "d523739962f8f390135839b5f9bf793edb41b11a20763edc00eeb2fa3ddf911f"
+    "commit": "2ba533e6dc41bf7c51bd0492e32c9ec13f4dfcbb",
+    "generatedAt": "2026-10-27T21:40:05.607Z",
+    "dataHash": "0ce50b56c6efdb675a522a404c7b348ac16b381f1883cf29880530d71be4d6ee"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18932,10 +18932,10 @@
           "jobId": "gh_5ee81f82de21665a083f16e4"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-10-27T21:40:05.607Z",
       "retryAfter": null,
       "result": null
     },
@@ -19130,6 +19130,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_e2663887b815fdaa55ecd543"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_016c95ebc154fd4a784b2ee8",
+      "sourceId": "vanshb03/Summer2027-Internships#4614",
+      "dataCommit": "2ba533e6dc41bf7c51bd0492e32c9ec13f4dfcbb",
+      "dataHash": "0ce50b56c6efdb675a522a404c7b348ac16b381f1883cf29880530d71be4d6ee",
+      "contentHash": "e34d71c2b863222729a71cb3a19d21ff13fd170de4958b4f9311104cb4e0e624",
+      "sourceCreatedAt": "2026-10-27T17:31:09Z",
+      "createdAt": "2026-10-27T21:40:05.607Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "157341fa-9420-404f-885a-98eb21a284e3",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Close Internship",
+          "pt-BR": "Close Internship",
+          "es": "Close Internship",
+          "it": "Close Internship",
+          "fr": "Close Internship",
+          "de": "Close Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_016c95ebc154fd4a784b2ee8"
         }
       },
       "status": "pending",
