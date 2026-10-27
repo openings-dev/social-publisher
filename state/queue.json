@@ -64807,12 +64807,23 @@
       "createdAt": "2026-10-20T21:04:29Z",
       "publicationCreatedAt": "2026-10-21T00:42:02.070Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-27T20:45:39.336Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_998bfcc688411320a9d8e00c",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_998bfcc688411320a9d8e00c/160ce00fd07181f2cf8ddb58b53beabf106f73d450e9bb7694a942cf1c07fb84/1c79a30f211e4d629c579b75c4b297bf4ab8128a8715de0f7ece106560bfc0f5/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_998bfcc688411320a9d8e00c/160ce00fd07181f2cf8ddb58b53beabf106f73d450e9bb7694a942cf1c07fb84/1c79a30f211e4d629c579b75c4b297bf4ab8128a8715de0f7ece106560bfc0f5/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_998bfcc688411320a9d8e00c/160ce00fd07181f2cf8ddb58b53beabf106f73d450e9bb7694a942cf1c07fb84/1c79a30f211e4d629c579b75c4b297bf4ab8128a8715de0f7ece106560bfc0f5/social-video.mp4",
+          "pngHash": "c37cd39b0bb9034447c5d2cf3f99be43d214585357a1ab3cbb931319a15de59e",
+          "instagramJpegHash": "af3e3b7d1185f1fc485ec8dc0a12f9d8bc80202a4280d9903a34b823bf860eac",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "New Internship - Sony"
         }
       },
