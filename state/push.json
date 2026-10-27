@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "b14cebd9e8c0c8027e39309179252182939e0c39",
-    "generatedAt": "2026-10-26T15:41:45.369Z",
-    "dataHash": "469b735732a856ce4809813b2a155121cee2b6b9360e6736db965327f1f0a013"
+    "commit": "46c4f71f27c6fe1d93ba9bb0ad6cd430ae68624c",
+    "generatedAt": "2026-10-26T22:09:23.655Z",
+    "dataHash": "5779aa0c1387b7b5046f69fced9c1d868197bf219ae5a34c069b872d0bca4b56"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18727,6 +18727,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_eef09d4903316c9e4aa1d5a3"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f824ca3f431156ee77e7700a",
+      "sourceId": "pydevbr/vagas#51",
+      "dataCommit": "46c4f71f27c6fe1d93ba9bb0ad6cd430ae68624c",
+      "dataHash": "5779aa0c1387b7b5046f69fced9c1d868197bf219ae5a34c069b872d0bca4b56",
+      "contentHash": "d8170fccbb34ca13f45c6f5bb1bb24c3f491be235063021774117c1bcaf0fb8c",
+      "sourceCreatedAt": "2026-10-26T19:29:46Z",
+      "createdAt": "2026-10-26T22:09:23.655Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "dc93b8dc-65ae-4fe7-a3c4-1101e23b935c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Campinas] Programa Trainee @BotCity",
+          "pt-BR": "[Campinas] Programa Trainee @BotCity",
+          "es": "[Campinas] Programa Trainee @BotCity",
+          "it": "[Campinas] Programa Trainee @BotCity",
+          "fr": "[Campinas] Programa Trainee @BotCity",
+          "de": "[Campinas] Programa Trainee @BotCity"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f824ca3f431156ee77e7700a"
         }
       },
       "status": "pending",
