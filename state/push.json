@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "46c4f71f27c6fe1d93ba9bb0ad6cd430ae68624c",
-    "generatedAt": "2026-10-26T22:09:23.655Z",
-    "dataHash": "5779aa0c1387b7b5046f69fced9c1d868197bf219ae5a34c069b872d0bca4b56"
+    "commit": "f8237e6613fde9fa80a68bce806149020cee53b3",
+    "generatedAt": "2026-10-27T03:07:01.419Z",
+    "dataHash": "062bf5e3b169e1bee243e4d227f7221483a790cdf48dcd182647e53854521204"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -18767,6 +18767,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f824ca3f431156ee77e7700a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0518d453a06bfe71ae771dff",
+      "sourceId": "frontendbr/vagas#8553",
+      "dataCommit": "f8237e6613fde9fa80a68bce806149020cee53b3",
+      "dataHash": "062bf5e3b169e1bee243e4d227f7221483a790cdf48dcd182647e53854521204",
+      "contentHash": "259a465fcf478eb7f80bec362d53d185e260a5b5d358a4c69a47ac3cbc9b810c",
+      "sourceCreatedAt": "2026-08-28T01:46:54Z",
+      "createdAt": "2026-10-27T03:07:01.419Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3a6359d1-7133-48ba-951a-57a9d66287c9",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remota] Product Engineer (LLMs, Next.js, Python, AWS)USD - Strider",
+          "pt-BR": "[Remota] Product Engineer (LLMs, Next.js, Python, AWS)USD - Strider",
+          "es": "[Remota] Product Engineer (LLMs, Next.js, Python, AWS)USD - Strider",
+          "it": "[Remota] Product Engineer (LLMs, Next.js, Python, AWS)USD - Strider",
+          "fr": "[Remota] Product Engineer (LLMs, Next.js, Python, AWS)USD - Strider",
+          "de": "[Remota] Product Engineer (LLMs, Next.js, Python, AWS)USD - Strider"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0518d453a06bfe71ae771dff"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4069aaa4b8ed2c6ca16fa901",
+      "sourceId": "frontendbr/vagas#8551",
+      "dataCommit": "f8237e6613fde9fa80a68bce806149020cee53b3",
+      "dataHash": "062bf5e3b169e1bee243e4d227f7221483a790cdf48dcd182647e53854521204",
+      "contentHash": "c9e500690268f1fab6e9f8f6e0c547156ff4d2dd395bd659fac393fd1f319d12",
+      "sourceCreatedAt": "2026-08-27T22:08:53Z",
+      "createdAt": "2026-10-27T03:07:01.419Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b17dca9a-6827-489d-9962-603a56145da2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido/Curitiba] Senior Front-end Developer React (USD) Jcal Consultoria",
+          "pt-BR": "[Híbrido/Curitiba] Senior Front-end Developer React (USD) Jcal Consultoria",
+          "es": "[Híbrido/Curitiba] Senior Front-end Developer React (USD) Jcal Consultoria",
+          "it": "[Híbrido/Curitiba] Senior Front-end Developer React (USD) Jcal Consultoria",
+          "fr": "[Híbrido/Curitiba] Senior Front-end Developer React (USD) Jcal Consultoria",
+          "de": "[Híbrido/Curitiba] Senior Front-end Developer React (USD) Jcal Consultoria"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4069aaa4b8ed2c6ca16fa901"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d71471df3543c2014e94e7a8",
+      "sourceId": "frontendbr/vagas#8550",
+      "dataCommit": "f8237e6613fde9fa80a68bce806149020cee53b3",
+      "dataHash": "062bf5e3b169e1bee243e4d227f7221483a790cdf48dcd182647e53854521204",
+      "contentHash": "a4bfba077ead61bdd7053db3466c5b5cc4a425f09af851af5a16d0db7e4e1b6b",
+      "sourceCreatedAt": "2026-08-27T21:53:59Z",
+      "createdAt": "2026-10-27T03:07:01.419Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "722caf9b-6f6b-488e-9c09-7c1649b82aa7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido] Developer Full Stack Python AI/LLM - Convolut",
+          "pt-BR": "[Híbrido] Developer Full Stack Python AI/LLM - Convolut",
+          "es": "[Híbrido] Developer Full Stack Python AI/LLM - Convolut",
+          "it": "[Híbrido] Developer Full Stack Python AI/LLM - Convolut",
+          "fr": "[Híbrido] Developer Full Stack Python AI/LLM - Convolut",
+          "de": "[Híbrido] Developer Full Stack Python AI/LLM - Convolut"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d71471df3543c2014e94e7a8"
         }
       },
       "status": "pending",
