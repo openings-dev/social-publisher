@@ -65320,7 +65320,11 @@
         "updatedAt": "2026-10-27T01:31:16.372Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "acceptedProviderId": "6adfff0f8f5aed9e2e2ec184",
+          "acceptedProvider": "buffer",
+          "acceptedStatus": "sending"
+        }
       },
       "instagramStory": {
         "status": "pending",
@@ -65363,9 +65367,9 @@
               },
               {
                 "channel": "linkedin",
-                "state": "pending",
-                "remoteId": null,
-                "updatedAt": null
+                "state": "accepted",
+                "remoteId": "6adfff0f8f5aed9e2e2ec184",
+                "updatedAt": "2026-10-27T01:31:16.372Z"
               }
             ]
           },
@@ -65414,7 +65418,7 @@
             ]
           }
         ],
-        "manifestDigest": "752c0e3f155b6894f74570ead214c330fc7be455bc723131da135b8ffc12c0ee"
+        "manifestDigest": "6cdf723ace8cb22aad26b406a614980492945011fd973b74f246891fa6ee4c3a"
       }
     },
     {
