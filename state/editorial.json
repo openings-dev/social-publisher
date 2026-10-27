@@ -72,10 +72,13 @@
         }
       },
       "feed": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
-        "lastError": null,
+        "status": "retryable",
+        "attempts": 1,
+        "updatedAt": "2026-10-27T19:48:37.377Z",
+        "lastError": {
+          "code": "instagram_carousel_reconciliation",
+          "at": "2026-10-27T19:48:37.377Z"
+        },
         "lastReset": null,
         "result": null
       },
