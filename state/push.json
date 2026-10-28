@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "e63157c20e65fc772c5e5c775e13c03411c00a35",
-    "generatedAt": "2026-10-28T11:55:16.852Z",
-    "dataHash": "e683948bd19a10d083394b8acc16a2bb4536819e9125ad0b1b8fe555985f770c"
+    "commit": "f2f6e237ba49da48e1c45cd5dd6303d7f80a19be",
+    "generatedAt": "2026-10-28T22:04:13.804Z",
+    "dataHash": "93144e71d3c4f046933676960918cbb0503b836d011ef7e0bf731ca6e6b6bcc8"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19213,6 +19213,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_94e66ce65dbdd3217e662493"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4ddc5ce7cb4c159fc9054916",
+      "sourceId": "react-brasil/vagas#3037",
+      "dataCommit": "f0055b0b4d9fedc29b198f2493e750e74f1394b3",
+      "dataHash": "92259da34a87f90ee13061bfe432cc0111c571258ba66ebd6575174c30f5fb68",
+      "contentHash": "00e2d840a8c58604b0a626ea3fabfe103fa2529f1b4ab585b99d7d1e8e4250e7",
+      "sourceCreatedAt": "2026-10-28T14:12:10Z",
+      "createdAt": "2026-10-28T17:44:29.661Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5d531072-77af-4393-b694-11efc7be2d95",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Senior Front-end / Product Engineer (React/TypeScript) na WeatherWise — 4 dias / 32h",
+          "pt-BR": "[Remoto] Senior Front-end / Product Engineer (React/TypeScript) na WeatherWise — 4 dias / 32h",
+          "es": "[Remoto] Senior Front-end / Product Engineer (React/TypeScript) na WeatherWise — 4 dias / 32h",
+          "it": "[Remoto] Senior Front-end / Product Engineer (React/TypeScript) na WeatherWise — 4 dias / 32h",
+          "fr": "[Remoto] Senior Front-end / Product Engineer (React/TypeScript) na WeatherWise — 4 dias / 32h",
+          "de": "[Remoto] Senior Front-end / Product Engineer (React/TypeScript) na WeatherWise — 4 dias / 32h"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4ddc5ce7cb4c159fc9054916"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f65827432354c0662b6b0ae4",
+      "sourceId": "pydevbr/vagas#52",
+      "dataCommit": "f0055b0b4d9fedc29b198f2493e750e74f1394b3",
+      "dataHash": "92259da34a87f90ee13061bfe432cc0111c571258ba66ebd6575174c30f5fb68",
+      "contentHash": "e54446b98960857f3cc38bd3896d07c9c9b1f7626747bdf6cac840642291dd02",
+      "sourceCreatedAt": "2026-10-28T14:11:50Z",
+      "createdAt": "2026-10-28T17:44:29.661Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3566a873-441e-46d6-bfa6-c4513384639a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Senior Full-stack Engineer — Python, AI & Agents @ WeatherWise | 4 dias / 32h",
+          "pt-BR": "[Remoto] Senior Full-stack Engineer — Python, AI & Agents @ WeatherWise | 4 dias / 32h",
+          "es": "[Remoto] Senior Full-stack Engineer — Python, AI & Agents @ WeatherWise | 4 dias / 32h",
+          "it": "[Remoto] Senior Full-stack Engineer — Python, AI & Agents @ WeatherWise | 4 dias / 32h",
+          "fr": "[Remoto] Senior Full-stack Engineer — Python, AI & Agents @ WeatherWise | 4 dias / 32h",
+          "de": "[Remoto] Senior Full-stack Engineer — Python, AI & Agents @ WeatherWise | 4 dias / 32h"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f65827432354c0662b6b0ae4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_01d165a4b737ad3ecc75a04b",
+      "sourceId": "soujava/vagas-java#1973",
+      "dataCommit": "f0055b0b4d9fedc29b198f2493e750e74f1394b3",
+      "dataHash": "92259da34a87f90ee13061bfe432cc0111c571258ba66ebd6575174c30f5fb68",
+      "contentHash": "fee102834fcf91299277113390dc404f61b2fa85ca355b92afb26da742577f2b",
+      "sourceCreatedAt": "2026-10-28T12:19:34Z",
+      "createdAt": "2026-10-28T17:44:29.661Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "28752045-f2ea-446b-a5bc-a38b8394638a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Júnior (Marketplace de Lojistas) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Júnior (Marketplace de Lojistas) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Júnior (Marketplace de Lojistas) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Júnior (Marketplace de Lojistas) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Júnior (Marketplace de Lojistas) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Júnior (Marketplace de Lojistas) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_01d165a4b737ad3ecc75a04b"
         }
       },
       "status": "pending",
