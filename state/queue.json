@@ -66505,12 +66505,14 @@
       "createdAt": "2026-10-21T01:28:58Z",
       "publicationCreatedAt": "2026-10-21T07:47:06.095Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-28T16:42:21.342Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "New Internship: Argo — Software Engineer Intern — Winter / Summer 2027"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -66567,7 +66569,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 246
     },
     {
       "jobId": "gh_8f25be7dd252badc093e7167",
@@ -68799,17 +68803,17 @@
       "createdAt": "2026-10-27T17:31:09Z",
       "publicationCreatedAt": "2026-10-28T01:30:39.098Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-28T16:42:21.342Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-28T16:42:21.342Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -68823,41 +68827,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-28T16:42:21.342Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-28T16:42:21.342Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-28T16:42:21.342Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-28T16:42:21.342Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-28T16:42:21.342Z",
         "lastError": null,
         "lastReset": null,
         "result": null
