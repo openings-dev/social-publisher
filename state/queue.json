@@ -66431,12 +66431,23 @@
       "createdAt": "2026-10-21T01:32:07Z",
       "publicationCreatedAt": "2026-10-21T07:47:06.095Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-28T22:40:41.092Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_a532a250cf3ce443abd223c9",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_a532a250cf3ce443abd223c9/61baf56653119cb9fdf22750e3fb1b42d74611233ba414263203424cd3d20060/235b70e562a21514563af25f04501b70a5d94ebdc9cfdabb4d29ea18bdc7f7cf/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_a532a250cf3ce443abd223c9/61baf56653119cb9fdf22750e3fb1b42d74611233ba414263203424cd3d20060/235b70e562a21514563af25f04501b70a5d94ebdc9cfdabb4d29ea18bdc7f7cf/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_a532a250cf3ce443abd223c9/61baf56653119cb9fdf22750e3fb1b42d74611233ba414263203424cd3d20060/235b70e562a21514563af25f04501b70a5d94ebdc9cfdabb4d29ea18bdc7f7cf/social-video.mp4",
+          "pngHash": "27f810e961261eff6e2b9e6fdfdb9818426b972c826fd59ec7c0c3991a82c4d7",
+          "instagramJpegHash": "b013ba4bc02ae61173469a1e304c2c0c48c329637e073584616929bd1c6b133b",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "New Internship: Argo — AI Engineer Intern — Winter / Summer 2027"
         }
       },
