@@ -66223,12 +66223,15 @@
         "result": null
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-28T08:40:45.181Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "publicationKind": "image",
+          "canonicalUrl": "https://openings.dev/jobs/gh_e9a9c8be369f6411bafa4de4"
+        }
       },
       "linkedin": {
         "status": "pending",
