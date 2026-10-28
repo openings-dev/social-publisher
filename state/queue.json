@@ -66154,12 +66154,14 @@
       "createdAt": "2026-10-20T20:54:38Z",
       "publicationCreatedAt": "2026-10-21T00:42:02.070Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-28T08:40:45.181Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "New Internship - Sony"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -66216,7 +66218,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 245
     },
     {
       "jobId": "gh_baa1cacfe8ac107e10908e71",
