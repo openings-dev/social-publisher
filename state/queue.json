@@ -66505,12 +66505,23 @@
       "createdAt": "2026-10-21T01:28:58Z",
       "publicationCreatedAt": "2026-10-21T07:47:06.095Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-28T16:42:21.342Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_6ce7664107fbc93c43db7e29",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_6ce7664107fbc93c43db7e29/b230753b4d72b96a68788e4ff7740a3a0fb9f55fe7b3149fd557fd959cd852a1/cc4869d11d503dc5d29ea58c1151ba2d0ba7a9bb03fd4c579b59d793173da68e/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_6ce7664107fbc93c43db7e29/b230753b4d72b96a68788e4ff7740a3a0fb9f55fe7b3149fd557fd959cd852a1/cc4869d11d503dc5d29ea58c1151ba2d0ba7a9bb03fd4c579b59d793173da68e/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_6ce7664107fbc93c43db7e29/b230753b4d72b96a68788e4ff7740a3a0fb9f55fe7b3149fd557fd959cd852a1/cc4869d11d503dc5d29ea58c1151ba2d0ba7a9bb03fd4c579b59d793173da68e/social-video.mp4",
+          "pngHash": "9ea40f55615339569914a97378eb82362e3fdf920dd25068b7412b30eed6a209",
+          "instagramJpegHash": "7af270c69002047a178f5e657132facc7888914412b3da2e9d5961ad79890374",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "New Internship: Argo — Software Engineer Intern — Winter / Summer 2027"
         }
       },
