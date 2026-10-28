@@ -66201,7 +66201,11 @@
         "updatedAt": "2026-10-28T08:40:45.181Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "acceptedProviderId": "6ae1b52c43bad65094ea3b12",
+          "acceptedProvider": "buffer",
+          "acceptedStatus": "sent"
+        }
       },
       "threads": {
         "status": "pending",
@@ -66262,9 +66266,9 @@
             "consumers": [
               {
                 "channel": "twitter",
-                "state": "pending",
-                "remoteId": null,
-                "updatedAt": null
+                "state": "accepted",
+                "remoteId": "6ae1b52c43bad65094ea3b12",
+                "updatedAt": "2026-10-28T08:40:45.181Z"
               },
               {
                 "channel": "linkedin",
@@ -66319,7 +66323,7 @@
             ]
           }
         ],
-        "manifestDigest": "b2eeeb51f94e8df3f961221cb56ee7b01bb5d05d7f6da308d139288e5f944039"
+        "manifestDigest": "ae11534a9b4846fc0c5bcfc1baabf280f9d2c59dd894f62dc4890e7bd012fc89"
       }
     },
     {
