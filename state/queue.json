@@ -67114,12 +67114,14 @@
       "createdAt": "2026-10-21T04:49:33Z",
       "publicationCreatedAt": "2026-10-21T13:55:20.428Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-29T13:12:59.559Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "GALAXY JOY - Middle/Senior - Backend Engineer (NodeJS, 4 headcounts)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -67176,7 +67178,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 249
     },
     {
       "jobId": "gh_0b7763c8edb9fe9b843a85a8",
