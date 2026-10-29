@@ -67114,12 +67114,23 @@
       "createdAt": "2026-10-21T04:49:33Z",
       "publicationCreatedAt": "2026-10-21T13:55:20.428Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-29T13:12:59.559Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_68fade7cdbb97785d910fefb",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_68fade7cdbb97785d910fefb/0325f1c41d90c96e6f5e0221dc07abcf25a43028ad597381367177dcb7fe4448/e1ad1c7c83f6d2975c36854f60f67cbe46911d25d62a6f0346a578db317ad9e6/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_68fade7cdbb97785d910fefb/0325f1c41d90c96e6f5e0221dc07abcf25a43028ad597381367177dcb7fe4448/e1ad1c7c83f6d2975c36854f60f67cbe46911d25d62a6f0346a578db317ad9e6/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_68fade7cdbb97785d910fefb/0325f1c41d90c96e6f5e0221dc07abcf25a43028ad597381367177dcb7fe4448/e1ad1c7c83f6d2975c36854f60f67cbe46911d25d62a6f0346a578db317ad9e6/social-video.mp4",
+          "pngHash": "dee33e6bea2ae4d85cdd8c661a853b8938006e399fc2e7eaa44a3a6dc70fe669",
+          "instagramJpegHash": "537480c3014e32baa647e8866cf61b20f1c5738a2cfbb7f63e868a9befba2e84",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "GALAXY JOY - Middle/Senior - Backend Engineer (NodeJS, 4 headcounts)"
         }
       },
