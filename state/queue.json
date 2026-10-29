@@ -66966,12 +66966,14 @@
       "createdAt": "2026-10-21T06:41:22Z",
       "publicationCreatedAt": "2026-10-21T13:55:20.428Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-29T19:42:21.790Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "GALAXY JOY - Data Engineer - 2 headcounts"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -67028,7 +67030,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 250
     },
     {
       "jobId": "gh_a07d697588492bd5752cba67",
