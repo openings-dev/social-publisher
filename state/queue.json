@@ -53194,9 +53194,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -53398,9 +53398,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -54826,9 +54826,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -55234,9 +55234,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -57271,9 +57271,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -57475,9 +57475,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -57679,9 +57679,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -57883,9 +57883,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -58119,13 +58119,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-10-21T07:45:47.035Z",
-        "lastError": {
-          "code": "threads_publication",
-          "at": "2026-10-21T07:45:47.035Z"
-        },
+        "updatedAt": "2026-10-29T23:59:32.951Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -58160,9 +58157,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -58716,9 +58713,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -59272,9 +59269,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -67164,12 +67161,14 @@
       "createdAt": "2026-10-21T06:36:26Z",
       "publicationCreatedAt": "2026-10-21T13:55:20.428Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-29T23:59:32.951Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "GALAXY JOY - Middle/Senior Quality Control Engineer (Manual & Automation Testing) - 4 headcounts"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -67226,7 +67225,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 251
     },
     {
       "jobId": "gh_68fade7cdbb97785d910fefb",
