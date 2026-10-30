@@ -68169,19 +68169,21 @@
     {
       "jobId": "gh_e89ac86ac916c54d8013da27",
       "sourceId": "phpdevbr/vagas#1332",
-      "dataCommit": "611c00d7bcd92f75c3922d268551b9d0a6bd38c5",
-      "dataHash": "b7d92795574c8eb878539e23373b29eb3281b3004b80429f1b324bc2a57d5e15",
-      "contentHash": "391bbe4a97b837a5d7a5c5ddb328feb004edf181232328906bca0cf196bf7f76",
+      "dataCommit": "6b5beb4edd4e88d7aca3a1f09960505d050a4943",
+      "dataHash": "9c879e7b46410d23831de5b033a0ffdc853b05bed560c75189047e90e723cb18",
+      "contentHash": "adbbee8b36d30b2fef7403d3aa24e0e23b3d415a1b9d6b4618c0f59d719d9937",
       "discoveredAt": "2026-10-22T04:59:56.041Z",
       "createdAt": "2026-10-21T22:12:52Z",
       "publicationCreatedAt": "2026-10-22T04:59:56.041Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-30T23:53:07.314Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Desenvolvedor(a) Full Stack Pleno (PHP/Laravel backend e Vue.js) - 100% Presencial no Jardim Europa, São Paulo."
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -68238,7 +68240,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 255
     },
     {
       "jobId": "gh_024b04048e3f69628f6e111a",
@@ -70396,17 +70400,17 @@
       "createdAt": "2026-10-29T05:55:52Z",
       "publicationCreatedAt": "2026-10-29T13:14:18.766Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-30T23:53:07.314Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-30T23:53:07.314Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -70420,41 +70424,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-30T23:53:07.314Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-30T23:53:07.314Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-30T23:53:07.314Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-30T23:53:07.314Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-30T23:53:07.314Z",
         "lastError": null,
         "lastReset": null,
         "result": null
