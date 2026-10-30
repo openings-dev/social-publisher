@@ -67770,12 +67770,14 @@
       "createdAt": "2026-10-21T13:09:45Z",
       "publicationCreatedAt": "2026-10-21T18:44:32.388Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-30T19:28:09.481Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Desenvolvedor(a) Java Júnior (Agendamento) | Confidencial (vaga via Sylision)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -67832,7 +67834,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 254
     },
     {
       "jobId": "gh_3c767e88457a3d29d3db1504",
