@@ -67770,12 +67770,23 @@
       "createdAt": "2026-10-21T13:09:45Z",
       "publicationCreatedAt": "2026-10-21T18:44:32.388Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-30T19:28:09.481Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_635a2d6c08c44acc444fd7c8",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_635a2d6c08c44acc444fd7c8/d35fa634e61af65f50c084a4b20db90439f885d0707cf5bcb4ec551f402bdc97/1477065223e504caf6f649ec405e3f7d5867ddf1a2c9ef42a5d2a0f35babb9a8/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_635a2d6c08c44acc444fd7c8/d35fa634e61af65f50c084a4b20db90439f885d0707cf5bcb4ec551f402bdc97/1477065223e504caf6f649ec405e3f7d5867ddf1a2c9ef42a5d2a0f35babb9a8/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_635a2d6c08c44acc444fd7c8/d35fa634e61af65f50c084a4b20db90439f885d0707cf5bcb4ec551f402bdc97/1477065223e504caf6f649ec405e3f7d5867ddf1a2c9ef42a5d2a0f35babb9a8/social-video.mp4",
+          "pngHash": "82dbb4d5b8824d368c8ede71c01150168463a3e64a49861da98a7027c34c4498",
+          "instagramJpegHash": "a453e5ea4dd70308e12fea682a64f0039be94bc2cb7903c95d9ea9345a6ed9da",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Desenvolvedor(a) Java Júnior (Agendamento) | Confidencial (vaga via Sylision)"
         }
       },
