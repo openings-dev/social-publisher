@@ -67844,12 +67844,23 @@
       "createdAt": "2026-10-21T10:53:38Z",
       "publicationCreatedAt": "2026-10-21T18:44:32.388Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-30T13:05:21.587Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_3c767e88457a3d29d3db1504",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_3c767e88457a3d29d3db1504/50f7f80e103032226b9f57c6be9aba58e23183e683ab857ca00f845ca2bfd075/3177935649c4b71dd64769c1e08a5cd3e1952a165c1e9cbd165e960df59adc3f/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_3c767e88457a3d29d3db1504/50f7f80e103032226b9f57c6be9aba58e23183e683ab857ca00f845ca2bfd075/3177935649c4b71dd64769c1e08a5cd3e1952a165c1e9cbd165e960df59adc3f/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_3c767e88457a3d29d3db1504/50f7f80e103032226b9f57c6be9aba58e23183e683ab857ca00f845ca2bfd075/3177935649c4b71dd64769c1e08a5cd3e1952a165c1e9cbd165e960df59adc3f/social-video.mp4",
+          "pngHash": "9bddfd5773889aa2e8561020b339133045c5e90979e0fb7b9fe7b5afe0eb7311",
+          "instagramJpegHash": "ca3396822fbbdb3019a4f09d25f66a0dd91b09aaf17e7350bb71b4cb17836e7c",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[HCM] Senior Fullstack Developer (Finance/Banking domain)"
         }
       },
