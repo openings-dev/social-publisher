@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "ed0f19c7e89d021bfd778c1e44ddb051c69ba0aa",
-    "generatedAt": "2026-10-29T20:00:55.764Z",
-    "dataHash": "c19c15d6b39b3f59a644ac43786a82e499e0235ee5d680b6d5b8d45cad16c184"
+    "commit": "5a4d733cf7f038c4b3bc18a5179ffb693feec7fe",
+    "generatedAt": "2026-10-30T00:32:25.281Z",
+    "dataHash": "20d1fdfaca1f7531e9dd18f5315f80c460dc8fdd92f395da69719c9679b1fe56"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19456,6 +19456,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_9d50e797be669eee892f4cf9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e5c3fe2de4aec791023d34ec",
+      "sourceId": "remoteintech/remote-jobs#2295",
+      "dataCommit": "5a4d733cf7f038c4b3bc18a5179ffb693feec7fe",
+      "dataHash": "20d1fdfaca1f7531e9dd18f5315f80c460dc8fdd92f395da69719c9679b1fe56",
+      "contentHash": "0ede572a498b4a943c4e6b10c7df8f1289be7242635a91c590e5f2fe22c04002",
+      "sourceCreatedAt": "2026-10-30T00:22:07Z",
+      "createdAt": "2026-10-30T00:32:25.281Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ab8e2e93-6812-4e9c-a79d-a8892cb956c2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "57 company profiles missing company_size or required sections",
+          "pt-BR": "57 company profiles missing company_size or required sections",
+          "es": "57 company profiles missing company_size or required sections",
+          "it": "57 company profiles missing company_size or required sections",
+          "fr": "57 company profiles missing company_size or required sections",
+          "de": "57 company profiles missing company_size or required sections"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e5c3fe2de4aec791023d34ec"
         }
       },
       "status": "pending",
