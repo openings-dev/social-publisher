@@ -50191,9 +50191,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-10-30T05:57:04.812Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -67560,19 +67560,21 @@
     {
       "jobId": "gh_0b7763c8edb9fe9b843a85a8",
       "sourceId": "react-brasil/vagas#3036",
-      "dataCommit": "1ad93b73e19b36464eb590335bedcb4d98f9f270",
-      "dataHash": "61726e7d74532c0bd805332f447c05d097e811614266819e18dd8ab74a229ea1",
-      "contentHash": "48beb8c2b0e14dcc21e994691c150e1b585c3f38165dd85daca2a1e75b428110",
+      "dataCommit": "5a4d733cf7f038c4b3bc18a5179ffb693feec7fe",
+      "dataHash": "20d1fdfaca1f7531e9dd18f5315f80c460dc8fdd92f395da69719c9679b1fe56",
+      "contentHash": "9022d28af45b518c25d390c38cf3a35e83575e09bfa45867cfbfd61da1f10e26",
       "discoveredAt": "2026-10-21T18:44:32.388Z",
       "createdAt": "2026-10-21T13:50:08Z",
       "publicationCreatedAt": "2026-10-21T18:44:32.388Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-30T05:57:04.812Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[São Paulo] Dev Fullstack React/React Native + Java Pleno na Protege Cash"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -67629,7 +67631,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 252
     },
     {
       "jobId": "gh_635a2d6c08c44acc444fd7c8",
