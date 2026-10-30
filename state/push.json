@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "2db69849fbc9f4997d7a0e23e44a30368203ca63",
-    "generatedAt": "2026-10-30T17:33:09.442Z",
-    "dataHash": "9e50b8171e1a809ca0c83be305eedab528f458ac3d5daf7936ad14688ef65919"
+    "commit": "6b5beb4edd4e88d7aca3a1f09960505d050a4943",
+    "generatedAt": "2026-10-30T21:51:17.078Z",
+    "dataHash": "9c879e7b46410d23831de5b033a0ffdc853b05bed560c75189047e90e723cb18"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19499,6 +19499,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_e5c3fe2de4aec791023d34ec"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fd9c1ce498613dfab8d56a8d",
+      "sourceId": "react-brasil/vagas#3039",
+      "dataCommit": "6b5beb4edd4e88d7aca3a1f09960505d050a4943",
+      "dataHash": "9c879e7b46410d23831de5b033a0ffdc853b05bed560c75189047e90e723cb18",
+      "contentHash": "07a1423b26bfcd89e5b11f9151f6834b87b5a61536955927b497e5ff209d7cfc",
+      "sourceCreatedAt": "2026-10-30T18:32:24Z",
+      "createdAt": "2026-10-30T21:51:17.078Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e66416e2-3a01-44a3-8d86-ff61b64d2123",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Mobile Developer React Native (Pleno) na Coodesh",
+          "pt-BR": "[Remoto] Mobile Developer React Native (Pleno) na Coodesh",
+          "es": "[Remoto] Mobile Developer React Native (Pleno) na Coodesh",
+          "it": "[Remoto] Mobile Developer React Native (Pleno) na Coodesh",
+          "fr": "[Remoto] Mobile Developer React Native (Pleno) na Coodesh",
+          "de": "[Remoto] Mobile Developer React Native (Pleno) na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fd9c1ce498613dfab8d56a8d"
         }
       },
       "status": "pending",
