@@ -67844,12 +67844,14 @@
       "createdAt": "2026-10-21T10:53:38Z",
       "publicationCreatedAt": "2026-10-21T18:44:32.388Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-30T13:05:21.587Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HCM] Senior Fullstack Developer (Finance/Banking domain)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -67906,7 +67908,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 253
     },
     {
       "jobId": "gh_e89ac86ac916c54d8013da27",
