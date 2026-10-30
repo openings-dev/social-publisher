@@ -67567,12 +67567,23 @@
       "createdAt": "2026-10-21T13:50:08Z",
       "publicationCreatedAt": "2026-10-21T18:44:32.388Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-10-30T05:57:04.812Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0b7763c8edb9fe9b843a85a8",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_0b7763c8edb9fe9b843a85a8/9022d28af45b518c25d390c38cf3a35e83575e09bfa45867cfbfd61da1f10e26/279ed484a1b024d9bd43230173cba0e63ad04f9a1f32538ba89b83876d347a55/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_0b7763c8edb9fe9b843a85a8/9022d28af45b518c25d390c38cf3a35e83575e09bfa45867cfbfd61da1f10e26/279ed484a1b024d9bd43230173cba0e63ad04f9a1f32538ba89b83876d347a55/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_0b7763c8edb9fe9b843a85a8/9022d28af45b518c25d390c38cf3a35e83575e09bfa45867cfbfd61da1f10e26/279ed484a1b024d9bd43230173cba0e63ad04f9a1f32538ba89b83876d347a55/social-video.mp4",
+          "pngHash": "5f91cb7e59b7c8409a8187aaa1882850075297db9058bae52e58cd3453759fbe",
+          "instagramJpegHash": "3ce1edaaf4e6efc5c9890702bb95bbb4fd59a9fd73fe85759defff2b9721f471",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[São Paulo] Dev Fullstack React/React Native + Java Pleno na Protege Cash"
         }
       },
