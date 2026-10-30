@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "f8a665b350935883f1872e3f96b3e5aeaf79f0c1",
-    "generatedAt": "2026-10-29T12:02:53.754Z",
-    "dataHash": "f23828085d985cc182f16462fa9a015ce3d61af7b2ec40014dd2942b2d4e303f"
+    "commit": "ed0f19c7e89d021bfd778c1e44ddb051c69ba0aa",
+    "generatedAt": "2026-10-29T20:00:55.764Z",
+    "dataHash": "c19c15d6b39b3f59a644ac43786a82e499e0235ee5d680b6d5b8d45cad16c184"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19416,6 +19416,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_4f7fd9214a277a97b0ec41c5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9d50e797be669eee892f4cf9",
+      "sourceId": "react-brasil/vagas#3038",
+      "dataCommit": "ed0f19c7e89d021bfd778c1e44ddb051c69ba0aa",
+      "dataHash": "c19c15d6b39b3f59a644ac43786a82e499e0235ee5d680b6d5b8d45cad16c184",
+      "contentHash": "2a14be924148ec2af0dee93ceb7f293f91a56ba602b716a5d017d5f7b7104c23",
+      "sourceCreatedAt": "2026-10-29T18:20:29Z",
+      "createdAt": "2026-10-29T20:00:55.764Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3b35b90c-9c81-4f97-8ab1-3320b88b5183",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Nova Lima, Brasil] Full Cycle Developer (Júnior) na Coodesh",
+          "pt-BR": "[Nova Lima, Brasil] Full Cycle Developer (Júnior) na Coodesh",
+          "es": "[Nova Lima, Brasil] Full Cycle Developer (Júnior) na Coodesh",
+          "it": "[Nova Lima, Brasil] Full Cycle Developer (Júnior) na Coodesh",
+          "fr": "[Nova Lima, Brasil] Full Cycle Developer (Júnior) na Coodesh",
+          "de": "[Nova Lima, Brasil] Full Cycle Developer (Júnior) na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9d50e797be669eee892f4cf9"
         }
       },
       "status": "pending",
