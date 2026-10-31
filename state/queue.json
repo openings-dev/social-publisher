@@ -69136,12 +69136,14 @@
       "createdAt": "2026-10-22T21:34:21Z",
       "publicationCreatedAt": "2026-10-23T01:11:00.786Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-10-31T23:29:22.777Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Hardware enginnering"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -69198,7 +69200,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 259
     },
     {
       "jobId": "gh_ec38e8ee288f153939773832",
