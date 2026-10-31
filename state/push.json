@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "1717c3137d21c0fddcd0ab257ea926d7da574772",
-    "generatedAt": "2026-10-31T16:37:12.044Z",
-    "dataHash": "72185759b369157c48b160062b682c8bd61c4ca3df27d5cae3f8218887274410"
+    "commit": "356602d7c34f9c2e2a12175f5dbe21b768405124",
+    "generatedAt": "2026-10-31T20:51:27.115Z",
+    "dataHash": "e70d4318e9ebc4cd41b241ca5cd593e35f9f6ec7e1596d274ec5bcd0b4df5a58"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19582,6 +19582,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_7f360ec30276f6b949efdb89"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_afcd8a82f0aa037352eb5856",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9721",
+      "dataCommit": "356602d7c34f9c2e2a12175f5dbe21b768405124",
+      "dataHash": "e70d4318e9ebc4cd41b241ca5cd593e35f9f6ec7e1596d274ec5bcd0b4df5a58",
+      "contentHash": "6fd8cc20a357f77861c5329bfe4f6b22f06e30487da0e01ce1d7047565df0afd",
+      "sourceCreatedAt": "2026-10-31T20:15:52Z",
+      "createdAt": "2026-10-31T20:51:27.115Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "aedba5a7-a997-4f17-bf06-a19229de5d5a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Editing Internship | Missing 🛂",
+          "pt-BR": "Editing Internship | Missing 🛂",
+          "es": "Editing Internship | Missing 🛂",
+          "it": "Editing Internship | Missing 🛂",
+          "fr": "Editing Internship | Missing 🛂",
+          "de": "Editing Internship | Missing 🛂"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_afcd8a82f0aa037352eb5856"
         }
       },
       "status": "pending",
