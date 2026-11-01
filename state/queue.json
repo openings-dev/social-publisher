@@ -69893,12 +69893,14 @@
       "createdAt": "2026-10-24T12:08:55Z",
       "publicationCreatedAt": "2026-10-24T16:04:27.788Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-01T18:58:59.764Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Desenvolvedor(a) Java Júnior (Catalogo e Busca) | Confidencial (vaga via Sylision)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -69955,7 +69957,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 262
     },
     {
       "jobId": "gh_d7f8f3e01de4c5ee55d73b9b",
