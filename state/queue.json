@@ -69413,12 +69413,14 @@
       "createdAt": "2026-10-23T12:33:38Z",
       "publicationCreatedAt": "2026-10-23T18:58:52.184Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-01T13:38:54.908Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HCM/Đà Nẵng] Tuyển 12 bạn junior-senior dev [pv 1 vòng online]"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -69475,7 +69477,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 261
     },
     {
       "jobId": "gh_16411c913e420988025158f9",
