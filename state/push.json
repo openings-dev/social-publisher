@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "3f921e6c44fa072b90244ee75f15c31100cba1db",
-    "generatedAt": "2026-11-01T03:34:40.286Z",
-    "dataHash": "536a54d377d41d3b64d5b1c22cbcc62ed0d2dc6ea8543d25f2d626f82b27f452"
+    "commit": "97516ee5671d62bc1b652dc840e943e3a3a96cc0",
+    "generatedAt": "2026-11-01T12:25:40.553Z",
+    "dataHash": "582f8a32d1f7e6ec3122a75959a92f27ae723a14800e32e54786e1c7f57c0c2c"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19633,6 +19633,166 @@
         "notificationId": "0172dd13-b3ac-43ca-b0c4-7e61a997c3db",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_561fa6ad9d749a58c266bd81",
+      "sourceId": "ambicuity/New-Grad-Jobs#458",
+      "dataCommit": "97516ee5671d62bc1b652dc840e943e3a3a96cc0",
+      "dataHash": "582f8a32d1f7e6ec3122a75959a92f27ae723a14800e32e54786e1c7f57c0c2c",
+      "contentHash": "73ab1e22ed746e7ca5c7d276d73164e65b9988bb1c785a13a71ad9f1f2c78900",
+      "sourceCreatedAt": "2026-11-01T06:18:00Z",
+      "createdAt": "2026-11-01T12:25:40.553Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "7dc1ccff-f526-41f0-95ae-e85f677aeea1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-11-01T02:10:33.337544Z",
+          "pt-BR": "Job data is stale: last scrape 2026-11-01T02:10:33.337544Z",
+          "es": "Job data is stale: last scrape 2026-11-01T02:10:33.337544Z",
+          "it": "Job data is stale: last scrape 2026-11-01T02:10:33.337544Z",
+          "fr": "Job data is stale: last scrape 2026-11-01T02:10:33.337544Z",
+          "de": "Job data is stale: last scrape 2026-11-01T02:10:33.337544Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_561fa6ad9d749a58c266bd81"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_1927268a7260ded05056f4ac",
+      "sourceId": "awesome-jobs/jobs#5098",
+      "dataCommit": "97516ee5671d62bc1b652dc840e943e3a3a96cc0",
+      "dataHash": "582f8a32d1f7e6ec3122a75959a92f27ae723a14800e32e54786e1c7f57c0c2c",
+      "contentHash": "07540e0459fce88ced9775f2e4aee331240e87ff35adc9b9c152a19603106f30",
+      "sourceCreatedAt": "2026-11-01T03:44:52Z",
+      "createdAt": "2026-11-01T12:25:40.553Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "27d207fa-d489-4a3a-8ed5-2284813a62cf",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HCM] Tech Lead 8+ yoe | US startup | REMOTE morning, ONSITE afternoon",
+          "pt-BR": "[HCM] Tech Lead 8+ yoe | US startup | REMOTE morning, ONSITE afternoon",
+          "es": "[HCM] Tech Lead 8+ yoe | US startup | REMOTE morning, ONSITE afternoon",
+          "it": "[HCM] Tech Lead 8+ yoe | US startup | REMOTE morning, ONSITE afternoon",
+          "fr": "[HCM] Tech Lead 8+ yoe | US startup | REMOTE morning, ONSITE afternoon",
+          "de": "[HCM] Tech Lead 8+ yoe | US startup | REMOTE morning, ONSITE afternoon"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1927268a7260ded05056f4ac"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_053d4cac62127636695c6fb4",
+      "sourceId": "soujava/vagas-java#1949",
+      "dataCommit": "97516ee5671d62bc1b652dc840e943e3a3a96cc0",
+      "dataHash": "582f8a32d1f7e6ec3122a75959a92f27ae723a14800e32e54786e1c7f57c0c2c",
+      "contentHash": "ed7eec45856262e8050dbea2a5094a401a3212889d4cf2d5a70e10e202c0ee4e",
+      "sourceCreatedAt": "2026-09-02T00:26:21Z",
+      "createdAt": "2026-11-01T12:25:40.553Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "eee1a0f8-02ed-4539-9611-fab05d0f4d96",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "pt-BR": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "es": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "it": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "fr": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡",
+          "de": "[Híbrido em São Paulo] Java Backend Sênior - Evertec 🧡"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_053d4cac62127636695c6fb4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9be96c4ad694d4c67023486b",
+      "sourceId": "soujava/vagas-java#1948",
+      "dataCommit": "97516ee5671d62bc1b652dc840e943e3a3a96cc0",
+      "dataHash": "582f8a32d1f7e6ec3122a75959a92f27ae723a14800e32e54786e1c7f57c0c2c",
+      "contentHash": "7678c17ceaf9fef6335399e934cf1d69fd6d46939d2cccb134057b7b3e6347b3",
+      "sourceCreatedAt": "2026-09-01T14:27:13Z",
+      "createdAt": "2026-11-01T12:25:40.553Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "285605a2-30b6-4621-90fc-769af4afd9c5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "São Paulo/SP | Desenvolvedor de Software (Java/Angular) — Meios de Pagamento | JP&F Consultoria",
+          "pt-BR": "São Paulo/SP | Desenvolvedor de Software (Java/Angular) — Meios de Pagamento | JP&F Consultoria",
+          "es": "São Paulo/SP | Desenvolvedor de Software (Java/Angular) — Meios de Pagamento | JP&F Consultoria",
+          "it": "São Paulo/SP | Desenvolvedor de Software (Java/Angular) — Meios de Pagamento | JP&F Consultoria",
+          "fr": "São Paulo/SP | Desenvolvedor de Software (Java/Angular) — Meios de Pagamento | JP&F Consultoria",
+          "de": "São Paulo/SP | Desenvolvedor de Software (Java/Angular) — Meios de Pagamento | JP&F Consultoria"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9be96c4ad694d4c67023486b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
