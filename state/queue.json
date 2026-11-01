@@ -69487,12 +69487,23 @@
       "createdAt": "2026-10-23T10:36:33Z",
       "publicationCreatedAt": "2026-10-23T18:58:52.184Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-01T06:17:44.400Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_16411c913e420988025158f9",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_16411c913e420988025158f9/fb601f540d54242518606fd639bb0d70efa7a1a0e5b8259514b5a316517c9e40/b3dcc82a3bd9f120a9864e861ac9b81649e3d66a9574ae1ace7b970e3630bd0f/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_16411c913e420988025158f9/fb601f540d54242518606fd639bb0d70efa7a1a0e5b8259514b5a316517c9e40/b3dcc82a3bd9f120a9864e861ac9b81649e3d66a9574ae1ace7b970e3630bd0f/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_16411c913e420988025158f9/fb601f540d54242518606fd639bb0d70efa7a1a0e5b8259514b5a316517c9e40/b3dcc82a3bd9f120a9864e861ac9b81649e3d66a9574ae1ace7b970e3630bd0f/social-video.mp4",
+          "pngHash": "ee0e59509688c081a034083344caf967b9de17e18247263e66233ae2917f48f3",
+          "instagramJpegHash": "06d0c37c4f818f681a6ff9e4aacf8ad99087d532c2c48e1a7201677d7c6f58bd",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[HCM] Senior IT Migration Engineer 5+ yoe | migrate 365 -> Google Workspace"
         }
       },
