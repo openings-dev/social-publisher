@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "97516ee5671d62bc1b652dc840e943e3a3a96cc0",
-    "generatedAt": "2026-11-01T12:25:40.553Z",
-    "dataHash": "582f8a32d1f7e6ec3122a75959a92f27ae723a14800e32e54786e1c7f57c0c2c"
+    "commit": "020057d50d38909cd714e4574a98c939f8f50fa8",
+    "generatedAt": "2026-11-01T19:18:47.724Z",
+    "dataHash": "e637248460ac6dd6961097a22170864bb8993d133eb3fbe493a5eb479da0dd23"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19667,10 +19667,10 @@
           "jobId": "gh_561fa6ad9d749a58c266bd81"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-01T19:18:47.724Z",
       "retryAfter": null,
       "result": null
     },
@@ -19785,6 +19785,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_9be96c4ad694d4c67023486b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d60aaac9a7d278d410f7fe50",
+      "sourceId": "soujava/vagas-java#1974",
+      "dataCommit": "020057d50d38909cd714e4574a98c939f8f50fa8",
+      "dataHash": "e637248460ac6dd6961097a22170864bb8993d133eb3fbe493a5eb479da0dd23",
+      "contentHash": "f4f1f71c37ff27f791ba03fb27878c2f69bafce35090e9e46757920ec7062d1d",
+      "sourceCreatedAt": "2026-11-01T13:10:52Z",
+      "createdAt": "2026-11-01T19:18:47.724Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6b710093-a8fb-4e9e-853a-c6e0d84e27d0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Júnior (Notificações) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Júnior (Notificações) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Júnior (Notificações) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Júnior (Notificações) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Júnior (Notificações) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Júnior (Notificações) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d60aaac9a7d278d410f7fe50"
         }
       },
       "status": "pending",
