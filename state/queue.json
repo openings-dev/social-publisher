@@ -70373,12 +70373,14 @@
       "createdAt": "2026-10-25T12:26:08Z",
       "publicationCreatedAt": "2026-10-25T16:32:07.124Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-02T06:19:13.743Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Desenvolvedor(a) Java Júnior (Fila de Pedidos) | Confidencial (vaga via Sylision)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -70435,7 +70437,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 264
     },
     {
       "jobId": "gh_bc6d8863701c8bf79e429eba",
