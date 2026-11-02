@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "9eef031b39fa858d129aeb57a3b0e75cceef0751",
-    "generatedAt": "2026-11-02T00:05:30.817Z",
-    "dataHash": "d182e9122c11bdb6e7afd77de6247e3eef423aaed92dd3bee809c9f401d26fa6"
+    "commit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+    "generatedAt": "2026-11-02T10:23:30.704Z",
+    "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19828,6 +19828,646 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_d60aaac9a7d278d410f7fe50"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_cd69a25dd6943963ac6757d5",
+      "sourceId": "rebase-network/who-is-hiring#1332",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "bc3815926413c3084b585b8bdbd61cb62ca56d4faa0041217b97330a3176ae71",
+      "sourceCreatedAt": "2026-11-02T08:49:02Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "cc357bac-0076-498b-9801-2f084d647f94",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【全球远程 远程办公 居家办公 FineStar】高级Go开发工程师 AI 效能工程师 ai工作流工程师",
+          "pt-BR": "【全球远程 远程办公 居家办公 FineStar】高级Go开发工程师 AI 效能工程师 ai工作流工程师",
+          "es": "【全球远程 远程办公 居家办公 FineStar】高级Go开发工程师 AI 效能工程师 ai工作流工程师",
+          "it": "【全球远程 远程办公 居家办公 FineStar】高级Go开发工程师 AI 效能工程师 ai工作流工程师",
+          "fr": "【全球远程 远程办公 居家办公 FineStar】高级Go开发工程师 AI 效能工程师 ai工作流工程师",
+          "de": "【全球远程 远程办公 居家办公 FineStar】高级Go开发工程师 AI 效能工程师 ai工作流工程师"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_cd69a25dd6943963ac6757d5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ac708d15d7fc65fbd03a15e6",
+      "sourceId": "rebase-network/who-is-hiring#1331",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "15c68b6d99eae9252459757b86c754e2065d2ebb4d1d8070d44665003b87b876",
+      "sourceCreatedAt": "2026-11-02T08:48:48Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "09cdddb7-04f8-4602-8cd6-9778b18f67de",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【全球远程 FineStar】AI 视频生成 AIGC视频生成师 视频剪辑 AI短剧编剧 20-40k",
+          "pt-BR": "【全球远程 FineStar】AI 视频生成 AIGC视频生成师 视频剪辑 AI短剧编剧 20-40k",
+          "es": "【全球远程 FineStar】AI 视频生成 AIGC视频生成师 视频剪辑 AI短剧编剧 20-40k",
+          "it": "【全球远程 FineStar】AI 视频生成 AIGC视频生成师 视频剪辑 AI短剧编剧 20-40k",
+          "fr": "【全球远程 FineStar】AI 视频生成 AIGC视频生成师 视频剪辑 AI短剧编剧 20-40k",
+          "de": "【全球远程 FineStar】AI 视频生成 AIGC视频生成师 视频剪辑 AI短剧编剧 20-40k"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ac708d15d7fc65fbd03a15e6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8ac933ce31d46b2a289ec0f2",
+      "sourceId": "ambicuity/New-Grad-Jobs#459",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "aa2aa2cbdc5859ed89c979347ea14c0eac49e188dbbed825aa1b76d4932b7ef9",
+      "sourceCreatedAt": "2026-11-02T06:19:16Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3b98cea2-9f41-4b02-bdb8-36b7bf8ed6ff",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-11-02T00:40:20.143909Z",
+          "pt-BR": "Job data is stale: last scrape 2026-11-02T00:40:20.143909Z",
+          "es": "Job data is stale: last scrape 2026-11-02T00:40:20.143909Z",
+          "it": "Job data is stale: last scrape 2026-11-02T00:40:20.143909Z",
+          "fr": "Job data is stale: last scrape 2026-11-02T00:40:20.143909Z",
+          "de": "Job data is stale: last scrape 2026-11-02T00:40:20.143909Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8ac933ce31d46b2a289ec0f2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7fcd7d4e6ebfd8ce32457596",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9743",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "ad8aeb7fcafb5d4a86edefeacac93c06b2d38c375656e5c468d5eab0bd0d4d0c",
+      "sourceCreatedAt": "2026-11-02T04:12:28Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "fa2b4f7f-355a-4d1e-8311-0424172565ee",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Product Design Intern (Summer 2027)",
+          "pt-BR": "Product Design Intern (Summer 2027)",
+          "es": "Product Design Intern (Summer 2027)",
+          "it": "Product Design Intern (Summer 2027)",
+          "fr": "Product Design Intern (Summer 2027)",
+          "de": "Product Design Intern (Summer 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7fcd7d4e6ebfd8ce32457596"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_664c01152c1dcaf80cdc64ee",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9742",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "822c2e9c7c5b725a54b0d54b18eaf4c8c670722291df60a1eced0c13c54f0771",
+      "sourceCreatedAt": "2026-11-02T04:12:09Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ffc0bd46-955f-4ca5-b5a1-29f30659ba49",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Product Design Intern (Winter 2027)",
+          "pt-BR": "Product Design Intern (Winter 2027)",
+          "es": "Product Design Intern (Winter 2027)",
+          "it": "Product Design Intern (Winter 2027)",
+          "fr": "Product Design Intern (Winter 2027)",
+          "de": "Product Design Intern (Winter 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_664c01152c1dcaf80cdc64ee"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_365dc46b340a021f79a5e33a",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9741",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "5f43cbb247177438a5b7a63a5fdd6e2102e67bace4bb458201a517011a575df4",
+      "sourceCreatedAt": "2026-11-02T04:11:46Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4835782f-e54e-410f-8b2c-3c37132c5b41",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Infrastructure Engineer Intern (Summer 2027)",
+          "pt-BR": "Infrastructure Engineer Intern (Summer 2027)",
+          "es": "Infrastructure Engineer Intern (Summer 2027)",
+          "it": "Infrastructure Engineer Intern (Summer 2027)",
+          "fr": "Infrastructure Engineer Intern (Summer 2027)",
+          "de": "Infrastructure Engineer Intern (Summer 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_365dc46b340a021f79a5e33a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3028e7e6548ca34d536d61f2",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9740",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "3653ba192f5167ff59d41cb58e755ec008e4b673f5c8e79f8a0e67ed259cf3c8",
+      "sourceCreatedAt": "2026-11-02T04:11:25Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a83dfb24-bf9e-429d-b54e-135f5f5e996c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Infrastructure Engineer Intern (Winter 2027)",
+          "pt-BR": "Infrastructure Engineer Intern (Winter 2027)",
+          "es": "Infrastructure Engineer Intern (Winter 2027)",
+          "it": "Infrastructure Engineer Intern (Winter 2027)",
+          "fr": "Infrastructure Engineer Intern (Winter 2027)",
+          "de": "Infrastructure Engineer Intern (Winter 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3028e7e6548ca34d536d61f2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ade4e389df20f34bf12bd1ba",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9739",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "3bad12022c39c51186bac84b0abe71d82d5be54613fefb7f6fbd9b7e75a3ee65",
+      "sourceCreatedAt": "2026-11-02T04:11:01Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6dd41948-560b-4a1f-b83f-163bdfad9a20",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Firmware Engineer Intern (Summer 2027)",
+          "pt-BR": "Firmware Engineer Intern (Summer 2027)",
+          "es": "Firmware Engineer Intern (Summer 2027)",
+          "it": "Firmware Engineer Intern (Summer 2027)",
+          "fr": "Firmware Engineer Intern (Summer 2027)",
+          "de": "Firmware Engineer Intern (Summer 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ade4e389df20f34bf12bd1ba"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8e4c023d88b833d5f927299b",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9738",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "92277bcfdeeacb211cfef7d1bb1f5b43fd464f21c1ff8320fe9588b6c9891f8e",
+      "sourceCreatedAt": "2026-11-02T04:10:36Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ca73574d-0965-4ff2-9e6e-9f177d930f59",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Firmware Engineer Intern (Winter 2027)",
+          "pt-BR": "Firmware Engineer Intern (Winter 2027)",
+          "es": "Firmware Engineer Intern (Winter 2027)",
+          "it": "Firmware Engineer Intern (Winter 2027)",
+          "fr": "Firmware Engineer Intern (Winter 2027)",
+          "de": "Firmware Engineer Intern (Winter 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8e4c023d88b833d5f927299b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e75b9acd06c4aa9b745cfcd4",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9737",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "6b3379ff34b70f5e6f72789902c4d9597109684f915e3ae97a1d156c6e4d0e91",
+      "sourceCreatedAt": "2026-11-02T04:10:06Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0d530cad-9cce-47e1-8a14-4faf912100fd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Mechatronics Intern (PhD) (Summer 2027)",
+          "pt-BR": "Mechatronics Intern (PhD) (Summer 2027)",
+          "es": "Mechatronics Intern (PhD) (Summer 2027)",
+          "it": "Mechatronics Intern (PhD) (Summer 2027)",
+          "fr": "Mechatronics Intern (PhD) (Summer 2027)",
+          "de": "Mechatronics Intern (PhD) (Summer 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e75b9acd06c4aa9b745cfcd4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d70081da7b062562341e91c9",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9736",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "f0313b24e05fdf3eb691b1c04a4ffa810c964e0b6c9312c930f32462e1af66cb",
+      "sourceCreatedAt": "2026-11-02T04:09:31Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "64c985ea-9ec8-4041-9142-051a6854f51f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Mechatronics Intern (PhD) (Winter 2027)",
+          "pt-BR": "Mechatronics Intern (PhD) (Winter 2027)",
+          "es": "Mechatronics Intern (PhD) (Winter 2027)",
+          "it": "Mechatronics Intern (PhD) (Winter 2027)",
+          "fr": "Mechatronics Intern (PhD) (Winter 2027)",
+          "de": "Mechatronics Intern (PhD) (Winter 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d70081da7b062562341e91c9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fc1e0d9ace43c32460a9ab02",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9735",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "2732c651efaff7bce509953368b0ae0a99a69aa340c7adfa8eab92b0304d3553",
+      "sourceCreatedAt": "2026-11-02T04:08:51Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9aae5c04-c3f7-4e86-8a0b-7216666d1d74",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Research Engineer Intern (PhD) (Summer 2027)",
+          "pt-BR": "Research Engineer Intern (PhD) (Summer 2027)",
+          "es": "Research Engineer Intern (PhD) (Summer 2027)",
+          "it": "Research Engineer Intern (PhD) (Summer 2027)",
+          "fr": "Research Engineer Intern (PhD) (Summer 2027)",
+          "de": "Research Engineer Intern (PhD) (Summer 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fc1e0d9ace43c32460a9ab02"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3a7c69d3b98837623e85a192",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9734",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "ed8159c55a0ff3752ebcd930722a7cbbcb552cc80ce720f4815401d8ddfc95c5",
+      "sourceCreatedAt": "2026-11-02T04:07:50Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0c2d0e2b-f5bc-4621-96fd-fc67744ea39e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Research Engineer Intern (PhD) (Winter 2027)",
+          "pt-BR": "Research Engineer Intern (PhD) (Winter 2027)",
+          "es": "Research Engineer Intern (PhD) (Winter 2027)",
+          "it": "Research Engineer Intern (PhD) (Winter 2027)",
+          "fr": "Research Engineer Intern (PhD) (Winter 2027)",
+          "de": "Research Engineer Intern (PhD) (Winter 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3a7c69d3b98837623e85a192"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d2bbf3770cb53d71373701a6",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9723",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "5d978af41bdd9fcf90aa36d56e652fb137c11e50b88f9dbef71ba5f21b7ca8bf",
+      "sourceCreatedAt": "2026-11-02T03:55:40Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a20ea755-d91c-4e4a-875e-15d2bfd986b1",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Software Engineer Intern (Winter 2027)",
+          "pt-BR": "Software Engineer Intern (Winter 2027)",
+          "es": "Software Engineer Intern (Winter 2027)",
+          "it": "Software Engineer Intern (Winter 2027)",
+          "fr": "Software Engineer Intern (Winter 2027)",
+          "de": "Software Engineer Intern (Winter 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d2bbf3770cb53d71373701a6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_06bb8f7932c37608cb078228",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9722",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "9bcbc192d2b60414c2baad0155999b5c60f7992cf9ea61153b85c8eeea8b3c44",
+      "sourceCreatedAt": "2026-11-02T03:55:37Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "fed0a342-9e44-4eff-a139-6d9f2810044f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Software Engineer Intern (Summer 2027)",
+          "pt-BR": "Software Engineer Intern (Summer 2027)",
+          "es": "Software Engineer Intern (Summer 2027)",
+          "it": "Software Engineer Intern (Summer 2027)",
+          "fr": "Software Engineer Intern (Summer 2027)",
+          "de": "Software Engineer Intern (Summer 2027)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_06bb8f7932c37608cb078228"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_33bced2fc34c5cdedf31728d",
+      "sourceId": "DevOps-Brasil/Vagas#501",
+      "dataCommit": "b6840d08ef48c1bd0fc6154b7161d088e2b1ea32",
+      "dataHash": "03439d86fdee02bd14ef53f8d22500520c809bb7ace0378f520d3fcc1a39564a",
+      "contentHash": "f972c9a30d788bc35055e96c76d23429d967a19346998841e2ecee4a38649151",
+      "sourceCreatedAt": "2026-09-02T23:56:21Z",
+      "createdAt": "2026-11-02T10:23:30.704Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "76ba43c3-f718-42d9-9f56-1abaeb488740",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[ SRE | Telefonia ] Monest AI - Remoto",
+          "pt-BR": "[ SRE | Telefonia ] Monest AI - Remoto",
+          "es": "[ SRE | Telefonia ] Monest AI - Remoto",
+          "it": "[ SRE | Telefonia ] Monest AI - Remoto",
+          "fr": "[ SRE | Telefonia ] Monest AI - Remoto",
+          "de": "[ SRE | Telefonia ] Monest AI - Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_33bced2fc34c5cdedf31728d"
         }
       },
       "status": "pending",
