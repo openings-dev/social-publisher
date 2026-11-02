@@ -70431,10 +70431,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-11-02T06:19:13.743Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-11-02T06:19:13.743Z"
+        },
         "lastReset": null,
         "result": null
       },
