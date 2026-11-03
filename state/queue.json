@@ -70820,12 +70820,23 @@
       "createdAt": "2026-10-26T19:29:46Z",
       "publicationCreatedAt": "2026-10-27T01:32:29.635Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-03T02:24:39.527Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_f824ca3f431156ee77e7700a",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_f824ca3f431156ee77e7700a/d8170fccbb34ca13f45c6f5bb1bb24c3f491be235063021774117c1bcaf0fb8c/b49b99b806b22b5c6e4b5407a1da9819b3d43113f21749d1a00d6595150ea775/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_f824ca3f431156ee77e7700a/d8170fccbb34ca13f45c6f5bb1bb24c3f491be235063021774117c1bcaf0fb8c/b49b99b806b22b5c6e4b5407a1da9819b3d43113f21749d1a00d6595150ea775/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_f824ca3f431156ee77e7700a/d8170fccbb34ca13f45c6f5bb1bb24c3f491be235063021774117c1bcaf0fb8c/b49b99b806b22b5c6e4b5407a1da9819b3d43113f21749d1a00d6595150ea775/social-video.mp4",
+          "pngHash": "2d7b0fb1ac87327975346c048a173f60df92475c6cd15d26d7e564a59589940a",
+          "instagramJpegHash": "e690c9870dddd2e3371384b693fc54a87a680d554abef19ca3ad99eedef4450d",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Campinas] Programa Trainee @BotCity"
         }
       },
