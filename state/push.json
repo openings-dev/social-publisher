@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "38776fc3d5813cfc99650a4cd0c338714180d16e",
-    "generatedAt": "2026-11-03T04:46:18.826Z",
-    "dataHash": "003618d43c0060afd5e7e392923fc68e7f0b7ef8b4ed9d232e885df4edfa29b8"
+    "commit": "c719c8110451da57913bffdcac7c0d3c0a15ebc6",
+    "generatedAt": "2026-11-03T13:22:45.968Z",
+    "dataHash": "f0dda695caa25074a7e30d6d744addfb64ed05f10ec62d7b7788cda1be32cc53"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -19953,10 +19953,10 @@
           "jobId": "gh_8ac933ce31d46b2a289ec0f2"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-03T13:22:45.968Z",
       "retryAfter": null,
       "result": null
     },
@@ -20751,6 +20751,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_7be2f05d46f630ed65453833"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_01304d40c1defd808fb8b3be",
+      "sourceId": "rebase-network/who-is-hiring#1335",
+      "dataCommit": "c719c8110451da57913bffdcac7c0d3c0a15ebc6",
+      "dataHash": "f0dda695caa25074a7e30d6d744addfb64ed05f10ec62d7b7788cda1be32cc53",
+      "contentHash": "f7ba327ceb551e42cadb16a0f43dc825084bd08829ce01e35f3354aa53f963fa",
+      "sourceCreatedAt": "2026-11-03T08:22:37Z",
+      "createdAt": "2026-11-03T13:22:45.968Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "84b4fda5-2884-425c-916b-e51cb345549f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【全球远程 远程办公 居家办公 FineStar】后端/go/glang高级/架构师 Go/PHP/Python/node  20-50k",
+          "pt-BR": "【全球远程 远程办公 居家办公 FineStar】后端/go/glang高级/架构师 Go/PHP/Python/node  20-50k",
+          "es": "【全球远程 远程办公 居家办公 FineStar】后端/go/glang高级/架构师 Go/PHP/Python/node  20-50k",
+          "it": "【全球远程 远程办公 居家办公 FineStar】后端/go/glang高级/架构师 Go/PHP/Python/node  20-50k",
+          "fr": "【全球远程 远程办公 居家办公 FineStar】后端/go/glang高级/架构师 Go/PHP/Python/node  20-50k",
+          "de": "【全球远程 远程办公 居家办公 FineStar】后端/go/glang高级/架构师 Go/PHP/Python/node  20-50k"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_01304d40c1defd808fb8b3be"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_1ef9ab1a40d70f694d6cf680",
+      "sourceId": "rebase-network/who-is-hiring#1334",
+      "dataCommit": "c719c8110451da57913bffdcac7c0d3c0a15ebc6",
+      "dataHash": "f0dda695caa25074a7e30d6d744addfb64ed05f10ec62d7b7788cda1be32cc53",
+      "contentHash": "90f9daf0eae72044d81d624d3a3c3f966d091d5d4fea88c1d5e39422cbfa8d32",
+      "sourceCreatedAt": "2026-11-03T05:59:09Z",
+      "createdAt": "2026-11-03T13:22:45.968Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a5dcbd64-c525-4660-8bd3-4085c4763dc8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[香港] Crypto量化 诚聘 Rust/Kotlin/Java工程师 薪资不设限制 经验2-20+年",
+          "pt-BR": "[香港] Crypto量化 诚聘 Rust/Kotlin/Java工程师 薪资不设限制 经验2-20+年",
+          "es": "[香港] Crypto量化 诚聘 Rust/Kotlin/Java工程师 薪资不设限制 经验2-20+年",
+          "it": "[香港] Crypto量化 诚聘 Rust/Kotlin/Java工程师 薪资不设限制 经验2-20+年",
+          "fr": "[香港] Crypto量化 诚聘 Rust/Kotlin/Java工程师 薪资不设限制 经验2-20+年",
+          "de": "[香港] Crypto量化 诚聘 Rust/Kotlin/Java工程师 薪资不设限制 经验2-20+年"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1ef9ab1a40d70f694d6cf680"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_423253e9f32ff55698650e74",
+      "sourceId": "soujava/vagas-java#1952",
+      "dataCommit": "c719c8110451da57913bffdcac7c0d3c0a15ebc6",
+      "dataHash": "f0dda695caa25074a7e30d6d744addfb64ed05f10ec62d7b7788cda1be32cc53",
+      "contentHash": "8a16ce5e77ca27d3f41ef9975f25dbefe5c30c24c3c4217d1c0091e12a7608d0",
+      "sourceCreatedAt": "2026-09-03T19:44:25Z",
+      "createdAt": "2026-11-03T13:22:45.968Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "40ce15d0-ba55-47f4-893b-1e2520009426",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTO] Desenvolvedor Full Stack SENIOR na [OPIKODE]",
+          "pt-BR": "[REMOTO] Desenvolvedor Full Stack SENIOR na [OPIKODE]",
+          "es": "[REMOTO] Desenvolvedor Full Stack SENIOR na [OPIKODE]",
+          "it": "[REMOTO] Desenvolvedor Full Stack SENIOR na [OPIKODE]",
+          "fr": "[REMOTO] Desenvolvedor Full Stack SENIOR na [OPIKODE]",
+          "de": "[REMOTO] Desenvolvedor Full Stack SENIOR na [OPIKODE]"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_423253e9f32ff55698650e74"
         }
       },
       "status": "pending",
