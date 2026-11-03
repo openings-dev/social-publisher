@@ -71097,12 +71097,14 @@
       "createdAt": "2026-10-27T07:54:09Z",
       "publicationCreatedAt": "2026-10-27T14:37:55.559Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-03T12:00:08.138Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remote 70tr] 02 Senior Java + 01 Senior Fullstack Java Reactjs cho dự án Banking của client Hà Lan"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -71159,7 +71161,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 267
     },
     {
       "jobId": "gh_1003e992113d5a32a9efae2b",
