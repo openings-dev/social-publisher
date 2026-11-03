@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "c719c8110451da57913bffdcac7c0d3c0a15ebc6",
-    "generatedAt": "2026-11-03T13:22:45.968Z",
-    "dataHash": "f0dda695caa25074a7e30d6d744addfb64ed05f10ec62d7b7788cda1be32cc53"
+    "commit": "d6414f375e9bca248de6901fc7b0b26ad4a71280",
+    "generatedAt": "2026-11-03T20:44:46.796Z",
+    "dataHash": "bad18d77160bcb889a6d575358d6227f7b1ec90111afc247089c3c7e7cbf81ba"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -20871,6 +20871,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_423253e9f32ff55698650e74"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_955226cbfa98dd29e44c402f",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2988",
+      "dataCommit": "d6414f375e9bca248de6901fc7b0b26ad4a71280",
+      "dataHash": "bad18d77160bcb889a6d575358d6227f7b1ec90111afc247089c3c7e7cbf81ba",
+      "contentHash": "ac8044b4046fa4815e1a150ccc3eaa032472e89713a2453970e578d42f7c5b1d",
+      "sourceCreatedAt": "2026-11-03T18:57:28Z",
+      "createdAt": "2026-11-03T20:44:46.796Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2eee70ae-3547-4587-ae59-147a650b0a73",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Role",
+          "pt-BR": "New Role",
+          "es": "New Role",
+          "it": "New Role",
+          "fr": "New Role",
+          "de": "New Role"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_955226cbfa98dd29e44c402f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4c8cb2b9592db50dba6ad8df",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9751",
+      "dataCommit": "d6414f375e9bca248de6901fc7b0b26ad4a71280",
+      "dataHash": "bad18d77160bcb889a6d575358d6227f7b1ec90111afc247089c3c7e7cbf81ba",
+      "contentHash": "88ccce835e7fb42edca412a1a2d7e678672cc2a1ba8e8eaac5888325d630dec3",
+      "sourceCreatedAt": "2026-11-03T18:56:32Z",
+      "createdAt": "2026-11-03T20:44:46.796Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b5daa29f-225d-493e-af5d-62612b2e7f8a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4c8cb2b9592db50dba6ad8df"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_30f0dda015de26670412f182",
+      "sourceId": "programadores-br/geral#3128",
+      "dataCommit": "d6414f375e9bca248de6901fc7b0b26ad4a71280",
+      "dataHash": "bad18d77160bcb889a6d575358d6227f7b1ec90111afc247089c3c7e7cbf81ba",
+      "contentHash": "dd563ddb971205be5c4127ca75c4d91874b23ff8a7737fa03214cd67d20deb89",
+      "sourceCreatedAt": "2026-11-03T17:19:12Z",
+      "createdAt": "2026-11-03T20:44:46.796Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "86dc8cbb-0c21-4154-a61e-a37530062316",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Belo Horizonte, Brasil] Product Owner na Coodesh",
+          "pt-BR": "[Belo Horizonte, Brasil] Product Owner na Coodesh",
+          "es": "[Belo Horizonte, Brasil] Product Owner na Coodesh",
+          "it": "[Belo Horizonte, Brasil] Product Owner na Coodesh",
+          "fr": "[Belo Horizonte, Brasil] Product Owner na Coodesh",
+          "de": "[Belo Horizonte, Brasil] Product Owner na Coodesh"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_30f0dda015de26670412f182"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ca9d5db8baaa5615880ab26c",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9749",
+      "dataCommit": "d6414f375e9bca248de6901fc7b0b26ad4a71280",
+      "dataHash": "bad18d77160bcb889a6d575358d6227f7b1ec90111afc247089c3c7e7cbf81ba",
+      "contentHash": "508f92de6cc5a5b9cdb09fe1e2cc82c5ceda20f23ef3f9ffb66737ace0b9fc30",
+      "sourceCreatedAt": "2026-11-03T15:02:16Z",
+      "createdAt": "2026-11-03T20:44:46.796Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d3a656b3-ab08-4d8a-9d63-64374f198920",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ca9d5db8baaa5615880ab26c"
         }
       },
       "status": "pending",
