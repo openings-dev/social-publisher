@@ -71097,12 +71097,23 @@
       "createdAt": "2026-10-27T07:54:09Z",
       "publicationCreatedAt": "2026-10-27T14:37:55.559Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-03T12:00:08.138Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_0ef20ee44b7012dcb449508a",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_0ef20ee44b7012dcb449508a/ad5f0a586d6b0b46666220510f38db0d5025dee0a0ab746882074ef97b04c930/5ae623e1cbde9f10ca9dee93649e80ac57f6a0982d5ddb3d3ba0d8fbcf9b9e93/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_0ef20ee44b7012dcb449508a/ad5f0a586d6b0b46666220510f38db0d5025dee0a0ab746882074ef97b04c930/5ae623e1cbde9f10ca9dee93649e80ac57f6a0982d5ddb3d3ba0d8fbcf9b9e93/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_0ef20ee44b7012dcb449508a/ad5f0a586d6b0b46666220510f38db0d5025dee0a0ab746882074ef97b04c930/5ae623e1cbde9f10ca9dee93649e80ac57f6a0982d5ddb3d3ba0d8fbcf9b9e93/social-video.mp4",
+          "pngHash": "9dd3f45696bd93ce37455d9de956229c5c4768111919964409003cd625caa1c0",
+          "instagramJpegHash": "e6a43ad158b16b666f32471f1acedd22cfef8c4ab8056616497b1cf738753479",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[Remote 70tr] 02 Senior Java + 01 Senior Fullstack Java Reactjs cho dự án Banking của client Hà Lan"
         }
       },
