@@ -72,12 +72,12 @@
         }
       },
       "feed": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-10-29T20:02:40.987Z",
+        "status": "failed",
+        "attempts": 3,
+        "updatedAt": "2026-11-03T20:45:34.094Z",
         "lastError": {
           "code": "instagram_carousel_reconciliation",
-          "at": "2026-10-29T20:02:40.987Z"
+          "at": "2026-11-03T20:45:34.094Z"
         },
         "lastReset": null,
         "result": null
