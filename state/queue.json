@@ -71838,10 +71838,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-11-04T09:25:12.839Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-11-04T09:25:12.839Z"
+        },
         "lastReset": null,
         "result": null
       },
