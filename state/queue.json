@@ -72131,12 +72131,23 @@
       "createdAt": "2026-10-28T14:12:10Z",
       "publicationCreatedAt": "2026-10-28T22:42:06.564Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-04T23:45:33.172Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4ddc5ce7cb4c159fc9054916",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_4ddc5ce7cb4c159fc9054916/00e2d840a8c58604b0a626ea3fabfe103fa2529f1b4ab585b99d7d1e8e4250e7/aab819f3b6b75e95ec66ee35d09b013d5bc0d31adbb75207ece964c30acbddc9/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_4ddc5ce7cb4c159fc9054916/00e2d840a8c58604b0a626ea3fabfe103fa2529f1b4ab585b99d7d1e8e4250e7/aab819f3b6b75e95ec66ee35d09b013d5bc0d31adbb75207ece964c30acbddc9/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_4ddc5ce7cb4c159fc9054916/00e2d840a8c58604b0a626ea3fabfe103fa2529f1b4ab585b99d7d1e8e4250e7/aab819f3b6b75e95ec66ee35d09b013d5bc0d31adbb75207ece964c30acbddc9/social-video.mp4",
+          "pngHash": "ef2d8cff1bdbc1cdcee563061e8aa2cafd8deb8973b7112e48d3438a087af98a",
+          "instagramJpegHash": "4b1340aae75ed144b2e2b14eba8fe831e9c8e988a6c9ecd7269a4bede68ed9cc",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remoto] Senior Front-end / Product Engineer (React/TypeScript) na WeatherWise — 4 dias / 32h"
         }
       },
