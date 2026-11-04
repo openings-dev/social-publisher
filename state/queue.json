@@ -72279,12 +72279,23 @@
       "createdAt": "2026-10-28T12:19:34Z",
       "publicationCreatedAt": "2026-10-28T22:42:06.564Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-04T18:02:55.413Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_01d165a4b737ad3ecc75a04b",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_01d165a4b737ad3ecc75a04b/fee102834fcf91299277113390dc404f61b2fa85ca355b92afb26da742577f2b/9423d3a49887d3fbfff5d58139773cc378992f2991288ad96af1cc172c09ac4d/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_01d165a4b737ad3ecc75a04b/fee102834fcf91299277113390dc404f61b2fa85ca355b92afb26da742577f2b/9423d3a49887d3fbfff5d58139773cc378992f2991288ad96af1cc172c09ac4d/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_01d165a4b737ad3ecc75a04b/fee102834fcf91299277113390dc404f61b2fa85ca355b92afb26da742577f2b/9423d3a49887d3fbfff5d58139773cc378992f2991288ad96af1cc172c09ac4d/social-video.mp4",
+          "pngHash": "10c64c74ec71f431dda39213a1bc5999b1e0799cd492e48b8d63be4e11c335c6",
+          "instagramJpegHash": "5b99838e4b314d12ef3bc15dd8e643b6bcef89286012961b5cf2b12469d7aafc",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Remoto] Desenvolvedor(a) Java Júnior (Marketplace de Lojistas) | Confidencial (vaga via Sylision)"
         }
       },
