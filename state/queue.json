@@ -72131,12 +72131,14 @@
       "createdAt": "2026-10-28T14:12:10Z",
       "publicationCreatedAt": "2026-10-28T22:42:06.564Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-04T23:45:33.172Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Senior Front-end / Product Engineer (React/TypeScript) na WeatherWise — 4 dias / 32h"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -72193,7 +72195,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 272
     },
     {
       "jobId": "gh_f65827432354c0662b6b0ae4",
