@@ -72337,10 +72337,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-11-04T18:02:55.413Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-11-04T18:02:55.413Z"
+        },
         "lastReset": null,
         "result": null
       },
