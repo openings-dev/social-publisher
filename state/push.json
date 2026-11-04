@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "65d0f41fffc5ed088be6b50af81c6f23dd3c14d7",
-    "generatedAt": "2026-11-04T01:00:19.626Z",
-    "dataHash": "14c0be516c5716bc4089709baac0e80c610a6db2237baf9bff1f9d460af52c97"
+    "commit": "d961553cbcf1e0a78604e39c6c1dd80a114417c6",
+    "generatedAt": "2026-11-04T19:11:15.216Z",
+    "dataHash": "f275d60ea52a9b7925152cb56a9ca7dea75620ece20a015c7c8107070f20f4c0"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -21034,6 +21034,246 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_ca9d5db8baaa5615880ab26c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_11c5ccdeb258bb1cac649506",
+      "sourceId": "soujava/vagas-java#1975",
+      "dataCommit": "d961553cbcf1e0a78604e39c6c1dd80a114417c6",
+      "dataHash": "f275d60ea52a9b7925152cb56a9ca7dea75620ece20a015c7c8107070f20f4c0",
+      "contentHash": "e5ee9e18c7e4d90ee4ca82599ecfe8f646707fb98163013cbc1749c48fd8347d",
+      "sourceCreatedAt": "2026-11-04T13:27:20Z",
+      "createdAt": "2026-11-04T19:11:15.216Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "401b6ba0-a46b-41dd-83bf-ac3295da13a0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Júnior (Pagamentos via Pix) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Júnior (Pagamentos via Pix) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Júnior (Pagamentos via Pix) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Júnior (Pagamentos via Pix) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Júnior (Pagamentos via Pix) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Júnior (Pagamentos via Pix) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_11c5ccdeb258bb1cac649506"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_60bf82b8657c60860dda6fe9",
+      "sourceId": "ambicuity/New-Grad-Jobs#460",
+      "dataCommit": "d961553cbcf1e0a78604e39c6c1dd80a114417c6",
+      "dataHash": "f275d60ea52a9b7925152cb56a9ca7dea75620ece20a015c7c8107070f20f4c0",
+      "contentHash": "8b4fdcc5c937775ad9db2cc5549d42f059b2d492764fd0d0dd2d6a1780fd1e8d",
+      "sourceCreatedAt": "2026-11-04T12:15:05Z",
+      "createdAt": "2026-11-04T19:11:15.216Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "04ca0f54-6e29-46de-af40-ef12b0930c8f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-11-04T07:32:46.110544Z",
+          "pt-BR": "Job data is stale: last scrape 2026-11-04T07:32:46.110544Z",
+          "es": "Job data is stale: last scrape 2026-11-04T07:32:46.110544Z",
+          "it": "Job data is stale: last scrape 2026-11-04T07:32:46.110544Z",
+          "fr": "Job data is stale: last scrape 2026-11-04T07:32:46.110544Z",
+          "de": "Job data is stale: last scrape 2026-11-04T07:32:46.110544Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_60bf82b8657c60860dda6fe9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e31e0f0f47c698e1c0d5a6d9",
+      "sourceId": "TechnologyMasters/jobs#725",
+      "dataCommit": "d961553cbcf1e0a78604e39c6c1dd80a114417c6",
+      "dataHash": "f275d60ea52a9b7925152cb56a9ca7dea75620ece20a015c7c8107070f20f4c0",
+      "contentHash": "224a935371d2fab72fde5c7849fb9577be62a6cc3785a10e80977b79820e35d3",
+      "sourceCreatedAt": "2026-11-04T10:27:31Z",
+      "createdAt": "2026-11-04T19:11:15.216Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3c2e57e1-7844-404e-ba44-a017711fb347",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Fellowlane (recruitment agency) - Cloud Engineer Microsoft 365/Azure - Aalsmeer, Netherlands - 3,750-4,500 EUR/Month",
+          "pt-BR": "Fellowlane (recruitment agency) - Cloud Engineer Microsoft 365/Azure - Aalsmeer, Netherlands - 3,750-4,500 EUR/Month",
+          "es": "Fellowlane (recruitment agency) - Cloud Engineer Microsoft 365/Azure - Aalsmeer, Netherlands - 3,750-4,500 EUR/Month",
+          "it": "Fellowlane (recruitment agency) - Cloud Engineer Microsoft 365/Azure - Aalsmeer, Netherlands - 3,750-4,500 EUR/Month",
+          "fr": "Fellowlane (recruitment agency) - Cloud Engineer Microsoft 365/Azure - Aalsmeer, Netherlands - 3,750-4,500 EUR/Month",
+          "de": "Fellowlane (recruitment agency) - Cloud Engineer Microsoft 365/Azure - Aalsmeer, Netherlands - 3,750-4,500 EUR/Month"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e31e0f0f47c698e1c0d5a6d9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_484b4bfff912b720db1a2be5",
+      "sourceId": "TechnologyMasters/jobs#724",
+      "dataCommit": "d961553cbcf1e0a78604e39c6c1dd80a114417c6",
+      "dataHash": "f275d60ea52a9b7925152cb56a9ca7dea75620ece20a015c7c8107070f20f4c0",
+      "contentHash": "4ffba1541e9f8ceb14791c254953a895024bbf6abd6f856796b34d568795ac00",
+      "sourceCreatedAt": "2026-11-04T10:26:26Z",
+      "createdAt": "2026-11-04T19:11:15.216Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b266bf1a-46fe-4c30-b530-32b18a6b8df4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Fellowlane (recruitment agency) - Back-end Developer .NET/C# - Schiphol-Rijk, Netherlands (Hybrid) - From 4,500 EUR/Month",
+          "pt-BR": "Fellowlane (recruitment agency) - Back-end Developer .NET/C# - Schiphol-Rijk, Netherlands (Hybrid) - From 4,500 EUR/Month",
+          "es": "Fellowlane (recruitment agency) - Back-end Developer .NET/C# - Schiphol-Rijk, Netherlands (Hybrid) - From 4,500 EUR/Month",
+          "it": "Fellowlane (recruitment agency) - Back-end Developer .NET/C# - Schiphol-Rijk, Netherlands (Hybrid) - From 4,500 EUR/Month",
+          "fr": "Fellowlane (recruitment agency) - Back-end Developer .NET/C# - Schiphol-Rijk, Netherlands (Hybrid) - From 4,500 EUR/Month",
+          "de": "Fellowlane (recruitment agency) - Back-end Developer .NET/C# - Schiphol-Rijk, Netherlands (Hybrid) - From 4,500 EUR/Month"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_484b4bfff912b720db1a2be5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6ce2011192257ba9ecbe6ca6",
+      "sourceId": "frontendbr/vagas#8558",
+      "dataCommit": "d961553cbcf1e0a78604e39c6c1dd80a114417c6",
+      "dataHash": "f275d60ea52a9b7925152cb56a9ca7dea75620ece20a015c7c8107070f20f4c0",
+      "contentHash": "ea1036305d074dad0fc14b0f1af77ad042180f86cae3d5f48e4d128c682a8b9b",
+      "sourceCreatedAt": "2026-09-04T15:51:55Z",
+      "createdAt": "2026-11-04T19:11:15.216Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "3728a4ba-4ab1-42ee-a3c2-16723ae4c231",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto! Curitiba] Tech Lead Integrações (USD)",
+          "pt-BR": "[Remoto! Curitiba] Tech Lead Integrações (USD)",
+          "es": "[Remoto! Curitiba] Tech Lead Integrações (USD)",
+          "it": "[Remoto! Curitiba] Tech Lead Integrações (USD)",
+          "fr": "[Remoto! Curitiba] Tech Lead Integrações (USD)",
+          "de": "[Remoto! Curitiba] Tech Lead Integrações (USD)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6ce2011192257ba9ecbe6ca6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0f3a2e758d2213811fcdb8a6",
+      "sourceId": "rebase-network/who-is-hiring#1089",
+      "dataCommit": "d961553cbcf1e0a78604e39c6c1dd80a114417c6",
+      "dataHash": "f275d60ea52a9b7925152cb56a9ca7dea75620ece20a015c7c8107070f20f4c0",
+      "contentHash": "2bdde498dd98af440a9e712f171d89824c23855ef310bf992ff83a5a5c1e6430",
+      "sourceCreatedAt": "2026-03-26T05:40:12Z",
+      "createdAt": "2026-11-04T19:11:15.216Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d34e9a0a-ba65-4c94-9eca-d579c13d3b84",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[远程]寻找前端工程师",
+          "pt-BR": "[远程]寻找前端工程师",
+          "es": "[远程]寻找前端工程师",
+          "it": "[远程]寻找前端工程师",
+          "fr": "[远程]寻找前端工程师",
+          "de": "[远程]寻找前端工程师"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0f3a2e758d2213811fcdb8a6"
         }
       },
       "status": "pending",
