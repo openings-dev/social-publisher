@@ -72279,12 +72279,14 @@
       "createdAt": "2026-10-28T12:19:34Z",
       "publicationCreatedAt": "2026-10-28T22:42:06.564Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-04T18:02:55.413Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Desenvolvedor(a) Java Júnior (Marketplace de Lojistas) | Confidencial (vaga via Sylision)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -72341,7 +72343,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 271
     },
     {
       "jobId": "gh_dd5f3eceaf22759f0fb5dc88",
