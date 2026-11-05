@@ -72888,12 +72888,14 @@
       "createdAt": "2026-10-29T18:20:29Z",
       "publicationCreatedAt": "2026-10-30T00:01:00.544Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-05T16:32:20.177Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Nova Lima, Brasil] Full Cycle Developer (Júnior) na Coodesh"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -72950,7 +72952,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 274
     },
     {
       "jobId": "gh_e5c3fe2de4aec791023d34ec",
