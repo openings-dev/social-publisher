@@ -72888,12 +72888,23 @@
       "createdAt": "2026-10-29T18:20:29Z",
       "publicationCreatedAt": "2026-10-30T00:01:00.544Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-05T16:32:20.177Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9d50e797be669eee892f4cf9",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_9d50e797be669eee892f4cf9/2a14be924148ec2af0dee93ceb7f293f91a56ba602b716a5d017d5f7b7104c23/705a72853ce400008eadd2e62ae5a1d67e4de0eb3ebf2325f7a3eebdd92d3e00/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_9d50e797be669eee892f4cf9/2a14be924148ec2af0dee93ceb7f293f91a56ba602b716a5d017d5f7b7104c23/705a72853ce400008eadd2e62ae5a1d67e4de0eb3ebf2325f7a3eebdd92d3e00/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_9d50e797be669eee892f4cf9/2a14be924148ec2af0dee93ceb7f293f91a56ba602b716a5d017d5f7b7104c23/705a72853ce400008eadd2e62ae5a1d67e4de0eb3ebf2325f7a3eebdd92d3e00/social-video.mp4",
+          "pngHash": "c891b9dc69f32a0787e971ef04e751b212f1778a23f1ad1e8c6255d5240d3017",
+          "instagramJpegHash": "5babea1c8ecabeb597a3834339cb5375b874dfd9dfac312858e32a9638c795dd",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Nova Lima, Brasil] Full Cycle Developer (Júnior) na Coodesh"
         }
       },
