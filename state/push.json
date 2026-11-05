@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "9e6938a9354beffa4f1e20452cbaa4cc4da30850",
-    "generatedAt": "2026-11-05T01:13:49.696Z",
-    "dataHash": "79762db1949ef6ff4a11b8d1e2ab92301bfd7177a424fbd0a44f813a59e0d6e9"
+    "commit": "2191dc7e90ec09a07fe0bd1fb42806f4dce23128",
+    "generatedAt": "2026-11-05T10:07:47.393Z",
+    "dataHash": "cb765c829a01567b9bda69d547dd2ec9189f60e2701fb68251064d1ac51c948e"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -21274,6 +21274,206 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_0f3a2e758d2213811fcdb8a6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_393496c62acffc3a99935906",
+      "sourceId": "rebase-network/who-is-hiring#1336",
+      "dataCommit": "2191dc7e90ec09a07fe0bd1fb42806f4dce23128",
+      "dataHash": "cb765c829a01567b9bda69d547dd2ec9189f60e2701fb68251064d1ac51c948e",
+      "contentHash": "636d2676f5e3acf3b8a1ea80b3e8b59a1906b3f73c2a48bbd20f409119891cc1",
+      "sourceCreatedAt": "2026-11-05T09:54:43Z",
+      "createdAt": "2026-11-05T10:07:47.393Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b2e8bab1-41ed-41a6-9ed4-f4cd1798e82c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "We are Clave - Remote First Company",
+          "pt-BR": "We are Clave - Remote First Company",
+          "es": "We are Clave - Remote First Company",
+          "it": "We are Clave - Remote First Company",
+          "fr": "We are Clave - Remote First Company",
+          "de": "We are Clave - Remote First Company"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_393496c62acffc3a99935906"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_fe74ab5962a83195abac41af",
+      "sourceId": "ambicuity/New-Grad-Jobs#461",
+      "dataCommit": "2191dc7e90ec09a07fe0bd1fb42806f4dce23128",
+      "dataHash": "cb765c829a01567b9bda69d547dd2ec9189f60e2701fb68251064d1ac51c948e",
+      "contentHash": "4c3003185f773578db004aa65bc64e11102c58c9b70a751fd6e30e8a084d6281",
+      "sourceCreatedAt": "2026-11-05T09:35:18Z",
+      "createdAt": "2026-11-05T10:07:47.393Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ab5256ef-c1b0-446a-b1ac-a84378201cd2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-11-04T21:54:43.000200Z",
+          "pt-BR": "Job data is stale: last scrape 2026-11-04T21:54:43.000200Z",
+          "es": "Job data is stale: last scrape 2026-11-04T21:54:43.000200Z",
+          "it": "Job data is stale: last scrape 2026-11-04T21:54:43.000200Z",
+          "fr": "Job data is stale: last scrape 2026-11-04T21:54:43.000200Z",
+          "de": "Job data is stale: last scrape 2026-11-04T21:54:43.000200Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_fe74ab5962a83195abac41af"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3aa462f04fe7bf10a982181a",
+      "sourceId": "TechnologyMasters/jobs#728",
+      "dataCommit": "2191dc7e90ec09a07fe0bd1fb42806f4dce23128",
+      "dataHash": "cb765c829a01567b9bda69d547dd2ec9189f60e2701fb68251064d1ac51c948e",
+      "contentHash": "9a07263cb2248d74ea648fd1bb81738a877bc056bc279aecd5bbcc223c8d39ba",
+      "sourceCreatedAt": "2026-11-05T05:33:01Z",
+      "createdAt": "2026-11-05T10:07:47.393Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "80087f7d-72e0-4501-b90a-9fd3801d74ab",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Founding Engineer, Generalist - San Francisco, CA (in-person) - $150,000-$350,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Founding Engineer, Generalist - San Francisco, CA (in-person) - $150,000-$350,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Founding Engineer, Generalist - San Francisco, CA (in-person) - $150,000-$350,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Founding Engineer, Generalist - San Francisco, CA (in-person) - $150,000-$350,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Founding Engineer, Generalist - San Francisco, CA (in-person) - $150,000-$350,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Founding Engineer, Generalist - San Francisco, CA (in-person) - $150,000-$350,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3aa462f04fe7bf10a982181a"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_1dbe4360df75638f5a0799c7",
+      "sourceId": "TechnologyMasters/jobs#727",
+      "dataCommit": "2191dc7e90ec09a07fe0bd1fb42806f4dce23128",
+      "dataHash": "cb765c829a01567b9bda69d547dd2ec9189f60e2701fb68251064d1ac51c948e",
+      "contentHash": "030562fb5863db4b7e565b5c2a4426df5fe883c0fc91eb46a57ec6f7c2093dd4",
+      "sourceCreatedAt": "2026-11-05T05:32:57Z",
+      "createdAt": "2026-11-05T10:07:47.393Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8f7cc361-fb84-4349-a848-71f0d23f921d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Product Manager - New York, NY (in office) - $150,000-$250,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Product Manager - New York, NY (in office) - $150,000-$250,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Product Manager - New York, NY (in office) - $150,000-$250,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Product Manager - New York, NY (in office) - $150,000-$250,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Product Manager - New York, NY (in office) - $150,000-$250,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Product Manager - New York, NY (in office) - $150,000-$250,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_1dbe4360df75638f5a0799c7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9c25b798ad552710cb428e33",
+      "sourceId": "TechnologyMasters/jobs#726",
+      "dataCommit": "2191dc7e90ec09a07fe0bd1fb42806f4dce23128",
+      "dataHash": "cb765c829a01567b9bda69d547dd2ec9189f60e2701fb68251064d1ac51c948e",
+      "contentHash": "d71f42551ea70d3659ee00bf40d274e69d8a09631a176e3ecbe38f5e0f5cc909",
+      "sourceCreatedAt": "2026-11-05T05:32:53Z",
+      "createdAt": "2026-11-05T10:07:47.393Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a2253985-777c-49f3-ab21-9c77a2530c71",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a multinational client) - iOS Developer - Hybrid Brampton/Toronto - $50 CAD/hour",
+          "pt-BR": "LookoutAI (recruiting for a multinational client) - iOS Developer - Hybrid Brampton/Toronto - $50 CAD/hour",
+          "es": "LookoutAI (recruiting for a multinational client) - iOS Developer - Hybrid Brampton/Toronto - $50 CAD/hour",
+          "it": "LookoutAI (recruiting for a multinational client) - iOS Developer - Hybrid Brampton/Toronto - $50 CAD/hour",
+          "fr": "LookoutAI (recruiting for a multinational client) - iOS Developer - Hybrid Brampton/Toronto - $50 CAD/hour",
+          "de": "LookoutAI (recruiting for a multinational client) - iOS Developer - Hybrid Brampton/Toronto - $50 CAD/hour"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9c25b798ad552710cb428e33"
         }
       },
       "status": "pending",
