@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "c854efb5a7a6a0a8221ba9cc0a3f98138879a56d",
-    "generatedAt": "2026-11-06T10:12:51.725Z",
-    "dataHash": "79c0896ccc352048be80d287fa0769c9cccfb0b6e370125c76e04264732331cb"
+    "commit": "08ec5cd5b0ca9773fb64485227b8a8d58a9a13b0",
+    "generatedAt": "2026-11-06T18:44:30.869Z",
+    "dataHash": "ddbd010d7255ad5e00f8064fb1777a116f9583e2a260332e491c6207de3be57d"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -21880,6 +21880,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_6d98037090e2b732742d2b11"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d0445605641d58563fe96aa0",
+      "sourceId": "rebase-network/who-is-hiring#1343",
+      "dataCommit": "08ec5cd5b0ca9773fb64485227b8a8d58a9a13b0",
+      "dataHash": "ddbd010d7255ad5e00f8064fb1777a116f9583e2a260332e491c6207de3be57d",
+      "contentHash": "3b32da8d8309e96fb5871eb86d0c6bddc338603c3790f5d3e944e95493de2b3d",
+      "sourceCreatedAt": "2026-11-06T17:00:51Z",
+      "createdAt": "2026-11-06T18:44:30.869Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "91bf0470-9583-436c-b591-fd56351200cf",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "全栈 / 前端 / 后端开发工程师 - 远程 - 全职",
+          "pt-BR": "全栈 / 前端 / 后端开发工程师 - 远程 - 全职",
+          "es": "全栈 / 前端 / 后端开发工程师 - 远程 - 全职",
+          "it": "全栈 / 前端 / 后端开发工程师 - 远程 - 全职",
+          "fr": "全栈 / 前端 / 后端开发工程师 - 远程 - 全职",
+          "de": "全栈 / 前端 / 后端开发工程师 - 远程 - 全职"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d0445605641d58563fe96aa0"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b6d75d364f3ed3304897ef32",
+      "sourceId": "soujava/vagas-java#1976",
+      "dataCommit": "08ec5cd5b0ca9773fb64485227b8a8d58a9a13b0",
+      "dataHash": "ddbd010d7255ad5e00f8064fb1777a116f9583e2a260332e491c6207de3be57d",
+      "contentHash": "7829b3471f6647bcc123b871b511e67f417ed8dc3caf6238156843037562aa11",
+      "sourceCreatedAt": "2026-11-06T12:44:35Z",
+      "createdAt": "2026-11-06T18:44:30.869Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "edeabb7c-8730-4b3d-84f6-e352ac783787",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Pleno (Atendimento por Chat) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Pleno (Atendimento por Chat) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Pleno (Atendimento por Chat) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Pleno (Atendimento por Chat) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Pleno (Atendimento por Chat) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Pleno (Atendimento por Chat) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b6d75d364f3ed3304897ef32"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b93cec8f2d93aa1dac71e10b",
+      "sourceId": "rebase-network/who-is-hiring#1091",
+      "dataCommit": "08ec5cd5b0ca9773fb64485227b8a8d58a9a13b0",
+      "dataHash": "ddbd010d7255ad5e00f8064fb1777a116f9583e2a260332e491c6207de3be57d",
+      "contentHash": "9cd8d55e645731e3d7f2f394e667ba461945be6852a3a14ac67acd44704b6b66",
+      "sourceCreatedAt": "2026-03-27T03:29:36Z",
+      "createdAt": "2026-11-06T18:44:30.869Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8441c62a-4040-44f1-87fa-794aa81589c9",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[上海/远程] DeFi项目诚聘 Web3运营/实习运营 薪水 10k-25k RMB",
+          "pt-BR": "[上海/远程] DeFi项目诚聘 Web3运营/实习运营 薪水 10k-25k RMB",
+          "es": "[上海/远程] DeFi项目诚聘 Web3运营/实习运营 薪水 10k-25k RMB",
+          "it": "[上海/远程] DeFi项目诚聘 Web3运营/实习运营 薪水 10k-25k RMB",
+          "fr": "[上海/远程] DeFi项目诚聘 Web3运营/实习运营 薪水 10k-25k RMB",
+          "de": "[上海/远程] DeFi项目诚聘 Web3运营/实习运营 薪水 10k-25k RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b93cec8f2d93aa1dac71e10b"
         }
       },
       "status": "pending",
