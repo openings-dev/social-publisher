@@ -21519,12 +21519,15 @@
           "jobId": "gh_62be6f95b8ba7963f6ff4af4"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-11-06T12:23:48.225Z",
-      "updatedAt": "2026-11-06T12:23:48.225Z",
+      "updatedAt": "2026-11-06T12:23:50.256Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "04cc64a7-f728-4528-a386-e41c4b1bcde0",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_dbf56fbe02e9e313f09e8784",
