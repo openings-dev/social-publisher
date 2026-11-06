@@ -73719,12 +73719,14 @@
       "createdAt": "2026-11-01T03:44:52Z",
       "publicationCreatedAt": "2026-11-01T13:40:13.334Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-06T15:59:10.835Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[HCM] Tech Lead 8+ yoe | US startup | REMOTE morning, ONSITE afternoon"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -73781,7 +73783,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 277
     },
     {
       "jobId": "gh_d60aaac9a7d278d410f7fe50",
