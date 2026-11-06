@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "1bbf0fb3e674d7e697e85d5fae06c72f475d0257",
-    "generatedAt": "2026-11-05T19:18:31.580Z",
-    "dataHash": "5f08f83a25db0ca4df0b5b371d3e20ffda1eacb042565e16ff99437fec750388"
+    "commit": "dfa40f13f00bbbb4e536323cb9443243d7f88840",
+    "generatedAt": "2026-11-06T01:19:47.098Z",
+    "dataHash": "7b5ea1105af0638fad51a6dd506434bf3b1c8303149de3597a16298ee5c2185e"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -21677,6 +21677,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_2ab32c94b1bcf6d5363fdebe"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_101791c382f876803f9af999",
+      "sourceId": "phpdevbr/vagas#1333",
+      "dataCommit": "dfa40f13f00bbbb4e536323cb9443243d7f88840",
+      "dataHash": "7b5ea1105af0638fad51a6dd506434bf3b1c8303149de3597a16298ee5c2185e",
+      "contentHash": "b1ea35452b5646c3cb0bccd6ae99890605dbf397709c06384fb9ce0cf4741233",
+      "sourceCreatedAt": "2026-11-05T19:46:08Z",
+      "createdAt": "2026-11-06T01:19:47.098Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6cb27db8-6508-4dcc-a23b-3e6ff1becd27",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack Sênior (PHP/Laravel/Symfony/React) - 100% Presencial na Barra da Tijuca",
+          "pt-BR": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack Sênior (PHP/Laravel/Symfony/React) - 100% Presencial na Barra da Tijuca",
+          "es": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack Sênior (PHP/Laravel/Symfony/React) - 100% Presencial na Barra da Tijuca",
+          "it": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack Sênior (PHP/Laravel/Symfony/React) - 100% Presencial na Barra da Tijuca",
+          "fr": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack Sênior (PHP/Laravel/Symfony/React) - 100% Presencial na Barra da Tijuca",
+          "de": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack Sênior (PHP/Laravel/Symfony/React) - 100% Presencial na Barra da Tijuca"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_101791c382f876803f9af999"
         }
       },
       "status": "pending",
