@@ -73802,12 +73802,17 @@
         }
       },
       "linkedin": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-06T15:59:10.835Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "reconciled",
+          "id": "6aedf98fdac279812edd525e",
+          "url": "https://www.linkedin.com/feed/update/urn:li:share:7524501005430865920",
+          "provider": "buffer"
+        }
       },
       "instagramStory": {
         "status": "pending",
@@ -73850,9 +73855,9 @@
               },
               {
                 "channel": "linkedin",
-                "state": "pending",
-                "remoteId": null,
-                "updatedAt": null
+                "state": "completed",
+                "remoteId": "6aedf98fdac279812edd525e",
+                "updatedAt": "2026-11-06T15:59:10.835Z"
               }
             ]
           },
@@ -73901,7 +73906,7 @@
             ]
           }
         ],
-        "manifestDigest": "196bef56fa81bd148536b8290e57c934bee23e08f4070a89629496c528dabbc0"
+        "manifestDigest": "6abd4de3caa46245c6fed64b6d3f0e9848ea94297e73cfdcfad560c139700d4e"
       }
     },
     {
