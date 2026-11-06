@@ -73719,12 +73719,23 @@
       "createdAt": "2026-11-01T03:44:52Z",
       "publicationCreatedAt": "2026-11-01T13:40:13.334Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-06T15:59:10.835Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_1927268a7260ded05056f4ac",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_1927268a7260ded05056f4ac/07540e0459fce88ced9775f2e4aee331240e87ff35adc9b9c152a19603106f30/cde32df11a8fed8fa68cf0cbe25d03fc5b069ef2e52ed78758832b015c0c9c92/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_1927268a7260ded05056f4ac/07540e0459fce88ced9775f2e4aee331240e87ff35adc9b9c152a19603106f30/cde32df11a8fed8fa68cf0cbe25d03fc5b069ef2e52ed78758832b015c0c9c92/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_1927268a7260ded05056f4ac/07540e0459fce88ced9775f2e4aee331240e87ff35adc9b9c152a19603106f30/cde32df11a8fed8fa68cf0cbe25d03fc5b069ef2e52ed78758832b015c0c9c92/social-video.mp4",
+          "pngHash": "ec86639151fe577d33eaa4df405cdd9ec9f3c9c6c18bd3aa600a951b1f0753da",
+          "instagramJpegHash": "2fed0e392142ba804d3cb3d0e8e7a1ced0c34cb4aa9d1e1ebbe22d54e3dea2f7",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[HCM] Tech Lead 8+ yoe | US startup | REMOTE morning, ONSITE afternoon"
         }
       },
