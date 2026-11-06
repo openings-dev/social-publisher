@@ -73294,12 +73294,14 @@
       "createdAt": "2026-10-30T18:32:24Z",
       "publicationCreatedAt": "2026-10-30T23:54:31.187Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-06T06:57:12.530Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Mobile Developer React Native (Pleno) na Coodesh"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -73356,7 +73358,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 276
     },
     {
       "jobId": "gh_7f360ec30276f6b949efdb89",
