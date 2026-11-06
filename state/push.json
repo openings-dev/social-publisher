@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "dfa40f13f00bbbb4e536323cb9443243d7f88840",
-    "generatedAt": "2026-11-06T01:19:47.098Z",
-    "dataHash": "7b5ea1105af0638fad51a6dd506434bf3b1c8303149de3597a16298ee5c2185e"
+    "commit": "c854efb5a7a6a0a8221ba9cc0a3f98138879a56d",
+    "generatedAt": "2026-11-06T10:12:51.725Z",
+    "dataHash": "79c0896ccc352048be80d287fa0769c9cccfb0b6e370125c76e04264732331cb"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -21717,6 +21717,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_101791c382f876803f9af999"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_dc32051696483d7146617fb0",
+      "sourceId": "rebase-network/who-is-hiring#1342",
+      "dataCommit": "c854efb5a7a6a0a8221ba9cc0a3f98138879a56d",
+      "dataHash": "79c0896ccc352048be80d287fa0769c9cccfb0b6e370125c76e04264732331cb",
+      "contentHash": "cc955b0e294e3e146fe5d68b2a61d31bf1f1b3d5ee85438b1ff222ec3668f4ff",
+      "sourceCreatedAt": "2026-11-06T08:38:22Z",
+      "createdAt": "2026-11-06T10:12:51.725Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "64acbba2-5640-40c6-ba57-6e3e6db32672",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] Crypto 交易所诚聘 量化策略研究员（Crypto 做市对冲 / 套利 / CTA / 事件驱动）薪水 4000U-7000U",
+          "pt-BR": "[Remote] Crypto 交易所诚聘 量化策略研究员（Crypto 做市对冲 / 套利 / CTA / 事件驱动）薪水 4000U-7000U",
+          "es": "[Remote] Crypto 交易所诚聘 量化策略研究员（Crypto 做市对冲 / 套利 / CTA / 事件驱动）薪水 4000U-7000U",
+          "it": "[Remote] Crypto 交易所诚聘 量化策略研究员（Crypto 做市对冲 / 套利 / CTA / 事件驱动）薪水 4000U-7000U",
+          "fr": "[Remote] Crypto 交易所诚聘 量化策略研究员（Crypto 做市对冲 / 套利 / CTA / 事件驱动）薪水 4000U-7000U",
+          "de": "[Remote] Crypto 交易所诚聘 量化策略研究员（Crypto 做市对冲 / 套利 / CTA / 事件驱动）薪水 4000U-7000U"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_dc32051696483d7146617fb0"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8dcf7662e9af892020402829",
+      "sourceId": "rebase-network/who-is-hiring#1341",
+      "dataCommit": "c854efb5a7a6a0a8221ba9cc0a3f98138879a56d",
+      "dataHash": "79c0896ccc352048be80d287fa0769c9cccfb0b6e370125c76e04264732331cb",
+      "contentHash": "696a0dfb6d07668ca3c328eebe19ac3c9ffe7f92dc00b9c92dd1bf0ebca35c56",
+      "sourceCreatedAt": "2026-11-06T08:33:23Z",
+      "createdAt": "2026-11-06T10:12:51.725Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2f716053-0231-42a4-87aa-80b78cf0d438",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] Crypto 交易所诚聘 Node.js后端 开发工程师 薪水 4000U-6000U",
+          "pt-BR": "[Remote] Crypto 交易所诚聘 Node.js后端 开发工程师 薪水 4000U-6000U",
+          "es": "[Remote] Crypto 交易所诚聘 Node.js后端 开发工程师 薪水 4000U-6000U",
+          "it": "[Remote] Crypto 交易所诚聘 Node.js后端 开发工程师 薪水 4000U-6000U",
+          "fr": "[Remote] Crypto 交易所诚聘 Node.js后端 开发工程师 薪水 4000U-6000U",
+          "de": "[Remote] Crypto 交易所诚聘 Node.js后端 开发工程师 薪水 4000U-6000U"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8dcf7662e9af892020402829"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_881dad8e9da418d806d0ef76",
+      "sourceId": "rebase-network/who-is-hiring#1340",
+      "dataCommit": "c854efb5a7a6a0a8221ba9cc0a3f98138879a56d",
+      "dataHash": "79c0896ccc352048be80d287fa0769c9cccfb0b6e370125c76e04264732331cb",
+      "contentHash": "df30aabb5709262b632be6e2eb9976e1bb869c660ace76895c7c110c755062a2",
+      "sourceCreatedAt": "2026-11-06T05:48:40Z",
+      "createdAt": "2026-11-06T10:12:51.725Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "78cc0483-5133-40d2-98ff-1290962a0aef",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【中国大陆招聘】Android系统测试工程师｜性能/功耗/稳定性｜Framework/Kernel｜5年+",
+          "pt-BR": "【中国大陆招聘】Android系统测试工程师｜性能/功耗/稳定性｜Framework/Kernel｜5年+",
+          "es": "【中国大陆招聘】Android系统测试工程师｜性能/功耗/稳定性｜Framework/Kernel｜5年+",
+          "it": "【中国大陆招聘】Android系统测试工程师｜性能/功耗/稳定性｜Framework/Kernel｜5年+",
+          "fr": "【中国大陆招聘】Android系统测试工程师｜性能/功耗/稳定性｜Framework/Kernel｜5年+",
+          "de": "【中国大陆招聘】Android系统测试工程师｜性能/功耗/稳定性｜Framework/Kernel｜5年+"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_881dad8e9da418d806d0ef76"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6d98037090e2b732742d2b11",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2940",
+      "dataCommit": "c854efb5a7a6a0a8221ba9cc0a3f98138879a56d",
+      "dataHash": "79c0896ccc352048be80d287fa0769c9cccfb0b6e370125c76e04264732331cb",
+      "contentHash": "1cc801524089525f82fcaea1890cd29622cab3985eca8eafdd8422cba6f69fc6",
+      "sourceCreatedAt": "2026-07-15T15:28:36Z",
+      "createdAt": "2026-11-06T10:12:51.725Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "da6d4eb1-7d47-4680-9fb5-4752753ace0b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Create a Separate List for 2027 New Grad Roles",
+          "pt-BR": "Create a Separate List for 2027 New Grad Roles",
+          "es": "Create a Separate List for 2027 New Grad Roles",
+          "it": "Create a Separate List for 2027 New Grad Roles",
+          "fr": "Create a Separate List for 2027 New Grad Roles",
+          "de": "Create a Separate List for 2027 New Grad Roles"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6d98037090e2b732742d2b11"
         }
       },
       "status": "pending",
