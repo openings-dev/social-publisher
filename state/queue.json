@@ -74196,12 +74196,14 @@
       "createdAt": "2026-11-02T08:48:48Z",
       "publicationCreatedAt": "2026-11-02T18:32:20.280Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-07T01:59:15.122Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "【全球远程 FineStar】AI 视频生成 AIGC视频生成师 视频剪辑 AI短剧编剧 20-40k"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -74258,7 +74260,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 279
     },
     {
       "jobId": "gh_8ac933ce31d46b2a289ec0f2",
@@ -76490,17 +76494,17 @@
       "createdAt": "2026-11-05T09:35:18Z",
       "publicationCreatedAt": "2026-11-05T16:33:44.001Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-07T01:59:15.122Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-07T01:59:15.122Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -76514,41 +76518,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-07T01:59:15.122Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-07T01:59:15.122Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-07T01:59:15.122Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-07T01:59:15.122Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-07T01:59:15.122Z",
         "lastError": null,
         "lastReset": null,
         "result": null
