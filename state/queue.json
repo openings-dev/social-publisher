@@ -75564,12 +75564,14 @@
       "createdAt": "2026-11-02T19:52:16Z",
       "publicationCreatedAt": "2026-11-03T02:25:54.192Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-07T16:30:13.109Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Product Design Intern"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -75626,7 +75628,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 281
     },
     {
       "jobId": "gh_b4defc06b3ad6afa0ea7698d",
