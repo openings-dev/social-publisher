@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "cd3ac978eb7ad6b71bf9f2e404899fc482e9c0a5",
-    "generatedAt": "2026-11-07T17:14:53.794Z",
-    "dataHash": "19ae5a124cbb14337e54a64e120b7fdf20435f5aa30064ad751a10451cf6b7ea"
+    "commit": "08d7f340045979dd14245faa6f6c23423f06dc03",
+    "generatedAt": "2026-11-07T21:17:03.291Z",
+    "dataHash": "7c659d7362283672518f09be1d378fd494ef3c643b94eb05a0232dffa4b8435c"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -22203,6 +22203,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_a2b6260ae05483df75a8020b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5e371ac29287a1e60fe77ff4",
+      "sourceId": "backend-br/vagas#12493",
+      "dataCommit": "08d7f340045979dd14245faa6f6c23423f06dc03",
+      "dataHash": "7c659d7362283672518f09be1d378fd494ef3c643b94eb05a0232dffa4b8435c",
+      "contentHash": "5efa3112a8d0d2706c69c53bf46e2444e06a0404c8ba740850d7930a2eae4035",
+      "sourceCreatedAt": "2026-11-07T20:58:13Z",
+      "createdAt": "2026-11-07T21:17:03.291Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "367d46f7-9e5b-49e2-bd36-bf428756cb40",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Back-end Júnior - Python / AI Coding & Agentic AI - MKdigital",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Back-end Júnior - Python / AI Coding & Agentic AI - MKdigital",
+          "es": "[Remoto] Desenvolvedor(a) Back-end Júnior - Python / AI Coding & Agentic AI - MKdigital",
+          "it": "[Remoto] Desenvolvedor(a) Back-end Júnior - Python / AI Coding & Agentic AI - MKdigital",
+          "fr": "[Remoto] Desenvolvedor(a) Back-end Júnior - Python / AI Coding & Agentic AI - MKdigital",
+          "de": "[Remoto] Desenvolvedor(a) Back-end Júnior - Python / AI Coding & Agentic AI - MKdigital"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5e371ac29287a1e60fe77ff4"
         }
       },
       "status": "pending",
