@@ -74196,12 +74196,23 @@
       "createdAt": "2026-11-02T08:48:48Z",
       "publicationCreatedAt": "2026-11-02T18:32:20.280Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-07T01:59:15.122Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ac708d15d7fc65fbd03a15e6",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ac708d15d7fc65fbd03a15e6/15c68b6d99eae9252459757b86c754e2065d2ebb4d1d8070d44665003b87b876/86f53985eab81125f8abdeacfe9c5790be747f62213abae337b5781284e67fd2/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ac708d15d7fc65fbd03a15e6/15c68b6d99eae9252459757b86c754e2065d2ebb4d1d8070d44665003b87b876/86f53985eab81125f8abdeacfe9c5790be747f62213abae337b5781284e67fd2/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ac708d15d7fc65fbd03a15e6/15c68b6d99eae9252459757b86c754e2065d2ebb4d1d8070d44665003b87b876/86f53985eab81125f8abdeacfe9c5790be747f62213abae337b5781284e67fd2/social-video.mp4",
+          "pngHash": "a8d0b4e21b6bee213a2b031511c116da97c19e05e8e76b4206156a272dc41462",
+          "instagramJpegHash": "c05908cffbb0e35a4a141e357f31a81717572ba581fd2958c5011c7edc2fe3c3",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "【全球远程 FineStar】AI 视频生成 AIGC视频生成师 视频剪辑 AI短剧编剧 20-40k"
         }
       },
