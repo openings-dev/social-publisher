@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "f587aa33f36955834107ed96dec374798639dc90",
-    "generatedAt": "2026-11-07T09:29:22.650Z",
-    "dataHash": "d6652219b041d78ebcdb7df2c619693cdb49da07111a0f53a9c779e9daf0c17b"
+    "commit": "cd3ac978eb7ad6b71bf9f2e404899fc482e9c0a5",
+    "generatedAt": "2026-11-07T17:14:53.794Z",
+    "dataHash": "19ae5a124cbb14337e54a64e120b7fdf20435f5aa30064ad751a10451cf6b7ea"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -22123,6 +22123,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_46efebb5b1651ba26fbd02f7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_78356fa90897428ba5de27b7",
+      "sourceId": "ambicuity/New-Grad-Jobs#462",
+      "dataCommit": "cd3ac978eb7ad6b71bf9f2e404899fc482e9c0a5",
+      "dataHash": "19ae5a124cbb14337e54a64e120b7fdf20435f5aa30064ad751a10451cf6b7ea",
+      "contentHash": "2babce862d65af7c9e161dce2eef36c7c45052776be50458b43d1cf48f898398",
+      "sourceCreatedAt": "2026-11-07T16:29:29Z",
+      "createdAt": "2026-11-07T17:14:53.794Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ddf38d50-6776-46c6-bde0-5103bcba4466",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-11-07T12:55:40.689284Z",
+          "pt-BR": "Job data is stale: last scrape 2026-11-07T12:55:40.689284Z",
+          "es": "Job data is stale: last scrape 2026-11-07T12:55:40.689284Z",
+          "it": "Job data is stale: last scrape 2026-11-07T12:55:40.689284Z",
+          "fr": "Job data is stale: last scrape 2026-11-07T12:55:40.689284Z",
+          "de": "Job data is stale: last scrape 2026-11-07T12:55:40.689284Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_78356fa90897428ba5de27b7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a2b6260ae05483df75a8020b",
+      "sourceId": "soujava/vagas-java#1977",
+      "dataCommit": "cd3ac978eb7ad6b71bf9f2e404899fc482e9c0a5",
+      "dataHash": "19ae5a124cbb14337e54a64e120b7fdf20435f5aa30064ad751a10451cf6b7ea",
+      "contentHash": "148f8a5200fb80a5c4f347c86fd5db18d99b78bc9dc910dd34b0464ce3b1ae7f",
+      "sourceCreatedAt": "2026-11-07T12:17:37Z",
+      "createdAt": "2026-11-07T17:14:53.794Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a47ba413-8405-4a12-8318-14e0959816d7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Pleno (Carteira Digital) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Pleno (Carteira Digital) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Pleno (Carteira Digital) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Pleno (Carteira Digital) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Pleno (Carteira Digital) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Pleno (Carteira Digital) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a2b6260ae05483df75a8020b"
         }
       },
       "status": "pending",
