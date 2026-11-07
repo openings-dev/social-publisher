@@ -75841,12 +75841,23 @@
       "createdAt": "2026-11-02T19:51:28Z",
       "publicationCreatedAt": "2026-11-03T02:25:54.192Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-07T21:57:21.657Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_73a4d2717e73d4a8a060b3e8",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_73a4d2717e73d4a8a060b3e8/8f90464e65dd702523ae7e1798bc927e80ffab1b1d1770ab1165882f12b3236f/a0a81a089013314cdeac8090c8f99475af083147634fac50bff85a47149f3058/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_73a4d2717e73d4a8a060b3e8/8f90464e65dd702523ae7e1798bc927e80ffab1b1d1770ab1165882f12b3236f/a0a81a089013314cdeac8090c8f99475af083147634fac50bff85a47149f3058/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_73a4d2717e73d4a8a060b3e8/8f90464e65dd702523ae7e1798bc927e80ffab1b1d1770ab1165882f12b3236f/a0a81a089013314cdeac8090c8f99475af083147634fac50bff85a47149f3058/social-video.mp4",
+          "pngHash": "9cebe22f9b7b94784da4062c07a6aa42932cc10b0725f0b2b9fb3acc1712df0a",
+          "instagramJpegHash": "034f4e920ca9692f6f155ee8e18769e2843afefbd44b043a2b47912efa582919",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Research Engineer Intern (PhD)"
         }
       },
