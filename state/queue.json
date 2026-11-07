@@ -74122,12 +74122,14 @@
       "createdAt": "2026-11-02T08:49:02Z",
       "publicationCreatedAt": "2026-11-02T18:32:20.280Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-07T08:53:07.034Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "【全球远程 远程办公 居家办公 FineStar】高级Go开发工程师 AI 效能工程师 ai工作流工程师"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -74184,7 +74186,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 280
     },
     {
       "jobId": "gh_ac708d15d7fc65fbd03a15e6",
