@@ -75841,12 +75841,14 @@
       "createdAt": "2026-11-02T19:51:28Z",
       "publicationCreatedAt": "2026-11-03T02:25:54.192Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-07T21:57:21.657Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Research Engineer Intern (PhD)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -75903,7 +75905,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 282
     },
     {
       "jobId": "gh_e8c58584e2e3c52826eadc7c",
