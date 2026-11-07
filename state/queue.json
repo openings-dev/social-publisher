@@ -75622,10 +75622,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-11-07T16:30:13.109Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-11-07T16:30:13.109Z"
+        },
         "lastReset": null,
         "result": null
       },
