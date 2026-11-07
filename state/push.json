@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "f383c468161ba25c7c3a69a932abd4d206f1f1bc",
-    "generatedAt": "2026-11-07T00:32:59.006Z",
-    "dataHash": "320603a5e1ced0c036cf179eced15d5bddaa4a4da8ba005323ad5e22d7df45e0"
+    "commit": "f587aa33f36955834107ed96dec374798639dc90",
+    "generatedAt": "2026-11-07T09:29:22.650Z",
+    "dataHash": "d6652219b041d78ebcdb7df2c619693cdb49da07111a0f53a9c779e9daf0c17b"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -22003,6 +22003,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_b93cec8f2d93aa1dac71e10b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_53768095978702f736a39e69",
+      "sourceId": "TechnologyMasters/jobs#731",
+      "dataCommit": "f587aa33f36955834107ed96dec374798639dc90",
+      "dataHash": "d6652219b041d78ebcdb7df2c619693cdb49da07111a0f53a9c779e9daf0c17b",
+      "contentHash": "011a6459f780bde129ab755cc372c98c9eea763c5d3b5316f70bd5c3e48a8d89",
+      "sourceCreatedAt": "2026-11-07T04:21:30Z",
+      "createdAt": "2026-11-07T09:29:22.650Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "af2e80c7-1183-4e7d-836d-0721bacaa2bf",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Founding Engineer, Product and Production Agents - New York, NY (in office) - $150,000-$220,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Founding Engineer, Product and Production Agents - New York, NY (in office) - $150,000-$220,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Founding Engineer, Product and Production Agents - New York, NY (in office) - $150,000-$220,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Founding Engineer, Product and Production Agents - New York, NY (in office) - $150,000-$220,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Founding Engineer, Product and Production Agents - New York, NY (in office) - $150,000-$220,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Founding Engineer, Product and Production Agents - New York, NY (in office) - $150,000-$220,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_53768095978702f736a39e69"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_57374e1d0c8336945e6b5b6b",
+      "sourceId": "TechnologyMasters/jobs#730",
+      "dataCommit": "f587aa33f36955834107ed96dec374798639dc90",
+      "dataHash": "d6652219b041d78ebcdb7df2c619693cdb49da07111a0f53a9c779e9daf0c17b",
+      "contentHash": "63f9bcc5ec5f7c1c321b3d08407ef95322a04b5498fd9d285f2e49054e0977bc",
+      "sourceCreatedAt": "2026-11-07T04:21:27Z",
+      "createdAt": "2026-11-07T09:29:22.650Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0cb9ba0a-b7bb-4137-8f8f-70cd4aa12292",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Founding Engineer, Applied ML and AI - San Francisco, CA (in-person) - $200,000-$250,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Founding Engineer, Applied ML and AI - San Francisco, CA (in-person) - $200,000-$250,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Founding Engineer, Applied ML and AI - San Francisco, CA (in-person) - $200,000-$250,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Founding Engineer, Applied ML and AI - San Francisco, CA (in-person) - $200,000-$250,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Founding Engineer, Applied ML and AI - San Francisco, CA (in-person) - $200,000-$250,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Founding Engineer, Applied ML and AI - San Francisco, CA (in-person) - $200,000-$250,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_57374e1d0c8336945e6b5b6b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_46efebb5b1651ba26fbd02f7",
+      "sourceId": "TechnologyMasters/jobs#729",
+      "dataCommit": "f587aa33f36955834107ed96dec374798639dc90",
+      "dataHash": "d6652219b041d78ebcdb7df2c619693cdb49da07111a0f53a9c779e9daf0c17b",
+      "contentHash": "f5faa7d9e876695c0e3a2fb718b39b807f1d7108f36da990d2eb6126f094c77d",
+      "sourceCreatedAt": "2026-11-07T04:21:25Z",
+      "createdAt": "2026-11-07T09:29:22.650Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d190ce9d-be91-4839-aa24-27daaec97619",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Founding Engineer, Cloud Infrastructure - New York, NY (in-person) - $200,000-$270,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Founding Engineer, Cloud Infrastructure - New York, NY (in-person) - $200,000-$270,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Founding Engineer, Cloud Infrastructure - New York, NY (in-person) - $200,000-$270,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Founding Engineer, Cloud Infrastructure - New York, NY (in-person) - $200,000-$270,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Founding Engineer, Cloud Infrastructure - New York, NY (in-person) - $200,000-$270,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Founding Engineer, Cloud Infrastructure - New York, NY (in-person) - $200,000-$270,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_46efebb5b1651ba26fbd02f7"
         }
       },
       "status": "pending",
