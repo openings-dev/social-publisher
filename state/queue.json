@@ -75767,12 +75767,14 @@
       "createdAt": "2026-11-02T19:51:49Z",
       "publicationCreatedAt": "2026-11-03T02:25:54.192Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-08T01:29:27.126Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Mechatronics Intern (PhD)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -75829,7 +75831,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 283
     },
     {
       "jobId": "gh_73a4d2717e73d4a8a060b3e8",
