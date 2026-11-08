@@ -75767,12 +75767,23 @@
       "createdAt": "2026-11-02T19:51:49Z",
       "publicationCreatedAt": "2026-11-03T02:25:54.192Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-08T01:29:27.126Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_b4defc06b3ad6afa0ea7698d",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_b4defc06b3ad6afa0ea7698d/8e8ce9512a478ba786f4353d28c47f83c592c6ca2ea277b42a641ccc7d9d2c30/7a9591d65bf2b8ed175ef0ea46bfa9d41c55d26e0124bcaac5ebe4b7f0987237/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_b4defc06b3ad6afa0ea7698d/8e8ce9512a478ba786f4353d28c47f83c592c6ca2ea277b42a641ccc7d9d2c30/7a9591d65bf2b8ed175ef0ea46bfa9d41c55d26e0124bcaac5ebe4b7f0987237/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_b4defc06b3ad6afa0ea7698d/8e8ce9512a478ba786f4353d28c47f83c592c6ca2ea277b42a641ccc7d9d2c30/7a9591d65bf2b8ed175ef0ea46bfa9d41c55d26e0124bcaac5ebe4b7f0987237/social-video.mp4",
+          "pngHash": "6f6b21080b38853c706e632a5a07d38b867d4e7b973ceadee80f7755081fef82",
+          "instagramJpegHash": "8874f78a34c301355cc5dd8730927eb4b051486906a0e9b8bedca076c223e217",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "Mechatronics Intern (PhD)"
         }
       },
