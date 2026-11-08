@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "77a85ac3fa09185dfe0726aadb561a85fd07f851",
-    "generatedAt": "2026-11-08T12:32:21.619Z",
-    "dataHash": "d026137af1d02409ca235fe7b858dc5283c376e6e4e60a84fc1a1c6a195f28d4"
+    "commit": "8d2748377da353a56c70e7d2e5436141eb1d91ca",
+    "generatedAt": "2026-11-08T19:16:53.373Z",
+    "dataHash": "ab862ec31c1aecc07a08c1d7f27c0e49df58a24500d1a4dd1f5275dff728964d"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -22366,6 +22366,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_db971604de6e581af15971a7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b6169491ff98d1fa0d7f6c95",
+      "sourceId": "vanshb03/New-Grad-2027#1559",
+      "dataCommit": "8d2748377da353a56c70e7d2e5436141eb1d91ca",
+      "dataHash": "ab862ec31c1aecc07a08c1d7f27c0e49df58a24500d1a4dd1f5275dff728964d",
+      "contentHash": "3aab4edec6fa5c469d9c627b564da100aaf090712e401c7cb07fef4a48bc030b",
+      "sourceCreatedAt": "2026-11-08T16:15:06Z",
+      "createdAt": "2026-11-08T19:16:53.373Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "80ff8e15-ef4f-4bcc-9e61-06388ec4ca7b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Quant Developer - Marshall Wace",
+          "pt-BR": "Quant Developer - Marshall Wace",
+          "es": "Quant Developer - Marshall Wace",
+          "it": "Quant Developer - Marshall Wace",
+          "fr": "Quant Developer - Marshall Wace",
+          "de": "Quant Developer - Marshall Wace"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b6169491ff98d1fa0d7f6c95"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ab503e80ddf6eaff0786fcef",
+      "sourceId": "soujava/vagas-java#1978",
+      "dataCommit": "8d2748377da353a56c70e7d2e5436141eb1d91ca",
+      "dataHash": "ab862ec31c1aecc07a08c1d7f27c0e49df58a24500d1a4dd1f5275dff728964d",
+      "contentHash": "053ab3ef8fbdd205c2f80c362563928b58eae920207d61415f908a6eef4dbf31",
+      "sourceCreatedAt": "2026-11-08T13:55:33Z",
+      "createdAt": "2026-11-08T19:16:53.373Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "24dc12d2-8fe3-43cc-810e-ecee37c379a7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Júnior (Integração Fiscal e NFe) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Júnior (Integração Fiscal e NFe) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Júnior (Integração Fiscal e NFe) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Júnior (Integração Fiscal e NFe) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Júnior (Integração Fiscal e NFe) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Júnior (Integração Fiscal e NFe) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ab503e80ddf6eaff0786fcef"
         }
       },
       "status": "pending",
