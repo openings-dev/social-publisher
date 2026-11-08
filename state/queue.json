@@ -76376,12 +76376,23 @@
       "createdAt": "2026-11-03T03:50:06Z",
       "publicationCreatedAt": "2026-11-03T12:01:30.528Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-08T16:43:17.886Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_7be2f05d46f630ed65453833",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_7be2f05d46f630ed65453833/bf2647e4073e88023231386d59cae4772d7f15546bea717964d2e24a7753effc/880abdb46120b16b3a51f36d5c230add0e7eaff72c97ba283464225b1d942a52/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_7be2f05d46f630ed65453833/bf2647e4073e88023231386d59cae4772d7f15546bea717964d2e24a7753effc/880abdb46120b16b3a51f36d5c230add0e7eaff72c97ba283464225b1d942a52/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_7be2f05d46f630ed65453833/bf2647e4073e88023231386d59cae4772d7f15546bea717964d2e24a7753effc/880abdb46120b16b3a51f36d5c230add0e7eaff72c97ba283464225b1d942a52/social-video.mp4",
+          "pngHash": "50d4253b4455fead42189844f91ddb59c9d05b261a606c706b0dd132feb3d7a5",
+          "instagramJpegHash": "a9e0cd518360aff0aec671a7118f5889ac8bcf7702e3c89bde5fada5b3c34c64",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "[远程] 头部数字资产与金融科技平台招聘:后端/Web3/智能合约/Flutter/前端/测试/SRE/AI/产品/设计 25K-50K RMB/月"
         }
       },
