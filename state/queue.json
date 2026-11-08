@@ -76302,12 +76302,23 @@
       "createdAt": "2026-11-03T03:51:50Z",
       "publicationCreatedAt": "2026-11-03T12:01:30.528Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-08T22:13:59.942Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_e8c58584e2e3c52826eadc7c",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_e8c58584e2e3c52826eadc7c/92e3c386bc315e96ee113436996dfbc11ed4e25a9c7e4f4de37072e7057c9521/7e8a7a957ec44fa12186bd9c37ce078ba84d277cefb9ef5333c6ad69cea345e9/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_e8c58584e2e3c52826eadc7c/92e3c386bc315e96ee113436996dfbc11ed4e25a9c7e4f4de37072e7057c9521/7e8a7a957ec44fa12186bd9c37ce078ba84d277cefb9ef5333c6ad69cea345e9/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_e8c58584e2e3c52826eadc7c/92e3c386bc315e96ee113436996dfbc11ed4e25a9c7e4f4de37072e7057c9521/7e8a7a957ec44fa12186bd9c37ce078ba84d277cefb9ef5333c6ad69cea345e9/social-video.mp4",
+          "pngHash": "5e129d12c24d0dfa9966dc77432387ed0654cda1ba055621c735f95860baf7b8",
+          "instagramJpegHash": "45f207e6ad85735c4ef4c7d5230705383d28ad2afab2bd62082d7720a5ff114e",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "后端 / Web3 / 移动端 / 测试 / SRE 工程师(全远程)"
         }
       },
