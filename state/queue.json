@@ -76376,12 +76376,14 @@
       "createdAt": "2026-11-03T03:50:06Z",
       "publicationCreatedAt": "2026-11-03T12:01:30.528Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-08T16:43:17.886Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[远程] 头部数字资产与金融科技平台招聘:后端/Web3/智能合约/Flutter/前端/测试/SRE/AI/产品/设计 25K-50K RMB/月"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -76438,7 +76440,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 285
     },
     {
       "jobId": "gh_01304d40c1defd808fb8b3be",
