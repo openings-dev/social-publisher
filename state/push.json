@@ -22045,12 +22045,15 @@
           "jobId": "gh_53768095978702f736a39e69"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-11-08T06:34:52.885Z",
-      "updatedAt": "2026-11-08T06:34:52.885Z",
+      "updatedAt": "2026-11-08T06:34:55.012Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "29612fc3-06a9-4638-ba30-a9e961f6c60b",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_57374e1d0c8336945e6b5b6b",
