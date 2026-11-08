@@ -76302,12 +76302,14 @@
       "createdAt": "2026-11-03T03:51:50Z",
       "publicationCreatedAt": "2026-11-03T12:01:30.528Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-08T22:13:59.942Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "后端 / Web3 / 移动端 / 测试 / SRE 工程师(全远程)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -76364,7 +76366,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 286
     },
     {
       "jobId": "gh_7be2f05d46f630ed65453833",
