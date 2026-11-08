@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "d8b2abc95bfb86f595188460483cbaec3934b3c9",
-    "generatedAt": "2026-11-08T03:40:34.033Z",
-    "dataHash": "6849739d77ca241f3c1cedbe61ed9cec82c818496362d4d5a93f6c1c6b1bb79a"
+    "commit": "77a85ac3fa09185dfe0726aadb561a85fd07f851",
+    "generatedAt": "2026-11-08T12:32:21.619Z",
+    "dataHash": "d026137af1d02409ca235fe7b858dc5283c376e6e4e60a84fc1a1c6a195f28d4"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -22286,6 +22286,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_7e00452720eb21e53866702d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ad6fa1af10e270554797a029",
+      "sourceId": "TechnologyMasters/jobs#733",
+      "dataCommit": "77a85ac3fa09185dfe0726aadb561a85fd07f851",
+      "dataHash": "d026137af1d02409ca235fe7b858dc5283c376e6e4e60a84fc1a1c6a195f28d4",
+      "contentHash": "f651715ce2fa6904a3f4d3ac3da70032bfa0f3621821a01840731c31a7aa1a7a",
+      "sourceCreatedAt": "2026-11-08T04:27:00Z",
+      "createdAt": "2026-11-08T12:32:21.619Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "969981a1-5c34-4467-8a18-07a39c561129",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Forward Deployed Engineer - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Forward Deployed Engineer - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Forward Deployed Engineer - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Forward Deployed Engineer - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Forward Deployed Engineer - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Forward Deployed Engineer - San Francisco, CA (in office) - $180,000-$300,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ad6fa1af10e270554797a029"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_db971604de6e581af15971a7",
+      "sourceId": "TechnologyMasters/jobs#732",
+      "dataCommit": "77a85ac3fa09185dfe0726aadb561a85fd07f851",
+      "dataHash": "d026137af1d02409ca235fe7b858dc5283c376e6e4e60a84fc1a1c6a195f28d4",
+      "contentHash": "625ac114a076979cb3c3e266660d493bcf70046b31ca286e1bb622165475f9eb",
+      "sourceCreatedAt": "2026-11-08T04:27:00Z",
+      "createdAt": "2026-11-08T12:32:21.619Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "40fa37cd-7a17-4796-bc48-32d9dba0c85c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Member of Technical Staff - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Member of Technical Staff - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Member of Technical Staff - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Member of Technical Staff - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Member of Technical Staff - San Francisco, CA (in office) - $180,000-$300,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Member of Technical Staff - San Francisco, CA (in office) - $180,000-$300,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_db971604de6e581af15971a7"
         }
       },
       "status": "pending",
