@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "8d2748377da353a56c70e7d2e5436141eb1d91ca",
-    "generatedAt": "2026-11-08T19:16:53.373Z",
-    "dataHash": "ab862ec31c1aecc07a08c1d7f27c0e49df58a24500d1a4dd1f5275dff728964d"
+    "commit": "14bc8d7a735ef35c1741cd9df281de72f8484c2e",
+    "generatedAt": "2026-11-09T00:24:35.528Z",
+    "dataHash": "962b5385d56950386e66ddd56b8ba5cb99d30cfe79355a227f591d5eedb5ccfa"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -22446,6 +22446,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_ab503e80ddf6eaff0786fcef"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_cbf68a8a3082e4d2bfc4ef1c",
+      "sourceId": "remoteintech/remote-jobs#2304",
+      "dataCommit": "14bc8d7a735ef35c1741cd9df281de72f8484c2e",
+      "dataHash": "962b5385d56950386e66ddd56b8ba5cb99d30cfe79355a227f591d5eedb5ccfa",
+      "contentHash": "462271a1a39f53a89212e34f835e281d21e79646fc04b9ba90e2a96dc067d0e2",
+      "sourceCreatedAt": "2026-11-08T21:49:03Z",
+      "createdAt": "2026-11-09T00:24:35.528Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6148ea0d-7f4b-42b7-83dc-383da1441f0f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Bug] Schema validation inconsistencies across legacy company profiles",
+          "pt-BR": "[Bug] Schema validation inconsistencies across legacy company profiles",
+          "es": "[Bug] Schema validation inconsistencies across legacy company profiles",
+          "it": "[Bug] Schema validation inconsistencies across legacy company profiles",
+          "fr": "[Bug] Schema validation inconsistencies across legacy company profiles",
+          "de": "[Bug] Schema validation inconsistencies across legacy company profiles"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_cbf68a8a3082e4d2bfc4ef1c"
         }
       },
       "status": "pending",
