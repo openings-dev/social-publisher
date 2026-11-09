@@ -76911,12 +76911,23 @@
       "createdAt": "2026-11-03T05:59:09Z",
       "publicationCreatedAt": "2026-11-03T19:39:09.557Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 2,
         "updatedAt": "2026-11-09T20:49:52.031Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_1ef9ab1a40d70f694d6cf680",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_1ef9ab1a40d70f694d6cf680/90f9daf0eae72044d81d624d3a3c3f966d091d5d4fea88c1d5e39422cbfa8d32/ac505529c9821e387f00ec9a70b9efec4bb613bdc3f528191bf6f9018d7c5a55/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_1ef9ab1a40d70f694d6cf680/90f9daf0eae72044d81d624d3a3c3f966d091d5d4fea88c1d5e39422cbfa8d32/ac505529c9821e387f00ec9a70b9efec4bb613bdc3f528191bf6f9018d7c5a55/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_1ef9ab1a40d70f694d6cf680/90f9daf0eae72044d81d624d3a3c3f966d091d5d4fea88c1d5e39422cbfa8d32/ac505529c9821e387f00ec9a70b9efec4bb613bdc3f528191bf6f9018d7c5a55/social-video.mp4",
+          "pngHash": "9c9f5e8418cce9387e0658eee179cfa51d6abe11328bbc0b9b3f875757248fdf",
+          "instagramJpegHash": "4130cc0ac6894f53c943308ae653d4918d45d7d28ab3632534e1b5af6ef991ad",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[香港] Crypto量化 诚聘 Rust/Kotlin/Java工程师 薪资不设限制 经验2-20+年"
         }
       },
