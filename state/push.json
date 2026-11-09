@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "14bc8d7a735ef35c1741cd9df281de72f8484c2e",
-    "generatedAt": "2026-11-09T00:24:35.528Z",
-    "dataHash": "962b5385d56950386e66ddd56b8ba5cb99d30cfe79355a227f591d5eedb5ccfa"
+    "commit": "31ac3cbdca1ffe99b509a8e169cf74498f396f61",
+    "generatedAt": "2026-11-09T10:43:26.039Z",
+    "dataHash": "cc22b24edf60afdd101e0b34136ef8120641065324fa84cb72a540b6cc638f79"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -22489,6 +22489,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_cbf68a8a3082e4d2bfc4ef1c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_12c4f52f84bec8dcc76c7871",
+      "sourceId": "ambicuity/New-Grad-Jobs#463",
+      "dataCommit": "31ac3cbdca1ffe99b509a8e169cf74498f396f61",
+      "dataHash": "cc22b24edf60afdd101e0b34136ef8120641065324fa84cb72a540b6cc638f79",
+      "contentHash": "41890fc7b7b76256729530172308f790bbc465ec0caee1ebda8a5e899608b974",
+      "sourceCreatedAt": "2026-11-09T09:54:24Z",
+      "createdAt": "2026-11-09T10:43:26.039Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "06d32a61-0995-46ac-812b-2f1049fd25c3",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-11-09T02:40:41.745459Z",
+          "pt-BR": "Job data is stale: last scrape 2026-11-09T02:40:41.745459Z",
+          "es": "Job data is stale: last scrape 2026-11-09T02:40:41.745459Z",
+          "it": "Job data is stale: last scrape 2026-11-09T02:40:41.745459Z",
+          "fr": "Job data is stale: last scrape 2026-11-09T02:40:41.745459Z",
+          "de": "Job data is stale: last scrape 2026-11-09T02:40:41.745459Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_12c4f52f84bec8dcc76c7871"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_a05345053129d5fdacb17cd4",
+      "sourceId": "rebase-network/who-is-hiring#1344",
+      "dataCommit": "31ac3cbdca1ffe99b509a8e169cf74498f396f61",
+      "dataHash": "cc22b24edf60afdd101e0b34136ef8120641065324fa84cb72a540b6cc638f79",
+      "contentHash": "b98d2f24cde255ab8539f8a1c8356af83d4d6d19387d96962e033a89b47ea865",
+      "sourceCreatedAt": "2026-11-09T09:46:14Z",
+      "createdAt": "2026-11-09T10:43:26.039Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "b45216be-c914-4a66-a31c-2eab1cc4979d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【全球远程 远程办公 居家办公 FineStar】 高级运维工程师 SRE  k8s 【各类开发 AI短剧剪辑 生成师 职能类】30-40k",
+          "pt-BR": "【全球远程 远程办公 居家办公 FineStar】 高级运维工程师 SRE  k8s 【各类开发 AI短剧剪辑 生成师 职能类】30-40k",
+          "es": "【全球远程 远程办公 居家办公 FineStar】 高级运维工程师 SRE  k8s 【各类开发 AI短剧剪辑 生成师 职能类】30-40k",
+          "it": "【全球远程 远程办公 居家办公 FineStar】 高级运维工程师 SRE  k8s 【各类开发 AI短剧剪辑 生成师 职能类】30-40k",
+          "fr": "【全球远程 远程办公 居家办公 FineStar】 高级运维工程师 SRE  k8s 【各类开发 AI短剧剪辑 生成师 职能类】30-40k",
+          "de": "【全球远程 远程办公 居家办公 FineStar】 高级运维工程师 SRE  k8s 【各类开发 AI短剧剪辑 生成师 职能类】30-40k"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_a05345053129d5fdacb17cd4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_970db7bfc7cb32ee1cceed12",
+      "sourceId": "awesome-jobs/vietnam#5100",
+      "dataCommit": "31ac3cbdca1ffe99b509a8e169cf74498f396f61",
+      "dataHash": "cc22b24edf60afdd101e0b34136ef8120641065324fa84cb72a540b6cc638f79",
+      "contentHash": "6e77a503b9938407e1d6a795b8e89284b746433c7167bf045fdec6a1f4d23618",
+      "sourceCreatedAt": "2026-11-09T06:23:51Z",
+      "createdAt": "2026-11-09T10:43:26.039Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "abd7b29d-be53-46e0-a7e9-aff7ef7350ba",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[REMOTE 2nd job] 70tr gross | Data Engineer 5+ yoe (Oracle Fusion) | Làm giờ hành chính VN",
+          "pt-BR": "[REMOTE 2nd job] 70tr gross | Data Engineer 5+ yoe (Oracle Fusion) | Làm giờ hành chính VN",
+          "es": "[REMOTE 2nd job] 70tr gross | Data Engineer 5+ yoe (Oracle Fusion) | Làm giờ hành chính VN",
+          "it": "[REMOTE 2nd job] 70tr gross | Data Engineer 5+ yoe (Oracle Fusion) | Làm giờ hành chính VN",
+          "fr": "[REMOTE 2nd job] 70tr gross | Data Engineer 5+ yoe (Oracle Fusion) | Làm giờ hành chính VN",
+          "de": "[REMOTE 2nd job] 70tr gross | Data Engineer 5+ yoe (Oracle Fusion) | Làm giờ hành chính VN"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_970db7bfc7cb32ee1cceed12"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5a1ff9c946d4a24594ec28b1",
+      "sourceId": "soujava/vagas-java#1954",
+      "dataCommit": "31ac3cbdca1ffe99b509a8e169cf74498f396f61",
+      "dataHash": "cc22b24edf60afdd101e0b34136ef8120641065324fa84cb72a540b6cc638f79",
+      "contentHash": "6dd94acb488552eb6e94abec3b2d7bd3a8fb77160bca95ea29fcd0aec90c0372",
+      "sourceCreatedAt": "2026-09-09T15:04:41Z",
+      "createdAt": "2026-11-09T10:43:26.039Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "11e9a861-7054-4a58-bf17-f662efe769ba",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[HÍBRIDO - São Paulo | SP] Pessoa Desenvolvedora Sênior | BAU e Modernização | Mercado de Capitais na [Evertec]",
+          "pt-BR": "[HÍBRIDO - São Paulo | SP] Pessoa Desenvolvedora Sênior | BAU e Modernização | Mercado de Capitais na [Evertec]",
+          "es": "[HÍBRIDO - São Paulo | SP] Pessoa Desenvolvedora Sênior | BAU e Modernização | Mercado de Capitais na [Evertec]",
+          "it": "[HÍBRIDO - São Paulo | SP] Pessoa Desenvolvedora Sênior | BAU e Modernização | Mercado de Capitais na [Evertec]",
+          "fr": "[HÍBRIDO - São Paulo | SP] Pessoa Desenvolvedora Sênior | BAU e Modernização | Mercado de Capitais na [Evertec]",
+          "de": "[HÍBRIDO - São Paulo | SP] Pessoa Desenvolvedora Sênior | BAU e Modernização | Mercado de Capitais na [Evertec]"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5a1ff9c946d4a24594ec28b1"
         }
       },
       "status": "pending",
