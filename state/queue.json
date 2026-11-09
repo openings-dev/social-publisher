@@ -76708,12 +76708,23 @@
       "createdAt": "2026-11-03T08:22:37Z",
       "publicationCreatedAt": "2026-11-03T19:39:09.557Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-09T01:46:09.211Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_01304d40c1defd808fb8b3be",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_01304d40c1defd808fb8b3be/f7ba327ceb551e42cadb16a0f43dc825084bd08829ce01e35f3354aa53f963fa/aa7315127589cc1fde2e98c98fa955502352b7cc2b9dd308b2f1874e44cca264/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_01304d40c1defd808fb8b3be/f7ba327ceb551e42cadb16a0f43dc825084bd08829ce01e35f3354aa53f963fa/aa7315127589cc1fde2e98c98fa955502352b7cc2b9dd308b2f1874e44cca264/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_01304d40c1defd808fb8b3be/f7ba327ceb551e42cadb16a0f43dc825084bd08829ce01e35f3354aa53f963fa/aa7315127589cc1fde2e98c98fa955502352b7cc2b9dd308b2f1874e44cca264/social-video.mp4",
+          "pngHash": "ff597f0b0dd7278d8ba7ed5766361970fd0831821deb987a08ac6fa25586470f",
+          "instagramJpegHash": "13c24584a36ad3e29735b5c4122b6833d856eb05ae3edb83369f46a0b15689ac",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "【全球远程 远程办公 居家办公 FineStar】后端/go/glang高级/架构师 Go/PHP/Python/node 20-50k"
         }
       },
