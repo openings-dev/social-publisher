@@ -49987,9 +49987,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-09T20:49:52.031Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -76911,13 +76911,10 @@
       "createdAt": "2026-11-03T05:59:09Z",
       "publicationCreatedAt": "2026-11-03T19:39:09.557Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 1,
-        "updatedAt": "2026-11-09T09:55:26.688Z",
-        "lastError": {
-          "code": "validation",
-          "at": "2026-11-09T09:55:26.688Z"
-        },
+        "status": "publishing",
+        "attempts": 2,
+        "updatedAt": "2026-11-09T20:49:52.031Z",
+        "lastError": null,
         "lastReset": null,
         "result": {
           "socialTitle": "[香港] Crypto量化 诚聘 Rust/Kotlin/Java工程师 薪资不设限制 经验2-20+年"
