@@ -76708,12 +76708,14 @@
       "createdAt": "2026-11-03T08:22:37Z",
       "publicationCreatedAt": "2026-11-03T19:39:09.557Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-09T01:46:09.211Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "【全球远程 远程办公 居家办公 FineStar】后端/go/glang高级/架构师 Go/PHP/Python/node 20-50k"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -76770,7 +76772,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 287
     },
     {
       "jobId": "gh_1ef9ab1a40d70f694d6cf680",
