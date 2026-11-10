@@ -77188,12 +77188,14 @@
       "createdAt": "2026-11-03T18:56:32Z",
       "publicationCreatedAt": "2026-11-04T00:41:17.125Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "New Internship"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -77250,7 +77252,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 290
     },
     {
       "jobId": "gh_30f0dda015de26670412f182",
@@ -80573,17 +80577,17 @@
       "createdAt": "2026-11-09T12:03:33Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -80597,41 +80601,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
         "lastReset": null,
         "result": null
