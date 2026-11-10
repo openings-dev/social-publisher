@@ -77262,12 +77262,23 @@
       "createdAt": "2026-11-03T17:19:12Z",
       "publicationCreatedAt": "2026-11-04T00:41:17.125Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-10T04:19:11.724Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_30f0dda015de26670412f182",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_30f0dda015de26670412f182/dd563ddb971205be5c4127ca75c4d91874b23ff8a7737fa03214cd67d20deb89/98cd095d379875b65045eb8414046e988cedb08ee7f2bcb882bc258e3c24ccd3/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_30f0dda015de26670412f182/dd563ddb971205be5c4127ca75c4d91874b23ff8a7737fa03214cd67d20deb89/98cd095d379875b65045eb8414046e988cedb08ee7f2bcb882bc258e3c24ccd3/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_30f0dda015de26670412f182/dd563ddb971205be5c4127ca75c4d91874b23ff8a7737fa03214cd67d20deb89/98cd095d379875b65045eb8414046e988cedb08ee7f2bcb882bc258e3c24ccd3/social-video.mp4",
+          "pngHash": "67170f784b5b0770ebf27b56eb7e3a7a5790345ad935e05b43e955a610da7958",
+          "instagramJpegHash": "ea4caa3a9ef376dd708f77ede1e42a4c212e7b60912d984fbd839c3d9316e807",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Belo Horizonte, Brasil] Product Owner na Coodesh"
         }
       },
