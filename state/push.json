@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "31ac3cbdca1ffe99b509a8e169cf74498f396f61",
-    "generatedAt": "2026-11-09T10:43:26.039Z",
-    "dataHash": "cc22b24edf60afdd101e0b34136ef8120641065324fa84cb72a540b6cc638f79"
+    "commit": "d11c05ff43a5b96214755924f753057a564ca53c",
+    "generatedAt": "2026-11-09T21:48:57.392Z",
+    "dataHash": "b5c7b824456983dbd93134c1387c8a72e09050fca9680399559c5a9b4f9e1dc2"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -22411,10 +22411,10 @@
           "jobId": "gh_b6169491ff98d1fa0d7f6c95"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-09T21:48:57.392Z",
       "retryAfter": null,
       "result": null
     },
@@ -22649,6 +22649,286 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_5a1ff9c946d4a24594ec28b1"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7a1d13997c98f75438525af5",
+      "sourceId": "backend-pt/vagas#165",
+      "dataCommit": "d11c05ff43a5b96214755924f753057a564ca53c",
+      "dataHash": "b5c7b824456983dbd93134c1387c8a72e09050fca9680399559c5a9b4f9e1dc2",
+      "contentHash": "f8531061460242bb2000aecd4fa1d6e6cd07c9d5e79b2523b1e778b6abbf9752",
+      "sourceCreatedAt": "2026-11-09T19:22:03Z",
+      "createdAt": "2026-11-09T21:48:57.392Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "137383a5-2fdc-4a7d-9ec3-2ed069f9ad23",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Tech Lead RM Educacional | Remoto",
+          "pt-BR": "Tech Lead RM Educacional | Remoto",
+          "es": "Tech Lead RM Educacional | Remoto",
+          "it": "Tech Lead RM Educacional | Remoto",
+          "fr": "Tech Lead RM Educacional | Remoto",
+          "de": "Tech Lead RM Educacional | Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7a1d13997c98f75438525af5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5a902415db8ee28b548b9fd9",
+      "sourceId": "TechnologyMasters/jobs#736",
+      "dataCommit": "d11c05ff43a5b96214755924f753057a564ca53c",
+      "dataHash": "b5c7b824456983dbd93134c1387c8a72e09050fca9680399559c5a9b4f9e1dc2",
+      "contentHash": "32d4bb5eca0b45b9da6f03cc46c00e4c03fd33ef98cb249a18ab2f4523cdae8d",
+      "sourceCreatedAt": "2026-11-09T15:40:17Z",
+      "createdAt": "2026-11-09T21:48:57.392Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "64735c25-6cc8-47c0-97a4-4070493dc138",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Founding Full-Stack Engineer, Operations Software - Brooklyn, NY (hybrid) - $160,000-$220,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Founding Full-Stack Engineer, Operations Software - Brooklyn, NY (hybrid) - $160,000-$220,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Founding Full-Stack Engineer, Operations Software - Brooklyn, NY (hybrid) - $160,000-$220,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Founding Full-Stack Engineer, Operations Software - Brooklyn, NY (hybrid) - $160,000-$220,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Founding Full-Stack Engineer, Operations Software - Brooklyn, NY (hybrid) - $160,000-$220,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Founding Full-Stack Engineer, Operations Software - Brooklyn, NY (hybrid) - $160,000-$220,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5a902415db8ee28b548b9fd9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6b06d359ba85eb9e7a9f073d",
+      "sourceId": "TechnologyMasters/jobs#735",
+      "dataCommit": "d11c05ff43a5b96214755924f753057a564ca53c",
+      "dataHash": "b5c7b824456983dbd93134c1387c8a72e09050fca9680399559c5a9b4f9e1dc2",
+      "contentHash": "4378c7a53bf0e87189954c20a679c14db3f5d007a902f7c24c81345686971043",
+      "sourceCreatedAt": "2026-11-09T15:39:14Z",
+      "createdAt": "2026-11-09T21:48:57.392Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "fcae6d87-3c6d-4153-aa97-25d91bc11f53",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Education Finance - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Education Finance - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Education Finance - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Education Finance - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Education Finance - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Education Finance - San Francisco, CA (in office) - $130,000-$180,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6b06d359ba85eb9e7a9f073d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8aa60993a3a4a325a9968338",
+      "sourceId": "TechnologyMasters/jobs#734",
+      "dataCommit": "d11c05ff43a5b96214755924f753057a564ca53c",
+      "dataHash": "b5c7b824456983dbd93134c1387c8a72e09050fca9680399559c5a9b4f9e1dc2",
+      "contentHash": "544aa73033ef2d04ba1d6fccbd91a4aa0175243196464fa85ea924a8d5f9163e",
+      "sourceCreatedAt": "2026-11-09T15:38:15Z",
+      "createdAt": "2026-11-09T21:48:57.392Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4e5b7c0a-933c-45a0-855e-35f0bfe32f3f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Agent Evaluation - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "pt-BR": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Agent Evaluation - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "es": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Agent Evaluation - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "it": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Agent Evaluation - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "fr": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Agent Evaluation - San Francisco, CA (in office) - $130,000-$180,000 USD/year",
+          "de": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Agent Evaluation - San Francisco, CA (in office) - $130,000-$180,000 USD/year"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8aa60993a3a4a325a9968338"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_112b43fedbe511cb3669c421",
+      "sourceId": "soujava/vagas-java#1979",
+      "dataCommit": "d11c05ff43a5b96214755924f753057a564ca53c",
+      "dataHash": "b5c7b824456983dbd93134c1387c8a72e09050fca9680399559c5a9b4f9e1dc2",
+      "contentHash": "bc4a294741304ff60d8e3b4928bf83440847347e2317490b323578fa0be08ad4",
+      "sourceCreatedAt": "2026-11-09T14:05:47Z",
+      "createdAt": "2026-11-09T21:48:57.392Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "01edd7ce-cd23-405d-9919-84f525cd61c6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Java Júnior (Integrações Bancárias CNAB) | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Java Júnior (Integrações Bancárias CNAB) | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor(a) Java Júnior (Integrações Bancárias CNAB) | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor(a) Java Júnior (Integrações Bancárias CNAB) | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor(a) Java Júnior (Integrações Bancárias CNAB) | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor(a) Java Júnior (Integrações Bancárias CNAB) | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_112b43fedbe511cb3669c421"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_88b650006c468594abf50c19",
+      "sourceId": "rebase-network/who-is-hiring#1345",
+      "dataCommit": "d11c05ff43a5b96214755924f753057a564ca53c",
+      "dataHash": "b5c7b824456983dbd93134c1387c8a72e09050fca9680399559c5a9b4f9e1dc2",
+      "contentHash": "fa5f5c604f5c20dddea02726ad821b0d2f7d9ea7169e41c4d04d8a8f5ab84a60",
+      "sourceCreatedAt": "2026-11-09T14:05:36Z",
+      "createdAt": "2026-11-09T21:48:57.392Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f86af150-7913-4ec8-97b1-131eb37da0a5",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【全球远程 远程办公 居家办公 Starclub】 AI Agent + Smart Contract Engineer 【各类开发 AI Agent 智能合约 职能类】8-10kU",
+          "pt-BR": "【全球远程 远程办公 居家办公 Starclub】 AI Agent + Smart Contract Engineer 【各类开发 AI Agent 智能合约 职能类】8-10kU",
+          "es": "【全球远程 远程办公 居家办公 Starclub】 AI Agent + Smart Contract Engineer 【各类开发 AI Agent 智能合约 职能类】8-10kU",
+          "it": "【全球远程 远程办公 居家办公 Starclub】 AI Agent + Smart Contract Engineer 【各类开发 AI Agent 智能合约 职能类】8-10kU",
+          "fr": "【全球远程 远程办公 居家办公 Starclub】 AI Agent + Smart Contract Engineer 【各类开发 AI Agent 智能合约 职能类】8-10kU",
+          "de": "【全球远程 远程办公 居家办公 Starclub】 AI Agent + Smart Contract Engineer 【各类开发 AI Agent 智能合约 职能类】8-10kU"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_88b650006c468594abf50c19"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0031fc7e9077d48cbb294ce8",
+      "sourceId": "backend-br/vagas#12494",
+      "dataCommit": "d11c05ff43a5b96214755924f753057a564ca53c",
+      "dataHash": "b5c7b824456983dbd93134c1387c8a72e09050fca9680399559c5a9b4f9e1dc2",
+      "contentHash": "37f671289febcdcb40dce5f5d29d4f4d09f5d47bba4ae6522cc840192a629029",
+      "sourceCreatedAt": "2026-11-09T12:03:33Z",
+      "createdAt": "2026-11-09T21:48:57.392Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e33069e0-9c3b-4def-bf64-5f45c8878e81",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor(a) Backend Pleno - White Label e Plataforma - Mimix AI",
+          "pt-BR": "[Remoto] Desenvolvedor(a) Backend Pleno - White Label e Plataforma - Mimix AI",
+          "es": "[Remoto] Desenvolvedor(a) Backend Pleno - White Label e Plataforma - Mimix AI",
+          "it": "[Remoto] Desenvolvedor(a) Backend Pleno - White Label e Plataforma - Mimix AI",
+          "fr": "[Remoto] Desenvolvedor(a) Backend Pleno - White Label e Plataforma - Mimix AI",
+          "de": "[Remoto] Desenvolvedor(a) Backend Pleno - White Label e Plataforma - Mimix AI"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0031fc7e9077d48cbb294ce8"
         }
       },
       "status": "pending",
