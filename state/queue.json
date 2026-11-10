@@ -77271,7 +77271,7 @@
         }
       },
       "linkedin": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
@@ -77279,7 +77279,11 @@
         "result": {
           "acceptedProviderId": "6af311ec53ac0596a2bcb13e",
           "acceptedProvider": "buffer",
-          "acceptedStatus": "sending"
+          "acceptedStatus": "sending",
+          "status": "published",
+          "id": "6af311ec53ac0596a2bcb13e",
+          "url": "https://www.linkedin.com/feed/update/urn:li:share:7525901549403897859",
+          "provider": "buffer"
         }
       },
       "instagramStory": {
@@ -77323,7 +77327,7 @@
               },
               {
                 "channel": "linkedin",
-                "state": "accepted",
+                "state": "completed",
                 "remoteId": "6af311ec53ac0596a2bcb13e",
                 "updatedAt": "2026-11-10T12:44:32.316Z"
               }
@@ -77374,7 +77378,7 @@
             ]
           }
         ],
-        "manifestDigest": "aaf5ead973a654ad5f55221044257ebe8e3cfc3ef928e461df19a8255fb661d6"
+        "manifestDigest": "a246d1981bf491e8bcead56ab5f2c16ae409b18cf32bdf1e219fc4c200c10741"
       }
     },
     {
