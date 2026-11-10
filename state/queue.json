@@ -60641,9 +60641,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -60845,9 +60845,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -77114,12 +77114,14 @@
       "createdAt": "2026-11-03T18:57:28Z",
       "publicationCreatedAt": "2026-11-04T00:41:17.125Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "New Role"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -77176,7 +77178,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 291
     },
     {
       "jobId": "gh_4c8cb2b9592db50dba6ad8df",
@@ -80036,17 +80040,17 @@
       "createdAt": "2026-11-09T09:54:24Z",
       "publicationCreatedAt": "2026-11-09T20:51:14.974Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -80060,41 +80064,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": null
