@@ -77172,10 +77172,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-11-10T20:53:07.094Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-11-10T20:53:07.094Z"
+        },
         "lastReset": null,
         "result": null
       },
