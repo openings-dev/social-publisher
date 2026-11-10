@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "d53c0b6be3f6d16598f31966008dc5917e5d853b",
-    "generatedAt": "2026-11-10T05:27:50.297Z",
-    "dataHash": "b2fb093929c5ab5be3f63d7b7fad2ea3baece9b6cb8de499fd5fee6ae58ff9f8"
+    "commit": "254b26e1ccc986545e7065eca1aad2caf5f12909",
+    "generatedAt": "2026-11-10T14:02:28.652Z",
+    "dataHash": "528735e30a9498d6b0e1ff7aa80ab5ef4caf686de5b830835f224ebba236c5c8"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23012,6 +23012,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_bf73df7999bf22857e69155f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2764213b770366649449d542",
+      "sourceId": "rebase-network/who-is-hiring#1347",
+      "dataCommit": "254b26e1ccc986545e7065eca1aad2caf5f12909",
+      "dataHash": "528735e30a9498d6b0e1ff7aa80ab5ef4caf686de5b830835f224ebba236c5c8",
+      "contentHash": "dc9ad0ba7b8cff863bf929a6bc27f3d2786079162e8e12686daa83e1b881ad4e",
+      "sourceCreatedAt": "2026-11-10T13:36:47Z",
+      "createdAt": "2026-11-10T14:02:28.652Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "07d15a21-7c72-4d55-b36b-e20346f9e0a3",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[中国大陆远程] 高级区块链协议工程师（Go / Rust）｜全职｜Arch Network｜40K–60K RMB/月",
+          "pt-BR": "[中国大陆远程] 高级区块链协议工程师（Go / Rust）｜全职｜Arch Network｜40K–60K RMB/月",
+          "es": "[中国大陆远程] 高级区块链协议工程师（Go / Rust）｜全职｜Arch Network｜40K–60K RMB/月",
+          "it": "[中国大陆远程] 高级区块链协议工程师（Go / Rust）｜全职｜Arch Network｜40K–60K RMB/月",
+          "fr": "[中国大陆远程] 高级区块链协议工程师（Go / Rust）｜全职｜Arch Network｜40K–60K RMB/月",
+          "de": "[中国大陆远程] 高级区块链协议工程师（Go / Rust）｜全职｜Arch Network｜40K–60K RMB/月"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2764213b770366649449d542"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0267a80ac7e0cf1a479daa48",
+      "sourceId": "rebase-network/who-is-hiring#1346",
+      "dataCommit": "254b26e1ccc986545e7065eca1aad2caf5f12909",
+      "dataHash": "528735e30a9498d6b0e1ff7aa80ab5ef4caf686de5b830835f224ebba236c5c8",
+      "contentHash": "0df23fad61c10bfc210612ae96ec321b7a8a617205b6d4c1968ed736b35c2e90",
+      "sourceCreatedAt": "2026-11-10T13:04:24Z",
+      "createdAt": "2026-11-10T14:02:28.652Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a5710de2-617e-40d4-abd7-2839ed96f30f",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【全球远程 远程办公 居家办公 Starclub】 Senior Web3 Frontend Developer 【各类开发 Web3 前端 AI Agent 职能类】10kU",
+          "pt-BR": "【全球远程 远程办公 居家办公 Starclub】 Senior Web3 Frontend Developer 【各类开发 Web3 前端 AI Agent 职能类】10kU",
+          "es": "【全球远程 远程办公 居家办公 Starclub】 Senior Web3 Frontend Developer 【各类开发 Web3 前端 AI Agent 职能类】10kU",
+          "it": "【全球远程 远程办公 居家办公 Starclub】 Senior Web3 Frontend Developer 【各类开发 Web3 前端 AI Agent 职能类】10kU",
+          "fr": "【全球远程 远程办公 居家办公 Starclub】 Senior Web3 Frontend Developer 【各类开发 Web3 前端 AI Agent 职能类】10kU",
+          "de": "【全球远程 远程办公 居家办公 Starclub】 Senior Web3 Frontend Developer 【各类开发 Web3 前端 AI Agent 职能类】10kU"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0267a80ac7e0cf1a479daa48"
         }
       },
       "status": "pending",
