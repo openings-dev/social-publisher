@@ -77114,12 +77114,23 @@
       "createdAt": "2026-11-03T18:57:28Z",
       "publicationCreatedAt": "2026-11-04T00:41:17.125Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-10T20:53:07.094Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_955226cbfa98dd29e44c402f",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_955226cbfa98dd29e44c402f/ac8044b4046fa4815e1a150ccc3eaa032472e89713a2453970e578d42f7c5b1d/a2f776cae323d82e3694644deb213890a3fe145d141d184bea222de2cd11804b/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_955226cbfa98dd29e44c402f/ac8044b4046fa4815e1a150ccc3eaa032472e89713a2453970e578d42f7c5b1d/a2f776cae323d82e3694644deb213890a3fe145d141d184bea222de2cd11804b/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_955226cbfa98dd29e44c402f/ac8044b4046fa4815e1a150ccc3eaa032472e89713a2453970e578d42f7c5b1d/a2f776cae323d82e3694644deb213890a3fe145d141d184bea222de2cd11804b/social-video.mp4",
+          "pngHash": "2307c3ecea8e33aaaecfa2ba7c499edc935614cd624fd3567615aabe803dc6b0",
+          "instagramJpegHash": "cc689c670273cd022bacf51aea393438e68dbe59156d1cdd0fbbaba27ab7950a",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "New Role"
         }
       },
