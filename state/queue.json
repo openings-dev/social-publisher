@@ -77257,12 +77257,15 @@
         "result": null
       },
       "instagram": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-10T12:44:32.316Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "publicationKind": "image",
+          "canonicalUrl": "https://openings.dev/jobs/gh_4c8cb2b9592db50dba6ad8df"
+        }
       },
       "linkedin": {
         "status": "pending",
