@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "cd54a17ba0deee93bd701c919403918e69e4d561",
-    "generatedAt": "2026-11-11T03:57:50.830Z",
-    "dataHash": "86d01ab5fcdb2c060ade7a52cf9b7ff15c8f99c5245f23fdbfc867606d8290a2"
+    "commit": "31a81ca767440668c7f4ef3764c7001dd28cfedc",
+    "generatedAt": "2026-11-11T13:19:53.361Z",
+    "dataHash": "40b14a9154203f0e16422958cf534ea1c6681c48517834e4592f1582230daa19"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23215,6 +23215,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_96b389ca245be4729a4edad7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_49bc9f9f7bfcc3e1355869a1",
+      "sourceId": "lukasz-madon/awesome-remote-job#1242",
+      "dataCommit": "31a81ca767440668c7f4ef3764c7001dd28cfedc",
+      "dataHash": "40b14a9154203f0e16422958cf534ea1c6681c48517834e4592f1582230daa19",
+      "contentHash": "5145209269f3eb072142f75463c9b5df9ef938aa34a01c7b0568e220862e8370",
+      "sourceCreatedAt": "2026-11-11T12:46:19Z",
+      "createdAt": "2026-11-11T13:19:53.361Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "87956011-d6ef-4406-a0c1-a5f9f8d4fd36",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Suggestion: Novastart for Tools / Others",
+          "pt-BR": "Suggestion: Novastart for Tools / Others",
+          "es": "Suggestion: Novastart for Tools / Others",
+          "it": "Suggestion: Novastart for Tools / Others",
+          "fr": "Suggestion: Novastart for Tools / Others",
+          "de": "Suggestion: Novastart for Tools / Others"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_49bc9f9f7bfcc3e1355869a1"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_33bb7a43cf20f10ec265fc0f",
+      "sourceId": "cncf/gitjobs#394",
+      "dataCommit": "31a81ca767440668c7f4ef3764c7001dd28cfedc",
+      "dataHash": "40b14a9154203f0e16422958cf534ea1c6681c48517834e4592f1582230daa19",
+      "contentHash": "6f23fa0fac3536360c8c18834a59bb2a0e23908841bd786617e71a207a05c59a",
+      "sourceCreatedAt": "2026-11-11T09:31:22Z",
+      "createdAt": "2026-11-11T13:19:53.361Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0bbbb777-b6ad-4538-8721-399835d5f696",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Expose API for job posting (ENHANCEMENT)",
+          "pt-BR": "Expose API for job posting (ENHANCEMENT)",
+          "es": "Expose API for job posting (ENHANCEMENT)",
+          "it": "Expose API for job posting (ENHANCEMENT)",
+          "fr": "Expose API for job posting (ENHANCEMENT)",
+          "de": "Expose API for job posting (ENHANCEMENT)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_33bb7a43cf20f10ec265fc0f"
         }
       },
       "status": "pending",
