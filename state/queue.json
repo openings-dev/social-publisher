@@ -77902,12 +77902,23 @@
       "createdAt": "2026-11-04T13:27:20Z",
       "publicationCreatedAt": "2026-11-04T23:46:50.621Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-11T09:32:18.255Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_11c5ccdeb258bb1cac649506",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_11c5ccdeb258bb1cac649506/e5ee9e18c7e4d90ee4ca82599ecfe8f646707fb98163013cbc1749c48fd8347d/1aee6528adc352610ad7e905b9e1f298a029d7622fc9391fe15aaa633cd75a8e/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_11c5ccdeb258bb1cac649506/e5ee9e18c7e4d90ee4ca82599ecfe8f646707fb98163013cbc1749c48fd8347d/1aee6528adc352610ad7e905b9e1f298a029d7622fc9391fe15aaa633cd75a8e/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_11c5ccdeb258bb1cac649506/e5ee9e18c7e4d90ee4ca82599ecfe8f646707fb98163013cbc1749c48fd8347d/1aee6528adc352610ad7e905b9e1f298a029d7622fc9391fe15aaa633cd75a8e/social-video.mp4",
+          "pngHash": "d4877d3a37a94539594dc9e3c23ebdc09be9728edddbfc302f82c67ffa1151dd",
+          "instagramJpegHash": "ebc36ac45203662f2a48329af9dd8da37dfaf065d56cabd1440ca90ecf322852",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "[Remoto] Desenvolvedor(a) Java Júnior (Pagamentos via Pix) | Confidencial (vaga via Sylision)"
         }
       },
