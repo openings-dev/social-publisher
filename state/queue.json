@@ -81627,6 +81627,154 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_49bc9f9f7bfcc3e1355869a1",
+      "sourceId": "lukasz-madon/awesome-remote-job#1242",
+      "dataCommit": "31a81ca767440668c7f4ef3764c7001dd28cfedc",
+      "dataHash": "40b14a9154203f0e16422958cf534ea1c6681c48517834e4592f1582230daa19",
+      "contentHash": "5145209269f3eb072142f75463c9b5df9ef938aa34a01c7b0568e220862e8370",
+      "discoveredAt": "2026-11-11T17:57:34.796Z",
+      "createdAt": "2026-11-11T12:46:19Z",
+      "publicationCreatedAt": "2026-11-11T17:57:34.796Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
+    },
+    {
+      "jobId": "gh_33bb7a43cf20f10ec265fc0f",
+      "sourceId": "cncf/gitjobs#394",
+      "dataCommit": "31a81ca767440668c7f4ef3764c7001dd28cfedc",
+      "dataHash": "40b14a9154203f0e16422958cf534ea1c6681c48517834e4592f1582230daa19",
+      "contentHash": "6f23fa0fac3536360c8c18834a59bb2a0e23908841bd786617e71a207a05c59a",
+      "discoveredAt": "2026-11-11T17:57:34.796Z",
+      "createdAt": "2026-11-11T09:31:22Z",
+      "publicationCreatedAt": "2026-11-11T17:57:34.796Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
