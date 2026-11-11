@@ -23134,12 +23134,15 @@
           "jobId": "gh_3ad7bdc35204ea0ccc342af8"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-11-11T09:47:15.470Z",
-      "updatedAt": "2026-11-11T09:47:15.470Z",
+      "updatedAt": "2026-11-11T09:47:17.533Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "7ae8b408-5bf5-424e-a14e-e8b1f7b43366",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_6f549841388e35a3be67e6c1",
