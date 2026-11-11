@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "9da31ee28b26bbf950a4eed0d36c1089ecd0332c",
-    "generatedAt": "2026-11-10T21:09:00.841Z",
-    "dataHash": "1b5babb1154004dbfe5b6a5b43532170afb0c78020be6f42a9c3334955d17379"
+    "commit": "cd54a17ba0deee93bd701c919403918e69e4d561",
+    "generatedAt": "2026-11-11T03:57:50.830Z",
+    "dataHash": "86d01ab5fcdb2c060ade7a52cf9b7ff15c8f99c5245f23fdbfc867606d8290a2"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23132,6 +23132,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_3ad7bdc35204ea0ccc342af8"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6f549841388e35a3be67e6c1",
+      "sourceId": "rebase-network/who-is-hiring#1349",
+      "dataCommit": "cd54a17ba0deee93bd701c919403918e69e4d561",
+      "dataHash": "86d01ab5fcdb2c060ade7a52cf9b7ff15c8f99c5245f23fdbfc867606d8290a2",
+      "contentHash": "47abd60bba9ebfd83f0041cddfa8d0784f4233e92c955df55e527040c0c17ba2",
+      "sourceCreatedAt": "2026-11-11T02:48:25Z",
+      "createdAt": "2026-11-11T03:57:50.830Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a5d8d2d6-0b7d-402a-989f-e6adb43c503a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[远端] web3交易所 Rust 工程师 30-45K RMB",
+          "pt-BR": "[远端] web3交易所 Rust 工程师 30-45K RMB",
+          "es": "[远端] web3交易所 Rust 工程师 30-45K RMB",
+          "it": "[远端] web3交易所 Rust 工程师 30-45K RMB",
+          "fr": "[远端] web3交易所 Rust 工程师 30-45K RMB",
+          "de": "[远端] web3交易所 Rust 工程师 30-45K RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6f549841388e35a3be67e6c1"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_96b389ca245be4729a4edad7",
+      "sourceId": "rebase-network/who-is-hiring#1348",
+      "dataCommit": "cd54a17ba0deee93bd701c919403918e69e4d561",
+      "dataHash": "86d01ab5fcdb2c060ade7a52cf9b7ff15c8f99c5245f23fdbfc867606d8290a2",
+      "contentHash": "1077e5e91f2cb488aa60cc9be7ef93b48d7d2d6509c5d78d9b68709b9af60133",
+      "sourceCreatedAt": "2026-11-11T02:41:15Z",
+      "createdAt": "2026-11-11T03:57:50.830Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "83419bde-8bd4-4128-a678-0728536cfb40",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[远端] web3 交易所 高级测试开发（区块链） 8000 USD",
+          "pt-BR": "[远端] web3 交易所 高级测试开发（区块链） 8000 USD",
+          "es": "[远端] web3 交易所 高级测试开发（区块链） 8000 USD",
+          "it": "[远端] web3 交易所 高级测试开发（区块链） 8000 USD",
+          "fr": "[远端] web3 交易所 高级测试开发（区块链） 8000 USD",
+          "de": "[远端] web3 交易所 高级测试开发（区块链） 8000 USD"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_96b389ca245be4729a4edad7"
         }
       },
       "status": "pending",
