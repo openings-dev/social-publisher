@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "254b26e1ccc986545e7065eca1aad2caf5f12909",
-    "generatedAt": "2026-11-10T14:02:28.652Z",
-    "dataHash": "528735e30a9498d6b0e1ff7aa80ab5ef4caf686de5b830835f224ebba236c5c8"
+    "commit": "9da31ee28b26bbf950a4eed0d36c1089ecd0332c",
+    "generatedAt": "2026-11-10T21:09:00.841Z",
+    "dataHash": "1b5babb1154004dbfe5b6a5b43532170afb0c78020be6f42a9c3334955d17379"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -22894,10 +22894,10 @@
           "jobId": "gh_88b650006c468594abf50c19"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-10T21:09:00.841Z",
       "retryAfter": null,
       "result": null
     },
@@ -23054,10 +23054,10 @@
           "jobId": "gh_2764213b770366649449d542"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-10T21:09:00.841Z",
       "retryAfter": null,
       "result": null
     },
@@ -23092,6 +23092,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_0267a80ac7e0cf1a479daa48"
+        }
+      },
+      "status": "skipped_closed",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": "2026-11-10T21:09:00.841Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3ad7bdc35204ea0ccc342af8",
+      "sourceId": "backend-br/vagas#12443",
+      "dataCommit": "9da31ee28b26bbf950a4eed0d36c1089ecd0332c",
+      "dataHash": "1b5babb1154004dbfe5b6a5b43532170afb0c78020be6f42a9c3334955d17379",
+      "contentHash": "41c8d215950d9c8efee6a5442fd2f18b17443e3320bc6615db5bab94dc53bd42",
+      "sourceCreatedAt": "2026-10-13T19:49:49Z",
+      "createdAt": "2026-11-10T21:09:00.841Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2fd47526-fb42-4faa-ae88-50089122643c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor Java Pleno - DB1/ANYMARKET",
+          "pt-BR": "[Remoto] Desenvolvedor Java Pleno - DB1/ANYMARKET",
+          "es": "[Remoto] Desenvolvedor Java Pleno - DB1/ANYMARKET",
+          "it": "[Remoto] Desenvolvedor Java Pleno - DB1/ANYMARKET",
+          "fr": "[Remoto] Desenvolvedor Java Pleno - DB1/ANYMARKET",
+          "de": "[Remoto] Desenvolvedor Java Pleno - DB1/ANYMARKET"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3ad7bdc35204ea0ccc342af8"
         }
       },
       "status": "pending",
