@@ -78807,12 +78807,14 @@
       "createdAt": "2026-11-05T05:32:57Z",
       "publicationCreatedAt": "2026-11-05T16:33:44.001Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-12T09:55:14.655Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LookoutAI (recruiting for a client) - Product Manager - New York, NY (in office) - $150,000-$250,000 USD/year"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -78869,7 +78871,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 296
     },
     {
       "jobId": "gh_9c25b798ad552710cb428e33",
