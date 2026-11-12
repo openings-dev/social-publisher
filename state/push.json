@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "30a98b466b179830d5a9fdc1c2ad2cdbc1d1ae09",
-    "generatedAt": "2026-11-11T21:42:01.869Z",
-    "dataHash": "fab1788e26109afcf1271f8bc26331786566fd10156c929ed502f35ed984319f"
+    "commit": "3abfa33bf00542723abb7c6f892d8f9441a42f1f",
+    "generatedAt": "2026-11-12T05:06:57.831Z",
+    "dataHash": "49798664d21a774c83cf34a6c760bf81da1b91df80c83d3c5e3fb44db5e9be41"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23295,6 +23295,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_33bb7a43cf20f10ec265fc0f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_0e1b5b48b92ce917951c85af",
+      "sourceId": "awesome-jobs/vietnam#5101",
+      "dataCommit": "3abfa33bf00542723abb7c6f892d8f9441a42f1f",
+      "dataHash": "49798664d21a774c83cf34a6c760bf81da1b91df80c83d3c5e3fb44db5e9be41",
+      "contentHash": "f2abe73865cc873f4d2870f6fb925a85bff56da4ef9f39c44d06ca240967d798",
+      "sourceCreatedAt": "2026-11-12T03:12:09Z",
+      "createdAt": "2026-11-12T05:06:57.831Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "28b8f10e-5710-44c5-b557-295968274d9c",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[$5000] 𝐅𝐮𝐥𝐥𝐬𝐭𝐚𝐜𝐤 NODE/REACT 8+ yoe | 𝐇𝐲𝐛𝐫𝐢𝐝 HCM",
+          "pt-BR": "[$5000] 𝐅𝐮𝐥𝐥𝐬𝐭𝐚𝐜𝐤 NODE/REACT 8+ yoe | 𝐇𝐲𝐛𝐫𝐢𝐝 HCM",
+          "es": "[$5000] 𝐅𝐮𝐥𝐥𝐬𝐭𝐚𝐜𝐤 NODE/REACT 8+ yoe | 𝐇𝐲𝐛𝐫𝐢𝐝 HCM",
+          "it": "[$5000] 𝐅𝐮𝐥𝐥𝐬𝐭𝐚𝐜𝐤 NODE/REACT 8+ yoe | 𝐇𝐲𝐛𝐫𝐢𝐝 HCM",
+          "fr": "[$5000] 𝐅𝐮𝐥𝐥𝐬𝐭𝐚𝐜𝐤 NODE/REACT 8+ yoe | 𝐇𝐲𝐛𝐫𝐢𝐝 HCM",
+          "de": "[$5000] 𝐅𝐮𝐥𝐥𝐬𝐭𝐚𝐜𝐤 NODE/REACT 8+ yoe | 𝐇𝐲𝐛𝐫𝐢𝐝 HCM"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_0e1b5b48b92ce917951c85af"
         }
       },
       "status": "pending",
