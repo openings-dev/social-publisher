@@ -78733,12 +78733,23 @@
       "createdAt": "2026-11-05T05:33:01Z",
       "publicationCreatedAt": "2026-11-05T16:33:44.001Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-12T18:23:14.715Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_3aa462f04fe7bf10a982181a",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_3aa462f04fe7bf10a982181a/5603bfbc9b65d52f61d8d897ff884eacd0f854f43418c86178c9d3b718b7b9de/4bc2b826de32cdc31317a668498b446bbae30b17421f33f26b95f82f860859eb/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_3aa462f04fe7bf10a982181a/5603bfbc9b65d52f61d8d897ff884eacd0f854f43418c86178c9d3b718b7b9de/4bc2b826de32cdc31317a668498b446bbae30b17421f33f26b95f82f860859eb/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_3aa462f04fe7bf10a982181a/5603bfbc9b65d52f61d8d897ff884eacd0f854f43418c86178c9d3b718b7b9de/4bc2b826de32cdc31317a668498b446bbae30b17421f33f26b95f82f860859eb/social-video.mp4",
+          "pngHash": "1ade0897896578b15f9a59f9c8df46c1e3a04589b4c993153db3a76e2310048a",
+          "instagramJpegHash": "e46e7f9e802dda51995dfc11c93c4bd0bca733dc6f8a369e2b89d84788734f54",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Generalist - San Francisco, CA (in-person) - $150,000-$350,000 USD/year"
         }
       },
