@@ -78807,12 +78807,23 @@
       "createdAt": "2026-11-05T05:32:57Z",
       "publicationCreatedAt": "2026-11-05T16:33:44.001Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-12T09:55:14.655Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_1dbe4360df75638f5a0799c7",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_1dbe4360df75638f5a0799c7/030562fb5863db4b7e565b5c2a4426df5fe883c0fc91eb46a57ec6f7c2093dd4/515d389491b7d19a779bd79a43c2eed8a75a844051320fcc71d4d4ad0fe27dc8/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_1dbe4360df75638f5a0799c7/030562fb5863db4b7e565b5c2a4426df5fe883c0fc91eb46a57ec6f7c2093dd4/515d389491b7d19a779bd79a43c2eed8a75a844051320fcc71d4d4ad0fe27dc8/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_1dbe4360df75638f5a0799c7/030562fb5863db4b7e565b5c2a4426df5fe883c0fc91eb46a57ec6f7c2093dd4/515d389491b7d19a779bd79a43c2eed8a75a844051320fcc71d4d4ad0fe27dc8/social-video.mp4",
+          "pngHash": "9647ae86b46920dba6c93bc55295d9206ed05e1fa2426bb636124de918171a37",
+          "instagramJpegHash": "1397581f259847ececead5b57c30ddf705377b419e67f1937b873607305b8988",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "LookoutAI (recruiting for a client) - Product Manager - New York, NY (in office) - $150,000-$250,000 USD/year"
         }
       },
