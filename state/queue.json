@@ -78726,19 +78726,21 @@
     {
       "jobId": "gh_3aa462f04fe7bf10a982181a",
       "sourceId": "TechnologyMasters/jobs#728",
-      "dataCommit": "2191dc7e90ec09a07fe0bd1fb42806f4dce23128",
-      "dataHash": "cb765c829a01567b9bda69d547dd2ec9189f60e2701fb68251064d1ac51c948e",
-      "contentHash": "9a07263cb2248d74ea648fd1bb81738a877bc056bc279aecd5bbcc223c8d39ba",
+      "dataCommit": "8491f188869a014ec4caeb6a6d3d2c8485a32634",
+      "dataHash": "0f0fd9539e1ff453a3e580747c8800739ef283374eb120f91841d68f90249c2a",
+      "contentHash": "5603bfbc9b65d52f61d8d897ff884eacd0f854f43418c86178c9d3b718b7b9de",
       "discoveredAt": "2026-11-05T16:33:44.001Z",
       "createdAt": "2026-11-05T05:33:01Z",
       "publicationCreatedAt": "2026-11-05T16:33:44.001Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-12T18:23:14.715Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Generalist - San Francisco, CA (in-person) - $150,000-$350,000 USD/year"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -78795,7 +78797,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 297
     },
     {
       "jobId": "gh_1dbe4360df75638f5a0799c7",
