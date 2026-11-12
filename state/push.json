@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "8491f188869a014ec4caeb6a6d3d2c8485a32634",
-    "generatedAt": "2026-11-12T14:23:38.483Z",
-    "dataHash": "0f0fd9539e1ff453a3e580747c8800739ef283374eb120f91841d68f90249c2a"
+    "commit": "d9e7ddab0a03fec430214e1c9437ba3851b3968d",
+    "generatedAt": "2026-11-12T21:41:30.618Z",
+    "dataHash": "1833a73ec88159a44ca42149b9b570dfe6ae9dab114a71332a90bd8e5331d773"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23418,6 +23418,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_e62939c587998cbbfc01790e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_5b8102ec268ec06fe7cb505e",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2989",
+      "dataCommit": "d9e7ddab0a03fec430214e1c9437ba3851b3968d",
+      "dataHash": "1833a73ec88159a44ca42149b9b570dfe6ae9dab114a71332a90bd8e5331d773",
+      "contentHash": "3c7fb1fe6d1fbd471c5cc08cdb6a91d0a13946ee6a7692ec294ef20cd87da88f",
+      "sourceCreatedAt": "2026-11-12T17:06:44Z",
+      "createdAt": "2026-11-12T21:41:30.618Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5847c685-516d-49d5-bd46-6c1aef217804",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Doesn't show Hardware engineering jobs",
+          "pt-BR": "Doesn't show Hardware engineering jobs",
+          "es": "Doesn't show Hardware engineering jobs",
+          "it": "Doesn't show Hardware engineering jobs",
+          "fr": "Doesn't show Hardware engineering jobs",
+          "de": "Doesn't show Hardware engineering jobs"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_5b8102ec268ec06fe7cb505e"
         }
       },
       "status": "pending",
