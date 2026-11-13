@@ -79139,12 +79139,14 @@
       "createdAt": "2026-11-05T05:32:53Z",
       "publicationCreatedAt": "2026-11-05T16:33:44.001Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-13T01:10:24.483Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LookoutAI (recruiting for a multinational client) - iOS Developer - Hybrid Brampton/Toronto - $50 CAD/hour"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -79201,7 +79203,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 298
     },
     {
       "jobId": "gh_62be6f95b8ba7963f6ff4af4",
