@@ -79743,12 +79743,23 @@
       "createdAt": "2026-11-05T12:57:24Z",
       "publicationCreatedAt": "2026-11-06T00:29:56.447Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-13T17:49:57.960Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_2ab32c94b1bcf6d5363fdebe",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_2ab32c94b1bcf6d5363fdebe/8f31e376d6e68d1cb7b63b4f37f62791bd0628e00f245768e81331486633eead/1bfdd6edd20e65f0e9c818af375fdfc0cb228b444bf13f6d0508d45d0f1ffb33/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_2ab32c94b1bcf6d5363fdebe/8f31e376d6e68d1cb7b63b4f37f62791bd0628e00f245768e81331486633eead/1bfdd6edd20e65f0e9c818af375fdfc0cb228b444bf13f6d0508d45d0f1ffb33/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_2ab32c94b1bcf6d5363fdebe/8f31e376d6e68d1cb7b63b4f37f62791bd0628e00f245768e81331486633eead/1bfdd6edd20e65f0e9c818af375fdfc0cb228b444bf13f6d0508d45d0f1ffb33/social-video.mp4",
+          "pngHash": "3c2ed7331c0bf195e4677ff11ba8f493bd4617e33fad5ea0bb951a34f4611dde",
+          "instagramJpegHash": "974eacd52da2c1a79c3012ba25b42c2f57504b32835022b531320d6d347a3866",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "Full-Stack / Frontend / Backend Developer - Remote - FT"
         }
       },
