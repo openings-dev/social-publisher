@@ -79139,12 +79139,23 @@
       "createdAt": "2026-11-05T05:32:53Z",
       "publicationCreatedAt": "2026-11-05T16:33:44.001Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-13T01:10:24.483Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_9c25b798ad552710cb428e33",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_9c25b798ad552710cb428e33/d71f42551ea70d3659ee00bf40d274e69d8a09631a176e3ecbe38f5e0f5cc909/afc7468e5af8f63b38aee894385065e8a4f9952957d4772e88d773da1fa3b4af/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_9c25b798ad552710cb428e33/d71f42551ea70d3659ee00bf40d274e69d8a09631a176e3ecbe38f5e0f5cc909/afc7468e5af8f63b38aee894385065e8a4f9952957d4772e88d773da1fa3b4af/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_9c25b798ad552710cb428e33/d71f42551ea70d3659ee00bf40d274e69d8a09631a176e3ecbe38f5e0f5cc909/afc7468e5af8f63b38aee894385065e8a4f9952957d4772e88d773da1fa3b4af/social-video.mp4",
+          "pngHash": "f401c38b91a161176a695610bd24958ffe8241772b1f2df76209293971d6c89a",
+          "instagramJpegHash": "aa6317b7959dccf58e7feda091636a14410ae9d975017e31228c162e538a9121",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "LookoutAI (recruiting for a multinational client) - iOS Developer - Hybrid Brampton/Toronto - $50 CAD/hour"
         }
       },
