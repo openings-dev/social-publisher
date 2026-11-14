@@ -80333,12 +80333,23 @@
       "createdAt": "2026-11-05T19:46:08Z",
       "publicationCreatedAt": "2026-11-06T06:58:33.477Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_101791c382f876803f9af999",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_101791c382f876803f9af999/b1ea35452b5646c3cb0bccd6ae99890605dbf397709c06384fb9ce0cf4741233/4169efc5313340b0eecf1718362e6e37a52d2589f3ba515d94809f6675849ab1/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_101791c382f876803f9af999/b1ea35452b5646c3cb0bccd6ae99890605dbf397709c06384fb9ce0cf4741233/4169efc5313340b0eecf1718362e6e37a52d2589f3ba515d94809f6675849ab1/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_101791c382f876803f9af999/b1ea35452b5646c3cb0bccd6ae99890605dbf397709c06384fb9ce0cf4741233/4169efc5313340b0eecf1718362e6e37a52d2589f3ba515d94809f6675849ab1/social-video.mp4",
+          "pngHash": "d4a84399078371322e1d2c5e3ae76a8d7644b8ae3b18af83f00df70e08241030",
+          "instagramJpegHash": "b00b8e0a8e5b592a9010e11df89f5b9706e64b9816154b62f216d906c74d581f",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack Sênior (PHP/Laravel/Symfony/React) - 100% Presencial na Barra da Tijuca"
         }
       },
