@@ -83208,6 +83208,80 @@
         "lastReset": null,
         "result": null
       }
+    },
+    {
+      "jobId": "gh_e2c0aa3fe4c117752db84897",
+      "sourceId": "ambicuity/New-Grad-Jobs#465",
+      "dataCommit": "233162f42d4554e61977ee5fd4b2b933c51ad973",
+      "dataHash": "5a606ee94b35f2d0b16fcc58b44de3a03b1b4e0659463b3f08df1eb1d0163668",
+      "contentHash": "2668e0e11f93e64b7b5633fbe194355c1b1621e54e644698b6fd4cfaca933dd1",
+      "discoveredAt": "2026-11-14T15:11:22.412Z",
+      "createdAt": "2026-11-14T06:37:16Z",
+      "publicationCreatedAt": "2026-11-14T15:11:22.412Z",
+      "bridge": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "bluesky": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "mastodon": {
+        "status": "skipped_disabled",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "twitter": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "threads": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagram": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "linkedin": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      },
+      "instagramStory": {
+        "status": "pending",
+        "attempts": 0,
+        "updatedAt": null,
+        "lastError": null,
+        "lastReset": null,
+        "result": null
+      }
     }
   ]
 }
