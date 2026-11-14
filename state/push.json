@@ -23463,10 +23463,10 @@
           "jobId": "gh_5b8102ec268ec06fe7cb505e"
         }
       },
-      "status": "pending",
+      "status": "skipped_stale",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-14T15:18:00.476Z",
       "retryAfter": null,
       "result": null
     },
@@ -23503,10 +23503,10 @@
           "jobId": "gh_e2c0aa3fe4c117752db84897"
         }
       },
-      "status": "pending",
-      "attempts": 0,
-      "firstSubmittedAt": null,
-      "updatedAt": null,
+      "status": "submitting",
+      "attempts": 1,
+      "firstSubmittedAt": "2026-11-14T15:18:00.476Z",
+      "updatedAt": "2026-11-14T15:18:00.476Z",
       "retryAfter": null,
       "result": null
     },
