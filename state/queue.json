@@ -79521,12 +79521,14 @@
       "createdAt": "2026-11-05T13:26:48Z",
       "publicationCreatedAt": "2026-11-06T00:29:56.447Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-14T15:10:07.926Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[远程] Top5 交易所招 APP / Flutter / 前端 / 测试开发 / SRE 25K-50K RMB/月"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -79583,7 +79585,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 303
     },
     {
       "jobId": "gh_59d3844ae80e74b233ec521b",
