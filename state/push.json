@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "9ef1fe911586a7e682e31fa1a7b569e530c892bb",
-    "generatedAt": "2026-11-14T04:19:09.541Z",
-    "dataHash": "445f86acfcb907ca7f94e8972ff5b549e2a23f4e8813001dcac621bf15101777"
+    "commit": "233162f42d4554e61977ee5fd4b2b933c51ad973",
+    "generatedAt": "2026-11-14T12:47:28.824Z",
+    "dataHash": "5a606ee94b35f2d0b16fcc58b44de3a03b1b4e0659463b3f08df1eb1d0163668"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23461,6 +23461,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_5b8102ec268ec06fe7cb505e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e2c0aa3fe4c117752db84897",
+      "sourceId": "ambicuity/New-Grad-Jobs#465",
+      "dataCommit": "233162f42d4554e61977ee5fd4b2b933c51ad973",
+      "dataHash": "5a606ee94b35f2d0b16fcc58b44de3a03b1b4e0659463b3f08df1eb1d0163668",
+      "contentHash": "2668e0e11f93e64b7b5633fbe194355c1b1621e54e644698b6fd4cfaca933dd1",
+      "sourceCreatedAt": "2026-11-14T06:37:16Z",
+      "createdAt": "2026-11-14T12:47:28.824Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "df00b65e-6ddb-4f07-b8fa-eba560815bed",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-11-14T02:17:20.043043Z",
+          "pt-BR": "Job data is stale: last scrape 2026-11-14T02:17:20.043043Z",
+          "es": "Job data is stale: last scrape 2026-11-14T02:17:20.043043Z",
+          "it": "Job data is stale: last scrape 2026-11-14T02:17:20.043043Z",
+          "fr": "Job data is stale: last scrape 2026-11-14T02:17:20.043043Z",
+          "de": "Job data is stale: last scrape 2026-11-14T02:17:20.043043Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e2c0aa3fe4c117752db84897"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f5d22a9b4f4b29fb4f73f5b2",
+      "sourceId": "rebase-network/who-is-hiring#1191",
+      "dataCommit": "233162f42d4554e61977ee5fd4b2b933c51ad973",
+      "dataHash": "5a606ee94b35f2d0b16fcc58b44de3a03b1b4e0659463b3f08df1eb1d0163668",
+      "contentHash": "0a198531a9ddd897b0c96256faaad7ca67e11931f7ac53ff5569b9f87ed4bf67",
+      "sourceCreatedAt": "2026-06-09T18:47:29Z",
+      "createdAt": "2026-11-14T12:47:28.824Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "56b0f01d-79f1-4890-b046-2b959b2b2d94",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[远程] AI Agent+Dex ，量化公司诚聘招聘数据开发，全端前端，全栈前端，量化开发",
+          "pt-BR": "[远程] AI Agent+Dex ，量化公司诚聘招聘数据开发，全端前端，全栈前端，量化开发",
+          "es": "[远程] AI Agent+Dex ，量化公司诚聘招聘数据开发，全端前端，全栈前端，量化开发",
+          "it": "[远程] AI Agent+Dex ，量化公司诚聘招聘数据开发，全端前端，全栈前端，量化开发",
+          "fr": "[远程] AI Agent+Dex ，量化公司诚聘招聘数据开发，全端前端，全栈前端，量化开发",
+          "de": "[远程] AI Agent+Dex ，量化公司诚聘招聘数据开发，全端前端，全栈前端，量化开发"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f5d22a9b4f4b29fb4f73f5b2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_260424bb47bd6ca0f1f3641d",
+      "sourceId": "rebase-network/who-is-hiring#1159",
+      "dataCommit": "233162f42d4554e61977ee5fd4b2b933c51ad973",
+      "dataHash": "5a606ee94b35f2d0b16fcc58b44de3a03b1b4e0659463b3f08df1eb1d0163668",
+      "contentHash": "9e938f2138cc38810a60c911a06cb551a9099ebc8ce2896de98a2860749052a6",
+      "sourceCreatedAt": "2026-05-22T23:05:05Z",
+      "createdAt": "2026-11-14T12:47:28.824Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "810b4f13-8737-4f47-99f1-ecb353603b51",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[远程] AI+DEX 公司诚聘 测试工程师/数据开发工程师/全栈工程师（偏前端）  薪水 RMB/USD（5-10K/m）",
+          "pt-BR": "[远程] AI+DEX 公司诚聘 测试工程师/数据开发工程师/全栈工程师（偏前端）  薪水 RMB/USD（5-10K/m）",
+          "es": "[远程] AI+DEX 公司诚聘 测试工程师/数据开发工程师/全栈工程师（偏前端）  薪水 RMB/USD（5-10K/m）",
+          "it": "[远程] AI+DEX 公司诚聘 测试工程师/数据开发工程师/全栈工程师（偏前端）  薪水 RMB/USD（5-10K/m）",
+          "fr": "[远程] AI+DEX 公司诚聘 测试工程师/数据开发工程师/全栈工程师（偏前端）  薪水 RMB/USD（5-10K/m）",
+          "de": "[远程] AI+DEX 公司诚聘 测试工程师/数据开发工程师/全栈工程师（偏前端）  薪水 RMB/USD（5-10K/m）"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_260424bb47bd6ca0f1f3641d"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e9f7f188f62f77a684c25a07",
+      "sourceId": "rebase-network/who-is-hiring#1134",
+      "dataCommit": "233162f42d4554e61977ee5fd4b2b933c51ad973",
+      "dataHash": "5a606ee94b35f2d0b16fcc58b44de3a03b1b4e0659463b3f08df1eb1d0163668",
+      "contentHash": "6295563e88129a9f6ee90c2b0b3fc062bbfc3229e489f67765f9e99efae12858",
+      "sourceCreatedAt": "2026-04-24T02:00:01Z",
+      "createdAt": "2026-11-14T12:47:28.824Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "69069280-1e9d-4153-bc09-b13eee3fef85",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[远程办公] Crypto 交易所诚聘  前端开发工程师（AI辅助开发经验）   薪水 15K-30K RMB",
+          "pt-BR": "[远程办公] Crypto 交易所诚聘  前端开发工程师（AI辅助开发经验）   薪水 15K-30K RMB",
+          "es": "[远程办公] Crypto 交易所诚聘  前端开发工程师（AI辅助开发经验）   薪水 15K-30K RMB",
+          "it": "[远程办公] Crypto 交易所诚聘  前端开发工程师（AI辅助开发经验）   薪水 15K-30K RMB",
+          "fr": "[远程办公] Crypto 交易所诚聘  前端开发工程师（AI辅助开发经验）   薪水 15K-30K RMB",
+          "de": "[远程办公] Crypto 交易所诚聘  前端开发工程师（AI辅助开发经验）   薪水 15K-30K RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e9f7f188f62f77a684c25a07"
         }
       },
       "status": "pending",
