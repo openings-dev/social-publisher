@@ -79318,12 +79318,14 @@
       "createdAt": "2026-11-05T13:27:55Z",
       "publicationCreatedAt": "2026-11-06T00:29:56.447Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-14T06:36:22.027Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[远程] Top5 交易所招产品经理 / 风控策略 / UI·UX 设计 / 数据分析 薪资面议"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -79380,7 +79382,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 302
     },
     {
       "jobId": "gh_dbf56fbe02e9e313f09e8784",
