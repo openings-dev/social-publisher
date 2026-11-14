@@ -51211,9 +51211,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -80333,12 +80333,14 @@
       "createdAt": "2026-11-05T19:46:08Z",
       "publicationCreatedAt": "2026-11-06T06:58:33.477Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack Sênior (PHP/Laravel/Symfony/React) - 100% Presencial na Barra da Tijuca"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -80395,7 +80397,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 304
     },
     {
       "jobId": "gh_dc32051696483d7146617fb0",
@@ -81591,17 +81595,17 @@
       "createdAt": "2026-11-08T21:49:03Z",
       "publicationCreatedAt": "2026-11-09T01:47:28.844Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -81615,41 +81619,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-14T20:47:14.156Z",
         "lastError": null,
         "lastReset": null,
         "result": null
