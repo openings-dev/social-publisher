@@ -80684,12 +80684,23 @@
       "createdAt": "2026-11-06T05:48:40Z",
       "publicationCreatedAt": "2026-11-06T16:00:46.047Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-15T01:59:00.811Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_881dad8e9da418d806d0ef76",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_881dad8e9da418d806d0ef76/df30aabb5709262b632be6e2eb9976e1bb869c660ace76895c7c110c755062a2/d40952f90c1c618a6f1fc67bffd326d9bf7e94683baec3cb0218964917670157/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_881dad8e9da418d806d0ef76/df30aabb5709262b632be6e2eb9976e1bb869c660ace76895c7c110c755062a2/d40952f90c1c618a6f1fc67bffd326d9bf7e94683baec3cb0218964917670157/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_881dad8e9da418d806d0ef76/df30aabb5709262b632be6e2eb9976e1bb869c660ace76895c7c110c755062a2/d40952f90c1c618a6f1fc67bffd326d9bf7e94683baec3cb0218964917670157/social-video.mp4",
+          "pngHash": "093fc939347b0816bc2f50d237bf52e3704b3eb55538174852ef73e2364ec10d",
+          "instagramJpegHash": "fbdff2e9c5a362dc75cfff6a06ebb37e496fd7026396acb12bb2e3d1d7620d19",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "peach",
           "socialTitle": "【中国大陆招聘】Android系统测试工程师|性能/功耗/稳定性|Framework/Kernel|5年+"
         }
       },
