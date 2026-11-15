@@ -81441,12 +81441,14 @@
       "createdAt": "2026-11-07T04:21:25Z",
       "publicationCreatedAt": "2026-11-07T16:31:29.742Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-15T22:55:44.882Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Cloud Infrastructure - New York, NY (in-person) - $200,000-$270,000 USD/year"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -81503,7 +81505,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 308
     },
     {
       "jobId": "gh_78356fa90897428ba5de27b7",
