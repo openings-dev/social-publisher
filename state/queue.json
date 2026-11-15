@@ -81441,12 +81441,23 @@
       "createdAt": "2026-11-07T04:21:25Z",
       "publicationCreatedAt": "2026-11-07T16:31:29.742Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-15T22:55:44.882Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_46efebb5b1651ba26fbd02f7",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_46efebb5b1651ba26fbd02f7/f5faa7d9e876695c0e3a2fb718b39b807f1d7108f36da990d2eb6126f094c77d/7aab525ae54cdb6a98c3ff85d334eb6903f5828fa3413b6345d38ccf83be243a/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_46efebb5b1651ba26fbd02f7/f5faa7d9e876695c0e3a2fb718b39b807f1d7108f36da990d2eb6126f094c77d/7aab525ae54cdb6a98c3ff85d334eb6903f5828fa3413b6345d38ccf83be243a/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_46efebb5b1651ba26fbd02f7/f5faa7d9e876695c0e3a2fb718b39b807f1d7108f36da990d2eb6126f094c77d/7aab525ae54cdb6a98c3ff85d334eb6903f5828fa3413b6345d38ccf83be243a/social-video.mp4",
+          "pngHash": "18d12f9cbac97bb319fe4aef106b7d669f69d422465dcaab66fed8c66f5ea4cf",
+          "instagramJpegHash": "7e7965902bc67a6fd068fbd449d840856f7fe4fdcf14828e3f3e2419fe6042b1",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Cloud Infrastructure - New York, NY (in-person) - $200,000-$270,000 USD/year"
         }
       },
