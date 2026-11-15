@@ -80610,12 +80610,14 @@
       "createdAt": "2026-11-06T08:33:23Z",
       "publicationCreatedAt": "2026-11-06T16:00:46.047Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-15T09:33:51.938Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remote] Crypto 交易所诚聘 Node.js后端 开发工程师 薪水 4000U-6000U"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -80672,7 +80674,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 306
     },
     {
       "jobId": "gh_881dad8e9da418d806d0ef76",
