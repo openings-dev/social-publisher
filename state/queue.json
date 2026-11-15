@@ -80684,12 +80684,14 @@
       "createdAt": "2026-11-06T05:48:40Z",
       "publicationCreatedAt": "2026-11-06T16:00:46.047Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-15T01:59:00.811Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "【中国大陆招聘】Android系统测试工程师|性能/功耗/稳定性|Framework/Kernel|5年+"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -80746,7 +80748,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 305
     },
     {
       "jobId": "gh_d0445605641d58563fe96aa0",
