@@ -80610,12 +80610,23 @@
       "createdAt": "2026-11-06T08:33:23Z",
       "publicationCreatedAt": "2026-11-06T16:00:46.047Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-15T09:33:51.938Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_8dcf7662e9af892020402829",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_8dcf7662e9af892020402829/696a0dfb6d07668ca3c328eebe19ac3c9ffe7f92dc00b9c92dd1bf0ebca35c56/c2a3477410c7ed5e318691f735466b8c3934064a944b693fbecefcfe5b8ca96d/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_8dcf7662e9af892020402829/696a0dfb6d07668ca3c328eebe19ac3c9ffe7f92dc00b9c92dd1bf0ebca35c56/c2a3477410c7ed5e318691f735466b8c3934064a944b693fbecefcfe5b8ca96d/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_8dcf7662e9af892020402829/696a0dfb6d07668ca3c328eebe19ac3c9ffe7f92dc00b9c92dd1bf0ebca35c56/c2a3477410c7ed5e318691f735466b8c3934064a944b693fbecefcfe5b8ca96d/social-video.mp4",
+          "pngHash": "04c6d5f434661e4ca97c989b47ed8fd759f77c81526833ebd09796b315d31dae",
+          "instagramJpegHash": "6eb50738f6c717896c5899b330982011ceddd13d1db559cfb8952335d305ae5e",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "[Remote] Crypto 交易所诚聘 Node.js后端 开发工程师 薪水 4000U-6000U"
         }
       },
