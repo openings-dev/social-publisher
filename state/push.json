@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "de376d591fe1eeea8f2ed243d96822cb95684e9d",
-    "generatedAt": "2026-11-15T10:14:28.333Z",
-    "dataHash": "333b00ddba9157e98f2a50a479c61cdbedc05f167d2d7b83eb9497ceb1d2be4d"
+    "commit": "c61d000ab7141e8b0d9e740474522490c80f93f5",
+    "generatedAt": "2026-11-15T18:19:36.085Z",
+    "dataHash": "8637648e8900163c3a80727e5e6532c37dad196b6709cf1ee6bfdb9e05d98ff3"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23627,6 +23627,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_e9f7f188f62f77a684c25a07"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_277c9167e849ece8b53708ac",
+      "sourceId": "rebase-network/who-is-hiring#1350",
+      "dataCommit": "c61d000ab7141e8b0d9e740474522490c80f93f5",
+      "dataHash": "8637648e8900163c3a80727e5e6532c37dad196b6709cf1ee6bfdb9e05d98ff3",
+      "contentHash": "10d7ba656c1efb238fc518ca39bc970343e65a13c00093166d94010d1cbac2c6",
+      "sourceCreatedAt": "2026-11-15T13:42:09Z",
+      "createdAt": "2026-11-15T18:19:36.085Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "047c9285-1c6d-40bf-8582-a8048cc148dc",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote/HK] Quant/AI+Web3公司 诚聘 预测市场做市与对冲负责人， AI Lab（C++）， C++低延迟交易系统工程师， 商务/BD/Senior BD/BDM（预测市场）， 高级区块链（跨链方向），高级服务端，链上数据开发，EVM 交易路由。 薪水 HKD/RMB/USD",
+          "pt-BR": "[Remote/HK] Quant/AI+Web3公司 诚聘 预测市场做市与对冲负责人， AI Lab（C++）， C++低延迟交易系统工程师， 商务/BD/Senior BD/BDM（预测市场）， 高级区块链（跨链方向），高级服务端，链上数据开发，EVM 交易路由。 薪水 HKD/RMB/USD",
+          "es": "[Remote/HK] Quant/AI+Web3公司 诚聘 预测市场做市与对冲负责人， AI Lab（C++）， C++低延迟交易系统工程师， 商务/BD/Senior BD/BDM（预测市场）， 高级区块链（跨链方向），高级服务端，链上数据开发，EVM 交易路由。 薪水 HKD/RMB/USD",
+          "it": "[Remote/HK] Quant/AI+Web3公司 诚聘 预测市场做市与对冲负责人， AI Lab（C++）， C++低延迟交易系统工程师， 商务/BD/Senior BD/BDM（预测市场）， 高级区块链（跨链方向），高级服务端，链上数据开发，EVM 交易路由。 薪水 HKD/RMB/USD",
+          "fr": "[Remote/HK] Quant/AI+Web3公司 诚聘 预测市场做市与对冲负责人， AI Lab（C++）， C++低延迟交易系统工程师， 商务/BD/Senior BD/BDM（预测市场）， 高级区块链（跨链方向），高级服务端，链上数据开发，EVM 交易路由。 薪水 HKD/RMB/USD",
+          "de": "[Remote/HK] Quant/AI+Web3公司 诚聘 预测市场做市与对冲负责人， AI Lab（C++）， C++低延迟交易系统工程师， 商务/BD/Senior BD/BDM（预测市场）， 高级区块链（跨链方向），高级服务端，链上数据开发，EVM 交易路由。 薪水 HKD/RMB/USD"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_277c9167e849ece8b53708ac"
         }
       },
       "status": "pending",
