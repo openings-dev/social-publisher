@@ -80536,12 +80536,23 @@
       "createdAt": "2026-11-06T08:38:22Z",
       "publicationCreatedAt": "2026-11-06T16:00:46.047Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-15T17:15:34.994Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_dc32051696483d7146617fb0",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_dc32051696483d7146617fb0/cc955b0e294e3e146fe5d68b2a61d31bf1f1b3d5ee85438b1ff222ec3668f4ff/015e356fb6d0360b71ed1a52154ed32c34e259b465293a1cab09b1504588487c/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_dc32051696483d7146617fb0/cc955b0e294e3e146fe5d68b2a61d31bf1f1b3d5ee85438b1ff222ec3668f4ff/015e356fb6d0360b71ed1a52154ed32c34e259b465293a1cab09b1504588487c/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_dc32051696483d7146617fb0/cc955b0e294e3e146fe5d68b2a61d31bf1f1b3d5ee85438b1ff222ec3668f4ff/015e356fb6d0360b71ed1a52154ed32c34e259b465293a1cab09b1504588487c/social-video.mp4",
+          "pngHash": "14253f44552296fe727633e78da07cfdbebcb167946a6e8b96af9557238d64ef",
+          "instagramJpegHash": "a7452597ae569dac14945b5cfc6e412dcc70b3be47d047daac8dc0827cb799ec",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "[Remote] Crypto 交易所诚聘 量化策略研究员(Crypto 做市对冲 / 套利 / CTA / 事件驱动)薪水 4000U-7000U"
         }
       },
