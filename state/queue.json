@@ -80742,10 +80742,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-11-15T01:59:00.811Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-11-15T01:59:00.811Z"
+        },
         "lastReset": null,
         "result": null
       },
