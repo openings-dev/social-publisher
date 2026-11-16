@@ -81293,12 +81293,14 @@
       "createdAt": "2026-11-07T04:21:30Z",
       "publicationCreatedAt": "2026-11-07T16:31:29.742Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-16T06:42:28.624Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Product and Production Agents - New York, NY (in office) - $150,000-$220,000 USD/year"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -81355,7 +81357,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 309
     },
     {
       "jobId": "gh_57374e1d0c8336945e6b5b6b",
