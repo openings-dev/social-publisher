@@ -81351,10 +81351,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-11-16T06:42:28.624Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-11-16T06:42:28.624Z"
+        },
         "lastReset": null,
         "result": null
       },
