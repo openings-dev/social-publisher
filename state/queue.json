@@ -69420,13 +69420,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-11-01T13:38:54.908Z",
-        "lastError": {
-          "code": "threads_reconciliation",
-          "at": "2026-11-01T13:38:54.908Z"
-        },
+        "updatedAt": "2026-11-16T18:38:54.751Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -69461,9 +69458,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-16T18:38:54.751Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -81496,12 +81493,14 @@
       "createdAt": "2026-11-07T04:21:27Z",
       "publicationCreatedAt": "2026-11-07T16:31:29.742Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-16T18:38:54.751Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Applied ML and AI - San Francisco, CA (in-person) - $200,000-$250,000 USD/year"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -81558,7 +81557,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 310
     },
     {
       "jobId": "gh_46efebb5b1651ba26fbd02f7",
