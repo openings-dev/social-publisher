@@ -81293,12 +81293,23 @@
       "createdAt": "2026-11-07T04:21:30Z",
       "publicationCreatedAt": "2026-11-07T16:31:29.742Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-16T06:42:28.624Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_53768095978702f736a39e69",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_53768095978702f736a39e69/011a6459f780bde129ab755cc372c98c9eea763c5d3b5316f70bd5c3e48a8d89/ca3f42cdb5acd31cb1ef1a064363860eba35ae32575d483c9169ce8ffcca0aee/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_53768095978702f736a39e69/011a6459f780bde129ab755cc372c98c9eea763c5d3b5316f70bd5c3e48a8d89/ca3f42cdb5acd31cb1ef1a064363860eba35ae32575d483c9169ce8ffcca0aee/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_53768095978702f736a39e69/011a6459f780bde129ab755cc372c98c9eea763c5d3b5316f70bd5c3e48a8d89/ca3f42cdb5acd31cb1ef1a064363860eba35ae32575d483c9169ce8ffcca0aee/social-video.mp4",
+          "pngHash": "7e3019f0a6dbc101d5e36ba22fc7b5fc0565aea61c8499884994d1922cb06659",
+          "instagramJpegHash": "4d9676721f3e910537efb358782bf3aded7d678bda57ff944aa87c657b8a34e7",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "lavender",
           "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Product and Production Agents - New York, NY (in office) - $150,000-$220,000 USD/year"
         }
       },
