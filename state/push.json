@@ -23589,10 +23589,10 @@
           "jobId": "gh_260424bb47bd6ca0f1f3641d"
         }
       },
-      "status": "pending",
+      "status": "skipped_stale",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-16T07:09:33.174Z",
       "retryAfter": null,
       "result": null
     },
@@ -23629,10 +23629,10 @@
           "jobId": "gh_e9f7f188f62f77a684c25a07"
         }
       },
-      "status": "pending",
+      "status": "skipped_stale",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-16T07:09:33.174Z",
       "retryAfter": null,
       "result": null
     },
@@ -23669,10 +23669,10 @@
           "jobId": "gh_277c9167e849ece8b53708ac"
         }
       },
-      "status": "pending",
-      "attempts": 0,
-      "firstSubmittedAt": null,
-      "updatedAt": null,
+      "status": "submitting",
+      "attempts": 1,
+      "firstSubmittedAt": "2026-11-16T07:09:33.174Z",
+      "updatedAt": "2026-11-16T07:09:33.174Z",
       "retryAfter": null,
       "result": null
     }
