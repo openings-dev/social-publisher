@@ -81493,12 +81493,23 @@
       "createdAt": "2026-11-07T04:21:27Z",
       "publicationCreatedAt": "2026-11-07T16:31:29.742Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-16T18:38:54.751Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_57374e1d0c8336945e6b5b6b",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_57374e1d0c8336945e6b5b6b/63f9bcc5ec5f7c1c321b3d08407ef95322a04b5498fd9d285f2e49054e0977bc/37cbc96b7df7a6070ffd7f1a7676df6f133ad8ea375404ec897d519edb4ec5ff/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_57374e1d0c8336945e6b5b6b/63f9bcc5ec5f7c1c321b3d08407ef95322a04b5498fd9d285f2e49054e0977bc/37cbc96b7df7a6070ffd7f1a7676df6f133ad8ea375404ec897d519edb4ec5ff/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_57374e1d0c8336945e6b5b6b/63f9bcc5ec5f7c1c321b3d08407ef95322a04b5498fd9d285f2e49054e0977bc/37cbc96b7df7a6070ffd7f1a7676df6f133ad8ea375404ec897d519edb4ec5ff/social-video.mp4",
+          "pngHash": "885399754bde8f234fa4eac553c20476dcff9625131ccff0a7bc8ca8fd22b737",
+          "instagramJpegHash": "8070f1811f187f9a24b7c09e336af5fcfc3ff0e8110144939021e61e2327f2bd",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Applied ML and AI - San Francisco, CA (in-person) - $200,000-$250,000 USD/year"
         }
       },
