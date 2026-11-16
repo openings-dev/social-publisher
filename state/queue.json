@@ -81514,12 +81514,17 @@
         }
       },
       "bluesky": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-16T18:38:54.751Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mzqd3wskjq2v",
+          "cid": "bafyreian4lc6uorldmuvuviijgnozd6sjfplkj25qqhkiltxie4ndlrgjy",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mzqd3wskjq2v"
+        }
       },
       "mastodon": {
         "status": "skipped_disabled",
