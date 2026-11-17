@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "fe4df4b580f1c0c8062f6312bee254cb01cd4d4c",
-    "generatedAt": "2026-11-16T21:29:30.186Z",
-    "dataHash": "dffdd55ccae29551c56e8ac9567e877d65ca58bfcb87a3fb347c63a557d52697"
+    "commit": "d314bc7d861e82662d89b5cb5bdf43121f843f97",
+    "generatedAt": "2026-11-17T05:54:43.876Z",
+    "dataHash": "c574b440d35103f336e7e350f10e77222824537aa7d07e0fc7a4beccee965ce2"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23793,6 +23793,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_8243aef70ac78e8ebee05121"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2513b5140da0430606c128cb",
+      "sourceId": "rebase-network/who-is-hiring#1351",
+      "dataCommit": "d314bc7d861e82662d89b5cb5bdf43121f843f97",
+      "dataHash": "c574b440d35103f336e7e350f10e77222824537aa7d07e0fc7a4beccee965ce2",
+      "contentHash": "b0f47559ced6e7481955028c90c263efa69186dde7a7197333a3db7434e34828",
+      "sourceCreatedAt": "2026-11-17T04:25:16Z",
+      "createdAt": "2026-11-17T05:54:43.876Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6e7db9b5-0182-48da-babf-42ae2f84b095",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[远端/東京] web3 交易所- Java 技术专家／总监  10000 USD",
+          "pt-BR": "[远端/東京] web3 交易所- Java 技术专家／总监  10000 USD",
+          "es": "[远端/東京] web3 交易所- Java 技术专家／总监  10000 USD",
+          "it": "[远端/東京] web3 交易所- Java 技术专家／总监  10000 USD",
+          "fr": "[远端/東京] web3 交易所- Java 技术专家／总监  10000 USD",
+          "de": "[远端/東京] web3 交易所- Java 技术专家／总监  10000 USD"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2513b5140da0430606c128cb"
         }
       },
       "status": "pending",
