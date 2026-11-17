@@ -68386,13 +68386,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-10-31T05:53:27.313Z",
-        "lastError": {
-          "code": "threads_reconciliation",
-          "at": "2026-10-31T05:53:27.313Z"
-        },
+        "updatedAt": "2026-11-17T13:34:14.023Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -68427,9 +68424,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-17T13:34:14.023Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -82324,12 +82321,14 @@
       "createdAt": "2026-11-08T04:27:00Z",
       "publicationCreatedAt": "2026-11-08T16:44:32.835Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-17T13:34:14.023Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LookoutAI (recruiting for a client) - Forward Deployed Engineer - San Francisco, CA (in office) - $180,000-$300,000 USD/year"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -82386,7 +82385,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 312
     },
     {
       "jobId": "gh_db971604de6e581af15971a7",
