@@ -23752,12 +23752,15 @@
           "jobId": "gh_795475f7a94862e41dd972cf"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-11-17T03:05:48.078Z",
-      "updatedAt": "2026-11-17T03:05:48.078Z",
+      "updatedAt": "2026-11-17T03:05:50.508Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "2ffab2f4-52ed-4d34-8f52-6738f820d8ef",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_8243aef70ac78e8ebee05121",
