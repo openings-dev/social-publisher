@@ -82321,12 +82321,23 @@
       "createdAt": "2026-11-08T04:27:00Z",
       "publicationCreatedAt": "2026-11-08T16:44:32.835Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-17T13:34:14.023Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_ad6fa1af10e270554797a029",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_ad6fa1af10e270554797a029/f651715ce2fa6904a3f4d3ac3da70032bfa0f3621821a01840731c31a7aa1a7a/ea3caa54df74ec0f5ad8436ab4b1035a5f9e425658d3972b0bf6e687047bfb12/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_ad6fa1af10e270554797a029/f651715ce2fa6904a3f4d3ac3da70032bfa0f3621821a01840731c31a7aa1a7a/ea3caa54df74ec0f5ad8436ab4b1035a5f9e425658d3972b0bf6e687047bfb12/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_ad6fa1af10e270554797a029/f651715ce2fa6904a3f4d3ac3da70032bfa0f3621821a01840731c31a7aa1a7a/ea3caa54df74ec0f5ad8436ab4b1035a5f9e425658d3972b0bf6e687047bfb12/social-video.mp4",
+          "pngHash": "3caeec4368382639075503be5c7861f9ba5cb52d54116b9de8a3e0c500f470b5",
+          "instagramJpegHash": "28ea91fd7d1edb9f08ae448bbfb84c4f718a03dd7c2dff92a11d868aef4fc165",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "night",
           "socialTitle": "LookoutAI (recruiting for a client) - Forward Deployed Engineer - San Francisco, CA (in office) - $180,000-$300,000 USD/year"
         }
       },
