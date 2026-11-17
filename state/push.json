@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "d314bc7d861e82662d89b5cb5bdf43121f843f97",
-    "generatedAt": "2026-11-17T05:54:43.876Z",
-    "dataHash": "c574b440d35103f336e7e350f10e77222824537aa7d07e0fc7a4beccee965ce2"
+    "commit": "c94b769c9059fdcc062dcde8d5649a9b0859c2ff",
+    "generatedAt": "2026-11-17T15:18:06.634Z",
+    "dataHash": "38c3be00fde412e634c7093f87b1b8fd504a2ab4499d2acec5b2359268a3deff"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23833,6 +23833,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_2513b5140da0430606c128cb"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b106f2949d8b088f5469d695",
+      "sourceId": "ambicuity/New-Grad-Jobs#467",
+      "dataCommit": "c94b769c9059fdcc062dcde8d5649a9b0859c2ff",
+      "dataHash": "38c3be00fde412e634c7093f87b1b8fd504a2ab4499d2acec5b2359268a3deff",
+      "contentHash": "552c69c7b7ecdbef63ee5e5764e1732136880b30e75b41e782fa607b98eb942d",
+      "sourceCreatedAt": "2026-11-17T13:33:49Z",
+      "createdAt": "2026-11-17T15:18:06.634Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "47cf122c-de41-422f-87f6-094b2ff50347",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Job data is stale: last scrape 2026-11-17T09:07:26.026671Z",
+          "pt-BR": "Job data is stale: last scrape 2026-11-17T09:07:26.026671Z",
+          "es": "Job data is stale: last scrape 2026-11-17T09:07:26.026671Z",
+          "it": "Job data is stale: last scrape 2026-11-17T09:07:26.026671Z",
+          "fr": "Job data is stale: last scrape 2026-11-17T09:07:26.026671Z",
+          "de": "Job data is stale: last scrape 2026-11-17T09:07:26.026671Z"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b106f2949d8b088f5469d695"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_adc1c777e4f9cf6aec97e6b6",
+      "sourceId": "dotnetdevbr/vagas#1083",
+      "dataCommit": "c94b769c9059fdcc062dcde8d5649a9b0859c2ff",
+      "dataHash": "38c3be00fde412e634c7093f87b1b8fd504a2ab4499d2acec5b2359268a3deff",
+      "contentHash": "efbedec85e21adf54582fc3b458c2e4e2e4a2f1b26f672f35fde9e157febb48a",
+      "sourceCreatedAt": "2026-11-17T13:21:59Z",
+      "createdAt": "2026-11-17T15:18:06.634Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "6dd86a14-e221-415f-aa0d-cb2e601c9dd4",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo] Desenvolvedor(a) Full Stack Sênior React & .NET [Beyond Soluções]",
+          "pt-BR": "[São Paulo] Desenvolvedor(a) Full Stack Sênior React & .NET [Beyond Soluções]",
+          "es": "[São Paulo] Desenvolvedor(a) Full Stack Sênior React & .NET [Beyond Soluções]",
+          "it": "[São Paulo] Desenvolvedor(a) Full Stack Sênior React & .NET [Beyond Soluções]",
+          "fr": "[São Paulo] Desenvolvedor(a) Full Stack Sênior React & .NET [Beyond Soluções]",
+          "de": "[São Paulo] Desenvolvedor(a) Full Stack Sênior React & .NET [Beyond Soluções]"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_adc1c777e4f9cf6aec97e6b6"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8b24e13e4d69ec1fb0057ab5",
+      "sourceId": "soujava/vagas-java#1982",
+      "dataCommit": "c94b769c9059fdcc062dcde8d5649a9b0859c2ff",
+      "dataHash": "38c3be00fde412e634c7093f87b1b8fd504a2ab4499d2acec5b2359268a3deff",
+      "contentHash": "5ec1dba4e562f01c444e56ef1fb09c962b788aa586ae0e9ca7fc4f90460cb0bd",
+      "sourceCreatedAt": "2026-11-17T13:06:55Z",
+      "createdAt": "2026-11-17T15:18:06.634Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "081bd404-0137-4651-b6dc-39c285a7313a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - pedidos pagamentos | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - pedidos pagamentos | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - pedidos pagamentos | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - pedidos pagamentos | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - pedidos pagamentos | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - pedidos pagamentos | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8b24e13e4d69ec1fb0057ab5"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_38fdd972b2ec513aa3307c6f",
+      "sourceId": "backend-br/vagas#12444",
+      "dataCommit": "c94b769c9059fdcc062dcde8d5649a9b0859c2ff",
+      "dataHash": "38c3be00fde412e634c7093f87b1b8fd504a2ab4499d2acec5b2359268a3deff",
+      "contentHash": "1025092bd368cb82010bc7490158d14000b1f03481f176bd6cfdabcb6e7a2b82",
+      "sourceCreatedAt": "2026-10-13T19:51:25Z",
+      "createdAt": "2026-11-17T15:18:06.634Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0de74f97-3ba7-4ca8-946a-daf0588c13c8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Dev java junior - DB1",
+          "pt-BR": "[Remoto] Dev java junior - DB1",
+          "es": "[Remoto] Dev java junior - DB1",
+          "it": "[Remoto] Dev java junior - DB1",
+          "fr": "[Remoto] Dev java junior - DB1",
+          "de": "[Remoto] Dev java junior - DB1"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_38fdd972b2ec513aa3307c6f"
         }
       },
       "status": "pending",
