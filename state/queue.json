@@ -82379,10 +82379,13 @@
         }
       },
       "threads": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 1,
         "updatedAt": "2026-11-17T13:34:14.023Z",
-        "lastError": null,
+        "lastError": {
+          "code": "threads_reconciliation",
+          "at": "2026-11-17T13:34:14.023Z"
+        },
         "lastReset": null,
         "result": null
       },
