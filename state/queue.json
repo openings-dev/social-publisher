@@ -82524,12 +82524,23 @@
       "createdAt": "2026-11-08T04:27:00Z",
       "publicationCreatedAt": "2026-11-08T16:44:32.835Z",
       "bridge": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-17T22:28:38.184Z",
         "lastError": null,
         "lastReset": null,
         "result": {
+          "status": "hosted",
+          "canonicalUrl": "https://openings.dev/jobs/gh_db971604de6e581af15971a7",
+          "imageUrl": "https://media.openings.dev/openings/jobs/gh_db971604de6e581af15971a7/625ac114a076979cb3c3e266660d493bcf70046b31ca286e1bb622165475f9eb/62e99e1059a15c6eb607cfbabbc14e1aabec2126021577d8a4c80eda4443e0be/opengraph-image.png",
+          "instagramImageUrl": "https://media.openings.dev/openings/jobs/gh_db971604de6e581af15971a7/625ac114a076979cb3c3e266660d493bcf70046b31ca286e1bb622165475f9eb/62e99e1059a15c6eb607cfbabbc14e1aabec2126021577d8a4c80eda4443e0be/instagram-image.jpg",
+          "socialVideoUrl": "https://media.openings.dev/openings/jobs/gh_db971604de6e581af15971a7/625ac114a076979cb3c3e266660d493bcf70046b31ca286e1bb622165475f9eb/62e99e1059a15c6eb607cfbabbc14e1aabec2126021577d8a4c80eda4443e0be/social-video.mp4",
+          "pngHash": "3f2354d578ede557bde56b6f574ac532e1575b6533936430783dbd483a2b5a78",
+          "instagramJpegHash": "283c8c75e2a4b96b5b97e54a4729c21abffa28e680a3329dcd97e84f758fe52f",
+          "instagramCardVersion": "7",
+          "instagramFeedMediaKind": "image",
+          "socialVideoVersion": "8",
+          "visualDirection": "editorial",
           "socialTitle": "LookoutAI (recruiting for a client) - Member of Technical Staff - San Francisco, CA (in office) - $180,000-$300,000 USD/year"
         }
       },
