@@ -71325,13 +71325,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-11-03T19:36:23.237Z",
-        "lastError": {
-          "code": "threads_reconciliation",
-          "at": "2026-11-03T19:36:23.237Z"
-        },
+        "updatedAt": "2026-11-18T17:19:24.570Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -71366,9 +71363,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -83023,12 +83020,14 @@
       "createdAt": "2026-11-09T09:46:14Z",
       "publicationCreatedAt": "2026-11-09T20:51:14.974Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "【全球远程 远程办公 居家办公 FineStar】 高级运维工程师 SRE k8s 【各类开发 AI短剧剪辑 生成师 职能类】30-40k"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -83085,7 +83084,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "lavender",
+      "visualSequence": 315
     },
     {
       "jobId": "gh_970db7bfc7cb32ee1cceed12",
@@ -84040,17 +84041,17 @@
       "createdAt": "2026-11-11T02:48:25Z",
       "publicationCreatedAt": "2026-11-11T09:33:37.237Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -84064,41 +84065,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
         "result": null
