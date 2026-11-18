@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "f638a01929bf77c69ad33ea806a033f715c6679c",
-    "generatedAt": "2026-11-18T10:57:09.441Z",
-    "dataHash": "c1e5718514ce8b21f6e1cc9d1ce6c67e05011165ab66ef451ac8ebe308109a45"
+    "commit": "00ee65428887a3e1618492bac1010df28a8267f7",
+    "generatedAt": "2026-11-18T19:49:00.450Z",
+    "dataHash": "7d972d3b9b8e3b05661a9dd5d032998aa600c9a50655f5d936bf92c71b2ca87b"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -24156,6 +24156,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_6357493d77df8d138d92db9e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4deb8388b0cfecb2a5bc2fed",
+      "sourceId": "react-brasil/vagas#3040",
+      "dataCommit": "00ee65428887a3e1618492bac1010df28a8267f7",
+      "dataHash": "7d972d3b9b8e3b05661a9dd5d032998aa600c9a50655f5d936bf92c71b2ca87b",
+      "contentHash": "bc7a3965f62e313f0fd04006a1f49790e226a68ffd05486097760e589aa0d373",
+      "sourceCreatedAt": "2026-11-18T19:24:26Z",
+      "createdAt": "2026-11-18T19:49:00.450Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9bd04f63-20c5-4620-8664-dd1f3b15e3c0",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full-Stack Sênior na Igma | PJ",
+          "pt-BR": "[Remoto] Full-Stack Sênior na Igma | PJ",
+          "es": "[Remoto] Full-Stack Sênior na Igma | PJ",
+          "it": "[Remoto] Full-Stack Sênior na Igma | PJ",
+          "fr": "[Remoto] Full-Stack Sênior na Igma | PJ",
+          "de": "[Remoto] Full-Stack Sênior na Igma | PJ"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4deb8388b0cfecb2a5bc2fed"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_08a04b0801e201329254c81b",
+      "sourceId": "DevOps-Brasil/Vagas#507",
+      "dataCommit": "00ee65428887a3e1618492bac1010df28a8267f7",
+      "dataHash": "7d972d3b9b8e3b05661a9dd5d032998aa600c9a50655f5d936bf92c71b2ca87b",
+      "contentHash": "b32e81ccea3cb6c8b3061bb60719142f5a169905b5fd6d05fb931020af08d913",
+      "sourceCreatedAt": "2026-11-18T13:25:35Z",
+      "createdAt": "2026-11-18T19:49:00.450Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "80098707-735e-47a6-92f6-ab4102a21c14",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "DevOps Pleno -  Fundação SDTP - Remoto CLT",
+          "pt-BR": "DevOps Pleno -  Fundação SDTP - Remoto CLT",
+          "es": "DevOps Pleno -  Fundação SDTP - Remoto CLT",
+          "it": "DevOps Pleno -  Fundação SDTP - Remoto CLT",
+          "fr": "DevOps Pleno -  Fundação SDTP - Remoto CLT",
+          "de": "DevOps Pleno -  Fundação SDTP - Remoto CLT"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_08a04b0801e201329254c81b"
         }
       },
       "status": "pending",
