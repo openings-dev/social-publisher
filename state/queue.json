@@ -83097,12 +83097,14 @@
       "createdAt": "2026-11-09T06:23:51Z",
       "publicationCreatedAt": "2026-11-09T20:51:14.974Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-18T07:39:29.096Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[REMOTE 2nd job] 70tr gross | Data Engineer 5+ yoe (Oracle Fusion) | Làm giờ hành chính VN"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -83159,7 +83161,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 314
     },
     {
       "jobId": "gh_7a1d13997c98f75438525af5",
