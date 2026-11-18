@@ -83041,12 +83041,17 @@
         }
       },
       "bluesky": {
-        "status": "publishing",
+        "status": "published",
         "attempts": 1,
         "updatedAt": "2026-11-18T17:19:24.570Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "status": "published",
+          "uri": "at://did:plc:aj5exndp6ks4intilv5y6ii2/app.bsky.feed.post/3mzvskoepiw2l",
+          "cid": "bafyreidxlhluilvceqmzazqi2vubg5g432owtvgf2muvjzfnrkp4wrxiqi",
+          "url": "https://bsky.app/profile/openingshq.bsky.social/post/3mzvskoepiw2l"
+        }
       },
       "mastodon": {
         "status": "skipped_disabled",
