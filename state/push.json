@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "c94b769c9059fdcc062dcde8d5649a9b0859c2ff",
-    "generatedAt": "2026-11-17T15:18:06.634Z",
-    "dataHash": "38c3be00fde412e634c7093f87b1b8fd504a2ab4499d2acec5b2359268a3deff"
+    "commit": "4562c00f54ff842d5114923d4469a9a6d9033229",
+    "generatedAt": "2026-11-18T00:18:16.060Z",
+    "dataHash": "448410bcc67cfa0baf444f573c8511b40e79f49edff7d87c0423e155e7399937"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23993,6 +23993,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_38fdd972b2ec513aa3307c6f"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2f70a6283bee228fdc072988",
+      "sourceId": "DevOps-Brasil/Vagas#506",
+      "dataCommit": "4562c00f54ff842d5114923d4469a9a6d9033229",
+      "dataHash": "448410bcc67cfa0baf444f573c8511b40e79f49edff7d87c0423e155e7399937",
+      "contentHash": "d1694fa8515e6c5bbe53ced11a8310a404458409b0f0ed675ea1638779439ec5",
+      "sourceCreatedAt": "2026-11-17T18:53:27Z",
+      "createdAt": "2026-11-18T00:18:16.060Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2041a5ad-0887-48f8-83cd-422843ee06c2",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Tech Lead] MilkBox - Remoto (Brasil)",
+          "pt-BR": "[Tech Lead] MilkBox - Remoto (Brasil)",
+          "es": "[Tech Lead] MilkBox - Remoto (Brasil)",
+          "it": "[Tech Lead] MilkBox - Remoto (Brasil)",
+          "fr": "[Tech Lead] MilkBox - Remoto (Brasil)",
+          "de": "[Tech Lead] MilkBox - Remoto (Brasil)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2f70a6283bee228fdc072988"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_03e726cf5392a612dc1d5a58",
+      "sourceId": "frontendbr/vagas#8573",
+      "dataCommit": "4562c00f54ff842d5114923d4469a9a6d9033229",
+      "dataHash": "448410bcc67cfa0baf444f573c8511b40e79f49edff7d87c0423e155e7399937",
+      "contentHash": "790e882f6626b1edfc386d90a025d0285c6c16286cc94f06626c5e6c0ee9ba90",
+      "sourceCreatedAt": "2026-11-17T18:43:29Z",
+      "createdAt": "2026-11-18T00:18:16.060Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4e29de8b-2b4b-4d36-b938-81ec94ff6784",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Tech Lead na MilkBox",
+          "pt-BR": "[Remoto] Tech Lead na MilkBox",
+          "es": "[Remoto] Tech Lead na MilkBox",
+          "it": "[Remoto] Tech Lead na MilkBox",
+          "fr": "[Remoto] Tech Lead na MilkBox",
+          "de": "[Remoto] Tech Lead na MilkBox"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_03e726cf5392a612dc1d5a58"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_515d7b3354e1b4d68735ca73",
+      "sourceId": "DevOps-Brasil/Vagas#505",
+      "dataCommit": "4562c00f54ff842d5114923d4469a9a6d9033229",
+      "dataHash": "448410bcc67cfa0baf444f573c8511b40e79f49edff7d87c0423e155e7399937",
+      "contentHash": "220590ebfbb817b63679b8641fa86b04dd12eb9b30ff751843fc6e7c17c5adde",
+      "sourceCreatedAt": "2026-11-17T18:19:23Z",
+      "createdAt": "2026-11-18T00:18:16.060Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ac190c7c-45dc-42b7-a513-5a5cc06fd4ff",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "DevOps Engineer (Sênior) / Proativa RH - São Paulo",
+          "pt-BR": "DevOps Engineer (Sênior) / Proativa RH - São Paulo",
+          "es": "DevOps Engineer (Sênior) / Proativa RH - São Paulo",
+          "it": "DevOps Engineer (Sênior) / Proativa RH - São Paulo",
+          "fr": "DevOps Engineer (Sênior) / Proativa RH - São Paulo",
+          "de": "DevOps Engineer (Sênior) / Proativa RH - São Paulo"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_515d7b3354e1b4d68735ca73"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6357493d77df8d138d92db9e",
+      "sourceId": "qa-brasil/vagas#1286",
+      "dataCommit": "4562c00f54ff842d5114923d4469a9a6d9033229",
+      "dataHash": "448410bcc67cfa0baf444f573c8511b40e79f49edff7d87c0423e155e7399937",
+      "contentHash": "7216f1464e1bec5b8fb3fbfec9f6cffbe5cc004a0ae2c9eb47eb04e7a4ee41b6",
+      "sourceCreatedAt": "2026-11-17T18:02:16Z",
+      "createdAt": "2026-11-18T00:18:16.060Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "13421c49-f27d-4376-b635-ee467dd1cd15",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[São Paulo] Software QA Manager na Proativa RH",
+          "pt-BR": "[São Paulo] Software QA Manager na Proativa RH",
+          "es": "[São Paulo] Software QA Manager na Proativa RH",
+          "it": "[São Paulo] Software QA Manager na Proativa RH",
+          "fr": "[São Paulo] Software QA Manager na Proativa RH",
+          "de": "[São Paulo] Software QA Manager na Proativa RH"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6357493d77df8d138d92db9e"
         }
       },
       "status": "pending",
