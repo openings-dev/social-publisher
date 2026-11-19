@@ -83500,10 +83500,13 @@
       "createdAt": "2026-11-09T15:40:17Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 2,
         "updatedAt": "2026-11-19T10:33:19.988Z",
-        "lastError": null,
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-11-19T10:33:19.988Z"
+        },
         "lastReset": null,
         "result": {
           "socialTitle": "LookoutAI (recruiting for a client) - Founding Full-Stack Engineer, Operations Software - Brooklyn, NY (hybrid) - $160,000-$220,000 USD/year"
