@@ -74329,13 +74329,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-11-07T01:59:15.122Z",
-        "lastError": {
-          "code": "threads_reconciliation",
-          "at": "2026-11-07T01:59:15.122Z"
-        },
+        "updatedAt": "2026-11-19T20:46:09.655Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -74370,9 +74367,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-19T20:46:09.655Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -83500,13 +83497,10 @@
       "createdAt": "2026-11-09T15:40:17Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-11-19T10:33:19.988Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-11-19T10:33:19.988Z"
-        },
+        "status": "publishing",
+        "attempts": 3,
+        "updatedAt": "2026-11-19T20:46:09.655Z",
+        "lastError": null,
         "lastReset": null,
         "result": {
           "socialTitle": "LookoutAI (recruiting for a client) - Founding Full-Stack Engineer, Operations Software - Brooklyn, NY (hybrid) - $160,000-$220,000 USD/year"
