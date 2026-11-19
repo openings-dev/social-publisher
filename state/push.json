@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "04b181904a8ab5335a1330181bcf59057959b751",
-    "generatedAt": "2026-11-19T02:10:49.182Z",
-    "dataHash": "5c635becfa87fe77e7df050600ac690a2b7a6c9d2f854b131ab4993fd6815b34"
+    "commit": "aaacb627d04f953854e6a6ca052ce36acf958c94",
+    "generatedAt": "2026-11-19T10:59:40.218Z",
+    "dataHash": "f04d502af52c34c0ebd696f79e2df23abd890bb800e5333e834d9589b79d28ed"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -24319,6 +24319,126 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_f0692ed939e78a5d8f9d6d7c"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_eb13401fd31e86a4ce0bda04",
+      "sourceId": "rebase-network/who-is-hiring#1353",
+      "dataCommit": "aaacb627d04f953854e6a6ca052ce36acf958c94",
+      "dataHash": "f04d502af52c34c0ebd696f79e2df23abd890bb800e5333e834d9589b79d28ed",
+      "contentHash": "17207a093fe2064cbd0d075fccb8852273ea3ab49301f837e97bf4a73d2faff9",
+      "sourceCreatedAt": "2026-11-19T10:11:33Z",
+      "createdAt": "2026-11-19T10:59:40.218Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "4470a0bb-a3e5-4bfd-8b49-99a8123ffb9d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "【全球远程 远程办公 居家办公 FineStar】初中高级运营 新媒体运营 运营部长 10-60k",
+          "pt-BR": "【全球远程 远程办公 居家办公 FineStar】初中高级运营 新媒体运营 运营部长 10-60k",
+          "es": "【全球远程 远程办公 居家办公 FineStar】初中高级运营 新媒体运营 运营部长 10-60k",
+          "it": "【全球远程 远程办公 居家办公 FineStar】初中高级运营 新媒体运营 运营部长 10-60k",
+          "fr": "【全球远程 远程办公 居家办公 FineStar】初中高级运营 新媒体运营 运营部长 10-60k",
+          "de": "【全球远程 远程办公 居家办公 FineStar】初中高级运营 新媒体运营 运营部长 10-60k"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_eb13401fd31e86a4ce0bda04"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_2702e8a21be7f2b53e8a7b84",
+      "sourceId": "rebase-network/who-is-hiring#1352",
+      "dataCommit": "aaacb627d04f953854e6a6ca052ce36acf958c94",
+      "dataHash": "f04d502af52c34c0ebd696f79e2df23abd890bb800e5333e834d9589b79d28ed",
+      "contentHash": "6a8ca16bfac2357672f21038c5a6a4f9eb9c9d49cbfe8c415cc4b0f413a17d51",
+      "sourceCreatedAt": "2026-11-19T07:01:08Z",
+      "createdAt": "2026-11-19T10:59:40.218Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "aaf6d394-1b58-4169-a937-479749affd2b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[远程] 一线交易所诚聘Java工程师 薪水6000-10000USD",
+          "pt-BR": "[远程] 一线交易所诚聘Java工程师 薪水6000-10000USD",
+          "es": "[远程] 一线交易所诚聘Java工程师 薪水6000-10000USD",
+          "it": "[远程] 一线交易所诚聘Java工程师 薪水6000-10000USD",
+          "fr": "[远程] 一线交易所诚聘Java工程师 薪水6000-10000USD",
+          "de": "[远程] 一线交易所诚聘Java工程师 薪水6000-10000USD"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_2702e8a21be7f2b53e8a7b84"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_4d70d6a9e0c19733adbf28bd",
+      "sourceId": "awesome-jobs/vietnam#5104",
+      "dataCommit": "aaacb627d04f953854e6a6ca052ce36acf958c94",
+      "dataHash": "f04d502af52c34c0ebd696f79e2df23abd890bb800e5333e834d9589b79d28ed",
+      "contentHash": "ab9b35c0bc785ab2455410e8cd64fda20240c06ab4db42bbb58632aea27243a0",
+      "sourceCreatedAt": "2026-11-19T04:47:37Z",
+      "createdAt": "2026-11-19T10:59:40.218Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "8596f8a2-243b-4033-84b8-944a9b25d457",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "REMOTE JOBS! WE ARE HIRING",
+          "pt-BR": "REMOTE JOBS! WE ARE HIRING",
+          "es": "REMOTE JOBS! WE ARE HIRING",
+          "it": "REMOTE JOBS! WE ARE HIRING",
+          "fr": "REMOTE JOBS! WE ARE HIRING",
+          "de": "REMOTE JOBS! WE ARE HIRING"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_4d70d6a9e0c19733adbf28bd"
         }
       },
       "status": "pending",
