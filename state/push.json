@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "00ee65428887a3e1618492bac1010df28a8267f7",
-    "generatedAt": "2026-11-18T19:49:00.450Z",
-    "dataHash": "7d972d3b9b8e3b05661a9dd5d032998aa600c9a50655f5d936bf92c71b2ca87b"
+    "commit": "04b181904a8ab5335a1330181bcf59057959b751",
+    "generatedAt": "2026-11-19T02:10:49.182Z",
+    "dataHash": "5c635becfa87fe77e7df050600ac690a2b7a6c9d2f854b131ab4993fd6815b34"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -23878,10 +23878,10 @@
           "jobId": "gh_b106f2949d8b088f5469d695"
         }
       },
-      "status": "pending",
+      "status": "skipped_closed",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-19T02:10:49.182Z",
       "retryAfter": null,
       "result": null
     },
@@ -24236,6 +24236,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_08a04b0801e201329254c81b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_b782555b9a13ee7434712eae",
+      "sourceId": "backend-br/vagas#12495",
+      "dataCommit": "04b181904a8ab5335a1330181bcf59057959b751",
+      "dataHash": "5c635becfa87fe77e7df050600ac690a2b7a6c9d2f854b131ab4993fd6815b34",
+      "contentHash": "6c0e987c7dfe883770d20db45de9529df30a9cc5666cc5a6aa6c3f7bfcb92757",
+      "sourceCreatedAt": "2026-11-18T22:39:26Z",
+      "createdAt": "2026-11-19T02:10:49.182Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e0061117-4750-4a04-b86e-bbbfa9a19f53",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] Product Engineer na JotPsych",
+          "pt-BR": "[Remote] Product Engineer na JotPsych",
+          "es": "[Remote] Product Engineer na JotPsych",
+          "it": "[Remote] Product Engineer na JotPsych",
+          "fr": "[Remote] Product Engineer na JotPsych",
+          "de": "[Remote] Product Engineer na JotPsych"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_b782555b9a13ee7434712eae"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_f0692ed939e78a5d8f9d6d7c",
+      "sourceId": "frontendbr/vagas#8574",
+      "dataCommit": "04b181904a8ab5335a1330181bcf59057959b751",
+      "dataHash": "5c635becfa87fe77e7df050600ac690a2b7a6c9d2f854b131ab4993fd6815b34",
+      "contentHash": "fd91d65e9d94a998f14a21e16c44fa2eb93d62c7e1cae4cb055c4cf992f531a0",
+      "sourceCreatedAt": "2026-11-18T22:39:24Z",
+      "createdAt": "2026-11-19T02:10:49.182Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e47cc630-4c59-4404-84e3-c8f0e182c9b7",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Product Engineer na JotPsych",
+          "pt-BR": "[Remoto] Product Engineer na JotPsych",
+          "es": "[Remoto] Product Engineer na JotPsych",
+          "it": "[Remoto] Product Engineer na JotPsych",
+          "fr": "[Remoto] Product Engineer na JotPsych",
+          "de": "[Remoto] Product Engineer na JotPsych"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f0692ed939e78a5d8f9d6d7c"
         }
       },
       "status": "pending",
