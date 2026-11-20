@@ -83662,10 +83662,13 @@
       "createdAt": "2026-11-09T15:39:14Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 2,
         "updatedAt": "2026-11-20T13:02:59.458Z",
-        "lastError": null,
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-11-20T13:02:59.458Z"
+        },
         "lastReset": null,
         "result": {
           "socialTitle": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Education Finance - San Francisco, CA (in office) - $130,000-$180,000 USD/year"
