@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "b7422bcb40be4fe0c2e68dadf391258cda3a1ccd",
-    "generatedAt": "2026-11-20T10:47:53.071Z",
-    "dataHash": "e7c0708524376d2024e677e243ec5e4241ba84cea6e38ab2f1122f44df0bee57"
+    "commit": "ae1ce53a9aee5ef70531b3117ce2e5567f46cd73",
+    "generatedAt": "2026-11-20T19:29:41.531Z",
+    "dataHash": "752d4fb362055435ef33a4331e0e61ac93daa6e070398193aead117acf598f1c"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -24642,6 +24642,166 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_7e4397a5c3ec447941a1d5ca"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_ac1abcef6a18a8bfaba59882",
+      "sourceId": "rebase-network/who-is-hiring#1356",
+      "dataCommit": "ae1ce53a9aee5ef70531b3117ce2e5567f46cd73",
+      "dataHash": "752d4fb362055435ef33a4331e0e61ac93daa6e070398193aead117acf598f1c",
+      "contentHash": "a0cecaeae3b151695a3f809381f3bc9a660e88a52223dc67f717112649752907",
+      "sourceCreatedAt": "2026-11-20T15:46:18Z",
+      "createdAt": "2026-11-20T19:29:41.531Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "63e8f75e-d267-49c2-903c-dacf05f1968e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[深圳] FinTax 诚聘 税务顾问 薪资 10K-20K RMB",
+          "pt-BR": "[深圳] FinTax 诚聘 税务顾问 薪资 10K-20K RMB",
+          "es": "[深圳] FinTax 诚聘 税务顾问 薪资 10K-20K RMB",
+          "it": "[深圳] FinTax 诚聘 税务顾问 薪资 10K-20K RMB",
+          "fr": "[深圳] FinTax 诚聘 税务顾问 薪资 10K-20K RMB",
+          "de": "[深圳] FinTax 诚聘 税务顾问 薪资 10K-20K RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_ac1abcef6a18a8bfaba59882"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_3277fbbd4ee12fed5e5bdd7e",
+      "sourceId": "rebase-network/who-is-hiring#1355",
+      "dataCommit": "ae1ce53a9aee5ef70531b3117ce2e5567f46cd73",
+      "dataHash": "752d4fb362055435ef33a4331e0e61ac93daa6e070398193aead117acf598f1c",
+      "contentHash": "921dd06e6039d67483a8909a47ece1f7d9ca1cf3f29a1715a7b7073eb105db5e",
+      "sourceCreatedAt": "2026-11-20T15:08:04Z",
+      "createdAt": "2026-11-20T19:29:41.531Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9f4df34b-1f3d-4589-a8eb-30768b0cdc22",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[深圳] FinTax 诚聘 初级AI全栈开发工程师 薪资 10K-25K RMB",
+          "pt-BR": "[深圳] FinTax 诚聘 初级AI全栈开发工程师 薪资 10K-25K RMB",
+          "es": "[深圳] FinTax 诚聘 初级AI全栈开发工程师 薪资 10K-25K RMB",
+          "it": "[深圳] FinTax 诚聘 初级AI全栈开发工程师 薪资 10K-25K RMB",
+          "fr": "[深圳] FinTax 诚聘 初级AI全栈开发工程师 薪资 10K-25K RMB",
+          "de": "[深圳] FinTax 诚聘 初级AI全栈开发工程师 薪资 10K-25K RMB"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_3277fbbd4ee12fed5e5bdd7e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_78d5aa4d92842b57989a62d7",
+      "sourceId": "soujava/vagas-java#1983",
+      "dataCommit": "ae1ce53a9aee5ef70531b3117ce2e5567f46cd73",
+      "dataHash": "752d4fb362055435ef33a4331e0e61ac93daa6e070398193aead117acf598f1c",
+      "contentHash": "79552eb2763890c74f0cb5c94b60b092e55dcc6da5c517be0b3d525d09dfbd83",
+      "sourceCreatedAt": "2026-11-20T13:44:48Z",
+      "createdAt": "2026-11-20T19:29:41.531Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "bad5a0ed-f533-46bf-bac2-e375abc24b99",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - operacoes pagamentos | Confidencial (vaga via Sylision)",
+          "pt-BR": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - operacoes pagamentos | Confidencial (vaga via Sylision)",
+          "es": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - operacoes pagamentos | Confidencial (vaga via Sylision)",
+          "it": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - operacoes pagamentos | Confidencial (vaga via Sylision)",
+          "fr": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - operacoes pagamentos | Confidencial (vaga via Sylision)",
+          "de": "[Remoto] Desenvolvedor Java Pleno - Spring Boot - operacoes pagamentos | Confidencial (vaga via Sylision)"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_78d5aa4d92842b57989a62d7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_bc546b30eebffc5fccf667bc",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9753",
+      "dataCommit": "ae1ce53a9aee5ef70531b3117ce2e5567f46cd73",
+      "dataHash": "752d4fb362055435ef33a4331e0e61ac93daa6e070398193aead117acf598f1c",
+      "contentHash": "ce9954749487565c731d2de6540a3ed6db5d3edbe289a648c707ce22141ef178",
+      "sourceCreatedAt": "2026-11-20T13:07:12Z",
+      "createdAt": "2026-11-20T19:29:41.531Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "ab2004c7-77ba-479a-9129-bd05f0f604ce",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "New Internship",
+          "pt-BR": "New Internship",
+          "es": "New Internship",
+          "it": "New Internship",
+          "fr": "New Internship",
+          "de": "New Internship"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_bc546b30eebffc5fccf667bc"
         }
       },
       "status": "pending",
