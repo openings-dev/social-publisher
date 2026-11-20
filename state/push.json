@@ -24361,12 +24361,15 @@
           "jobId": "gh_eb13401fd31e86a4ce0bda04"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-11-20T03:41:33.199Z",
-      "updatedAt": "2026-11-20T03:41:33.199Z",
+      "updatedAt": "2026-11-20T03:41:35.356Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "60d45fb0-ead0-45c4-af71-4a295ed879ee",
+        "providerStatus": "accepted"
+      }
     },
     {
       "jobId": "gh_2702e8a21be7f2b53e8a7b84",
