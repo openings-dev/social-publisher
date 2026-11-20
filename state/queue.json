@@ -74126,13 +74126,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-11-07T08:53:07.034Z",
-        "lastError": {
-          "code": "threads_reconciliation",
-          "at": "2026-11-07T08:53:07.034Z"
-        },
+        "updatedAt": "2026-11-20T21:52:06.679Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -74167,9 +74164,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-20T21:52:06.679Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -76506,13 +76503,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-11-08T16:43:17.886Z",
-        "lastError": {
-          "code": "threads_reconciliation",
-          "at": "2026-11-08T16:43:17.886Z"
-        },
+        "updatedAt": "2026-11-20T21:52:06.679Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -76547,9 +76541,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-20T21:52:06.679Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -83662,13 +83656,10 @@
       "createdAt": "2026-11-09T15:39:14Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-11-20T13:02:59.458Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-11-20T13:02:59.458Z"
-        },
+        "status": "publishing",
+        "attempts": 3,
+        "updatedAt": "2026-11-20T21:52:06.679Z",
+        "lastError": null,
         "lastReset": null,
         "result": {
           "socialTitle": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Education Finance - San Francisco, CA (in office) - $130,000-$180,000 USD/year"
