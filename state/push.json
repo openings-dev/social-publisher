@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "2f3900f4aa0cff88683788acebea3bfda39f724b",
-    "generatedAt": "2026-11-20T01:59:17.758Z",
-    "dataHash": "de4bd0f639f498de85f76a8b73ae43a5ce5cafbfac26f56543b44001725e3812"
+    "commit": "b7422bcb40be4fe0c2e68dadf391258cda3a1ccd",
+    "generatedAt": "2026-11-20T10:47:53.071Z",
+    "dataHash": "e7c0708524376d2024e677e243ec5e4241ba84cea6e38ab2f1122f44df0bee57"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -24562,6 +24562,86 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_34c7a723d019628a4be442f2"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_6e2b9873aabac17958b11ca4",
+      "sourceId": "SimplifyJobs/New-Grad-Positions#2990",
+      "dataCommit": "b7422bcb40be4fe0c2e68dadf391258cda3a1ccd",
+      "dataHash": "e7c0708524376d2024e677e243ec5e4241ba84cea6e38ab2f1122f44df0bee57",
+      "contentHash": "20572496d83b764fb8f43e566bf47aac0190a4a11db649874403ec574af14f21",
+      "sourceCreatedAt": "2026-11-20T05:18:36Z",
+      "createdAt": "2026-11-20T10:47:53.071Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "f108a28e-e472-4640-bd7b-46bb1c27c1fb",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Built a little New Grad Job Tracker using your repo!",
+          "pt-BR": "Built a little New Grad Job Tracker using your repo!",
+          "es": "Built a little New Grad Job Tracker using your repo!",
+          "it": "Built a little New Grad Job Tracker using your repo!",
+          "fr": "Built a little New Grad Job Tracker using your repo!",
+          "de": "Built a little New Grad Job Tracker using your repo!"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_6e2b9873aabac17958b11ca4"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7e4397a5c3ec447941a1d5ca",
+      "sourceId": "ambicuity/New-Grad-Jobs#113",
+      "dataCommit": "b7422bcb40be4fe0c2e68dadf391258cda3a1ccd",
+      "dataHash": "e7c0708524376d2024e677e243ec5e4241ba84cea6e38ab2f1122f44df0bee57",
+      "contentHash": "73e7862bb4ac8af5f86324b02516ad8b1ec4abdf83fc3225eda25d1a21b76dfe",
+      "sourceCreatedAt": "2026-03-06T17:00:46Z",
+      "createdAt": "2026-11-20T10:47:53.071Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "2d3e90e3-c2fd-4cb2-9d45-5624d6b7db85",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Beginner]: feat(frontend): replace <select> dropdowns with chip buttons for Country/State filters to match Category/Tier UX",
+          "pt-BR": "[Beginner]: feat(frontend): replace <select> dropdowns with chip buttons for Country/State filters to match Category/Tier UX",
+          "es": "[Beginner]: feat(frontend): replace <select> dropdowns with chip buttons for Country/State filters to match Category/Tier UX",
+          "it": "[Beginner]: feat(frontend): replace <select> dropdowns with chip buttons for Country/State filters to match Category/Tier UX",
+          "fr": "[Beginner]: feat(frontend): replace <select> dropdowns with chip buttons for Country/State filters to match Category/Tier UX",
+          "de": "[Beginner]: feat(frontend): replace <select> dropdowns with chip buttons for Country/State filters to match Category/Tier UX"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7e4397a5c3ec447941a1d5ca"
         }
       },
       "status": "pending",
