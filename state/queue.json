@@ -76906,13 +76906,10 @@
         }
       },
       "threads": {
-        "status": "retryable",
+        "status": "skipped_closed",
         "attempts": 1,
-        "updatedAt": "2026-11-09T20:49:52.031Z",
-        "lastError": {
-          "code": "threads_reconciliation",
-          "at": "2026-11-09T20:49:52.031Z"
-        },
+        "updatedAt": "2026-11-21T20:35:04.538Z",
+        "lastError": null,
         "lastReset": null,
         "result": null
       },
@@ -76947,9 +76944,9 @@
         }
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-21T20:35:04.538Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -83417,13 +83414,10 @@
       "createdAt": "2026-11-09T19:22:03Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-11-21T12:45:38.527Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-11-21T12:45:38.527Z"
-        },
+        "status": "publishing",
+        "attempts": 3,
+        "updatedAt": "2026-11-21T20:35:04.538Z",
+        "lastError": null,
         "lastReset": null,
         "result": {
           "socialTitle": "Tech Lead RM Educacional | Remoto"
