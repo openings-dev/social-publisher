@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "416500a8324f372c2799b2a72b7a4dfc6e5e9873",
-    "generatedAt": "2026-11-21T10:31:04.949Z",
-    "dataHash": "9a02757cf209f38a2aac2be22860adb81d60ebfdc9ba59a4542bafbcdff07504"
+    "commit": "b652ea72029fa1dbcb20c6f15e2491f70eed1e4d",
+    "generatedAt": "2026-11-21T18:31:34.051Z",
+    "dataHash": "5ce25f684abe9fc26ed051e247be0ccf47fe484f325af50f38a409b29eb84229"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -24805,6 +24805,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_bc546b30eebffc5fccf667bc"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d1d83fe45523bad6fe0f046e",
+      "sourceId": "rebase-network/who-is-hiring#1357",
+      "dataCommit": "b652ea72029fa1dbcb20c6f15e2491f70eed1e4d",
+      "dataHash": "5ce25f684abe9fc26ed051e247be0ccf47fe484f325af50f38a409b29eb84229",
+      "contentHash": "dccb95382f07d64ea9eabfdea8b869bbac2df327d1f19d06b5c3f6a2a044fc91",
+      "sourceCreatedAt": "2026-11-21T16:14:57Z",
+      "createdAt": "2026-11-21T18:31:34.051Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "04560862-40e6-400b-ba70-435dd352352a",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[深圳／海外 BD] FinTax 招聘产品经理、ERP 技术负责人、CRS 税务顾问、税务助理和商务拓展经理",
+          "pt-BR": "[深圳／海外 BD] FinTax 招聘产品经理、ERP 技术负责人、CRS 税务顾问、税务助理和商务拓展经理",
+          "es": "[深圳／海外 BD] FinTax 招聘产品经理、ERP 技术负责人、CRS 税务顾问、税务助理和商务拓展经理",
+          "it": "[深圳／海外 BD] FinTax 招聘产品经理、ERP 技术负责人、CRS 税务顾问、税务助理和商务拓展经理",
+          "fr": "[深圳／海外 BD] FinTax 招聘产品经理、ERP 技术负责人、CRS 税务顾问、税务助理和商务拓展经理",
+          "de": "[深圳／海外 BD] FinTax 招聘产品经理、ERP 技术负责人、CRS 税务顾问、税务助理和商务拓展经理"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d1d83fe45523bad6fe0f046e"
         }
       },
       "status": "pending",
