@@ -83417,12 +83417,14 @@
       "createdAt": "2026-11-09T19:22:03Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-21T03:15:45.481Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "Tech Lead RM Educacional | Remoto"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -83479,7 +83481,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 318
     },
     {
       "jobId": "gh_5a902415db8ee28b548b9fd9",
