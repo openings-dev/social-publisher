@@ -83414,10 +83414,13 @@
       "createdAt": "2026-11-09T19:22:03Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "publishing",
+        "status": "failed",
         "attempts": 3,
         "updatedAt": "2026-11-21T20:35:04.538Z",
-        "lastError": null,
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-11-21T20:35:04.538Z"
+        },
         "lastReset": null,
         "result": {
           "socialTitle": "Tech Lead RM Educacional | Remoto"
