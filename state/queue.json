@@ -83909,13 +83909,10 @@
       "createdAt": "2026-11-09T15:38:15Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "retryable",
-        "attempts": 2,
-        "updatedAt": "2026-11-22T12:40:38.294Z",
-        "lastError": {
-          "code": "deployment",
-          "at": "2026-11-22T12:40:38.294Z"
-        },
+        "status": "publishing",
+        "attempts": 3,
+        "updatedAt": "2026-11-22T20:46:03.397Z",
+        "lastError": null,
         "lastReset": null,
         "result": {
           "socialTitle": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Agent Evaluation - San Francisco, CA (in office) - $130,000-$180,000 USD/year"
@@ -84666,17 +84663,17 @@
       "createdAt": "2026-11-11T12:46:19Z",
       "publicationCreatedAt": "2026-11-11T17:57:34.796Z",
       "bridge": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-22T20:46:03.397Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "bluesky": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-22T20:46:03.397Z",
         "lastError": null,
         "lastReset": null,
         "result": null
@@ -84690,41 +84687,41 @@
         "result": null
       },
       "twitter": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-22T20:46:03.397Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "threads": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-22T20:46:03.397Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagram": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-22T20:46:03.397Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "linkedin": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-22T20:46:03.397Z",
         "lastError": null,
         "lastReset": null,
         "result": null
       },
       "instagramStory": {
-        "status": "pending",
+        "status": "skipped_closed",
         "attempts": 0,
-        "updatedAt": null,
+        "updatedAt": "2026-11-22T20:46:03.397Z",
         "lastError": null,
         "lastReset": null,
         "result": null
