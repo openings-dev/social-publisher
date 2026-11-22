@@ -24647,10 +24647,10 @@
           "jobId": "gh_7e4397a5c3ec447941a1d5ca"
         }
       },
-      "status": "pending",
+      "status": "skipped_stale",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-22T10:11:14.139Z",
       "retryAfter": null,
       "result": null
     },
@@ -24687,10 +24687,10 @@
           "jobId": "gh_ac1abcef6a18a8bfaba59882"
         }
       },
-      "status": "pending",
+      "status": "skipped_stale",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-22T10:11:14.139Z",
       "retryAfter": null,
       "result": null
     },
@@ -24727,10 +24727,10 @@
           "jobId": "gh_3277fbbd4ee12fed5e5bdd7e"
         }
       },
-      "status": "pending",
+      "status": "skipped_stale",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-22T10:11:14.139Z",
       "retryAfter": null,
       "result": null
     },
@@ -24767,10 +24767,10 @@
           "jobId": "gh_78d5aa4d92842b57989a62d7"
         }
       },
-      "status": "pending",
+      "status": "skipped_stale",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-22T10:11:14.139Z",
       "retryAfter": null,
       "result": null
     },
@@ -24807,10 +24807,10 @@
           "jobId": "gh_bc546b30eebffc5fccf667bc"
         }
       },
-      "status": "pending",
+      "status": "skipped_stale",
       "attempts": 0,
       "firstSubmittedAt": null,
-      "updatedAt": null,
+      "updatedAt": "2026-11-22T10:11:14.139Z",
       "retryAfter": null,
       "result": null
     },
@@ -24847,10 +24847,10 @@
           "jobId": "gh_d1d83fe45523bad6fe0f046e"
         }
       },
-      "status": "pending",
-      "attempts": 0,
-      "firstSubmittedAt": null,
-      "updatedAt": null,
+      "status": "submitting",
+      "attempts": 1,
+      "firstSubmittedAt": "2026-11-22T10:11:14.139Z",
+      "updatedAt": "2026-11-22T10:11:14.139Z",
       "retryAfter": null,
       "result": null
     },
