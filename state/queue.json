@@ -83909,12 +83909,14 @@
       "createdAt": "2026-11-09T15:38:15Z",
       "publicationCreatedAt": "2026-11-10T04:20:31.265Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-22T02:18:49.020Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LookoutAI (recruiting for a client) - Full-Stack Engineer, Agent Evaluation - San Francisco, CA (in office) - $130,000-$180,000 USD/year"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -83971,7 +83973,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "editorial",
+      "visualSequence": 319
     },
     {
       "jobId": "gh_112b43fedbe511cb3669c421",
