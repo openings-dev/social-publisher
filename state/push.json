@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "b652ea72029fa1dbcb20c6f15e2491f70eed1e4d",
-    "generatedAt": "2026-11-21T18:31:34.051Z",
-    "dataHash": "5ce25f684abe9fc26ed051e247be0ccf47fe484f325af50f38a409b29eb84229"
+    "commit": "3a25a6c6474d134ae4890dbffe08ec811a1618d9",
+    "generatedAt": "2026-11-22T00:50:13.940Z",
+    "dataHash": "ea74ecfe3d4d1e3f243dc0d5e1d76506e9d7ce1548a49d17b15ca27768d99c53"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -24845,6 +24845,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_d1d83fe45523bad6fe0f046e"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_7acdfbd898b4ec903edebd7d",
+      "sourceId": "react-brasil/vagas#3042",
+      "dataCommit": "3a25a6c6474d134ae4890dbffe08ec811a1618d9",
+      "dataHash": "ea74ecfe3d4d1e3f243dc0d5e1d76506e9d7ce1548a49d17b15ca27768d99c53",
+      "contentHash": "f4670e50a90b3147bb0b9ef2116df283461eedd4fb2633a5797cab7cd787e7ad",
+      "sourceCreatedAt": "2026-11-21T19:00:10Z",
+      "createdAt": "2026-11-22T00:50:13.940Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "9e9f79f3-a5d7-4db6-bfa8-90cb43eabda6",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "pt-BR": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "es": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "it": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "fr": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "de": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_7acdfbd898b4ec903edebd7d"
         }
       },
       "status": "pending",
