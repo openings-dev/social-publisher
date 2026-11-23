@@ -24970,12 +24970,15 @@
           "jobId": "gh_0324e43342e486593f369e16"
         }
       },
-      "status": "submitting",
+      "status": "accepted",
       "attempts": 1,
       "firstSubmittedAt": "2026-11-23T08:04:18.027Z",
-      "updatedAt": "2026-11-23T08:04:18.027Z",
+      "updatedAt": "2026-11-23T08:04:20.339Z",
       "retryAfter": null,
-      "result": null
+      "result": {
+        "notificationId": "aa6eb92b-2123-4303-9199-10bfbab6c25c",
+        "providerStatus": "accepted"
+      }
     }
   ]
 }
