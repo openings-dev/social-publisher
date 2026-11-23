@@ -84296,12 +84296,14 @@
       "createdAt": "2026-11-10T04:23:43Z",
       "publicationCreatedAt": "2026-11-10T12:45:59.027Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-23T02:53:36.168Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Agent Infrastructure - San Francisco, CA (in office) - $200,000-$250,000 USD/year"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -84358,7 +84360,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 320
     },
     {
       "jobId": "gh_2764213b770366649449d542",
