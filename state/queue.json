@@ -84284,10 +84284,13 @@
       "createdAt": "2026-11-10T04:23:43Z",
       "publicationCreatedAt": "2026-11-10T12:45:59.027Z",
       "bridge": {
-        "status": "publishing",
+        "status": "failed",
         "attempts": 3,
         "updatedAt": "2026-11-24T02:56:36.441Z",
-        "lastError": null,
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-11-24T02:56:36.441Z"
+        },
         "lastReset": null,
         "result": {
           "socialTitle": "LookoutAI (recruiting for a client) - Founding Engineer, Agent Infrastructure - San Francisco, CA (in office) - $200,000-$250,000 USD/year"
