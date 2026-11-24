@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "88d662b1a819b028f28c714469ac8c057293846b",
-    "generatedAt": "2026-11-23T23:09:37.773Z",
-    "dataHash": "8db3dfeae48b8f744601259f4204b2dc57074b070061d44a5c2e3362786ee053"
+    "commit": "a3abd3cd587d8d80114a687d9b04a624a846a8e2",
+    "generatedAt": "2026-11-24T12:10:57.732Z",
+    "dataHash": "49d117a73929e45457b1ec4366280d01dcfee60e1592672a3b09444ca53ee396"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -25017,6 +25017,286 @@
       "attempts": 0,
       "firstSubmittedAt": null,
       "updatedAt": "2026-11-23T11:35:19.837Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9554ffc8e40eb0cce282b9c9",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9758",
+      "dataCommit": "115e4140211df32e459305d4caa1f61f0d7bb858",
+      "dataHash": "245c1ed5e538d8b092fbee10e0ac82c046364672d6ad3193cce2fc774cb2da29",
+      "contentHash": "95c41049f0b59c7077e19c6adfb34116ddb8516e45c00a1906191befa527beab",
+      "sourceCreatedAt": "2026-11-24T05:58:46Z",
+      "createdAt": "2026-11-24T07:47:47.524Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5685874b-cda9-4e70-9a82-a69bda2b3dba",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Full-Stack Web Architecture Intern — TechX Labs",
+          "pt-BR": "Full-Stack Web Architecture Intern — TechX Labs",
+          "es": "Full-Stack Web Architecture Intern — TechX Labs",
+          "it": "Full-Stack Web Architecture Intern — TechX Labs",
+          "fr": "Full-Stack Web Architecture Intern — TechX Labs",
+          "de": "Full-Stack Web Architecture Intern — TechX Labs"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9554ffc8e40eb0cce282b9c9"
+        }
+      },
+      "status": "skipped_closed",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": "2026-11-24T12:10:57.732Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_88c82bcaaef2236ad4e3fe0c",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9757",
+      "dataCommit": "115e4140211df32e459305d4caa1f61f0d7bb858",
+      "dataHash": "245c1ed5e538d8b092fbee10e0ac82c046364672d6ad3193cce2fc774cb2da29",
+      "contentHash": "c35f492032090df10230b376bef1ffc095b7a224dc9056f502cc6b87e94c6ba2",
+      "sourceCreatedAt": "2026-11-24T05:58:36Z",
+      "createdAt": "2026-11-24T07:47:47.524Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "d439d734-fa57-416c-a909-18d2c0af71d8",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Data Science & Product Analytics Intern — TechX Labs",
+          "pt-BR": "Data Science & Product Analytics Intern — TechX Labs",
+          "es": "Data Science & Product Analytics Intern — TechX Labs",
+          "it": "Data Science & Product Analytics Intern — TechX Labs",
+          "fr": "Data Science & Product Analytics Intern — TechX Labs",
+          "de": "Data Science & Product Analytics Intern — TechX Labs"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_88c82bcaaef2236ad4e3fe0c"
+        }
+      },
+      "status": "skipped_closed",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": "2026-11-24T12:10:57.732Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_e0949dddd22a97ffbd5bcac6",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9756",
+      "dataCommit": "115e4140211df32e459305d4caa1f61f0d7bb858",
+      "dataHash": "245c1ed5e538d8b092fbee10e0ac82c046364672d6ad3193cce2fc774cb2da29",
+      "contentHash": "9a5705f15d3a23ff55ded5fb73ddb8203945b0baa4816f191e3e8bbadd481b80",
+      "sourceCreatedAt": "2026-11-24T05:58:26Z",
+      "createdAt": "2026-11-24T07:47:47.524Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "5f3af9b9-e1e8-4baa-9af7-526d977be0ab",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "AI & Machine Learning Engineering Intern — TechX Labs",
+          "pt-BR": "AI & Machine Learning Engineering Intern — TechX Labs",
+          "es": "AI & Machine Learning Engineering Intern — TechX Labs",
+          "it": "AI & Machine Learning Engineering Intern — TechX Labs",
+          "fr": "AI & Machine Learning Engineering Intern — TechX Labs",
+          "de": "AI & Machine Learning Engineering Intern — TechX Labs"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_e0949dddd22a97ffbd5bcac6"
+        }
+      },
+      "status": "skipped_closed",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": "2026-11-24T12:10:57.732Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_9e9e270160ba788fe447d0cb",
+      "sourceId": "SimplifyJobs/Summer2026-Internships#9755",
+      "dataCommit": "115e4140211df32e459305d4caa1f61f0d7bb858",
+      "dataHash": "245c1ed5e538d8b092fbee10e0ac82c046364672d6ad3193cce2fc774cb2da29",
+      "contentHash": "099c18d2ee8ffe10e42f12cb09baec559418e8feef518c166a49721263f208c2",
+      "sourceCreatedAt": "2026-11-24T05:58:16Z",
+      "createdAt": "2026-11-24T07:47:47.524Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "0fd4f5ce-fa29-40cd-b082-53962cdd7b3b",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "Backend & Distributed Systems Intern — TechX Labs",
+          "pt-BR": "Backend & Distributed Systems Intern — TechX Labs",
+          "es": "Backend & Distributed Systems Intern — TechX Labs",
+          "it": "Backend & Distributed Systems Intern — TechX Labs",
+          "fr": "Backend & Distributed Systems Intern — TechX Labs",
+          "de": "Backend & Distributed Systems Intern — TechX Labs"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_9e9e270160ba788fe447d0cb"
+        }
+      },
+      "status": "skipped_closed",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": "2026-11-24T12:10:57.732Z",
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_cf06c6504f82d775581897a9",
+      "sourceId": "frontendbr/vagas#8576",
+      "dataCommit": "4a34cfb51c34d8b1c2388ce617579700a25fe3ed",
+      "dataHash": "6a58d2903cdd7c6a0c9eb2e9909b926269d7bd46b2deafdd3be3e97f21058585",
+      "contentHash": "f4670e50a90b3147bb0b9ef2116df283461eedd4fb2633a5797cab7cd787e7ad",
+      "sourceCreatedAt": "2026-11-21T19:00:11Z",
+      "createdAt": "2026-11-24T12:10:57.732Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "09ea6d63-f0aa-4b37-ab88-38d384c7d46e",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "pt-BR": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "es": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "it": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "fr": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still",
+          "de": "[Remoto] React Native Developer (Dev Co-founder, Sênior) na Still"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_cf06c6504f82d775581897a9"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_647031ec2d513e0e8c9e9cd7",
+      "sourceId": "dotnetdevbr/vagas#1084",
+      "dataCommit": "4a34cfb51c34d8b1c2388ce617579700a25fe3ed",
+      "dataHash": "6a58d2903cdd7c6a0c9eb2e9909b926269d7bd46b2deafdd3be3e97f21058585",
+      "contentHash": "1ad043e6d938c2e3c2b6e641bc9f6fb4774cda13d987a1351d0ca75b7e89feee",
+      "sourceCreatedAt": "2026-11-18T19:34:16Z",
+      "createdAt": "2026-11-24T12:10:57.732Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "08d9ae1c-dfc9-4e15-85f1-5d335a5c7304",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remoto] Full-Stack Sênior @Igma",
+          "pt-BR": "[Remoto] Full-Stack Sênior @Igma",
+          "es": "[Remoto] Full-Stack Sênior @Igma",
+          "it": "[Remoto] Full-Stack Sênior @Igma",
+          "fr": "[Remoto] Full-Stack Sênior @Igma",
+          "de": "[Remoto] Full-Stack Sênior @Igma"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_647031ec2d513e0e8c9e9cd7"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_d063e36b8c0b943c7bf1198b",
+      "sourceId": "developersRJ/vagas#514",
+      "dataCommit": "4a34cfb51c34d8b1c2388ce617579700a25fe3ed",
+      "dataHash": "6a58d2903cdd7c6a0c9eb2e9909b926269d7bd46b2deafdd3be3e97f21058585",
+      "contentHash": "2d770ca12f97eee15909ace318d5a09bf70645e7d475de1e02c16e6df3f4e90d",
+      "sourceCreatedAt": "2024-12-11T22:18:30Z",
+      "createdAt": "2026-11-24T12:10:57.732Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "a7078804-96d7-4500-ada3-9047ab8223dd",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - [Stay]",
+          "pt-BR": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - [Stay]",
+          "es": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - [Stay]",
+          "it": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - [Stay]",
+          "fr": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - [Stay]",
+          "de": "[Remote] Senior Developer Node.js and Javascript (Fluent English) - [Stay]"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_d063e36b8c0b943c7bf1198b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
       "retryAfter": null,
       "result": null
     }
