@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "e4a42de86e51e610c6c6dd99e503c03a59232ccb",
-    "generatedAt": "2026-11-24T19:49:34.312Z",
-    "dataHash": "8e0b09f936dae11ba7cb421e566bb6255d5bc25dc99ff88deeb98c59087db9bc"
+    "commit": "55e28a612959ddb681ea87eeb52afbed3019f87b",
+    "generatedAt": "2026-11-25T03:53:27.928Z",
+    "dataHash": "1b0129b65c9a642a9c72c9b9e45c62bb18f1201d7f9cedfbb4d371c52393eeec"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -25294,6 +25294,46 @@
           "type": "openings.job",
           "version": 1,
           "jobId": "gh_d063e36b8c0b943c7bf1198b"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
+    },
+    {
+      "jobId": "gh_8a67a04e0972c22f709426d4",
+      "sourceId": "DevOps-Brasil/Vagas#508",
+      "dataCommit": "55e28a612959ddb681ea87eeb52afbed3019f87b",
+      "dataHash": "1b0129b65c9a642a9c72c9b9e45c62bb18f1201d7f9cedfbb4d371c52393eeec",
+      "contentHash": "7b193dd91d7bab9992f66ef13c22c3441ecae95510003965ca11a51dc1d1a678",
+      "sourceCreatedAt": "2026-11-24T21:20:17Z",
+      "createdAt": "2026-11-25T03:53:27.928Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "e390b489-0080-4799-a40d-17e6c4390887",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Especialista em Observabilidade] </domy - Remoto",
+          "pt-BR": "[Especialista em Observabilidade] </domy - Remoto",
+          "es": "[Especialista em Observabilidade] </domy - Remoto",
+          "it": "[Especialista em Observabilidade] </domy - Remoto",
+          "fr": "[Especialista em Observabilidade] </domy - Remoto",
+          "de": "[Especialista em Observabilidade] </domy - Remoto"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_8a67a04e0972c22f709426d4"
         }
       },
       "status": "pending",
