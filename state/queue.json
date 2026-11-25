@@ -85885,12 +85885,14 @@
       "createdAt": "2026-11-17T18:43:29Z",
       "publicationCreatedAt": "2026-11-18T07:40:49.479Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-25T21:47:49.935Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Remoto] Tech Lead na MilkBox"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -85947,7 +85949,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 322
     },
     {
       "jobId": "gh_515d7b3354e1b4d68735ca73",
