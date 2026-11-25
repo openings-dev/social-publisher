@@ -85572,10 +85572,13 @@
       "createdAt": "2026-11-17T13:21:59Z",
       "publicationCreatedAt": "2026-11-17T22:30:02.216Z",
       "bridge": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 2,
         "updatedAt": "2026-11-25T00:50:37.083Z",
-        "lastError": null,
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-11-25T00:50:37.083Z"
+        },
         "lastReset": null,
         "result": {
           "socialTitle": "[São Paulo] Desenvolvedor(a) Full Stack Sênior React & .NET [Beyond Soluções]"
