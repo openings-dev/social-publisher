@@ -85811,12 +85811,14 @@
       "createdAt": "2026-11-17T18:53:27Z",
       "publicationCreatedAt": "2026-11-18T07:40:49.479Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-26T23:03:20.396Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "[Tech Lead] MilkBox - Remoto (Brasil)"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -85873,7 +85875,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "peach",
+      "visualSequence": 323
     },
     {
       "jobId": "gh_03e726cf5392a612dc1d5a58",
