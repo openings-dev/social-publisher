@@ -85811,10 +85811,13 @@
       "createdAt": "2026-11-17T18:53:27Z",
       "publicationCreatedAt": "2026-11-18T07:40:49.479Z",
       "bridge": {
-        "status": "publishing",
+        "status": "failed",
         "attempts": 3,
         "updatedAt": "2026-11-27T19:30:54.332Z",
-        "lastError": null,
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-11-27T19:30:54.332Z"
+        },
         "lastReset": null,
         "result": {
           "socialTitle": "[Tech Lead] MilkBox - Remoto (Brasil)"
