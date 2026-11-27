@@ -7,9 +7,9 @@
     "dataHash": "90a63883cf6ec6a223f3516899b32e312957391da865588cd5d838eec7b56c37"
   },
   "processedSnapshot": {
-    "commit": "293035300a0f2e882ffdc299dd634acf6b32fc96",
-    "generatedAt": "2026-11-26T11:44:19.752Z",
-    "dataHash": "6782828157e608177aa4eebba999facfc02c9c7f2a50728796be45dd3b4fbc04"
+    "commit": "fda9d542e886cfa68d1629ad29a9528c6baeb333",
+    "generatedAt": "2026-11-26T20:45:02.680Z",
+    "dataHash": "63df89db40d4bafd9b634eba9cb172a0b9617eea7d52bbd9225537c6c33661e7"
   },
   "activatedAt": "2026-09-17T20:14:44.857Z",
   "audienceVersion": "android-consent-v1",
@@ -25345,6 +25345,46 @@
         "notificationId": "9a1a4872-ff08-49cb-a50a-72a175c98162",
         "providerStatus": "accepted"
       }
+    },
+    {
+      "jobId": "gh_f75644b26dbffff4584f9a28",
+      "sourceId": "phpdevbr/vagas#1334",
+      "dataCommit": "fda9d542e886cfa68d1629ad29a9528c6baeb333",
+      "dataHash": "63df89db40d4bafd9b634eba9cb172a0b9617eea7d52bbd9225537c6c33661e7",
+      "contentHash": "3309acaf24a6a725481c4d822cc337754cf7b057f2cf3882af15ca60f505fb0b",
+      "sourceCreatedAt": "2026-11-26T14:35:46Z",
+      "createdAt": "2026-11-26T20:45:02.680Z",
+      "audienceVersion": "android-consent-v1",
+      "idempotencyKey": "c5fa2f3d-99ed-4fec-a2dd-6e2d22c4135d",
+      "payload": {
+        "headings": {
+          "en": "New job on Openings",
+          "pt-BR": "Nova vaga no Openings",
+          "es": "Nueva vacante en Openings",
+          "it": "Nuova offerta su Openings",
+          "fr": "Nouvelle offre sur Openings",
+          "de": "Neue Stelle bei Openings"
+        },
+        "contents": {
+          "en": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack PLENO (PHP/Laravel/Symfony/React) - 100% REMOTO",
+          "pt-BR": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack PLENO (PHP/Laravel/Symfony/React) - 100% REMOTO",
+          "es": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack PLENO (PHP/Laravel/Symfony/React) - 100% REMOTO",
+          "it": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack PLENO (PHP/Laravel/Symfony/React) - 100% REMOTO",
+          "fr": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack PLENO (PHP/Laravel/Symfony/React) - 100% REMOTO",
+          "de": "[Rio de Janeiro] Arctron Software - Desenvolvedor Fullstack PLENO (PHP/Laravel/Symfony/React) - 100% REMOTO"
+        },
+        "data": {
+          "type": "openings.job",
+          "version": 1,
+          "jobId": "gh_f75644b26dbffff4584f9a28"
+        }
+      },
+      "status": "pending",
+      "attempts": 0,
+      "firstSubmittedAt": null,
+      "updatedAt": null,
+      "retryAfter": null,
+      "result": null
     }
   ]
 }
