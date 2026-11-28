@@ -86134,19 +86134,21 @@
     {
       "jobId": "gh_515d7b3354e1b4d68735ca73",
       "sourceId": "DevOps-Brasil/Vagas#505",
-      "dataCommit": "4562c00f54ff842d5114923d4469a9a6d9033229",
-      "dataHash": "448410bcc67cfa0baf444f573c8511b40e79f49edff7d87c0423e155e7399937",
-      "contentHash": "220590ebfbb817b63679b8641fa86b04dd12eb9b30ff751843fc6e7c17c5adde",
+      "dataCommit": "a8a1153fce95a5ca7b4d15c04a687647bb57b538",
+      "dataHash": "1b9c8e1a9a84bb637a883cf77d19cfb85e5b7f540aa1d702fe258239c235b59c",
+      "contentHash": "9eadaf045d2c2296da5ea23d7873887ef219533d37028f1cd088a75b47c6ec6d",
       "discoveredAt": "2026-11-18T07:40:49.479Z",
       "createdAt": "2026-11-17T18:19:23Z",
       "publicationCreatedAt": "2026-11-18T07:40:49.479Z",
       "bridge": {
-        "status": "pending",
-        "attempts": 0,
-        "updatedAt": null,
+        "status": "publishing",
+        "attempts": 1,
+        "updatedAt": "2026-11-28T02:46:04.015Z",
         "lastError": null,
         "lastReset": null,
-        "result": null
+        "result": {
+          "socialTitle": "DevOps Engineer (Sênior) / Proativa RH - São Paulo"
+        }
       },
       "bluesky": {
         "status": "pending",
@@ -86203,7 +86205,9 @@
         "lastError": null,
         "lastReset": null,
         "result": null
-      }
+      },
+      "visualDirection": "night",
+      "visualSequence": 324
     },
     {
       "jobId": "gh_6357493d77df8d138d92db9e",
