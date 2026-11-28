@@ -86141,10 +86141,13 @@
       "createdAt": "2026-11-17T18:19:23Z",
       "publicationCreatedAt": "2026-11-18T07:40:49.479Z",
       "bridge": {
-        "status": "publishing",
+        "status": "retryable",
         "attempts": 2,
         "updatedAt": "2026-11-28T13:10:25.207Z",
-        "lastError": null,
+        "lastError": {
+          "code": "deployment",
+          "at": "2026-11-28T13:10:25.207Z"
+        },
         "lastReset": null,
         "result": {
           "socialTitle": "DevOps Engineer (Sênior) / Proativa RH - São Paulo"
